@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("/Users/elia/Desktop/Influence-Maximization-master/2021-06-14-20-52-31-population.csv")
+df = pd.read_csv("/Users/elia/Desktop/Influence-Maximization/2021-06-15-12-21-30-population.csv")
 
 print(df)
 print(df.columns)

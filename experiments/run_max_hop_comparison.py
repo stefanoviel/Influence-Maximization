@@ -8,7 +8,7 @@ import sys
 sys.path.append("../")
 from spread import MonteCarlo_simulation_max_hop
 from spread import MonteCarlo_simulation
-from evolutionaryalgorithm import moea_influence_maximization  
+from new_ea import moea_influence_maximization  
 
 def main() :
 

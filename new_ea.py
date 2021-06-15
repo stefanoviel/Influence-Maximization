@@ -5,7 +5,7 @@
 import inspyred
 import logging
 import random
-
+import pandas as pd
 from time import time, strftime
 import logging
 import collections
@@ -14,7 +14,7 @@ import copy
 import spread
 from inspyred.ec import *
 from inspyred.ec.emo import NSGA2
-
+from inspyred.ec import EvolutionaryComputation
 
 
 """
@@ -99,11 +99,11 @@ def nsga2_evaluator(candidates, args):
     model = args["model"]
     no_simulations = args["no_simulations"]
     random_generator = args["_ec"]._random 
-    print("\n--------------------------------\n")
+    # print("\n--------------------------------\n")
    
-    print("GENERATIONS", type(args["generations"]), print(args["generations"]))
+    # print("GENERATIONS", type(args["generations"]), print(args["generations"]))
     
-    print("\n--------------------------------\n")
+    # print("\n--------------------------------\n")
 
 
     # NOTE code below here is an attempt at using a function pointer
@@ -116,6 +116,7 @@ def nsga2_evaluator(candidates, args):
     # depending on how many threads we have at our disposal,
     # we use a different methodology
     # if we just have one thread, let's just evaluate individuals old style 
+    #print(candidates)
     if n_threads == 1 :
         for index, A in enumerate(candidates) :
 
@@ -130,7 +131,11 @@ def nsga2_evaluator(candidates, args):
             # NOTE now passing a generic function works, but the whole thing has to be implemented for the multi-threaded version
             fitness_function_args = [G, A_set, p, no_simulations, model]
             influence_mean, influence_std = fitness_function(*fitness_function_args, **fitness_function_kargs)
-            fitness[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set))])
+            
+            gen = float(1/args["generations"] if args["generations"] > 0 else 0)
+            fitness[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), gen]) 
+
+        
     else :
         
         # create a threadpool, using the local module
@@ -147,7 +152,8 @@ def nsga2_evaluator(candidates, args):
         for index, A in enumerate(candidates) :
             A_set = set(A)
             fitness_function_args = [G, A_set, p, no_simulations, model]
-            tasks.append((fitness_function, fitness_function_args, fitness_function_kargs, fitness, A_set, index, thread_lock))
+            gen = float(1/args["generations"] if args["generations"] > 0 else 0)            
+            tasks.append((fitness_function, fitness_function_args, fitness_function_kargs, fitness, A_set, index, thread_lock, float(gen)))
 
         thread_pool.map(nsga2_evaluator_threaded, tasks)
 
@@ -169,14 +175,14 @@ def nsga2_evaluator(candidates, args):
 #
 #    return 
 
-def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_function_kargs, fitness_values, A_set, index, thread_lock, thread_id) :
+def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_function_kargs, fitness_values, A_set, index, thread_lock, gen, thread_id) :
 
     #influence_mean, influence_std = spread.MonteCarlo_simulation_max_hop(G, A_set, p, no_simulations, model)
     influence_mean, influence_std = fitness_function(*fitness_function_args, **fitness_function_kargs)
 
     # lock data structure before writing in it
     thread_lock.acquire()
-    fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set))])  
+    fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), gen])  
     thread_lock.release()
 
     return 
@@ -194,13 +200,22 @@ def ea_observer(population, num_generations, num_evaluations, args) :
     # TODO write current state of the ALGORITHM to a file (e.g. random number generator, time elapsed, stuff like that)
     # write current state of the population to a file
     population_file = args["population_file"]
-    
-    # find the longest individual
+    # print("*********")
+    # #print(best)
+    # print(population[0])
+    # print(population[0].fitness[0])
+    # print(population[0].fitness[1])
+    # print(population[0].fitness[2])
+
+    # print(population[0].candidate)
+
+    # print("*******")
+    #find the longest individual
     max_length = len(max(population, key=lambda x : len(x.candidate)).candidate)
 
     with open(population_file, "w") as fp :
         # header, of length equal to the maximum individual length in the population
-        fp.write("n_nodes,influence")
+        fp.write("n_nodes,influence,generations")
         for i in range(0, max_length) : fp.write(",n%d" % i)
         fp.write("\n")
 
@@ -209,9 +224,11 @@ def ea_observer(population, num_generations, num_evaluations, args) :
 
             # check if fitness is an iterable collection (e.g. a list) or just a single value
             if hasattr(individual.fitness, "__iter__") :
-                fp.write("%d,%.4f" % (1.0 / individual.fitness[1], individual.fitness[0]))
+                gen =  float(1.0 / individual.fitness[2] if individual.fitness[2] > 0 else 0)
+
+                fp.write("%d,%.4f,%d" % (1.0 / individual.fitness[1], individual.fitness[0], gen))
             else :
-                fp.write("%d,%.4f" % ( len(set(individual.candidate)), individual.fitness))
+                fp.write("%d,%.4f" % (len(set(individual.candidate)), individual.fitness))
 
             for node in individual.candidate :
                 fp.write(",%d" % node)
@@ -220,8 +237,6 @@ def ea_observer(population, num_generations, num_evaluations, args) :
                 fp.write(",")
 
             fp.write("\n")
-
-    return
 
 # TODO is there a way to have a multi-threaded generation of individuals?
 @inspyred.ec.variators.crossover # decorator that defines the operator as a crossover, even if it isn't in this case :-)
@@ -340,7 +355,6 @@ def nsga2_generator(random, args) :
 
     return individual
 
-#@inspyred.ec.EvolutionaryComputation
 def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args):
         """Perform the evolution.
         
@@ -371,7 +385,6 @@ def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args)
         - *_ec* -- the evolutionary computation (this object)
         
         """
-        self.logger.debug("CIAOOOO\nCIAOOOO\nCIAOOOO\nCIAOOOO\nCIAOOOO\nCIAOOOO\nCIAOOOO\nCIAOOOO\nCIAOOOO\nCIAOOOO\nCIAOOOO\nCIAOOOO\ns ")
         self._kwargs = args
         self._kwargs['_ec'] = self
         self._kwargs["generations"] = 0
@@ -400,8 +413,8 @@ def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args)
             initial_cs.append(cs)
             i += 1
         self.logger.debug('evaluating initial population')
-        initial_fit = evaluator(candidates=initial_cs, args=self._kwargs)
-        
+        initial_fit = nsga2_evaluator(candidates=initial_cs, args=self._kwargs)
+
         for cs, fit in zip(initial_cs, initial_fit):
             if fit is not None:
                 ind = Individual(cs, maximize=maximize)
@@ -486,12 +499,15 @@ def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args)
                 self.observer(population=list(self.population), num_generations=self.num_generations, num_evaluations=self.num_evaluations, args=self._kwargs)
         return self.population
 
+EvolutionaryComputation.evolve_2 = evolve_2
+
 def evolve_1(self, generator, evaluator, pop_size=100, seeds=None, maximize=True, bounder=None, **args):
         args.setdefault('num_selected', pop_size)
         args.setdefault('tournament_size', 2)
-        return evolve_2(self, pop_size, seeds, maximize, bounder, **args)
+        return EvolutionaryComputation.evolve_2(self, pop_size, seeds, maximize, bounder, **args)
 
 NSGA2.evolve_1 = evolve_1
+
 if __name__ == "__main__" :
 
     # initialize logging
@@ -512,7 +528,7 @@ if __name__ == "__main__" :
     model = 'WC'
     no_simulations = 100
     max_generations = 10
-    n_threads = 2
+    n_threads = 1
     random_seed = 42
 
     prng = random.Random()
