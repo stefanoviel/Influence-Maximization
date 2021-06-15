@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import time
 import random
 from new_ea import *
+from functions import progress
 N = 200
 def read_graph(filename, nodetype=int):    
     graph_class = nx.MultiGraph()
@@ -16,8 +17,8 @@ if __name__ == '__main__':
     p = 0.01
     model = 'WC'
     no_simulations = 100
-    max_generations = 20
-    n_threads = 2
+    max_generations = 10
+    n_threads = 1
     random_seed = 10
     prng = random.Random()
     import logging
@@ -32,24 +33,23 @@ if __name__ == '__main__':
 
     if random_seed == None: 
         random_seed = time()
-    logging.debug("Random number generator seeded with " + str(random_seed)+ " seed")
+    logging.info("Random number generator seeded with " + str(random_seed)+ " seed")
     prng.seed(random_seed)
-    logging.debug(prng)
+    logging.info(prng)
     #seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=16, offspring_size=16, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=10, fitness_function=spread.MonteCarlo_simulation)
 	
-    logging.debug(nx.classes.function.info(G))
+    logging.info(nx.classes.function.info(G))
     
-    seed_sets = moea_influence_maximization(G, p, no_simulations, model,offspring_size=16, population_size=50,random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=10, fitness_function=spread.MonteCarlo_simulation)
+    seed_sets = moea_influence_maximization(G, p, no_simulations, model,offspring_size=16, population_size=50,random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=10, fitness_function=spread.MonteCarlo_simulation_max_hop)
     #print(len(seed_sets))
     #print(str(seed_sets))
     #print(str(spread))
-    logging.info("Seed sets:")
-    logging.info(str(seed_sets))  
+    logging.info("Seed sets {}".format(seed_sets))  
     
     
     #nx.draw(G, with_labels=True, font_weight='bold')
     #plt.show()
-    print(f'number of edges',G.number_of_edges())
+    #print(f'number of edges',G.number_of_edges())
     #for i in range(len(G)):
         #print(i)
         #print(G.edges(i,data=True))

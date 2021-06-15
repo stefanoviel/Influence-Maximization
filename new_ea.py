@@ -15,7 +15,7 @@ import spread
 from inspyred.ec import *
 from inspyred.ec.emo import NSGA2
 from inspyred.ec import EvolutionaryComputation
-
+from functions import progress
 
 """
 Multi-objective evolutionary influence maximization. Parameters:
@@ -37,6 +37,7 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
 
     # initialize multi-objective evolutionary algorithm, NSGA-II
     logging.debug("Setting up NSGA-II...")
+    progress(0, max_generations, status='Inizializing')
 
     # check if some of the parameters are set; otherwise, use default values
     nodes = list(G.nodes)
@@ -87,7 +88,7 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
     )
 
     # extract seed sets from the final Pareto front/archive
-    seed_sets = [ [individual.candidate, individual.fitness[0]] for individual in ea.archive ] 
+    seed_sets = [ [individual.candidate, individual.fitness[0], 1/ individual.fitness[1], 1/individual.fitness[2] if individual.fitness[2]>0 else 0] for individual in ea.archive ] 
 
     return seed_sets
 
@@ -194,9 +195,24 @@ def ea_observer(population, num_generations, num_evaluations, args) :
     timeElapsed = currentTime - time_previous_generation
     args['time_previous_generation'] = currentTime
 
+    if (args["generations"] > 0):
+        progress(args["generations"], args["max_generations"], status='Generation {}'.format(args["generations"]))
+    else:
+        progress(0, args["max_generations"], status='Generations{}'.format(args["generations"]))
+ 
+    
     best = max(population)
-    logging.info('[{0:.2f} s] Generation {1:6} -- {2}'.format(timeElapsed, num_generations, best.fitness))
 
+
+    ## TO - PRINT IF NEEDED
+    #logging.info('[{0:.2f} s] Generation {1:6} -- {2}'.format(timeElapsed, num_generations, best.fitness))
+    
+    #for item in population:
+        #logging.info('Candidate {cand} - Fitness {fit}'.format(cand=item.candidate, fit=item.fitness))
+
+   
+   
+   
     # TODO write current state of the ALGORITHM to a file (e.g. random number generator, time elapsed, stuff like that)
     # write current state of the population to a file
     population_file = args["population_file"]
