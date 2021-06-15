@@ -6,7 +6,7 @@ import numpy as np
 fig = plt.figure(figsize=(8,8))
 
 ax = fig.add_subplot(111, projection='3d')
-df = pd.read_csv("/Users/elia/Desktop/Influence-Maximization/2021-06-15-17-56-11-population.csv", sep=",")
+df = pd.read_csv("2021-06-15-21-26-18-population.csv", sep=",")
 
 print(df)
 x1= df["n_nodes"]
