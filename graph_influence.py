@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import time
 import random
 from new_ea import *
-N = 100
+N = 200
 def read_graph(filename, nodetype=int):    
     graph_class = nx.MultiGraph()
     #G = nx.read_edgelist(filename, create_using=graph_class, nodetype=nodetype, data=False)
@@ -16,7 +16,7 @@ if __name__ == '__main__':
     p = 0.01
     model = 'WC'
     no_simulations = 100
-    max_generations = 10
+    max_generations = 20
     n_threads = 2
     random_seed = 10
     prng = random.Random()
@@ -26,7 +26,7 @@ if __name__ == '__main__':
     formatter = logging.Formatter('[%(levelname)s %(asctime)s] %(message)s', '%Y-%m-%d %H:%M:%S') 
  
     ch = logging.StreamHandler()
-    ch.setLevel(logging.DEBUG)
+    ch.setLevel(logging.INFO)
     ch.setFormatter(formatter)
     logger.addHandler(ch)
 
@@ -39,17 +39,17 @@ if __name__ == '__main__':
 	
     logging.debug(nx.classes.function.info(G))
     
-    seed_sets = moea_influence_maximization(G, p, no_simulations, model,offspring_size=16, population_size=16,random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=4, fitness_function=spread.MonteCarlo_simulation)
+    seed_sets = moea_influence_maximization(G, p, no_simulations, model,offspring_size=16, population_size=50,random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=10, fitness_function=spread.MonteCarlo_simulation)
     #print(len(seed_sets))
     #print(str(seed_sets))
     #print(str(spread))
-    logging.debug("Seed sets:")
-    logging.debug(str(seed_sets))  
+    logging.info("Seed sets:")
+    logging.info(str(seed_sets))  
     
     
     #nx.draw(G, with_labels=True, font_weight='bold')
     #plt.show()
-    print(G.number_of_edges())
+    print(f'number of edges',G.number_of_edges())
     #for i in range(len(G)):
         #print(i)
         #print(G.edges(i,data=True))
