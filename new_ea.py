@@ -136,7 +136,7 @@ def nsga2_evaluator(candidates, args):
             fitness_function_args = [G, A_set, p, no_simulations, model]
             influence_mean, influence_std = fitness_function(*fitness_function_args, **fitness_function_kargs)
             fitness[index] = inspyred.ec.emo.Pareto([influence_mean, (1.0 / float(len(A_set))), float(1/((args["generations"]+1)))]) 
-            #print(fitness[index])
+            print(fitness[index])
         
     else :
         
