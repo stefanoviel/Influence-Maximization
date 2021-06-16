@@ -3,16 +3,30 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("/Users/elia/Desktop/Influence-Maximization/2021-06-15-12-21-30-population.csv")
+df = pd.read_csv("/Users/elia/Desktop/Influence-Maximization/RandomGraph-N300-E17825-population.csv")
 
 print(df)
 print(df.columns)
-df = df.groupby(by='n_nodes')['influence'].mean().reset_index()
 y = df["n_nodes"]
-x = df["influence"]
-x = x.sort_values()
-y = y.sort_values()
-plt.plot(x, y, marker="o")
+x = df["generations"]
+
+plt.scatter(x, y)
+x = list(set(x.sort_values()))
+# y = []
+# a = []
+# for item in x:
+#     df1 = df[df.generations == item]
+#     #a = df1["generations"].to_list()
+    
+#     if df1["n_nodes"].max() >
+
+#     y.append(df1["n_nodes"].max())
+#     a.append(df1["n_nodes"].max())
+
+
+print(x)
+print(y)
+#plt.plot(x,y,marker='o', color="red")
 plt.xlabel('Fitness')
 plt.ylabel('Number of Nodes')
 
