@@ -3,7 +3,7 @@ import pandas as pd
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 
-filename = "/Users/elia/Desktop/Influence-Maximization/RandomGraph-N300-E17825-population.csv"
+filename = "/Users/elia/Desktop/Influence-Maximization/RandomGraph-N300-E17940-population.csv"
 df = pd.read_csv(filename, sep=",")
 fig = plt.figure(figsize=(8,8))
 ax = fig.add_subplot(111, projection='3d')

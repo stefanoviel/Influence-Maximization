@@ -3,12 +3,12 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("/Users/elia/Desktop/Influence-Maximization/RandomGraph-N300-E17825-population.csv")
+df = pd.read_csv("/Users/elia/Desktop/Influence-Maximization/RandomGraph-N300-E17940-population.csv")
 
 print(df)
 print(df.columns)
 y = df["n_nodes"]
-x = df["generations"]
+x = df["influence"]
 
 plt.scatter(x, y)
 x = list(set(x.sort_values()))
@@ -28,6 +28,6 @@ print(x)
 print(y)
 #plt.plot(x,y,marker='o', color="red")
 plt.xlabel('Fitness')
-plt.ylabel('Number of Nodes')
+plt.ylabel('Generations')
 
 plt.show()
