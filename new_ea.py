@@ -1,22 +1,25 @@
 """Evolutionary Algorithm"""
 
 """The functions in this script run Evolutionary Algorithms for influence maximization. Ideally, it will eventually contain both the single-objective (maximize influence with a fixed amount of seed nodes) and multi-objective (maximize influence, minimize number of seed nodes) versions. This relies upon the inspyred Python library for evolutionary algorithms."""
-
-import inspyred
-import logging
+import copy
 import random
-import pandas as pd
-from time import time, strftime
 import logging
 import collections
-import copy
+import inspyred
+
+from time import time, strftime
+
+from networkx.classes.function import edges
+
 # local libraries
+from functions import progress
 import spread
+
+# inspyred libriaries
 from inspyred.ec import *
 from inspyred.ec.emo import NSGA2
 from inspyred.ec import EvolutionaryComputation
-from functions import progress
-
+from inspyred.ec.replacers import nsga_replacement
 """
 Multi-objective evolutionary influence maximization. Parameters:
     G: networkx graph
@@ -48,14 +51,14 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
         max_seed_nodes = int( 0.1 * len(nodes))
         logging.debug("Maximum size for the seed set has been set to %d" % max_seed_nodes)
     if population_file == None :
-        ct = time()
-        population_file = strftime("%Y-%m-%d-%H-%M-%S-population.csv")
+        #ct = time()
+        population_file = "RandomGraph-N{nodes}-E{edges}-population.csv".format(nodes=len(G.nodes), edges=G.number_of_edges())
     if fitness_function == None :
         fitness_function = spread.MonteCarlo_simulation_max_hop
         fitness_function_kargs["random_generator"] = random_gen # pointer to pseudo-random number generator
-        logging.debug("Fitness function not specified, defaulting to \"%s\"" % fitness_function.__name__)
+        logging.info("Fitness function not specified, defaulting to \"%s\"" % fitness_function.__name__)
     else :
-        logging.debug("Fitness function specified, \"%s\"" % fitness_function.__name__)
+        logging.info("Fitness function specified, \"%s\"" % fitness_function.__name__)
 
     ea = inspyred.ec.emo.NSGA2(random_gen)
     ea.observer = ea_observer
@@ -132,10 +135,8 @@ def nsga2_evaluator(candidates, args):
             # NOTE now passing a generic function works, but the whole thing has to be implemented for the multi-threaded version
             fitness_function_args = [G, A_set, p, no_simulations, model]
             influence_mean, influence_std = fitness_function(*fitness_function_args, **fitness_function_kargs)
-            
-            gen = float(1/args["generations"] if args["generations"] > 0 else 0)
-            fitness[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), gen]) 
-
+            fitness[index] = inspyred.ec.emo.Pareto([influence_mean, (1.0 / float(len(A_set))), float(1/((args["generations"]+1)))]) 
+            #print(fitness[index])
         
     else :
         
@@ -152,9 +153,8 @@ def nsga2_evaluator(candidates, args):
         tasks = []
         for index, A in enumerate(candidates) :
             A_set = set(A)
-            fitness_function_args = [G, A_set, p, no_simulations, model]
-            gen = float(1/args["generations"] if args["generations"] > 0 else 0)            
-            tasks.append((fitness_function, fitness_function_args, fitness_function_kargs, fitness, A_set, index, thread_lock, float(gen)))
+            fitness_function_args = [G, A_set, p, no_simulations, model]           
+            tasks.append((fitness_function, fitness_function_args, fitness_function_kargs, fitness, A_set, index, thread_lock, args["generations"]))
 
         thread_pool.map(nsga2_evaluator_threaded, tasks)
 
@@ -183,7 +183,8 @@ def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_fu
 
     # lock data structure before writing in it
     thread_lock.acquire()
-    fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), gen])  
+    fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), float(1/(gen+1))]) 
+ 
     thread_lock.release()
 
     return 
@@ -195,11 +196,8 @@ def ea_observer(population, num_generations, num_evaluations, args) :
     timeElapsed = currentTime - time_previous_generation
     args['time_previous_generation'] = currentTime
 
-    if (args["generations"] > 0):
-        progress(args["generations"], args["max_generations"], status='Generation {}'.format(args["generations"]))
-    else:
-        progress(0, args["max_generations"], status='Generations{}'.format(args["generations"]))
- 
+
+    progress(args["generations"]+1, args["max_generations"], status='Generations{}'.format(args["generations"]+1))
     
     best = max(population)
 
@@ -414,6 +412,7 @@ def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args)
         self.maximize = maximize
         self.population = []
         self.archive = []
+        #self.replacer = nsga_replacement
         generator= nsga2_generator
         evaluator = nsga2_evaluator
         
@@ -429,7 +428,7 @@ def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args)
             initial_cs.append(cs)
             i += 1
         self.logger.debug('evaluating initial population')
-        initial_fit = nsga2_evaluator(candidates=initial_cs, args=self._kwargs)
+        initial_fit = evaluator(candidates=initial_cs, args=self._kwargs)
 
         for cs, fit in zip(initial_cs, initial_fit):
             if fit is not None:
@@ -524,39 +523,39 @@ def evolve_1(self, generator, evaluator, pop_size=100, seeds=None, maximize=True
 
 NSGA2.evolve_1 = evolve_1
 
-if __name__ == "__main__" :
+# if __name__ == "__main__" :
 
-    # initialize logging
-    import logging
-    logger = logging.getLogger('')
-    logger.setLevel(logging.DEBUG) # TODO switch between INFO and DEBUG for less or more in-depth logging
-    formatter = logging.Formatter('[%(levelname)s %(asctime)s] %(message)s', '%Y-%m-%d %H:%M:%S') 
+#     # initialize logging
+#     import logging
+#     logger = logging.getLogger('')
+#     logger.setLevel(logging.DEBUG) # TODO switch between INFO and DEBUG for less or more in-depth logging
+#     formatter = logging.Formatter('[%(levelname)s %(asctime)s] %(message)s', '%Y-%m-%d %H:%M:%S') 
  
-    ch = logging.StreamHandler()
-    ch.setLevel(logging.DEBUG)
-    ch.setFormatter(formatter)
-    logger.addHandler(ch)
+#     ch = logging.StreamHandler()
+#     ch.setLevel(logging.DEBUG)
+#     ch.setFormatter(formatter)
+#     logger.addHandler(ch)
 
-    import load
-    k = 30
-    G = load.read_graph("graphs/Email_URV.txt")
-    p = 0.01
-    model = 'WC'
-    no_simulations = 100
-    max_generations = 10
-    n_threads = 1
-    random_seed = 42
+#     import load
+#     k = 30
+#     G = load.read_graph("graphs/Email_URV.txt")
+#     p = 0.01
+#     model = 'WC'
+#     no_simulations = 100
+#     max_generations = 10
+#     n_threads = 1
+#     random_seed = 42
 
-    prng = random.Random()
-    if random_seed == None: 
-        random_seed = time()
+#     prng = random.Random()
+#     if random_seed == None: 
+#         random_seed = time()
     
-    logging.debug("Random number nsga2_generator seeded with %s" % str(random_seed))
-    prng.seed(random_seed)
+#     logging.debug("Random number nsga2_generator seeded with %s" % str(random_seed))
+#     prng.seed(random_seed)
 
-    # try to pass max_seed_nodes=k to moea:
-    seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=16, offspring_size=16, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=spread.MonteCarlo_simulation)
-    #seed_sets, spread = ea_influence_maximization(k, G, p, no_simulations, model, population_size=16, offspring_size=16, random_gen=prng, max_generations=max_generations, n_threads=n_threads)
+#     # try to pass max_seed_nodes=k to moea:
+#     seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=16, offspring_size=16, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=spread.MonteCarlo_simulation)
+#     #seed_sets, spread = ea_influence_maximization(k, G, p, no_simulations, model, population_size=16, offspring_size=16, random_gen=prng, max_generations=max_generations, n_threads=n_threads)
 
-    logging.debug("Seed sets:")
-    logging.debug(str(seed_sets))
+#     logging.debug("Seed sets:")
+#     logging.debug(str(seed_sets))
