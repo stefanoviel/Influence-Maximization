@@ -92,6 +92,7 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
 
     # extract seed sets from the final Pareto front/archive
     seed_sets = [ [individual.candidate, individual.fitness[0], 1/ individual.fitness[1], 1/individual.fitness[2] if individual.fitness[2]>0 else 0] for individual in ea.archive ] 
+    #seed_sets = [ [individual.candidate, individual.fitness[0],1/individual.fitness[1] if individual.fitness[1]>0 else 0] for individual in ea.archive ] 
 
     return seed_sets
 
@@ -135,8 +136,13 @@ def nsga2_evaluator(candidates, args):
             # NOTE now passing a generic function works, but the whole thing has to be implemented for the multi-threaded version
             fitness_function_args = [G, A_set, p, no_simulations, model]
             influence_mean, influence_std = fitness_function(*fitness_function_args, **fitness_function_kargs)
-            fitness[index] = inspyred.ec.emo.Pareto([influence_mean, (1.0 / float(len(A_set))), float(1/((args["generations"]+1)))]) 
-            print(fitness[index])
+            gen = 1/args["generations"] if args["generations"]>0 else 0
+
+            fitness[index] = inspyred.ec.emo.Pareto([influence_mean, (1.0 / float(len(A_set))), gen])
+            #fitness[index] = inspyred.ec.emo.Pareto([influence_mean, gen]) 
+            #print(fitness[index])
+            #print(A)
+            #print(type(fitness[index]))
         
     else :
         
@@ -184,7 +190,7 @@ def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_fu
     # lock data structure before writing in it
     thread_lock.acquire()
     fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), float(1/(gen+1))]) 
- 
+    
     thread_lock.release()
 
     return 
@@ -230,6 +236,8 @@ def ea_observer(population, num_generations, num_evaluations, args) :
     with open(population_file, "w") as fp :
         # header, of length equal to the maximum individual length in the population
         fp.write("n_nodes,influence,generations")
+        #fp.write("influence,generations")
+
         for i in range(0, max_length) : fp.write(",n%d" % i)
         fp.write("\n")
 
@@ -239,8 +247,11 @@ def ea_observer(population, num_generations, num_evaluations, args) :
             # check if fitness is an iterable collection (e.g. a list) or just a single value
             if hasattr(individual.fitness, "__iter__") :
                 gen =  float(1.0 / individual.fitness[2] if individual.fitness[2] > 0 else 0)
+                #gen =  float(1.0 / individual.fitness[1] if individual.fitness[1] > 0 else 0)
 
                 fp.write("%d,%.4f,%d" % (1.0 / individual.fitness[1], individual.fitness[0], gen))
+                #fp.write("%.4f,%d" % (individual.fitness[0], gen))
+
             else :
                 fp.write("%d,%.4f" % (len(set(individual.candidate)), individual.fitness))
 
@@ -434,6 +445,8 @@ def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args)
             if fit is not None:
                 ind = Individual(cs, maximize=maximize)
                 ind.fitness = fit
+                #print(ind)
+                #print(fit)
                 self.population.append(ind)
             else:
                 self.logger.warning('excluding candidate {0} because fitness received as None'.format(cs))
