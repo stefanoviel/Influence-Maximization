@@ -4,21 +4,22 @@ import time
 import random
 from new_ea import *
 from functions import progress
-N = 200
+N = 2000
 def read_graph(filename, nodetype=int):    
     graph_class = nx.MultiGraph()
     #G = nx.read_edgelist(filename, create_using=graph_class, nodetype=nodetype, data=False)
-    G = nx.fast_gnp_random_graph(N,0.4)
+    G = nx.fast_gnp_random_graph(N,0.3)
     return G
 
 if __name__ == '__main__':
+    #filename = 
     G = read_graph("gr.txt")
     k = 3
     p = 0.01
     model = 'WC'
     no_simulations = 100
-    max_generations = 30
-    n_threads = 1
+    max_generations = 400
+    n_threads = 2
     random_seed = 10
     prng = random.Random()
     import logging
@@ -40,7 +41,7 @@ if __name__ == '__main__':
 	
     logging.info(nx.classes.function.info(G))
     
-    seed_sets = moea_influence_maximization(G, p, no_simulations, model,offspring_size=30, population_size=50,random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=10, fitness_function=spread.MonteCarlo_simulation_max_hop)
+    seed_sets = moea_influence_maximization(G, p, no_simulations, model,offspring_size=50, population_size=150,random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=15, fitness_function=spread.MonteCarlo_simulation_max_hop)
     #print(len(seed_sets))
     #print(str(seed_sets))
     #print(str(spread))

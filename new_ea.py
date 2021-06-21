@@ -136,7 +136,7 @@ def nsga2_evaluator(candidates, args):
             # NOTE now passing a generic function works, but the whole thing has to be implemented for the multi-threaded version
             fitness_function_args = [G, A_set, p, no_simulations, model]
             influence_mean, influence_std = fitness_function(*fitness_function_args, **fitness_function_kargs)
-            gen = 1/args["generations"] if args["generations"]>0 else 0
+            gen = float(1/args["generations"] if args["generations"]>0 else 0)
 
             fitness[index] = inspyred.ec.emo.Pareto([influence_mean, (1.0 / float(len(A_set))), gen])
             #fitness[index] = inspyred.ec.emo.Pareto([influence_mean, gen]) 
@@ -189,8 +189,9 @@ def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_fu
 
     # lock data structure before writing in it
     thread_lock.acquire()
-    fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), float(1/(gen+1))]) 
-    
+    gen = float(1/gen if gen>0 else 0)
+
+    fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), gen]) 
     thread_lock.release()
 
     return 
