@@ -4,9 +4,9 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import matplotlib
 
-filename = "/Users/elia/Desktop/Influence-Maximization/RandomGraph-N200-E8052-population.csv"
+filename = "/Users/elia/Desktop/Influence-Maximization/RandomGraph-N100-E1485-population.csv"
 df = pd.read_csv(filename, sep=",")
-df = df.sort_values(by=['generations', 'n_nodes', 'influence'])
+df = df.sort_values(by=['n_nodes', 'generations', 'influence'])
 fig = plt.figure(figsize=(8,8))
 ax = fig.add_subplot(111, projection='3d')
 
