@@ -7,13 +7,13 @@ from functions import progress
 N = 2000
 def read_graph(filename, nodetype=int):    
     graph_class = nx.MultiGraph()
-    #G = nx.read_edgelist(filename, create_using=graph_class, nodetype=nodetype, data=False)
-    G = nx.fast_gnp_random_graph(N,0.3)
+    G = nx.read_edgelist(filename, create_using=graph_class, nodetype=nodetype, data=False)
+    #G = nx.fast_gnp_random_graph(N,0.3)
     return G
 
 if __name__ == '__main__':
     #filename = 
-    G = read_graph("gr.txt")
+    G = read_graph("graphs/Twitch_EN.txt")
     k = 3
     p = 0.01
     model = 'WC'
