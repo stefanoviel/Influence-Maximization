@@ -41,7 +41,7 @@ if __name__ == '__main__':
 	
     logging.info(nx.classes.function.info(G))
     
-    seed_sets = moea_influence_maximization(G, p, no_simulations, model,offspring_size=10, population_size=20,random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=10, fitness_function=spread.MonteCarlo_simulation_max_hop)
+    seed_sets = moea_influence_maximization(G, p, no_simulations, model,offspring_size=10, population_size=20, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=10, fitness_function=spread.MonteCarlo_simulation_max_hop)
     #print(len(seed_sets))
     #print(str(seed_sets))
     #print(str(spread))
