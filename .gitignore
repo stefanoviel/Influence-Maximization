@@ -1,3 +1,7 @@
 *.csv
 /__pycache__/
 *.png
+/.idea/
+/.vscode/
+.vscode/*
+.idea/*
