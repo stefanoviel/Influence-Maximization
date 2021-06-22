@@ -91,9 +91,9 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
     )
 
     # extract seed sets from the final Pareto front/archive
-    seed_sets = [ [individual.candidate, individual.fitness[0], 1/ individual.fitness[1], 1/individual.fitness[2] if individual.fitness[2]>0 else 0] for individual in ea.archive ] 
+    seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1], 1/individual.fitness[2] if individual.fitness[2]>0 else 0] for individual in ea.archive ] 
     #seed_sets = [ [individual.candidate, individual.fitness[0],1/individual.fitness[1] if individual.fitness[1]>0 else 0] for individual in ea.archive ] 
-
+    print(len(seed_sets))
     return seed_sets
 
 def nsga2_evaluator(candidates, args):
@@ -104,14 +104,7 @@ def nsga2_evaluator(candidates, args):
     model = args["model"]
     no_simulations = args["no_simulations"]
     random_generator = args["_ec"]._random 
-    # print("\n--------------------------------\n")
-   
-    # print("GENERATIONS", type(args["generations"]), print(args["generations"]))
-    
-    # print("\n--------------------------------\n")
 
-
-    # NOTE code below here is an attempt at using a function pointer
     fitness_function = args["fitness_function"]
     fitness_function_kargs = args["fitness_function_kargs"]
     
@@ -196,7 +189,7 @@ def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_fu
 
     return 
 
-def ea_observer(population, num_generations, num_evaluations, args) :
+def ea_observer(archiver, num_generations, num_evaluations, args) :
 
     time_previous_generation = args['time_previous_generation']
     currentTime = time()
@@ -206,36 +199,36 @@ def ea_observer(population, num_generations, num_evaluations, args) :
 
     progress(args["generations"]+1, args["max_generations"], status='Generations{}'.format(args["generations"]+1))
     
-    best = max(population)
+    best = max(archiver)
 
 
     ## TO - PRINT IF NEEDED
     #logging.info('[{0:.2f} s] Generation {1:6} -- {2}'.format(timeElapsed, num_generations, best.fitness))
     
-    #for item in population:
+    #for item in archiver:
         #logging.info('Candidate {cand} - Fitness {fit}'.format(cand=item.candidate, fit=item.fitness))
 
    
    
    
     # TODO write current state of the ALGORITHM to a file (e.g. random number generator, time elapsed, stuff like that)
-    # write current state of the population to a file
-    population_file = args["population_file"]
+    # write current state of the archiver to a file
+    archiver_file = args["population_file"]
     # print("*********")
     # #print(best)
-    # print(population[0])
-    # print(population[0].fitness[0])
-    # print(population[0].fitness[1])
-    # print(population[0].fitness[2])
+    # print(archiver[0])
+    # print(archiver[0].fitness[0])
+    # print(archiver[0].fitness[1])
+    # print(archiver[0].fitness[2])
 
-    # print(population[0].candidate)
+    # print(archiver[0].candidate)
 
     # print("*******")
     #find the longest individual
-    max_length = len(max(population, key=lambda x : len(x.candidate)).candidate)
+    max_length = len(max(archiver, key=lambda x : len(x.candidate)).candidate)
 
-    with open(population_file, "w") as fp :
-        # header, of length equal to the maximum individual length in the population
+    with open(archiver_file, "w") as fp :
+        # header, of length equal to the maximum individual length in the archiver
         fp.write("n_nodes,influence,generations")
         #fp.write("influence,generations")
 
@@ -243,7 +236,7 @@ def ea_observer(population, num_generations, num_evaluations, args) :
         fp.write("\n")
 
         # and now, we write stuff, individual by individual
-        for individual in  population :
+        for individual in  archiver :
 
             # check if fitness is an iterable collection (e.g. a list) or just a single value
             if hasattr(individual.fitness, "__iter__") :
@@ -424,11 +417,12 @@ def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args)
         self.maximize = maximize
         self.population = []
         self.archive = []
-        #self.replacer = nsga_replacement
+        self.replacer = nsga_replacement
         generator= nsga2_generator
         evaluator = nsga2_evaluator
-        
         # Create the initial population.
+
+        #print(self.variator)
         if not isinstance(seeds, collections.Sequence):
             seeds = [seeds]
         initial_cs = copy.copy(seeds)
@@ -441,13 +435,11 @@ def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args)
             i += 1
         self.logger.debug('evaluating initial population')
         initial_fit = evaluator(candidates=initial_cs, args=self._kwargs)
-
+        
         for cs, fit in zip(initial_cs, initial_fit):
             if fit is not None:
                 ind = Individual(cs, maximize=maximize)
                 ind.fitness = fit
-                #print(ind)
-                #print(fit)
                 self.population.append(ind)
             else:
                 self.logger.warning('excluding candidate {0} because fitness received as None'.format(cs))
@@ -465,10 +457,10 @@ def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args)
         if isinstance(self.observer, collections.Iterable):
             for obs in self.observer:
                 self.logger.debug('observation using {0} at generation {1} and evaluation {2}'.format(obs.__name__, self.num_generations, self.num_evaluations))
-                obs(population=list(self.population), num_generations=self.num_generations, num_evaluations=self.num_evaluations, args=self._kwargs)
+                obs(archiver=list(self.archive), num_generations=self.num_generations, num_evaluations=self.num_evaluations, args=self._kwargs)
         else:
             self.logger.debug('observation using {0} at generation {1} and evaluation {2}'.format(self.observer.__name__, self.num_generations, self.num_evaluations))
-            self.observer(population=list(self.population), num_generations=self.num_generations, num_evaluations=self.num_evaluations, args=self._kwargs)
+            self.observer(archiver=list(self.archive), num_generations=self.num_generations, num_evaluations=self.num_evaluations, args=self._kwargs)
         
         while not self._should_terminate(list(self.population), self.num_generations, self.num_evaluations):
             # Select individuals.
@@ -501,12 +493,11 @@ def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args)
                 else:
                     self.logger.warning('excluding candidate {0} because fitness received as None'.format(cs))
             self.num_evaluations += len(offspring_fit)        
-
+            #print(self.replacer)
             # Replace individuals.
             self.logger.debug('replacement using {0} at generation {1} and evaluation {2}'.format(self.replacer.__name__, self.num_generations, self.num_evaluations))
             self.population = self.replacer(random=self._random, population=self.population, parents=parents, offspring=offspring, args=self._kwargs)
             self.logger.debug('population size is now {0}'.format(len(self.population)))
-            
             # Migrate individuals.
             self.logger.debug('migration using {0} at generation {1} and evaluation {2}'.format(self.migrator.__name__, self.num_generations, self.num_evaluations))
             self.population = self.migrator(random=self._random, population=self.population, args=self._kwargs)
@@ -517,15 +508,17 @@ def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args)
             self.archive = self.archiver(random=self._random, archive=self.archive, population=list(self.population), args=self._kwargs)
             self.logger.debug('archive size is now {0}'.format(len(self.archive)))
             self.logger.debug('population size is now {0}'.format(len(self.population)))
-            
+
+            print('archive size is now {0}'.format(len(self.archive)))
+            print('population size is now {0}'.format(len(self.population)))           
             self.num_generations += 1
             if isinstance(self.observer, collections.Iterable):
                 for obs in self.observer:
                     self.logger.debug('observation using {0} at generation {1} and evaluation {2}'.format(obs.__name__, self.num_generations, self.num_evaluations))
-                    obs(population=list(self.population), num_generations=self.num_generations, num_evaluations=self.num_evaluations, args=self._kwargs)
+                    obs(archiver=list(self.archive), num_generations=self.num_generations, num_evaluations=self.num_evaluations, args=self._kwargs)
             else:
                 self.logger.debug('observation using {0} at generation {1} and evaluation {2}'.format(self.observer.__name__, self.num_generations, self.num_evaluations))
-                self.observer(population=list(self.population), num_generations=self.num_generations, num_evaluations=self.num_evaluations, args=self._kwargs)
+                self.observer(archiver=list(self.archive), num_generations=self.num_generations, num_evaluations=self.num_evaluations, args=self._kwargs)
         return self.population
 
 EvolutionaryComputation.evolve_2 = evolve_2
