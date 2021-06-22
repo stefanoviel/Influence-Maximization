@@ -509,8 +509,8 @@ def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args)
             self.logger.debug('archive size is now {0}'.format(len(self.archive)))
             self.logger.debug('population size is now {0}'.format(len(self.population)))
 
-            print('archive size is now {0}'.format(len(self.archive)))
-            print('population size is now {0}'.format(len(self.population)))           
+            #print('archive size is now {0}'.format(len(self.archive)))
+            #print('population size is now {0}'.format(len(self.population)))           
             self.num_generations += 1
             if isinstance(self.observer, collections.Iterable):
                 for obs in self.observer:
