@@ -4,7 +4,7 @@ import time
 import random
 from new_ea import *
 from functions import progress
-N = 2000
+N = 200
 def read_graph(filename, nodetype=int):    
     graph_class = nx.MultiGraph()
     #G = nx.read_edgelist(filename, create_using=graph_class, nodetype=nodetype, data=False)
@@ -18,7 +18,7 @@ if __name__ == '__main__':
     p = 0.01
     model = 'WC'
     no_simulations = 100
-    max_generations = 400
+    max_generations = 30
     n_threads = 2
     random_seed = 10
     prng = random.Random()
@@ -41,13 +41,14 @@ if __name__ == '__main__':
 	
     logging.info(nx.classes.function.info(G))
     
-    seed_sets = moea_influence_maximization(G, p, no_simulations, model,offspring_size=50, population_size=150,random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=15, fitness_function=spread.MonteCarlo_simulation_max_hop)
+    seed_sets = moea_influence_maximization(G, p, no_simulations, model,offspring_size=10, population_size=20,random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=10, fitness_function=spread.MonteCarlo_simulation_max_hop)
     #print(len(seed_sets))
     #print(str(seed_sets))
     #print(str(spread))
     logging.info("Seed sets {}".format(seed_sets))  
-    
-    
+    print(type(seed_sets))
+    for item in seed_sets:
+        print(item)
     #nx.draw(G, with_labels=True, font_weight='bold')
     #plt.show()
     #print(f'number of edges',G.number_of_edges())

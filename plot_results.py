@@ -3,14 +3,14 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("/Users/elia/Desktop/Influence-Maximization/RandomGraph-N200-E8052-population.csv")
+df = pd.read_csv("/Users/elia/Desktop/Influence-Maximization/RandomGraph-N200-E5942-population.csv")
 
-df = df.sort_values(by="generations").reset_index()
-df = df.drop_duplicates(subset=["generations"], keep='last')
+#df = df.sort_values(by="generations").reset_index()
+#df = df.drop_duplicates(subset=["generations"], keep='last')
 
 print(df)
 print(df.columns)
-y = df["n_nodes"]
+y = df["generations"]
 x = df["influence"]
 
 plt.scatter(x, y)
