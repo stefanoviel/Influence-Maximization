@@ -4,7 +4,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import matplotlib
 
-filename = "/Users/elia/Desktop/Influence-Maximization/RandomGraph-N200-E6056-population.csv"
+filename = "/Users/elia/Desktop/Influence-Maximization/RandomGraph-N200-E5976-population.csv"
 df = pd.read_csv(filename, sep=",")
 df = df.sort_values(by=['n_nodes', 'generations', 'influence'])
 fig = plt.figure(figsize=(8,8))
