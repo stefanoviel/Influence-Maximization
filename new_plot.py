@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib
 
 filename = "/Users/elia/Downloads/GoogleGraph-N69501-E9168660-population.csv"
+
 df = pd.read_csv(filename, sep=",")
 df = df.sort_values(by=['generations', 'n_nodes', 'influence'])
 
