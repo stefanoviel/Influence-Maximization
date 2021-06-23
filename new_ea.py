@@ -260,7 +260,7 @@ def ea_observer(archiver, num_generations, num_evaluations, args) :
 # TODO is there a way to have a multi-threaded generation of individuals?
 @inspyred.ec.variators.crossover # decorator that defines the operator as a crossover, even if it isn't in this case :-)
 def nsga2_super_operator(random, candidate1, candidate2, args) :
-    print(f'Variators nsga2 super ...')
+    #print(f'Variators nsga2 super ...')
     children = []
 
     # uniform choice of operator
