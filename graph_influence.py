@@ -19,7 +19,7 @@ if __name__ == '__main__':
     model = 'WC'
     no_simulations = 100
     max_generations = 30
-    n_threads = 2
+    n_threads = 1
     random_seed = 10
     prng = random.Random()
     import logging
