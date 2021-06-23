@@ -4,7 +4,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import matplotlib
 
-filename = "/Users/elia/Desktop/Influence-Maximization/RandomGraph-N200-E5942-population.csv"
+filename = "D:/Users/edosc/PycharmProjects/Influence-Maximization/GoogleGraph-N69501-E9168660-population.csv"
 df = pd.read_csv(filename, sep=",")
 df = df.sort_values(by=['generations', 'n_nodes', 'influence'])
 
