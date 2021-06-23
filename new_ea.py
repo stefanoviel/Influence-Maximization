@@ -64,7 +64,7 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
     ea.observer = ea_observer
     ea.variator = [nsga2_super_operator]
     ea.terminator = inspyred.ec.terminators.generation_termination
-    
+
     # start the evolutionary process
     final_population = ea.evolve_1(
         generator = nsga2_generator,
@@ -133,7 +133,7 @@ def nsga2_evaluator(candidates, args):
 
             fitness[index] = inspyred.ec.emo.Pareto([influence_mean, (1.0 / float(len(A_set))), gen])
             #fitness[index] = inspyred.ec.emo.Pareto([influence_mean, gen]) 
-            #print(fitness[index])
+            print(fitness[index])
             #print(A)
             #print(type(fitness[index]))
         
@@ -260,7 +260,7 @@ def ea_observer(archiver, num_generations, num_evaluations, args) :
 # TODO is there a way to have a multi-threaded generation of individuals?
 @inspyred.ec.variators.crossover # decorator that defines the operator as a crossover, even if it isn't in this case :-)
 def nsga2_super_operator(random, candidate1, candidate2, args) :
-
+    print(f'Variators nsga2 super ...')
     children = []
 
     # uniform choice of operator
@@ -435,7 +435,7 @@ def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args)
             i += 1
         self.logger.debug('evaluating initial population')
         initial_fit = evaluator(candidates=initial_cs, args=self._kwargs)
-        
+        print('Variators{0}'.format(self.variator))
         for cs, fit in zip(initial_cs, initial_fit):
             if fit is not None:
                 ind = Individual(cs, maximize=maximize)
@@ -523,46 +523,10 @@ def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args)
 
 EvolutionaryComputation.evolve_2 = evolve_2
 
-def evolve_1(self, generator, evaluator, pop_size=100, seeds=None, maximize=True, bounder=None, **args):
+def evolve_1(self, pop_size=100, seeds=None, maximize=True, bounder=None, **args):
         args.setdefault('num_selected', pop_size)
-        args.setdefault('tournament_size', 2)
+        args.setdefault('tournament_size', 5)
         return EvolutionaryComputation.evolve_2(self, pop_size, seeds, maximize, bounder, **args)
 
 NSGA2.evolve_1 = evolve_1
 
-# if __name__ == "__main__" :
-
-#     # initialize logging
-#     import logging
-#     logger = logging.getLogger('')
-#     logger.setLevel(logging.DEBUG) # TODO switch between INFO and DEBUG for less or more in-depth logging
-#     formatter = logging.Formatter('[%(levelname)s %(asctime)s] %(message)s', '%Y-%m-%d %H:%M:%S') 
- 
-#     ch = logging.StreamHandler()
-#     ch.setLevel(logging.DEBUG)
-#     ch.setFormatter(formatter)
-#     logger.addHandler(ch)
-
-#     import load
-#     k = 30
-#     G = load.read_graph("graphs/Email_URV.txt")
-#     p = 0.01
-#     model = 'WC'
-#     no_simulations = 100
-#     max_generations = 10
-#     n_threads = 1
-#     random_seed = 42
-
-#     prng = random.Random()
-#     if random_seed == None: 
-#         random_seed = time()
-    
-#     logging.debug("Random number nsga2_generator seeded with %s" % str(random_seed))
-#     prng.seed(random_seed)
-
-#     # try to pass max_seed_nodes=k to moea:
-#     seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=16, offspring_size=16, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=spread.MonteCarlo_simulation)
-#     #seed_sets, spread = ea_influence_maximization(k, G, p, no_simulations, model, population_size=16, offspring_size=16, random_gen=prng, max_generations=max_generations, n_threads=n_threads)
-
-#     logging.debug("Seed sets:")
-#     logging.debug(str(seed_sets))

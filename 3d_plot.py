@@ -3,8 +3,16 @@ import pandas as pd
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import matplotlib
+from matplotlib import animation
 
-filename = "/Users/elia/Desktop/Influence-Maximization/RandomGraph-N200-E5976-population.csv"
+
+def init():
+
+    #surf = ax.plot_trisurf(x1,y1,z1, cmap='viridis_r', linewidth=0,alpha = 0.99, edgecolor = 'k', norm=norm)
+    #fig.colorbar(surf, shrink=0.5, aspect=5)
+    return fig,
+
+filename = "/Users/elia/Downloads/TwitchGraph-N7126-E70648-population.csv"
 df = pd.read_csv(filename, sep=",")
 df = df.sort_values(by=['n_nodes', 'generations', 'influence'])
 fig = plt.figure(figsize=(8,8))
@@ -27,8 +35,8 @@ ax.scatter(x1,y1,z1, alpha=1, color="red")
 
 ax.set_title("Influence Maximization")
 ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 1))
-ax.yaxis.set_ticks(np.arange(0, df["generations"].max()+1, 2))
-ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 5))
+ax.yaxis.set_ticks(np.arange(0, df["generations"].max()+1, 100))
+ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 20))
 
 ax.set_xlabel("Nodes")
 
@@ -52,10 +60,25 @@ xv, yv = np.meshgrid(dfnew.columns, dfnew.index)
 ma = np.nanmax(dfnew.values)
 norm = matplotlib.colors.Normalize(vmin = 0, vmax = df["influence"].max(), clip = True)
 
-surf = ax.plot_trisurf(x1,y1,z1, cmap='viridis_r', linewidth=0,alpha = 0.7, edgecolor = 'k', norm=norm)
-fig.colorbar(surf, shrink=0.5, aspect=5)
-
+#surf = ax.plot_trisurf(x1,y1,z1, cmap='viridis_r', linewidth=0,alpha = 0.99, edgecolor = 'k', norm=norm)
+#fig.colorbar(surf, shrink=0.5, aspect=5)
 
 
 plt.savefig('{}.png'.format(filename))
 plt.show()
+
+def animate(i):
+    # azimuth angle : 0 deg to 360 deg
+    ax.view_init(elev=10, azim=i*4)
+    return fig,
+
+# Animate
+def save_video():
+    ani = animation.FuncAnimation(fig, animate, init_func=init,
+                                frames=90, interval=50, blit=True)
+
+    fn = filename
+    ani.save(fn+'.mp4',writer='ffmpeg',fps=1000/50)
+    ani.save(fn+'.gif',writer='imagemagick',fps=1000/50)
+
+save_video()
