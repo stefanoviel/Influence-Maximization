@@ -525,7 +525,7 @@ EvolutionaryComputation.evolve_2 = evolve_2
 
 def evolve_1(self, generator, evaluator, pop_size=100, seeds=None, maximize=True, bounder=None, **args):
         args.setdefault('num_selected', pop_size)
-        args.setdefault('tournament_size', 2)
+        args.setdefault('tournament_size', 5)
         return EvolutionaryComputation.evolve_2(self, pop_size, seeds, maximize, bounder, **args)
 
 NSGA2.evolve_1 = evolve_1
