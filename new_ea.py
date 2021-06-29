@@ -265,7 +265,8 @@ def nsga2_super_operator(random, candidate1, candidate2, args) :
 
     # uniform choice of operator
     randomChoice = random.randint(0,3)
-    
+    #randomChoice = 0
+
     if randomChoice == 0 :
         children = nsga2_crossover(random, list(candidate1), list(candidate2), args)
     elif randomChoice == 1 :
@@ -291,7 +292,10 @@ def nsga2_crossover(random, candidate1, candidate2, args):
 
     parent1 = list(set(candidate1))
     parent2 = list(set(candidate2))
-    
+
+    print('Parent 1 {0} \nParent 2 {1} \n'.format(candidate1, candidate2))
+
+
     # choose random cut point
     cutPoint1 = random.randint(0, len(parent1)-1)
     cutPoint2 = random.randint(0, len(parent2)-1)
@@ -310,10 +314,13 @@ def nsga2_crossover(random, candidate1, candidate2, args):
     # reduce children to minimal form
     child1 = list(set(child1))
     child2 = list(set(child2))
-    
+    print('Child 1 {0} \nChild 2 {1} \n'.format(child1, child2))
+
     # return the two children
     if len(child1) > 0 and len(child1) <= max_seed_nodes : children.append( child1 )
     if len(child2) > 0 and len(child2) <= max_seed_nodes : children.append( child2 )
+
+    print('Final Children {0}\n'.format(children))
 
     return children
 
@@ -473,6 +480,8 @@ def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args)
             if isinstance(self.variator, collections.Iterable):
                 for op in self.variator:
                     self.logger.debug('variation using {0} at generation {1} and evaluation {2}'.format(op.__name__, self.num_generations, self.num_evaluations))
+                    #print('variation using {0} at generation {1} and evaluation {2}'.format(op.__name__, self.num_generations, self.num_evaluations))
+
                     offspring_cs = op(random=self._random, candidates=offspring_cs, args=self._kwargs)
             else:
                 self.logger.debug('variation using {0} at generation {1} and evaluation {2}'.format(self.variator.__name__, self.num_generations, self.num_evaluations))

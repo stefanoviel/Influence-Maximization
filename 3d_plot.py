@@ -12,7 +12,7 @@ def init():
     #fig.colorbar(surf, shrink=0.5, aspect=5)
     return fig,
 
-filename = "/Users/elia/Downloads/TwitchGraph-N7126-E70648-population.csv"
+filename = "/Users/elia/Downloads/twitchEN-IC-0.01-Graph-N7126-E70648-population.csv"
 df = pd.read_csv(filename, sep=",")
 df = df.sort_values(by=['n_nodes', 'generations', 'influence'])
 fig = plt.figure(figsize=(8,8))
@@ -31,12 +31,12 @@ ax.scatter(x1,y1,z1, alpha=1, color="red")
 # y = np.linspace(df["generations"].min(), df["generations"].max(), 50) 
 # z = np.linspace(df["influence"].min(), df["influence"].max(),  50)
 
-
+print(df["influence"])
 
 ax.set_title("Influence Maximization")
 ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 1))
 ax.yaxis.set_ticks(np.arange(0, df["generations"].max()+1, 100))
-ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 20))
+ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 30))
 
 ax.set_xlabel("Nodes")
 
@@ -52,16 +52,16 @@ for i in range(len(x1)):
     dfnew.iloc[i,i] = z1[i]
 
 dfnew = dfnew.fillna(0)
-print(dfnew)
+#print(dfnew)
 
 
-print("ciao")
+#print("ciao")
 xv, yv = np.meshgrid(dfnew.columns, dfnew.index)
 ma = np.nanmax(dfnew.values)
 norm = matplotlib.colors.Normalize(vmin = 0, vmax = df["influence"].max(), clip = True)
 
-#surf = ax.plot_trisurf(x1,y1,z1, cmap='viridis_r', linewidth=0,alpha = 0.99, edgecolor = 'k', norm=norm)
-#fig.colorbar(surf, shrink=0.5, aspect=5)
+surf = ax.plot_trisurf(x1,y1,z1, cmap='viridis_r', linewidth=0,alpha = 0.99, edgecolor = 'k', norm=norm)
+fig.colorbar(surf, shrink=0.5, aspect=5)
 
 
 plt.savefig('{}.png'.format(filename))
@@ -78,7 +78,7 @@ def save_video():
                                 frames=90, interval=50, blit=True)
 
     fn = filename
-    ani.save(fn+'.mp4',writer='ffmpeg',fps=1000/50)
-    ani.save(fn+'.gif',writer='imagemagick',fps=1000/50)
+    ani.save(fn+'-scatter.mp4',writer='ffmpeg',fps=1000/50)
+    ani.save(fn+'-scatter.gif',writer='imagemagick',fps=1000/50)
 
-save_video()
+#save_video()
