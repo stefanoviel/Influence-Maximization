@@ -4,7 +4,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import matplotlib
 
-filename = "/Users/elia/Downloads/GoogleGraph-N69501-E9168660-population.csv"
+filename = "/Users/elia/Downloads/facebook-IC-0.05-Graph-N4039-E88234-population.csv"
 
 df = pd.read_csv(filename, sep=",")
 df = df.sort_values(by=['generations', 'n_nodes', 'influence'])
