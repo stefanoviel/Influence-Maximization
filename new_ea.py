@@ -136,6 +136,8 @@ def nsga2_evaluator(candidates, args):
             #fitness[index] = inspyred.ec.emo.Pareto([influence_mean, gen]) 
             #print(fitness[index])
             #print(A)
+            print(fitness)
+            #print(fitness[index])
             #print(type(fitness[index]))
         
     else :
@@ -187,7 +189,6 @@ def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_fu
 
     #fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), gen]) 
     fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), max_index]) 
-
     thread_lock.release()
 
     return 
