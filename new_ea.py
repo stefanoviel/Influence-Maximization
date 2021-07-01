@@ -128,12 +128,13 @@ def nsga2_evaluator(candidates, args):
 
             # NOTE now passing a generic function works, but the whole thing has to be implemented for the multi-threaded version
             fitness_function_args = [G, A_set, p, no_simulations, model]
-            influence_mean, influence_std = fitness_function(*fitness_function_args, **fitness_function_kargs)
+            influence_mean, influence_std, max_index = fitness_function(*fitness_function_args, **fitness_function_kargs)
             gen = float(1/args["generations"] if args["generations"]>0 else 0)
+            max_index = float(1/max_index if max_index>0 else 0)
 
-            fitness[index] = inspyred.ec.emo.Pareto([influence_mean, (1.0 / float(len(A_set))), gen])
+            fitness[index] = inspyred.ec.emo.Pareto([influence_mean, (1.0 / float(len(A_set))), max_index])
             #fitness[index] = inspyred.ec.emo.Pareto([influence_mean, gen]) 
-            print(fitness[index])
+            #print(fitness[index])
             #print(A)
             #print(type(fitness[index]))
         
@@ -178,13 +179,15 @@ def nsga2_evaluator(candidates, args):
 def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_function_kargs, fitness_values, A_set, index, thread_lock, gen, thread_id) :
 
     #influence_mean, influence_std = spread.MonteCarlo_simulation_max_hop(G, A_set, p, no_simulations, model)
-    influence_mean, influence_std = fitness_function(*fitness_function_args, **fitness_function_kargs)
-
+    influence_mean, influence_std, max_index = fitness_function(*fitness_function_args, **fitness_function_kargs)
+    max_index = float(1/max_index if max_index>0 else 0)
     # lock data structure before writing in it
     thread_lock.acquire()
     gen = float(1/gen if gen>0 else 0)
 
-    fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), gen]) 
+    #fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), gen]) 
+    fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), max_index]) 
+
     thread_lock.release()
 
     return 
@@ -293,7 +296,7 @@ def nsga2_crossover(random, candidate1, candidate2, args):
     parent1 = list(set(candidate1))
     parent2 = list(set(candidate2))
 
-    print('Parent 1 {0} \nParent 2 {1} \n'.format(candidate1, candidate2))
+    #print('Parent 1 {0} \nParent 2 {1} \n'.format(candidate1, candidate2))
 
 
     # choose random cut point
@@ -314,13 +317,13 @@ def nsga2_crossover(random, candidate1, candidate2, args):
     # reduce children to minimal form
     child1 = list(set(child1))
     child2 = list(set(child2))
-    print('Child 1 {0} \nChild 2 {1} \n'.format(child1, child2))
+    #('Child 1 {0} \nChild 2 {1} \n'.format(child1, child2))
 
     # return the two children
     if len(child1) > 0 and len(child1) <= max_seed_nodes : children.append( child1 )
     if len(child2) > 0 and len(child2) <= max_seed_nodes : children.append( child2 )
 
-    print('Final Children {0}\n'.format(children))
+    #print('Final Children {0}\n'.format(children))
 
     return children
 
@@ -442,7 +445,7 @@ def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args)
             i += 1
         self.logger.debug('evaluating initial population')
         initial_fit = evaluator(candidates=initial_cs, args=self._kwargs)
-        print('Variators{0}'.format(self.variator))
+        #print('Variators{0}'.format(self.variator))
         for cs, fit in zip(initial_cs, initial_fit):
             if fit is not None:
                 ind = Individual(cs, maximize=maximize)

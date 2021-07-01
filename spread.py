@@ -142,15 +142,25 @@ def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=2, ran
 		random_generator.seed(next(iter(A))) # initialize random number generator with first seed in the seed set, to make experiment repeatable; TODO evaluate computational cost
 
 	results = []
-
+	res = []
+	index = []
 	if model == 'WC':
-		for i in range(no_simulations):
-			results.append(WC_model_max_hop(G, A, max_hop, random_generator))
+		for i in range(0,no_simulations):
+			res = WC_model_max_hop(G, A, max_hop, random_generator)
+			index.append(i)
+			results.append(res)
+			print('Index: {0} \nResults: {1} \n'.format(i,res))
 	elif model == 'IC':
 		for i in range(no_simulations):
 			results.append(IC_model_max_hop(G, A, p, max_hop, random_generator))
 
-	return (numpy.mean(results), numpy.std(results))
+	max_value = max(results)
+	max_index = results.index(max_value)
+	max_index = index[max_index]
+	print('FINAL VECTOR {0}\nFINAL RESULTS {1}\n'.format(results,numpy.mean(results)))
+	print('BEST {0}\nINDEX {1}\n'.format(max_value,max_index))
+
+	return (numpy.mean(results), numpy.std(results),max_index)
 
 if __name__ == "__main__":
 
