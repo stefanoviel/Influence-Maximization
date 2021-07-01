@@ -7,8 +7,8 @@ from functions import progress
 N = 200
 def read_graph(filename, nodetype=int):    
     graph_class = nx.MultiGraph()
-    #G = nx.read_edgelist(filename, create_using=graph_class, nodetype=nodetype, data=False)
-    G = nx.fast_gnp_random_graph(N,0.3)
+    G = nx.read_edgelist(filename, create_using=graph_class, nodetype=nodetype, data=False)
+    #G = nx.fast_gnp_random_graph(N,0.3)
     return G
 
 if __name__ == '__main__':
@@ -18,8 +18,7 @@ if __name__ == '__main__':
     p = 0.1
     model = 'WC'
     no_simulations = 100
-
-    max_generations = 30
+    max_generations = 10 * k
     n_threads = 1
     random_seed = 10
     prng = random.Random()
