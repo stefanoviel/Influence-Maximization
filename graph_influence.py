@@ -13,7 +13,7 @@ def read_graph(filename, nodetype=int):
 
 if __name__ == '__main__':
     #filename = 
-    G = read_graph("graphs/ca-GrQc.txt")
+    G = read_graph("graphs/Amazon0302.txt")
     k = 10
     p = 0.1
     model = 'WC'
