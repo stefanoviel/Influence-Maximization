@@ -12,7 +12,7 @@ def init():
     #fig.colorbar(surf, shrink=0.5, aspect=5)
     return fig,
 
-filename = "/Users/elia/Downloads/twitchEN-IC-0.01-Graph-N7126-E70648-population.csv"
+filename = "/Users/elia/Desktop/Influence-Maximization/RandomGraph-N200-E6043-population.csv"
 df = pd.read_csv(filename, sep=",")
 df = df.sort_values(by=['n_nodes', 'generations', 'influence'])
 fig = plt.figure(figsize=(8,8))
@@ -35,8 +35,8 @@ print(df["influence"])
 
 ax.set_title("Influence Maximization")
 ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 1))
-ax.yaxis.set_ticks(np.arange(0, df["generations"].max()+1, 100))
-ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 30))
+ax.yaxis.set_ticks(np.arange(0, df["generations"].max()+1, 5))
+ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 5))
 
 ax.set_xlabel("Nodes")
 
@@ -60,8 +60,8 @@ xv, yv = np.meshgrid(dfnew.columns, dfnew.index)
 ma = np.nanmax(dfnew.values)
 norm = matplotlib.colors.Normalize(vmin = 0, vmax = df["influence"].max(), clip = True)
 
-surf = ax.plot_trisurf(x1,y1,z1, cmap='viridis_r', linewidth=0,alpha = 0.99, edgecolor = 'k', norm=norm)
-fig.colorbar(surf, shrink=0.5, aspect=5)
+#surf = ax.plot_trisurf(x1,y1,z1, cmap='viridis_r', linewidth=0,alpha = 0.99, edgecolor = 'k', norm=norm)
+#fig.colorbar(surf, shrink=0.5, aspect=5)
 
 
 plt.savefig('{}.png'.format(filename))
