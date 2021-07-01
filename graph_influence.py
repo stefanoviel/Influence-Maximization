@@ -13,13 +13,13 @@ def read_graph(filename, nodetype=int):
 
 if __name__ == '__main__':
     #filename = 
-    G = read_graph("graphs/facebook_combined.txt")
+    G = read_graph("graphs/Amazon0302.txt")
     k = 10
     p = 0.1
     model = 'WC'
     no_simulations = 100
 
-    max_generations = 30
+    max_generations = 10 * k
     n_threads = 1
     random_seed = 10
     prng = random.Random()

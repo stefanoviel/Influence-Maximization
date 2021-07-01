@@ -160,7 +160,7 @@ def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=2, ran
 	print('FINAL VECTOR {0}\nFINAL RESULTS {1}\n'.format(results,numpy.mean(results)))
 	print('BEST {0}\nINDEX {1}\n'.format(max_value,max_index))
 
-	return (numpy.mean(results), numpy.std(results),max_index)
+	return (numpy.max(results), numpy.std(results),max_index)
 
 if __name__ == "__main__":
 
