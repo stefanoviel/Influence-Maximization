@@ -12,7 +12,7 @@ def init():
     #fig.colorbar(surf, shrink=0.5, aspect=5)
     return fig,
 
-filename = "/Users/elia/Desktop/Influence-Maximization/RandomGraph-N200-E6043-population.csv"
+filename = "/Users/elia/Downloads/ca-GrQc-Mean-Graph-N5242-E28980-population.csv"
 df = pd.read_csv(filename, sep=",")
 df = df.sort_values(by=['n_nodes', 'generations', 'influence'])
 fig = plt.figure(figsize=(8,8))
@@ -35,8 +35,8 @@ print(df["influence"])
 
 ax.set_title("Influence Maximization")
 ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 1))
-ax.yaxis.set_ticks(np.arange(0, df["generations"].max()+1, 5))
-ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 5))
+ax.yaxis.set_ticks(np.arange(0,100, 10))
+ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 20))
 
 ax.set_xlabel("Nodes")
 
@@ -77,8 +77,8 @@ def save_video():
     ani = animation.FuncAnimation(fig, animate, init_func=init,
                                 frames=90, interval=50, blit=True)
 
-    fn = filename
-    ani.save(fn+'-scatter.mp4',writer='ffmpeg',fps=1000/50)
-    ani.save(fn+'-scatter.gif',writer='imagemagick',fps=1000/50)
+    fn = "ca-GrQcGraph-Mean-scatter"
+    ani.save(fn+'.mp4',writer='ffmpeg',fps=1000/50)
+    ani.save(fn+'.gif',writer='imagemagick',fps=1000/50)
 
-#save_video()
+save_video()
