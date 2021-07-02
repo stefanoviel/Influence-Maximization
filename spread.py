@@ -169,6 +169,7 @@ def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=2, ran
 
 	return (numpy.mean(results), numpy.std(results), numpy.mean(times))
 
+
 if __name__ == "__main__":
 
 	G = nx.path_graph(100)
