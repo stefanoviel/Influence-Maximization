@@ -12,7 +12,7 @@ def init():
     #fig.colorbar(surf, shrink=0.5, aspect=5)
     return fig,
 
-filename = "/Users/elia/Desktop/Influence-Maximization/RandomGraph-N200-E5998-population.csv"
+filename = "C:/Users/edosc/OneDrive/Desktop/UniTn/Second Semester/Bio-Inspired Artificial Intelligence/Influence-Maximization/Influence-Maximization/Facebook-IC-0-01-Graph-N4039-E88234-population.csv"
 df = pd.read_csv(filename, sep=",")
 df = df.sort_values(by=['n_nodes', 'generations', 'influence'])
 fig = plt.figure(figsize=(8,8))
@@ -60,8 +60,8 @@ xv, yv = np.meshgrid(dfnew.columns, dfnew.index)
 ma = np.nanmax(dfnew.values)
 norm = matplotlib.colors.Normalize(vmin = 0, vmax = df["influence"].max(), clip = True)
 
-#surf = ax.plot_trisurf(x1,y1,z1, cmap='viridis_r', linewidth=0,alpha = 0.99, edgecolor = 'k', norm=norm)
-#fig.colorbar(surf, shrink=0.5, aspect=5)
+surf = ax.plot_trisurf(x1,y1,z1, cmap='viridis_r', linewidth=0,alpha = 0.99, edgecolor = 'k', norm=norm)
+fig.colorbar(surf, shrink=0.5, aspect=5)
 
 
 plt.savefig('{}.png'.format(filename))
