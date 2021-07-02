@@ -14,7 +14,7 @@ def IC_model(G, a, p, random_generator):              # a: the set of initial ac
 	A = set(a)                      # A: the set of active nodes, initially a
 	B = set(a)                      # B: the set of nodes activated in the last completed iteration
 	converged = False
-
+	time = 0
 	while not converged:
 		nextB = set()
 		for n in B:
@@ -26,8 +26,8 @@ def IC_model(G, a, p, random_generator):              # a: the set of initial ac
 		if not B:
 			converged = True
 		A |= B
-
-	return len(A)
+		time = time +1 
+	return len(A), time
 
 def WC_model(G, a, random_generator):                 # a: the set of initial active nodes
                                     # each edge from node u to v is assigned probability 1/in-degree(v) of activating v
@@ -39,7 +39,8 @@ def WC_model(G, a, random_generator):                 # a: the set of initial ac
 		my_degree_function = G.in_degree
 	else:
 		my_degree_function = G.degree
-
+	
+	time = 0
 	while not converged:
 		nextB = set()
 		for n in B:
@@ -52,15 +53,16 @@ def WC_model(G, a, random_generator):                 # a: the set of initial ac
 		if not B:
 			converged = True
 		A |= B
-
-	return len(A)
+		time = time + 1
+	
+	return len(A), time
 
 def IC_model_max_hop(G, a, p, max_hop, random_generator):  # a: the set of initial active nodes
 	# p: the system-wide probability of influence on an edge, in [0,1]
 	A = set(a)  # A: the set of active nodes, initially a
 	B = set(a)  # B: the set of nodes activated in the last completed iteration
 	converged = False
-
+	time = 0
 	while (not converged) and (max_hop > 0):
 		nextB = set()
 		for n in B:
@@ -73,8 +75,9 @@ def IC_model_max_hop(G, a, p, max_hop, random_generator):  # a: the set of initi
 			converged = True
 		A |= B
 		max_hop -= 1
-
-	return len(A)
+		print(time)
+		time = time + 1
+	return len(A) , time
 
 
 def WC_model_max_hop(G, a, max_hop, random_generator):  # a: the set of initial active nodes
@@ -88,6 +91,7 @@ def WC_model_max_hop(G, a, max_hop, random_generator):  # a: the set of initial 
 	else:
 		my_degree_function = G.degree
 
+	time = 0
 	while (not converged) and (max_hop > 0):
 		nextB = set()
 		for n in B:
@@ -101,8 +105,9 @@ def WC_model_max_hop(G, a, max_hop, random_generator):  # a: the set of initial 
 			converged = True
 		A |= B
 		max_hop -= 1
-
-	return len(A)
+		time += 1
+	
+	return len(A), time
 
 """ Evaluates a given seed set A, simulated "no_simulations" times.
 	Returns a tuple: (the mean, the stdev).
@@ -114,15 +119,21 @@ def MonteCarlo_simulation(G, A, p, no_simulations, model, random_generator=None)
 		random_generator.seed(next(iter(A))) # initialize random number generator with first seed in the seed set, to make experiment repeatable; TODO evaluate computational cost
 
 	results = []
-
+	times = []
 	if model == 'WC':
 		for i in range(no_simulations):
-			results.append(WC_model(G, A, random_generator=random_generator))
+			res, time = WC_model(G, A, random_generator=random_generator)
+			times.append(time)
+			results.append(res)
+			print('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))
 	elif model == 'IC':
 		for i in range(no_simulations):
-			results.append(IC_model(G, A, p, random_generator=random_generator))
+			res, time = IC_model(G, A, p, random_generator=random_generator)
+			times.append(time)
+			results.append(res)
+			print('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))
 
-	return (numpy.mean(results), numpy.std(results))
+	return (numpy.mean(results), numpy.std(results), numpy.mean(times))
 
 def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=2, random_generator=None):
 	"""
@@ -142,25 +153,21 @@ def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=2, ran
 		random_generator.seed(next(iter(A))) # initialize random number generator with first seed in the seed set, to make experiment repeatable; TODO evaluate computational cost
 
 	results = []
-	res = []
-	index = []
+	times = []
 	if model == 'WC':
 		for i in range(0,no_simulations):
-			res = WC_model_max_hop(G, A, max_hop, random_generator)
-			index.append(i)
+			res, time = WC_model_max_hop(G, A, max_hop, random_generator)
+			times.append(i)
 			results.append(res)
-			print('Index: {0} \nResults: {1} \n'.format(i,res))
+			print('Time: {0} \nResults: {1} \n'.format(time,res))
 	elif model == 'IC':
 		for i in range(no_simulations):
-			results.append(IC_model_max_hop(G, A, p, max_hop, random_generator))
+			res, time = (IC_model_max_hop(G, A, p, max_hop, random_generator))
+			times.append(i)
+			results.append(res)
+			print('Time: {0} \nResults: {1} \n'.format(time,res))
 
-	max_value = max(results)
-	max_index = results.index(max_value)
-	max_index = index[max_index]
-	print('FINAL VECTOR {0}\nFINAL RESULTS {1}\n'.format(results,numpy.mean(results)))
-	print('BEST {0}\nINDEX {1}\n'.format(max_value,max_index))
-
-	return (numpy.mean(results), numpy.std(results),max_index)
+	return (numpy.mean(results), numpy.std(results), numpy.mean(times))
 
 if __name__ == "__main__":
 
