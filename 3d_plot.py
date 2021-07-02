@@ -12,7 +12,7 @@ def init():
     #fig.colorbar(surf, shrink=0.5, aspect=5)
     return fig,
 
-filename = "/Users/elia/Downloads/ca-GrQc-Mean-Graph-N5242-E28980-population.csv"
+filename = "/Users/elia/Desktop/Influence-Maximization/RandomGraph-N200-E5998-population.csv"
 df = pd.read_csv(filename, sep=",")
 df = df.sort_values(by=['n_nodes', 'generations', 'influence'])
 fig = plt.figure(figsize=(8,8))
@@ -35,14 +35,14 @@ print(df["influence"])
 
 ax.set_title("Influence Maximization")
 ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 1))
-ax.yaxis.set_ticks(np.arange(0,100, 10))
-ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 20))
+ax.yaxis.set_ticks(np.arange(0,df["generations"].max()+1, 2))
+ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 5))
 
 ax.set_xlabel("Nodes")
 
 ax.set_zlabel("Influence")
 
-ax.set_ylabel("Time/Generations")
+ax.set_ylabel("Converge Time")
 
 dfnew = pd.DataFrame(index=y1.values, columns=x1.values)
 
