@@ -12,7 +12,7 @@ def init():
     #fig.colorbar(surf, shrink=0.5, aspect=5)
     return fig,
 
-filename = "C:/Users/edosc/OneDrive/Desktop/UniTn/Second Semester/Bio-Inspired Artificial Intelligence/Influence-Maximization/Influence-Maximization/Facebook-IC-0-01-Graph-N4039-E88234-population.csv"
+filename = "C:/Users/edosc/OneDrive/Desktop/UniTn/Second Semester/Bio-Inspired Artificial Intelligence/Influence-Maximization/Influence-Maximization/Facebook-IC-0-05-Graph-N4039-E88234-population.csv"
 df = pd.read_csv(filename, sep=",")
 df = df.sort_values(by=['n_nodes', 'generations', 'influence'])
 fig = plt.figure(figsize=(8,8))
