@@ -13,10 +13,10 @@ def read_graph(filename, nodetype=int):
 
 if __name__ == '__main__':
     #filename = 
-    G = read_graph("graphs/Amazon0302.txt")
+    G = read_graph("graphs/facebook_combined.txt")
     k = 10
-    p = 0.1
-    model = 'WC'
+    p = 0.01
+    model = 'IC'
     no_simulations = 100
 
     max_generations = 10 * k
