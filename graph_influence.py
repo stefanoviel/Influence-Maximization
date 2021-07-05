@@ -26,7 +26,6 @@ if __name__ == '__main__':
     ##Propagation Model
     model = 'IC'
     #model = 'WC'
-
     no_simulations = 100
 
 
