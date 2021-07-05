@@ -1,20 +1,47 @@
 # Influence-Maximization
 Code and data for experiments with evolutionary influence maximization
 
-## Current development status
-- Added extra argument to spread.MonteCarlo\_simulation\_max\_hop, as it needed a reference to the pseudo-random number generator
-- \*args and \*\*kargs adopted for passing fitness function as an argument
-- BIG OOF, if we use multi-threaded stuff, we cannot guarantee replicability if the evaluator has pseudo-random number generation inside
+```
+Influence-Maximization
+│   README.md
+│   graph_influence.py
+│   new_ea.py
+│   load.py
+│   override.py
+│   threadpool.py
+│   spread.py
+│   functions.py
+│   heuristic.py
+│     
+└─── src_OLD
+│   │  Previous Codes
+|   │  ...
+│ 
+└───plot
+|   │   3d_plot.py
+|   │   plot_results.py
+|   │   new_plot.py
+|
+└─── old_experiments
+│   │  Previous Experiments
+|   │  ...
+|
+└─── moea_experiments
+│   │
+│   └─── ego/facebook
+│   │
+│   └─── Amazon
+│   │
+│   └─── ca-GrQc
+│ 
+└─── graphs
+    | All Graphs
+    | ...
+    |
 
-## Ideas for improvements
-- Doina has C++ code that simulates spread much faster. Maybe it could be possible to create Python bindings for that code, passing it networkx graphs
+```
 
-## Open questions tied to refactoring
-evolutionaryalgorithm.py
-- does it make sense to save the state of the population to different files?
-- how should the function return the results?
-- how should we structure the genotype? like, a set? should we keep the set coherent through all operators (operators always return correct sets), or should we instead just transform individuals to sets before evaluation (advantage: multi-threaded)?
-- for some reason, preliminary experiments show no improvement when using several threads...to be investigated
+
 
 ## Refactoring
 - one file called "load" that contains everything related to loading functions
