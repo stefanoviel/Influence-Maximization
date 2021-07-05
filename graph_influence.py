@@ -14,9 +14,9 @@ def read_graph(filename, nodetype=int):
 if __name__ == '__main__':
     #filename = 
     G = read_graph("graphs/ca-GrQc.txt")
-    k = 10
+    k = 200
     p = 0.1
-    model = 'IC'
+    model = 'WC'
     no_simulations = 100
 
     max_generations = 10 * k
