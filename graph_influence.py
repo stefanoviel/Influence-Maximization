@@ -1,31 +1,41 @@
 import networkx as nx
-import matplotlib.pyplot as plt
 import time
 import random
 from new_ea import *
-from functions import progress
+import logging
+import load
 N = 200
 def read_graph(filename, nodetype=int):    
     graph_class = nx.MultiGraph()
-    G = nx.read_edgelist(filename, create_using=graph_class, nodetype=nodetype, data=False)
-    #G = nx.fast_gnp_random_graph(N,0.3)
+    #G = nx.read_edgelist(filename, create_using=graph_class, nodetype=nodetype, data=False)
+    G = nx.fast_gnp_random_graph(N,0.3)
     return G
 
 if __name__ == '__main__':
     #filename = 
-    G = read_graph("graphs/Amazon0302.txt")
-    k = 10
-    p = 0.1
-    model = 'WC'
+    G = load.read_graph("graphs/Email_UCL.txt")
+    
+    #nodes' bound
+    k = 10 
+        
+    
+    #influence propagation probability only for 'IC' model
+    p = 0.01
+    #p = 0.05
+
+    ##Propagation Model
+    model = 'IC'
+    #model = 'WC'
+
     no_simulations = 100
 
-    max_generations = 10 * k
+
+    max_generations = 30
     n_threads = 1
     random_seed = 10
     prng = random.Random()
-    import logging
     logger = logging.getLogger('')
-    logger.setLevel(logging.DEBUG) # TODO switch between INFO and DEBUG for less or more in-depth logging
+    logger.setLevel(logging.INFO) # TODO switch between INFO and DEBUG for less or more in-depth logging
     formatter = logging.Formatter('[%(levelname)s %(asctime)s] %(message)s', '%Y-%m-%d %H:%M:%S') 
  
     ch = logging.StreamHandler()
@@ -38,22 +48,8 @@ if __name__ == '__main__':
     logging.info("Random number generator seeded with " + str(random_seed)+ " seed")
     prng.seed(random_seed)
     logging.info(prng)
-    #seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=16, offspring_size=16, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=10, fitness_function=spread.MonteCarlo_simulation)
 	
     logging.info(nx.classes.function.info(G))
-    
-    seed_sets = moea_influence_maximization(G, p, no_simulations, model, offspring_size=50, population_size=100, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=spread.MonteCarlo_simulation)
-    #print(len(seed_sets))
-    #print(str(seed_sets))
-    #print(str(spread))
+    seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=16, offspring_size=16, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=10, fitness_function=spread.MonteCarlo_simulation)
+    #seed_sets = moea_influence_maximization(G, p, no_simulations, model, offspring_size=50, population_size=100, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=spread.MonteCarlo_simulation_max_hop, max_hop=10)
     logging.info("Seed sets {}".format(seed_sets))  
-    print(type(seed_sets))
-    for item in seed_sets:
-        print(item)
-    #nx.draw(G, with_labels=True, font_weight='bold')
-    #plt.show()
-    #print(f'number of edges',G.number_of_edges())
-    #for i in range(len(G)):
-        #print(i)
-        #print(G.edges(i,data=True))
-        #print("\n\n")

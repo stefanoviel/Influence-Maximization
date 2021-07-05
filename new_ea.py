@@ -7,19 +7,18 @@ import logging
 import collections
 import inspyred
 
-from time import time, strftime
+from time import time
 
-from networkx.classes.function import edges
 
 # local libraries
 from functions import progress
-import spread
+import spread 
 
 # inspyred libriaries
 from inspyred.ec import *
+import override
 from inspyred.ec.emo import NSGA2
-from inspyred.ec import EvolutionaryComputation
-from inspyred.ec.replacers import nsga_replacement
+
 """
 Multi-objective evolutionary influence maximization. Parameters:
     G: networkx graph
@@ -36,7 +35,7 @@ Multi-objective evolutionary influence maximization. Parameters:
     initial_population: individuals (seed sets) to be added to the initial population (the rest will be randomly generated)
     population_file: name of the file that will be used to store the population at each generation (default: file named with date and time)
     """
-def moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, max_generations=100, min_seed_nodes=None, max_seed_nodes=None, n_threads=1, random_gen=random.Random(), initial_population=None, population_file=None, fitness_function=None, fitness_function_kargs=dict()) :
+def moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, max_generations=100, min_seed_nodes=None, max_seed_nodes=None, n_threads=1, random_gen=random.Random(), initial_population=None, population_file=None, fitness_function=None, fitness_function_kargs=dict(), max_hop=2) :
 
     # initialize multi-objective evolutionary algorithm, NSGA-II
     logging.debug("Setting up NSGA-II...")
@@ -59,6 +58,10 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
         logging.info("Fitness function not specified, defaulting to \"%s\"" % fitness_function.__name__)
     else :
         logging.info("Fitness function specified, \"%s\"" % fitness_function.__name__)
+    if max_hop == None:
+        max_hop = 2
+    EvolutionaryComputation.new_evolve_ea = override.new_evolve_ea
+    NSGA2.new_evolve_nsga2 = override.new_evolve_nsga2
 
     ea = inspyred.ec.emo.NSGA2(random_gen)
     ea.observer = ea_observer
@@ -66,38 +69,59 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
     ea.terminator = inspyred.ec.terminators.generation_termination
 
     # start the evolutionary process
-    final_population = ea.evolve_1(
-        generator = nsga2_generator,
-        evaluator = nsga2_evaluator,
-        maximize = True,
-        seeds = initial_population,
-        pop_size = population_size,
-        num_selected = offspring_size,
-        max_generations = max_generations,
-
-        # all arguments below will go inside the dictionary 'args'
-        G = G,
-        p = p,
-        model = model,
-        no_simulations = no_simulations,
-        nodes = nodes,
-        n_threads = n_threads,
-        min_seed_nodes = min_seed_nodes,
-        max_seed_nodes = max_seed_nodes,
-        population_file = population_file,
-        time_previous_generation = time(), # this will be updated in the observer
-        fitness_function = fitness_function,
-        fitness_function_kargs = fitness_function_kargs,
-    )
+    if fitness_function != spread.MonteCarlo_simulation_max_hop:
+        ea.new_evolve_nsga2(
+            generator = nsga2_generator,
+            evaluator = nsga2_evaluator,
+            maximize = True,
+            seeds = initial_population,
+            pop_size = population_size,
+            num_selected = offspring_size,
+            max_generations = max_generations,
+            # all arguments below will go inside the dictionary 'args'
+            G = G,
+            p = p,
+            model = model,
+            no_simulations = no_simulations,
+            nodes = nodes,
+            n_threads = n_threads,
+            min_seed_nodes = min_seed_nodes,
+            max_seed_nodes = max_seed_nodes,
+            population_file = population_file,
+            time_previous_generation = time(), # this will be updated in the observer
+            fitness_function = fitness_function,
+            fitness_function_kargs = fitness_function_kargs,
+        )
+    else:
+        ea.new_evolve_nsga2(
+            generator = nsga2_generator,
+            evaluator = nsga2_evaluator,
+            maximize = True,
+            seeds = initial_population,
+            pop_size = population_size,
+            num_selected = offspring_size,
+            max_generations = max_generations,
+            # all arguments below will go inside the dictionary 'args'
+            G = G,
+            p = p,
+            model = model,
+            no_simulations = no_simulations,
+            nodes = nodes,
+            n_threads = n_threads,
+            min_seed_nodes = min_seed_nodes,
+            max_seed_nodes = max_seed_nodes,
+            population_file = population_file,
+            time_previous_generation = time(), # this will be updated in the observer
+            fitness_function = fitness_function,
+            fitness_function_kargs = fitness_function_kargs,
+            max_hop = max_hop,
+           )
 
     # extract seed sets from the final Pareto front/archive
     seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1], 1/individual.fitness[2] if individual.fitness[2]>0 else 0] for individual in ea.archive ] 
-    #seed_sets = [ [individual.candidate, individual.fitness[0],1/individual.fitness[1] if individual.fitness[1]>0 else 0] for individual in ea.archive ] 
-    print(len(seed_sets))
     return seed_sets
 
 def nsga2_evaluator(candidates, args):
-    
     n_threads = args["n_threads"]
     G = args["G"]
     p = args["p"]
@@ -107,7 +131,6 @@ def nsga2_evaluator(candidates, args):
 
     fitness_function = args["fitness_function"]
     fitness_function_kargs = args["fitness_function_kargs"]
-    
     # we start with a list where every element is None
     fitness = [None] * len(candidates)
 
@@ -127,18 +150,19 @@ def nsga2_evaluator(candidates, args):
             #influence_mean, influence_std = spread.MonteCarlo_simulation_max_hop(G, A_set, p, no_simulations, model, random_generator=random_generator)
 
             # NOTE now passing a generic function works, but the whole thing has to be implemented for the multi-threaded version
-            fitness_function_args = [G, A_set, p, no_simulations, model]
+            if fitness_function != spread.MonteCarlo_simulation_max_hop:
+                fitness_function_args = [G, A_set, p, no_simulations, model]
+            else:
+                max_hop = args["max_hop"]
+
+                fitness_function_args = [G, A_set, p, no_simulations, model, max_hop]
+
             influence_mean, influence_std, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
             #gen = float(1/args["generations"] if args["generations"]>0 else 0)
             time = float(1/time if time>0 else 0)
 
             fitness[index] = inspyred.ec.emo.Pareto([influence_mean, (1.0 / float(len(A_set))), time])
-            #fitness[index] = inspyred.ec.emo.Pareto([influence_mean, gen]) 
-            #print(fitness[index])
-            #print(A)
-            #print(fitness[index])
-            #print(fitness[index])
-            #print(type(fitness[index]))
+
         
     else :
         
@@ -155,7 +179,10 @@ def nsga2_evaluator(candidates, args):
         tasks = []
         for index, A in enumerate(candidates) :
             A_set = set(A)
-            fitness_function_args = [G, A_set, p, no_simulations, model]           
+            if fitness_function != spread.MonteCarlo_simulation_max_hop:
+                fitness_function_args = [G, A_set, p, no_simulations, model]
+            else:
+                fitness_function_args = [G, A_set, p, no_simulations, model, max_hop]
             tasks.append((fitness_function, fitness_function_args, fitness_function_kargs, fitness, A_set, index, thread_lock, args["generations"]))
 
         thread_pool.map(nsga2_evaluator_threaded, tasks)
@@ -165,18 +192,6 @@ def nsga2_evaluator(candidates, args):
 
     return fitness
 
-#def nsga2_evaluator_threaded(G, p, A, no_simulations, model, fitness, index, thread_lock, thread_id) :
-#
-#    # TODO add logging?
-#    A_set = set(A)
-#    influence_mean, influence_std = spread.MonteCarlo_simulation_max_hop(G, A_set, p, no_simulations, model)
-#
-#    # lock data structure before writing in it
-#    thread_lock.acquire()
-#    fitness[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set))])  
-#    thread_lock.release()
-#
-#    return 
 
 def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_function_kargs, fitness_values, A_set, index, thread_lock, gen, thread_id) :
 
@@ -195,17 +210,12 @@ def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_fu
 
 def ea_observer(archiver, num_generations, num_evaluations, args) :
 
-    time_previous_generation = args['time_previous_generation']
     currentTime = time()
-    timeElapsed = currentTime - time_previous_generation
     args['time_previous_generation'] = currentTime
 
 
     progress(args["generations"]+1, args["max_generations"], status='Generations{}'.format(args["generations"]+1))
     
-    best = max(archiver)
-
-
     ## TO - PRINT IF NEEDED
     #logging.info('[{0:.2f} s] Generation {1:6} -- {2}'.format(timeElapsed, num_generations, best.fitness))
     
@@ -218,23 +228,15 @@ def ea_observer(archiver, num_generations, num_evaluations, args) :
     # TODO write current state of the ALGORITHM to a file (e.g. random number generator, time elapsed, stuff like that)
     # write current state of the archiver to a file
     archiver_file = args["population_file"]
-    # print("*********")
-    # #print(best)
-    # print(archiver[0])
-    # print(archiver[0].fitness[0])
-    # print(archiver[0].fitness[1])
-    # print(archiver[0].fitness[2])
 
-    # print(archiver[0].candidate)
-
-    # print("*******")
     #find the longest individual
     max_length = len(max(archiver, key=lambda x : len(x.candidate)).candidate)
 
     with open(archiver_file, "w") as fp :
         # header, of length equal to the maximum individual length in the archiver
-        fp.write("n_nodes,influence,generations")
-        #fp.write("influence,generations")
+        #fp.write("n_nodes,influence,generations")
+
+        fp.write("n_nodes,influence,n_simulation")
 
         for i in range(0, max_length) : fp.write(",n%d" % i)
         fp.write("\n")
@@ -264,7 +266,7 @@ def ea_observer(archiver, num_generations, num_evaluations, args) :
 # TODO is there a way to have a multi-threaded generation of individuals?
 @inspyred.ec.variators.crossover # decorator that defines the operator as a crossover, even if it isn't in this case :-)
 def nsga2_super_operator(random, candidate1, candidate2, args) :
-    #print(f'Variators nsga2 super ...')
+  
     children = []
 
     # uniform choice of operator
@@ -370,7 +372,7 @@ def nsga2_removal_mutation(random, candidate, args) :
 
 @inspyred.ec.generators.diversify # decorator that makes it impossible to generate copies
 def nsga2_generator(random, args) :
-    
+
     min_seed_nodes = args["min_seed_nodes"]
     max_seed_nodes = args["max_seed_nodes"]
     nodes = args["nodes"]
@@ -384,162 +386,4 @@ def nsga2_generator(random, args) :
     logging.debug(individual)
 
     return individual
-
-def evolve_2(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args):
-        """Perform the evolution.
-        
-        This function creates a population and then runs it through a series
-        of evolutionary epochs until the terminator is satisfied. The general
-        outline of an epoch is selection, variation, evaluation, replacement,
-        migration, archival, and observation. The function returns a list of
-        elements of type ``Individual`` representing the individuals contained
-        in the final population.
-        
-        Arguments:
-        
-        - *generator* -- the function to be used to generate candidate solutions 
-        - *evaluator* -- the function to be used to evaluate candidate solutions
-        - *pop_size* -- the number of Individuals in the population (default 100)
-        - *seeds* -- an iterable collection of candidate solutions to include
-          in the initial population (default None)
-        - *maximize* -- Boolean value stating use of maximization (default True)
-        - *bounder* -- a function used to bound candidate solutions (default None)
-        - *args* -- a dictionary of keyword arguments
-
-        The *bounder* parameter, if left as ``None``, will be initialized to a
-        default ``Bounder`` object that performs no bounding on candidates.
-        Note that the *_kwargs* class variable will be initialized to the *args* 
-        parameter here. It will also be modified to include the following 'built-in' 
-        keyword argument:
-        
-        - *_ec* -- the evolutionary computation (this object)
-        
-        """
-        self._kwargs = args
-        self._kwargs['_ec'] = self
-        self._kwargs["generations"] = 0
-        if seeds is None:
-            seeds = []
-        if bounder is None:
-            bounder = Bounder()
-        
-        self.termination_cause = None
-        self.bounder = bounder
-        self.maximize = maximize
-        self.population = []
-        self.archive = []
-        self.replacer = nsga_replacement
-        generator= nsga2_generator
-        evaluator = nsga2_evaluator
-        # Create the initial population.
-
-        #print(self.variator)
-        if not isinstance(seeds, collections.Sequence):
-            seeds = [seeds]
-        initial_cs = copy.copy(seeds)
-        num_generated = max(pop_size - len(seeds), 0)
-        i = 0
-        self.logger.debug('generating initial population')
-        while i < num_generated:
-            cs = generator(random=self._random, args=self._kwargs)
-            initial_cs.append(cs)
-            i += 1
-        self.logger.debug('evaluating initial population')
-        initial_fit = evaluator(candidates=initial_cs, args=self._kwargs)
-        #print('Variators{0}'.format(self.variator))
-        for cs, fit in zip(initial_cs, initial_fit):
-            if fit is not None:
-                ind = Individual(cs, maximize=maximize)
-                ind.fitness = fit
-                self.population.append(ind)
-            else:
-                self.logger.warning('excluding candidate {0} because fitness received as None'.format(cs))
-        self.logger.debug('population size is now {0}'.format(len(self.population)))
-        
-        self.num_evaluations = len(initial_fit)
-        self.num_generations = 0
-        self._kwargs["generations"] = self.num_generations
-        
-        self.logger.debug('archiving initial population')
-        self.archive = self.archiver(random=self._random, population=list(self.population), archive=list(self.archive), args=self._kwargs)
-        self.logger.debug('archive size is now {0}'.format(len(self.archive)))
-        self.logger.debug('population size is now {0}'.format(len(self.population)))
-                
-        if isinstance(self.observer, collections.Iterable):
-            for obs in self.observer:
-                self.logger.debug('observation using {0} at generation {1} and evaluation {2}'.format(obs.__name__, self.num_generations, self.num_evaluations))
-                obs(archiver=list(self.archive), num_generations=self.num_generations, num_evaluations=self.num_evaluations, args=self._kwargs)
-        else:
-            self.logger.debug('observation using {0} at generation {1} and evaluation {2}'.format(self.observer.__name__, self.num_generations, self.num_evaluations))
-            self.observer(archiver=list(self.archive), num_generations=self.num_generations, num_evaluations=self.num_evaluations, args=self._kwargs)
-        
-        while not self._should_terminate(list(self.population), self.num_generations, self.num_evaluations):
-            # Select individuals.
-            self.logger.debug('selection using {0} at generation {1} and evaluation {2}'.format(self.selector.__name__, self.num_generations, self.num_evaluations))
-            parents = self.selector(random=self._random, population=list(self.population), args=self._kwargs)
-            self.logger.debug('selected {0} candidates'.format(len(parents)))
-            parent_cs = [copy.deepcopy(i.candidate) for i in parents]
-            offspring_cs = parent_cs
-            
-            if isinstance(self.variator, collections.Iterable):
-                for op in self.variator:
-                    self.logger.debug('variation using {0} at generation {1} and evaluation {2}'.format(op.__name__, self.num_generations, self.num_evaluations))
-                    #print('variation using {0} at generation {1} and evaluation {2}'.format(op.__name__, self.num_generations, self.num_evaluations))
-
-                    offspring_cs = op(random=self._random, candidates=offspring_cs, args=self._kwargs)
-            else:
-                self.logger.debug('variation using {0} at generation {1} and evaluation {2}'.format(self.variator.__name__, self.num_generations, self.num_evaluations))
-                offspring_cs = self.variator(random=self._random, candidates=offspring_cs, args=self._kwargs)
-            self.logger.debug('created {0} offspring'.format(len(offspring_cs)))
-            
-            # Evaluate offspring.
-            self.logger.debug('evaluation using {0} at generation {1} and evaluation {2}'.format(evaluator.__name__, self.num_generations, self.num_evaluations))
-            self._kwargs["generations"] = self.num_generations
-
-            offspring_fit = evaluator(candidates=offspring_cs, args=self._kwargs)
-            offspring = []
-            for cs, fit in zip(offspring_cs, offspring_fit):
-                if fit is not None:
-                    off = Individual(cs, maximize=maximize)
-                    off.fitness = fit
-                    offspring.append(off)
-                else:
-                    self.logger.warning('excluding candidate {0} because fitness received as None'.format(cs))
-            self.num_evaluations += len(offspring_fit)        
-            #print(self.replacer)
-            # Replace individuals.
-            self.logger.debug('replacement using {0} at generation {1} and evaluation {2}'.format(self.replacer.__name__, self.num_generations, self.num_evaluations))
-            self.population = self.replacer(random=self._random, population=self.population, parents=parents, offspring=offspring, args=self._kwargs)
-            self.logger.debug('population size is now {0}'.format(len(self.population)))
-            # Migrate individuals.
-            self.logger.debug('migration using {0} at generation {1} and evaluation {2}'.format(self.migrator.__name__, self.num_generations, self.num_evaluations))
-            self.population = self.migrator(random=self._random, population=self.population, args=self._kwargs)
-            self.logger.debug('population size is now {0}'.format(len(self.population)))
-            
-            # Archive individuals.
-            self.logger.debug('archival using {0} at generation {1} and evaluation {2}'.format(self.archiver.__name__, self.num_generations, self.num_evaluations))
-            self.archive = self.archiver(random=self._random, archive=self.archive, population=list(self.population), args=self._kwargs)
-            self.logger.debug('archive size is now {0}'.format(len(self.archive)))
-            self.logger.debug('population size is now {0}'.format(len(self.population)))
-
-            #print('archive size is now {0}'.format(len(self.archive)))
-            #print('population size is now {0}'.format(len(self.population)))           
-            self.num_generations += 1
-            if isinstance(self.observer, collections.Iterable):
-                for obs in self.observer:
-                    self.logger.debug('observation using {0} at generation {1} and evaluation {2}'.format(obs.__name__, self.num_generations, self.num_evaluations))
-                    obs(archiver=list(self.archive), num_generations=self.num_generations, num_evaluations=self.num_evaluations, args=self._kwargs)
-            else:
-                self.logger.debug('observation using {0} at generation {1} and evaluation {2}'.format(self.observer.__name__, self.num_generations, self.num_evaluations))
-                self.observer(archiver=list(self.archive), num_generations=self.num_generations, num_evaluations=self.num_evaluations, args=self._kwargs)
-        return self.population
-
-EvolutionaryComputation.evolve_2 = evolve_2
-
-def evolve_1(self, pop_size=100, seeds=None, maximize=True, bounder=None, **args):
-        args.setdefault('num_selected', pop_size)
-        args.setdefault('tournament_size', 5)
-        return EvolutionaryComputation.evolve_2(self, pop_size, seeds, maximize, bounder, **args)
-
-NSGA2.evolve_1 = evolve_1
 

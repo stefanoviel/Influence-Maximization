@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-filename = "/Users/elia/Desktop/Influence-Maximization/experiments_moea/WC/facebook_experiments/FacebookGraph-N4039-E88234-population.csv"
+filename = "/Users/elia/Downloads/ca-GrQc-WC-Graph-N5242-E28980-population.csv"
 
 df = pd.read_csv(filename)
 

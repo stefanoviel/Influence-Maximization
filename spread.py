@@ -2,7 +2,7 @@ import networkx as nx
 import random
 import numpy
 import math
-
+from new_ea import logging
 """ Spread models """
 
 """ Simulation of spread for Independent Cascade (IC) and Weighted Cascade (WC). 
@@ -75,7 +75,6 @@ def IC_model_max_hop(G, a, p, max_hop, random_generator):  # a: the set of initi
 			converged = True
 		A |= B
 		max_hop -= 1
-		print(time)
 		time = time + 1
 	return len(A) , time
 
@@ -125,17 +124,17 @@ def MonteCarlo_simulation(G, A, p, no_simulations, model, random_generator=None)
 			res, time = WC_model(G, A, random_generator=random_generator)
 			times.append(time)
 			results.append(res)
-			print('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))
+			logging.debug('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))
 	elif model == 'IC':
 		for i in range(no_simulations):
 			res, time = IC_model(G, A, p, random_generator=random_generator)
 			times.append(time)
 			results.append(res)
-			print('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))
+			logging.debug('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))
 
 	return (numpy.mean(results), numpy.std(results), numpy.mean(times))
 
-def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=2, random_generator=None):
+def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=5, random_generator=None):
 	"""
 	calculates approximated influence spread of a given seed set A, with
 	information propagation limited to a maximum number of hops
@@ -159,13 +158,13 @@ def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=2, ran
 			res, time = WC_model_max_hop(G, A, max_hop, random_generator)
 			times.append(i)
 			results.append(res)
-			print('Time: {0} \nResults: {1} \n'.format(time,res))
+			logging.debug('Time: {0} \nResults: {1} \n'.format(time,res))
 	elif model == 'IC':
 		for i in range(no_simulations):
 			res, time = (IC_model_max_hop(G, A, p, max_hop, random_generator))
 			times.append(i)
 			results.append(res)
-			print('Time: {0} \nResults: {1} \n'.format(time,res))
+			logging.debug('Time: {0} \nResults: {1} \n'.format(time,res))
 
 	return (numpy.mean(results), numpy.std(results), numpy.mean(times))
 
@@ -173,5 +172,5 @@ def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=2, ran
 if __name__ == "__main__":
 
 	G = nx.path_graph(100)
-	print(nx.classes.function.info(G))
-	print(MonteCarlo_simulation(G, [0, 2, 4, 6, 8, 10], 0.1, 100, 'IC'))
+	logging.info(nx.classes.function.info(G))
+	logging.info(MonteCarlo_simulation(G, [0, 2, 4, 6, 8, 10], 0.1, 100, 'IC'))
