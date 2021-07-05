@@ -12,31 +12,31 @@ def init():
     #fig.colorbar(surf, shrink=0.5, aspect=5)
     return fig,
 
-filename = "/Users/elia/Desktop/Influence-Maximization/RandomGraph-N200-E5998-population.csv"
+filename = "/Users/elia/Desktop/Influence-Maximization/RandomGraph-N12625-E40724-population.csv"
 df = pd.read_csv(filename, sep=",")
-df = df.sort_values(by=['n_nodes', 'generations', 'influence'])
+df = df.sort_values(by=['n_nodes', 'n_simulation', 'influence'])
 fig = plt.figure(figsize=(8,8))
 ax = fig.add_subplot(111, projection='3d')
 
 print('Lenght Dataset (i.e number of elements) {}'.format(len(df)))
 #df = df.sort_values(by="n_nodes")
 x1= df["n_nodes"]
-y1 = df["generations"]
+y1 = df["n_simulation"]
 z1 = df["influence"]
 ax.scatter(x1,y1,z1, alpha=1, color="red")
 
 
 
 # x = np.linspace(df["n_nodes"].min(), df["n_nodes"].max(), 50)
-# y = np.linspace(df["generations"].min(), df["generations"].max(), 50) 
+# y = np.linspace(df["n_simulation"].min(), df["n_simulation"].max(), 50) 
 # z = np.linspace(df["influence"].min(), df["influence"].max(),  50)
 
 print(df["influence"])
 
 ax.set_title("Influence Maximization")
 ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 1))
-ax.yaxis.set_ticks(np.arange(0,df["generations"].max()+1, 2))
-ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 5))
+ax.yaxis.set_ticks(np.arange(0,df["n_simulation"].max()+1, 1))
+ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 30))
 
 ax.set_xlabel("Nodes")
 
@@ -60,8 +60,8 @@ xv, yv = np.meshgrid(dfnew.columns, dfnew.index)
 ma = np.nanmax(dfnew.values)
 norm = matplotlib.colors.Normalize(vmin = 0, vmax = df["influence"].max(), clip = True)
 
-#surf = ax.plot_trisurf(x1,y1,z1, cmap='viridis_r', linewidth=0,alpha = 0.99, edgecolor = 'k', norm=norm)
-#fig.colorbar(surf, shrink=0.5, aspect=5)
+surf = ax.plot_trisurf(x1,y1,z1, cmap='viridis_r', linewidth=0,alpha = 0.99, edgecolor = 'k', norm=norm)
+fig.colorbar(surf, shrink=0.5, aspect=5)
 
 
 plt.savefig('{}.png'.format(filename))
@@ -81,4 +81,4 @@ def save_video():
     ani.save(fn+'.mp4',writer='ffmpeg',fps=1000/50)
     ani.save(fn+'.gif',writer='imagemagick',fps=1000/50)
 
-save_video()
+#save_video()
