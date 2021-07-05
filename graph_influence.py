@@ -4,12 +4,6 @@ import random
 from new_ea import *
 import logging
 import load
-N = 200
-def read_graph(filename, nodetype=int):    
-    graph_class = nx.MultiGraph()
-    #G = nx.read_edgelist(filename, create_using=graph_class, nodetype=nodetype, data=False)
-    G = nx.fast_gnp_random_graph(N,0.3)
-    return G
 
 if __name__ == '__main__':
     #filename = 
