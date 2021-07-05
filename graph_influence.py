@@ -16,7 +16,7 @@ if __name__ == '__main__':
     G = read_graph("graphs/ca-GrQc.txt")
     k = 10
     p = 0.05
-    model = 'IC'
+    model = 'WC'
     no_simulations = 100
 
     max_generations = 10 * k
