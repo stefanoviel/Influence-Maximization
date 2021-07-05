@@ -15,7 +15,7 @@ if __name__ == '__main__':
     #filename = 
     G = read_graph("graphs/Amazon0302.txt")
     k = 10
-    p = 0.01
+    p = 0.05
     model = 'IC'
     no_simulations = 100
 
