@@ -13,16 +13,16 @@ def init():
     return fig,
 
 
-filename = "C:/Users/edosc/OneDrive/Desktop/UniTn/Second Semester/Bio-Inspired Artificial Intelligence/Influence-Maximization/Influence-Maximization/Facebook-0.01-K200.csv"
+filename = "C:/Users/edosc/OneDrive/Desktop/UniTn/Second Semester/Bio-Inspired Artificial Intelligence/Influence-Maximization/Influence-Maximization/Facebook-K200-0.01-IC.csv"
 df = pd.read_csv(filename, sep=",")
-df = df.sort_values(by=['n_nodes', 'generations', 'influence'])
+df = df.sort_values(by=['n_nodes', 'n_simulation', 'influence'])
 fig = plt.figure(figsize=(8,8))
 ax = fig.add_subplot(111, projection='3d')
 
 print('Lenght Dataset (i.e number of elements) {}'.format(len(df)))
 #df = df.sort_values(by="n_nodes")
 x1= df["n_nodes"]
-y1 = df["generations"]
+y1 = df["n_simulation"]
 z1 = df["influence"]
 ax.scatter(x1,y1,z1, alpha=1, color="red")
 
@@ -36,7 +36,7 @@ print(df["influence"])
 
 ax.set_title("Influence Maximization")
 ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
-ax.yaxis.set_ticks(np.arange(0,df["generations"].max()+1, 1))
+ax.yaxis.set_ticks(np.arange(0,df["n_simulation"].max()+1, 1))
 ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 30))
 
 ax.set_xlabel("Nodes")
