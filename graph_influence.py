@@ -15,8 +15,8 @@ if __name__ == '__main__':
     
     #influence propagation probability only for 'IC' model
     #p = 0.01
-    p = 0.05
-    #p = 0.1
+    #p = 0.05
+    p = 0.1
 
     ##Propagation Model
     model = 'IC'
