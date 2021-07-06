@@ -7,7 +7,7 @@ import load
 
 if __name__ == '__main__':
     #filename = 
-    G = load.read_graph("graphs/Email_UCL.txt")
+    G = load.read_graph("graphs/ca-GrQc.txt")
     
     #nodes' bound
     k = 30 
@@ -23,8 +23,9 @@ if __name__ == '__main__':
     no_simulations = 100
 
 
-    max_generations = 30
-    n_threads = 2
+
+    max_generations = 10 * k
+    n_threads = 5
     random_seed = 10
     prng = random.Random()
     logger = logging.getLogger('')
