@@ -45,6 +45,6 @@ if __name__ == '__main__':
     logging.info(prng)
 	
     logging.info(nx.classes.function.info(G))
-    seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=50, offspring_size=50, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=spread.MonteCarlo_simulation)
+    seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=50, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=spread.MonteCarlo_simulation)
     #seed_sets = moea_influence_maximization(G, p, no_simulations, model, offspring_size=50, population_size=100, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=spread.MonteCarlo_simulation_max_hop, max_hop=10)
     logging.info("Seed sets {}".format(seed_sets))  
