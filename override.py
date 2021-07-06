@@ -47,7 +47,6 @@ def new_evolve_ea(self,pop_size=100, seeds=None, maximize=True, bounder=None, **
         self.archive = []
         generator= self._kwargs["generator"]
         evaluator = self._kwargs["evaluator"]
-        print(args)
         # Create the initial population.
         if not isinstance(seeds, collections.Sequence):
             seeds = [seeds]
