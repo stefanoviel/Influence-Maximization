@@ -13,7 +13,7 @@ def init():
     return fig,
 
 
-filename = "/Users/elia/Desktop/Influence-Maximization/RandomGraph-N12625-E40724-population.csv"
+filename = "C:/Users/edosc/OneDrive/Desktop/UniTn/Second Semester/Bio-Inspired Artificial Intelligence/Influence-Maximization/Influence-Maximization/ca-GrQc-WC-k200-Graph-N5242-E28980-population.csv"
 df = pd.read_csv(filename, sep=",")
 df = df.sort_values(by=['n_nodes', 'generations', 'influence'])
 fig = plt.figure(figsize=(8,8))
