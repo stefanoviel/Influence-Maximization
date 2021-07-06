@@ -63,6 +63,7 @@ def IC_model_max_hop(G, a, p, max_hop, random_generator):  # a: the set of initi
 	B = set(a)  # B: the set of nodes activated in the last completed iteration
 	converged = False
 	time = 0
+	total_max_hop = max_hop
 	while (not converged) and (max_hop > 0):
 		nextB = set()
 		for n in B:
@@ -76,6 +77,11 @@ def IC_model_max_hop(G, a, p, max_hop, random_generator):  # a: the set of initi
 		A |= B
 		max_hop -= 1
 		time = time + 1
+	
+	
+	if converged != True:
+		time = total_max_hop
+
 	return len(A) , time
 
 
@@ -91,6 +97,8 @@ def WC_model_max_hop(G, a, max_hop, random_generator):  # a: the set of initial 
 		my_degree_function = G.degree
 
 	time = 0
+	total_max_hop = max_hop
+
 	while (not converged) and (max_hop > 0):
 		nextB = set()
 		for n in B:
@@ -105,6 +113,8 @@ def WC_model_max_hop(G, a, max_hop, random_generator):  # a: the set of initial 
 		A |= B
 		max_hop -= 1
 		time += 1
+	if converged != True:
+		time = total_max_hop
 	
 	return len(A), time
 
@@ -132,6 +142,7 @@ def MonteCarlo_simulation(G, A, p, no_simulations, model, random_generator=None)
 			results.append(res)
 			logging.debug('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))
 
+
 	return (numpy.mean(results), numpy.std(results), numpy.mean(times))
 
 def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=5, random_generator=None):
@@ -156,15 +167,16 @@ def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=5, ran
 	if model == 'WC':
 		for i in range(0,no_simulations):
 			res, time = WC_model_max_hop(G, A, max_hop, random_generator)
-			times.append(i)
+			times.append(time)
 			results.append(res)
 			logging.debug('Time: {0} \nResults: {1} \n'.format(time,res))
 	elif model == 'IC':
 		for i in range(no_simulations):
 			res, time = (IC_model_max_hop(G, A, p, max_hop, random_generator))
-			times.append(i)
+			times.append(time)
 			results.append(res)
 			logging.debug('Time: {0} \nResults: {1} \n'.format(time,res))
+
 
 	return (numpy.mean(results), numpy.std(results), numpy.mean(times))
 

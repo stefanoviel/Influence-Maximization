@@ -154,15 +154,12 @@ def nsga2_evaluator(candidates, args):
                 fitness_function_args = [G, A_set, p, no_simulations, model]
             else:
                 max_hop = args["max_hop"]
-
                 fitness_function_args = [G, A_set, p, no_simulations, model, max_hop]
 
             influence_mean, influence_std, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
             #gen = float(1/args["generations"] if args["generations"]>0 else 0)
             time = float(1/time if time>0 else 0)
-
             fitness[index] = inspyred.ec.emo.Pareto([influence_mean, (1.0 / float(len(A_set))), time])
-
         
     else :
         
@@ -182,7 +179,9 @@ def nsga2_evaluator(candidates, args):
             if fitness_function != spread.MonteCarlo_simulation_max_hop:
                 fitness_function_args = [G, A_set, p, no_simulations, model]
             else:
+                max_hop = args["max_hop"]
                 fitness_function_args = [G, A_set, p, no_simulations, model, max_hop]
+
             tasks.append((fitness_function, fitness_function_args, fitness_function_kargs, fitness, A_set, index, thread_lock, args["generations"]))
 
         thread_pool.map(nsga2_evaluator_threaded, tasks)

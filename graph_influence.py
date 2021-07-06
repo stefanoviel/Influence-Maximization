@@ -10,12 +10,12 @@ if __name__ == '__main__':
     G = load.read_graph("graphs/Email_UCL.txt")
     
     #nodes' bound
-    k = 10 
+    k = 30 
         
     
     #influence propagation probability only for 'IC' model
-    p = 0.01
-    #p = 0.05
+    #p = 0.01
+    p = 0.05
 
     ##Propagation Model
     model = 'IC'
@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
 
     max_generations = 30
-    n_threads = 1
+    n_threads = 2
     random_seed = 10
     prng = random.Random()
     logger = logging.getLogger('')
@@ -43,6 +43,6 @@ if __name__ == '__main__':
     logging.info(prng)
 	
     logging.info(nx.classes.function.info(G))
-    seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=16, offspring_size=16, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=10, fitness_function=spread.MonteCarlo_simulation)
-    #seed_sets = moea_influence_maximization(G, p, no_simulations, model, offspring_size=50, population_size=100, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=spread.MonteCarlo_simulation_max_hop, max_hop=10)
+    #seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=50, offspring_size=50, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=spread.MonteCarlo_simulation)
+    seed_sets = moea_influence_maximization(G, p, no_simulations, model, offspring_size=50, population_size=100, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=spread.MonteCarlo_simulation_max_hop, max_hop=10)
     logging.info("Seed sets {}".format(seed_sets))  
