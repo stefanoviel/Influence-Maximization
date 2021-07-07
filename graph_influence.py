@@ -19,8 +19,8 @@ if __name__ == '__main__':
     p = 0.1
 
     ##Propagation Model
-    model = 'IC'
-    #model = 'WC'
+    #model = 'IC'
+    model = 'WC'
     no_simulations = 100
 
 
