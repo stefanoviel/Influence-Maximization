@@ -13,7 +13,7 @@ def init():
     return fig,
 
 
-filename = "C:/Users/edosc/OneDrive/Desktop/UniTn/Second Semester/Bio-Inspired Artificial Intelligence/Influence-Maximization/Influence-Maximization/Facebook-k200-WC.csv"
+filename = "C:\Users\edosc\OneDrive\Desktop\UniTn\Second Semester\Bio-Inspired Artificial Intelligence\Influence-Maximization\Influence-Maximization\ExperimentsResults\ca-GrQc k200\ca-GrQc-k200-0.01-IC.csv"
 df = pd.read_csv(filename, sep=",")
 df = df.sort_values(by=['n_nodes', 'n_simulation', 'influence'])
 fig = plt.figure(figsize=(8,8))
@@ -61,8 +61,8 @@ ma = np.nanmax(dfnew.values)
 norm = matplotlib.colors.Normalize(vmin = 0, vmax = df["influence"].max(), clip = True)
 
 
-surf = ax.plot_trisurf(x1,y1,z1, cmap='viridis_r', linewidth=0,alpha = 0.99, edgecolor = 'k', norm=norm)
-fig.colorbar(surf, shrink=0.5, aspect=5)
+#surf = ax.plot_trisurf(x1,y1,z1, cmap='viridis_r', linewidth=0,alpha = 0.99, edgecolor = 'k', norm=norm)
+#fig.colorbar(surf, shrink=0.5, aspect=5)
 
 
 plt.savefig('{}.png'.format(filename))
