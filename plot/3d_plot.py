@@ -13,7 +13,7 @@ def init():
     return fig,
 
 
-filename = "C:/Users/edosc/OneDrive/Desktop/UniTn/Second Semester/Bio-Inspired Artificial Intelligence/Influence-Maximization/Influence-Maximization/Facebook-K200-0.1-IC.csv"
+filename = "C:/Users/edosc/OneDrive/Desktop/UniTn/Second Semester/Bio-Inspired Artificial Intelligence/Influence-Maximization/Influence-Maximization/Facebook-k200-WC.csv"
 df = pd.read_csv(filename, sep=",")
 df = df.sort_values(by=['n_nodes', 'n_simulation', 'influence'])
 fig = plt.figure(figsize=(8,8))
@@ -79,7 +79,7 @@ def save_video():
                                 frames=90, interval=50, blit=True)
 
     fn = "ca-GrQcGraph-Mean-scatter"
-    ani.save(fn+'.mp4',writer='ffmpeg',fps=1000/50)
+    #ani.save(fn+'.mp4',writer='ffmpeg',fps=1000/50)
     ani.save(fn+'.gif',writer='imagemagick',fps=1000/50)
 
-#save_video()
+save_video()

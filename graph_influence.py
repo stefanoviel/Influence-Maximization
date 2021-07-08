@@ -10,17 +10,17 @@ if __name__ == '__main__':
     G = load.read_graph("graphs/facebook_combined.txt")
     
     #nodes' bound
-    k = 200 # Primi 4 esperimenti per dataset
-    #k = 400    
+    #k = 200 # Primi 4 esperimenti per dataset
+    k = 400    
     
     #influence propagation probability only for 'IC' model
-    #p = 0.01
+    p = 0.01
     #p = 0.05
-    p = 0.1
+    #p = 0.1
 
     ##Propagation Model
-    #model = 'IC'
-    model = 'WC'
+    model = 'IC'
+    #model = 'WC'
     no_simulations = 100
 
 
