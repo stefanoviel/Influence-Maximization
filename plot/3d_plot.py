@@ -61,11 +61,7 @@ ma = np.nanmax(dfnew.values)
 norm = matplotlib.colors.Normalize(vmin = 0, vmax = df["influence"].max(), clip = True)
 
 
-#surf = ax.plot_trisurf(x1,y1,z1, cmap='viridis_r', linewidth=0,alpha = 0.99, edgecolor = 'k', norm=norm)
-#fig.colorbar(surf, shrink=0.5, aspect=5)
-
-
-plt.savefig('{}.png'.format(filename))
+#plt.savefig('{}.png'.format(filename))
 plt.show()
 
 def animate(i):
