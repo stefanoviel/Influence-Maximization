@@ -7,11 +7,11 @@ import load
 
 if __name__ == '__main__':
     #filename = 
-    G = load.read_graph("graphs/facebook_combined.txt")
+    G = load.read_graph("graphs/ca-GrQc.txt")
     
     #nodes' bound
-    #k = 200 # Primi 4 esperimenti per dataset
-    k = 400    
+    k = 200 # Primi 4 esperimenti per dataset
+    #k = 400    
     
     #influence propagation probability only for 'IC' model
     #p = 0.005
