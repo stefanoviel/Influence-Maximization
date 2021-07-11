@@ -13,7 +13,7 @@ def init():
     return fig,
 
 
-filename = "C:/Users/edosc/OneDrive/Desktop/UniTn/Second Semester/Bio-Inspired Artificial Intelligence/Influence-Maximization/Influence-Maximization/ExperimentsResults/ca-GrQc k400/ca-GrQc-k400-WC.csv"
+filename = "C:/Users/edosc/OneDrive/Desktop/UniTn/Second Semester/Bio-Inspired Artificial Intelligence/Influence-Maximization/Influence-Maximization/ExperimentsResults/Facebook k400/Facebook-k400-0.05-IC.csv"
 df = pd.read_csv(filename, sep=",")
 df = df.sort_values(by=['n_nodes', 'n_simulation', 'influence'])
 fig = plt.figure(figsize=(8,8))
