@@ -50,7 +50,6 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
         max_seed_nodes = int( 0.1 * len(nodes))
         logging.debug("Maximum size for the seed set has been set to %d" % max_seed_nodes)
     if population_file == None :
-        #ct = time()
         population_file = "RandomGraph-N{nodes}-E{edges}-population.csv".format(nodes=len(G.nodes), edges=G.number_of_edges())
     if fitness_function == None :
         fitness_function = spread.MonteCarlo_simulation_max_hop
@@ -118,7 +117,7 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
            )
 
     # extract seed sets from the final Pareto front/archive
-    seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1], 1/individual.fitness[2] if individual.fitness[2]>0 else 0] for individual in ea.archive ] 
+    seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1], 1/individual.fitness[2]] for individual in ea.archive ] 
     return seed_sets
 
 def nsga2_evaluator(candidates, args):
@@ -158,8 +157,7 @@ def nsga2_evaluator(candidates, args):
 
             influence_mean, influence_std, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
             #gen = float(1/args["generations"] if args["generations"]>0 else 0)
-            time = float(1/time if time>0 else 0)
-            fitness[index] = inspyred.ec.emo.Pareto([influence_mean, (1.0 / float(len(A_set))), time])
+            fitness[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), 1.0 / float(time)]) 
         
     else :
         
@@ -196,14 +194,12 @@ def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_fu
 
     #influence_mean, influence_std = spread.MonteCarlo_simulation_max_hop(G, A_set, p, no_simulations, model)
     influence_mean, influence_std, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
-    time = float(1/time if time>0 else 0)
     # lock data structure before writing in it
     thread_lock.acquire()
-    gen = float(1/gen if gen>0 else 0)
+    #gen = float(1/gen if gen>0 else 0)
 
     #fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), gen]) 
-    fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), time]) 
-    print(fitness_values[index])
+    fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), 1.0 / float(time)]) 
     thread_lock.release()
 
     return 
