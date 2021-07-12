@@ -13,17 +13,16 @@ def init():
     return fig,
 
 
-filename = "C:\Users\edosc\OneDrive\Desktop\UniTn\Second Semester\Bio-Inspired Artificial Intelligence\Influence-Maximization\Influence-Maximization\ExperimentsResults\ca-GrQc k200\ca-GrQc-k200-0.01-IC.csv"
+filename = "/Users/elia/Desktop/final_experiments/amazon0302/amazon0302-k200-WC.csv"
 df = pd.read_csv(filename, sep=",")
-df = df.sort_values(by=['n_nodes', 'n_simulation', 'influence'])
-fig = plt.figure(figsize=(8,8))
+fig = plt.figure(figsize=(10,10))
 ax = fig.add_subplot(111, projection='3d')
-
 print('Lenght Dataset (i.e number of elements) {}'.format(len(df)))
 #df = df.sort_values(by="n_nodes")
 x1= df["n_nodes"]
 y1 = df["n_simulation"]
 z1 = df["influence"]
+value = []
 ax.scatter(x1,y1,z1, alpha=1, color="red")
 
 
@@ -34,10 +33,10 @@ ax.scatter(x1,y1,z1, alpha=1, color="red")
 
 print(df["influence"])
 
-ax.set_title("Influence Maximization")
-ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
+ax.set_title(filename)
+ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 40))
 ax.yaxis.set_ticks(np.arange(0,df["n_simulation"].max()+1, 1))
-ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 30))
+ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 50))
 
 ax.set_xlabel("Nodes")
 
@@ -45,20 +44,6 @@ ax.set_zlabel("Influence")
 
 ax.set_ylabel("Converge Time")
 
-dfnew = pd.DataFrame(index=y1.values, columns=x1.values)
-
-for i in range(len(x1)):
-    print(i)
-    print(z1[i])
-    dfnew.iloc[i,i] = z1[i]
-
-dfnew = dfnew.fillna(0)
-#print(dfnew)
-
-
-xv, yv = np.meshgrid(dfnew.columns, dfnew.index)
-ma = np.nanmax(dfnew.values)
-norm = matplotlib.colors.Normalize(vmin = 0, vmax = df["influence"].max(), clip = True)
 
 
 #plt.savefig('{}.png'.format(filename))
@@ -78,4 +63,4 @@ def save_video():
     #ani.save(fn+'.mp4',writer='ffmpeg',fps=1000/50)
     ani.save(fn+'.gif',writer='imagemagick',fps=1000/50)
 
-save_video()
+#save_video()

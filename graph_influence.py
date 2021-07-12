@@ -4,10 +4,10 @@ import random
 from new_ea import *
 import logging
 import load
-
+import os
 if __name__ == '__main__':
-    #filename = 
-    G = load.read_graph("graphs/facebook_combined.txt")
+    filename = "/Users/elia/Desktop/Influence-Maximization/graphs/Email_UCL.txt"
+    G = load.read_graph(filename)
     
     #nodes' bound
     #k = 200 # Primi 4 esperimenti per dataset
@@ -46,6 +46,9 @@ if __name__ == '__main__':
     logging.info(prng)
 	
     logging.info(nx.classes.function.info(G))
-    seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=50, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=spread.MonteCarlo_simulation)
-    #seed_sets = moea_influence_maximization(G, p, no_simulations, model, offspring_size=50, population_size=100, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=spread.MonteCarlo_simulation_max_hop, max_hop=10)
+    file = str(os.path.basename(filename))
+    file = file.replace(".txt", "")
+    file = '{0}-k{1}-p{2}-{3}.csv'.format(file, k, p , model)
+    seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=50, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=spread.MonteCarlo_simulation, population_file=file)
+    #seed_sets = moea_influence_maximization(G, p, no_simulations, model, offspring_size=50, population_size=100, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=spread.MonteCarlo_simulation_max_hop, max_hop=10,population_file=file)
     logging.info("Seed sets {}".format(seed_sets))  

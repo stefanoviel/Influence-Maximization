@@ -4,19 +4,19 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import matplotlib
 
-filename = "/Users/elia/Desktop/Influence-Maximization/RandomGraph-N12625-E40724-population.csv"
+filename = "/Users/elia/Desktop/final_experiments/ego-facebook/Facebook-k200-0.05-IC.csv"
 
 df = pd.read_csv(filename, sep=",")
-df = df.sort_values(by=['generations', 'n_nodes', 'influence'])
+df = df.sort_values(by=['n_simulation', 'n_nodes', 'influence'])
 
 x1 = np.linspace(df['n_nodes'].min(), df['n_nodes'].max(), len(df['n_nodes']))
-y1 = np.linspace(df['generations'].min(), df['generations'].max(), len(df['generations']))
+y1 = np.linspace(df['n_simulation'].min(), df['n_simulation'].max(), len(df['n_simulation']))
 x2, y2 = np.meshgrid(x1, y1)
 from scipy.interpolate import griddata
 
-#z2 = griddata((df['n_nodes'], df['generations']), df['influence'], (x2, y2), method='nearest')
-z2 = griddata((df['n_nodes'], df['generations']), df['influence'], (x2, y2), method='linear')
-#z2 = griddata((df['n_nodes'], df['generations']), df['influence'], (x2, y2), method='cubic')
+#z2 = griddata((df['n_nodes'], df['n_simulation']), df['influence'], (x2, y2), method='nearest')
+z2 = griddata((df['n_nodes'], df['n_simulation']), df['influence'], (x2, y2), method='linear')
+#z2 = griddata((df['n_nodes'], df['n_simulation']), df['influence'], (x2, y2), method='cubic')
 
 from matplotlib import cm
 
@@ -24,7 +24,7 @@ ma = np.nanmax(df['influence'])
 norm = matplotlib.colors.Normalize(vmin = 0, vmax = ma, clip = True)
 fig = plt.figure(figsize=(8,8))
 ax = fig.add_subplot(111, projection='3d')
-ax.scatter(df['n_nodes'].to_list(),df['generations'].to_list(),df['influence'].to_list(), alpha=1, color="red")
+ax.scatter(df['n_nodes'].to_list(),df['n_simulation'].to_list(),df['influence'].to_list(), alpha=1, color="red")
 
 surf = ax.plot_surface(x2, y2, z2, rstride=1, cstride=1, cmap='viridis_r',
     linewidth=0, antialiased=False, norm=norm, alpha=0.5)
@@ -34,14 +34,14 @@ ax.set_zlim(0, df['influence'].max())
 
 #ax.zaxis.set_major_locator(LinearLocator(10))
 ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 1))
-ax.yaxis.set_ticks(np.arange(0, df["generations"].max()+1, 10))
+ax.yaxis.set_ticks(np.arange(0, df["n_simulation"].max()+1, 10))
 ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, len(df) / 5))
 #ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
 ax.set_xlabel("Nodes")
 
 ax.set_zlabel("Influence")
 
-ax.set_ylabel("Time/Generations")
+ax.set_ylabel("Time/n_simulation")
 
 fig.colorbar(surf, shrink=0.5, aspect=5)
 plt.title('Meshgrid Created from 3 1D Arrays')
