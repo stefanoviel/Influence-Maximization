@@ -2,37 +2,47 @@ from matplotlib import markers
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import os 
 
-filename = "/Users/elia/Downloads/ca-GrQc-WC-Graph-N5242-E28980-population.csv"
+
+filename = "/Users/elia/Desktop/final_experiments/amazon0302/amazon0302-k200-WC.csv"
 
 df = pd.read_csv(filename)
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
+x = df["n_nodes"]
+z = df["influence"]
+y = df["n_simulation"]
 
-#df = df.sort_values(by="generations").reset_index()
-#df = df.drop_duplicates(subset=["generations"], keep='last')
+tit = str(os.path.basename(filename))
+tit = tit.replace(".csv", "")
+fig.suptitle(tit)
+ax1.scatter(x, z)
+ax1.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 40))
+ax1.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 50))
+ax1.set_xlabel("Nodes")
 
-print(df)
-print(df.columns)
-y = df["n_nodes"]
-x = df["influence"]
+ax1.set_ylabel("Influence")
 
-plt.scatter(x, y)
-x = list(set(x.sort_values()))
-# y = []
-# a = []
-# for item in x:
-#     df1 = df[df.generations == item]
-#     #a = df1["generations"].to_list()
-    
-#     if df1["n_nodes"].max() >
+ax2.scatter(y, z)
+ax2.xaxis.set_ticks(np.arange(0, df["n_simulation"].max()+1, 1))
+ax2.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 50))
+ax2.set_xlabel("Converge Time")
 
-#     y.append(df1["n_nodes"].max())
-#     a.append(df1["n_nodes"].max())
+ax2.set_ylabel("Influence")
 
+ax3.scatter(y, x)
+ax3.yaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 40))
+ax3.xaxis.set_ticks(np.arange(0,df["n_simulation"].max()+1, 1))
+ax3.set_xlabel("Converge Time")
 
-#print(x)
-#print(y)
-#plt.plot(x,y,marker='o', color="red")
-plt.xlabel('Fitness')
-plt.ylabel('Generations')
+ax3.set_ylabel("Nodes")
+
+ax1.set_box_aspect(1)
+ax2.set_box_aspect(1)
+ax3.set_box_aspect(1)
+fig.tight_layout()
+
+#plt.xlabel('Fitness')
+#plt.ylabel('Generations')
 
 plt.show()
