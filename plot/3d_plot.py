@@ -13,7 +13,9 @@ def init():
     return fig,
 
 
-filename = "/Users/elia/Desktop/final_experiments/amazon0302/amazon0302-k200-WC.csv"
+
+filename = "C:/Users/edosc/OneDrive/Desktop/UniTn/Second Semester/Bio-Inspired Artificial Intelligence/Influence-Maximization/Influence-Maximization/ExperimentsResults/Facebook k400/Facebook-k400-0.05-IC.csv"
+
 df = pd.read_csv(filename, sep=",")
 fig = plt.figure(figsize=(10,10))
 ax = fig.add_subplot(111, projection='3d')
