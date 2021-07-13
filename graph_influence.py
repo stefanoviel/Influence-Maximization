@@ -6,7 +6,7 @@ import logging
 import load
 import os
 if __name__ == '__main__':
-    filename = "Influence-Maximization/graphs/Amazon0302.txt"
+    filename = "graphs/Amazon0302.txt"
     G = load.read_graph(filename)
     
     #nodes' bound
