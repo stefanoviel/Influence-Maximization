@@ -14,7 +14,7 @@ def init():
 
 
 
-filename = "C:/Users/edosc/OneDrive/Desktop/UniTn/Second Semester/Bio-Inspired Artificial Intelligence/Influence-Maximization/Influence-Maximization/ExperimentsResults/Facebook k400/Facebook-k400-0.05-IC.csv"
+filename = "C:/Users/edosc/OneDrive/Desktop/UniTn/Second Semester/Bio-Inspired Artificial Intelligence/Influence-Maximization/Influence-Maximization/ExperimentsResults/Facebook k400/Facebook-k400-WC.csv"
 
 df = pd.read_csv(filename, sep=",")
 fig = plt.figure(figsize=(10,10))
