@@ -6,7 +6,7 @@ import logging
 import load
 import os
 if __name__ == '__main__':
-    filename = "C:/Users/edosc/OneDrive/Desktop/UniTn/Second Semester/Bio-Inspired Artificial Intelligence/Influence-Maximization/Influence-Maximization/graphs/Amazon0302.txt"
+    filename = "Influence-Maximization/graphs/Amazon0302.txt"
     G = load.read_graph(filename)
     
     #nodes' bound
