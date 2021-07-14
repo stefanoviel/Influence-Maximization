@@ -1,7 +1,13 @@
 import copy
 import collections
 from inspyred.ec import *
+"""
+Override of the evolve function of both inspyred.ec.emo.NSGA.evolve and inspyred.ec.EvolutionaryComputation.evolve.
 
+- inspyred.ec.EvolutionaryComputation.evolve has been modified to pass the archiver in the observer in order to print in the csv only the individuals present in the archive.
+
+- inspyred.ec.emo.NSGA.evolve has been modified to call inspyred.ec.EvolutionaryComputation.evolve modified and to change the upset_size (which we could have changed even without overide) 
+"""
 def new_evolve_ea(self,pop_size=100, seeds=None, maximize=True, bounder=None, **args):
         """Perform the evolution.
         
@@ -98,8 +104,6 @@ def new_evolve_ea(self,pop_size=100, seeds=None, maximize=True, bounder=None, **
             if isinstance(self.variator, collections.Iterable):
                 for op in self.variator:
                     self.logger.debug('variation using {0} at generation {1} and evaluation {2}'.format(op.__name__, self.num_generations, self.num_evaluations))
-                    #print('variation using {0} at generation {1} and evaluation {2}'.format(op.__name__, self.num_generations, self.num_evaluations))
-
                     offspring_cs = op(random=self._random, candidates=offspring_cs, args=self._kwargs)
             else:
                 self.logger.debug('variation using {0} at generation {1} and evaluation {2}'.format(self.variator.__name__, self.num_generations, self.num_evaluations))

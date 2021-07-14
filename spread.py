@@ -1,14 +1,19 @@
-import networkx as nx
-import random
 import numpy
-import math
+import random
+import networkx as nx
 from new_ea import logging
+
 """ Spread models """
 
 """ Simulation of spread for Independent Cascade (IC) and Weighted Cascade (WC). 
 	Suits (un)directed graphs. 
 	Assumes the edges point OUT of the influencer, e.g., if A->B or A-B, then "A influences B".
 """
+
+''''
+Added time inside the cycle of the various models of propagation with the purpose to keep track of how much time it takes the propagation to converge to the optimal solution.
+'''
+
 def IC_model(G, a, p, random_generator):              # a: the set of initial active nodes
 	                                # p: the system-wide probability of influence on an edge, in [0,1]
 	A = set(a)                      # A: the set of active nodes, initially a
@@ -27,6 +32,7 @@ def IC_model(G, a, p, random_generator):              # a: the set of initial ac
 			converged = True
 		A |= B
 		time = time +1 
+	
 	return len(A), time
 
 def WC_model(G, a, random_generator):                 # a: the set of initial active nodes
@@ -113,6 +119,7 @@ def WC_model_max_hop(G, a, max_hop, random_generator):  # a: the set of initial 
 		A |= B
 		max_hop -= 1
 		time += 1
+	
 	if converged != True:
 		time = total_max_hop
 	
