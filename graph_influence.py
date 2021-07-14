@@ -6,23 +6,23 @@ import logging
 import load
 import os
 if __name__ == '__main__':
-    filename = "/Users/elia/Desktop/Influence-Maximization/graphs/Email_UCL.txt"
+    filename = "graphs/ca-GrQc.txt"
     G = load.read_graph(filename)
     
     #nodes' bound
     #k = 200 # Primi 4 esperimenti per dataset
-    k = 400    
+    k = 200    
     
     #influence propagation probability only for 'IC' model
     #p = 0.005
-    #p = 0.15
+    p = 0.15
     #p = 0.01
-    p = 0.05
+    #p = 0.05
     #p = 0.1
 
     ##Propagation Model
-    #model = 'IC'
-    model = 'WC'
+    model = 'IC'
+    #model = 'WC'
     no_simulations = 100
 
 

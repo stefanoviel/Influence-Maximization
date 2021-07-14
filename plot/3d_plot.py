@@ -13,8 +13,8 @@ def init():
     return fig,
 
 
-
 filename = "/Users/elia/Desktop/final_experiments/ego-facebook/Facebook-k400-WC.csv"
+
 
 df = pd.read_csv(filename, sep=",")
 fig = plt.figure(figsize=(5,5))
