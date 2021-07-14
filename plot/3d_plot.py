@@ -14,10 +14,10 @@ def init():
 
 
 
-filename = "C:/Users/edosc/OneDrive/Desktop/UniTn/Second Semester/Bio-Inspired Artificial Intelligence/Influence-Maximization/Influence-Maximization/ExperimentsResults/Facebook k400/Facebook-k400-0.05-IC.csv"
+filename = "/Users/elia/Desktop/final_experiments/ego-facebook/Facebook-k400-WC.csv"
 
 df = pd.read_csv(filename, sep=",")
-fig = plt.figure(figsize=(10,10))
+fig = plt.figure(figsize=(5,5))
 ax = fig.add_subplot(111, projection='3d')
 print('Lenght Dataset (i.e number of elements) {}'.format(len(df)))
 #df = df.sort_values(by="n_nodes")
@@ -35,10 +35,10 @@ ax.scatter(x1,y1,z1, alpha=1, color="red")
 
 print(df["influence"])
 
-ax.set_title(filename)
-ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 40))
-ax.yaxis.set_ticks(np.arange(0,df["n_simulation"].max()+1, 1))
-ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 50))
+#ax.set_title(filename)
+ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 5))
+ax.yaxis.set_ticks(np.arange(0,df["n_simulation"].max()+1, 5))
+ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 5))
 
 ax.set_xlabel("Nodes")
 
