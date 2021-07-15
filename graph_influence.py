@@ -29,7 +29,7 @@ REMINDER: the results in the csv are only those that form a Pareto Front using N
 
 if __name__ == '__main__':
     
-    filename = "/Users/elia/Desktop/Influence-Maximization/graphs/Email_URV.txt"
+    filename = "Influence-Maximization/graphs/ca-GrQc.txt"
     G = load.read_graph(filename)
     
     '''Propagation Simulation Parameters
@@ -38,8 +38,9 @@ if __name__ == '__main__':
     no_simulations: number of simulations of the selected propagation model 
     '''
  
-    p = 0.01
+    #p = 0.01
     #p = 0.05
+    p = 0.005
 
     model = 'IC'
     #model = 'WC'
