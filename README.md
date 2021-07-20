@@ -41,7 +41,7 @@ Influence-Maximization
 ```
 
 ## Contributors
-This project was developed for the university course Bio Inspyred Artificial Intelligence of the DISI department of the University of Trento.
+This project was developed for the university course Bio Inspired Artificial Intelligence of the DISI department of the University of Trento.
 
 - Elia Cunegatti MSc Computer Science Student University of Trento 
 - Edoardo Schioccola MSc Computer Science Student University of Trento
