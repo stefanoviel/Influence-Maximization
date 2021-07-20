@@ -29,7 +29,7 @@ REMINDER: the results in the csv are only those that form a Pareto Front using N
 
 if __name__ == '__main__':
     
-    filename = "/Users/elia/Desktop/Influence-Maximization/graphs/Email_URV.txt"
+    filename = "/Users/elia/Desktop/Influence-Maximization/graphs/ca-GrQc.txt"
     G = load.read_graph(filename)
     
     '''Propagation Simulation Parameters

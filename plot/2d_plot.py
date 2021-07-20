@@ -11,7 +11,7 @@ script and produces 3 plots in two dimensions showing the relationship/correlati
 
 if __name__ == '__main__':
     
-    filename = "/Users/elia/Desktop/final_experiments/amazon0302/Amazon0302-k400-WC.csv"
+    filename = "/Users/elia/Desktop/final_experiments/ego-facebook/Facebook-k200-WC.csv"
 
     df = pd.read_csv(filename)
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
@@ -21,10 +21,10 @@ if __name__ == '__main__':
 
     tit = str(os.path.basename(filename))
     tit = tit.replace(".csv", "")
-    fig.suptitle(tit)
+    #fig.suptitle(tit)
 
     ax1.scatter(x, z)
-    ax1.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 50))
+    ax1.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 80))
     ax1.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 150))
     ax1.set_xlabel("Nodes")
 
@@ -49,5 +49,6 @@ if __name__ == '__main__':
     ax3.set_box_aspect(1)
     fig.tight_layout()
 
+    fig.savefig('Images/'+tit+'.png', format='png', dpi=100)
 
     plt.show()
