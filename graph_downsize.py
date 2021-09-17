@@ -13,7 +13,7 @@ import igraph as ig
 import leidenalg as la
 import os
 
-scale = 4
+scale = 1
 resolution = 10
 
 Question = input("Do you want real(R) or random(RA) graph?")
@@ -60,33 +60,28 @@ Resolution is a parameter for the Louvain community detection algorithm that aff
 recovered clusters. Smaller resolutions recover smaller, and therefore a larger number of clusters, 
 and conversely, larger values recover clusters containing more data points.
 """
-Question = input("Do you want to use Louvain(LO) or Laudien(LA)?")
-if Question == ("LO"):      
-    partition = community.best_partition(G, resolution=resolution)
-    # pos = nx.spring_layout(G)
-    # # color the nodes according to their partition
-    # cmap = cm.get_cmap('viridis', max(partition.values()) + 1)
-    # nx.draw_networkx_nodes(G, pos, partition.keys(), node_size=40,
-    #                     cmap=cmap, node_color=list(partition.values()))
-    # nx.draw_networkx_edges(G, pos, alpha=0.5,edge_color="#C0C0C0")
-    # plt.savefig("plot_graph/original-community"+name+".png", dpi=300)
-    # plt.show()
-    # plt.cla()
-    """REDIFNE CHECK LIST HERE"""
-    df = pd.DataFrame()
-    df["nodes"] = list(partition.keys())
-    df["comm"] = list(partition.values()) 
-    df = df.groupby('comm')['nodes'].apply(list)
-    df = df.reset_index(name='nodes')
-    check = []
-    for i in range(max(partition.values())+1):
-        check.append(df["nodes"].iloc[i])
-    print(df)
+      
+partition = community.best_partition(G, resolution=resolution)
+# pos = nx.spring_layout(G)
+# # color the nodes according to their partition
+# cmap = cm.get_cmap('viridis', max(partition.values()) + 1)
+# nx.draw_networkx_nodes(G, pos, partition.keys(), node_size=40,
+#                     cmap=cmap, node_color=list(partition.values()))
+# nx.draw_networkx_edges(G, pos, alpha=0.5,edge_color="#C0C0C0")
+# plt.savefig("plot_graph/original-community"+name+".png", dpi=300)
+# plt.show()
+# plt.cla()
+"""REDIFNE CHECK LIST HERE"""
+df = pd.DataFrame()
+df["nodes"] = list(partition.keys())
+df["comm"] = list(partition.values()) 
+df = df.groupby('comm')['nodes'].apply(list)
+df = df.reset_index(name='nodes')
+check = []
+for i in range(max(partition.values())+1):
+    check.append(df["nodes"].iloc[i])
+print(df)
 
-elif Question == ("LA"):
-    h = ig.Graph.from_networkx(G)
-    partition = la.find_partition(h, la.ModularityVertexPartition);
-    check = list(partition)
 
 Question = input("Do you plot the community to the original graph? (Y/N)")
 if Question == ("Y"):      
@@ -166,7 +161,7 @@ for i in range(len(check)):
 
 sizes = []
 for item in check:
-    sizes.append(int(len(item)/2))
+    sizes.append(int(len(item)/scale))
 
 for i in range(len(sizes)):
     print("Community {0} has {1} elements".format(i+1,sizes[i]))
