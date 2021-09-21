@@ -13,7 +13,7 @@ import igraph as ig
 import leidenalg as la
 import os
 
-scale = 1
+scale = 2
 resolution = 10
 
 Question = input("Do you want real(R) or random(RA) graph?")
@@ -109,8 +109,10 @@ check_ok = []
 
 for item in check:
     sum = sum + len(item)
+
     if len(item) > 2*scale:
         check_ok.append(item)
+
 
 
 print("Total number of nodes after selection {0} \nCommunities before check {1} \nCommunities after check {2}".format(sum,len(check),len(check_ok)))
@@ -124,7 +126,7 @@ for i in range(len(check)):
                 if G.has_edge(check[i][k],check[i][j]) == True:
                     edge = edge + 1
     
-    list_edges.append(edge/scale)
+    list_edges.append(edge/2)
 
 
 for i in range(len(check)):
@@ -179,29 +181,40 @@ if Question == ("Y"):
     position = nx.spring_layout(g)
 
     nx.draw(g, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
-    plt.savefig("plot_graph/SBM-"+name+".png", dpi=1200)
+    plt.savefig("plot_graph/SBM-"+name+"_"+ str(scale)+".png", dpi=1200)
     plt.cla()
 
 Question = input("Do you plot the community to the SBM graph? (Y/N)")
 if Question == ("Y"):      
+    
     partition = community.best_partition(g, resolution=resolution)
 
-    """REDIFNE CHECK LIST HERE"""
-    print(partition)
-    df = pd.DataFrame()
-    df["nodes"] = list(partition.keys())
-    df["comm"] = list(partition.values()) 
-    df = df.groupby('comm')['nodes'].apply(list)
-    df = df.reset_index(name='nodes')
-    check = []
-    for i in range(max(partition.values())):
-        check.append(df["nodes"].iloc[i])
-    items = {}
-    for i in range(len(check)):
-        key = i
-        for j in range(len(check[i])):
-            items[check[i][j]] = key
+    loop = True
+    while loop:
+        """REDIFNE CHECK LIST HERE"""
+        partition = community.best_partition(g, resolution=resolution)
+        df = pd.DataFrame()
+        df["nodes"] = list(partition.keys())
+        df["comm"] = list(partition.values()) 
+        df = df.groupby('comm')['nodes'].apply(list)
+        df = df.reset_index(name='nodes')
+        check_1 = []
+        for i in range(max(partition.values())+1):
+            check_1.append(df["nodes"].iloc[i])
+        items = {}
+        for i in range(len(check_1)):
+            key = i
+            for j in range(len(check_1[i])):
+                items[check_1[i][j]] = key
 
+        print("Resolution {0} \nOriginal Community {1}\nCommunities SBM {2}".format(resolution, len(check), len(check_1)))
+
+        if len(check_1) == len(check):
+            loop = False
+        elif len(check_1) > len(check):
+            resolution = resolution + 10 
+        elif len(check_1) < len(check):
+            resolution = resolution - 10
 
     #print(items)
     pos = nx.spring_layout(g)
@@ -212,72 +225,12 @@ if Question == ("Y"):
     nx.draw_networkx_edges(g, pos, alpha=0.5,edge_color="#C0C0C0")
     plt.savefig("plot_graph/SBM-community"+name+".png", dpi=1200)
 
-
-
-# df = pd.DataFrame()
-# df["nodes"] = check
-# no_nodes = []
-# for item in check:
-#     no_nodes.append(len(item))
-# df["no_nodes"]=no_nodes
-
-# df = df.sort_values(by='no_nodes', ascending=False)
-# print(df)
-# check_ok = df["nodes"].to_list()
-
-
-# check_2 = []
-# for item in check_ok:
-#     if len(item) > 1:
-#         check_2.append(item)
-
-# check_ok = check_2
-# sum = 0
-# for item in check_ok:
-#     sum = sum + len(item)
-
-# print("Total number of nodes after selection {0} \nCommunities before check {1} \nCommunities after check {2}".format(sum,len(check)+1,len(check_ok)+1))
+text = []
+for u,v in g.edges():
+    f = "{0} {1}".format(u,v)
+    text.append(f) 
+with open("/Users/elia/Desktop/Influence-Maximization/SBM-Graph/graph_"+str(name)+"_"+"scale_"+str(scale)+".txt", "w") as outfile:
+        outfile.write("\n".join(text))
 
 
 
-# pos = nx.spring_layout(G)
-# # color the nodes according to their partition
-# cmap = cm.get_cmap('viridis', max(partition.values()) + 1)
-# nx.draw_networkx_nodes(G, pos, partition.keys(), node_size=50,
-#                        cmap=cmap, node_color=list(partition.values()))
-
-
-# #nx.draw(g, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=50,linewidths=1, edge_color="#C0C0C0", width=0.5)
-
-# nx.draw_networkx_edges(G, pos, alpha=0.5)
-
-# plt.show()
-
-
-# filename ="random_graph"
-# name = (os.path.basename(filename))
-
-# sizes = [40,50,100,200,150]
-
-# N=len(sizes)
-# #a = np.random.rand(N, N)
-# a = np.random.uniform(0.0005, 0.005, N)
-# m = np.tril(a) + np.tril(a, -1).T
-# m = m.tolist()
-# x = 0
-
-# ## to change the probability of edges in a community
-# for i in range(len(m)):
-#     new = m[i]
-#     new[x] = np.random.uniform(0.5, 1, 1)
-#     m[i]=new
-#     x= x+1
-# print(m)
-# print(type(m))
-
-# G = nx.stochastic_block_model(sizes, m, seed=0)
-# position = nx.spring_layout(G)
-# nx.draw(G, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=50,linewidths=1, edge_color="#C0C0C0", width=0.5)
-# plt.savefig("original-"+name+".png", dpi=300)
-
-# pl.show()
