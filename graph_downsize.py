@@ -13,8 +13,8 @@ import os
 #import leidenalg as la
 import os
 
-scale = 10
-resolution = 0
+scale = 4
+resolution = 10
 
 Question = input("Do you want real(R) or random(RA) graph?")
 if Question == ("RA"):
@@ -49,8 +49,8 @@ if Question == ("RA"):
         except:
             pass
 elif Question == ("R"):
-    filename = "/Users/elia/Desktop/Influence-Maximization/graphs/facebook_combined.txt"
-    name = (os.path.basename(filename) + "_leiden")
+    filename = "graphs/socfb-BC17.mtx.txt"
+    name = (os.path.basename(filename))
     G = load.read_graph(filename)
     G = G.to_undirected()
 
@@ -76,14 +76,14 @@ partition = community_louvain.best_partition(G, resolution=resolution)
 
 ##
 
-G1 = ig.Graph.from_networkx(G)
-partition = la.find_partition(G1, la.ModularityVertexPartition);
-print(partition)
-check = list(partition)
+#G1 = ig.Graph.from_networkx(G)
+#partition = la.find_partition(G1, la.ModularityVertexPartition);
+#print(partition)
+#check = list(partition)
 # print(len(check))
 # check = check[:8]
 """REDIFNE CHECK LIST HERE"""
-''' df = pd.DataFrame()
+df = pd.DataFrame()
 df["nodes"] = list(partition.keys())
 df["comm"] = list(partition.values()) 
 df = df.groupby('comm')['nodes'].apply(list)
@@ -91,7 +91,7 @@ df = df.reset_index(name='nodes')
 check = []
 for i in range(max(partition.values())+1):
     check.append(df["nodes"].iloc[i])
-print(df) '''
+print(df)
 
 
 Question = input("Do you plot the community to the original graph? (Y/N)")
@@ -240,8 +240,5 @@ text = []
 for u,v in g.edges():
     f = "{0} {1}".format(u,v)
     text.append(f) 
-with open("/Users/elia/Desktop/Influence-Maximization/SBM-Graph/graph_"+str(name)+"_"+"scale_"+str(scale)+".txt", "w") as outfile:
+with open("SBM-Graph/graph_"+str(name)+"_"+"scale_"+str(scale)+".txt", "w") as outfile:
         outfile.write("\n".join(text))
-
-
-
