@@ -14,6 +14,33 @@ from new_ea import logging
 Added time inside the cycle of the various models of propagation with the purpose to keep track of how much time it takes the propagation to converge to the optimal solution.
 '''
 
+
+def LT_model(G, a, threshold, random_generator):
+	A = set(a)                      # A: the set of active nodes, initially a
+	B = set(a)                      # B: the set of nodes activated in the last completed iteration
+	converged = False
+	while not converged:
+		nextB = set()
+		for m in G.nodes():
+			total_weight = 0
+			if G.degree()[m]:
+				weight = 1/float(G.degree()[m])
+			else:
+				continue
+			for each in G.neighbors(m):
+				if each in A:
+					total_weight = random_generator.random() + weight
+			if total_weight > threshold[m]:
+				nextB.append(m)
+
+		if not B:
+    			converged = True
+		A |= B
+		time = time +1 
+	
+	return len(A), time
+	#This returns all the nodes in the network that have been activated/converted in the diffusion process
+
 def IC_model(G, a, p, random_generator):              # a: the set of initial active nodes
 	                                # p: the system-wide probability of influence on an edge, in [0,1]
 	A = set(a)                      # A: the set of active nodes, initially a

@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-filename = "/Users/elia/Downloads/fb-pages-company/fb-pages-company.edges"
+filename = "/Users/elia/Downloads/deezer_europe/deezer_europe_edges.csv"
 name = (os.path.basename(filename))
 
 df = pd.read_csv(filename, sep=",")
