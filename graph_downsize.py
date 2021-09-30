@@ -49,7 +49,7 @@ if Question == ("RA"):
         except:
             pass
 elif Question == ("R"):
-    filename = "graphs/soc-gplus.edges.txt"
+    filename = "graphs/soc-wiki-elec.edges.txt"
     name = (os.path.basename(filename))
     G = load.read_graph(filename)
     G = G.to_undirected()
