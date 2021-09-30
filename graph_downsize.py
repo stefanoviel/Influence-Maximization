@@ -62,7 +62,7 @@ Question = input("Do you want print the original graph(Y/N)?")
 if Question == ("Y"):      
     position = nx.spring_layout(G)
 
-    nx.draw(G, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=40,linewidths=1, edge_color="#C0C0C0", width=0.5)
+    nx.draw(G, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
     plt.savefig("plot_graph/original-"+name+".png", dpi=1200)
     plt.cla()
 
