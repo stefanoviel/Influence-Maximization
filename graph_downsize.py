@@ -1,7 +1,7 @@
 import networkx as nx
 import matplotlib.pylab as pl
 import numpy as np
-import community 
+from community import community_louvain
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import networkx as nx
@@ -13,8 +13,8 @@ import igraph as ig
 import leidenalg as la
 import os
 
-scale = 2
-resolution = 10
+scale = 10
+resolution = 0
 
 Question = input("Do you want real(R) or random(RA) graph?")
 if Question == ("RA"):
@@ -37,9 +37,20 @@ if Question == ("RA"):
 
 
     G = nx.stochastic_block_model(sizes, m, seed=0)
+    Z = 0
+    for item in sizes:
+        Z =  Z + item
+    for i in range(1000):
+        import random
+        start = random.randint(0, Z)
+        end = random.randint(0, Z)
+        try:
+            print('Shortest Path {0} between {1}, {2}--> {3} -- LEN {4}'.format(i,start,end,nx.shortest_path(G, source=start, target=end, weight=None, method='dijkstra'),len(nx.shortest_path(G, source=start, target=end, weight=None, method='dijkstra'))))
+        except:
+            pass
 elif Question == ("R"):
     filename = "/Users/elia/Desktop/Influence-Maximization/graphs/facebook_combined.txt"
-    name = (os.path.basename(filename))
+    name = (os.path.basename(filename) + "_leiden")
     G = load.read_graph(filename)
     G = G.to_undirected()
 
@@ -61,18 +72,18 @@ recovered clusters. Smaller resolutions recover smaller, and therefore a larger 
 and conversely, larger values recover clusters containing more data points.
 """
       
-partition = community.best_partition(G, resolution=resolution)
-# pos = nx.spring_layout(G)
-# # color the nodes according to their partition
-# cmap = cm.get_cmap('viridis', max(partition.values()) + 1)
-# nx.draw_networkx_nodes(G, pos, partition.keys(), node_size=40,
-#                     cmap=cmap, node_color=list(partition.values()))
-# nx.draw_networkx_edges(G, pos, alpha=0.5,edge_color="#C0C0C0")
-# plt.savefig("plot_graph/original-community"+name+".png", dpi=300)
-# plt.show()
-# plt.cla()
+partition = community_louvain.best_partition(G, resolution=resolution)
+
+##
+
+G1 = ig.Graph.from_networkx(G)
+partition = la.find_partition(G1, la.ModularityVertexPartition);
+print(partition)
+check = list(partition)
+# print(len(check))
+# check = check[:8]
 """REDIFNE CHECK LIST HERE"""
-df = pd.DataFrame()
+''' df = pd.DataFrame()
 df["nodes"] = list(partition.keys())
 df["comm"] = list(partition.values()) 
 df = df.groupby('comm')['nodes'].apply(list)
@@ -80,7 +91,7 @@ df = df.reset_index(name='nodes')
 check = []
 for i in range(max(partition.values())+1):
     check.append(df["nodes"].iloc[i])
-print(df)
+print(df) '''
 
 
 Question = input("Do you plot the community to the original graph? (Y/N)")
@@ -187,12 +198,12 @@ if Question == ("Y"):
 Question = input("Do you plot the community to the SBM graph? (Y/N)")
 if Question == ("Y"):      
     
-    partition = community.best_partition(g, resolution=resolution)
+    partition = community_louvain.best_partition(g, resolution=resolution)
 
     loop = True
     while loop:
         """REDIFNE CHECK LIST HERE"""
-        partition = community.best_partition(g, resolution=resolution)
+        partition = community_louvain.best_partition(g, resolution=resolution)
         df = pd.DataFrame()
         df["nodes"] = list(partition.keys())
         df["comm"] = list(partition.values()) 
@@ -212,9 +223,9 @@ if Question == ("Y"):
         if len(check_1) == len(check):
             loop = False
         elif len(check_1) > len(check):
-            resolution = resolution + 10 
+            resolution = resolution + 1 
         elif len(check_1) < len(check):
-            resolution = resolution - 10
+            resolution = resolution - 1
 
     #print(items)
     pos = nx.spring_layout(g)
