@@ -1,14 +1,14 @@
 import pandas as pd
 import os
 
-filename = "/Users/elia/Downloads/facebook_large/musae_facebook_edges.csv"
+filename = "/Users/elia/Downloads/fb-pages-company/fb-pages-company.edges"
 name = (os.path.basename(filename))
 
-df = pd.read_csv(filename)
+df = pd.read_csv(filename, sep=",")
 print(df)
-
-n1 = df["id_1"].to_list()
-n2 = df["id_2"].to_list()
+print(df.index)
+n1 = df["node_1"].to_list()
+n2 = df["node_2"].to_list()
 
 text = []
 for i in range(len(n1)):
