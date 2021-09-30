@@ -14,7 +14,7 @@ import os
 import os
 
 scale = 4
-resolution = 10
+resolution = 1
 
 Question = input("Do you want real(R) or random(RA) graph?")
 if Question == ("RA"):
@@ -49,7 +49,7 @@ if Question == ("RA"):
         except:
             pass
 elif Question == ("R"):
-    filename = "graphs/socfb-BC17.mtx.txt"
+    filename = "graphs/soc-gplus.edges.txt"
     name = (os.path.basename(filename))
     G = load.read_graph(filename)
     G = G.to_undirected()
