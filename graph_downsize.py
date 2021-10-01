@@ -13,8 +13,8 @@ import os
 #import leidenalg as la
 import os
 
-scale = 5
-resolution = 10
+scale = 10
+resolution = 1
 
 Question = input("Do you want real(R) or random(RA) graph?")
 if Question == ("RA"):
@@ -49,7 +49,7 @@ if Question == ("RA"):
         except:
             pass
 elif Question == ("R"):
-    filename = "graphs/ego-gplus.txt"
+    filename = "graphs/Amazon0302.txt"
     name = (os.path.basename(filename))
     G = load.read_graph(filename)
     G = G.to_undirected()
