@@ -1,10 +1,10 @@
 import pandas as pd
 import os
 
-filename = "/Users/elia/Desktop/soc-BlogCatalog-ASU/soc-BlogCatalog-ASU.edges"
+filename = "/Users/elia/Desktop/soc-wiki-elec/soc-wiki-elec.edges"
 name = (os.path.basename(filename))
 
-df = pd.read_csv(filename, sep=",")
+df = pd.read_csv(filename, sep=" ")
 print(df)
 print(df.index)
 n1 = df["node_1"].to_list()
