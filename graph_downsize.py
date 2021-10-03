@@ -49,7 +49,7 @@ if Question == ("RA"):
         except:
             pass
 elif Question == ("R"):
-    filename = "/Users/elia/Desktop/Influence-Maximization/graphs/citeseer.edges.txt"
+    filename = "graphs/fb-CMU-Carnegie49.edges.txt"
     name = (os.path.basename(filename))
     G = load.read_graph(filename)
     G = G.to_undirected()
