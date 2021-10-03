@@ -49,7 +49,7 @@ if Question == ("RA"):
         except:
             pass
 elif Question == ("R"):
-    filename = "graphs/fb-forum.edges.txt"
+    filename = "/Users/elia/Desktop/Influence-Maximization/graphs/citeseer.edges.txt"
     name = (os.path.basename(filename))
     G = load.read_graph(filename)
     G = G.to_undirected()
@@ -92,7 +92,19 @@ check = []
 for i in range(max(partition.values())+1):
     check.append(df["nodes"].iloc[i])
 print(df)
+sum = 0
+check_ok = []
 
+for item in check:
+    sum = sum + len(item)
+
+    if len(item) > 2*scale:
+        check_ok.append(item)
+
+
+
+print("Total number of nodes after selection {0} \nCommunities before check {1} \nCommunities after check {2}".format(sum,len(check),len(check_ok)))
+check = check_ok
 
 Question = input("Do you plot the community to the original graph? (Y/N)")
 if Question == ("Y"):      
@@ -115,19 +127,6 @@ if Question == ("Y"):
     plt.cla()
 
 
-sum = 0
-check_ok = []
-
-for item in check:
-    sum = sum + len(item)
-
-    if len(item) > 2*scale:
-        check_ok.append(item)
-
-
-
-print("Total number of nodes after selection {0} \nCommunities before check {1} \nCommunities after check {2}".format(sum,len(check),len(check_ok)))
-check = check_ok
 list_edges = []
 for i in range(len(check)):
     edge = 0
