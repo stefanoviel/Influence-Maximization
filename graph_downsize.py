@@ -49,7 +49,7 @@ if Question == ("RA"):
         except:
             pass
 elif Question == ("R"):
-    filename = "graphs/fb-CMU-Carnegie49.edges.txt"
+    filename = "graphs/soc-BlogCatalog-ASU.edges.txt"
     name = (os.path.basename(filename))
     G = load.read_graph(filename)
     G = G.to_undirected()
