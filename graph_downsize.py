@@ -9,9 +9,6 @@ from numpy.lib.function_base import append
 import load
 import pandas as pd
 import os
-#import igraph as ig
-#import leidenalg as la
-import os
 
 scale = 4
 resolution = 1
