@@ -1,0 +1,23 @@
+Name: 
+Type: Graph
+Number of nodes: 262111
+Number of edges: 899792
+Average degree:   6.8657
+Traceback (most recent call last):
+  File "graph_downsize_2.py", line 28, in <module>
+    position = nx.spring_layout(G)
+  File "<decorator-gen-736>", line 2, in fruchterman_reingold_layout
+  File "/home/s2878747/.local/lib/python3.6/site-packages/networkx/utils/decorators.py", line 408, in _random_state
+    return func(*new_args, **kwargs)
+  File "/home/s2878747/.local/lib/python3.6/site-packages/networkx/drawing/layout.py", line 492, in fruchterman_reingold_layout
+    A, k, pos_arr, fixed, iterations, threshold, dim, seed
+  File "<decorator-gen-740>", line 2, in _sparse_fruchterman_reingold
+  File "/home/s2878747/.local/lib/python3.6/site-packages/networkx/utils/decorators.py", line 408, in _random_state
+    return func(*new_args, **kwargs)
+  File "/home/s2878747/.local/lib/python3.6/site-packages/networkx/drawing/layout.py", line 596, in _sparse_fruchterman_reingold
+    A = A.tolil()
+  File "/home/s2878747/.local/lib/python3.6/site-packages/scipy/sparse/csr.py", line 151, in tolil
+    lil = lil_matrix(self.shape,dtype=self.dtype)
+  File "/home/s2878747/.local/lib/python3.6/site-packages/scipy/sparse/lil.py", line 112, in __init__
+    self.rows[i] = []
+KeyboardInterrupt
