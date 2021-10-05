@@ -11,7 +11,7 @@ import pandas as pd
 import os
 
 scale = 4
-resolution = 10
+resolution = 1
 
 Question = input("Do you want real(R) or random(RA) graph?")
 if Question == ("RA"):
@@ -46,7 +46,7 @@ if Question == ("RA"):
         except:
             pass
 elif Question == ("R"):
-    filename = "graphs/lastfm.txt"
+    filename = "/Users/elia/Desktop/Influence-Maximization/graphs/facebook_combined.txt"
     name = (os.path.basename(filename))
     G = load.read_graph(filename)
     G = G.to_undirected()
@@ -129,9 +129,8 @@ for i in range(len(check)):
     edge = 0
     for k in range(0,len(check[i])-1):
         for j in range(k+1,len(check[i])):
-            if check[i][k] != check[i][j]:
-                if G.has_edge(check[i][k],check[i][j]) == True:
-                    edge = edge + 1
+            if G.has_edge(check[i][k],check[i][j]) == True:
+                edge = edge + 1
     
     list_edges.append(edge)
 
@@ -167,14 +166,19 @@ n = (len(check) * len(check)) - len(check)
                 #print("For k {0} and j {1} number of nodes {2} and edges {3}".format(k,j,nodes,edge))
 
 for i in range(len(check)):
+    print("I --> {0}".format(i))
     for j in range(i+1,len(check)):
+        print("J --> {0}".format(j))
+
         edge=0
         if i != j:
             for node1 in check[i]:
                 for node2 in check[j]:
                     if G.has_edge(node1,node2) == True:
                              edge = edge + 1 
-
+            
+            nodes = len(check[i]) + len(check[j])
+      
             all_edges[i][j] = float((2*edge)/(nodes*(nodes-1)))
             all_edges[j][i] = float((2*edge)/(nodes*(nodes-1)))
             if  all_edges[j][i] >1:
