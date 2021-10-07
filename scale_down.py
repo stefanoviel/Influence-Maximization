@@ -13,7 +13,7 @@ import os
 scale = 4
 resolution = 1
 
-filename = "graphs/lastfm.txt"
+filename = "graphs/Amazon0302.txt"
 name = (os.path.basename(filename))
 G = load.read_graph(filename)
 G = G.to_undirected()
@@ -149,3 +149,10 @@ position = nx.spring_layout(g)
 nx.draw(g, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
 plt.savefig("plot_graph/SBM-"+name+"_"+ str(scale)+".png", dpi=1200)
 plt.cla()
+
+text = []
+for u,v in g.edges():
+    f = "{0} {1}".format(u,v)
+    text.append(f) 
+with open("SBM-Graph/graph_"+str(name)+"_"+"scale_"+str(scale)+".txt", "w") as outfile:
+        outfile.write("\n".join(text))
