@@ -30,7 +30,7 @@ REMINDER: the results in the csv are only those that form a Pareto Front using N
 if __name__ == '__main__':
     
 
-    filename = "Influence-Maximization/graphs/ca-GrQc.txt"
+    filename = "prova"
     G = load.read_graph(filename)
     
     '''Propagation Simulation Parameters
@@ -39,23 +39,23 @@ if __name__ == '__main__':
     no_simulations: number of simulations of the selected propagation model 
     '''
  
-    #p = 0.01
+    p = 0.01
     #p = 0.05
-    p = 0.005
+    #p = 0.005
 
-    model = 'IC'
+    model = 'LT'
     #model = 'WC'
             
     no_simulations = 100
 
     #nodes' bound of seed sets
     #k=200
-    k = 400   
+    k = 50   
     max_generations = 10 * k
 
 
 
-    n_threads = 5
+    n_threads = 1
     random_seed = 10
     prng = random.Random()
     logger = logging.getLogger('')
