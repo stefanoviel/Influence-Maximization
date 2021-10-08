@@ -14,31 +14,37 @@ from new_ea import logging
 Added time inside the cycle of the various models of propagation with the purpose to keep track of how much time it takes the propagation to converge to the optimal solution.
 '''
 
+## to re-code better
+def LT_model(G, a, random_generator):
+    A = set(a)                      # A: the set of active nodes, initially a
+    B = set(a)                      # B: the set of nodes activated in the last completed iteration
+    converged = False
+    time = 0
+    threshold = {}
+    for node in G.nodes():
+            threshold[node] = random_generator.random()
+    while not converged:
+        nextB = set()
+        for n in B:
+            for m in set(G.neighbors(n)) - A:
+                weight = 0
+                if G.degree()[m]:
+                    weight = 1/float(G.degree()[m])
+                else:
+                    continue
+                for each in G.neighbors(m):
+                    if each in A:
+                        total_weight = random_generator.random() + weight
+                if total_weight > threshold[m]:
+                    nextB.add(m)
+        B = set(nextB)
+        if not B:
+            converged = True
+        A |= B
+        time = time +1 
+    return len(A), time
 
-def LT_model(G, a, threshold, random_generator):
-	A = set(a)                      # A: the set of active nodes, initially a
-	B = set(a)                      # B: the set of nodes activated in the last completed iteration
-	converged = False
-	while not converged:
-		nextB = set()
-		for m in G.nodes():
-			total_weight = 0
-			if G.degree()[m]:
-				weight = 1/float(G.degree()[m])
-			else:
-				continue
-			for each in G.neighbors(m):
-				if each in A:
-					total_weight = random_generator.random() + weight
-			if total_weight > threshold[m]:
-				nextB.append(m)
 
-		if not B:
-    			converged = True
-		A |= B
-		time = time +1 
-	
-	return len(A), time
 	#This returns all the nodes in the network that have been activated/converted in the diffusion process
 
 def IC_model(G, a, p, random_generator):              # a: the set of initial active nodes
@@ -175,8 +181,14 @@ def MonteCarlo_simulation(G, A, p, no_simulations, model, random_generator=None)
 			times.append(time)
 			results.append(res)
 			logging.debug('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))
-
-
+	elif model == 'LT':
+		for i in range(no_simulations):
+			res, time = LT_model(G, A, random_generator=random_generator)
+			print(res,time)
+			times.append(time)
+			results.append(res)
+			logging.info('Simulation: {0}\nTime: {1}\nResults: {2}\n'.format(i,time,res))		
+	
 	return (numpy.mean(results), numpy.std(results), numpy.mean(times))
 
 def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=5, random_generator=None):
@@ -210,7 +222,14 @@ def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=5, ran
 			times.append(time)
 			results.append(res)
 			logging.debug('Time: {0} \nResults: {1} \n'.format(time,res))
+	elif model == 'LT':
+		print("L original {0}".format(A))
 
+		for i in range(no_simulations):
+			res, time = LT_model(G, A, random_generator=random_generator)
+			times.append(time)
+			results.append(res)
+			print('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))	
 
 	return (numpy.mean(results), numpy.std(results), numpy.mean(times))
 

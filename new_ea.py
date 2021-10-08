@@ -35,13 +35,13 @@ Multi-objective evolutionary influence maximization. Parameters:
     max_hop: define the size of max_hop if fitness_function=MonteCarlo_max_hop has been selected
     """
 def moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, max_generations=100, min_seed_nodes=None, max_seed_nodes=None, n_threads=1, random_gen=random.Random(), initial_population=None, population_file=None, fitness_function=None, fitness_function_kargs=dict(), max_hop=2) :
-
     # initialize multi-objective evolutionary algorithm, NSGA-II
     logging.debug("Setting up NSGA-II...")
     progress(0, max_generations, status='Inizializing')
 
     # check if some of the parameters are set; otherwise, use default values
     nodes = list(G.nodes)
+
     if min_seed_nodes == None :
         min_seed_nodes = 1
         logging.debug("Minimum size for the seed set has been set to %d" % min_seed_nodes)
@@ -151,6 +151,7 @@ def nsga2_evaluator(candidates, args):
 
             influence_mean, influence_std, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
             fitness[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), 1.0 / float(time)]) 
+            print(fitness[index])
     else :
         thread_pool = threadpool.ThreadPool(n_threads)
 
@@ -195,7 +196,7 @@ def ea_observer(archiver, num_generations, num_evaluations, args) :
 
     currentTime = time()
     args['time_previous_generation'] = currentTime
-
+    print("OBSERVERRRR \n  OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n")
 
     progress(args["generations"]+1, args["max_generations"], status='Generations{}'.format(args["generations"]+1))
     
