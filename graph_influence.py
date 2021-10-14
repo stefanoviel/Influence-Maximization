@@ -39,7 +39,7 @@ if __name__ == '__main__':
     no_simulations: number of simulations of the selected propagation model 
     '''
  
-    p = 0.01
+    p = 0.1
     #p = 0.05
     #p = 0.005
 

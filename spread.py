@@ -2,7 +2,7 @@ import numpy
 import random
 import networkx as nx
 from new_ea import logging
-
+import numpy as np
 """ Spread models """
 
 """ Simulation of spread for Independent Cascade (IC) and Weighted Cascade (WC). 
@@ -15,26 +15,26 @@ Added time inside the cycle of the various models of propagation with the purpos
 '''
 
 ## to re-code better
-def LT_model(G, a, random_generator):
+def LT_model(G, a, p, random_generator):
     A = set(a)                      # A: the set of active nodes, initially a
     B = set(a)                      # B: the set of nodes activated in the last completed iteration
     converged = False
     time = 0
+    p = 0.1
     threshold = {}
-    for node in G.nodes():
-            threshold[node] = random_generator.random()
+    l = np.random.uniform(low=0.0, high=1.0, size=G.number_of_nodes())
+    for i, node in enumerate(G.nodes()):
+            threshold[node] = l[i]
     while not converged:
         nextB = set()
-        for n in B:
+        for n in B: 
             for m in set(G.neighbors(n)) - A:
-                weight = 0
-                if G.degree()[m]:
-                    weight = 1/float(G.degree()[m])
-                else:
-                    continue
+                total_weight = 0
                 for each in G.neighbors(m):
                     if each in A:
-                        total_weight = random_generator.random() + weight
+                        prob = random_generator.random()  # in the range [0.0, 1.0)
+                        if prob <= p:
+                            total_weight =  total_weight + prob
                 if total_weight > threshold[m]:
                     nextB.add(m)
         B = set(nextB)
@@ -183,8 +183,8 @@ def MonteCarlo_simulation(G, A, p, no_simulations, model, random_generator=None)
 			logging.debug('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))
 	elif model == 'LT':
 		for i in range(no_simulations):
-			res, time = LT_model(G, A, random_generator=random_generator)
-			print(res,time)
+			res, time = LT_model(G, A, p,random_generator=random_generator)
+			print(len(A))
 			times.append(time)
 			results.append(res)
 			logging.info('Simulation: {0}\nTime: {1}\nResults: {2}\n'.format(i,time,res))		
@@ -226,7 +226,7 @@ def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=5, ran
 		print("L original {0}".format(A))
 
 		for i in range(no_simulations):
-			res, time = LT_model(G, A, random_generator=random_generator)
+			res, time = LT_model(G, A, p,random_generator=random_generator)
 			times.append(time)
 			results.append(res)
 			print('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))	
