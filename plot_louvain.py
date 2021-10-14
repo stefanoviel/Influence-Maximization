@@ -79,6 +79,7 @@ plt.xlabel('r - resolution')
 # Set the y axis label of the current axis.
 plt.ylabel('#C -  no communities')
 plt.legend()
+plt.savefig(name+"r-#c.png", dpi=200)
 plt.show()
 
 y2 = smallest
@@ -91,6 +92,8 @@ plt.ylabel('#S - Size smallest community')
 # show a legend on the plot
 plt.legend()
 # Display a figure.
+plt.savefig(name+"r-#s.png", dpi=200)
+
 plt.show()
 
 
@@ -102,6 +105,8 @@ plt.xlabel('r - resolution')
 # Set the y axis label of the current axis.
 plt.ylabel('S - Size')
 plt.legend()
+plt.savefig(name+"r-#C#s.png", dpi=200)
+
 plt.show()
 
 
