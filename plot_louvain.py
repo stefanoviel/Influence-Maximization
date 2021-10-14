@@ -96,7 +96,7 @@ def SBM(GR,check):
 
 
 resolution = 1
-no_simulations = 10
+no_simulations = 5
 
 filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
@@ -108,15 +108,15 @@ original_density = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_n
 print("Density --> {0}".format(original_density))
 
 N = G.number_of_nodes()
-X = 100
+X = 10
 
 smallest = []
 communities = []
-list_check = []
 list_density = []
 for i in range(int(X)):
     comm_values = []
     size_values = []
+    list_check = []
     for n in range(no_simulations):
         print(resolution)
         partition = community_louvain.best_partition(G, resolution=resolution)
