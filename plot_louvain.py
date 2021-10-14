@@ -157,8 +157,6 @@ import matplotlib.pyplot as plt
 
 #x1 = [x* 0.1 for x in range(1,X+1)]
 x1 = [x for x in range(1,X+1)]
-
-print(x1)
 y1 = communities
 
 plt.plot(x1, y1, label = "communities", color="green")
@@ -167,19 +165,25 @@ plt.ylabel('#C -  no communities')
 plt.legend()
 plt.savefig(name+"r-#c.png", dpi=200)
 plt.show()
+plt.cla()   # Clear axis
+plt.clf()   # Clear f
+plt.close()
+
 
 y2 = smallest
 plt.plot(x1, y2, label = "size", color="blue")
-
 plt.xlabel('r - resolution')
 plt.ylabel('#S - Size smallest community')
 plt.legend()
 plt.savefig(name+"r-#s.png", dpi=200)
-
 plt.show()
+plt.cla()   # Clear axis
+plt.clf()   # Clear f
+plt.close()
+
 
 y3 = list_density
-
+print(y3)
 density = []
 for item in x1:
     density.append(original_density)
@@ -188,10 +192,13 @@ plt.plot(x1, y3, label = "size", color="black")
 plt.plot(x1,density, label="original density", color="red")
 plt.xlabel('r - resolution')
 plt.ylabel('#d - density value')
-
 plt.legend()
 plt.savefig(name+"r-density.png", dpi=200)
 plt.show()
+plt.cla()   # Clear axis
+plt.clf()   # Clear f
+plt.close()
+
 
 plt.plot(x1, y1, label = "communities", color="red")
 plt.plot(x1, y2, label = "size", color="blue")
@@ -205,5 +212,7 @@ plt.savefig(name+"r-#C#s.png", dpi=200)
 
 plt.show()
 
-
+plt.cla()   # Clear axis
+plt.clf()   # Clear f
+plt.close()
 
