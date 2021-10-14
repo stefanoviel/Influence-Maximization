@@ -13,7 +13,7 @@ import os
 scale = 4
 resolution = 1
 
-filename = "graphs/Amazon0302.txt"
+filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
 G = load.read_graph(filename)
 G = G.to_undirected()
@@ -21,6 +21,8 @@ G = G.to_undirected()
 
 print(nx.info(G))
 
+den = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
+print("Density --> {0}".format(den))
 """
 Resolution is a parameter for the Louvain community detection algorithm that affects the size of the 
 recovered clusters. Smaller resolutions recover smaller, and therefore a larger number of clusters, 
@@ -142,13 +144,14 @@ print(all_edges)
 g = nx.stochastic_block_model(sizes, all_edges, seed=0)
 print(nx.info(g))
 
-position = nx.spring_layout(g)
+# position = nx.spring_layout(g)
 
 
-    
-nx.draw(g, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
-plt.savefig("plot_graph/SBM-"+name+"_"+ str(scale)+".png", dpi=1200)
-plt.cla()
+den = (2*g.number_of_edges())/ (g.number_of_nodes()*(g.number_of_nodes()-1))
+print("Density --> {0}".format(den)) 
+# nx.draw(g, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
+# plt.savefig("plot_graph/SBM-"+name+"_"+ str(scale)+".png", dpi=1200)
+# plt.cla()
 
 text = []
 for u,v in g.edges():
