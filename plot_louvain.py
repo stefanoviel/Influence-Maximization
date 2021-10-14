@@ -16,7 +16,7 @@ import os
 import os
 
 resolution = 1
-no_simulations = 5
+no_simulations = 10
 
 filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
