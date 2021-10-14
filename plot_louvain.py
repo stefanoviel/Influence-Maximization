@@ -14,6 +14,86 @@ import os
 #import igraph as ig
 #import leidenalg as la
 import os
+scale = 4
+
+def SBM(GR,check):
+    sum = 0
+    check_ok = []
+
+    for item in check:
+        sum = sum + len(item)
+
+        if len(item) > 2*scale:
+            check_ok.append(item)
+
+
+
+    check = check_ok
+
+
+
+    list_edges = []
+    for i in range(len(check)):
+        edge = 0
+        for k in range(0,len(check[i])-1):
+            for j in range(k+1,len(check[i])):
+                if GR.has_edge(check[i][k],check[i][j]) == True:
+                    edge = edge + 1
+        
+        list_edges.append(edge)
+
+
+
+    all_edges =  [[0 for x in range(len(check))] for y in range(len(check))] 
+    for i in range(len(list_edges)):
+        nodes = len(check[i])
+        edges = list_edges[i]
+        all_edges[i][i] = float((2*edges)/(nodes*(nodes-1)))
+
+    n = (len(check) * len(check)) - len(check)
+
+    for i in range(len(check)):
+        for j in range(i+1,len(check)):
+
+            edge=0
+            if i != j:
+                for node1 in check[i]:
+                    for node2 in check[j]:
+                        if GR.has_edge(node1,node2) == True:
+                                edge = edge + 1 
+                
+                nodes = len(check[i]) + len(check[j])
+        
+                all_edges[i][j] = float((2*edge)/(nodes*(nodes-1)))
+                all_edges[j][i] = float((2*edge)/(nodes*(nodes-1)))
+                if  all_edges[j][i] >1:
+                    all_edges[j][i] = 1
+                    all_edges[i][j] = 1     
+                n = n -2
+            if n == 0:
+                break
+        if n == 0:
+            break
+
+
+    sizes = []
+    for item in check:
+        sizes.append(int(len(item)/scale))
+
+    for i in range(len(sizes)):
+        print("Community {0} has {1} elements".format(i+1,sizes[i]))
+
+    print(all_edges)
+
+    g = nx.stochastic_block_model(sizes, all_edges, seed=0)
+    print(nx.info(g))
+
+    den = (2*g.number_of_edges())/ (g.number_of_nodes()*(g.number_of_nodes()-1))
+    print("Density --> {0}".format(den)) 
+
+    return den
+
+
 
 resolution = 1
 no_simulations = 10
@@ -24,12 +104,16 @@ G = load.read_graph(filename)
 G = G.to_undirected()
 
 print(nx.info(G))
+original_density = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
+print("Density --> {0}".format(original_density))
 
 N = G.number_of_nodes()
 X = 100
 
 smallest = []
 communities = []
+list_check = []
+list_density = []
 for i in range(int(X)):
     comm_values = []
     size_values = []
@@ -46,6 +130,8 @@ for i in range(int(X)):
         check = []
         for j in range(max(partition.values())+1):
             check.append(df["nodes"].iloc[j])
+
+        list_check.append(check)
         size = []
         for k in range(len(check)):
             size.append(len(check[k]))
@@ -57,9 +143,11 @@ for i in range(int(X)):
     
     com_max = max(comm_values)
     index = comm_values.index(com_max)
-
     communities.append(com_max)
     smallest.append(size_values[index])
+    check = list_check[index]
+    density = SBM(G,check)
+    list_density.append(density)
     resolution = round(resolution +1,2)
 
 
@@ -73,10 +161,8 @@ x1 = [x for x in range(1,X+1)]
 print(x1)
 y1 = communities
 
-plt.plot(x1, y1, label = "communities", color="red")
+plt.plot(x1, y1, label = "communities", color="green")
 plt.xlabel('r - resolution')
-
-# Set the y axis label of the current axis.
 plt.ylabel('#C -  no communities')
 plt.legend()
 plt.savefig(name+"r-#c.png", dpi=200)
@@ -86,16 +172,26 @@ y2 = smallest
 plt.plot(x1, y2, label = "size", color="blue")
 
 plt.xlabel('r - resolution')
-# Set the y axis label of the current axis.
 plt.ylabel('#S - Size smallest community')
-# Set a title of the current axes.
-# show a legend on the plot
 plt.legend()
-# Display a figure.
 plt.savefig(name+"r-#s.png", dpi=200)
 
 plt.show()
 
+y3 = list_density
+
+density = []
+for item in x1:
+    density.append(original_density)
+
+plt.plot(x1, y3, label = "size", color="black")
+plt.plot(x1,density, label="original density", color="red")
+plt.xlabel('r - resolution')
+plt.ylabel('#d - density value')
+
+plt.legend()
+plt.savefig(name+"r-density.png", dpi=200)
+plt.show()
 
 plt.plot(x1, y1, label = "communities", color="red")
 plt.plot(x1, y2, label = "size", color="blue")
