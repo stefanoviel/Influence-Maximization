@@ -96,13 +96,14 @@ def SBM(GR,check):
         den = (2*g.number_of_edges())/ (g.number_of_nodes()*(g.number_of_nodes()-1))
         density_list.append(den)
     
-    den = max(density)
+    den = max(density_list)
     return den
 
 
 
 resolution = 1
-no_simulations = 10
+no_simulations = 1
+X = 2
 
 filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
@@ -114,7 +115,6 @@ original_density = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_n
 print("Density --> {0}".format(original_density))
 
 N = G.number_of_nodes()
-X = 100
 
 smallest = []
 communities = []
