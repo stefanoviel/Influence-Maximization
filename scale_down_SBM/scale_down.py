@@ -6,7 +6,9 @@ import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import networkx as nx
 from numpy.lib.function_base import append
-import load
+import sys
+sys.path.insert(0, '')
+from src.load import read_graph
 import pandas as pd
 import os
 
@@ -15,7 +17,7 @@ resolution = 1
 
 filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
-G = load.read_graph(filename)
+G = read_graph(filename)
 G = G.to_undirected()
 
 

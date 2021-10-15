@@ -1,7 +1,6 @@
 import numpy
 import random
 import networkx as nx
-from new_ea import logging
 import numpy as np
 """ Spread models """
 
@@ -174,13 +173,13 @@ def MonteCarlo_simulation(G, A, p, no_simulations, model, random_generator=None)
 			res, time = WC_model(G, A, random_generator=random_generator)
 			times.append(time)
 			results.append(res)
-			logging.debug('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))
+			print('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))
 	elif model == 'IC':
 		for i in range(no_simulations):
 			res, time = IC_model(G, A, p, random_generator=random_generator)
 			times.append(time)
 			results.append(res)
-			logging.debug('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))
+			print('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))
 	elif model == 'LT':
 		for i in range(no_simulations):
 			res, time = LT_model(G, A, p,random_generator=random_generator)
@@ -215,13 +214,13 @@ def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=5, ran
 			res, time = WC_model_max_hop(G, A, max_hop, random_generator)
 			times.append(time)
 			results.append(res)
-			logging.debug('Time: {0} \nResults: {1} \n'.format(time,res))
+			print('Time: {0} \nResults: {1} \n'.format(time,res))
 	elif model == 'IC':
-		for i in range(no_simulations):
+		for i in range(1):
 			res, time = (IC_model_max_hop(G, A, p, max_hop, random_generator))
 			times.append(time)
 			results.append(res)
-			logging.debug('Time: {0} \nResults: {1} \n'.format(time,res))
+			print('Time: {0} \nResults: {1} \n'.format(time,res))
 	elif model == 'LT':
 		print("L original {0}".format(A))
 

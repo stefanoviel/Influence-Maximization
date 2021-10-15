@@ -3,11 +3,15 @@ import time
 import random
 import logging
 import networkx as nx
+from functools import partial
 
 # local libraries
-import load
-from new_ea import *
-
+from src.load import read_graph
+from src.spread import MonteCarlo_simulation, MonteCarlo_simulation_max_hop
+from new_ea import moea_influence_maximization
+from src.nodes_filtering.select_best_spread_nodes import filter_best_nodes as filter_best_spread_nodes
+from src.nodes_filtering.select_min_degree_nodes import filter_best_nodes as filter_min_degree_nodes
+from src.utils import inverse_ncr
 '''
 File to launch a multi-objective evaluation of Influence Maximization 
 
@@ -31,7 +35,7 @@ if __name__ == '__main__':
     
 
     filename = "prova"
-    G = load.read_graph(filename)
+    G = read_graph(filename)
     
     '''Propagation Simulation Parameters
     p: propability of activating node m when m is active and n-->m (only for IC Model)
@@ -43,7 +47,7 @@ if __name__ == '__main__':
     #p = 0.05
     #p = 0.005
 
-    model = 'LT'
+    model = 'IC'
     #model = 'WC'
             
     no_simulations = 100
@@ -83,8 +87,9 @@ if __name__ == '__main__':
     file = '{0}-k{1}-p{2}-{3}.csv'.format(file, k, p , model)
    
 
+
     ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
-    seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=50, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=spread.MonteCarlo_simulation, population_file=file)
+    seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=3, offspring_size=10, random_gen=prng, max_generations=3, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file)
     
     ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION_MAX_HOP
     ##max_hop to define only in case FITNESS FUNCTION MONTECARLO_SIMULATION_MAX_HOP is chosen, otherwise default max_hop=2
