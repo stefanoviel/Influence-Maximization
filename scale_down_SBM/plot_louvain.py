@@ -20,80 +20,83 @@ import os
 scale = 4
 
 def SBM(GR,check):
-    sum = 0
-    check_ok = []
+    density_list = []
+    for i in range(no_simulations):
+        sum = 0
+        check_ok = []
 
-    for item in check:
-        sum = sum + len(item)
+        for item in check:
+            sum = sum + len(item)
 
-        if len(item) > 2*scale:
-            check_ok.append(item)
-
-
-
-    check = check_ok
+            if len(item) > 2*scale:
+                check_ok.append(item)
 
 
 
-    list_edges = []
-    for i in range(len(check)):
-        edge = 0
-        for k in range(0,len(check[i])-1):
-            for j in range(k+1,len(check[i])):
-                if GR.has_edge(check[i][k],check[i][j]) == True:
-                    edge = edge + 1
-        
-        list_edges.append(edge)
+        check = check_ok
 
 
 
-    all_edges =  [[0 for x in range(len(check))] for y in range(len(check))] 
-    for i in range(len(list_edges)):
-        nodes = len(check[i])
-        edges = list_edges[i]
-        all_edges[i][i] = float((2*edges)/(nodes*(nodes-1)))
+        list_edges = []
+        for i in range(len(check)):
+            edge = 0
+            for k in range(0,len(check[i])-1):
+                for j in range(k+1,len(check[i])):
+                    if GR.has_edge(check[i][k],check[i][j]) == True:
+                        edge = edge + 1
+            
+            list_edges.append(edge)
 
-    n = (len(check) * len(check)) - len(check)
 
-    for i in range(len(check)):
-        for j in range(i+1,len(check)):
 
-            edge=0
-            if i != j:
-                for node1 in check[i]:
-                    for node2 in check[j]:
-                        if GR.has_edge(node1,node2) == True:
-                                edge = edge + 1 
-                
-                nodes = len(check[i]) + len(check[j])
-        
-                all_edges[i][j] = float((2*edge)/(nodes*(nodes-1)))
-                all_edges[j][i] = float((2*edge)/(nodes*(nodes-1)))
-                if  all_edges[j][i] >1:
-                    all_edges[j][i] = 1
-                    all_edges[i][j] = 1     
-                n = n -2
+        all_edges =  [[0 for x in range(len(check))] for y in range(len(check))] 
+        for i in range(len(list_edges)):
+            nodes = len(check[i])
+            edges = list_edges[i]
+            all_edges[i][i] = float((2*edges)/(nodes*(nodes-1)))
+
+        n = (len(check) * len(check)) - len(check)
+
+        for i in range(len(check)):
+            for j in range(i+1,len(check)):
+
+                edge=0
+                if i != j:
+                    for node1 in check[i]:
+                        for node2 in check[j]:
+                            if GR.has_edge(node1,node2) == True:
+                                    edge = edge + 1 
+                    
+                    nodes = len(check[i]) + len(check[j])
+            
+                    all_edges[i][j] = float((2*edge)/(nodes*(nodes-1)))
+                    all_edges[j][i] = float((2*edge)/(nodes*(nodes-1)))
+                    if  all_edges[j][i] >1:
+                        all_edges[j][i] = 1
+                        all_edges[i][j] = 1     
+                    n = n -2
+                if n == 0:
+                    break
             if n == 0:
                 break
-        if n == 0:
-            break
 
 
-    sizes = []
-    for item in check:
-        sizes.append(int(len(item)/scale))
+        sizes = []
+        for item in check:
+            sizes.append(int(len(item)/scale))
 
-    for i in range(len(sizes)):
-        print("Community {0} has {1} elements".format(i+1,sizes[i]))
+        for i in range(len(sizes)):
+            print("Community {0} has {1} elements".format(i+1,sizes[i]))
 
-    print(all_edges)
+        print(all_edges)
 
-    g = nx.stochastic_block_model(sizes, all_edges, seed=0)
-    print(nx.info(g))
+        g = nx.stochastic_block_model(sizes, all_edges, seed=0)
+        print(nx.info(g))
 
-    den = (2*g.number_of_edges())/ (g.number_of_nodes()*(g.number_of_nodes()-1))
-    print("Density --> {0}".format(den)) 
-
+        den = (2*g.number_of_edges())/ (g.number_of_nodes()*(g.number_of_nodes()-1))
+        density_list.append(den)
+    
+    den = max(density)
     return den
 
 
