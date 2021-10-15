@@ -2,7 +2,7 @@ import networkx as nx
 import community
 import numpy as np
 from sklearn.cluster import SpectralClustering
-
+import random
 
 def max_centrality_individual(k, G, centrality_metric="degree"):
 	"""
@@ -49,7 +49,8 @@ def degree_random(k, Graph, n, prng, nodes=None):
 		probs = nodes_degree.copy()
 		nodes_ = nodes.copy()
 		new_indiv = []
-		for _ in range(k):
+		range_k = random.randint(1, k)
+		for _ in range(range_k):
 			new_node = prng.choices(nodes_, probs)[0]
 			probs = probs[nodes_!=new_node]
 			nodes_ = nodes_[nodes_!=new_node]

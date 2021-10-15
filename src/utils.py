@@ -6,9 +6,8 @@ import random
 import argparse
 import operator as op
 from functools import reduce
-
-import src.graph_sampling.SRW_RWF_ISRW as Graph_Sampling
-from src.load import read_graph
+import pandas as pd
+#import src.graph_sampling.SRW_RWF_ISRW as Graph_Sampling
 
 
 def args2cmd(args, exec_name, hpc=False):
@@ -380,3 +379,29 @@ def inverse_ncr(combinations, r):
 		n += 1
 		ncr_n = ncr(n, r)
 	return n
+import pandas as pd
+
+def to_csv(archiver, population_file) :
+    
+    print("OBSERVERRRR \n  OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n")
+
+    
+    df = pd.DataFrame()
+    nodes = []
+    influence = []
+    n_nodes = []
+    time = []
+    a = []
+    for item in archiver:
+        nodes.append(str(item[0]))
+        influence.append(item[1])
+        n_nodes.append(item[2])
+        time.append(item[3])
+        a.append(len(item[0]))
+
+    df["n_nodes"] = n_nodes
+    df["influence"] = influence
+    df["time"] = time
+    df["nodes"] = nodes
+    df["a"] = a
+    df.to_csv(population_file+".csv", sep=",", index=False)
