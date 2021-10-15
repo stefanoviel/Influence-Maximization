@@ -105,6 +105,12 @@ def SBM(GR,check):
 
 
 
+<<<<<<< HEAD
+=======
+resolution = 1
+no_simulations = 10
+X = 100
+>>>>>>> 421ded67226a1190b17eb216f322752fb8be5eea
 
 filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
