@@ -29,7 +29,7 @@ def read_graph(filename, nodetype=int):
 
 
 	# G = nx.stochastic_block_model(sizes, m, seed=0)
-	# return G
+	return G
 
 if __name__ == '__main__':
 
