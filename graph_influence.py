@@ -12,43 +12,87 @@ from new_ea import moea_influence_maximization
 from src.nodes_filtering.select_best_spread_nodes import filter_best_nodes as filter_best_spread_nodes
 from src.nodes_filtering.select_min_degree_nodes import filter_best_nodes as filter_min_degree_nodes
 from src.utils import inverse_ncr
-'''
-File to launch a multi-objective evaluation of Influence Maximization 
+from src.smart_initialization import max_centrality_individual, Community_initialization, degree_random
 
-- obj 1: number of reached nodes starting from a seed set (to maximize)
-- obj 2: number of nodes in the seed set (to minimize)
-- obj 3: time required to converge to the optima solution (to minimize)
+def create_initial_population(G, args, prng=None, nodes=None):
+    """
+	Smart initialization techniques.
+	"""
+    # smart initialization
+    initial_population = None
 
-This file in the main contains the parameters to be set for both the propagation model and the evolutionary algorithm used.
+    initial_population = degree_random(args["k"], G,
+                                        int(args["population_size"] * args["smart_initialization_percentage"]),
+                                        prng, nodes=nodes)
 
-As a result the execution will print to the shell the seed sets of the best configuration found during the execution.
+    return initial_population
+def filter_nodes(G, args):
+    """
+	Selects the most promising nodes from the graph	according to specified
+	input arguments techniques.
 
-In addition a .csv file will be saved.
-In this file, called name_graph.csv, you can find all the best solutions (by best we mean that they respect this MOEA).
-It will be possible to find the nodes that form a seed set, their influence value, their size (number of nodes) and the time needed to converge.
+	:param G:
+	:param args:
+	:return:
+	"""
+    # nodes filtering
+    nodes = None
+    if args["filter_best_spread_nodes"]:
+        best_nodes = inverse_ncr(args["search_space_size_min"], args["k"])
+        error = (inverse_ncr(args["search_space_size_max"], args["k"]) - best_nodes) / best_nodes
+        filter_function = partial(MonteCarlo_simulation_max_hop, G=G, random_generator=prng, p=args["p"], model=args["model"],
+                                  max_hop=3, no_simulations=1)
+        nodes = filter_best_spread_nodes(G, best_nodes, error, filter_function)
 
-REMINDER: the results in the csv are only those that form a Pareto Front using NSGA2.
+    nodes = filter_min_degree_nodes(G, args["min_degree"], nodes)
 
-'''
+    return nodes
+
 
 if __name__ == '__main__':
     
 
     filename = "prova"
     G = read_graph(filename)
-    
-    '''Propagation Simulation Parameters
-    p: propability of activating node m when m is active and n-->m (only for IC Model)
-    model: type of propagation model either IC (Indipendent Cascade) or WC(Weighted Cascade)
-    no_simulations: number of simulations of the selected propagation model 
-    '''
- 
+    random_seed = 0
+    prng = random.Random(random_seed)
     p = 0.1
     #p = 0.05
     #p = 0.005
 
     model = 'IC'
     #model = 'WC'
+    k = 10
+
+    args = {}
+    args["p"] = p
+    args["model"] = model
+    args["k"] = k
+    args["filter_best_spread_nodes"] = False
+    args["search_space_size_max"] = None
+    args["search_space_size_min"] = None
+    args["min_degree"] = 20
+    args["smart_initialization_percentage"] = 0.5
+    args["population_size"] = 100
+    nodes = filter_nodes(G, args)
+
+    print(nodes)
+    print(G.number_of_nodes())
+    print(len(nodes))
+    initial_population = create_initial_population(G, args, prng, nodes)
+    
+    for item in initial_population: print(item)
+    exit(0)
+
+   
+
+
+    '''Propagation Simulation Parameters
+    p: propability of activating node m when m is active and n-->m (only for IC Model)
+    model: type of propagation model either IC (Indipendent Cascade) or WC(Weighted Cascade)
+    no_simulations: number of simulations of the selected propagation model 
+    '''
+ 
             
     no_simulations = 100
 
@@ -60,22 +104,6 @@ if __name__ == '__main__':
 
 
     n_threads = 1
-    random_seed = 10
-    prng = random.Random()
-    logger = logging.getLogger('')
-    logger.setLevel(logging.DEBUG) # TODO switch between DEBUG and DEBUG for less or more in-depth logging
-    formatter = logging.Formatter('[%(levelname)s %(asctime)s] %(message)s', '%Y-%m-%d %H:%M:%S') 
- 
-    ch = logging.StreamHandler()
-    ch.setLevel(logging.DEBUG)
-    ch.setFormatter(formatter)
-    logger.addHandler(ch)
-
-    if random_seed == None: 
-        random_seed = time()
-    logging.info("Random number generator seeded with " + str(random_seed)+ " seed")
-    prng.seed(random_seed)
-    logging.info(prng)
 	
     #Print Graph's information and properties
     logging.info(nx.classes.function.info(G))
@@ -91,10 +119,5 @@ if __name__ == '__main__':
     ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
     seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=3, offspring_size=10, random_gen=prng, max_generations=3, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file)
     
-    ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION_MAX_HOP
-    ##max_hop to define only in case FITNESS FUNCTION MONTECARLO_SIMULATION_MAX_HOP is chosen, otherwise default max_hop=2
-    #max_hop = 10
-    #seed_sets = moea_influence_maximization(G, p, no_simulations, model, offspring_size=50, population_size=100, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=spread.MonteCarlo_simulation_max_hop, max_hop=10,population_file=file)
     
     
-    logging.info("Seed sets {}".format(seed_sets))  

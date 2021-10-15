@@ -9,10 +9,13 @@ from time import time
 
 # local libraries
 from src.spread import MonteCarlo_simulation, MonteCarlo_simulation_max_hop
-from src.ea.observer import ea_observer
+from src.ea.observer import ea_observer0, ea_observer1, ea_observer2
+
 from src.ea.evaluator import nsga2_evaluator
-from src.ea.crossover_mutation import nsga2_super_operator
+from src.ea.crossover import ea_one_point_crossover
 from src.ea.generator import nsga2_generator
+from src.utils import to_csv
+from src.ea.mutators import ea_global_random_mutation
 # inspyred libriaries
 import inspyred
 from inspyred.ec import *
@@ -37,9 +40,6 @@ Multi-objective evolutionary influence maximization. Parameters:
     """
 def moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, max_generations=100, min_seed_nodes=None, max_seed_nodes=None, n_threads=1, random_gen=random.Random(), initial_population=None, population_file=None, fitness_function=None, fitness_function_kargs=dict(), max_hop=2) :
     # initialize multi-objective evolutionary algorithm, NSGA-II
-    logging.debug("Setting up NSGA-II...")
-
-    # check if some of the parameters are set; otherwise, use default values
     nodes = list(G.nodes)
 
     if min_seed_nodes == None :
@@ -57,10 +57,10 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
     else :
         logging.info("Fitness function specified, \"%s\"" % fitness_function.__name__)
     
-
     ea = inspyred.ec.emo.NSGA2(random_gen)
-    #ea.observer = ea_observer
-    ea.variator = [nsga2_super_operator]
+    
+    #ea.observer = [ea_observer0, ea_observer1, ea_observer2] 
+    ea.variator = [ea_one_point_crossover,ea_global_random_mutation]
     ea.terminator = [inspyred.ec.terminators.no_improvement_termination,inspyred.ec.terminators.generation_termination]
 
     # start the evolutionary process
@@ -85,13 +85,13 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
         time_previous_generation = time(), # this will be updated in the observer
         fitness_function = fitness_function,
         fitness_function_kargs = fitness_function_kargs,
+        mutation_operator=ea_global_random_mutation
     )
 
     # extract seed sets from the final Pareto front/archive
     seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1], 1/individual.fitness[2]] for individual in ea.archive] 
-    print(seed_sets)
 
-    ea_observer(seed_sets, population_file)
+    to_csv(seed_sets, population_file)
     return seed_sets
 
 

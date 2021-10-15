@@ -179,7 +179,7 @@ def MonteCarlo_simulation(G, A, p, no_simulations, model, random_generator=None)
 			res, time = IC_model(G, A, p, random_generator=random_generator)
 			times.append(time)
 			results.append(res)
-			print('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))
+			#print('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))
 	elif model == 'LT':
 		for i in range(no_simulations):
 			res, time = LT_model(G, A, p,random_generator=random_generator)

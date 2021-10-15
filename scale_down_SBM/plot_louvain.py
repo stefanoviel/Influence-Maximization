@@ -17,7 +17,11 @@ import os
 #import igraph as ig
 #import leidenalg as la
 import os
+
 scale = 4
+resolution = 1
+no_simulations = 10
+X = 100
 
 def SBM(GR,check):
     density_list = []
@@ -91,9 +95,9 @@ def SBM(GR,check):
         print(all_edges)
 
         g = nx.stochastic_block_model(sizes, all_edges, seed=0)
-        print(nx.info(g))
 
         den = (2*g.number_of_edges())/ (g.number_of_nodes()*(g.number_of_nodes()-1))
+        print(den)
         density_list.append(den)
     
     den = max(density_list)
@@ -101,9 +105,6 @@ def SBM(GR,check):
 
 
 
-resolution = 1
-no_simulations = 1
-X = 2
 
 filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
