@@ -399,27 +399,32 @@ def to_csv(archiver, population_file) :
         influence.append(round(item[1],2))
         n_nodes.append(item[2])
         time.append(item[3])
-        a.append(len(item[0]))
+        #a.append(round(item[4],2))
 
 
     df["n_nodes"] = n_nodes
     df["influence"] = influence
     df["time"] = time
     df["nodes"] = nodes
-    df["a"] = a
+    #df["a"] = a
     df.to_csv(population_file+".csv", sep=",", index=False)
 
 def community_detection(G,r):
-	partition = community_louvain.best_partition(G, resolution=r)
+	# partition = community_louvain.best_partition(G, resolution=r)
 
-	"""REDIFNE CHECK LIST HERE"""
-	df = pd.DataFrame()
-	df["nodes"] = list(partition.keys())
-	df["comm"] = list(partition.values()) 
-	df = df.groupby('comm')['nodes'].apply(list)
-	df = df.reset_index(name='nodes')
-	check = []
-	for j in range(max(partition.values())+1):
-		check.append(df["nodes"].iloc[j])
-
-	return check
+	# """REDIFNE CHECK LIST HERE"""
+	# df = pd.DataFrame()
+	# df["nodes"] = list(partition.keys())
+	# df["comm"] = list(partition.values()) 
+	# df = df.groupby('comm')['nodes'].apply(list)
+	# df = df.reset_index(name='nodes')
+	# check = []
+	# for j in range(max(partition.values())+1):
+	# 	check.append(df["nodes"].iloc[j])
+    import leidenalg
+    import igraph as ig
+    R = ig.Graph.from_networkx(G)
+    part = leidenalg.find_partition(R, leidenalg.ModularityVertexPartition)
+    check = list(part)
+    print(len(check))
+    return check

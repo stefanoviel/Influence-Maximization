@@ -14,12 +14,10 @@ Added time inside the cycle of the various models of propagation with the purpos
 '''
 
 ## to re-code better
-def LT_model(G, a, p, random_generator):
+def LT_model(G, a, p, communities,random_generator):
     A = set(a)                      # A: the set of active nodes, initially a
     B = set(a)                      # B: the set of nodes activated in the last completed iteration
     converged = False
-    time = 0
-    p = 0.1
     threshold = {}
     l = np.random.uniform(low=0.0, high=1.0, size=G.number_of_nodes())
     for i, node in enumerate(G.nodes()):
@@ -40,8 +38,21 @@ def LT_model(G, a, p, random_generator):
         if not B:
             converged = True
         A |= B
-        time = time +1 
-    return len(A), time
+    comm = 0
+    reach = {}
+    for i in range(len(communities)):
+	    reach[i] = False
+    
+    for item in A:
+	    for key in range(len(communities)):
+		    if reach[key] == False:
+			    if item in communities[key]:
+				    reach[key] = True
+				    comm = comm + 1
+	    if comm == len(communities):
+		    break
+				    	
+    return len(A), comm
 
 
 	#This returns all the nodes in the network that have been activated/converted in the diffusion process
@@ -49,9 +60,13 @@ def LT_model(G, a, p, random_generator):
 def IC_model(G, a, p, communities, random_generator):              # a: the set of initial active nodes
 	                                # p: the system-wide probability of influence on an edge, in [0,1]
 	A = set(a)                      # A: the set of active nodes, initially a
-	B = set(a)                      # B: the set of nodes activated in the last completed iteration
+	B = set(a)  
+	F = set(a)  
+
 	converged = False
 	comm = 0
+	#time = 0
+
 	while not converged:
 		nextB = set()
 		for n in B:
@@ -60,6 +75,7 @@ def IC_model(G, a, p, communities, random_generator):              # a: the set 
 				if prob <= p:
 					nextB.add(m)
 		B = set(nextB)
+		#time = time+1  
 		if not B:
 			converged = True
 		A |= B
@@ -75,10 +91,11 @@ def IC_model(G, a, p, communities, random_generator):              # a: the set 
 					comm = comm + 1
 		if comm == len(communities):
 			break
-				    	
 	return len(A), comm
 
-def WC_model(G, a, random_generator):                 # a: the set of initial active nodes
+	#return len(A), comm, time
+
+def WC_model(G, a, communities,random_generator):                 # a: the set of initial active nodes
                                     # each edge from node u to v is assigned probability 1/in-degree(v) of activating v
 	A = set(a)                      # A: the set of active nodes, initially a
 	B = set(a)                      # B: the set of nodes activated in the last completed iteration
@@ -89,7 +106,6 @@ def WC_model(G, a, random_generator):                 # a: the set of initial ac
 	else:
 		my_degree_function = G.degree
 	
-	time = 0
 	while not converged:
 		nextB = set()
 		for n in B:
@@ -102,10 +118,22 @@ def WC_model(G, a, random_generator):                 # a: the set of initial ac
 		if not B:
 			converged = True
 		A |= B
-		time = time + 1
-	
-	return len(A), time
-
+	reach = {}
+	comm = 0
+	for i in range(len(communities)):
+		reach[i] = False
+    
+	for item in A:
+		for key in range(len(communities)):
+			if reach[key] == False:
+				if item in communities[key]:
+					reach[key] = True
+					comm = comm + 1
+		if comm == len(communities):
+			break
+				    	
+	return len(A), comm 
+				    	
 def IC_model_max_hop(G, a, p, max_hop, random_generator):  # a: the set of initial active nodes
 	# p: the system-wide probability of influence on an edge, in [0,1]
 	A = set(a)  # A: the set of active nodes, initially a
@@ -178,9 +206,10 @@ def MonteCarlo_simulation(G, A, p, no_simulations, model, communities, random_ge
 
 	results = []
 	times = []
+	tt = []
 	if model == 'WC':
 		for i in range(no_simulations):
-			res, time = WC_model(G, A, random_generator=random_generator)
+			res, time = WC_model(G, A, communities,random_generator=random_generator)
 			times.append(time)
 			results.append(res)
 	elif model == 'IC':
@@ -188,14 +217,16 @@ def MonteCarlo_simulation(G, A, p, no_simulations, model, communities, random_ge
 			res, time = IC_model(G, A, p, communities, random_generator=random_generator)
 			times.append(time)
 			results.append(res)
+			#tt.append(t)
 	elif model == 'LT':
 		for i in range(no_simulations):
-			res, time = LT_model(G, A, p,random_generator=random_generator)
-			print(len(A))
+			res, time = LT_model(G, A, p,communities,random_generator=random_generator)
 			times.append(time)
 			results.append(res)
-	
+
 	return (numpy.mean(results), numpy.std(results), int(numpy.mean(times)))
+
+	#return (numpy.mean(results), numpy.std(results), int(numpy.mean(times)), numpy.mean(tt))
 
 def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=5, random_generator=None):
 	"""

@@ -38,7 +38,7 @@ Multi-objective evolutionary influence maximization. Parameters:
     population_file: name of the file that will be used to store the population at each generation (default: file named with date and time)
     max_hop: define the size of max_hop if fitness_function=MonteCarlo_max_hop has been selected
     """
-def moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, max_generations=100, min_seed_nodes=None, max_seed_nodes=None, n_threads=1, random_gen=random.Random(), initial_population=None, population_file=None, fitness_function=None, fitness_function_kargs=dict(),max_hop=2, nodes=None, communities=None) :
+def moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, max_generations=100, min_seed_nodes=None, max_seed_nodes=None, n_threads=1, random_gen=random.Random(), population_file=None, fitness_function=None, fitness_function_kargs=dict(),max_hop=2, nodes=None, communities=None,initial_population=None) :
     # initialize multi-objective evolutionary algorithm, NSGA-II
     nodes = list(G.nodes)
 
@@ -91,6 +91,8 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
     )
 
     # extract seed sets from the final Pareto front/archive
+
+    #seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1], individual.fitness[2], 1/individual.fitness[3]] for individual in ea.archive] 
     seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
 
     to_csv(seed_sets, population_file)
