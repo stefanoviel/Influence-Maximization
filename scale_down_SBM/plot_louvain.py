@@ -100,7 +100,7 @@ def SBM(GR,check):
         print(den)
         density_list.append(den)
     
-    den = max(density_list)
+    den = min(density_list)
     return den
 
 
