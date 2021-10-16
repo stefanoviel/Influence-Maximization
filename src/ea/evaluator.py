@@ -8,7 +8,7 @@ def nsga2_evaluator(candidates, args):
     p = args["p"]
     model = args["model"]
     no_simulations = args["no_simulations"]
-
+    communities = args["communities"]
     fitness_function = args["fitness_function"]
     fitness_function_kargs = args["fitness_function_kargs"]
     # we start with a list where every element is None
@@ -23,14 +23,14 @@ def nsga2_evaluator(candidates, args):
             A_set = set(A)
 
             if fitness_function != MonteCarlo_simulation_max_hop:
-                fitness_function_args = [G, A_set, p, no_simulations, model]
+                fitness_function_args = [G, A_set, p, no_simulations, model, communities]
             else:
                 max_hop = args["max_hop"]
                 fitness_function_args = [G, A_set, p, no_simulations, model, max_hop]
 
             influence_mean, influence_std, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
-            fitness[index] = inspyred.ec.emo.Pareto([influence_mean, float(1.0 / len(A_set)), float(1.0 / (time))]) 
-            print(fitness[index])
+
+            fitness[index] = inspyred.ec.emo.Pareto([influence_mean, float(1.0 / len(A_set)), time]) 
     else :
         thread_pool = ThreadPool(n_threads)
 

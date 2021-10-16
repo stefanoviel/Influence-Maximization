@@ -38,7 +38,7 @@ Multi-objective evolutionary influence maximization. Parameters:
     population_file: name of the file that will be used to store the population at each generation (default: file named with date and time)
     max_hop: define the size of max_hop if fitness_function=MonteCarlo_max_hop has been selected
     """
-def moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, max_generations=100, min_seed_nodes=None, max_seed_nodes=None, n_threads=1, random_gen=random.Random(), initial_population=None, population_file=None, fitness_function=None, fitness_function_kargs=dict(), max_hop=2) :
+def moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, max_generations=100, min_seed_nodes=None, max_seed_nodes=None, n_threads=1, random_gen=random.Random(), initial_population=None, population_file=None, fitness_function=None, fitness_function_kargs=dict(),max_hop=2, nodes=None, communities=None) :
     # initialize multi-objective evolutionary algorithm, NSGA-II
     nodes = list(G.nodes)
 
@@ -53,20 +53,21 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
     if fitness_function == None :
         fitness_function = MonteCarlo_simulation
         fitness_function_kargs["random_generator"] = random_gen # pointer to pseudo-random number generator
-        logging.info("Fitness function not specified, defaulting to \"%s\"" % fitness_function.__name__)
-    else :
-        logging.info("Fitness function specified, \"%s\"" % fitness_function.__name__)
     
     ea = inspyred.ec.emo.NSGA2(random_gen)
     
     #ea.observer = [ea_observer0, ea_observer1, ea_observer2] 
     ea.variator = [ea_one_point_crossover,ea_global_random_mutation]
     ea.terminator = [inspyred.ec.terminators.no_improvement_termination,inspyred.ec.terminators.generation_termination]
+	
+    ea.replacer = inspyred.ec.replacers.plus_replacement
+    bounder = inspyred.ec.DiscreteBounder(nodes)
 
     # start the evolutionary process
     ea.evolve(
         generator = nsga2_generator,
         evaluator = nsga2_evaluator,
+        bounder= bounder,
         maximize = True,
         seeds = initial_population,
         pop_size = population_size,
@@ -85,11 +86,12 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
         time_previous_generation = time(), # this will be updated in the observer
         fitness_function = fitness_function,
         fitness_function_kargs = fitness_function_kargs,
-        mutation_operator=ea_global_random_mutation
+        mutation_operator=ea_global_random_mutation,
+        communities = communities
     )
 
     # extract seed sets from the final Pareto front/archive
-    seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1], 1/individual.fitness[2]] for individual in ea.archive] 
+    seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
 
     to_csv(seed_sets, population_file)
     return seed_sets

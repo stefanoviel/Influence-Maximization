@@ -7,6 +7,8 @@ import argparse
 import operator as op
 from functools import reduce
 import pandas as pd
+from community import community_louvain
+
 #import src.graph_sampling.SRW_RWF_ISRW as Graph_Sampling
 
 
@@ -394,10 +396,11 @@ def to_csv(archiver, population_file) :
     a = []
     for item in archiver:
         nodes.append(str(item[0]))
-        influence.append(item[1])
+        influence.append(round(item[1],2))
         n_nodes.append(item[2])
         time.append(item[3])
         a.append(len(item[0]))
+
 
     df["n_nodes"] = n_nodes
     df["influence"] = influence
@@ -405,3 +408,18 @@ def to_csv(archiver, population_file) :
     df["nodes"] = nodes
     df["a"] = a
     df.to_csv(population_file+".csv", sep=",", index=False)
+
+def community_detection(G,r):
+	partition = community_louvain.best_partition(G, resolution=r)
+
+	"""REDIFNE CHECK LIST HERE"""
+	df = pd.DataFrame()
+	df["nodes"] = list(partition.keys())
+	df["comm"] = list(partition.values()) 
+	df = df.groupby('comm')['nodes'].apply(list)
+	df = df.reset_index(name='nodes')
+	check = []
+	for j in range(max(partition.values())+1):
+		check.append(df["nodes"].iloc[j])
+
+	return check

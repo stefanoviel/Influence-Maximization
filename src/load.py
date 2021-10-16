@@ -5,11 +5,10 @@ import numpy as np
 
 def read_graph(filename, nodetype=int):
 
-	graph_class = nx.DiGraph() # all graph files are directed
+	graph_class = nx.Graph() # all graph files are directed
 	G = nx.read_edgelist(filename, create_using=graph_class, nodetype=nodetype, data=False)
 
 	msg = ' '.join(["Read from file", filename, "the directed graph\n", nx.classes.function.info(G)])
-	logging.info(msg)
 	# filename = "RANDOM_Graph_SBM"
 	# sizes = [60,70,200,100,150]
 

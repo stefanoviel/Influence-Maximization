@@ -9,10 +9,9 @@ def get_nodes_without_repetitions(candidate, args):
 	:param args:
 	:return:
 	"""
-	
-	nodes = args["nodes"]
-	print(candidate)
-	print(nodes)
+	#print("ciaooo")
+	#print(args["_ec"])
+	nodes = args["_ec"].bounder.values.copy()
 	for c in candidate:
 		if c in nodes: nodes.remove(c)
 	return nodes
