@@ -52,17 +52,19 @@ def filter_nodes(G, args):
 if __name__ == '__main__':
     
 
-    filename = "graphs/facebook_combined.txt"
+    filename = "/Users/elia/Desktop/Influence-Maximization/graphs/facebook_combined.txt"
     G = read_graph(filename)
+
+    print(nx.info(G))
     random_seed = 10
     prng = random.Random(random_seed)
-    p = 0.05
     #p = 0.05
-    #p = 0.005
+    p = 0.1
 
-    model = 'IC'
-    #model = 'WC'
-    k = 10
+    #model = 'IC'
+    model = 'WC'
+    #model = 'LT'
+    k = 5
 
     args = {}
     args["p"] = p
@@ -73,14 +75,13 @@ if __name__ == '__main__':
     args["search_space_size_min"] = None
     args["min_degree"] = 20
     args["smart_initialization_percentage"] = 0.5
-    args["population_size"] = 100
+    args["population_size"] = 10
     nodes = filter_nodes(G, args)
 
     #print(nodes)
     #print(G.number_of_nodes())
     #print(len(nodes))
     initial_population = create_initial_population(G, args, prng, nodes)
-    
 
     communities = community_detection(G,10)
 
@@ -91,12 +92,11 @@ if __name__ == '__main__':
     '''
  
             
-    no_simulations = 3
-
+    no_simulations = 5
+    max_generations = 10
     #nodes' bound of seed sets
     #k=200
-    k = 50   
-    max_generations = 10 * k
+    #max_generations = 10 * k
 
 
 
@@ -116,7 +116,8 @@ if __name__ == '__main__':
     ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
     
     start = time.time()
-    seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=10, offspring_size=10, random_gen=prng, max_generations=5, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities)
+    seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=10, offspring_size=10, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
+    
     exec_time = time.time() - start
     print(exec_time)
     

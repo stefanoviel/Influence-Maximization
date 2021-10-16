@@ -28,9 +28,12 @@ def nsga2_evaluator(candidates, args):
                 max_hop = args["max_hop"]
                 fitness_function_args = [G, A_set, p, no_simulations, model, max_hop]
 
+            #influence_mean, influence_std, time,t = fitness_function(*fitness_function_args, **fitness_function_kargs)
             influence_mean, influence_std, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
 
-            fitness[index] = inspyred.ec.emo.Pareto([influence_mean, float(1.0 / len(A_set)), time]) 
+            #fitness[index] = inspyred.ec.emo.Pareto([influence_mean, float(1.0 / len(A_set)), time, float(1/t)]) 
+            fitness[index] = inspyred.ec.emo.Pareto([influence_mean, float(1.0 / len(A_set)), time])
+
     else :
         thread_pool = ThreadPool(n_threads)
 
