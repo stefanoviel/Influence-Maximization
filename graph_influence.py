@@ -11,7 +11,7 @@ from src.spread import MonteCarlo_simulation, MonteCarlo_simulation_max_hop
 from new_ea import moea_influence_maximization
 from src.nodes_filtering.select_best_spread_nodes import filter_best_nodes as filter_best_spread_nodes
 from src.nodes_filtering.select_min_degree_nodes import filter_best_nodes as filter_min_degree_nodes
-from src.utils import inverse_ncr
+from src.utils import inverse_ncr, community_detection
 from src.smart_initialization import max_centrality_individual, Community_initialization, degree_random
 
 def create_initial_population(G, args, prng=None, nodes=None):
@@ -52,11 +52,11 @@ def filter_nodes(G, args):
 if __name__ == '__main__':
     
 
-    filename = "prova"
+    filename = "graphs/facebook_combined.txt"
     G = read_graph(filename)
-    random_seed = 0
+    random_seed = 10
     prng = random.Random(random_seed)
-    p = 0.1
+    p = 0.05
     #p = 0.05
     #p = 0.005
 
@@ -76,16 +76,13 @@ if __name__ == '__main__':
     args["population_size"] = 100
     nodes = filter_nodes(G, args)
 
-    print(nodes)
-    print(G.number_of_nodes())
-    print(len(nodes))
+    #print(nodes)
+    #print(G.number_of_nodes())
+    #print(len(nodes))
     initial_population = create_initial_population(G, args, prng, nodes)
     
-    for item in initial_population: print(item)
-    exit(0)
 
-   
-
+    communities = community_detection(G,10)
 
     '''Propagation Simulation Parameters
     p: propability of activating node m when m is active and n-->m (only for IC Model)
@@ -94,7 +91,7 @@ if __name__ == '__main__':
     '''
  
             
-    no_simulations = 100
+    no_simulations = 3
 
     #nodes' bound of seed sets
     #k=200
@@ -117,7 +114,10 @@ if __name__ == '__main__':
 
 
     ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
-    seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=3, offspring_size=10, random_gen=prng, max_generations=3, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file)
     
+    start = time.time()
+    seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=10, offspring_size=10, random_gen=prng, max_generations=5, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities)
+    exec_time = time.time() - start
+    print(exec_time)
     
     

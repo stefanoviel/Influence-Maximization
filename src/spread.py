@@ -46,12 +46,12 @@ def LT_model(G, a, p, random_generator):
 
 	#This returns all the nodes in the network that have been activated/converted in the diffusion process
 
-def IC_model(G, a, p, random_generator):              # a: the set of initial active nodes
+def IC_model(G, a, p, communities, random_generator):              # a: the set of initial active nodes
 	                                # p: the system-wide probability of influence on an edge, in [0,1]
 	A = set(a)                      # A: the set of active nodes, initially a
 	B = set(a)                      # B: the set of nodes activated in the last completed iteration
 	converged = False
-	time = 0
+	comm = 0
 	while not converged:
 		nextB = set()
 		for n in B:
@@ -63,9 +63,20 @@ def IC_model(G, a, p, random_generator):              # a: the set of initial ac
 		if not B:
 			converged = True
 		A |= B
-		time = time +1 
-	
-	return len(A), time
+	reach = {}
+	for i in range(len(communities)):
+		reach[i] = False
+    
+	for item in A:
+		for key in range(len(communities)):
+			if reach[key] == False:
+				if item in communities[key]:
+					reach[key] = True
+					comm = comm + 1
+		if comm == len(communities):
+			break
+				    	
+	return len(A), comm
 
 def WC_model(G, a, random_generator):                 # a: the set of initial active nodes
                                     # each edge from node u to v is assigned probability 1/in-degree(v) of activating v
@@ -160,8 +171,7 @@ def WC_model_max_hop(G, a, max_hop, random_generator):  # a: the set of initial 
 """ Evaluates a given seed set A, simulated "no_simulations" times.
 	Returns a tuple: (the mean, the stdev).
 """
-def MonteCarlo_simulation(G, A, p, no_simulations, model, random_generator=None):
-
+def MonteCarlo_simulation(G, A, p, no_simulations, model, communities, random_generator=None):
 	if random_generator is None:
 		random_generator = random.Random()
 		random_generator.seed(next(iter(A))) # initialize random number generator with first seed in the seed set, to make experiment repeatable; TODO evaluate computational cost
@@ -173,22 +183,19 @@ def MonteCarlo_simulation(G, A, p, no_simulations, model, random_generator=None)
 			res, time = WC_model(G, A, random_generator=random_generator)
 			times.append(time)
 			results.append(res)
-			print('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))
 	elif model == 'IC':
 		for i in range(no_simulations):
-			res, time = IC_model(G, A, p, random_generator=random_generator)
+			res, time = IC_model(G, A, p, communities, random_generator=random_generator)
 			times.append(time)
 			results.append(res)
-			#print('Simulation: {0} \nTime: {1} \nResults: {2} \n'.format(i,time,res))
 	elif model == 'LT':
 		for i in range(no_simulations):
 			res, time = LT_model(G, A, p,random_generator=random_generator)
 			print(len(A))
 			times.append(time)
 			results.append(res)
-			logging.info('Simulation: {0}\nTime: {1}\nResults: {2}\n'.format(i,time,res))		
 	
-	return (numpy.mean(results), numpy.std(results), numpy.mean(times))
+	return (numpy.mean(results), numpy.std(results), int(numpy.mean(times)))
 
 def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=5, random_generator=None):
 	"""

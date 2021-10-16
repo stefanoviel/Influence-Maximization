@@ -39,7 +39,7 @@ def save_video():
 
 if __name__ == '__main__':
     
-    filename = "/Users/elia/Desktop/final_experiments/Amazon0302/amazon0302-k400-WC.csv"
+    filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined-k50-p0.1-IC.csv.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -48,13 +48,13 @@ if __name__ == '__main__':
 
 
     x1= df["n_nodes"]
-    y1 = df["n_simulation"]
+    y1 = df["time"]
     z1 = df["influence"]
 
     ax.scatter(x1,y1,z1, alpha=1, color="red")
 
-    ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 50))
-    ax.yaxis.set_ticks(np.arange(0,df["n_simulation"].max()+1, 1))
+    ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 1))
+    ax.yaxis.set_ticks(np.arange(0,df["time"].max()+1, 1))
     ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 100))
 
     ax.set_xlabel("Nodes")
@@ -65,11 +65,11 @@ if __name__ == '__main__':
 
 
     #uncomment to save the plot in .png format
-    fn = str(os.path.basename(filename))
-    fn = fn.replace(".csv", "")
-    plt.savefig('gif/{}.png'.format(fn))
+    #fn = str(os.path.basename(filename))
+    #fn = fn.replace(".csv", "")
+    #plt.savefig('gif/{}.png'.format(fn))
 
-    #plt.show()
+    plt.show()
 
     #uncomment to save the plot in .gif  and .mp4 format
     #save_video()
