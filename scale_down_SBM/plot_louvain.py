@@ -105,7 +105,7 @@ def SBM(GR,check,s):
 
 
 
-filename = "graphs/facebook_combined.txt"
+filename = "graphs/ego-twitter.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
