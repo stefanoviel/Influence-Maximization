@@ -39,7 +39,7 @@ def save_video():
 
 if __name__ == '__main__':
     
-    filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined-k20-p0.1-WC.csv.csv"
+    filename = "/Users/elia/Desktop/Influence-Maximization/graph_facebook_combined_scale_4-k20-p0.4-WC.csv.csv"
 
     df = pd.read_csv(filename, sep=",")
 

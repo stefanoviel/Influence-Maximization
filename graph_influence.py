@@ -4,7 +4,7 @@ import random
 import logging
 import networkx as nx
 from functools import partial
-
+import numpy as np
 # local libraries
 from src.load import read_graph
 from src.spread import MonteCarlo_simulation, MonteCarlo_simulation_max_hop
@@ -51,8 +51,8 @@ def filter_nodes(G, args):
 
 if __name__ == '__main__':
     
-    filenames = ["/Users/elia/Desktop/Influence-Maximization/scale_down_SBM/SBM-Graph/graph_facebook_combined.txt_scale_4.txt","graphs/facebook_combined.txt"]
-    models = ["IC"]
+    filenames = ["graphs/facebook_combined.txt"]
+    models = ["WC"]
 
     for item in filenames:
         filename = item
@@ -65,7 +65,7 @@ if __name__ == '__main__':
             random_seed = 10
             prng = random.Random(random_seed)
             #p = 0.05
-            p = 0.4
+            p = 0.1
 
             k = 20
 
@@ -76,13 +76,19 @@ if __name__ == '__main__':
             args["filter_best_spread_nodes"] = False
             args["search_space_size_max"] = None
             args["search_space_size_min"] = None
-            args["min_degree"] = 20
+
+            my_degree_function = G.degree
+            mean = []
+            for item in G:
+                mean.append(my_degree_function[item])
+            
+            mean = int(np.mean(mean))  
+            print(mean)      
+            args["min_degree"] = mean + 1
             args["smart_initialization_percentage"] = 0.5
             args["population_size"] = 100
             nodes = filter_nodes(G, args)
-
             #print(nodes)
-            #print(G.number_of_nodes())
             #print(len(nodes))
             initial_population = create_initial_population(G, args, prng, nodes)
 
