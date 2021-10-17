@@ -8,7 +8,7 @@ from src.threadpool import ThreadPool
 from time import time
 
 # local libraries
-from src.spread import MonteCarlo_simulation, MonteCarlo_simulation_max_hop
+from src.spread.monte_carlo import MonteCarlo_simulation, MonteCarlo_simulation_max_hop
 from src.ea.observer import ea_observer0, ea_observer1, ea_observer2
 
 from src.ea.evaluator import nsga2_evaluator
@@ -72,7 +72,12 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
         seeds = initial_population,
         pop_size = population_size,
         num_selected = offspring_size,
-        max_generations = max_generations,
+        generations_budget=max_generations,
+        max_generations=int(max_generations*10),
+        tournament_size=5,
+        mutation_rate=0.1,
+        crossover_rate=0.1,
+        num_elites=2,
         # all arguments below will go inside the dictionary 'args'
         G = G,
         p = p,

@@ -3,9 +3,9 @@ import matplotlib.pylab as plt
 import sys
 sys.path.insert(0, '')
 from src.load import read_graph
-df = pd.read_csv("/Users/elia/Desktop/Influence-Maximization/facebook.csv", sep=",")
+df = pd.read_csv("/Users/elia/Desktop/Influence-Maximization/twitter.csv", sep=",")
 
-g =read_graph(filename="graphs/facebook_combined.txt")
+g =read_graph(filename="graphs/ego-twitter.txt")
 original_density = (2*g.number_of_edges())/ (g.number_of_nodes()*(g.number_of_nodes()-1))
 print("Density --> {0}".format(original_density)) 
 print(df)
