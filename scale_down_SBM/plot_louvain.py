@@ -92,15 +92,15 @@ def SBM(GR,check):
         for i in range(len(sizes)):
             print("Community {0} has {1} elements".format(i+1,sizes[i]))
 
-        print(all_edges)
+        #print(all_edges)
 
         g = nx.stochastic_block_model(sizes, all_edges, seed=0)
 
         den = (2*g.number_of_edges())/ (g.number_of_nodes()*(g.number_of_nodes()-1))
         print(den)
         density_list.append(den)
-    
-    den = min(density_list)
+    print(density_list)
+    den = max(density_list)
     return den
 
 
