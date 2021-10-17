@@ -51,74 +51,77 @@ def filter_nodes(G, args):
 
 if __name__ == '__main__':
     
+    filenames = ["graphs/facebook_combined.txt", "/Users/elia/Desktop/Influence-Maximization/scale_down_SBM/SBM-Graph/graph_facebook_combined.txt_scale_4.txt"]
+    models = ["IC","LT","WC"]
 
-    filename = "/Users/elia/Desktop/Influence-Maximization/graphs/facebook_combined.txt"
-    G = read_graph(filename)
+    for item in filenames:
+        filename = item
+        for m in models:
+            model = m
 
-    print(nx.info(G))
-    random_seed = 10
-    prng = random.Random(random_seed)
-    #p = 0.05
-    p = 0.1
+            G = read_graph(filename)
 
-    #model = 'IC'
-    model = 'WC'
-    #model = 'LT'
-    k = 5
+            print(nx.info(G))
+            random_seed = 10
+            prng = random.Random(random_seed)
+            #p = 0.05
+            p = 0.1
 
-    args = {}
-    args["p"] = p
-    args["model"] = model
-    args["k"] = k
-    args["filter_best_spread_nodes"] = False
-    args["search_space_size_max"] = None
-    args["search_space_size_min"] = None
-    args["min_degree"] = 20
-    args["smart_initialization_percentage"] = 0.5
-    args["population_size"] = 10
-    nodes = filter_nodes(G, args)
+            k = 100
 
-    #print(nodes)
-    #print(G.number_of_nodes())
-    #print(len(nodes))
-    initial_population = create_initial_population(G, args, prng, nodes)
+            args = {}
+            args["p"] = p
+            args["model"] = model
+            args["k"] = k
+            args["filter_best_spread_nodes"] = False
+            args["search_space_size_max"] = None
+            args["search_space_size_min"] = None
+            args["min_degree"] = 20
+            args["smart_initialization_percentage"] = 0.5
+            args["population_size"] = 100
+            nodes = filter_nodes(G, args)
 
-    communities = community_detection(G,10)
+            #print(nodes)
+            #print(G.number_of_nodes())
+            #print(len(nodes))
+            initial_population = create_initial_population(G, args, prng, nodes)
 
-    '''Propagation Simulation Parameters
-    p: propability of activating node m when m is active and n-->m (only for IC Model)
-    model: type of propagation model either IC (Indipendent Cascade) or WC(Weighted Cascade)
-    no_simulations: number of simulations of the selected propagation model 
-    '''
- 
+            communities = community_detection(G,10)
+
+            '''Propagation Simulation Parameters
+            p: propability of activating node m when m is active and n-->m (only for IC Model)
+            model: type of propagation model either IC (Indipendent Cascade) or WC(Weighted Cascade)
+            no_simulations: number of simulations of the selected propagation model 
+            '''
+
+                    
+            no_simulations = 10
+            max_generations = 100
+            #nodes' bound of seed sets
+            #k=200
+            #max_generations = 10 * k
+
+
+
+            n_threads = 1
             
-    no_simulations = 5
-    max_generations = 10
-    #nodes' bound of seed sets
-    #k=200
-    #max_generations = 10 * k
+            #Print Graph's information and properties
+            logging.info(nx.classes.function.info(G))
+            
+            
+            #define file where to save the results obtained from the execution
+            file = str(os.path.basename(filename))
+            file = file.replace(".txt", "")
+            file = '{0}-k{1}-p{2}-{3}.csv'.format(file, k, p , model)
 
 
 
-    n_threads = 1
-	
-    #Print Graph's information and properties
-    logging.info(nx.classes.function.info(G))
-    
-    
-    #define file where to save the results obtained from the execution
-    file = str(os.path.basename(filename))
-    file = file.replace(".txt", "")
-    file = '{0}-k{1}-p{2}-{3}.csv'.format(file, k, p , model)
-   
-
-
-    ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
-    
-    start = time.time()
-    seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=10, offspring_size=10, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
-    
-    exec_time = time.time() - start
-    print(exec_time)
+            ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
+            
+            start = time.time()
+            seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
+            
+            exec_time = time.time() - start
+            print(exec_time)
     
     
