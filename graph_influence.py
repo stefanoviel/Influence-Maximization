@@ -53,7 +53,7 @@ def filter_nodes(G, args):
 
 if __name__ == '__main__':
     
-    filenames = ["scale_down_SBM/SBM-Graph/graph_facebook_combined.txt_scale_4.txt","scale_down_SBM/SBM-Graph/ego-twitter.txt_scale_4.txt","/Users/elia/Desktop/Influence-Maximization/graphs/ego-twitter.txt","/Users/elia/Desktop/Influence-Maximization/graphs/facebook_combined.txt"]
+    filenames = ["scale_down_SBM/SBM-Graph/graph_facebook_combined.txt_scale_4.txt","scale_down_SBM/SBM-Graph/ego-twitter.txt_scale_4.txt","graphs/ego-twitter.txt","graphs/facebook_combined.txt"]
     models = ["IC","WC","LT"]
 
     for item in filenames:
