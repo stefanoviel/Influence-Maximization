@@ -1,5 +1,5 @@
 from src.threadpool import ThreadPool
-from src.spread import MonteCarlo_simulation, MonteCarlo_simulation_max_hop
+from src.spread.monte_carlo import MonteCarlo_simulation, MonteCarlo_simulation_max_hop
 import inspyred
 import threading
 def nsga2_evaluator(candidates, args):

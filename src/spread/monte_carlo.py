@@ -274,5 +274,3 @@ def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop=5, ran
 if __name__ == "__main__":
 
 	G = nx.path_graph(100)
-	logging.info(nx.classes.function.info(G))
-	logging.info(MonteCarlo_simulation(G, [0, 2, 4, 6, 8, 10], 0.1, 100, 'IC'))
