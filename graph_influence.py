@@ -51,8 +51,8 @@ def filter_nodes(G, args):
 
 if __name__ == '__main__':
     
-    filenames = ["graphs/facebook_combined.txt", "/Users/elia/Desktop/Influence-Maximization/scale_down_SBM/SBM-Graph/graph_facebook_combined.txt_scale_4.txt"]
-    models = ["IC","LT","WC"]
+    filenames = ["/Users/elia/Desktop/Influence-Maximization/scale_down_SBM/SBM-Graph/graph_facebook_combined.txt_scale_4.txt","graphs/facebook_combined.txt"]
+    models = ["IC"]
 
     for item in filenames:
         filename = item
@@ -65,9 +65,9 @@ if __name__ == '__main__':
             random_seed = 10
             prng = random.Random(random_seed)
             #p = 0.05
-            p = 0.1
+            p = 0.4
 
-            k = 100
+            k = 20
 
             args = {}
             args["p"] = p
@@ -95,8 +95,8 @@ if __name__ == '__main__':
             '''
 
                     
-            no_simulations = 10
-            max_generations = 100
+            no_simulations = 5
+            max_generations = 20
             #nodes' bound of seed sets
             #k=200
             #max_generations = 10 * k
@@ -119,9 +119,8 @@ if __name__ == '__main__':
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             
             start = time.time()
-            seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
+            seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=10, offspring_size=10, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
             
             exec_time = time.time() - start
             print(exec_time)
-    
     
