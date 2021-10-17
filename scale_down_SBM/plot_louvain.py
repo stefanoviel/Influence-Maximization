@@ -23,7 +23,7 @@ resolution = 1
 no_simulations = 10
 X = 100
 
-def SBM(GR,check):
+def SBM(GR,check,s):
     density_list = []
     for i in range(no_simulations):
         sum = 0
@@ -89,18 +89,21 @@ def SBM(GR,check):
         for item in check:
             sizes.append(int(len(item)/scale))
 
-        for i in range(len(sizes)):
-            print("Community {0} has {1} elements".format(i+1,sizes[i]))
+        #for i in range(len(sizes)):
+        #    print("Community {0} has {1} elements".format(i+1,sizes[i]))
 
         #print(all_edges)
 
         g = nx.stochastic_block_model(sizes, all_edges, seed=0)
 
         den = (2*g.number_of_edges())/ (g.number_of_nodes()*(g.number_of_nodes()-1))
-        print(den)
+        #print(den)
         density_list.append(den)
     print(density_list)
     den = max(density_list)
+    print(density_list)
+    with open('somefile.txt', 'a') as the_file:
+        the_file.write(str(density_list) + "," + str(den) + ","+ str(len(check)) +"," +str(s) +"\n")
     return den
 
 
@@ -153,7 +156,7 @@ for i in range(int(X)):
     communities.append(com_max)
     smallest.append(size_values[index])
     check = list_check[index]
-    density = SBM(G,check)
+    density = SBM(G,check,size_values[index])
     list_density.append(density)
     resolution = round(resolution +1,2)
 
