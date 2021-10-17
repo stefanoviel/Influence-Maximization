@@ -13,9 +13,9 @@ import pandas as pd
 import os
 
 scale = 4
-resolution = 1
+resolution = 10
 
-filename = "graphs/facebook_combined.txt"
+filename = "/Users/elia/Desktop/Influence-Maximization/graphs/ego-twitter.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -159,5 +159,5 @@ text = []
 for u,v in g.edges():
     f = "{0} {1}".format(u,v)
     text.append(f) 
-with open("SBM-Graph/graph_"+str(name)+"_"+"scale_"+str(scale)+".txt", "w") as outfile:
+with open("scale_down_SBM/SBM-Graph/"+str(name)+"_"+"scale_"+str(scale)+".txt", "w") as outfile:
         outfile.write("\n".join(text))
