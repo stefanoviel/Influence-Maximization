@@ -44,5 +44,4 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
             return True
         else:
             args['generation_count'] += 1
-
             return False
