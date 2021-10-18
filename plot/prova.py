@@ -17,7 +17,7 @@ plt.plot(x1, y1, label = "communities", color="green")
 plt.xlabel('r - resolution')
 plt.ylabel('#C -  no communities')
 plt.legend()
-#plt.show()
+plt.show()
 plt.cla()   # Clear axis
 plt.clf()   # Clear f
 plt.close()
@@ -28,7 +28,7 @@ plt.plot(x1, y2, label = "size", color="blue")
 plt.xlabel('r - resolution')
 plt.ylabel('#S - Size smallest community')
 plt.legend()
-#plt.show()
+plt.show()
 plt.cla()   # Clear axis
 plt.clf()   # Clear f
 plt.close()
@@ -42,7 +42,7 @@ density = []
 for item in x1:
     density.append(original_density)
 
-plt.plot(x1, y3, label = "size", color="black")
+plt.plot(x1, y3, label = "density", color="black")
 plt.plot(x1,density, label="original density", color="red")
 plt.xlabel('r - resolution')
 plt.ylabel('#d - density value')

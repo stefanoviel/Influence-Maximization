@@ -16,6 +16,8 @@ from src.ea.crossover import ea_one_point_crossover
 from src.ea.generator import nsga2_generator
 from src.utils import to_csv
 from src.ea.mutators import ea_global_random_mutation
+from src.ea.terminators import generation_termination,no_improvement_termination
+
 # inspyred libriaries
 import inspyred
 from inspyred.ec import *
@@ -58,7 +60,7 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
     
     #ea.observer = [ea_observer0, ea_observer1, ea_observer2] 
     ea.variator = [ea_one_point_crossover,ea_global_random_mutation]
-    ea.terminator = [inspyred.ec.terminators.no_improvement_termination,inspyred.ec.terminators.generation_termination]
+    ea.terminator = [no_improvement_termination,generation_termination]
 	
     ea.replacer = inspyred.ec.replacers.plus_replacement
     bounder = inspyred.ec.DiscreteBounder(nodes)
