@@ -72,6 +72,7 @@ if __name__ == '__main__':
             k = int(G.number_of_nodes()*0.05)
             if k > 200:
                 k = 200
+           
             args = {}
             args["p"] = p
             args["model"] = model
@@ -101,8 +102,8 @@ if __name__ == '__main__':
             '''
 
                     
-            no_simulations = 5
-            max_generations = 10
+            no_simulations = 100
+            max_generations = 100
             #nodes' bound of seed sets
             #k=200
             #max_generations = 10 * k
@@ -125,7 +126,7 @@ if __name__ == '__main__':
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             
             start = time.time()
-            seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=10, offspring_size=10, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population,)
+            seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population,)
             
             exec_time = time.time() - start
             print(exec_time)
