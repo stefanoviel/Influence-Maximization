@@ -73,8 +73,8 @@ def IC_model(G, a, p, communities, random_generator):              # a: the set 
 	comm = 0
 	for item in communities:
 		intersection = set.intersection(set(item),set(A))
-        if len(intersection) > 0:
-            comm += 1	
+		if len(intersection) > 0:
+			comm += 1	
 	return len(A), comm
 
 
@@ -104,8 +104,8 @@ def WC_model(G, a, communities,random_generator):                 # a: the set o
 	comm = 0
 	for item in communities:
 		intersection = set.intersection(set(item),set(A))
-        if len(intersection) > 0:
-            comm += 1	
+		if len(intersection) > 0:
+			comm += 1	
 	return len(A), comm
 
 				    	
