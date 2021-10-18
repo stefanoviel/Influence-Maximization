@@ -72,61 +72,61 @@ if __name__ == '__main__':
             k = int(G.number_of_nodes()*0.05)
             if k > 200:
                 k = 200
-            # args = {}
-            # args["p"] = p
-            # args["model"] = model
-            # args["k"] = k
-            # args["filter_best_spread_nodes"] = False
-            # args["search_space_size_max"] = 100
-            # args["search_space_size_min"] = 10
+            args = {}
+            args["p"] = p
+            args["model"] = model
+            args["k"] = k
+            args["filter_best_spread_nodes"] = False
+            args["search_space_size_max"] = 100
+            args["search_space_size_min"] = 10
 
-            # my_degree_function = G.degree
-            # mean = []
-            # for item in G:
-            #     mean.append(my_degree_function[item])
+            my_degree_function = G.degree
+            mean = []
+            for item in G:
+                mean.append(my_degree_function[item])
             
-            # mean = int(np.mean(mean))  
-            # args["min_degree"] = mean + 1
-            # args["smart_initialization_percentage"] = 0.5
-            # args["population_size"] = 100
-            # nodes = filter_nodes(G, args)
-            # initial_population = create_initial_population(G, args, prng, nodes)
+            mean = int(np.mean(mean))  
+            args["min_degree"] = mean + 1
+            args["smart_initialization_percentage"] = 0.5
+            args["population_size"] = 100
+            nodes = filter_nodes(G, args)
+            initial_population = create_initial_population(G, args, prng, nodes)
 
-            # communities = community_detection(G,10)
+            communities = community_detection(G,10)
 
-            # '''Propagation Simulation Parameters
-            # p: propability of activating node m when m is active and n-->m (only for IC Model)
-            # model: type of propagation model either IC (Indipendent Cascade) or WC(Weighted Cascade)
-            # no_simulations: number of simulations of the selected propagation model 
-            # '''
+            '''Propagation Simulation Parameters
+            p: propability of activating node m when m is active and n-->m (only for IC Model)
+            model: type of propagation model either IC (Indipendent Cascade) or WC(Weighted Cascade)
+            no_simulations: number of simulations of the selected propagation model 
+            '''
 
                     
-            # no_simulations = 100
-            # max_generations = 100
-            # #nodes' bound of seed sets
-            # #k=200
-            # #max_generations = 10 * k
+            no_simulations = 100
+            max_generations = 100
+            #nodes' bound of seed sets
+            #k=200
+            #max_generations = 10 * k
 
 
 
-            # n_threads = 1
+            n_threads = 1
             
-            # #Print Graph's information and properties
-            # logging.info(nx.classes.function.info(G))
+            #Print Graph's information and properties
+            logging.info(nx.classes.function.info(G))
             
             
-            # #define file where to save the results obtained from the execution
-            # file = str(os.path.basename(filename))
-            # file = file.replace(".txt", "")
-            # file = '{0}-k{1}-p{2}-{3}.csv'.format(file, k, p , model)
+            #define file where to save the results obtained from the execution
+            file = str(os.path.basename(filename))
+            file = file.replace(".txt", "")
+            file = '{0}-k{1}-p{2}-{3}.csv'.format(file, k, p , model)
 
 
 
-            # ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
+            ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             
-            # start = time.time()
-            # seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population,)
+            start = time.time()
+            seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population,)
             
-            # exec_time = time.time() - start
-            # print(exec_time)
+            exec_time = time.time() - start
+            print(exec_time)
     
