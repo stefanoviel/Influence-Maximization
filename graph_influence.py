@@ -70,7 +70,8 @@ if __name__ == '__main__':
             p = 0.1
 
             k = int(G.number_of_nodes()*0.05)
-            print(k)
+            if k > 200:
+                k = 200
             # args = {}
             # args["p"] = p
             # args["model"] = model
