@@ -33453,3 +33453,2072 @@ Com Values [73, 72, 73, 72, 73, 73, 73, 72, 73, 72] , Size Values [2, 2, 2, 2, 2
 [135, 116, 106, 99, 95, 90, 89, 88, 86, 84, 85, 85, 82, 81, 83, 83, 82, 81, 81, 82, 82, 81, 80, 79, 82, 78, 80, 80, 79, 79, 80, 79, 79, 79, 79, 78, 78, 78, 78, 77, 77, 77, 77, 78, 77, 77, 77, 76, 78, 76, 76, 76, 77, 76, 77, 76, 76, 76, 77, 76, 76, 76, 76, 75, 75, 76, 75, 75, 75, 75, 75, 75, 75, 75, 75, 74, 74, 75, 74, 74, 74, 74, 74, 74, 74, 74, 74, 74, 74, 74, 74, 74, 73, 74, 73, 73, 73, 73, 73, 73]
 [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
 [0.0001131969022261757, 0.00011334440232532658, 0.00011547985980386015, 0.00011755014741254385, 0.000120201647079357, 0.00012387259381514164, 0.00012614001123565, 0.00012515849036082852, 0.00012289263870112797, 0.0001185807648041792, 0.00012198071631013403, 0.00012114564050165389, 0.00012042986123724235, 0.00011758577560340822, 0.00012053113656386613, 0.0001184801907322374, 0.00011997088261361935, 0.00011865907375800322, 0.0001209249254177038, 0.0001219982235722988, 0.00012293508866268276, 0.00012114564050165389, 0.00012193859589704351, 0.00012416156668411963, 0.00012211747892280935, 0.00012332706743612267, 0.00012505567302125922, 0.00012392313832754905, 0.00012541331555611507, 0.0001226713894555536, 0.0001233696601031702, 0.00012444295825776518, 0.00012326746034698003, 0.00012405912150053618, 0.00012511528011040186, 0.00012058514133556121, 0.00012614464947965183, 0.00012298656425413385, 0.0001233866745252653, 0.00012445960212983283, 0.0001228078047130668, 0.00012453581361004834, 0.00012531043828800558, 0.00012382077544578011, 0.00012429746755529227, 0.00012459540012373736, 0.00012537002480169458, 0.0001247741596648044, 0.00012583056518011355, 0.00012352284287733503, 0.00012437370127617068, 0.0001257275438838287, 0.00012554878434276165, 0.00012425456937839656, 0.00012328449682257896, 0.00012389717368507423, 0.00012389717368507423, 0.0001244928331739448, 0.0001250125057195605, 0.00012383760773618718, 0.00012627981164055644, 0.0001241950034295095, 0.00012459540012373736, 0.00012554878434276165, 0.0001241187080142252, 0.00012453581361004834, 0.00012467153102060596, 0.00012358242939102405, 0.0001244166405826703, 0.0001237611889320911, 0.00012370160241840207, 0.0001239567396339613, 0.00012365890988952602, 0.0001237611889320911, 0.0001239567396339613, 0.0001250289267139283, 0.00012377804178730013, 0.0001237611889320911, 0.00012377804178730013, 0.00012377804178730013, 0.0001247741596648044, 0.00012377804178730013, 0.00012377804178730013, 0.00012324194824731664, 0.00012377804178730013, 0.0001240758715317354, 0.0001235397779917519, 0.00012405912150053618, 0.00012453581361004834, 0.0001240758715317354, 0.00012453581361004834, 0.00012377804178730013, 0.00012447622709635931, 0.00012336108014509073, 0.00012447622709635931, 0.00012459540012373736, 0.0001244166405826703, 0.0001234206460939778, 0.00012495291920587147, 0.0001241187080142252]
+Name: 
+Type: Graph
+Number of nodes: 999
+Number of edges: 5314
+Average degree:  10.6386
+Name: 
+Type: Graph
+Number of nodes: 999
+Number of edges: 5314
+Average degree:  10.6386
+Name: 
+Type: Graph
+Number of nodes: 999
+Number of edges: 5314
+Average degree:  10.6386
+Name: 
+Type: Graph
+Number of nodes: 2834
+Number of edges: 1970
+Average degree:   1.3903
+Name: 
+Type: Graph
+Number of nodes: 2834
+Number of edges: 1970
+Average degree:   1.3903
+Name: 
+Type: Graph
+Number of nodes: 2834
+Number of edges: 1970
+Average degree:   1.3903
+Name: 
+Type: Graph
+Number of nodes: 23370
+Number of edges: 32831
+Average degree:   2.8097
+Name: 
+Type: Graph
+Number of nodes: 23370
+Number of edges: 32831
+Average degree:   2.8097
+Name: 
+Type: Graph
+Number of nodes: 23370
+Number of edges: 32831
+Average degree:   2.8097
+Name: 
+Type: Graph
+Number of nodes: 4039
+Number of edges: 88234
+Average degree:  43.6910
+Name: 
+Type: Graph
+Number of nodes: 4039
+Number of edges: 88234
+Average degree:  43.6910
+Name: 
+Type: Graph
+Number of nodes: 4039
+Number of edges: 88234
+Average degree:  43.6910
+Name: 
+Type: Graph
+Number of nodes: 4039
+Number of edges: 88234
+Average degree:  43.6910
+Density --> 0.010819963503439287
+1
+Com Values [15] , Size Values [19]
+1
+Com Values [15, 15] , Size Values [19, 19]
+1
+Com Values [15, 15, 16] , Size Values [19, 19, 19]
+1
+Com Values [15, 15, 16, 17] , Size Values [19, 19, 19, 19]
+1
+Com Values [15, 15, 16, 17, 16] , Size Values [19, 19, 19, 19, 19]
+1
+Com Values [15, 15, 16, 17, 16, 14] , Size Values [19, 19, 19, 19, 19, 19]
+1
+Com Values [15, 15, 16, 17, 16, 14, 16] , Size Values [19, 19, 19, 19, 19, 19, 19]
+1
+Com Values [15, 15, 16, 17, 16, 14, 16, 16] , Size Values [19, 19, 19, 19, 19, 19, 19, 19]
+1
+Com Values [15, 15, 16, 17, 16, 14, 16, 16, 16] , Size Values [19, 19, 19, 19, 19, 19, 19, 19, 19]
+1
+Com Values [15, 15, 16, 17, 16, 14, 16, 16, 16, 16] , Size Values [19, 19, 19, 19, 19, 19, 19, 19, 19, 19]
+2
+Com Values [12] , Size Values [38]
+2
+Com Values [12, 12] , Size Values [38, 60]
+2
+Com Values [12, 12, 12] , Size Values [38, 60, 25]
+2
+Com Values [12, 12, 12, 12] , Size Values [38, 60, 25, 38]
+2
+Com Values [12, 12, 12, 12, 12] , Size Values [38, 60, 25, 38, 38]
+2
+Com Values [12, 12, 12, 12, 12, 12] , Size Values [38, 60, 25, 38, 38, 38]
+2
+Com Values [12, 12, 12, 12, 12, 12, 12] , Size Values [38, 60, 25, 38, 38, 38, 38]
+2
+Com Values [12, 12, 12, 12, 12, 12, 12, 12] , Size Values [38, 60, 25, 38, 38, 38, 38, 38]
+2
+Com Values [12, 12, 12, 12, 12, 12, 12, 12, 12] , Size Values [38, 60, 25, 38, 38, 38, 38, 38, 38]
+2
+Com Values [12, 12, 12, 12, 12, 12, 12, 12, 12, 12] , Size Values [38, 60, 25, 38, 38, 38, 38, 38, 38, 38]
+3
+Com Values [11] , Size Values [38]
+3
+Com Values [11, 11] , Size Values [38, 38]
+3
+Com Values [11, 11, 10] , Size Values [38, 38, 60]
+3
+Com Values [11, 11, 10, 11] , Size Values [38, 38, 60, 38]
+3
+Com Values [11, 11, 10, 11, 11] , Size Values [38, 38, 60, 38, 38]
+3
+Com Values [11, 11, 10, 11, 11, 11] , Size Values [38, 38, 60, 38, 38, 38]
+3
+Com Values [11, 11, 10, 11, 11, 11, 11] , Size Values [38, 38, 60, 38, 38, 38, 38]
+3
+Com Values [11, 11, 10, 11, 11, 11, 11, 11] , Size Values [38, 38, 60, 38, 38, 38, 38, 38]
+3
+Com Values [11, 11, 10, 11, 11, 11, 11, 11, 11] , Size Values [38, 38, 60, 38, 38, 38, 38, 38, 38]
+3
+Com Values [11, 11, 10, 11, 11, 11, 11, 11, 11, 11] , Size Values [38, 38, 60, 38, 38, 38, 38, 38, 38, 38]
+4
+Com Values [10] , Size Values [38]
+4
+Com Values [10, 11] , Size Values [38, 38]
+4
+Com Values [10, 11, 10] , Size Values [38, 38, 38]
+4
+Com Values [10, 11, 10, 11] , Size Values [38, 38, 38, 38]
+4
+Com Values [10, 11, 10, 11, 10] , Size Values [38, 38, 38, 38, 38]
+4
+Com Values [10, 11, 10, 11, 10, 11] , Size Values [38, 38, 38, 38, 38, 38]
+4
+Com Values [10, 11, 10, 11, 10, 11, 9] , Size Values [38, 38, 38, 38, 38, 38, 60]
+4
+Com Values [10, 11, 10, 11, 10, 11, 9, 10] , Size Values [38, 38, 38, 38, 38, 38, 60, 38]
+4
+Com Values [10, 11, 10, 11, 10, 11, 9, 10, 10] , Size Values [38, 38, 38, 38, 38, 38, 60, 38, 38]
+4
+Com Values [10, 11, 10, 11, 10, 11, 9, 10, 10, 10] , Size Values [38, 38, 38, 38, 38, 38, 60, 38, 38, 38]
+5
+Com Values [9] , Size Values [60]
+5
+Com Values [9, 9] , Size Values [60, 60]
+5
+Com Values [9, 9, 9] , Size Values [60, 60, 60]
+5
+Com Values [9, 9, 9, 9] , Size Values [60, 60, 60, 60]
+5
+Com Values [9, 9, 9, 9, 9] , Size Values [60, 60, 60, 60, 60]
+5
+Com Values [9, 9, 9, 9, 9, 9] , Size Values [60, 60, 60, 60, 60, 60]
+5
+Com Values [9, 9, 9, 9, 9, 9, 9] , Size Values [60, 60, 60, 60, 60, 60, 60]
+5
+Com Values [9, 9, 9, 9, 9, 9, 9, 9] , Size Values [60, 60, 60, 60, 60, 60, 60, 60]
+5
+Com Values [9, 9, 9, 9, 9, 9, 9, 9, 9] , Size Values [60, 60, 60, 60, 60, 60, 60, 60, 60]
+5
+Com Values [9, 9, 9, 9, 9, 9, 9, 9, 9, 9] , Size Values [60, 60, 60, 60, 60, 60, 60, 60, 60, 61]
+6
+Com Values [8] , Size Values [60]
+6
+Com Values [8, 8] , Size Values [60, 60]
+6
+Com Values [8, 8, 7] , Size Values [60, 60, 60]
+6
+Com Values [8, 8, 7, 7] , Size Values [60, 60, 60, 60]
+6
+Com Values [8, 8, 7, 7, 7] , Size Values [60, 60, 60, 60, 60]
+6
+Com Values [8, 8, 7, 7, 7, 8] , Size Values [60, 60, 60, 60, 60, 25]
+6
+Com Values [8, 8, 7, 7, 7, 8, 8] , Size Values [60, 60, 60, 60, 60, 25, 60]
+6
+Com Values [8, 8, 7, 7, 7, 8, 8, 7] , Size Values [60, 60, 60, 60, 60, 25, 60, 60]
+6
+Com Values [8, 8, 7, 7, 7, 8, 8, 7, 7] , Size Values [60, 60, 60, 60, 60, 25, 60, 60, 60]
+6
+Com Values [8, 8, 7, 7, 7, 8, 8, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 25, 60, 60, 60, 59]
+7
+Com Values [7] , Size Values [61]
+7
+Com Values [7, 8] , Size Values [61, 25]
+7
+Com Values [7, 8, 7] , Size Values [61, 25, 60]
+7
+Com Values [7, 8, 7, 7] , Size Values [61, 25, 60, 60]
+7
+Com Values [7, 8, 7, 7, 7] , Size Values [61, 25, 60, 60, 60]
+7
+Com Values [7, 8, 7, 7, 7, 7] , Size Values [61, 25, 60, 60, 60, 59]
+7
+Com Values [7, 8, 7, 7, 7, 7, 7] , Size Values [61, 25, 60, 60, 60, 59, 60]
+7
+Com Values [7, 8, 7, 7, 7, 7, 7, 7] , Size Values [61, 25, 60, 60, 60, 59, 60, 60]
+7
+Com Values [7, 8, 7, 7, 7, 7, 7, 7, 8] , Size Values [61, 25, 60, 60, 60, 59, 60, 60, 25]
+7
+Com Values [7, 8, 7, 7, 7, 7, 7, 7, 8, 7] , Size Values [61, 25, 60, 60, 60, 59, 60, 60, 25, 60]
+8
+Com Values [7] , Size Values [60]
+8
+Com Values [7, 7] , Size Values [60, 60]
+8
+Com Values [7, 7, 7] , Size Values [60, 60, 60]
+8
+Com Values [7, 7, 7, 7] , Size Values [60, 60, 60, 60]
+8
+Com Values [7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 61]
+8
+Com Values [7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 61, 60]
+8
+Com Values [7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 61, 60, 60]
+8
+Com Values [7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 61, 60, 60, 60]
+8
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 61, 60, 60, 60, 60]
+8
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 61, 60, 60, 60, 60, 60]
+9
+Com Values [7] , Size Values [61]
+9
+Com Values [7, 7] , Size Values [61, 60]
+9
+Com Values [7, 7, 7] , Size Values [61, 60, 60]
+9
+Com Values [7, 7, 7, 7] , Size Values [61, 60, 60, 60]
+9
+Com Values [7, 7, 7, 7, 7] , Size Values [61, 60, 60, 60, 60]
+9
+Com Values [7, 7, 7, 7, 7, 7] , Size Values [61, 60, 60, 60, 60, 60]
+9
+Com Values [7, 7, 7, 7, 7, 7, 6] , Size Values [61, 60, 60, 60, 60, 60, 206]
+9
+Com Values [7, 7, 7, 7, 7, 7, 6, 7] , Size Values [61, 60, 60, 60, 60, 60, 206, 60]
+9
+Com Values [7, 7, 7, 7, 7, 7, 6, 7, 7] , Size Values [61, 60, 60, 60, 60, 60, 206, 60, 60]
+9
+Com Values [7, 7, 7, 7, 7, 7, 6, 7, 7, 6] , Size Values [61, 60, 60, 60, 60, 60, 206, 60, 60, 206]
+10
+Com Values [7] , Size Values [61]
+10
+Com Values [7, 7] , Size Values [61, 60]
+10
+Com Values [7, 7, 7] , Size Values [61, 60, 60]
+10
+Com Values [7, 7, 7, 7] , Size Values [61, 60, 60, 60]
+10
+Com Values [7, 7, 7, 7, 6] , Size Values [61, 60, 60, 60, 206]
+10
+Com Values [7, 7, 7, 7, 6, 7] , Size Values [61, 60, 60, 60, 206, 60]
+10
+Com Values [7, 7, 7, 7, 6, 7, 7] , Size Values [61, 60, 60, 60, 206, 60, 60]
+10
+Com Values [7, 7, 7, 7, 6, 7, 7, 7] , Size Values [61, 60, 60, 60, 206, 60, 60, 60]
+10
+Com Values [7, 7, 7, 7, 6, 7, 7, 7, 7] , Size Values [61, 60, 60, 60, 206, 60, 60, 60, 60]
+10
+Com Values [7, 7, 7, 7, 6, 7, 7, 7, 7, 7] , Size Values [61, 60, 60, 60, 206, 60, 60, 60, 60, 60]
+11
+Com Values [7] , Size Values [60]
+11
+Com Values [7, 7] , Size Values [60, 61]
+11
+Com Values [7, 7, 7] , Size Values [60, 61, 60]
+11
+Com Values [7, 7, 7, 7] , Size Values [60, 61, 60, 60]
+11
+Com Values [7, 7, 7, 7, 7] , Size Values [60, 61, 60, 60, 61]
+11
+Com Values [7, 7, 7, 7, 7, 7] , Size Values [60, 61, 60, 60, 61, 60]
+11
+Com Values [7, 7, 7, 7, 7, 7, 7] , Size Values [60, 61, 60, 60, 61, 60, 60]
+11
+Com Values [7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 61, 60, 60, 61, 60, 60, 60]
+11
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 61, 60, 60, 61, 60, 60, 60, 60]
+11
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 61, 60, 60, 61, 60, 60, 60, 60, 61]
+12
+Com Values [7] , Size Values [60]
+12
+Com Values [7, 7] , Size Values [60, 61]
+12
+Com Values [7, 7, 6] , Size Values [60, 61, 206]
+12
+Com Values [7, 7, 6, 7] , Size Values [60, 61, 206, 60]
+12
+Com Values [7, 7, 6, 7, 7] , Size Values [60, 61, 206, 60, 61]
+12
+Com Values [7, 7, 6, 7, 7, 7] , Size Values [60, 61, 206, 60, 61, 60]
+12
+Com Values [7, 7, 6, 7, 7, 7, 7] , Size Values [60, 61, 206, 60, 61, 60, 59]
+12
+Com Values [7, 7, 6, 7, 7, 7, 7, 7] , Size Values [60, 61, 206, 60, 61, 60, 59, 60]
+12
+Com Values [7, 7, 6, 7, 7, 7, 7, 7, 7] , Size Values [60, 61, 206, 60, 61, 60, 59, 60, 60]
+12
+Com Values [7, 7, 6, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 61, 206, 60, 61, 60, 59, 60, 60, 60]
+13
+Com Values [7] , Size Values [60]
+13
+Com Values [7, 7] , Size Values [60, 60]
+13
+Com Values [7, 7, 7] , Size Values [60, 60, 60]
+13
+Com Values [7, 7, 7, 7] , Size Values [60, 60, 60, 60]
+13
+Com Values [7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60]
+13
+Com Values [7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 61]
+13
+Com Values [7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 61, 60]
+13
+Com Values [7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 61, 60, 60]
+13
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 61, 60, 60, 60]
+13
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 61, 60, 60, 60, 60]
+14
+Com Values [7] , Size Values [60]
+14
+Com Values [7, 7] , Size Values [60, 60]
+14
+Com Values [7, 7, 7] , Size Values [60, 60, 60]
+14
+Com Values [7, 7, 7, 7] , Size Values [60, 60, 60, 60]
+14
+Com Values [7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60]
+14
+Com Values [7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60]
+14
+Com Values [7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60]
+14
+Com Values [7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60, 60]
+14
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60, 60, 60]
+14
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
+15
+Com Values [6] , Size Values [206]
+15
+Com Values [6, 7] , Size Values [206, 60]
+15
+Com Values [6, 7, 7] , Size Values [206, 60, 60]
+15
+Com Values [6, 7, 7, 7] , Size Values [206, 60, 60, 60]
+15
+Com Values [6, 7, 7, 7, 7] , Size Values [206, 60, 60, 60, 59]
+15
+Com Values [6, 7, 7, 7, 7, 7] , Size Values [206, 60, 60, 60, 59, 60]
+15
+Com Values [6, 7, 7, 7, 7, 7, 7] , Size Values [206, 60, 60, 60, 59, 60, 60]
+15
+Com Values [6, 7, 7, 7, 7, 7, 7, 7] , Size Values [206, 60, 60, 60, 59, 60, 60, 60]
+15
+Com Values [6, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [206, 60, 60, 60, 59, 60, 60, 60, 59]
+15
+Com Values [6, 7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [206, 60, 60, 60, 59, 60, 60, 60, 59, 60]
+16
+Com Values [7] , Size Values [60]
+16
+Com Values [7, 7] , Size Values [60, 60]
+16
+Com Values [7, 7, 7] , Size Values [60, 60, 60]
+16
+Com Values [7, 7, 7, 7] , Size Values [60, 60, 60, 60]
+16
+Com Values [7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60]
+16
+Com Values [7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60]
+16
+Com Values [7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60]
+16
+Com Values [7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60, 60]
+16
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60, 60, 61]
+16
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60, 60, 61, 60]
+17
+Com Values [6] , Size Values [206]
+17
+Com Values [6, 7] , Size Values [206, 60]
+17
+Com Values [6, 7, 7] , Size Values [206, 60, 61]
+17
+Com Values [6, 7, 7, 7] , Size Values [206, 60, 61, 60]
+17
+Com Values [6, 7, 7, 7, 7] , Size Values [206, 60, 61, 60, 59]
+17
+Com Values [6, 7, 7, 7, 7, 7] , Size Values [206, 60, 61, 60, 59, 60]
+17
+Com Values [6, 7, 7, 7, 7, 7, 7] , Size Values [206, 60, 61, 60, 59, 60, 60]
+17
+Com Values [6, 7, 7, 7, 7, 7, 7, 7] , Size Values [206, 60, 61, 60, 59, 60, 60, 59]
+17
+Com Values [6, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [206, 60, 61, 60, 59, 60, 60, 59, 60]
+17
+Com Values [6, 7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [206, 60, 61, 60, 59, 60, 60, 59, 60, 61]
+18
+Com Values [7] , Size Values [60]
+18
+Com Values [7, 7] , Size Values [60, 60]
+18
+Com Values [7, 7, 7] , Size Values [60, 60, 60]
+18
+Com Values [7, 7, 7, 7] , Size Values [60, 60, 60, 61]
+18
+Com Values [7, 7, 7, 7, 7] , Size Values [60, 60, 60, 61, 61]
+18
+Com Values [7, 7, 7, 7, 7, 6] , Size Values [60, 60, 60, 61, 61, 206]
+18
+Com Values [7, 7, 7, 7, 7, 6, 6] , Size Values [60, 60, 60, 61, 61, 206, 206]
+18
+Com Values [7, 7, 7, 7, 7, 6, 6, 7] , Size Values [60, 60, 60, 61, 61, 206, 206, 60]
+18
+Com Values [7, 7, 7, 7, 7, 6, 6, 7, 7] , Size Values [60, 60, 60, 61, 61, 206, 206, 60, 60]
+18
+Com Values [7, 7, 7, 7, 7, 6, 6, 7, 7, 7] , Size Values [60, 60, 60, 61, 61, 206, 206, 60, 60, 59]
+19
+Com Values [7] , Size Values [60]
+19
+Com Values [7, 7] , Size Values [60, 60]
+19
+Com Values [7, 7, 7] , Size Values [60, 60, 61]
+19
+Com Values [7, 7, 7, 7] , Size Values [60, 60, 61, 60]
+19
+Com Values [7, 7, 7, 7, 7] , Size Values [60, 60, 61, 60, 60]
+19
+Com Values [7, 7, 7, 7, 7, 7] , Size Values [60, 60, 61, 60, 60, 60]
+19
+Com Values [7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 61, 60, 60, 60, 60]
+19
+Com Values [7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 61, 60, 60, 60, 60, 60]
+19
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 61, 60, 60, 60, 60, 60, 60]
+19
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 61, 60, 60, 60, 60, 60, 60, 60]
+20
+Com Values [7] , Size Values [60]
+20
+Com Values [7, 7] , Size Values [60, 60]
+20
+Com Values [7, 7, 7] , Size Values [60, 60, 60]
+20
+Com Values [7, 7, 7, 7] , Size Values [60, 60, 60, 60]
+20
+Com Values [7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 59]
+20
+Com Values [7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 59, 60]
+20
+Com Values [7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 59, 60, 60]
+20
+Com Values [7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 59, 60, 60, 60]
+20
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 59, 60, 60, 60, 60]
+20
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 59, 60, 60, 60, 60, 60]
+21
+Com Values [7] , Size Values [60]
+21
+Com Values [7, 6] , Size Values [60, 60]
+21
+Com Values [7, 6, 7] , Size Values [60, 60, 60]
+21
+Com Values [7, 6, 7, 7] , Size Values [60, 60, 60, 60]
+21
+Com Values [7, 6, 7, 7, 7] , Size Values [60, 60, 60, 60, 60]
+21
+Com Values [7, 6, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 61]
+21
+Com Values [7, 6, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 61, 60]
+21
+Com Values [7, 6, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 61, 60, 60]
+21
+Com Values [7, 6, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 61, 60, 60, 60]
+21
+Com Values [7, 6, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 61, 60, 60, 60, 59]
+22
+Com Values [7] , Size Values [60]
+22
+Com Values [7, 7] , Size Values [60, 59]
+22
+Com Values [7, 7, 7] , Size Values [60, 59, 60]
+22
+Com Values [7, 7, 7, 7] , Size Values [60, 59, 60, 60]
+22
+Com Values [7, 7, 7, 7, 7] , Size Values [60, 59, 60, 60, 60]
+22
+Com Values [7, 7, 7, 7, 7, 7] , Size Values [60, 59, 60, 60, 60, 59]
+22
+Com Values [7, 7, 7, 7, 7, 7, 7] , Size Values [60, 59, 60, 60, 60, 59, 60]
+22
+Com Values [7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 59, 60, 60, 60, 59, 60, 60]
+22
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 6] , Size Values [60, 59, 60, 60, 60, 59, 60, 60, 60]
+22
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 6, 7] , Size Values [60, 59, 60, 60, 60, 59, 60, 60, 60, 60]
+23
+Com Values [7] , Size Values [59]
+23
+Com Values [7, 7] , Size Values [59, 61]
+23
+Com Values [7, 7, 7] , Size Values [59, 61, 60]
+23
+Com Values [7, 7, 7, 7] , Size Values [59, 61, 60, 60]
+23
+Com Values [7, 7, 7, 7, 7] , Size Values [59, 61, 60, 60, 60]
+23
+Com Values [7, 7, 7, 7, 7, 7] , Size Values [59, 61, 60, 60, 60, 60]
+23
+Com Values [7, 7, 7, 7, 7, 7, 7] , Size Values [59, 61, 60, 60, 60, 60, 60]
+23
+Com Values [7, 7, 7, 7, 7, 7, 7, 7] , Size Values [59, 61, 60, 60, 60, 60, 60, 60]
+23
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [59, 61, 60, 60, 60, 60, 60, 60, 59]
+23
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [59, 61, 60, 60, 60, 60, 60, 60, 59, 60]
+24
+Com Values [7] , Size Values [60]
+24
+Com Values [7, 7] , Size Values [60, 59]
+24
+Com Values [7, 7, 7] , Size Values [60, 59, 59]
+24
+Com Values [7, 7, 7, 7] , Size Values [60, 59, 59, 60]
+24
+Com Values [7, 7, 7, 7, 7] , Size Values [60, 59, 59, 60, 61]
+24
+Com Values [7, 7, 7, 7, 7, 7] , Size Values [60, 59, 59, 60, 61, 60]
+24
+Com Values [7, 7, 7, 7, 7, 7, 7] , Size Values [60, 59, 59, 60, 61, 60, 60]
+24
+Com Values [7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 59, 59, 60, 61, 60, 60, 60]
+24
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 59, 59, 60, 61, 60, 60, 60, 60]
+24
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7, 6] , Size Values [60, 59, 59, 60, 61, 60, 60, 60, 60, 206]
+25
+Com Values [7] , Size Values [60]
+25
+Com Values [7, 7] , Size Values [60, 60]
+25
+Com Values [7, 7, 7] , Size Values [60, 60, 60]
+25
+Com Values [7, 7, 7, 7] , Size Values [60, 60, 60, 60]
+25
+Com Values [7, 7, 7, 7, 6] , Size Values [60, 60, 60, 60, 206]
+25
+Com Values [7, 7, 7, 7, 6, 7] , Size Values [60, 60, 60, 60, 206, 60]
+25
+Com Values [7, 7, 7, 7, 6, 7, 7] , Size Values [60, 60, 60, 60, 206, 60, 60]
+25
+Com Values [7, 7, 7, 7, 6, 7, 7, 6] , Size Values [60, 60, 60, 60, 206, 60, 60, 206]
+25
+Com Values [7, 7, 7, 7, 6, 7, 7, 6, 7] , Size Values [60, 60, 60, 60, 206, 60, 60, 206, 60]
+25
+Com Values [7, 7, 7, 7, 6, 7, 7, 6, 7, 6] , Size Values [60, 60, 60, 60, 206, 60, 60, 206, 60, 60]
+26
+Com Values [7] , Size Values [60]
+26
+Com Values [7, 7] , Size Values [60, 60]
+26
+Com Values [7, 7, 7] , Size Values [60, 60, 60]
+26
+Com Values [7, 7, 7, 7] , Size Values [60, 60, 60, 60]
+26
+Com Values [7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60]
+26
+Com Values [7, 7, 7, 7, 7, 6] , Size Values [60, 60, 60, 60, 60, 60]
+26
+Com Values [7, 7, 7, 7, 7, 6, 7] , Size Values [60, 60, 60, 60, 60, 60, 60]
+26
+Com Values [7, 7, 7, 7, 7, 6, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60, 60]
+26
+Com Values [7, 7, 7, 7, 7, 6, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60, 60, 61]
+26
+Com Values [7, 7, 7, 7, 7, 6, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60, 60, 61, 60]
+27
+Com Values [7] , Size Values [60]
+27
+Com Values [7, 7] , Size Values [60, 61]
+27
+Com Values [7, 7, 7] , Size Values [60, 61, 61]
+27
+Com Values [7, 7, 7, 7] , Size Values [60, 61, 61, 60]
+27
+Com Values [7, 7, 7, 7, 7] , Size Values [60, 61, 61, 60, 60]
+27
+Com Values [7, 7, 7, 7, 7, 7] , Size Values [60, 61, 61, 60, 60, 60]
+27
+Com Values [7, 7, 7, 7, 7, 7, 6] , Size Values [60, 61, 61, 60, 60, 60, 206]
+27
+Com Values [7, 7, 7, 7, 7, 7, 6, 6] , Size Values [60, 61, 61, 60, 60, 60, 206, 206]
+27
+Com Values [7, 7, 7, 7, 7, 7, 6, 6, 7] , Size Values [60, 61, 61, 60, 60, 60, 206, 206, 60]
+27
+Com Values [7, 7, 7, 7, 7, 7, 6, 6, 7, 7] , Size Values [60, 61, 61, 60, 60, 60, 206, 206, 60, 59]
+28
+Com Values [7] , Size Values [60]
+28
+Com Values [7, 7] , Size Values [60, 60]
+28
+Com Values [7, 7, 7] , Size Values [60, 60, 60]
+28
+Com Values [7, 7, 7, 6] , Size Values [60, 60, 60, 206]
+28
+Com Values [7, 7, 7, 6, 7] , Size Values [60, 60, 60, 206, 60]
+28
+Com Values [7, 7, 7, 6, 7, 7] , Size Values [60, 60, 60, 206, 60, 60]
+28
+Com Values [7, 7, 7, 6, 7, 7, 7] , Size Values [60, 60, 60, 206, 60, 60, 60]
+28
+Com Values [7, 7, 7, 6, 7, 7, 7, 7] , Size Values [60, 60, 60, 206, 60, 60, 60, 60]
+28
+Com Values [7, 7, 7, 6, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 206, 60, 60, 60, 60, 60]
+28
+Com Values [7, 7, 7, 6, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 206, 60, 60, 60, 60, 60, 60]
+29
+Com Values [7] , Size Values [60]
+29
+Com Values [7, 7] , Size Values [60, 60]
+29
+Com Values [7, 7, 6] , Size Values [60, 60, 60]
+29
+Com Values [7, 7, 6, 7] , Size Values [60, 60, 60, 60]
+29
+Com Values [7, 7, 6, 7, 7] , Size Values [60, 60, 60, 60, 60]
+29
+Com Values [7, 7, 6, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 59]
+29
+Com Values [7, 7, 6, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 59, 60]
+29
+Com Values [7, 7, 6, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 59, 60, 61]
+29
+Com Values [7, 7, 6, 7, 7, 7, 7, 7, 6] , Size Values [60, 60, 60, 60, 60, 59, 60, 61, 206]
+29
+Com Values [7, 7, 6, 7, 7, 7, 7, 7, 6, 7] , Size Values [60, 60, 60, 60, 60, 59, 60, 61, 206, 60]
+30
+Com Values [7] , Size Values [60]
+30
+Com Values [7, 7] , Size Values [60, 60]
+30
+Com Values [7, 7, 7] , Size Values [60, 60, 60]
+30
+Com Values [7, 7, 7, 7] , Size Values [60, 60, 60, 60]
+30
+Com Values [7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60]
+30
+Com Values [7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60]
+30
+Com Values [7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60]
+30
+Com Values [7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60, 60]
+30
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60, 60, 60]
+30
+Com Values [7, 7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
+31
+Com Values [6] , Size Values [60]
+31
+Com Values [6, 7] , Size Values [60, 60]
+31
+Com Values [6, 7, 7] , Size Values [60, 60, 60]
+31
+Com Values [6, 7, 7, 7] , Size Values [60, 60, 60, 60]
+31
+Com Values [6, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60]
+31
+Com Values [6, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60]
+31
+Com Values [6, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60]
+31
+Com Values [6, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60, 59]
+31
+Com Values [6, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60, 59, 60]
+31
+Com Values [6, 7, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [60, 60, 60, 60, 60, 60, 60, 59, 60, 60]
+32
+Com Values [7] , Size Values [60]
+32
+Com Values [7, 7] , Size Values [60, 60]
+32
+Com Values [7, 7, 6] , Size Values [60, 60, 206]
+32
+Com Values [7, 7, 6, 7] , Size Values [60, 60, 206, 60]
+32
+Com Values [7, 7, 6, 7, 7] , Size Values [60, 60, 206, 60, 60]
+32
+Com Values [7, 7, 6, 7, 7, 6] , Size Values [60, 60, 206, 60, 60, 206]
+32
+Com Values [7, 7, 6, 7, 7, 6, 7] , Size Values [60, 60, 206, 60, 60, 206, 60]
+32
+Com Values [7, 7, 6, 7, 7, 6, 7, 5] , Size Values [60, 60, 206, 60, 60, 206, 60, 341]
+32
+Com Values [7, 7, 6, 7, 7, 6, 7, 5, 7] , Size Values [60, 60, 206, 60, 60, 206, 60, 341, 60]
+32
+Com Values [7, 7, 6, 7, 7, 6, 7, 5, 7, 7] , Size Values [60, 60, 206, 60, 60, 206, 60, 341, 60, 60]
+33
+Com Values [6] , Size Values [206]
+33
+Com Values [6, 7] , Size Values [206, 60]
+33
+Com Values [6, 7, 6] , Size Values [206, 60, 206]
+33
+Com Values [6, 7, 6, 7] , Size Values [206, 60, 206, 60]
+33
+Com Values [6, 7, 6, 7, 7] , Size Values [206, 60, 206, 60, 60]
+33
+Com Values [6, 7, 6, 7, 7, 7] , Size Values [206, 60, 206, 60, 60, 60]
+33
+Com Values [6, 7, 6, 7, 7, 7, 6] , Size Values [206, 60, 206, 60, 60, 60, 206]
+33
+Com Values [6, 7, 6, 7, 7, 7, 6, 6] , Size Values [206, 60, 206, 60, 60, 60, 206, 206]
+33
+Com Values [6, 7, 6, 7, 7, 7, 6, 6, 7] , Size Values [206, 60, 206, 60, 60, 60, 206, 206, 60]
+33
+Com Values [6, 7, 6, 7, 7, 7, 6, 6, 7, 7] , Size Values [206, 60, 206, 60, 60, 60, 206, 206, 60, 60]
+34
+Com Values [7] , Size Values [60]
+34
+Com Values [7, 7] , Size Values [60, 60]
+34
+Com Values [7, 7, 6] , Size Values [60, 60, 206]
+34
+Com Values [7, 7, 6, 7] , Size Values [60, 60, 206, 60]
+34
+Com Values [7, 7, 6, 7, 7] , Size Values [60, 60, 206, 60, 60]
+34
+Com Values [7, 7, 6, 7, 7, 7] , Size Values [60, 60, 206, 60, 60, 60]
+34
+Com Values [7, 7, 6, 7, 7, 7, 6] , Size Values [60, 60, 206, 60, 60, 60, 206]
+34
+Com Values [7, 7, 6, 7, 7, 7, 6, 7] , Size Values [60, 60, 206, 60, 60, 60, 206, 60]
+34
+Com Values [7, 7, 6, 7, 7, 7, 6, 7, 7] , Size Values [60, 60, 206, 60, 60, 60, 206, 60, 60]
+34
+Com Values [7, 7, 6, 7, 7, 7, 6, 7, 7, 7] , Size Values [60, 60, 206, 60, 60, 60, 206, 60, 60, 60]
+35
+Com Values [6] , Size Values [206]
+35
+Com Values [6, 7] , Size Values [206, 60]
+35
+Com Values [6, 7, 7] , Size Values [206, 60, 60]
+35
+Com Values [6, 7, 7, 7] , Size Values [206, 60, 60, 60]
+35
+Com Values [6, 7, 7, 7, 7] , Size Values [206, 60, 60, 60, 60]
+35
+Com Values [6, 7, 7, 7, 7, 7] , Size Values [206, 60, 60, 60, 60, 60]
+35
+Com Values [6, 7, 7, 7, 7, 7, 7] , Size Values [206, 60, 60, 60, 60, 60, 60]
+35
+Com Values [6, 7, 7, 7, 7, 7, 7, 7] , Size Values [206, 60, 60, 60, 60, 60, 60, 60]
+35
+Com Values [6, 7, 7, 7, 7, 7, 7, 7, 7] , Size Values [206, 60, 60, 60, 60, 60, 60, 60, 60]
+35
+Com Values [6, 7, 7, 7, 7, 7, 7, 7, 7, 6] , Size Values [206, 60, 60, 60, 60, 60, 60, 60, 60, 206]
+36
+Com Values [6] , Size Values [206]
+36
+Com Values [6, 6] , Size Values [206, 206]
+36
+Com Values [6, 6, 7] , Size Values [206, 206, 60]
+36
+Com Values [6, 6, 7, 6] , Size Values [206, 206, 60, 206]
+36
+Com Values [6, 6, 7, 6, 6] , Size Values [206, 206, 60, 206, 206]
+36
+Com Values [6, 6, 7, 6, 6, 6] , Size Values [206, 206, 60, 206, 206, 206]
+36
+Com Values [6, 6, 7, 6, 6, 6, 7] , Size Values [206, 206, 60, 206, 206, 206, 60]
+36
+Com Values [6, 6, 7, 6, 6, 6, 7, 7] , Size Values [206, 206, 60, 206, 206, 206, 60, 60]
+36
+Com Values [6, 6, 7, 6, 6, 6, 7, 7, 6] , Size Values [206, 206, 60, 206, 206, 206, 60, 60, 206]
+36
+Com Values [6, 6, 7, 6, 6, 6, 7, 7, 6, 7] , Size Values [206, 206, 60, 206, 206, 206, 60, 60, 206, 60]
+37
+Com Values [6] , Size Values [206]
+37
+Com Values [6, 7] , Size Values [206, 60]
+37
+Com Values [6, 7, 7] , Size Values [206, 60, 60]
+37
+Com Values [6, 7, 7, 6] , Size Values [206, 60, 60, 206]
+37
+Com Values [6, 7, 7, 6, 7] , Size Values [206, 60, 60, 206, 60]
+37
+Com Values [6, 7, 7, 6, 7, 6] , Size Values [206, 60, 60, 206, 60, 206]
+37
+Com Values [6, 7, 7, 6, 7, 6, 7] , Size Values [206, 60, 60, 206, 60, 206, 60]
+37
+Com Values [6, 7, 7, 6, 7, 6, 7, 7] , Size Values [206, 60, 60, 206, 60, 206, 60, 60]
+37
+Com Values [6, 7, 7, 6, 7, 6, 7, 7, 7] , Size Values [206, 60, 60, 206, 60, 206, 60, 60, 60]
+37
+Com Values [6, 7, 7, 6, 7, 6, 7, 7, 7, 7] , Size Values [206, 60, 60, 206, 60, 206, 60, 60, 60, 60]
+38
+Com Values [6] , Size Values [206]
+38
+Com Values [6, 6] , Size Values [206, 206]
+38
+Com Values [6, 6, 6] , Size Values [206, 206, 206]
+38
+Com Values [6, 6, 6, 6] , Size Values [206, 206, 206, 206]
+38
+Com Values [6, 6, 6, 6, 6] , Size Values [206, 206, 206, 206, 206]
+38
+Com Values [6, 6, 6, 6, 6, 6] , Size Values [206, 206, 206, 206, 206, 206]
+38
+Com Values [6, 6, 6, 6, 6, 6, 6] , Size Values [206, 206, 206, 206, 206, 206, 206]
+38
+Com Values [6, 6, 6, 6, 6, 6, 6, 6] , Size Values [206, 206, 206, 206, 206, 206, 206, 206]
+38
+Com Values [6, 6, 6, 6, 6, 6, 6, 6, 6] , Size Values [206, 206, 206, 206, 206, 206, 206, 206, 206]
+38
+Com Values [6, 6, 6, 6, 6, 6, 6, 6, 6, 6] , Size Values [206, 206, 206, 206, 206, 206, 206, 206, 206, 206]
+39
+Com Values [6] , Size Values [206]
+39
+Com Values [6, 6] , Size Values [206, 206]
+39
+Com Values [6, 6, 5] , Size Values [206, 206, 341]
+39
+Com Values [6, 6, 5, 6] , Size Values [206, 206, 341, 206]
+39
+Com Values [6, 6, 5, 6, 6] , Size Values [206, 206, 341, 206, 206]
+39
+Com Values [6, 6, 5, 6, 6, 6] , Size Values [206, 206, 341, 206, 206, 206]
+39
+Com Values [6, 6, 5, 6, 6, 6, 6] , Size Values [206, 206, 341, 206, 206, 206, 206]
+39
+Com Values [6, 6, 5, 6, 6, 6, 6, 5] , Size Values [206, 206, 341, 206, 206, 206, 206, 341]
+39
+Com Values [6, 6, 5, 6, 6, 6, 6, 5, 6] , Size Values [206, 206, 341, 206, 206, 206, 206, 341, 206]
+39
+Com Values [6, 6, 5, 6, 6, 6, 6, 5, 6, 6] , Size Values [206, 206, 341, 206, 206, 206, 206, 341, 206, 206]
+40
+Com Values [6] , Size Values [206]
+40
+Com Values [6, 6] , Size Values [206, 206]
+40
+Com Values [6, 6, 6] , Size Values [206, 206, 206]
+40
+Com Values [6, 6, 6, 6] , Size Values [206, 206, 206, 206]
+40
+Com Values [6, 6, 6, 6, 6] , Size Values [206, 206, 206, 206, 206]
+40
+Com Values [6, 6, 6, 6, 6, 6] , Size Values [206, 206, 206, 206, 206, 206]
+40
+Com Values [6, 6, 6, 6, 6, 6, 6] , Size Values [206, 206, 206, 206, 206, 206, 206]
+40
+Com Values [6, 6, 6, 6, 6, 6, 6, 6] , Size Values [206, 206, 206, 206, 206, 206, 206, 206]
+40
+Com Values [6, 6, 6, 6, 6, 6, 6, 6, 6] , Size Values [206, 206, 206, 206, 206, 206, 206, 206, 206]
+40
+Com Values [6, 6, 6, 6, 6, 6, 6, 6, 6, 6] , Size Values [206, 206, 206, 206, 206, 206, 206, 206, 206, 206]
+41
+Com Values [5] , Size Values [341]
+41
+Com Values [5, 5] , Size Values [341, 341]
+41
+Com Values [5, 5, 5] , Size Values [341, 341, 341]
+41
+Com Values [5, 5, 5, 5] , Size Values [341, 341, 341, 350]
+41
+Com Values [5, 5, 5, 5, 5] , Size Values [341, 341, 341, 350, 344]
+41
+Com Values [5, 5, 5, 5, 5, 5] , Size Values [341, 341, 341, 350, 344, 341]
+41
+Com Values [5, 5, 5, 5, 5, 5, 5] , Size Values [341, 341, 341, 350, 344, 341, 350]
+41
+Com Values [5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 341, 341, 350, 344, 341, 350, 350]
+41
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 341, 341, 350, 344, 341, 350, 350, 341]
+41
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 341, 341, 350, 344, 341, 350, 350, 341, 341]
+42
+Com Values [5] , Size Values [352]
+42
+Com Values [5, 5] , Size Values [352, 344]
+42
+Com Values [5, 5, 5] , Size Values [352, 344, 341]
+42
+Com Values [5, 5, 5, 5] , Size Values [352, 344, 341, 341]
+42
+Com Values [5, 5, 5, 5, 5] , Size Values [352, 344, 341, 341, 350]
+42
+Com Values [5, 5, 5, 5, 5, 5] , Size Values [352, 344, 341, 341, 350, 341]
+42
+Com Values [5, 5, 5, 5, 5, 5, 5] , Size Values [352, 344, 341, 341, 350, 341, 341]
+42
+Com Values [5, 5, 5, 5, 5, 5, 5, 5] , Size Values [352, 344, 341, 341, 350, 341, 341, 350]
+42
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [352, 344, 341, 341, 350, 341, 341, 350, 350]
+42
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [352, 344, 341, 341, 350, 341, 341, 350, 350, 350]
+43
+Com Values [5] , Size Values [341]
+43
+Com Values [5, 5] , Size Values [341, 350]
+43
+Com Values [5, 5, 5] , Size Values [341, 350, 350]
+43
+Com Values [5, 5, 5, 5] , Size Values [341, 350, 350, 344]
+43
+Com Values [5, 5, 5, 5, 5] , Size Values [341, 350, 350, 344, 341]
+43
+Com Values [5, 5, 5, 5, 5, 5] , Size Values [341, 350, 350, 344, 341, 341]
+43
+Com Values [5, 5, 5, 5, 5, 5, 5] , Size Values [341, 350, 350, 344, 341, 341, 341]
+43
+Com Values [5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 350, 350, 344, 341, 341, 341, 341]
+43
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 350, 350, 344, 341, 341, 341, 341, 341]
+43
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 350, 350, 344, 341, 341, 341, 341, 341, 350]
+44
+Com Values [5] , Size Values [350]
+44
+Com Values [5, 5] , Size Values [350, 350]
+44
+Com Values [5, 5, 5] , Size Values [350, 350, 341]
+44
+Com Values [5, 5, 5, 5] , Size Values [350, 350, 341, 341]
+44
+Com Values [5, 5, 5, 5, 5] , Size Values [350, 350, 341, 341, 351]
+44
+Com Values [5, 5, 5, 5, 5, 5] , Size Values [350, 350, 341, 341, 351, 341]
+44
+Com Values [5, 5, 5, 5, 5, 5, 5] , Size Values [350, 350, 341, 341, 351, 341, 341]
+44
+Com Values [5, 5, 5, 5, 5, 5, 5, 5] , Size Values [350, 350, 341, 341, 351, 341, 341, 341]
+44
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [350, 350, 341, 341, 351, 341, 341, 341, 341]
+44
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [350, 350, 341, 341, 351, 341, 341, 341, 341, 350]
+45
+Com Values [5] , Size Values [350]
+45
+Com Values [5, 5] , Size Values [350, 341]
+45
+Com Values [5, 5, 5] , Size Values [350, 341, 341]
+45
+Com Values [5, 5, 5, 5] , Size Values [350, 341, 341, 341]
+45
+Com Values [5, 5, 5, 5, 5] , Size Values [350, 341, 341, 341, 350]
+45
+Com Values [5, 5, 5, 5, 5, 5] , Size Values [350, 341, 341, 341, 350, 350]
+45
+Com Values [5, 5, 5, 5, 5, 5, 5] , Size Values [350, 341, 341, 341, 350, 350, 341]
+45
+Com Values [5, 5, 5, 5, 5, 5, 5, 5] , Size Values [350, 341, 341, 341, 350, 350, 341, 341]
+45
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [350, 341, 341, 341, 350, 350, 341, 341, 350]
+45
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [350, 341, 341, 341, 350, 350, 341, 341, 350, 350]
+46
+Com Values [5] , Size Values [341]
+46
+Com Values [5, 5] , Size Values [341, 341]
+46
+Com Values [5, 5, 5] , Size Values [341, 341, 341]
+46
+Com Values [5, 5, 5, 5] , Size Values [341, 341, 341, 341]
+46
+Com Values [5, 5, 5, 5, 5] , Size Values [341, 341, 341, 341, 341]
+46
+Com Values [5, 5, 5, 5, 5, 5] , Size Values [341, 341, 341, 341, 341, 350]
+46
+Com Values [5, 5, 5, 5, 5, 5, 5] , Size Values [341, 341, 341, 341, 341, 350, 341]
+46
+Com Values [5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 341, 341, 341, 341, 350, 341, 341]
+46
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 341, 341, 341, 341, 350, 341, 341, 350]
+46
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 341, 341, 341, 341, 350, 341, 341, 350, 350]
+47
+Com Values [5] , Size Values [341]
+47
+Com Values [5, 5] , Size Values [341, 341]
+47
+Com Values [5, 5, 5] , Size Values [341, 341, 344]
+47
+Com Values [5, 5, 5, 5] , Size Values [341, 341, 344, 350]
+47
+Com Values [5, 5, 5, 5, 5] , Size Values [341, 341, 344, 350, 350]
+47
+Com Values [5, 5, 5, 5, 5, 5] , Size Values [341, 341, 344, 350, 350, 341]
+47
+Com Values [5, 5, 5, 5, 5, 5, 5] , Size Values [341, 341, 344, 350, 350, 341, 350]
+47
+Com Values [5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 341, 344, 350, 350, 341, 350, 341]
+47
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 341, 344, 350, 350, 341, 350, 341, 350]
+47
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 341, 344, 350, 350, 341, 350, 341, 350, 350]
+48
+Com Values [5] , Size Values [341]
+48
+Com Values [5, 5] , Size Values [341, 344]
+48
+Com Values [5, 5, 5] , Size Values [341, 344, 341]
+48
+Com Values [5, 5, 5, 5] , Size Values [341, 344, 341, 350]
+48
+Com Values [5, 5, 5, 5, 5] , Size Values [341, 344, 341, 350, 341]
+48
+Com Values [5, 5, 5, 5, 5, 5] , Size Values [341, 344, 341, 350, 341, 350]
+48
+Com Values [5, 5, 5, 5, 5, 5, 5] , Size Values [341, 344, 341, 350, 341, 350, 341]
+48
+Com Values [5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 344, 341, 350, 341, 350, 341, 350]
+48
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 344, 341, 350, 341, 350, 341, 350, 341]
+48
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 344, 341, 350, 341, 350, 341, 350, 341, 350]
+49
+Com Values [5] , Size Values [350]
+49
+Com Values [5, 5] , Size Values [350, 344]
+49
+Com Values [5, 5, 5] , Size Values [350, 344, 341]
+49
+Com Values [5, 5, 5, 5] , Size Values [350, 344, 341, 341]
+49
+Com Values [5, 5, 5, 5, 5] , Size Values [350, 344, 341, 341, 344]
+49
+Com Values [5, 5, 5, 5, 5, 5] , Size Values [350, 344, 341, 341, 344, 344]
+49
+Com Values [5, 5, 5, 5, 5, 5, 5] , Size Values [350, 344, 341, 341, 344, 344, 341]
+49
+Com Values [5, 5, 5, 5, 5, 5, 5, 5] , Size Values [350, 344, 341, 341, 344, 344, 341, 350]
+49
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [350, 344, 341, 341, 344, 344, 341, 350, 341]
+49
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5, 4] , Size Values [350, 344, 341, 341, 344, 344, 341, 350, 341, 752]
+50
+Com Values [5] , Size Values [341]
+50
+Com Values [5, 5] , Size Values [341, 341]
+50
+Com Values [5, 5, 5] , Size Values [341, 341, 350]
+50
+Com Values [5, 5, 5, 5] , Size Values [341, 341, 350, 341]
+50
+Com Values [5, 5, 5, 5, 5] , Size Values [341, 341, 350, 341, 344]
+50
+Com Values [5, 5, 5, 5, 5, 5] , Size Values [341, 341, 350, 341, 344, 341]
+50
+Com Values [5, 5, 5, 5, 5, 5, 5] , Size Values [341, 341, 350, 341, 344, 341, 350]
+50
+Com Values [5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 341, 350, 341, 344, 341, 350, 341]
+50
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 341, 350, 341, 344, 341, 350, 341, 341]
+50
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 341, 350, 341, 344, 341, 350, 341, 341, 341]
+51
+Com Values [5] , Size Values [350]
+51
+Com Values [5, 5] , Size Values [350, 350]
+51
+Com Values [5, 5, 5] , Size Values [350, 350, 341]
+51
+Com Values [5, 5, 5, 5] , Size Values [350, 350, 341, 350]
+51
+Com Values [5, 5, 5, 5, 5] , Size Values [350, 350, 341, 350, 350]
+51
+Com Values [5, 5, 5, 5, 5, 5] , Size Values [350, 350, 341, 350, 350, 341]
+51
+Com Values [5, 5, 5, 5, 5, 5, 5] , Size Values [350, 350, 341, 350, 350, 341, 341]
+51
+Com Values [5, 5, 5, 5, 5, 5, 5, 5] , Size Values [350, 350, 341, 350, 350, 341, 341, 350]
+51
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [350, 350, 341, 350, 350, 341, 341, 350, 341]
+51
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [350, 350, 341, 350, 350, 341, 341, 350, 341, 350]
+52
+Com Values [5] , Size Values [341]
+52
+Com Values [5, 5] , Size Values [341, 341]
+52
+Com Values [5, 5, 5] , Size Values [341, 341, 350]
+52
+Com Values [5, 5, 5, 5] , Size Values [341, 341, 350, 341]
+52
+Com Values [5, 5, 5, 5, 5] , Size Values [341, 341, 350, 341, 341]
+52
+Com Values [5, 5, 5, 5, 5, 5] , Size Values [341, 341, 350, 341, 341, 341]
+52
+Com Values [5, 5, 5, 5, 5, 5, 4] , Size Values [341, 341, 350, 341, 341, 341, 752]
+52
+Com Values [5, 5, 5, 5, 5, 5, 4, 5] , Size Values [341, 341, 350, 341, 341, 341, 752, 341]
+52
+Com Values [5, 5, 5, 5, 5, 5, 4, 5, 5] , Size Values [341, 341, 350, 341, 341, 341, 752, 341, 350]
+52
+Com Values [5, 5, 5, 5, 5, 5, 4, 5, 5, 5] , Size Values [341, 341, 350, 341, 341, 341, 752, 341, 350, 350]
+53
+Com Values [5] , Size Values [341]
+53
+Com Values [5, 5] , Size Values [341, 344]
+53
+Com Values [5, 5, 5] , Size Values [341, 344, 341]
+53
+Com Values [5, 5, 5, 5] , Size Values [341, 344, 341, 341]
+53
+Com Values [5, 5, 5, 5, 5] , Size Values [341, 344, 341, 341, 341]
+53
+Com Values [5, 5, 5, 5, 5, 4] , Size Values [341, 344, 341, 341, 341, 341]
+53
+Com Values [5, 5, 5, 5, 5, 4, 5] , Size Values [341, 344, 341, 341, 341, 341, 350]
+53
+Com Values [5, 5, 5, 5, 5, 4, 5, 5] , Size Values [341, 344, 341, 341, 341, 341, 350, 341]
+53
+Com Values [5, 5, 5, 5, 5, 4, 5, 5, 4] , Size Values [341, 344, 341, 341, 341, 341, 350, 341, 752]
+53
+Com Values [5, 5, 5, 5, 5, 4, 5, 5, 4, 5] , Size Values [341, 344, 341, 341, 341, 341, 350, 341, 752, 350]
+54
+Com Values [5] , Size Values [350]
+54
+Com Values [5, 5] , Size Values [350, 350]
+54
+Com Values [5, 5, 5] , Size Values [350, 350, 344]
+54
+Com Values [5, 5, 5, 5] , Size Values [350, 350, 344, 341]
+54
+Com Values [5, 5, 5, 5, 5] , Size Values [350, 350, 344, 341, 341]
+54
+Com Values [5, 5, 5, 5, 5, 5] , Size Values [350, 350, 344, 341, 341, 350]
+54
+Com Values [5, 5, 5, 5, 5, 5, 5] , Size Values [350, 350, 344, 341, 341, 350, 341]
+54
+Com Values [5, 5, 5, 5, 5, 5, 5, 5] , Size Values [350, 350, 344, 341, 341, 350, 341, 344]
+54
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 4] , Size Values [350, 350, 344, 341, 341, 350, 341, 344, 752]
+54
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 4, 5] , Size Values [350, 350, 344, 341, 341, 350, 341, 344, 752, 350]
+55
+Com Values [5] , Size Values [341]
+55
+Com Values [5, 5] , Size Values [341, 350]
+55
+Com Values [5, 5, 5] , Size Values [341, 350, 341]
+55
+Com Values [5, 5, 5, 5] , Size Values [341, 350, 341, 341]
+55
+Com Values [5, 5, 5, 5, 5] , Size Values [341, 350, 341, 341, 341]
+55
+Com Values [5, 5, 5, 5, 5, 5] , Size Values [341, 350, 341, 341, 341, 350]
+55
+Com Values [5, 5, 5, 5, 5, 5, 5] , Size Values [341, 350, 341, 341, 341, 350, 344]
+55
+Com Values [5, 5, 5, 5, 5, 5, 5, 4] , Size Values [341, 350, 341, 341, 341, 350, 344, 754]
+55
+Com Values [5, 5, 5, 5, 5, 5, 5, 4, 5] , Size Values [341, 350, 341, 341, 341, 350, 344, 754, 350]
+55
+Com Values [5, 5, 5, 5, 5, 5, 5, 4, 5, 5] , Size Values [341, 350, 341, 341, 341, 350, 344, 754, 350, 350]
+56
+Com Values [5] , Size Values [350]
+56
+Com Values [5, 5] , Size Values [350, 350]
+56
+Com Values [5, 5, 5] , Size Values [350, 350, 341]
+56
+Com Values [5, 5, 5, 5] , Size Values [350, 350, 341, 350]
+56
+Com Values [5, 5, 5, 5, 5] , Size Values [350, 350, 341, 350, 350]
+56
+Com Values [5, 5, 5, 5, 5, 5] , Size Values [350, 350, 341, 350, 350, 341]
+56
+Com Values [5, 5, 5, 5, 5, 5, 4] , Size Values [350, 350, 341, 350, 350, 341, 752]
+56
+Com Values [5, 5, 5, 5, 5, 5, 4, 5] , Size Values [350, 350, 341, 350, 350, 341, 752, 350]
+56
+Com Values [5, 5, 5, 5, 5, 5, 4, 5, 5] , Size Values [350, 350, 341, 350, 350, 341, 752, 350, 350]
+56
+Com Values [5, 5, 5, 5, 5, 5, 4, 5, 5, 4] , Size Values [350, 350, 341, 350, 350, 341, 752, 350, 350, 341]
+57
+Com Values [5] , Size Values [344]
+57
+Com Values [5, 5] , Size Values [344, 341]
+57
+Com Values [5, 5, 4] , Size Values [344, 341, 752]
+57
+Com Values [5, 5, 4, 5] , Size Values [344, 341, 752, 350]
+57
+Com Values [5, 5, 4, 5, 5] , Size Values [344, 341, 752, 350, 350]
+57
+Com Values [5, 5, 4, 5, 5, 5] , Size Values [344, 341, 752, 350, 350, 341]
+57
+Com Values [5, 5, 4, 5, 5, 5, 5] , Size Values [344, 341, 752, 350, 350, 341, 341]
+57
+Com Values [5, 5, 4, 5, 5, 5, 5, 5] , Size Values [344, 341, 752, 350, 350, 341, 341, 350]
+57
+Com Values [5, 5, 4, 5, 5, 5, 5, 5, 5] , Size Values [344, 341, 752, 350, 350, 341, 341, 350, 350]
+57
+Com Values [5, 5, 4, 5, 5, 5, 5, 5, 5, 5] , Size Values [344, 341, 752, 350, 350, 341, 341, 350, 350, 341]
+58
+Com Values [4] , Size Values [752]
+58
+Com Values [4, 5] , Size Values [752, 344]
+58
+Com Values [4, 5, 5] , Size Values [752, 344, 341]
+58
+Com Values [4, 5, 5, 5] , Size Values [752, 344, 341, 341]
+58
+Com Values [4, 5, 5, 5, 5] , Size Values [752, 344, 341, 341, 341]
+58
+Com Values [4, 5, 5, 5, 5, 4] , Size Values [752, 344, 341, 341, 341, 752]
+58
+Com Values [4, 5, 5, 5, 5, 4, 5] , Size Values [752, 344, 341, 341, 341, 752, 350]
+58
+Com Values [4, 5, 5, 5, 5, 4, 5, 5] , Size Values [752, 344, 341, 341, 341, 752, 350, 350]
+58
+Com Values [4, 5, 5, 5, 5, 4, 5, 5, 5] , Size Values [752, 344, 341, 341, 341, 752, 350, 350, 341]
+58
+Com Values [4, 5, 5, 5, 5, 4, 5, 5, 5, 5] , Size Values [752, 344, 341, 341, 341, 752, 350, 350, 341, 350]
+59
+Com Values [4] , Size Values [341]
+59
+Com Values [4, 5] , Size Values [341, 350]
+59
+Com Values [4, 5, 5] , Size Values [341, 350, 344]
+59
+Com Values [4, 5, 5, 4] , Size Values [341, 350, 344, 752]
+59
+Com Values [4, 5, 5, 4, 4] , Size Values [341, 350, 344, 752, 752]
+59
+Com Values [4, 5, 5, 4, 4, 5] , Size Values [341, 350, 344, 752, 752, 350]
+59
+Com Values [4, 5, 5, 4, 4, 5, 5] , Size Values [341, 350, 344, 752, 752, 350, 350]
+59
+Com Values [4, 5, 5, 4, 4, 5, 5, 5] , Size Values [341, 350, 344, 752, 752, 350, 350, 350]
+59
+Com Values [4, 5, 5, 4, 4, 5, 5, 5, 5] , Size Values [341, 350, 344, 752, 752, 350, 350, 350, 341]
+59
+Com Values [4, 5, 5, 4, 4, 5, 5, 5, 5, 5] , Size Values [341, 350, 344, 752, 752, 350, 350, 350, 341, 350]
+60
+Com Values [5] , Size Values [341]
+60
+Com Values [5, 5] , Size Values [341, 350]
+60
+Com Values [5, 5, 5] , Size Values [341, 350, 341]
+60
+Com Values [5, 5, 5, 4] , Size Values [341, 350, 341, 752]
+60
+Com Values [5, 5, 5, 4, 5] , Size Values [341, 350, 341, 752, 341]
+60
+Com Values [5, 5, 5, 4, 5, 5] , Size Values [341, 350, 341, 752, 341, 350]
+60
+Com Values [5, 5, 5, 4, 5, 5, 5] , Size Values [341, 350, 341, 752, 341, 350, 350]
+60
+Com Values [5, 5, 5, 4, 5, 5, 5, 5] , Size Values [341, 350, 341, 752, 341, 350, 350, 350]
+60
+Com Values [5, 5, 5, 4, 5, 5, 5, 5, 5] , Size Values [341, 350, 341, 752, 341, 350, 350, 350, 341]
+60
+Com Values [5, 5, 5, 4, 5, 5, 5, 5, 5, 5] , Size Values [341, 350, 341, 752, 341, 350, 350, 350, 341, 350]
+61
+Com Values [5] , Size Values [344]
+61
+Com Values [5, 5] , Size Values [344, 341]
+61
+Com Values [5, 5, 5] , Size Values [344, 341, 350]
+61
+Com Values [5, 5, 5, 5] , Size Values [344, 341, 350, 341]
+61
+Com Values [5, 5, 5, 5, 5] , Size Values [344, 341, 350, 341, 350]
+61
+Com Values [5, 5, 5, 5, 5, 4] , Size Values [344, 341, 350, 341, 350, 752]
+61
+Com Values [5, 5, 5, 5, 5, 4, 5] , Size Values [344, 341, 350, 341, 350, 752, 341]
+61
+Com Values [5, 5, 5, 5, 5, 4, 5, 4] , Size Values [344, 341, 350, 341, 350, 752, 341, 752]
+61
+Com Values [5, 5, 5, 5, 5, 4, 5, 4, 5] , Size Values [344, 341, 350, 341, 350, 752, 341, 752, 350]
+61
+Com Values [5, 5, 5, 5, 5, 4, 5, 4, 5, 5] , Size Values [344, 341, 350, 341, 350, 752, 341, 752, 350, 350]
+62
+Com Values [5] , Size Values [341]
+62
+Com Values [5, 5] , Size Values [341, 350]
+62
+Com Values [5, 5, 4] , Size Values [341, 350, 752]
+62
+Com Values [5, 5, 4, 5] , Size Values [341, 350, 752, 350]
+62
+Com Values [5, 5, 4, 5, 5] , Size Values [341, 350, 752, 350, 341]
+62
+Com Values [5, 5, 4, 5, 5, 5] , Size Values [341, 350, 752, 350, 341, 341]
+62
+Com Values [5, 5, 4, 5, 5, 5, 5] , Size Values [341, 350, 752, 350, 341, 341, 350]
+62
+Com Values [5, 5, 4, 5, 5, 5, 5, 4] , Size Values [341, 350, 752, 350, 341, 341, 350, 754]
+62
+Com Values [5, 5, 4, 5, 5, 5, 5, 4, 5] , Size Values [341, 350, 752, 350, 341, 341, 350, 754, 341]
+62
+Com Values [5, 5, 4, 5, 5, 5, 5, 4, 5, 4] , Size Values [341, 350, 752, 350, 341, 341, 350, 754, 341, 752]
+63
+Com Values [5] , Size Values [341]
+63
+Com Values [5, 4] , Size Values [341, 752]
+63
+Com Values [5, 4, 5] , Size Values [341, 752, 341]
+63
+Com Values [5, 4, 5, 5] , Size Values [341, 752, 341, 342]
+63
+Com Values [5, 4, 5, 5, 4] , Size Values [341, 752, 341, 342, 752]
+63
+Com Values [5, 4, 5, 5, 4, 5] , Size Values [341, 752, 341, 342, 752, 341]
+63
+Com Values [5, 4, 5, 5, 4, 5, 5] , Size Values [341, 752, 341, 342, 752, 341, 350]
+63
+Com Values [5, 4, 5, 5, 4, 5, 5, 5] , Size Values [341, 752, 341, 342, 752, 341, 350, 341]
+63
+Com Values [5, 4, 5, 5, 4, 5, 5, 5, 5] , Size Values [341, 752, 341, 342, 752, 341, 350, 341, 350]
+63
+Com Values [5, 4, 5, 5, 4, 5, 5, 5, 5, 5] , Size Values [341, 752, 341, 342, 752, 341, 350, 341, 350, 341]
+64
+Com Values [5] , Size Values [350]
+64
+Com Values [5, 5] , Size Values [350, 350]
+64
+Com Values [5, 5, 5] , Size Values [350, 350, 341]
+64
+Com Values [5, 5, 5, 5] , Size Values [350, 350, 341, 344]
+64
+Com Values [5, 5, 5, 5, 5] , Size Values [350, 350, 341, 344, 350]
+64
+Com Values [5, 5, 5, 5, 5, 5] , Size Values [350, 350, 341, 344, 350, 344]
+64
+Com Values [5, 5, 5, 5, 5, 5, 5] , Size Values [350, 350, 341, 344, 350, 344, 341]
+64
+Com Values [5, 5, 5, 5, 5, 5, 5, 5] , Size Values [350, 350, 341, 344, 350, 344, 341, 341]
+64
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [350, 350, 341, 344, 350, 344, 341, 341, 350]
+64
+Com Values [5, 5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [350, 350, 341, 344, 350, 344, 341, 341, 350, 341]
+65
+Com Values [5] , Size Values [344]
+65
+Com Values [5, 5] , Size Values [344, 341]
+65
+Com Values [5, 5, 5] , Size Values [344, 341, 350]
+65
+Com Values [5, 5, 5, 5] , Size Values [344, 341, 350, 350]
+65
+Com Values [5, 5, 5, 5, 5] , Size Values [344, 341, 350, 350, 341]
+65
+Com Values [5, 5, 5, 5, 5, 5] , Size Values [344, 341, 350, 350, 341, 350]
+65
+Com Values [5, 5, 5, 5, 5, 5, 4] , Size Values [344, 341, 350, 350, 341, 350, 752]
+65
+Com Values [5, 5, 5, 5, 5, 5, 4, 4] , Size Values [344, 341, 350, 350, 341, 350, 752, 341]
+65
+Com Values [5, 5, 5, 5, 5, 5, 4, 4, 5] , Size Values [344, 341, 350, 350, 341, 350, 752, 341, 343]
+65
+Com Values [5, 5, 5, 5, 5, 5, 4, 4, 5, 5] , Size Values [344, 341, 350, 350, 341, 350, 752, 341, 343, 350]
+66
+Com Values [4] , Size Values [752]
+66
+Com Values [4, 5] , Size Values [752, 342]
+66
+Com Values [4, 5, 5] , Size Values [752, 342, 343]
+66
+Com Values [4, 5, 5, 5] , Size Values [752, 342, 343, 341]
+66
+Com Values [4, 5, 5, 5, 5] , Size Values [752, 342, 343, 341, 341]
+66
+Com Values [4, 5, 5, 5, 5, 5] , Size Values [752, 342, 343, 341, 341, 341]
+66
+Com Values [4, 5, 5, 5, 5, 5, 5] , Size Values [752, 342, 343, 341, 341, 341, 350]
+66
+Com Values [4, 5, 5, 5, 5, 5, 5, 5] , Size Values [752, 342, 343, 341, 341, 341, 350, 350]
+66
+Com Values [4, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [752, 342, 343, 341, 341, 341, 350, 350, 341]
+66
+Com Values [4, 5, 5, 5, 5, 5, 5, 5, 5, 5] , Size Values [752, 342, 343, 341, 341, 341, 350, 350, 341, 344]
+67
+Com Values [5] , Size Values [350]
+67
+Com Values [5, 4] , Size Values [350, 752]
+67
+Com Values [5, 4, 4] , Size Values [350, 752, 341]
+67
+Com Values [5, 4, 4, 5] , Size Values [350, 752, 341, 350]
+67
+Com Values [5, 4, 4, 5, 5] , Size Values [350, 752, 341, 350, 350]
+67
+Com Values [5, 4, 4, 5, 5, 5] , Size Values [350, 752, 341, 350, 350, 350]
+67
+Com Values [5, 4, 4, 5, 5, 5, 5] , Size Values [350, 752, 341, 350, 350, 350, 350]
+67
+Com Values [5, 4, 4, 5, 5, 5, 5, 5] , Size Values [350, 752, 341, 350, 350, 350, 350, 341]
+67
+Com Values [5, 4, 4, 5, 5, 5, 5, 5, 5] , Size Values [350, 752, 341, 350, 350, 350, 350, 341, 350]
+67
+Com Values [5, 4, 4, 5, 5, 5, 5, 5, 5, 4] , Size Values [350, 752, 341, 350, 350, 350, 350, 341, 350, 752]
+68
+Com Values [4] , Size Values [752]
+68
+Com Values [4, 5] , Size Values [752, 341]
+68
+Com Values [4, 5, 5] , Size Values [752, 341, 341]
+68
+Com Values [4, 5, 5, 4] , Size Values [752, 341, 341, 752]
+68
+Com Values [4, 5, 5, 4, 5] , Size Values [752, 341, 341, 752, 341]
+68
+Com Values [4, 5, 5, 4, 5, 5] , Size Values [752, 341, 341, 752, 341, 344]
+68
+Com Values [4, 5, 5, 4, 5, 5, 4] , Size Values [752, 341, 341, 752, 341, 344, 752]
+68
+Com Values [4, 5, 5, 4, 5, 5, 4, 4] , Size Values [752, 341, 341, 752, 341, 344, 752, 341]
+68
+Com Values [4, 5, 5, 4, 5, 5, 4, 4, 4] , Size Values [752, 341, 341, 752, 341, 344, 752, 341, 752]
+68
+Com Values [4, 5, 5, 4, 5, 5, 4, 4, 4, 5] , Size Values [752, 341, 341, 752, 341, 344, 752, 341, 752, 341]
+69
+Com Values [5] , Size Values [350]
+69
+Com Values [5, 5] , Size Values [350, 341]
+69
+Com Values [5, 5, 4] , Size Values [350, 341, 341]
+69
+Com Values [5, 5, 4, 4] , Size Values [350, 341, 341, 341]
+69
+Com Values [5, 5, 4, 4, 4] , Size Values [350, 341, 341, 341, 752]
+69
+Com Values [5, 5, 4, 4, 4, 5] , Size Values [350, 341, 341, 341, 752, 350]
+69
+Com Values [5, 5, 4, 4, 4, 5, 5] , Size Values [350, 341, 341, 341, 752, 350, 350]
+69
+Com Values [5, 5, 4, 4, 4, 5, 5, 5] , Size Values [350, 341, 341, 341, 752, 350, 350, 341]
+69
+Com Values [5, 5, 4, 4, 4, 5, 5, 5, 4] , Size Values [350, 341, 341, 341, 752, 350, 350, 341, 754]
+69
+Com Values [5, 5, 4, 4, 4, 5, 5, 5, 4, 5] , Size Values [350, 341, 341, 341, 752, 350, 350, 341, 754, 350]
+70
+Com Values [4] , Size Values [341]
+70
+Com Values [4, 5] , Size Values [341, 350]
+70
+Com Values [4, 5, 4] , Size Values [341, 350, 752]
+70
+Com Values [4, 5, 4, 5] , Size Values [341, 350, 752, 341]
+70
+Com Values [4, 5, 4, 5, 5] , Size Values [341, 350, 752, 341, 350]
+70
+Com Values [4, 5, 4, 5, 5, 5] , Size Values [341, 350, 752, 341, 350, 341]
+70
+Com Values [4, 5, 4, 5, 5, 5, 5] , Size Values [341, 350, 752, 341, 350, 341, 341]
+70
+Com Values [4, 5, 4, 5, 5, 5, 5, 5] , Size Values [341, 350, 752, 341, 350, 341, 341, 341]
+70
+Com Values [4, 5, 4, 5, 5, 5, 5, 5, 5] , Size Values [341, 350, 752, 341, 350, 341, 341, 341, 341]
+70
+Com Values [4, 5, 4, 5, 5, 5, 5, 5, 5, 5] , Size Values [341, 350, 752, 341, 350, 341, 341, 341, 341, 344]
+71
+Com Values [4] , Size Values [341]
+71
+Com Values [4, 4] , Size Values [341, 752]
+71
+Com Values [4, 4, 5] , Size Values [341, 752, 350]
+71
+Com Values [4, 4, 5, 5] , Size Values [341, 752, 350, 350]
+71
+Com Values [4, 4, 5, 5, 5] , Size Values [341, 752, 350, 350, 350]
+71
+Com Values [4, 4, 5, 5, 5, 4] , Size Values [341, 752, 350, 350, 350, 752]
+71
+Com Values [4, 4, 5, 5, 5, 4, 5] , Size Values [341, 752, 350, 350, 350, 752, 341]
+71
+Com Values [4, 4, 5, 5, 5, 4, 5, 5] , Size Values [341, 752, 350, 350, 350, 752, 341, 341]
+71
+Com Values [4, 4, 5, 5, 5, 4, 5, 5, 5] , Size Values [341, 752, 350, 350, 350, 752, 341, 341, 350]
+71
+Com Values [4, 4, 5, 5, 5, 4, 5, 5, 5, 4] , Size Values [341, 752, 350, 350, 350, 752, 341, 341, 350, 752]
+72
+Com Values [4] , Size Values [341]
+72
+Com Values [4, 5] , Size Values [341, 350]
+72
+Com Values [4, 5, 5] , Size Values [341, 350, 350]
+72
+Com Values [4, 5, 5, 5] , Size Values [341, 350, 350, 350]
+72
+Com Values [4, 5, 5, 5, 5] , Size Values [341, 350, 350, 350, 344]
+72
+Com Values [4, 5, 5, 5, 5, 5] , Size Values [341, 350, 350, 350, 344, 350]
+72
+Com Values [4, 5, 5, 5, 5, 5, 5] , Size Values [341, 350, 350, 350, 344, 350, 350]
+72
+Com Values [4, 5, 5, 5, 5, 5, 5, 4] , Size Values [341, 350, 350, 350, 344, 350, 350, 341]
+72
+Com Values [4, 5, 5, 5, 5, 5, 5, 4, 5] , Size Values [341, 350, 350, 350, 344, 350, 350, 341, 344]
+72
+Com Values [4, 5, 5, 5, 5, 5, 5, 4, 5, 4] , Size Values [341, 350, 350, 350, 344, 350, 350, 341, 344, 341]
+73
+Com Values [4] , Size Values [341]
+73
+Com Values [4, 5] , Size Values [341, 350]
+73
+Com Values [4, 5, 5] , Size Values [341, 350, 350]
+73
+Com Values [4, 5, 5, 4] , Size Values [341, 350, 350, 341]
+73
+Com Values [4, 5, 5, 4, 5] , Size Values [341, 350, 350, 341, 350]
+73
+Com Values [4, 5, 5, 4, 5, 5] , Size Values [341, 350, 350, 341, 350, 350]
+73
+Com Values [4, 5, 5, 4, 5, 5, 3] , Size Values [341, 350, 350, 341, 350, 350, 754]
+73
+Com Values [4, 5, 5, 4, 5, 5, 3, 4] , Size Values [341, 350, 350, 341, 350, 350, 754, 341]
+73
+Com Values [4, 5, 5, 4, 5, 5, 3, 4, 4] , Size Values [341, 350, 350, 341, 350, 350, 754, 341, 341]
+73
+Com Values [4, 5, 5, 4, 5, 5, 3, 4, 4, 5] , Size Values [341, 350, 350, 341, 350, 350, 754, 341, 341, 350]
+74
+Com Values [4] , Size Values [341]
+74
+Com Values [4, 3] , Size Values [341, 754]
+74
+Com Values [4, 3, 4] , Size Values [341, 754, 341]
+74
+Com Values [4, 3, 4, 5] , Size Values [341, 754, 341, 350]
+74
+Com Values [4, 3, 4, 5, 4] , Size Values [341, 754, 341, 350, 341]
+74
+Com Values [4, 3, 4, 5, 4, 4] , Size Values [341, 754, 341, 350, 341, 341]
+74
+Com Values [4, 3, 4, 5, 4, 4, 4] , Size Values [341, 754, 341, 350, 341, 341, 341]
+74
+Com Values [4, 3, 4, 5, 4, 4, 4, 4] , Size Values [341, 754, 341, 350, 341, 341, 341, 341]
+74
+Com Values [4, 3, 4, 5, 4, 4, 4, 4, 4] , Size Values [341, 754, 341, 350, 341, 341, 341, 341, 752]
+74
+Com Values [4, 3, 4, 5, 4, 4, 4, 4, 4, 4] , Size Values [341, 754, 341, 350, 341, 341, 341, 341, 752, 341]
+75
+Com Values [5] , Size Values [344]
+75
+Com Values [5, 4] , Size Values [344, 350]
+75
+Com Values [5, 4, 3] , Size Values [344, 350, 754]
+75
+Com Values [5, 4, 3, 4] , Size Values [344, 350, 754, 341]
+75
+Com Values [5, 4, 3, 4, 4] , Size Values [344, 350, 754, 341, 341]
+75
+Com Values [5, 4, 3, 4, 4, 4] , Size Values [344, 350, 754, 341, 341, 341]
+75
+Com Values [5, 4, 3, 4, 4, 4, 5] , Size Values [344, 350, 754, 341, 341, 341, 344]
+75
+Com Values [5, 4, 3, 4, 4, 4, 5, 4] , Size Values [344, 350, 754, 341, 341, 341, 344, 350]
+75
+Com Values [5, 4, 3, 4, 4, 4, 5, 4, 4] , Size Values [344, 350, 754, 341, 341, 341, 344, 350, 341]
+75
+Com Values [5, 4, 3, 4, 4, 4, 5, 4, 4, 5] , Size Values [344, 350, 754, 341, 341, 341, 344, 350, 341, 350]
+76
+Com Values [4] , Size Values [350]
+76
+Com Values [4, 4] , Size Values [350, 350]
+76
+Com Values [4, 4, 4] , Size Values [350, 350, 350]
+76
+Com Values [4, 4, 4, 4] , Size Values [350, 350, 350, 350]
+76
+Com Values [4, 4, 4, 4, 4] , Size Values [350, 350, 350, 350, 341]
+76
+Com Values [4, 4, 4, 4, 4, 4] , Size Values [350, 350, 350, 350, 341, 350]
+76
+Com Values [4, 4, 4, 4, 4, 4, 4] , Size Values [350, 350, 350, 350, 341, 350, 341]
+76
+Com Values [4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 350, 350, 350, 341, 350, 341, 341]
+76
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 350, 350, 350, 341, 350, 341, 341, 341]
+76
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 350, 350, 350, 341, 350, 341, 341, 341, 350]
+77
+Com Values [4] , Size Values [350]
+77
+Com Values [4, 4] , Size Values [350, 341]
+77
+Com Values [4, 4, 4] , Size Values [350, 341, 341]
+77
+Com Values [4, 4, 4, 4] , Size Values [350, 341, 341, 344]
+77
+Com Values [4, 4, 4, 4, 4] , Size Values [350, 341, 341, 344, 344]
+77
+Com Values [4, 4, 4, 4, 4, 4] , Size Values [350, 341, 341, 344, 344, 341]
+77
+Com Values [4, 4, 4, 4, 4, 4, 4] , Size Values [350, 341, 341, 344, 344, 341, 341]
+77
+Com Values [4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 341, 341, 344, 344, 341, 341, 341]
+77
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 341, 341, 344, 344, 341, 341, 341, 350]
+77
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 341, 341, 344, 344, 341, 341, 341, 350, 341]
+78
+Com Values [4] , Size Values [350]
+78
+Com Values [4, 4] , Size Values [350, 351]
+78
+Com Values [4, 4, 4] , Size Values [350, 351, 341]
+78
+Com Values [4, 4, 4, 4] , Size Values [350, 351, 341, 341]
+78
+Com Values [4, 4, 4, 4, 4] , Size Values [350, 351, 341, 341, 341]
+78
+Com Values [4, 4, 4, 4, 4, 4] , Size Values [350, 351, 341, 341, 341, 350]
+78
+Com Values [4, 4, 4, 4, 4, 4, 4] , Size Values [350, 351, 341, 341, 341, 350, 341]
+78
+Com Values [4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 351, 341, 341, 341, 350, 341, 341]
+78
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 351, 341, 341, 341, 350, 341, 341, 350]
+78
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 351, 341, 341, 341, 350, 341, 341, 350, 341]
+79
+Com Values [4] , Size Values [350]
+79
+Com Values [4, 4] , Size Values [350, 344]
+79
+Com Values [4, 4, 4] , Size Values [350, 344, 350]
+79
+Com Values [4, 4, 4, 4] , Size Values [350, 344, 350, 341]
+79
+Com Values [4, 4, 4, 4, 4] , Size Values [350, 344, 350, 341, 341]
+79
+Com Values [4, 4, 4, 4, 4, 4] , Size Values [350, 344, 350, 341, 341, 341]
+79
+Com Values [4, 4, 4, 4, 4, 4, 4] , Size Values [350, 344, 350, 341, 341, 341, 350]
+79
+Com Values [4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 344, 350, 341, 341, 341, 350, 341]
+79
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 344, 350, 341, 341, 341, 350, 341, 341]
+79
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 344, 350, 341, 341, 341, 350, 341, 341, 341]
+80
+Com Values [4] , Size Values [341]
+80
+Com Values [4, 4] , Size Values [341, 350]
+80
+Com Values [4, 4, 4] , Size Values [341, 350, 350]
+80
+Com Values [4, 4, 4, 4] , Size Values [341, 350, 350, 350]
+80
+Com Values [4, 4, 4, 4, 4] , Size Values [341, 350, 350, 350, 350]
+80
+Com Values [4, 4, 4, 4, 4, 4] , Size Values [341, 350, 350, 350, 350, 341]
+80
+Com Values [4, 4, 4, 4, 4, 4, 4] , Size Values [341, 350, 350, 350, 350, 341, 343]
+80
+Com Values [4, 4, 4, 4, 4, 4, 4, 4] , Size Values [341, 350, 350, 350, 350, 341, 343, 341]
+80
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [341, 350, 350, 350, 350, 341, 343, 341, 341]
+80
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [341, 350, 350, 350, 350, 341, 343, 341, 341, 350]
+81
+Com Values [4] , Size Values [350]
+81
+Com Values [4, 4] , Size Values [350, 350]
+81
+Com Values [4, 4, 4] , Size Values [350, 350, 341]
+81
+Com Values [4, 4, 4, 4] , Size Values [350, 350, 341, 350]
+81
+Com Values [4, 4, 4, 4, 4] , Size Values [350, 350, 341, 350, 350]
+81
+Com Values [4, 4, 4, 4, 4, 4] , Size Values [350, 350, 341, 350, 350, 350]
+81
+Com Values [4, 4, 4, 4, 4, 4, 4] , Size Values [350, 350, 341, 350, 350, 350, 350]
+81
+Com Values [4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 350, 341, 350, 350, 350, 350, 350]
+81
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 350, 341, 350, 350, 350, 350, 350, 344]
+81
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 350, 341, 350, 350, 350, 350, 350, 344, 341]
+82
+Com Values [4] , Size Values [341]
+82
+Com Values [4, 4] , Size Values [341, 344]
+82
+Com Values [4, 4, 4] , Size Values [341, 344, 341]
+82
+Com Values [4, 4, 4, 4] , Size Values [341, 344, 341, 344]
+82
+Com Values [4, 4, 4, 4, 4] , Size Values [341, 344, 341, 344, 341]
+82
+Com Values [4, 4, 4, 4, 4, 4] , Size Values [341, 344, 341, 344, 341, 350]
+82
+Com Values [4, 4, 4, 4, 4, 4, 4] , Size Values [341, 344, 341, 344, 341, 350, 341]
+82
+Com Values [4, 4, 4, 4, 4, 4, 4, 4] , Size Values [341, 344, 341, 344, 341, 350, 341, 344]
+82
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [341, 344, 341, 344, 341, 350, 341, 344, 350]
+82
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [341, 344, 341, 344, 341, 350, 341, 344, 350, 350]
+83
+Com Values [4] , Size Values [350]
+83
+Com Values [4, 4] , Size Values [350, 341]
+83
+Com Values [4, 4, 4] , Size Values [350, 341, 344]
+83
+Com Values [4, 4, 4, 4] , Size Values [350, 341, 344, 350]
+83
+Com Values [4, 4, 4, 4, 4] , Size Values [350, 341, 344, 350, 341]
+83
+Com Values [4, 4, 4, 4, 4, 4] , Size Values [350, 341, 344, 350, 341, 341]
+83
+Com Values [4, 4, 4, 4, 4, 4, 4] , Size Values [350, 341, 344, 350, 341, 341, 341]
+83
+Com Values [4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 341, 344, 350, 341, 341, 341, 350]
+83
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 341, 344, 350, 341, 341, 341, 350, 341]
+83
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 341, 344, 350, 341, 341, 341, 350, 341, 350]
+84
+Com Values [4] , Size Values [350]
+84
+Com Values [4, 4] , Size Values [350, 344]
+84
+Com Values [4, 4, 4] , Size Values [350, 344, 350]
+84
+Com Values [4, 4, 4, 4] , Size Values [350, 344, 350, 344]
+84
+Com Values [4, 4, 4, 4, 4] , Size Values [350, 344, 350, 344, 341]
+84
+Com Values [4, 4, 4, 4, 4, 4] , Size Values [350, 344, 350, 344, 341, 350]
+84
+Com Values [4, 4, 4, 4, 4, 4, 4] , Size Values [350, 344, 350, 344, 341, 350, 341]
+84
+Com Values [4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 344, 350, 344, 341, 350, 341, 341]
+84
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 344, 350, 344, 341, 350, 341, 341, 341]
+84
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 344, 350, 344, 341, 350, 341, 341, 341, 350]
+85
+Com Values [4] , Size Values [350]
+85
+Com Values [4, 4] , Size Values [350, 350]
+85
+Com Values [4, 4, 4] , Size Values [350, 350, 350]
+85
+Com Values [4, 4, 4, 4] , Size Values [350, 350, 350, 350]
+85
+Com Values [4, 4, 4, 4, 4] , Size Values [350, 350, 350, 350, 341]
+85
+Com Values [4, 4, 4, 4, 4, 4] , Size Values [350, 350, 350, 350, 341, 350]
+85
+Com Values [4, 4, 4, 4, 4, 4, 4] , Size Values [350, 350, 350, 350, 341, 350, 352]
+85
+Com Values [4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 350, 350, 350, 341, 350, 352, 341]
+85
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 350, 350, 350, 341, 350, 352, 341, 341]
+85
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [350, 350, 350, 350, 341, 350, 352, 341, 341, 341]
+86
+Com Values [4] , Size Values [341]
+86
+Com Values [4, 4] , Size Values [341, 341]
+86
+Com Values [4, 4, 4] , Size Values [341, 341, 344]
+86
+Com Values [4, 4, 4, 4] , Size Values [341, 341, 344, 350]
+86
+Com Values [4, 4, 4, 4, 4] , Size Values [341, 341, 344, 350, 344]
+86
+Com Values [4, 4, 4, 4, 4, 4] , Size Values [341, 341, 344, 350, 344, 350]
+86
+Com Values [4, 4, 4, 4, 4, 4, 4] , Size Values [341, 341, 344, 350, 344, 350, 341]
+86
+Com Values [4, 4, 4, 4, 4, 4, 4, 4] , Size Values [341, 341, 344, 350, 344, 350, 341, 341]
+86
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [341, 341, 344, 350, 344, 350, 341, 341, 350]
+86
+Com Values [4, 4, 4, 4, 4, 4, 4, 4, 4, 4] , Size Values [341, 341, 344, 350, 344, 350, 341, 341, 350, 350]
+87
+Com Values [4] , Size Values [350]
+87
+Com Values [4, 4] , Size Values [350, 341]
+87
+Com Values [4, 4, 4] , Size Values [350, 341, 350]
+87
+Com Values [4, 4, 4, 4] , Size Values [350, 341, 350, 341]
+87
+Com Values [4, 4, 4, 4, 4] , Size Values [350, 341, 350, 341, 341]
+87
+Com Values [4, 4, 4, 4, 4, 4] , Size Values [350, 341, 350, 341, 341, 341]
+87
+Com Values [4, 4, 4, 4, 4, 4, 3] , Size Values [350, 341, 350, 341, 341, 341, 754]
+87
+Com Values [4, 4, 4, 4, 4, 4, 3, 4] , Size Values [350, 341, 350, 341, 341, 341, 754, 350]
+87
+Com Values [4, 4, 4, 4, 4, 4, 3, 4, 3] , Size Values [350, 341, 350, 341, 341, 341, 754, 350, 754]
+87
+Com Values [4, 4, 4, 4, 4, 4, 3, 4, 3, 4] , Size Values [350, 341, 350, 341, 341, 341, 754, 350, 754, 341]
+88
+Com Values [4] , Size Values [341]
+88
+Com Values [4, 4] , Size Values [341, 341]
+88
+Com Values [4, 4, 3] , Size Values [341, 341, 754]
+88
+Com Values [4, 4, 3, 4] , Size Values [341, 341, 754, 341]
+88
+Com Values [4, 4, 3, 4, 3] , Size Values [341, 341, 754, 341, 754]
+88
+Com Values [4, 4, 3, 4, 3, 4] , Size Values [341, 341, 754, 341, 754, 341]
+88
+Com Values [4, 4, 3, 4, 3, 4, 3] , Size Values [341, 341, 754, 341, 754, 341, 754]
+88
+Com Values [4, 4, 3, 4, 3, 4, 3, 3] , Size Values [341, 341, 754, 341, 754, 341, 754, 754]
+88
+Com Values [4, 4, 3, 4, 3, 4, 3, 3, 4] , Size Values [341, 341, 754, 341, 754, 341, 754, 754, 341]
+88
+Com Values [4, 4, 3, 4, 3, 4, 3, 3, 4, 4] , Size Values [341, 341, 754, 341, 754, 341, 754, 754, 341, 341]
+89
+Com Values [4] , Size Values [341]
+89
+Com Values [4, 3] , Size Values [341, 754]
+89
+Com Values [4, 3, 4] , Size Values [341, 754, 341]
+89
+Com Values [4, 3, 4, 4] , Size Values [341, 754, 341, 341]
+89
+Com Values [4, 3, 4, 4, 3] , Size Values [341, 754, 341, 341, 754]
+89
+Com Values [4, 3, 4, 4, 3, 4] , Size Values [341, 754, 341, 341, 754, 341]
+89
+Com Values [4, 3, 4, 4, 3, 4, 3] , Size Values [341, 754, 341, 341, 754, 341, 754]
+89
+Com Values [4, 3, 4, 4, 3, 4, 3, 3] , Size Values [341, 754, 341, 341, 754, 341, 754, 754]
+89
+Com Values [4, 3, 4, 4, 3, 4, 3, 3, 4] , Size Values [341, 754, 341, 341, 754, 341, 754, 754, 341]
+89
+Com Values [4, 3, 4, 4, 3, 4, 3, 3, 4, 3] , Size Values [341, 754, 341, 341, 754, 341, 754, 754, 341, 754]
+90
+Com Values [4] , Size Values [344]
+90
+Com Values [4, 4] , Size Values [344, 344]
+90
+Com Values [4, 4, 4] , Size Values [344, 344, 341]
+90
+Com Values [4, 4, 4, 3] , Size Values [344, 344, 341, 754]
+90
+Com Values [4, 4, 4, 3, 3] , Size Values [344, 344, 341, 754, 754]
+90
+Com Values [4, 4, 4, 3, 3, 3] , Size Values [344, 344, 341, 754, 754, 754]
+90
+Com Values [4, 4, 4, 3, 3, 3, 3] , Size Values [344, 344, 341, 754, 754, 754, 753]
+90
+Com Values [4, 4, 4, 3, 3, 3, 3, 4] , Size Values [344, 344, 341, 754, 754, 754, 753, 341]
+90
+Com Values [4, 4, 4, 3, 3, 3, 3, 4, 3] , Size Values [344, 344, 341, 754, 754, 754, 753, 341, 754]
+90
+Com Values [4, 4, 4, 3, 3, 3, 3, 4, 3, 3] , Size Values [344, 344, 341, 754, 754, 754, 753, 341, 754, 754]
+91
+Com Values [3] , Size Values [754]
+91
+Com Values [3, 3] , Size Values [754, 754]
+91
+Com Values [3, 3, 3] , Size Values [754, 754, 754]
+91
+Com Values [3, 3, 3, 3] , Size Values [754, 754, 754, 754]
+91
+Com Values [3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754]
+91
+Com Values [3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754]
+91
+Com Values [3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754]
+91
+Com Values [3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754]
+91
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754]
+91
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754, 754]
+92
+Com Values [3] , Size Values [754]
+92
+Com Values [3, 3] , Size Values [754, 754]
+92
+Com Values [3, 3, 3] , Size Values [754, 754, 754]
+92
+Com Values [3, 3, 3, 3] , Size Values [754, 754, 754, 754]
+92
+Com Values [3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754]
+92
+Com Values [3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754]
+92
+Com Values [3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754]
+92
+Com Values [3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754]
+92
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754]
+92
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754, 754]
+93
+Com Values [3] , Size Values [754]
+93
+Com Values [3, 3] , Size Values [754, 754]
+93
+Com Values [3, 3, 3] , Size Values [754, 754, 754]
+93
+Com Values [3, 3, 3, 3] , Size Values [754, 754, 754, 754]
+93
+Com Values [3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754]
+93
+Com Values [3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754]
+93
+Com Values [3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754]
+93
+Com Values [3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754]
+93
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754]
+93
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754, 754]
+94
+Com Values [3] , Size Values [754]
+94
+Com Values [3, 3] , Size Values [754, 754]
+94
+Com Values [3, 3, 3] , Size Values [754, 754, 754]
+94
+Com Values [3, 3, 3, 3] , Size Values [754, 754, 754, 754]
+94
+Com Values [3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754]
+94
+Com Values [3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754]
+94
+Com Values [3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754]
+94
+Com Values [3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754]
+94
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754]
+94
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754, 754]
+95
+Com Values [3] , Size Values [754]
+95
+Com Values [3, 3] , Size Values [754, 754]
+95
+Com Values [3, 3, 3] , Size Values [754, 754, 754]
+95
+Com Values [3, 3, 3, 3] , Size Values [754, 754, 754, 754]
+95
+Com Values [3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754]
+95
+Com Values [3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754]
+95
+Com Values [3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754]
+95
+Com Values [3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754]
+95
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754]
+95
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754, 754]
+96
+Com Values [3] , Size Values [754]
+96
+Com Values [3, 3] , Size Values [754, 754]
+96
+Com Values [3, 3, 3] , Size Values [754, 754, 754]
+96
+Com Values [3, 3, 3, 3] , Size Values [754, 754, 754, 754]
+96
+Com Values [3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754]
+96
+Com Values [3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754]
+96
+Com Values [3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754]
+96
+Com Values [3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754]
+96
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754]
+96
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754, 754]
+97
+Com Values [3] , Size Values [754]
+97
+Com Values [3, 3] , Size Values [754, 754]
+97
+Com Values [3, 3, 3] , Size Values [754, 754, 754]
+97
+Com Values [3, 3, 3, 3] , Size Values [754, 754, 754, 754]
+97
+Com Values [3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754]
+97
+Com Values [3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754]
+97
+Com Values [3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754]
+97
+Com Values [3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754]
+97
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754]
+97
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754, 754]
+98
+Com Values [3] , Size Values [754]
+98
+Com Values [3, 3] , Size Values [754, 754]
+98
+Com Values [3, 3, 3] , Size Values [754, 754, 754]
+98
+Com Values [3, 3, 3, 3] , Size Values [754, 754, 754, 754]
+98
+Com Values [3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754]
+98
+Com Values [3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754]
+98
+Com Values [3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754]
+98
+Com Values [3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754]
+98
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754]
+98
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754, 754]
+99
+Com Values [3] , Size Values [754]
+99
+Com Values [3, 3] , Size Values [754, 754]
+99
+Com Values [3, 3, 3] , Size Values [754, 754, 754]
+99
+Com Values [3, 3, 3, 3] , Size Values [754, 754, 754, 754]
+99
+Com Values [3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754]
+99
+Com Values [3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754]
+99
+Com Values [3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754]
+99
+Com Values [3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 753]
+99
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 753, 754]
+99
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 753, 754, 754]
+100
+Com Values [3] , Size Values [754]
+100
+Com Values [3, 3] , Size Values [754, 754]
+100
+Com Values [3, 3, 3] , Size Values [754, 754, 754]
+100
+Com Values [3, 3, 3, 3] , Size Values [754, 754, 754, 754]
+100
+Com Values [3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754]
+100
+Com Values [3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754]
+100
+Com Values [3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754]
+100
+Com Values [3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754]
+100
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754]
+100
+Com Values [3, 3, 3, 3, 3, 3, 3, 3, 3, 3] , Size Values [754, 754, 754, 754, 754, 754, 754, 754, 754, 754]
+[17, 12, 11, 11, 9, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+[19, 38, 38, 38, 60, 60, 25, 60, 61, 61, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 59, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 206, 206, 206, 341, 352, 341, 350, 350, 341, 341, 341, 350, 341, 350, 341, 341, 350, 341, 350, 344, 344, 350, 341, 344, 341, 341, 350, 344, 342, 350, 341, 350, 350, 350, 350, 350, 350, 344, 350, 350, 350, 350, 341, 350, 341, 350, 350, 350, 341, 350, 341, 341, 344, 754, 754, 754, 754, 754, 754, 754, 754, 754, 754]
+[0.010551813777620229, 0.010646607014975879, 0.010618366284991841, 0.010617095954230313, 0.010660870694336237, 0.010714858988273445, 0.01083604033701643, 0.010829652610884784, 0.010831126701530549, 0.0107077944508349, 0.010816961364558989, 0.010701605314428686, 0.010697678299956164, 0.010802235060287036, 0.010695714792719904, 0.010778672973451909, 0.010789963140060407, 0.010701605314428686, 0.01079585366176919, 0.010696696546338034, 0.01079585366176919, 0.010708477589755598, 0.010776585347637254, 0.010786527002396951, 0.010694242162292708, 0.010786527002396951, 0.010694242162292708, 0.01079585366176919, 0.010708477589755598, 0.010694242162292708, 0.010695714792719904, 0.010806067160552548, 0.010695714792719904, 0.010795362784960124, 0.010708477589755598, 0.010831196792021878, 0.010784072618351626, 0.01080370769071423, 0.01080370769071423, 0.010758056147471174, 0.010817368522170077, 0.01072418564764568, 0.010738911951917635, 0.010792417524105733, 0.010788490509633212, 0.010738911951917635, 0.010823342763076836, 0.010831196792021878, 0.010809598212423012, 0.010817368522170077, 0.010792417524105733, 0.010738911951917635, 0.010779163850260974, 0.010788490509633212, 0.010831196792021878, 0.010766891930034347, 0.010752165625762393, 0.010829724161594683, 0.010809598212423012, 0.010778672973451909, 0.0107605105315165, 0.010831687668830943, 0.010779163850260974, 0.010766891930034347, 0.010823342763076836, 0.010814016103704598, 0.010809598212423012, 0.010779163850260974, 0.010792417524105733, 0.010788490509633212, 0.010766891930034347, 0.010766891930034347, 0.010770328067697803, 0.010792417524105733, 0.010752165625762393, 0.010886665871446237, 0.010791926647296668, 0.010913173219135753, 0.010913173219135753, 0.010855740632475134, 0.010913173219135753, 0.010907773574236036, 0.010791926647296668, 0.010886665871446237, 0.010791926647296668, 0.010907773574236036, 0.010791926647296668, 0.01084297783543944, 0.010855740632475134, 0.010908264451045101, 0.010818433994986184, 0.010835614683303463, 0.010835614683303463, 0.010811561719659272, 0.010817452241368054, 0.010817452241368054, 0.010835614683303463, 0.01081892487179525, 0.010830705915212813, 0.010835614683303463]
