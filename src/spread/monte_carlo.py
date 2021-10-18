@@ -1,3 +1,4 @@
+from networkx.generators import intersection
 import numpy
 import random
 import networkx as nx
@@ -39,18 +40,10 @@ def LT_model(G, a, p, communities,random_generator):
             converged = True
         A |= B
     comm = 0
-    reach = {}
-    for i in range(len(communities)):
-	    reach[i] = False
-    
-    for item in A:
-	    for key in range(len(communities)):
-		    if reach[key] == False:
-			    if item in communities[key]:
-				    reach[key] = True
-				    comm = comm + 1
-	    if comm == len(communities):
-		    break
+    for item in communities:
+        intersection = set.intersection(set(item),set(A))
+        if len(intersection) > 0:
+            comm += 1
 				    	
     return len(A), comm
 
@@ -61,10 +54,7 @@ def IC_model(G, a, p, communities, random_generator):              # a: the set 
 	                                # p: the system-wide probability of influence on an edge, in [0,1]
 	A = set(a)                      # A: the set of active nodes, initially a
 	B = set(a)  
-	F = set(a)  
-
 	converged = False
-	comm = 0
 	#time = 0
 
 	while not converged:
@@ -79,21 +69,14 @@ def IC_model(G, a, p, communities, random_generator):              # a: the set 
 		if not B:
 			converged = True
 		A |= B
-	reach = {}
-	for i in range(len(communities)):
-		reach[i] = False
     
-	for item in A:
-		for key in range(len(communities)):
-			if reach[key] == False:
-				if item in communities[key]:
-					reach[key] = True
-					comm = comm + 1
-		if comm == len(communities):
-			break
+	comm = 0
+	for item in communities:
+		intersection = set.intersection(set(item),set(A))
+        if len(intersection) > 0:
+            comm += 1	
 	return len(A), comm
 
-	#return len(A), comm, time
 
 def WC_model(G, a, communities,random_generator):                 # a: the set of initial active nodes
                                     # each edge from node u to v is assigned probability 1/in-degree(v) of activating v
@@ -118,19 +101,13 @@ def WC_model(G, a, communities,random_generator):                 # a: the set o
 		if not B:
 			converged = True
 		A |= B
-	reach = {}
 	comm = 0
-	for i in range(len(communities)):
-		reach[i] = False
-    
-	for item in A:
-		for key in range(len(communities)):
-			if reach[key] == False:
-				if item in communities[key]:
-					reach[key] = True
-					comm = comm + 1
-		if comm == len(communities):
-			break
+	for item in communities:
+		intersection = set.intersection(set(item),set(A))
+        if len(intersection) > 0:
+            comm += 1	
+	return len(A), comm
+
 				    	
 	return len(A), comm 
 				    	

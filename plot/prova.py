@@ -1,6 +1,8 @@
 import pandas as pd
 import matplotlib.pylab as plt
 import sys
+import numpy as np
+
 sys.path.insert(0, '')
 from src.load import read_graph
 df = pd.read_csv("/Users/elia/Desktop/Influence-Maximization/twitter.csv", sep=",")
@@ -17,7 +19,7 @@ plt.plot(x1, y1, label = "communities", color="green")
 plt.xlabel('r - resolution')
 plt.ylabel('#C -  no communities')
 plt.legend()
-plt.show()
+#plt.show()
 plt.cla()   # Clear axis
 plt.clf()   # Clear f
 plt.close()
@@ -28,6 +30,7 @@ plt.plot(x1, y2, label = "size", color="blue")
 plt.xlabel('r - resolution')
 plt.ylabel('#S - Size smallest community')
 plt.legend()
+plt.yticks(np.arange(0, np.mean(y2)*2, step=1))
 plt.show()
 plt.cla()   # Clear axis
 plt.clf()   # Clear f
@@ -54,8 +57,6 @@ plt.close()
 
 
 
-from sklearn.preprocessing import normalize
-import numpy as np
 y3.append(original_density)
 y3 = (y3 - np.min(y3))/np.ptp(y3)
 original_density = y3[len(y3)-1]
