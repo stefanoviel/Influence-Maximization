@@ -18,7 +18,7 @@ import os
 #import leidenalg as la
 import os
 
-scale = 2
+scale = 10
 resolution = 1
 no_simulations = 10
 X = 100
@@ -105,7 +105,7 @@ def SBM(GR,check,s):
 
 
 
-filename = "graphs/facebook_combined.txt"
+filename = "graphs/soc-gplus.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()

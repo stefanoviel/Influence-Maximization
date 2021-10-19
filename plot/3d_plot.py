@@ -39,7 +39,7 @@ def save_video():
 
 if __name__ == '__main__':
     
-    filename = "/Users/elia/Desktop/Influence-Maximization/graph_facebook_combined_scale_4-k49-p0.1-WC.csv.csv"
+    filename = "/Users/elia/Desktop/Influence-Maximization/ego-twitter_scale_4-k141-p0.1-WC.csv.csv"
     df = pd.read_csv(filename, sep=",")
 
     fig = plt.figure(figsize=(8,8))
@@ -52,8 +52,8 @@ if __name__ == '__main__':
 
     ax.scatter(x1,y1,z1, alpha=1, color="red")
 
-    ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 1))
-    ax.yaxis.set_ticks(np.arange(0,df["time"].max()+1, 1))
+    ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 10))
+    ax.yaxis.set_ticks(np.arange(0,df["time"].max()+1, 10))
     ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 100))
 
     ax.set_xlabel("Nodes")
