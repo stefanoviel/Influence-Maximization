@@ -53,10 +53,13 @@ def filter_nodes(G, args):
 
 if __name__ == '__main__':
     
-    filenames = ["scale_down_SBM/SBM-Graph/graph_facebook_combined.txt_scale_4.txt","scale_down_SBM/SBM-Graph/ego-twitter.txt_scale_4.txt","graphs/ego-twitter.txt","graphs/facebook_combined.txt"]
+    filenames = ["scale_graphs/facebook_combined_scale_4.txt","scale_graphs/facebook_combined_scale_4.txt","graphs/facebook_combined.txt"]
+    k_nodes = [2,4,1]
     models = ["WC","LT","IC"]
-
+    i = 0
     for item in filenames:
+        scale = k_nodes[i]
+        i +=1
         filename = item
         for m in models:
             model = m
@@ -66,12 +69,10 @@ if __name__ == '__main__':
             print(nx.info(G))
             random_seed = 10
             prng = random.Random(random_seed)
-            #p = 0.05
             p = 0.1
 
-            k = int(G.number_of_nodes()*0.05)
-            if k > 200:
-                k = 200
+            k = 100/ scale
+
            
             args = {}
             args["p"] = p

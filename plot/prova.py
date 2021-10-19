@@ -5,10 +5,11 @@ import numpy as np
 import os
 sys.path.insert(0, '')
 from src.load import read_graph
-df = pd.read_csv("facebook.csv", sep=",")
+filename1 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_6.csv"
+df = pd.read_csv(filename1, sep=",")
 filename="graphs/facebook_combined.txt"
 g =read_graph(filename)
-name = os.path.basename(filename)
+name = os.path.basename(filename1)
 original_density = (2*g.number_of_edges())/ (g.number_of_nodes()*(g.number_of_nodes()-1))
 print("Density --> {0}".format(original_density)) 
 
@@ -17,6 +18,7 @@ y1 = df["#C"]
 
 fig, axs = plt.subplots(2, 2)
 fig.set_size_inches(11,7)
+name = name.replace(".csv","")
 fig.suptitle(name, fontsize=16)
 
 axs[0, 0].plot(x1, y1, label = "communities", color="green")
