@@ -15,7 +15,7 @@ import os
 scale = 4
 resolution = 10
 
-filename = "/Users/elia/Desktop/Influence-Maximization/graphs/ego-twitter.txt"
+filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -33,14 +33,6 @@ and conversely, larger values recover clusters containing more data points.
       
 partition = community_louvain.best_partition(G, resolution=resolution)
 
-##
-
-#G1 = ig.Graph.from_networkx(G)
-#partition = la.find_partition(G1, la.ModularityVertexPartition);
-#print(partition)
-#check = list(partition)
-# print(len(check))
-# check = check[:8]
 """REDIFNE CHECK LIST HERE"""
 df = pd.DataFrame()
 df["nodes"] = list(partition.keys())
@@ -90,23 +82,6 @@ for i in range(len(list_edges)):
 
 n = (len(check) * len(check)) - len(check)
 
-# for i in range(len(check)):
-#     edge = 0
-#     for k in range(0,len(check[i])):
-#         for j in range(0,len(check)):
-#             if j!=i:
-#                 for item in check[j]:
-#                     if G.has_edge(check[i][k],item) == True:
-#                         edge = edge + 1    
-        
-            
-#                 nodes = len(check[i]) + len(check[j])
-#                 all_edges[i][j] = float((edge)/(nodes*(nodes-1)))
-#                 all_edges[j][i] = float((edge)/(nodes*(nodes-1)))
-#                 if  all_edges[j][i] >1:
-#                     all_edges[j][i] = 1
-#                     all_edges[i][j] = 1
-                #print("For k {0} and j {1} number of nodes {2} and edges {3}".format(k,j,nodes,edge))
 
 for i in range(len(check)):
     print("I --> {0}".format(i))
@@ -146,18 +121,16 @@ print(all_edges)
 g = nx.stochastic_block_model(sizes, all_edges, seed=0)
 print(nx.info(g))
 
-# position = nx.spring_layout(g)
 
 
 den = (2*g.number_of_edges())/ (g.number_of_nodes()*(g.number_of_nodes()-1))
 print("Density --> {0}".format(den)) 
-# nx.draw(g, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
-# plt.savefig("plot_graph/SBM-"+name+"_"+ str(scale)+".png", dpi=1200)
-# plt.cla()
 
 text = []
 for u,v in g.edges():
     f = "{0} {1}".format(u,v)
     text.append(f) 
-with open("scale_down_SBM/SBM-Graph/"+str(name)+"_"+"scale_"+str(scale)+".txt", "w") as outfile:
+
+name = name.replace(".txt","")
+with open("scale_graphs/"+str(name)+"_"+"scale_"+str(scale)+".txt", "w") as outfile:
         outfile.write("\n".join(text))

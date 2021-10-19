@@ -2,12 +2,13 @@ import pandas as pd
 import matplotlib.pylab as plt
 import sys
 import numpy as np
-
+import os
 sys.path.insert(0, '')
 from src.load import read_graph
 df = pd.read_csv("facebook.csv", sep=",")
-
-g =read_graph(filename="graphs/facebook_combined.txt")
+filename="graphs/facebook_combined.txt"
+g =read_graph(filename)
+name = os.path.basename(filename)
 original_density = (2*g.number_of_edges())/ (g.number_of_nodes()*(g.number_of_nodes()-1))
 print("Density --> {0}".format(original_density)) 
 
@@ -15,6 +16,8 @@ x1 = [x for x in range(1,len(df)+1)]
 y1 = df["#C"]
 
 fig, axs = plt.subplots(2, 2)
+fig.set_size_inches(11,7)
+fig.suptitle(name, fontsize=16)
 
 axs[0, 0].plot(x1, y1, label = "communities", color="green")
 #axs[0, 0].xlabel('r - resolution')
@@ -77,4 +80,6 @@ i = 0
 for ax in axs.flat:
     ax.set(xlabel=xlabel[i], ylabel=ylabel[i])
     i +=1
+
+#plt.savefig("prova.png",figsize=(40, 10),dpi=1000)
 plt.show()
