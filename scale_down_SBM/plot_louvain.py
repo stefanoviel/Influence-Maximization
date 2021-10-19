@@ -14,11 +14,9 @@ from src.load import read_graph
 
 import pandas as pd
 import os
-#import igraph as ig
-#import leidenalg as la
 import os
 
-scale = 10
+scale = 2
 resolution = 1
 no_simulations = 10
 X = 100
@@ -97,7 +95,7 @@ def SBM(GR,check,s):
 
     den = (2*g.number_of_edges())/ (g.number_of_nodes()*(g.number_of_nodes()-1))
     #print(den)
-    with open('somefile.txt', 'a') as the_file:
+    with open('scale_results_csv/'+name, 'a') as the_file:
         the_file.write(str(den) + ","+ str(len(check)) +"," +str(s) +"\n")
     
     return den
@@ -105,8 +103,9 @@ def SBM(GR,check,s):
 
 
 
-filename = "graphs/soc-gplus.txt"
+filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
+name = name + "_" + str(scale)
 G = read_graph(filename)
 G = G.to_undirected()
 
@@ -157,68 +156,67 @@ for i in range(int(X)):
     resolution = round(resolution +1,2)
 
 
-print(communities)
-print(smallest)
-import matplotlib.pyplot as plt
+# print(communities)
+# print(smallest)
+# import matplotlib.pyplot as plt
 
-#x1 = [x* 0.1 for x in range(1,X+1)]
-x1 = [x for x in range(1,X+1)]
-y1 = communities
+# x1 = [x for x in range(1,X+1)]
+# y1 = communities
 
-plt.plot(x1, y1, label = "communities", color="green")
-plt.xlabel('r - resolution')
-plt.ylabel('#C -  no communities')
-plt.legend()
-plt.savefig(name+"r-#c.png", dpi=200)
-plt.show()
-plt.cla()   # Clear axis
-plt.clf()   # Clear f
-plt.close()
-
-
-y2 = smallest
-plt.plot(x1, y2, label = "size", color="blue")
-plt.xlabel('r - resolution')
-plt.ylabel('#S - Size smallest community')
-plt.legend()
-plt.savefig(name+"r-#s.png", dpi=200)
-plt.show()
-plt.cla()   # Clear axis
-plt.clf()   # Clear f
-plt.close()
+# plt.plot(x1, y1, label = "communities", color="green")
+# plt.xlabel('r - resolution')
+# plt.ylabel('#C -  no communities')
+# plt.legend()
+# plt.savefig(name+"r-#c.png", dpi=200)
+# plt.show()
+# plt.cla()   # Clear axis
+# plt.clf()   # Clear f
+# plt.close()
 
 
-y3 = list_density
-print(y3)
-density = []
-for item in x1:
-    density.append(original_density)
-
-plt.plot(x1, y3, label = "size", color="black")
-plt.plot(x1,density, label="original density", color="red")
-plt.xlabel('r - resolution')
-plt.ylabel('#d - density value')
-plt.legend()
-plt.savefig(name+"r-density.png", dpi=200)
-plt.show()
-plt.cla()   # Clear axis
-plt.clf()   # Clear f
-plt.close()
+# y2 = smallest
+# plt.plot(x1, y2, label = "size", color="blue")
+# plt.xlabel('r - resolution')
+# plt.ylabel('#S - Size smallest community')
+# plt.legend()
+# plt.savefig(name+"r-#s.png", dpi=200)
+# plt.show()
+# plt.cla()   # Clear axis
+# plt.clf()   # Clear f
+# plt.close()
 
 
-plt.plot(x1, y1, label = "communities", color="red")
-plt.plot(x1, y2, label = "size", color="blue")
+# y3 = list_density
+# print(y3)
+# density = []
+# for item in x1:
+#     density.append(original_density)
 
-plt.xlabel('r - resolution')
+# plt.plot(x1, y3, label = "size", color="black")
+# plt.plot(x1,density, label="original density", color="red")
+# plt.xlabel('r - resolution')
+# plt.ylabel('#d - density value')
+# plt.legend()
+# plt.savefig(name+"r-density.png", dpi=200)
+# #plt.show()
+# plt.cla()   # Clear axis
+# plt.clf()   # Clear f
+# plt.close()
 
-# Set the y axis label of the current axis.
-plt.ylabel('S - Size')
-plt.legend()
-plt.savefig(name+"r-#C#s.png", dpi=200)
 
-plt.show()
+# plt.plot(x1, y1, label = "communities", color="red")
+# plt.plot(x1, y2, label = "size", color="blue")
 
-plt.cla()   # Clear axis
-plt.clf()   # Clear f
-plt.close()
+# plt.xlabel('r - resolution')
+
+# # Set the y axis label of the current axis.
+# plt.ylabel('S - Size')
+# plt.legend()
+# #plt.savefig("scale_results_csv/"+name+"r-#C#s.png", dpi=200)
+
+# #plt.show()
+
+# plt.cla()   # Clear axis
+# plt.clf()   # Clear f
+# plt.close()
 
