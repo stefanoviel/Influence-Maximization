@@ -3,7 +3,7 @@ import igraph as ig
 from src.load import read_graph
 import networkx as nx
 
-filename = "/Users/elia/Desktop/Influence-Maximization/scale_down_SBM/SBM-Graph/graph_Amazon0302.txt_scale_4.txt"
+filename = "/Users/elia/Downloads/soc-gplus.txt"
 G = read_graph(filename)
 print(nx.info(G)) 
 
