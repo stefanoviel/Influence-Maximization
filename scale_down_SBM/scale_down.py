@@ -12,7 +12,7 @@ from src.load import read_graph
 import pandas as pd
 import os
 
-scale = 4
+scale = 2
 resolution = 10
 
 filename = "graphs/facebook_combined.txt"
