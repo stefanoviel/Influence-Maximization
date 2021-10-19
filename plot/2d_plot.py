@@ -11,35 +11,38 @@ script and produces 3 plots in two dimensions showing the relationship/correlati
 
 if __name__ == '__main__':
     
-    filename = "/Users/elia/Desktop/final_experiments/ego-facebook/Facebook-k200-WC.csv"
+    filename = "/Users/elia/Desktop/Influence-Maximization/ego-twitter-k200-p0.1-WC.csv.csv"
 
     df = pd.read_csv(filename)
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
     x = df["n_nodes"]
     z = df["influence"]
-    y = df["n_simulation"]
+    y = df["time"]
 
+    print(x)
+    print(y)
+    print(z)
     tit = str(os.path.basename(filename))
     tit = tit.replace(".csv", "")
     #fig.suptitle(tit)
 
     ax1.scatter(x, z)
-    ax1.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 80))
-    ax1.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 150))
+    ax1.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
+    ax1.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 100))
     ax1.set_xlabel("Nodes")
 
     ax1.set_ylabel("Influence")
 
     ax2.scatter(y, z)
-    ax2.xaxis.set_ticks(np.arange(0, df["n_simulation"].max()+1, 1))
-    ax2.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 150))
+    ax2.xaxis.set_ticks(np.arange(0, df["time"].max()+1, 10))
+    ax2.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 100))
     ax2.set_xlabel("Converge Time")
 
     ax2.set_ylabel("Influence")
 
     ax3.scatter(y, x)
-    ax3.yaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 40))
-    ax3.xaxis.set_ticks(np.arange(0,df["n_simulation"].max()+1, 1))
+    ax3.yaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
+    ax3.xaxis.set_ticks(np.arange(0,df["time"].max()+1, 10))
     ax3.set_xlabel("Converge Time")
 
     ax3.set_ylabel("Nodes")
@@ -49,6 +52,6 @@ if __name__ == '__main__':
     ax3.set_box_aspect(1)
     fig.tight_layout()
 
-    fig.savefig('Images/'+tit+'.png', format='png', dpi=100)
+    #fig.savefig('Images/'+tit+'.png', format='png', dpi=100)
 
     plt.show()
