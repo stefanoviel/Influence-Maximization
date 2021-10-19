@@ -11,7 +11,7 @@ script and produces 3 plots in two dimensions showing the relationship/correlati
 
 if __name__ == '__main__':
     
-    filename = "/Users/elia/Desktop/Influence-Maximization/ego-twitter-k200-p0.1-WC.csv.csv"
+    filename = "/Users/elia/Desktop/Influence-Maximization/ego-twitter_scale_4-k141-p0.1-WC.csv.csv"
 
     df = pd.read_csv(filename)
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
