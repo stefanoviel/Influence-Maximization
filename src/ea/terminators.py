@@ -1,4 +1,5 @@
 
+from inspyred.ec.analysis import hypervolume
 def generation_termination(population, num_generations, num_evaluations, args):
 	"""
 	generation termination function
@@ -32,10 +33,18 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     """
     max_generations = args.setdefault('max_generations', 10)
     previous_best = args.setdefault('previous_best', None)
-    ##???
-    current_best = max(population).fitness[0]
-    print(current_best, previous_best)
-    if previous_best is None or previous_best != current_best:
+
+    try:
+        print(max_generations,args["generation_count"])
+    except:
+        pass
+    current_best = max(population).fitness
+    pop = [list(x.fitness) for x in population]
+    
+    current_best = hypervolume(pop)
+    print(current_best,previous_best)
+
+    if previous_best is None or previous_best <= current_best:
         args['previous_best'] = current_best
         args['generation_count'] = 0
         return False
