@@ -5,6 +5,7 @@ import logging
 import networkx as nx
 from functools import partial
 import numpy as np
+import pandas as pd
 # local libraries
 from src.load import read_graph
 from src.spread.monte_carlo import MonteCarlo_simulation as MonteCarlo_simulation
@@ -54,11 +55,13 @@ def filter_nodes(G, args):
 if __name__ == '__main__':
     
     filenames = ["scale_graphs/facebook_combined_scale_2.txt","scale_graphs/facebook_combined_scale_4.txt","graphs/facebook_combined.txt"]
+    gt = ["comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined.csv"]
     k_nodes = [2,4,1]
     models = ["IC","WC","LT"]
     i = 0
     for item in filenames:
         scale = k_nodes[i]
+        file_gt = gt[i]
         i +=1
         filename = item
         for m in models:
@@ -94,8 +97,14 @@ if __name__ == '__main__':
             nodes = filter_nodes(G, args)
             initial_population = create_initial_population(G, args, prng, nodes)
 
-            communities = community_detection(G,10)
+            communities =[]
 
+            df = pd.read_csv(file_gt,sep=",")
+            print(df)
+            groups = df.groupby('comm')['node'].apply(list)
+            print(groups)
+            df = groups.reset_index(name='nodes')
+            communities = df["nodes"].to_list()
             '''Propagation Simulation Parameters
             p: propability of activating node m when m is active and n-->m (only for IC Model)
             model: type of propagation model either IC (Indipendent Cascade) or WC(Weighted Cascade)

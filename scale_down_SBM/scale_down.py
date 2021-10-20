@@ -12,8 +12,8 @@ from src.load import read_graph
 import pandas as pd
 import os
 
-scale = 4
-resolution = 22
+scale = 2
+resolution = 19
 
 filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
@@ -45,6 +45,15 @@ for i in range(max(partition.values())+1):
 print(df)
 sum = 0
 check_ok = []
+
+
+print(len(check))
+# i = 1
+# for item in check:
+#     for node in item:
+#         with open('comm_ground_truth/'+name, 'a') as the_file:
+#             the_file.write(str(node) + ","+ str(i)+ "\n")
+#     i +=1
 
 for item in check:
     sum = sum + len(item)
@@ -117,7 +126,14 @@ for i in range(len(sizes)):
     print("Community {0} has {1} elements".format(i+1,sizes[i]))
 
 print(all_edges)
-
+i = 1
+start = 0
+for item in sizes:
+    for node in range(start+1,item+start+1):
+        with open('comm_ground_truth/'+name+"_"+str(scale), 'a') as the_file:
+            the_file.write(str(node) + ","+ str(i)+ "\n")
+    start = start + item
+    i +=1
 g = nx.stochastic_block_model(sizes, all_edges, seed=0)
 print(nx.info(g))
 
