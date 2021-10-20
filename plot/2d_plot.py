@@ -10,9 +10,10 @@ script and produces 3 plots in two dimensions showing the relationship/correlati
 '''
 
 if __name__ == '__main__':
-    
-    filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_2-k50.0-p0.1-IC.csv.csv"
-    filename2 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_4-k50.0-p0.1-IC.csv.csv"
+   
+    filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined-k100.0-p0.1-WC.csv.csv"  
+    filename2= "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_2-k50.0-p0.1-WC.csv.csv"
+    filename3 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_4-k25.0-p0.1-WC.csv.csv"
     df = pd.read_csv(filename)
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
     x = df["n_nodes"]
@@ -23,23 +24,29 @@ if __name__ == '__main__':
     x2 =df1["n_nodes"]
     z2 =df1["influence"]
     y2 =df1["time"]
-
+   
+    df3 = pd.read_csv(filename3)
+    x3 =df3["n_nodes"]
+    z3 =df3["influence"]
+    y3 =df3["time"]
     tit = str(os.path.basename(filename))
     tit = tit.replace(".csv", "")
     #fig.suptitle(tit)
 
-    ax1.scatter(x, z,color="blue", label="scale 2")
-    ax1.scatter(x2, z2, color="green", label="scale 4")
+    ax1.scatter(x, z,color="blue", label="original")
+    ax1.scatter(x2, z2, color="green", label="scale 2")
+    ax1.scatter(x3, z3,color="yellow", label="scale 4")
 
     ax1.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
-    ax1.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 50))
+    ax1.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 200))
     ax1.set_xlabel("Nodes")
 
     ax1.set_ylabel("Influence")
 
     ax2.scatter(y, z ,color="blue")
     ax2.scatter(y2, z2, color="green")
- 
+    ax2.scatter(y3, z3, color="yellow")
+
     ax2.xaxis.set_ticks(np.arange(0, df["time"].max()+1, 1))
     ax2.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 50))
     ax2.set_xlabel("No Communities")
@@ -48,6 +55,7 @@ if __name__ == '__main__':
 
     ax3.scatter(y, x, color="blue")
     ax3.scatter(y2, x2, color="green")
+    ax3.scatter(y3, x3, color="yellow")
 
     ax3.yaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
     ax3.xaxis.set_ticks(np.arange(0,df["time"].max()+1, 1))
