@@ -29,10 +29,10 @@ def nsga2_evaluator(candidates, args):
                 fitness_function_args = [G, A_set, p, no_simulations, model, max_hop]
 
             #influence_mean, influence_std, time,t = fitness_function(*fitness_function_args, **fitness_function_kargs)
-            influence_mean, influence_std, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
+            influence_mean, influence_std, comm = fitness_function(*fitness_function_args, **fitness_function_kargs)
 
-            #fitness[index] = inspyred.ec.emo.Pareto([influence_mean, float(1.0 / len(A_set)), time, float(1/t)]) 
-            fitness[index] = inspyred.ec.emo.Pareto([influence_mean, float(1.0 / len(A_set)), time])
+            #fitness[index] = inspyred.ec.emo.Pareto([influence_mean, float(1.0 / len(A_set)), comm, float(1/t)]) 
+            fitness[index] = inspyred.ec.emo.Pareto([influence_mean, float(1.0 / len(A_set)), comm])
 
     else :
         thread_pool = ThreadPool(n_threads)
@@ -46,7 +46,7 @@ def nsga2_evaluator(candidates, args):
         for index, A in enumerate(candidates) :
             A_set = set(A)
             if fitness_function != MonteCarlo_simulation_max_hop:
-                fitness_function_args = [G, A_set, p, no_simulations, model]
+                fitness_function_args = [G, A_set, p, no_simulations, model, communities]
             else:
                 max_hop = args["max_hop"]
                 fitness_function_args = [G, A_set, p, no_simulations, model, max_hop]
@@ -63,12 +63,12 @@ def nsga2_evaluator(candidates, args):
 
 def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_function_kargs, fitness_values, A_set, index, thread_lock, thread_id) :
 
-    influence_mean, influence_std, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
+    influence_mean, influence_std, comm = fitness_function(*fitness_function_args, **fitness_function_kargs)
 
     # lock data structure before writing in it
     thread_lock.acquire()
    
-    fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, 1.0 / float(len(A_set)), 1.0 / float(time)]) 
+    fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, float(1.0 / len(A_set)), comm])
    
     thread_lock.release()
 
