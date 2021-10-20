@@ -42,7 +42,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     pop = [list(x.fitness) for x in population]
     
     current_best = hypervolume(pop)
-    print(current_best,previous_best)
+    print("Hypervolume {0}-{1}".format(current_best,previous_best))
 
     if previous_best is None or previous_best <= current_best:
         args['previous_best'] = current_best

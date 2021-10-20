@@ -55,7 +55,7 @@ if __name__ == '__main__':
     
     filenames = ["scale_graphs/facebook_combined_scale_2.txt","scale_graphs/facebook_combined_scale_4.txt","graphs/facebook_combined.txt"]
     k_nodes = [2,4,1]
-    models = ["WC","LT","IC"]
+    models = ["IC","WC","LT"]
     i = 0
     for item in filenames:
         scale = k_nodes[i]
@@ -71,7 +71,7 @@ if __name__ == '__main__':
             prng = random.Random(random_seed)
             p = 0.1
 
-            k = 100 / scale
+            k = 100/ scale
 
            
             args = {}
@@ -90,7 +90,7 @@ if __name__ == '__main__':
             mean = int(np.mean(mean))  
             args["min_degree"] = mean + 1
             args["smart_initialization_percentage"] = 0.5
-            args["population_size"] = 100
+            args["population_size"] = 50
             nodes = filter_nodes(G, args)
             initial_population = create_initial_population(G, args, prng, nodes)
 
@@ -103,7 +103,7 @@ if __name__ == '__main__':
             '''
 
                     
-            no_simulations = 100
+            no_simulations = 50
             max_generations = 100
             #nodes' bound of seed sets
             #k=200
@@ -111,7 +111,7 @@ if __name__ == '__main__':
 
 
 
-            n_threads = 1
+            n_threads = 5
             
             #Print Graph's information and properties
             logging.info(nx.classes.function.info(G))
@@ -127,7 +127,7 @@ if __name__ == '__main__':
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             
             start = time.time()
-            seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
+            seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=50, offspring_size=50, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
             
             exec_time = time.time() - start
             print(exec_time)

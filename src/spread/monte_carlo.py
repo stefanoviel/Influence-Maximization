@@ -28,11 +28,10 @@ def LT_model(G, a, p, communities,random_generator):
         for n in B: 
             for m in set(G.neighbors(n)) - A:
                 total_weight = 0
+                prob = float(1/G.degree(m))
                 for each in G.neighbors(m):
                     if each in A:
-                        prob = random_generator.random()  # in the range [0.0, 1.0)
-                        if prob <= p:
-                            total_weight =  total_weight + prob
+                        total_weight =  total_weight + prob				
                 if total_weight > threshold[m]:
                     nextB.add(m)
         B = set(nextB)
