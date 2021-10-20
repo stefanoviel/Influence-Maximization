@@ -11,39 +11,47 @@ script and produces 3 plots in two dimensions showing the relationship/correlati
 
 if __name__ == '__main__':
     
-    filename = "/Users/elia/Desktop/Influence-Maximization/ego-twitter_scale_4-k141-p0.1-WC.csv.csv"
-
+    filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_2-k50.0-p0.1-IC.csv.csv"
+    filename2 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_4-k50.0-p0.1-IC.csv.csv"
     df = pd.read_csv(filename)
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
     x = df["n_nodes"]
     z = df["influence"]
     y = df["time"]
 
-    print(x)
-    print(y)
-    print(z)
+    df1 = pd.read_csv(filename2)
+    x2 =df1["n_nodes"]
+    z2 =df1["influence"]
+    y2 =df1["time"]
+
     tit = str(os.path.basename(filename))
     tit = tit.replace(".csv", "")
     #fig.suptitle(tit)
 
-    ax1.scatter(x, z)
+    ax1.scatter(x, z,color="blue", label="scale 2")
+    ax1.scatter(x2, z2, color="green", label="scale 4")
+
     ax1.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
-    ax1.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 100))
+    ax1.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 50))
     ax1.set_xlabel("Nodes")
 
     ax1.set_ylabel("Influence")
 
-    ax2.scatter(y, z)
-    ax2.xaxis.set_ticks(np.arange(0, df["time"].max()+1, 10))
-    ax2.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 100))
-    ax2.set_xlabel("Converge Time")
+    ax2.scatter(y, z ,color="blue")
+    ax2.scatter(y2, z2, color="green")
+ 
+    ax2.xaxis.set_ticks(np.arange(0, df["time"].max()+1, 1))
+    ax2.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 50))
+    ax2.set_xlabel("No Communities")
 
     ax2.set_ylabel("Influence")
 
-    ax3.scatter(y, x)
+    ax3.scatter(y, x, color="blue")
+    ax3.scatter(y2, x2, color="green")
+
     ax3.yaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
-    ax3.xaxis.set_ticks(np.arange(0,df["time"].max()+1, 10))
-    ax3.set_xlabel("Converge Time")
+    ax3.xaxis.set_ticks(np.arange(0,df["time"].max()+1, 1))
+    ax3.set_xlabel("No Communities")
 
     ax3.set_ylabel("Nodes")
 
@@ -51,7 +59,7 @@ if __name__ == '__main__':
     ax2.set_box_aspect(1)
     ax3.set_box_aspect(1)
     fig.tight_layout()
-
+    ax1.legend()
     #fig.savefig('Images/'+tit+'.png', format='png', dpi=100)
 
     plt.show()
