@@ -17,6 +17,7 @@ import os
 import os
 
 scale = 6
+#1.5 3 5
 resolution = 1
 no_simulations = 10
 X = 100

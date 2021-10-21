@@ -39,20 +39,34 @@ def save_video():
 
 if __name__ == '__main__':
     
-    filename = "/Users/elia/Desktop/Influence-Maximization/ego-twitter_scale_4-k141-p0.1-WC.csv.csv"
-    df = pd.read_csv(filename, sep=",")
+    filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined-k100.0-p0.1-WC.csv.csv"  
+    filename2= "facebook_combined_scale_2-k50.0-p0.1-WC.csv.csv"
+    filename3 = "facebook_combined_scale_4-k25.0-p0.1-WC.csv.csv"
 
     fig = plt.figure(figsize=(8,8))
     ax = fig.add_subplot(111, projection='3d')
 
+    df = pd.read_csv(filename, sep=",")
 
     x1= df["n_nodes"]
     y1 = df["time"]
     z1 = df["influence"]
 
-    ax.scatter(x1,y1,z1, alpha=1, color="red")
+    df1 = pd.read_csv(filename2)
+    x2 =df1["n_nodes"]
+    z2 =df1["influence"]
+    y2 =df1["time"]
+   
+    df3 = pd.read_csv(filename3)
+    x3 =df3["n_nodes"]
+    z3 =df3["influence"]
+    y3 =df3["time"]
 
-    ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 10))
+    ax.scatter(x1,y1,z1, alpha=1, color="red")
+    ax.scatter(x2,y2,z2, alpha=1, color="blue")
+    ax.scatter(x3,y3,z3, alpha=1, color="orange")
+
+    ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 5))
     ax.yaxis.set_ticks(np.arange(0,df["time"].max()+1, 10))
     ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 100))
 
