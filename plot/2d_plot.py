@@ -11,9 +11,9 @@ script and produces 3 plots in two dimensions showing the relationship/correlati
 
 if __name__ == '__main__':
    
-    filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_2-k50.0-p0.1-LT.csv.csv"  
-    filename2= "facebook_combined_scale_4-k25.0-p0.1-LT.csv.csv"
-    filename3 = "facebook_combined_scale_4-k25.0-p0.1-WC.csv.csv"
+    filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined-k100.0-p0.1-LT.csv.csv"  
+    filename2= "facebook_combined_scale_2-k50.0-p0.1-LT.csv.csv"
+    filename3 = "facebook_combined_scale_4-k25.0-p0.1-LT.csv.csv"
     df = pd.read_csv(filename)
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
     x = df["n_nodes"]
@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
     ax1.scatter(x, z,color="blue", label="original")
     ax1.scatter(x2, z2, color="green", label="scale 2")
-    #ax1.scatter(x3, z3,color="orange", label="scale 4")
+    ax1.scatter(x3, z3,color="orange", label="scale 4")
 
     ax1.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
     ax1.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 100))
@@ -49,7 +49,7 @@ if __name__ == '__main__':
 
     ax2.scatter(y, z ,color="blue")
     ax2.scatter(y2, z2, color="green")
-    #ax2.scatter(y3, z3, color="orange")
+    ax2.scatter(y3, z3, color="orange")
 
     ax2.xaxis.set_ticks(np.arange(0, df["time"].max()+1, 1))
     ax2.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 100))
@@ -59,7 +59,7 @@ if __name__ == '__main__':
 
     ax3.scatter(y, x, color="blue")
     ax3.scatter(y2, x2, color="green")
-    #ax3.scatter(y3, x3, color="orange")
+    ax3.scatter(y3, x3, color="orange")
 
     ax3.yaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
     ax3.xaxis.set_ticks(np.arange(0,df["time"].max()+1, 1))
