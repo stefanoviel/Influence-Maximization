@@ -12,8 +12,8 @@ from src.load import read_graph
 import pandas as pd
 import os
 
-scale = 5
-resolution = 19
+scale = 1.33
+resolution = 18
 
 filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))

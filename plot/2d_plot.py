@@ -74,7 +74,9 @@ if __name__ == '__main__':
     ax1.scatter(x, z,color="blue", label="original")
     ax1.scatter(x1, z1, color="brown", label="scale 1.5")
     ax1.scatter(x2, z2, color="green", label="scale 2")
-    ax1.scatter(x3, z3,color="orange", label="scale 4")
+    ax1.scatter(x3, z3,color="orange", label="scale 3")
+    ax1.scatter(x4, z4,color="pink", label="scale 4")
+    ax1.scatter(x5, z5,color="grey", label="scale 5")
 
     ax1.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
     ax1.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 100))
@@ -86,7 +88,8 @@ if __name__ == '__main__':
     ax2.scatter(y2, z2, color="green")
     ax2.scatter(y3, z3, color="orange")
     ax2.scatter(y1, z1, color="brown")
-
+    ax2.scatter(x4, z4,color="pink")
+    ax2.scatter(x5, z5,color="grey")
     ax2.xaxis.set_ticks(np.arange(0, df["time"].max()+1, 1))
     ax2.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 100))
     ax2.set_xlabel("No Communities")
@@ -97,7 +100,8 @@ if __name__ == '__main__':
     ax3.scatter(y2, x2, color="green")
     ax3.scatter(y3, x3, color="orange")
     ax3.scatter(y1, x1, color="brown")
-
+    ax3.scatter(x4, z4,color="pink")
+    ax3.scatter(x5, z5,color="grey")
     ax3.yaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
     ax3.xaxis.set_ticks(np.arange(0,df["time"].max()+1, 1))
     ax3.set_xlabel("No Communities")
