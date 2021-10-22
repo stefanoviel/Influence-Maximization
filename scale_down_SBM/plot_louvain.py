@@ -16,7 +16,7 @@ import pandas as pd
 import os
 import os
 
-scale = 1.5
+scale = 1.33333
 #1.5
 resolution = 1
 no_simulations = 10
