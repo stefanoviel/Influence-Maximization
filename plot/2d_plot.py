@@ -11,14 +11,22 @@ script and produces 3 plots in two dimensions showing the relationship/correlati
 
 if __name__ == '__main__':
    
-    filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined-k100.0-p0.1-LT.csv.csv"  
+    filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined-k100.0-p0.1-LT.csv.csv"
+    filename1_5 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_1.5-k66-p0.1-LT.csv.csv"  
     filename2= "facebook_combined_scale_2-k50.0-p0.1-LT.csv.csv"
-    filename3 = "facebook_combined_scale_4-k25.0-p0.1-LT.csv.csv"
+    filename3 = "facebook_combined_scale_3-k33-p0.1-LT.csv.csv"
+    filename4 = "facebook_combined_scale_4-k25.0-p0.1-LT.csv.csv"
+    filename5 = "facebook_combined_scale_5-k20-p0.1-LT.csv.csv"
     df = pd.read_csv(filename)
-    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
+
     x = df["n_nodes"]
     z = df["influence"]
     y = df["time"]
+   
+    df11 = pd.read_csv(filename1_5)
+    x1 =df11["n_nodes"]
+    z1 =df11["influence"]
+    y1 =df11["time"]
 
     df1 = pd.read_csv(filename2)
     x2 =df1["n_nodes"]
@@ -30,14 +38,41 @@ if __name__ == '__main__':
     z3 =df3["influence"]
     y3 =df3["time"]
 
-    print(np.mean(z),np.mean(z2),np.mean(z3))
-    print(max(z),max(z2),max(z3))
+    df4 = pd.read_csv(filename4)
+    x4 =df4["n_nodes"]
+    z4 =df4["influence"]
+    y4 =df4["time"]
+   
+    df5 = pd.read_csv(filename5)
+    x5 =df5["n_nodes"]
+    z5 =df5["influence"]
+    y5 =df5["time"]
+
+    mean = [np.mean(z5),np.mean(z4),np.mean(z3),np.mean(z2),np.mean(z1),np.mean(z)]
+    max = [max(z5),max(z4),max(z3),max(z2),max(z1),max(z)]
+    min = [min(z5),min(z4),min(z3),min(z2),min(z1),min(z)]
+    print(mean)
+    print(max)
+    print(min)
+    value = [20,25,33,50,66,100]
+    fig = plt.figure()
+    ax = plt.axes()
+    ax.plot(value, mean, color="black", label="mean influence", marker='o')
+    ax.plot(value, max, color="orange", label="max influence", marker='*')
+
+    ax.plot(value, min, color="blue", label="min influence",marker="s")
+    plt.legend()
+    plt.show()
+    plt.cla()
+
+    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
 
     tit = str(os.path.basename(filename))
     tit = tit.replace(".csv", "")
     #fig.suptitle(tit)
 
     ax1.scatter(x, z,color="blue", label="original")
+    ax1.scatter(x1, z1, color="brown", label="scale 1.5")
     ax1.scatter(x2, z2, color="green", label="scale 2")
     ax1.scatter(x3, z3,color="orange", label="scale 4")
 
@@ -50,6 +85,7 @@ if __name__ == '__main__':
     ax2.scatter(y, z ,color="blue")
     ax2.scatter(y2, z2, color="green")
     ax2.scatter(y3, z3, color="orange")
+    ax2.scatter(y1, z1, color="brown")
 
     ax2.xaxis.set_ticks(np.arange(0, df["time"].max()+1, 1))
     ax2.yaxis.set_ticks(np.arange(0,df["influence"].max()+1, 100))
@@ -60,6 +96,7 @@ if __name__ == '__main__':
     ax3.scatter(y, x, color="blue")
     ax3.scatter(y2, x2, color="green")
     ax3.scatter(y3, x3, color="orange")
+    ax3.scatter(y1, x1, color="brown")
 
     ax3.yaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
     ax3.xaxis.set_ticks(np.arange(0,df["time"].max()+1, 1))
