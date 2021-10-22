@@ -5,7 +5,7 @@ import numpy as np
 import os
 sys.path.insert(0, '')
 from src.load import read_graph
-filename1 = "scale_results_csv/facebook_combined_2.csv"
+filename1 = "scale_results_csv/facebook_combined_5.csv"
 df = pd.read_csv(filename1, sep=",")
 filename="graphs/facebook_combined.txt"
 g =read_graph(filename)

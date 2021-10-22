@@ -54,9 +54,9 @@ def filter_nodes(G, args):
 
 if __name__ == '__main__':
     
-    filenames = ["scale_graphs/facebook_combined_scale_4.txt","graphs/facebook_combined.txt"]
-    gt = ["comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined.csv"]
-    k_nodes = [4,1]
+    filenames = ["scale_graphs/facebook_combined_scale_1.5.txt","scale_graphs/facebook_combined_scale_3.txt","scale_graphs/facebook_combined_scale_5.txt"]
+    gt = ["comm_ground_truth/facebook_combined_1.5.csv","comm_ground_truth/facebook_combined_3.csv","comm_ground_truth/facebook_combined_5.csv"]
+    k_nodes = [1.5,3,5]
     models = ["IC","WC","LT"]
     i = 0
     for item in filenames:
@@ -74,7 +74,7 @@ if __name__ == '__main__':
             prng = random.Random(random_seed)
             p = 0.1
 
-            k = 100/ scale
+            k = int(100/ scale)
 
            
             args = {}
