@@ -1,11 +1,11 @@
 import pandas as pd
 import os
 
-filename = "/Users/elia/Downloads/soc-gplus/soc-gplus.edges"
+filename = "/Users/elia/Downloads/ego-twitter/ego-twitter.edges"
 name = (os.path.basename(filename))
 name = name.replace(".edges","")
 
-df = pd.read_csv(filename, sep=" ",index_col=False)
+df = pd.read_csv(filename, sep=",",index_col=False)
 print(df)
 print(df.index)
 n1 = df["node1"].to_list()
