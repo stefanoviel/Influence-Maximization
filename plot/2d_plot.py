@@ -12,6 +12,7 @@ script and produces 3 plots in two dimensions showing the relationship/correlati
 if __name__ == '__main__':
    
     filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined-k100.0-p0.1-LT.csv.csv"
+    filename1_3 = "facebook_combined_scale_1.33-k75-p0.1-LT.csv.csv"
     filename1_5 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_1.5-k66-p0.1-LT.csv.csv"  
     filename2= "facebook_combined_scale_2-k50.0-p0.1-LT.csv.csv"
     filename3 = "facebook_combined_scale_3-k33-p0.1-LT.csv.csv"
@@ -23,6 +24,12 @@ if __name__ == '__main__':
     z = df["influence"]
     y = df["time"]
    
+    df0 = pd.read_csv(filename1_3)
+
+    x0 = df0["n_nodes"]
+    z0 = df0["influence"]
+    y0 = df0["time"]
+
     df11 = pd.read_csv(filename1_5)
     x1 =df11["n_nodes"]
     z1 =df11["influence"]
@@ -48,19 +55,34 @@ if __name__ == '__main__':
     z5 =df5["influence"]
     y5 =df5["time"]
 
-    mean = [np.mean(z5),np.mean(z4),np.mean(z3),np.mean(z2),np.mean(z1),np.mean(z)]
-    max = [max(z5),max(z4),max(z3),max(z2),max(z1),max(z)]
-    min = [min(z5),min(z4),min(z3),min(z2),min(z1),min(z)]
-    print(mean)
-    print(max)
-    print(min)
-    value = [20,25,33,50,66,100]
+    mean = [np.mean(z5),np.mean(z4),np.mean(z3),np.mean(z2),np.mean(z1),np.mean(z0),np.mean(z)]
+    max = [max(z5),max(z4),max(z3),max(z2),max(z1),max(z0),max(z)]
+    min = [min(z5),min(z4),min(z3),min(z2),min(z1),min(z0),min(z)]
+
+    gt = []
+    gt2 = []
+    t = [1,1.33,1.5,2,3,4,5]
+    for i in range(len(t)):
+        gt.append(np.mean(z)/t[i])
+   
+    for i in range(len(t)):
+        gt2.append(np.max(z)/t[i])
+    
+    print(gt2)
+    gt2 = gt2[::-1]
+    print(gt)
+    gt = gt[::-1]
+    print(gt)
+    value = [20,25,33,50,66,75,100]
     fig = plt.figure()
     ax = plt.axes()
     ax.plot(value, mean, color="black", label="mean influence", marker='o')
-    ax.plot(value, max, color="orange", label="max influence", marker='*')
+    #ax.plot(value, max, color="orange", label="max influence", marker='*')
 
-    ax.plot(value, min, color="blue", label="min influence",marker="s")
+    #ax.plot(value, min, color="blue", label="min influence",marker="s")
+    ax.plot(value, gt, color="red", marker="o")
+    #ax.plot(value, gt2, color="red", marker="o")
+
     plt.legend()
     plt.show()
     plt.cla()

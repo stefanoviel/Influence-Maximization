@@ -16,13 +16,12 @@ import pandas as pd
 import os
 import os
 
-scale = 1.33333
-#1.5
+scale_vector = [1.33,1.5,2,3,4,5]
 resolution = 1
 no_simulations = 10
 X = 100
 
-def SBM(GR,check,s):
+def SBM(GR,check,s,scale):
 
     sum = 0
     check_ok = []
@@ -103,121 +102,53 @@ def SBM(GR,check,s):
 
 
 
+for scale in scale_vector:
+    filename = "graphs/ego-twitter.txt"
+    name = (os.path.basename(filename))
+    name = name + "_" + str(scale)
+    G = read_graph(filename)
+    G = G.to_undirected()
 
-filename = "graphs/facebook_combined.txt"
-name = (os.path.basename(filename))
-name = name + "_" + str(scale)
-G = read_graph(filename)
-G = G.to_undirected()
+    print(nx.info(G))
+    original_density = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
+    print("Density --> {0}".format(original_density))
 
-print(nx.info(G))
-original_density = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
-print("Density --> {0}".format(original_density))
+    N = G.number_of_nodes()
 
-N = G.number_of_nodes()
+    smallest = []
+    communities = []
+    list_density = []
+    for i in range(int(X)):
+        comm_values = []
+        size_values = []
+        list_check = []
+        for n in range(no_simulations):
+            print(resolution)
+            partition = community_louvain.best_partition(G, resolution=resolution)
 
-smallest = []
-communities = []
-list_density = []
-for i in range(int(X)):
-    comm_values = []
-    size_values = []
-    list_check = []
-    for n in range(no_simulations):
-        print(resolution)
-        partition = community_louvain.best_partition(G, resolution=resolution)
+            """REDIFNE CHECK LIST HERE"""
+            df = pd.DataFrame()
+            df["nodes"] = list(partition.keys())
+            df["comm"] = list(partition.values()) 
+            df = df.groupby('comm')['nodes'].apply(list)
+            df = df.reset_index(name='nodes')
+            check = []
+            for j in range(max(partition.values())+1):
+                check.append(df["nodes"].iloc[j])
 
-        """REDIFNE CHECK LIST HERE"""
-        df = pd.DataFrame()
-        df["nodes"] = list(partition.keys())
-        df["comm"] = list(partition.values()) 
-        df = df.groupby('comm')['nodes'].apply(list)
-        df = df.reset_index(name='nodes')
-        check = []
-        for j in range(max(partition.values())+1):
-            check.append(df["nodes"].iloc[j])
-
-        list_check.append(check)
-        size = []
-        for k in range(len(check)):
-            size.append(len(check[k]))
-    
-    
-        comm_values.append(len(df["comm"]))
-        size_values.append(min(size))
-        print("Com Values {0} , Size Values {1}".format(comm_values,size_values))
-    
-    com_max = max(comm_values)
-    index = comm_values.index(com_max)
-    communities.append(com_max)
-    smallest.append(size_values[index])
-    check = list_check[index]
-    density = SBM(G,check,size_values[index])
-    list_density.append(density)
-    resolution = round(resolution +1,2)
-
-
-# print(communities)
-# print(smallest)
-# import matplotlib.pyplot as plt
-
-# x1 = [x for x in range(1,X+1)]
-# y1 = communities
-
-# plt.plot(x1, y1, label = "communities", color="green")
-# plt.xlabel('r - resolution')
-# plt.ylabel('#C -  no communities')
-# plt.legend()
-# plt.savefig(name+"r-#c.png", dpi=200)
-# plt.show()
-# plt.cla()   # Clear axis
-# plt.clf()   # Clear f
-# plt.close()
-
-
-# y2 = smallest
-# plt.plot(x1, y2, label = "size", color="blue")
-# plt.xlabel('r - resolution')
-# plt.ylabel('#S - Size smallest community')
-# plt.legend()
-# plt.savefig(name+"r-#s.png", dpi=200)
-# plt.show()
-# plt.cla()   # Clear axis
-# plt.clf()   # Clear f
-# plt.close()
-
-
-# y3 = list_density
-# print(y3)
-# density = []
-# for item in x1:
-#     density.append(original_density)
-
-# plt.plot(x1, y3, label = "size", color="black")
-# plt.plot(x1,density, label="original density", color="red")
-# plt.xlabel('r - resolution')
-# plt.ylabel('#d - density value')
-# plt.legend()
-# plt.savefig(name+"r-density.png", dpi=200)
-# #plt.show()
-# plt.cla()   # Clear axis
-# plt.clf()   # Clear f
-# plt.close()
-
-
-# plt.plot(x1, y1, label = "communities", color="red")
-# plt.plot(x1, y2, label = "size", color="blue")
-
-# plt.xlabel('r - resolution')
-
-# # Set the y axis label of the current axis.
-# plt.ylabel('S - Size')
-# plt.legend()
-# #plt.savefig("scale_results_csv/"+name+"r-#C#s.png", dpi=200)
-
-# #plt.show()
-
-# plt.cla()   # Clear axis
-# plt.clf()   # Clear f
-# plt.close()
-
+            list_check.append(check)
+            size = []
+            for k in range(len(check)):
+                size.append(len(check[k]))
+        
+        
+            comm_values.append(len(df["comm"]))
+            size_values.append(min(size))
+            print("Com Values {0} , Size Values {1}".format(comm_values,size_values))
+        
+        com_max = max(comm_values)
+        index = comm_values.index(com_max)
+        communities.append(com_max)
+        smallest.append(size_values[index])
+        check = list_check[index]
+        density = SBM(G,check,size_values[index],scale)
