@@ -97,7 +97,7 @@ def SBM(GR,check,s):
     return den
 
 
-filename = "graphs/ego-twitter.txt"
+filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
 name = name + "_" + str(scale)
 
