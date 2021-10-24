@@ -149,3 +149,4 @@ for i in range(int(X)):
     smallest.append(size_values[index])
     check = list_check[index]
     density = SBM(G,check,size_values[index])
+
