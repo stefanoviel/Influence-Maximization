@@ -20,7 +20,7 @@ scale_vector = [1.33,1.5,2,3,4,5]
 no_simulations = 10
 X = 100
 
-def SBM(GR,check,s,scale_p):
+def SBM(GR,check,s,scale_p,name):
 
     sum = 0
     check_ok = []
@@ -147,6 +147,6 @@ for scale in scale_vector:
         com_max = max(comm_values)
         index = comm_values.index(com_max)
         check = list_check[index]
-        density = SBM(G,check,size_values[index],scale)
+        density = SBM(G,check,size_values[index],scale,name)
         resolution = round(resolution +1,2)
 
