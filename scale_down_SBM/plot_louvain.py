@@ -100,6 +100,7 @@ def SBM(GR,check,s):
 filename = "graphs/ego-twitter.txt"
 name = (os.path.basename(filename))
 name = name + "_" + str(scale)
+
 G = read_graph(filename)
 G = G.to_undirected()
 
@@ -142,11 +143,12 @@ for i in range(int(X)):
         comm_values.append(len(df["comm"]))
         size_values.append(min(size))
         print("Com Values {0} , Size Values {1}".format(comm_values,size_values))
-    
+        
     com_max = max(comm_values)
     index = comm_values.index(com_max)
     communities.append(com_max)
     smallest.append(size_values[index])
     check = list_check[index]
     density = SBM(G,check,size_values[index])
+    resolution = round(resolution +1,2)
 
