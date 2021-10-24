@@ -16,12 +16,12 @@ import pandas as pd
 import os
 import os
 
-scale_vector = [1.33,1.5,2,3,4,5]
+scale = 5
 resolution = 1
 no_simulations = 10
 X = 100
 
-def SBM(GR,check,s,scale):
+def SBM(GR,check,s):
 
     sum = 0
     check_ok = []
@@ -86,10 +86,6 @@ def SBM(GR,check,s,scale):
     for item in check:
         sizes.append(int(len(item)/scale))
 
-    #for i in range(len(sizes)):
-    #    print("Community {0} has {1} elements".format(i+1,sizes[i]))
-
-    #print(all_edges)
 
     g = nx.stochastic_block_model(sizes, all_edges, seed=0)
 
@@ -101,54 +97,55 @@ def SBM(GR,check,s,scale):
     return den
 
 
+filename = "graphs/ego-twitter.txt"
+name = (os.path.basename(filename))
+name = name + "_" + str(scale)
+G = read_graph(filename)
+G = G.to_undirected()
 
-for scale in scale_vector:
-    filename = "graphs/ego-twitter.txt"
-    name = (os.path.basename(filename))
-    name = name + "_" + str(scale)
-    G = read_graph(filename)
-    G = G.to_undirected()
+print(nx.info(G))
+original_density = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
+print("Density --> {0}".format(original_density))
 
-    print(nx.info(G))
-    original_density = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
-    print("Density --> {0}".format(original_density))
+N = G.number_of_nodes()
 
-    N = G.number_of_nodes()
+smallest = []
+communities = []
+list_density = []
+resolution = 1
+no_simulations = 10
+X = 100
+for i in range(int(X)):
+    comm_values = []
+    size_values = []
+    list_check = []
+    for n in range(no_simulations):
+        print(resolution)
+        partition = community_louvain.best_partition(G, resolution=resolution)
 
-    smallest = []
-    communities = []
-    list_density = []
-    for i in range(int(X)):
-        comm_values = []
-        size_values = []
-        list_check = []
-        for n in range(no_simulations):
-            print(resolution)
-            partition = community_louvain.best_partition(G, resolution=resolution)
+        """REDIFNE CHECK LIST HERE"""
+        df = pd.DataFrame()
+        df["nodes"] = list(partition.keys())
+        df["comm"] = list(partition.values()) 
+        df = df.groupby('comm')['nodes'].apply(list)
+        df = df.reset_index(name='nodes')
+        check = []
+        for j in range(max(partition.values())+1):
+            check.append(df["nodes"].iloc[j])
 
-            """REDIFNE CHECK LIST HERE"""
-            df = pd.DataFrame()
-            df["nodes"] = list(partition.keys())
-            df["comm"] = list(partition.values()) 
-            df = df.groupby('comm')['nodes'].apply(list)
-            df = df.reset_index(name='nodes')
-            check = []
-            for j in range(max(partition.values())+1):
-                check.append(df["nodes"].iloc[j])
-
-            list_check.append(check)
-            size = []
-            for k in range(len(check)):
-                size.append(len(check[k]))
-        
-        
-            comm_values.append(len(df["comm"]))
-            size_values.append(min(size))
-            print("Com Values {0} , Size Values {1}".format(comm_values,size_values))
-        
-        com_max = max(comm_values)
-        index = comm_values.index(com_max)
-        communities.append(com_max)
-        smallest.append(size_values[index])
-        check = list_check[index]
-        density = SBM(G,check,size_values[index],scale)
+        list_check.append(check)
+        size = []
+        for k in range(len(check)):
+            size.append(len(check[k]))
+    
+    
+        comm_values.append(len(df["comm"]))
+        size_values.append(min(size))
+        print("Com Values {0} , Size Values {1}".format(comm_values,size_values))
+    
+    com_max = max(comm_values)
+    index = comm_values.index(com_max)
+    communities.append(com_max)
+    smallest.append(size_values[index])
+    check = list_check[index]
+    density = SBM(G,check,size_values[index])
