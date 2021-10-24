@@ -16,12 +16,11 @@ import pandas as pd
 import os
 import os
 
-scale = 5
-resolution = 1
+scale_vector = [1.33,1.5,2,3,4,5]
 no_simulations = 10
 X = 100
 
-def SBM(GR,check,s):
+def SBM(GR,check,s,scale_p):
 
     sum = 0
     check_ok = []
@@ -29,7 +28,7 @@ def SBM(GR,check,s):
     for item in check:
         sum = sum + len(item)
 
-        if len(item) > 2*scale:
+        if len(item) > 2*scale_p:
             check_ok.append(item)
 
 
@@ -84,7 +83,7 @@ def SBM(GR,check,s):
 
     sizes = []
     for item in check:
-        sizes.append(int(len(item)/scale))
+        sizes.append(int(len(item)/scale_p))
 
 
     g = nx.stochastic_block_model(sizes, all_edges, seed=0)
@@ -97,9 +96,8 @@ def SBM(GR,check,s):
     return den
 
 
-filename = "graphs/facebook_combined.txt"
-name = (os.path.basename(filename))
-name = name + "_" + str(scale)
+filename = "graphs/ego-twitter.txt"
+
 
 G = read_graph(filename)
 G = G.to_undirected()
@@ -110,45 +108,45 @@ print("Density --> {0}".format(original_density))
 
 N = G.number_of_nodes()
 
-smallest = []
-communities = []
-list_density = []
-resolution = 1
 no_simulations = 10
 X = 100
-for i in range(int(X)):
-    comm_values = []
-    size_values = []
-    list_check = []
-    for n in range(no_simulations):
-        print(resolution)
-        partition = community_louvain.best_partition(G, resolution=resolution)
 
-        """REDIFNE CHECK LIST HERE"""
-        df = pd.DataFrame()
-        df["nodes"] = list(partition.keys())
-        df["comm"] = list(partition.values()) 
-        df = df.groupby('comm')['nodes'].apply(list)
-        df = df.reset_index(name='nodes')
-        check = []
-        for j in range(max(partition.values())+1):
-            check.append(df["nodes"].iloc[j])
+for scale in scale_vector:
+    scale = int(scale)
+    resolution = 1
+    name = (os.path.basename(filename))
+    name = name + "_" + str(scale)
+    for i in range(int(X)):
+        comm_values = []
+        size_values = []
+        list_check = []
+        for n in range(no_simulations):
+            print(resolution)
+            partition = community_louvain.best_partition(G, resolution=resolution)
 
-        list_check.append(check)
-        size = []
-        for k in range(len(check)):
-            size.append(len(check[k]))
-    
-    
-        comm_values.append(len(df["comm"]))
-        size_values.append(min(size))
-        print("Com Values {0} , Size Values {1}".format(comm_values,size_values))
+            """REDIFNE CHECK LIST HERE"""
+            df = pd.DataFrame()
+            df["nodes"] = list(partition.keys())
+            df["comm"] = list(partition.values()) 
+            df = df.groupby('comm')['nodes'].apply(list)
+            df = df.reset_index(name='nodes')
+            check = []
+            for j in range(max(partition.values())+1):
+                check.append(df["nodes"].iloc[j])
+
+            list_check.append(check)
+            size = []
+            for k in range(len(check)):
+                size.append(len(check[k]))
         
-    com_max = max(comm_values)
-    index = comm_values.index(com_max)
-    communities.append(com_max)
-    smallest.append(size_values[index])
-    check = list_check[index]
-    density = SBM(G,check,size_values[index])
-    resolution = round(resolution +1,2)
+        
+            comm_values.append(len(df["comm"]))
+            size_values.append(min(size))
+            print("Com Values {0} , Size Values {1}".format(comm_values,size_values))
+            
+        com_max = max(comm_values)
+        index = comm_values.index(com_max)
+        check = list_check[index]
+        density = SBM(G,check,size_values[index],scale)
+        resolution = round(resolution +1,2)
 
