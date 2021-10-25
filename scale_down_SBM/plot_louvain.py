@@ -112,7 +112,6 @@ no_simulations = 10
 X = 100
 
 for scale in scale_vector:
-    scale = int(scale)
     resolution = 1
     name = (os.path.basename(filename))
     name = name + "_" + str(scale)
