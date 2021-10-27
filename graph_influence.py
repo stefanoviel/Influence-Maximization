@@ -54,12 +54,15 @@ def filter_nodes(G, args):
 
 if __name__ == '__main__':
     
-    filenames = ["scale_graphs/facebook_combined_scale_1.33.txt"]
-    gt = ["comm_ground_truth/facebook_combined_1.33.csv"]
-    models = ["IC","WC","LT"]
+    filenames = ["scale_graphs/facebook_combined_scale_5.txt","scale_graphs/facebook_combined_scale_4.txt","scale_graphs/facebook_combined_scale_3.txt","scale_graphs/facebook_combined_scale_2.txt","scale_graphs/facebook_combined_scale_1.5.txt","scale_graphs/facebook_combined_scale_1.33.txt","graphs/facebook_combined.txt"]
+    gt = ["comm_ground_truth/facebook_combined_5.csv","comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_3.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_1.5.csv","comm_ground_truth/facebook_combined_1.33.csv","comm_ground_truth/facebook_combined.csv"]
+    #models = ["IC","WC","LT"]
+    scale_k=[5,4,3,2,1.5,1.33,1]
+    models = ["LT"]
     i = 0
     for item in filenames:
         file_gt = gt[i]
+        scale = scale_k[i]
         i +=1
         filename = item
         for m in models:
@@ -70,11 +73,20 @@ if __name__ == '__main__':
             print(nx.info(G))
             random_seed = 10
             prng = random.Random(random_seed)
-            p = 0.1
 
-            #k = int(100/ scale)
-            k = 75
+            k = int(100/ scale)
            
+
+
+            my_degree_function = G.degree
+            mean = []
+            mean_degree = []
+            for item in G:
+                mean.append(my_degree_function[item])
+                mean_degree.append(float(1/my_degree_function[item]))
+
+            p = np.mean(mean_degree)
+            print(p)
             args = {}
             args["p"] = p
             args["model"] = model
@@ -82,11 +94,7 @@ if __name__ == '__main__':
             args["filter_best_spread_nodes"] = False
             args["search_space_size_max"] = 100
             args["search_space_size_min"] = 10
-
-            my_degree_function = G.degree
-            mean = []
-            for item in G:
-                mean.append(my_degree_function[item])
+            
             
             mean = int(np.mean(mean))  
             args["min_degree"] = mean + 1
