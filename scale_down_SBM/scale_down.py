@@ -12,10 +12,10 @@ from src.load import read_graph
 import pandas as pd
 import os
 
-scale = 1.33
-resolution = 18
+scale = 5
+resolution = 42
 
-filename = "graphs/facebook_combined.txt"
+filename = "graphs/ego-twitter.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -48,12 +48,12 @@ check_ok = []
 
 
 print(len(check))
-# i = 1
-# for item in check:
-#     for node in item:
-#         with open('comm_ground_truth/'+name, 'a') as the_file:
-#             the_file.write(str(node) + ","+ str(i)+ "\n")
-#     i +=1
+i = 1
+for item in check:
+    for node in item:
+        with open('comm_ground_truth/'+name, 'a') as the_file:
+            the_file.write(str(node) + ","+ str(i)+ "\n")
+    i +=1
 
 for item in check:
     sum = sum + len(item)
