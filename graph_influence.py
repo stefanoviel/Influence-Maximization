@@ -9,7 +9,7 @@ import pandas as pd
 # local libraries
 from src.load import read_graph
 from src.spread.monte_carlo import MonteCarlo_simulation as MonteCarlo_simulation
-from src.spread.monte_carlo_max_hop import MonteCarlo_simulation_max_hop as monte_carlo_max_hop
+from src.spread.monte_carlo_max_hop import MonteCarlo_simulation_max_hop as MonteCarlo_simulation_max_hop
 
 from new_ea import moea_influence_maximization
 from src.nodes_filtering.select_best_spread_nodes import filter_best_nodes as filter_best_spread_nodes
@@ -43,7 +43,7 @@ def filter_nodes(G, args):
     if args["filter_best_spread_nodes"]:
         best_nodes = inverse_ncr(args["search_space_size_min"], args["k"])
         error = (inverse_ncr(args["search_space_size_max"], args["k"]) - best_nodes) / best_nodes
-        filter_function = partial(monte_carlo_max_hop, G=G, random_generator=prng, p=args["p"], model=args["model"],
+        filter_function = partial(MonteCarlo_simulation_max_hop, G=G, random_generator=prng, p=args["p"], model=args["model"],
                                   max_hop=3, no_simulations=1)
         nodes = filter_best_spread_nodes(G, best_nodes, error, filter_function)
 
