@@ -39,12 +39,10 @@ def save_video():
 
 if __name__ == '__main__':
     
-    filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined-k100.0-p0.1-WC.csv.csv"  
-    filename2= "facebook_combined_scale_2-k50.0-p0.1-WC.csv.csv"
-    filename3 = "facebook_combined_scale_4-k25.0-p0.1-WC.csv.csv"
+    filename = "/Users/elia/Desktop/Influence-Maximization/experiments/facebook_combined_scale_2-k50.0-p0.1-IC.csv.csv"  
 
-    fig = plt.figure(figsize=(8,8))
-    ax = fig.add_subplot(111, projection='3d')
+    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
+    fig.suptitle("IC", size=16)
 
     df = pd.read_csv(filename, sep=",")
 
@@ -52,36 +50,37 @@ if __name__ == '__main__':
     y1 = df["time"]
     z1 = df["influence"]
 
-    df1 = pd.read_csv(filename2)
-    x2 =df1["n_nodes"]
-    z2 =df1["influence"]
-    y2 =df1["time"]
-   
-    df3 = pd.read_csv(filename3)
-    x3 =df3["n_nodes"]
-    z3 =df3["influence"]
-    y3 =df3["time"]
 
-    ax.scatter(x1,y1,z1, alpha=1, color="red")
-    ax.scatter(x2,y2,z2, alpha=1, color="blue")
-    ax.scatter(x3,y3,z3, alpha=1, color="orange")
+    ax1.scatter(x1,z1,alpha=1)
+    ax1.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
+    ax1.yaxis.set_ticks(np.arange(0,df["influence"].max()+250, 250))
+    ax1.set_xlabel("Nodes")
 
-    ax.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 5))
-    ax.yaxis.set_ticks(np.arange(0,df["time"].max()+1, 10))
-    ax.zaxis.set_ticks(np.arange(0, df["influence"].max()+1, 100))
-
-    ax.set_xlabel("Nodes")
-
-    ax.set_zlabel("Influence")
-
-    ax.set_ylabel("Converge Time")
+    ax1.set_ylabel("Influence")
 
 
+    ax2.scatter(y1, z1)
+    ax2.xaxis.set_ticks(np.arange(0, df["time"].max()+1, 1))
+    ax2.yaxis.set_ticks(np.arange(0,df["influence"].max()+250, 250))
+    ax2.set_xlabel("No Communities")
+
+    ax2.set_ylabel("Influence")
+    
+    ax3.scatter(y1,x1)
+    ax3.yaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
+    ax3.xaxis.set_ticks(np.arange(0,df["time"].max()+1, 1))
+    ax3.set_xlabel("No Communities")
+
+    ax3.set_ylabel("Nodes")
+
+    ax1.set_box_aspect(1)
+    ax2.set_box_aspect(1)
+    ax3.set_box_aspect(1)
+    fig.tight_layout()
     #uncomment to save the plot in .png format
     #fn = str(os.path.basename(filename))
     #fn = fn.replace(".csv", "")
     #plt.savefig('gif/{}.png'.format(fn))
-
     plt.show()
 
     #uncomment to save the plot in .gif  and .mp4 format
