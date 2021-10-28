@@ -88,7 +88,7 @@ if __name__ == '__main__':
             p = np.mean(mean_degree)
             print(p)
             args = {}
-            args["p"] = p/2
+            args["p"] = p*2
             args["model"] = model
             args["k"] = k
             args["filter_best_spread_nodes"] = False
