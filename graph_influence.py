@@ -88,7 +88,7 @@ if __name__ == '__main__':
             p = np.mean(mean_degree)
             print(p)
             args = {}
-            args["p"] = p
+            args["p"] = p/2
             args["model"] = model
             args["k"] = k
             args["filter_best_spread_nodes"] = False
@@ -119,7 +119,7 @@ if __name__ == '__main__':
 
                     
             no_simulations = 50
-            max_generations = 100
+            max_generations = 10
             #nodes' bound of seed sets
             #k=200
             #max_generations = 10 * k
