@@ -85,10 +85,9 @@ if __name__ == '__main__':
                 mean.append(my_degree_function[item])
                 mean_degree.append(float(1/my_degree_function[item]))
 
-            p = np.mean(mean_degree)
-            print(p)
+            p = ((max(mean_degree) + min(mean_degree)) / 2)
             args = {}
-            args["p"] = p*2
+            args["p"] = p
             args["model"] = model
             args["k"] = k
             args["filter_best_spread_nodes"] = False

@@ -12,10 +12,10 @@ from src.load import read_graph
 import pandas as pd
 import os
 
-scale = 5
-resolution = 42
+scale = 4
+resolution = 1
 
-filename = "graphs/ego-twitter.txt"
+filename = "/Users/elia/Desktop/Influence-Maximization/graphs/graph_SBM.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()

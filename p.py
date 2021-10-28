@@ -4,6 +4,7 @@ from src.load import read_graph
 import numpy as np
 import matplotlib.pyplot as plt
 filenames = ["scale_graphs/facebook_combined_scale_5.txt","scale_graphs/facebook_combined_scale_4.txt","scale_graphs/facebook_combined_scale_3.txt","scale_graphs/facebook_combined_scale_2.txt","scale_graphs/facebook_combined_scale_1.5.txt","scale_graphs/facebook_combined_scale_1.33.txt","graphs/facebook_combined.txt"]
+filenames = filenames[::-1]
 pp = []
 mm = []
 ma = []
@@ -21,13 +22,15 @@ for filename in filenames:
     k = np.mean(mean)
     ma.append(max(mean))
 
-    print(filename)
-    print(sum(mean_degree)/k)
-    print(len(mean), len(mean_degree))
-    print(p)
-    print(k)
     pp.append(p)
     mm.append(k)
+    # print(p)
+    # print(k)
+    # print(max(mean_degree), min(mean_degree))
+    print((max(mean_degree)+min(mean_degree))/2)
+
+    plt.hist(mean_degree, color = 'blue', edgecolor = 'black')
+    plt.show()
 
 x = [20,25,33,50,66,75,100]
 
