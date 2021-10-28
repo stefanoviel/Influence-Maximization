@@ -11,13 +11,13 @@ script and produces 3 plots in two dimensions showing the relationship/correlati
 
 if __name__ == '__main__':
    
-    filename = "experiments/facebook_combined-k100.0-p0.1-WC.csv.csv"
-    filename1_3 = "experiments/facebook_combined_scale_1.33-k75-p0.1-WC.csv.csv"
-    filename1_5 = "experiments/facebook_combined_scale_1.5-k66-p0.1-WC.csv.csv"  
-    filename2= "experiments/facebook_combined_scale_2-k50.0-p0.1-WC.csv.csv"
-    filename3 = "experiments/facebook_combined_scale_3-k33-p0.1-WC.csv.csv"
-    filename4 = "experiments/facebook_combined_scale_4-k25.0-p0.1-WC.csv.csv"
-    filename5 = "experiments/facebook_combined_scale_5-k20-p0.1-WC.csv.csv"
+    filename = "experiments/facebook_combined-k100.0-p0.1-LT.csv.csv"
+    filename1_3 = "experiments/facebook_combined_scale_1.33-k75-p0.1-LT.csv.csv"
+    filename1_5 = "experiments/facebook_combined_scale_1.5-k66-p0.1-LT.csv.csv"  
+    filename2= "experiments/facebook_combined_scale_2-k50.0-p0.1-LT.csv.csv"
+    filename3 = "experiments/facebook_combined_scale_3-k33-p0.1-LT.csv.csv"
+    filename4 = "experiments/facebook_combined_scale_4-k25.0-p0.1-LT.csv.csv"
+    filename5 = "experiments/facebook_combined_scale_5-k20-p0.1-LT.csv.csv"
     df = pd.read_csv(filename)
 
     x = df["n_nodes"]
@@ -69,10 +69,11 @@ if __name__ == '__main__':
         gt2.append(np.max(z)/t[i])
     
 
-    print(mean)
-    #print(max)
-    print(gt)
-    #print(gt2)
+    #print(mean)
+    print(max)
+    #print(gt)
+    print(gt2)
+
     gt2 = gt2[::-1]
     gt = gt[::-1]
     value = [20,25,33,50,66,75,100]
