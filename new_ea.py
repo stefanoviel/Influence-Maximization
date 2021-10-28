@@ -8,7 +8,8 @@ from src.threadpool import ThreadPool
 from time import time
 
 # local libraries
-from src.spread.monte_carlo import MonteCarlo_simulation, MonteCarlo_simulation_max_hop
+from src.spread.monte_carlo import MonteCarlo_simulation
+from src.spread.monte_carlo_max_hop import MonteCarlo_simulation_max_hop as MonteCarlo_simulation_max_hop
 from src.ea.observer import ea_observer0, ea_observer1, ea_observer2
 
 from src.ea.evaluator import nsga2_evaluator
