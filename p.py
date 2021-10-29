@@ -29,7 +29,7 @@ for filename in filenames:
     # print(k)
     # print(max(mean_degree), min(mean_degree))
 
-    print(((1/k))/p)
+    print(k / G.number_of_nodes())
     print("-------")
     # sns.distplot(mean, hist=True, kde=True, 
     #              color = 'darkblue', 
