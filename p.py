@@ -26,7 +26,7 @@ for filename in filenames:
     # print(k)
     # print(max(mean_degree), min(mean_degree))
 
-    print(k / G.number_of_nodes(), p)
+    print(p*k)
     print("-------")
     # sns.distplot(mean, hist=True, kde=True, 
     #              color = 'darkblue', 
@@ -34,7 +34,7 @@ for filename in filenames:
     #             kde_kws={'linewidth': 4})
     # sns.distplot(mean, hist = False, kde = True,
     #                 kde_kws = {'shade': True, 'linewidth': 3})
-    plt.show()
+    #plt.show()
 
 x = [20,25,33,50,66,75,100]
 i = 0
@@ -45,14 +45,14 @@ for item in kk:
                 label = str(x[i]))
     i +=1
 plt.legend()
-plt.show()
+#plt.show()
 
 fig = plt.figure()
 ax = plt.axes()
 #ax.plot(x, pp, color="black", label="mean influence", marker='o')
 ax.plot(x, mm, color="red", marker="o",label="ideal mean")
 plt.legend()
-plt.show()
+#plt.show()
 
 # import leidenalg
 # import igraph as ig
