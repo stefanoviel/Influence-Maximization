@@ -21,15 +21,12 @@ for filename in filenames:
 
     p = np.mean(mean_degree)
     k = np.mean(mean)
-    ma.append(max(mean))
-    kk.append(mean)
-    pp.append(p)
-    mm.append(k)
+    mm.append(p)
     # print(p)
     # print(k)
     # print(max(mean_degree), min(mean_degree))
 
-    print(k / G.number_of_nodes())
+    print(k / G.number_of_nodes(), p)
     print("-------")
     # sns.distplot(mean, hist=True, kde=True, 
     #              color = 'darkblue', 
@@ -52,14 +49,11 @@ plt.show()
 
 fig = plt.figure()
 ax = plt.axes()
-ax.plot(x, pp, color="black", label="mean influence", marker='o')
+#ax.plot(x, pp, color="black", label="mean influence", marker='o')
 ax.plot(x, mm, color="red", marker="o",label="ideal mean")
 plt.legend()
-#plt.show()
+plt.show()
 
-print(pp)
-print(mm)
-print(ma)
 # import leidenalg
 # import igraph as ig
 # filename = "graphs/ego-twitter.txt"

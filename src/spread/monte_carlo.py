@@ -23,7 +23,7 @@ def LT_model(G, a, p, communities,random_generator):
     l = np.random.uniform(low=0.0, high=1.0, size=G.number_of_nodes())
 
     for i, node in enumerate(G.nodes()):
-            threshold[node] = p
+            threshold[node] = l[i]
     while not converged:
         nextB = set()
         for n in B: 
