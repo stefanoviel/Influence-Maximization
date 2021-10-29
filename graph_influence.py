@@ -85,7 +85,7 @@ if __name__ == '__main__':
                 mean.append(my_degree_function[item])
                 mean_degree.append(float(1/my_degree_function[item]))
 
-            p = scale
+            p = 1/np.mean(mean)
             args = {}
             args["p"] = p
             args["model"] = model

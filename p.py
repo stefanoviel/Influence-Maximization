@@ -25,7 +25,8 @@ for filename in filenames:
     # print(p)
     # print(k)
     # print(max(mean_degree), min(mean_degree))
-
+    print(p)
+    print(k)
     print(p*k)
     print("-------")
     # sns.distplot(mean, hist=True, kde=True, 
