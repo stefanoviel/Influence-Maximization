@@ -38,7 +38,6 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
         print(max_generations,args["generation_count"])
     except:
         pass
-    current_best = max(population).fitness
     pop = [list(x.fitness) for x in population]
     
     current_best = hypervolume(pop)

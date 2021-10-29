@@ -3,11 +3,12 @@ import networkx as nx
 from src.load import read_graph
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 filenames = ["scale_graphs/facebook_combined_scale_5.txt","scale_graphs/facebook_combined_scale_4.txt","scale_graphs/facebook_combined_scale_3.txt","scale_graphs/facebook_combined_scale_2.txt","scale_graphs/facebook_combined_scale_1.5.txt","scale_graphs/facebook_combined_scale_1.33.txt","graphs/facebook_combined.txt"]
-filenames = filenames[::-1]
 pp = []
 mm = []
 ma = []
+kk = []
 for filename in filenames:
     G = read_graph(filename)
 
@@ -21,18 +22,33 @@ for filename in filenames:
     p = np.mean(mean_degree)
     k = np.mean(mean)
     ma.append(max(mean))
-
+    kk.append(mean)
     pp.append(p)
     mm.append(k)
     # print(p)
     # print(k)
     # print(max(mean_degree), min(mean_degree))
-    print((max(mean_degree)+min(mean_degree))/2)
 
-    plt.hist(mean_degree, color = 'blue', edgecolor = 'black')
+    print(1/k)
+    print("-------")
+    # sns.distplot(mean, hist=True, kde=True, 
+    #              color = 'darkblue', 
+    #             hist_kws={'edgecolor':'black'},
+    #             kde_kws={'linewidth': 4})
+    # sns.distplot(mean, hist = False, kde = True,
+    #                 kde_kws = {'shade': True, 'linewidth': 3})
     plt.show()
 
 x = [20,25,33,50,66,75,100]
+i = 0
+for item in kk:    
+    # Draw the density plot
+    sns.distplot(item, hist = False, kde = True,
+                 kde_kws = {'shade': True, 'linewidth': 3}, 
+                label = str(x[i]))
+    i +=1
+#plt.legend()
+#plt.show()
 
 fig = plt.figure()
 ax = plt.axes()
