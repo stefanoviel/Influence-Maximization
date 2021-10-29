@@ -24,17 +24,17 @@ def LT_model(G, a, p, communities,random_generator):
 
     for i, node in enumerate(G.nodes()):
             #threshold[node] = l[i]
-            threshold[node] = 0.2/p
+            threshold[node] = l[i]
 
     while not converged:
         nextB = set()
         for n in B: 
             for m in set(G.neighbors(n)) - A:
                 total_weight = 0
-                prob = float(1/G.degree(m))
+                #prob = float(1/G.degree(m))
                 for each in G.neighbors(m):
                     if each in A:
-                        total_weight =  total_weight + prob				
+                        total_weight =  total_weight + p				
                 if total_weight > threshold[m]:
                     nextB.add(m)
         B = set(nextB)
