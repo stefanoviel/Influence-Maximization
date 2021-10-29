@@ -59,11 +59,13 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
     
     ea = inspyred.ec.emo.NSGA2(random_gen)
     
+    
     #ea.observer = [ea_observer0, ea_observer1, ea_observer2] 
     ea.variator = [ea_one_point_crossover,ea_global_random_mutation]
     ea.terminator = [no_improvement_termination,generation_termination]
 	
-    ea.replacer = inspyred.ec.replacers.plus_replacement
+    #ea.replacer = inspyred.ec.replacers.plus_replacement
+    ea.replacer = inspyred.ec.replacers.generational_replacement
     bounder = inspyred.ec.DiscreteBounder(nodes)
 
     # start the evolutionary process
