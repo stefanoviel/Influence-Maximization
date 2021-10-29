@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-filename = "facebook_combined-k100-p1-LT.csv.csv"
+filename = "experiments/facebook_combined-k100.0-p0.1-LT.csv.csv"
 filename1_3 = "facebook_combined_scale_1.33-k75-p1.33-LT.csv.csv"
 filename1_5 = "facebook_combined_scale_1.5-k66-p1.5-LT.csv.csv"  
 filename2= "facebook_combined_scale_2-k50-p2-LT.csv.csv"

@@ -24,7 +24,7 @@ def LT_model(G, a, p, communities,random_generator):
 
     for i, node in enumerate(G.nodes()):
             #threshold[node] = l[i]
-            threshold[node] = p
+            threshold[node] = 0.2/p
 
     while not converged:
         nextB = set()
