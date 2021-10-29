@@ -1,13 +1,13 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-filename = "experiments/facebook_combined-k100.0-p0.1-LT.csv.csv"
-filename1_3 = "facebook_combined_scale_1.33-k75-p1.33-LT.csv.csv"
-filename1_5 = "facebook_combined_scale_1.5-k66-p1.5-LT.csv.csv"  
-filename2= "facebook_combined_scale_2-k50-p2-LT.csv.csv"
-filename3 = "facebook_combined_scale_3-k33-p3-LT.csv.csv"
-filename4 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_4-k25-p4-LT.csv.csv"
-filename5 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_5-k20-p5-LT.csv.csv"
+filename = "facebook_combined-k100-p0.02288800235736791-LT.csv.csv"
+filename1_3 = "facebook_combined_scale_1.33-k75-p0.030493688188469887-LT.csv.csv"
+filename1_5 = "facebook_combined_scale_1.5-k66-p0.03436781609195402-LT.csv.csv"  
+filename2= "facebook_combined_scale_2-k50-p0.0459030556566024-LT.csv.csv"
+filename3 = "facebook_combined_scale_3-k33-p0.06850433894844309-LT.csv.csv"
+filename4 = "facebook_combined_scale_4-k25-p0.091599560761347-LT.csv.csv"
+filename5 = "facebook_combined_scale_5-k20-p0.11329348135496727-LT.csv.csv"
 
 df = pd.read_csv(filename)
 x = df["n_nodes"].to_list()

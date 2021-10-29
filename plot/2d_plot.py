@@ -15,13 +15,21 @@ script and produces 3 plots in two dimensions showing the relationship/correlati
 
 if __name__ == '__main__':
    
-    filename = "facebook_combined-k100-p0.5004784688995215-LT.csv.csv"
-    filename1_3 = "facebook_combined_scale_1.33-k75-p0.5058139534883721-LT.csv.csv"
-    filename1_5 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_1.5-k66-p0.5064935064935064-LT.csv.csv"  
-    filename2= "facebook_combined_scale_2-k50-p0.5076923076923077-LT.csv.csv"
-    filename3 = "facebook_combined_scale_3-k33-p0.5104166666666666-LT.csv.csv"
-    filename4 = "facebook_combined_scale_4-k25-p0.5161290322580645-LT.csv.csv"
-    filename5 = "facebook_combined_scale_5-k20-p0.5166666666666667-LT.csv.csv"
+    # filename = "facebook_combined-k100-p0.5004784688995215-LT.csv.csv"
+    # filename1_3 = "facebook_combined_scale_1.33-k75-p0.5058139534883721-LT.csv.csv"
+    # filename1_5 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_1.5-k66-p0.5064935064935064-LT.csv.csv"  
+    # filename2= "facebook_combined_scale_2-k50-p0.5076923076923077-LT.csv.csv"
+    # filename3 = "facebook_combined_scale_3-k33-p0.5104166666666666-LT.csv.csv"
+    # filename4 = "facebook_combined_scale_4-k25-p0.5161290322580645-LT.csv.csv"
+    # filename5 = "facebook_combined_scale_5-k20-p0.5166666666666667-LT.csv.csv"
+
+    filename = "facebook_combined-k100-p0.02288800235736791-LT.csv.csv"
+    filename1_3 = "facebook_combined_scale_1.33-k75-p0.030493688188469887-LT.csv.csv"
+    filename1_5 = "facebook_combined_scale_1.5-k66-p0.03436781609195402-LT.csv.csv"  
+    filename2= "facebook_combined_scale_2-k50-p0.0459030556566024-LT.csv.csv"
+    filename3 = "facebook_combined_scale_3-k33-p0.06850433894844309-LT.csv.csv"
+    filename4 = "facebook_combined_scale_4-k25-p0.091599560761347-LT.csv.csv"
+    filename5 = "facebook_combined_scale_5-k20-p0.11329348135496727-LT.csv.csv"
     df = pd.read_csv(filename)
 
     x = df["n_nodes"]
