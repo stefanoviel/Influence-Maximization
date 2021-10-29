@@ -14,9 +14,9 @@ import random
 
 name = "SBM"
 
-max_nodes = 2000
+max_nodes = 5000
 min_size = int(max_nodes * 0.02)
-max_size = int(max_nodes * 0.25)
+max_size = int(max_nodes * 0.1)
 sizes = []
 while (max_nodes > 0):
     size = random.randint(min_size, max_size)
@@ -25,7 +25,7 @@ while (max_nodes > 0):
 
 print(len(sizes))
 N=len(sizes)
-a = np.random.uniform(0.00005, 0.0005, N)
+a = np.random.uniform(0.000005, 0.0005, N)
 m = np.tril(a) + np.tril(a, -1).T
 m = m.tolist()
 x = 0
@@ -43,11 +43,11 @@ G = nx.stochastic_block_model(sizes, m, seed=0)
 
 
      
-position = nx.spring_layout(G)
+# position = nx.spring_layout(G)
 
-nx.draw(G, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
-plt.savefig("original-"+name+".png", dpi=300)
-plt.cla()
+# nx.draw(G, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
+# plt.savefig("original-"+name+".png", dpi=300)
+# plt.cla()
 
 text = []
 for u,v in G.edges():

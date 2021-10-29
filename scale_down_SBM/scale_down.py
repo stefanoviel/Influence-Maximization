@@ -12,10 +12,10 @@ from src.load import read_graph
 import pandas as pd
 import os
 
-scale = 4
-resolution = 1
+scale = 10
+resolution = 0.5
 
-filename = "/Users/elia/Desktop/Influence-Maximization/graphs/graph_SBM.txt"
+filename = "graph_SBM.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()

@@ -29,7 +29,7 @@ for filename in filenames:
     # print(k)
     # print(max(mean_degree), min(mean_degree))
 
-    print(1/k)
+    print(((1/k))/p)
     print("-------")
     # sns.distplot(mean, hist=True, kde=True, 
     #              color = 'darkblue', 
@@ -47,8 +47,8 @@ for item in kk:
                  kde_kws = {'shade': True, 'linewidth': 3}, 
                 label = str(x[i]))
     i +=1
-#plt.legend()
-#plt.show()
+plt.legend()
+plt.show()
 
 fig = plt.figure()
 ax = plt.axes()

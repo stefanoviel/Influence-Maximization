@@ -85,7 +85,7 @@ if __name__ == '__main__':
                 mean.append(my_degree_function[item])
                 mean_degree.append(float(1/my_degree_function[item]))
 
-            p = 1/np.mean(mean)
+            p = scale
             args = {}
             args["p"] = p
             args["model"] = model
@@ -125,7 +125,7 @@ if __name__ == '__main__':
 
 
 
-            n_threads = 5
+            n_threads = 1
             
             #Print Graph's information and properties
             logging.info(nx.classes.function.info(G))
