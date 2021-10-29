@@ -1,49 +1,61 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-filename = "experiments/facebook_combined-k100.0-p0.1-IC.csv.csv"
-filename1_3 = "facebook_combined_scale_1.33-k75-p0.04450810617988964-LT.csv.csv"
-filename1_5 = "facebook_combined_scale_1.5-k66-p0.049497337671691455-LT.csv.csv"  
-filename2= "facebook_combined_scale_2-k50-p0.0693406222309814-LT.csv.csv"
-filename3 = "facebook_combined_scale_3-k33-p0.10622286935358914-LT.csv.csv"
-filename4 = "facebook_combined_scale_4-k25-p0.1446479610843078-LT.csv.csv"
-filename5 = "facebook_combined_scale_5-k20-p0.17574159554436242-LT.csv.csv"
-
+# filename = "experiments/facebook_combined-k100.0-p0.1-IC.csv.csv"
+# filename1_3 = "experiments/facebook_combined_scale_1.33-k75-p0.1-IC.csv.csv"
+# filename1_5 = "experiments/facebook_combined_scale_1.5-k66-p0.1-IC.csv.csv"  
+# filename2= "experiments/facebook_combined_scale_2-k50.0-p0.1-IC.csv.csv"
+# filename3 = "experiments/facebook_combined_scale_3-k33-p0.1-IC.csv.csv"
+# filename4 = "experiments/facebook_combined_scale_4-k25.0-p0.1-IC.csv.csv"
+# filename5 = "experiments/facebook_combined_scale_5-k20-p0.1-IC.csv.csv"
+filename = "facebook_combined-k100-p0.5004784688995215-LT.csv.csv"
+filename1_3 = "facebook_combined_scale_1.33-k75-p0.5058139534883721-LT.csv.csv"
+filename1_5 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_1.5-k66-p0.5064935064935064-LT.csv.csv"  
+filename2= "facebook_combined_scale_2-k50-p0.5076923076923077-LT.csv.csv"
+filename3 = "facebook_combined_scale_3-k33-p0.5104166666666666-LT.csv.csv"
+filename4 = "facebook_combined_scale_4-k25-p0.5161290322580645-LT.csv.csv"
+filename5 = "facebook_combined_scale_5-k20-p0.5166666666666667-LT.csv.csv"
 df = pd.read_csv(filename)
 x = df["n_nodes"].to_list()
 z = df["influence"]
 y = df["time"]
-
+df = df.drop_duplicates(subset=['n_nodes', 'time'], keep='last')
 df13 = pd.read_csv(filename1_3)
 
 x0 = df13["n_nodes"].to_list()
 z0 = df13["influence"]
 y0 = df13["time"]
+df13 = df13.drop_duplicates(subset=['n_nodes', 'time'], keep='last')
 
 df15 = pd.read_csv(filename1_5)
 x1 =df15["n_nodes"].to_list()
 z1 =df15["influence"]
 y1 =df15["time"]
+df15 = df15.drop_duplicates(subset=['n_nodes', 'time'], keep='last')
 
 df2 = pd.read_csv(filename2)
 x2 =df2["n_nodes"].to_list()
 z2 =df2["influence"]
 y2 =df2["time"]
+df2 = df2.drop_duplicates(subset=['n_nodes', 'time'], keep='last')
 
 df3 = pd.read_csv(filename3)
 x3 =df3["n_nodes"].to_list()
 z3 =df3["influence"]
 y3 =df3["time"]
+df3 = df3.drop_duplicates(subset=['n_nodes', 'time'], keep='last')
 
 df4 = pd.read_csv(filename4)
 x4 =df4["n_nodes"].to_list()
 z4 =df4["influence"]
 y4 =df4["time"]
+df4 = df4.drop_duplicates(subset=['n_nodes', 'time'], keep='last')
 
 df5 = pd.read_csv(filename5)
 x5 =df5["n_nodes"].to_list()
 z5 =df5["influence"]
 y5 =df5["time"]
+df5 = df5.drop_duplicates(subset=['n_nodes', 'time'], keep='last')
 
 
 
@@ -64,30 +76,30 @@ flights = df13.pivot("time", "n_nodes", "influence")
 g2 = sns.heatmap(flights,cmap="YlGnBu",cbar=False,ax=ax2,linewidths=.5, square=False,vmin=1, vmax=max(z),yticklabels='auto')
 g2.set_ylabel('')
 g2.set_xlabel('')
-
+g2.set_title("75%")
 
 flights = df15.pivot("time", "n_nodes", "influence")
 
 g3 = sns.heatmap(flights,cmap="YlGnBu",ax=ax3, cbar_ax=axcb,linewidths=.5, square=False, vmin=1, vmax=max(z),yticklabels='auto')
 g3.set_ylabel('')
 g3.set_xlabel('')
-
+g3.set_title("66%")
 
 flights = df2.pivot("time", "n_nodes", "influence")
 g4 = sns.heatmap(flights,cmap="YlGnBu",cbar=False,ax=ax4,linewidths=.5, square=False,vmin=1, vmax=max(z),yticklabels='auto')
 g4.set_ylabel('')
 g4.set_xlabel('')
-
+g4.set_title("50%")
 flights = df3.pivot("time", "n_nodes", "influence")
 g5 = sns.heatmap(flights,cmap="YlGnBu",cbar=False,ax=ax5,linewidths=.5, square=False,vmin=1, vmax=max(z),yticklabels='auto')
 g5.set_ylabel('')
 g5.set_xlabel('')
-
+g5.set_title("33%")
 flights = df4.pivot("time", "n_nodes", "influence")
 g6 = sns.heatmap(flights,cmap="YlGnBu",ax=ax6, cbar_ax=axcb,linewidths=.5, square=False, vmin=1, vmax=max(z),yticklabels='auto')
 g6.set_ylabel('')
 g6.set_xlabel('')
-
+g6.set_title("25%")
 # may be needed to rotate the ticklabels correctly:
 for ax in [g1,g2,g3,g5,g5,g6]:
     tl = ax.get_xticklabels()
@@ -112,6 +124,7 @@ flights = df2.pivot("time", "n_nodes", "influence")
 g2 = sns.heatmap(flights,cmap="YlGnBu",cbar=False,ax=ax2,linewidths=.5, square=False,vmin=1, vmax=max(z),yticklabels='auto')
 g2.set_ylabel('')
 g2.set_xlabel('')
+g2.set_title("50%")
 
 
 df_fake = pd.DataFrame()
@@ -124,6 +137,7 @@ flights = df_fake.pivot("time", "n_nodes", "influence")
 g3 = sns.heatmap(flights,cmap="YlGnBu",ax=ax3, cbar_ax=axcb,linewidths=.5, square=False, vmin=1, vmax=max(z),yticklabels='auto')
 g3.set_ylabel('')
 g3.set_xlabel('')
+g3.set_title("Ideal Influence%")
 
 
 
