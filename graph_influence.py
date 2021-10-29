@@ -117,7 +117,7 @@ if __name__ == '__main__':
             '''
 
                     
-            no_simulations = 1
+            no_simulations = 50
             max_generations = 10
             #nodes' bound of seed sets
             #k=200
@@ -125,7 +125,7 @@ if __name__ == '__main__':
 
 
 
-            n_threads = 1
+            n_threads = 5
             
             #Print Graph's information and properties
             logging.info(nx.classes.function.info(G))
