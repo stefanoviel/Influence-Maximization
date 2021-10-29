@@ -1,13 +1,13 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-filename = "experiments/facebook_combined-k100.0-p0.1-IC.csv.csv"
-filename1_3 = "experiments/facebook_combined_scale_1.33-k75-p0.1-IC.csv.csv"
-filename1_5 = "experiments/facebook_combined_scale_1.5-k66-p0.1-IC.csv.csv"  
-filename2= "experiments/facebook_combined_scale_2-k50.0-p0.1-IC.csv.csv"
-filename3 = "experiments/facebook_combined_scale_3-k33-p0.1-IC.csv.csv"
-filename4 = "experiments/facebook_combined_scale_4-k25.0-p0.1-IC.csv.csv"
-filename5 = "experiments/facebook_combined_scale_5-k20-p0.1-IC.csv.csv"
+filename = "experiments/facebook_combined-k100.0-p0.1-LT.csv.csv"
+filename1_3 = "experiments/facebook_combined_scale_1.33-k75-p0.1-LT.csv.csv"
+filename1_5 = "experiments/facebook_combined_scale_1.5-k66-p0.1-LT.csv.csv"  
+filename2= "experiments/facebook_combined_scale_2-k50.0-p0.1-LT.csv.csv"
+filename3 = "experiments/facebook_combined_scale_3-k33-p0.1-LT.csv.csv"
+filename4 = "experiments/facebook_combined_scale_4-k25.0-p0.1-LT.csv.csv"
+filename5 = "experiments/facebook_combined_scale_5-k20-p0.1-LT.csv.csv"
 
 df = pd.read_csv(filename)
 x = df["n_nodes"].to_list()
@@ -63,36 +63,36 @@ f,((ax1,ax2,ax3,axcb) ,(ax4,ax5,ax6,ax7)) = plt.subplots(2,4,
 
 flights = df.pivot("time", "n_nodes", "influence")
 g1 = sns.heatmap(flights,cmap="YlGnBu",cbar=False,ax=ax1,linewidths=.5, square=False,vmin=1, vmax=max(z),yticklabels='auto',center=0)
-g1.set_ylabel('')
-g1.set_xlabel('')
+g1.set_ylabel('No. Communities')
+g1.set_xlabel('No. Nodes')
 g1.set_title("Original Graph")
 flights = df13.pivot("time", "n_nodes", "influence")
 g2 = sns.heatmap(flights,cmap="YlGnBu",cbar=False,ax=ax2,linewidths=.5, square=False,vmin=1, vmax=max(z),yticklabels='auto')
-g2.set_ylabel('')
-g2.set_xlabel('')
+g2.set_ylabel('No. Communities')
+g2.set_xlabel('No. Nodes')
 g2.set_title("75%")
 
 flights = df15.pivot("time", "n_nodes", "influence")
 
 g3 = sns.heatmap(flights,cmap="YlGnBu",ax=ax3, cbar_ax=axcb,linewidths=.5, square=False, vmin=1, vmax=max(z),yticklabels='auto')
-g3.set_ylabel('')
-g3.set_xlabel('')
+g3.set_ylabel('No. Communities')
+g3.set_xlabel('No. Nodes')
 g3.set_title("66%")
 
 flights = df2.pivot("time", "n_nodes", "influence")
 g4 = sns.heatmap(flights,cmap="YlGnBu",cbar=False,ax=ax4,linewidths=.5, square=False,vmin=1, vmax=max(z),yticklabels='auto')
-g4.set_ylabel('')
-g4.set_xlabel('')
+g4.set_ylabel('No. Communities')
+g4.set_xlabel('No. Nodes')
 g4.set_title("50%")
 flights = df3.pivot("time", "n_nodes", "influence")
 g5 = sns.heatmap(flights,cmap="YlGnBu",cbar=False,ax=ax5,linewidths=.5, square=False,vmin=1, vmax=max(z),yticklabels='auto')
-g5.set_ylabel('')
-g5.set_xlabel('')
+g5.set_ylabel('No. Communities')
+g5.set_xlabel('No. Nodes')
 g5.set_title("33%")
 flights = df4.pivot("time", "n_nodes", "influence")
 g6 = sns.heatmap(flights,cmap="YlGnBu",ax=ax6, cbar_ax=axcb,linewidths=.5, square=False, vmin=1, vmax=max(z),yticklabels='auto')
-g6.set_ylabel('')
-g6.set_xlabel('')
+g6.set_ylabel('No. Communities')
+g6.set_xlabel('No. Nodes')
 g6.set_title("25%")
 # may be needed to rotate the ticklabels correctly:
 for ax in [g1,g2,g3,g5,g5,g6]:
@@ -110,14 +110,14 @@ f,(ax1,ax2,ax3,axcb) = plt.subplots(1,4,
 
 flights = df.pivot("time", "n_nodes", "influence")
 g1 = sns.heatmap(flights,cmap="YlGnBu",cbar=False,ax=ax1,linewidths=.5, square=False,vmin=1, vmax=max(z),yticklabels='auto',center=0)
-g1.set_ylabel('')
-g1.set_xlabel('')
+g1.set_ylabel('No. Communities')
+g1.set_xlabel('No. Nodes')
 g1.set_title("Original Graph")
 
 flights = df2.pivot("time", "n_nodes", "influence")
 g2 = sns.heatmap(flights,cmap="YlGnBu",cbar=False,ax=ax2,linewidths=.5, square=False,vmin=1, vmax=max(z),yticklabels='auto')
-g2.set_ylabel('')
-g2.set_xlabel('')
+g2.set_ylabel('No. Communities')
+g2.set_xlabel('No. Nodes')
 g2.set_title("50%")
 
 
@@ -129,13 +129,11 @@ df_fake["time"] = [x for x in df["time"].to_list()]
 flights = df_fake.pivot("time", "n_nodes", "influence")
 
 g3 = sns.heatmap(flights,cmap="YlGnBu",ax=ax3, cbar_ax=axcb,linewidths=.5, square=False, vmin=1, vmax=max(z),yticklabels='auto')
-g3.set_ylabel('')
-g3.set_xlabel('')
+g3.set_ylabel('No. Communities')
+g3.set_xlabel('No. No')
 g3.set_title("Ideal Influence%")
 
 
-
-
-
+plt.tight_layout()
 
 plt.show()
