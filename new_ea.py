@@ -15,6 +15,7 @@ from src.ea.observer import ea_observer0, ea_observer1, ea_observer2
 from src.ea.evaluator import nsga2_evaluator
 from src.ea.crossover import ea_one_point_crossover
 from src.ea.generator import nsga2_generator
+from src.ea.generators import generator
 from src.utils import to_csv
 from src.ea.mutators import ea_global_random_mutation
 from src.ea.terminators import generation_termination,no_improvement_termination
