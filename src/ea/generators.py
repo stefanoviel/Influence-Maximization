@@ -9,7 +9,7 @@ def generator(random, args):
 	"""
 	#TODO: sostituire pool di nodi da bounder, dove i nodi nel caso vengono filtrati
 	# return random.sample(args["G"].nodes(), args["k"])
-	return random.sample(args["nodes"], args["k"])
+	return random.sample(args["nodes"], args["max_seed_nodes"])
 
 
 def generator_new_nodes(random, args, new_nodes_percentage=0.9):
