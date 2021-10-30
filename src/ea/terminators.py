@@ -33,13 +33,15 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     """
     max_generations = args.setdefault('max_generations', 10)
     previous_best = args.setdefault('previous_best', None)
-
     try:
         print(max_generations,args["generation_count"])
     except:
         pass
-    pop = [list(x.fitness) for x in population]
-    
+
+    t = args["_ec"]
+    #pop = [list(x.fitness) for x in t.archive]   
+    pop = [list(x.fitness) for x in population]    
+ 
     current_best = hypervolume(pop)
     print("Hypervolume {0}-{1}".format(current_best,previous_best))
 
