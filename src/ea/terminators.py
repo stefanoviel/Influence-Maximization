@@ -1,7 +1,7 @@
 
 from inspyred.ec.analysis import hypervolume
 #from pymoo.factory import get_performance_indicator
-from pymoo.indicators.hv import Hypervolume
+#from pymoo.indicators.hv import Hypervolume
 import numpy as np
 def generation_termination(population, num_generations, num_evaluations, args):
 	"""
