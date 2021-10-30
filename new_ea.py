@@ -98,7 +98,8 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
         fitness_function = fitness_function,
         fitness_function_kargs = fitness_function_kargs,
         mutation_operator=ea_global_random_mutation,
-        communities = communities
+        communities = communities,
+        graph = G
     )
 
     # extract seed sets from the final Pareto front/archive
