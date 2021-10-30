@@ -85,7 +85,7 @@ if __name__ == '__main__':
                 mean.append(my_degree_function[item])
                 mean_degree.append(float(1/my_degree_function[item]))
 
-            p = 0.4/scale
+            p = np.mean(mean_degree)
             args = {}
             args["p"] = p
             args["model"] = model
@@ -117,7 +117,7 @@ if __name__ == '__main__':
             '''
 
                     
-            no_simulations = 1
+            no_simulations = 50
             max_generations = 20
             #nodes' bound of seed sets
             #k=200
