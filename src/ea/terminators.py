@@ -1,5 +1,8 @@
 
 from inspyred.ec.analysis import hypervolume
+#from pymoo.factory import get_performance_indicator
+from pymoo.indicators.hv import Hypervolume
+import numpy as np
 def generation_termination(population, num_generations, num_evaluations, args):
 	"""
 	generation termination function
@@ -40,12 +43,23 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
 
     t = args["_ec"]
     #pop = [list(x.fitness) for x in t.archive]   
-    pop = [list(x.fitness) for x in population]    
- 
-    current_best = hypervolume(pop)
-    print("Hypervolume {0}-{1}".format(current_best,previous_best))
+    pop = [list(x.fitness) for x in population] 
+    #ref = max(population).fitness
+   
+    F =  np.array(pop)
 
-    if previous_best is None or previous_best <= current_best:
+    tot = args["graph"].number_of_nodes() * 1 * len(args["communities"])
+    ref_point = np.array([args["graph"].number_of_nodes(),1, len(args["communities"])])
+    # metric = Hypervolume(ref_point=ref_point, normalize=True)
+    # hv = metric.do(F)
+
+    #hv = get_performance_indicator("hv",bounds=[0,1], ref_point=np.array([args["graph"].number_of_nodes(),1, len(args["communities"])]))
+    #print("hv", hv.do(F))
+    hv = hypervolume(pop,ref_point)
+    current_best = 1-hv/tot
+    print("Hypervolume {0}-{1} Generations {2}".format(current_best,previous_best, num_generations))
+
+    if previous_best is None or previous_best >= current_best:
         args['previous_best'] = current_best
         args['generation_count'] = 0
         return False
