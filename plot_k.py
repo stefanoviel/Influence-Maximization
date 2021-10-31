@@ -1,13 +1,13 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-filename = "facebook_combined-k100-p0.09086867032728771-LT.csv.csv"
-filename1_3 = "facebook_combined_scale_1.33-k75-p0.04450810617988964-LT.csv.csv"
-filename1_5 = "facebook_combined_scale_1.5-k66-p0.049497337671691455-LT.csv.csv"  
-filename2= "facebook_combined_scale_2-k50-p0.0693406222309814-LT.csv.csv"
-filename3 = "facebook_combined_scale_3-k33-p0.10622286935358914-LT.csv.csv"
-filename4 = "facebook_combined_scale_4-k25-p0.1446479610843078-LT.csv.csv"
-filename5 = "facebook_combined_scale_5-k20-p0.17574159554436242-LT.csv.csv"
+filename = "facebook_combined-k100-p0.05-IC.csv.csv"
+filename1_3 = "facebook_combined_scale_1.33-k75-p0.05-IC.csv.csv"
+filename1_5 = "facebook_combined_scale_1.5-k66-p0.05-IC.csv.csv"  
+filename2= "facebook_combined_scale_2-k50-p0.05-IC.csv.csv"
+filename3 = "facebook_combined_scale_3-k33-p0.05-IC.csv.csv"
+filename4 = "facebook_combined_scale_4-k25-p0.05-IC.csv.csv"
+filename5 = "facebook_combined_scale_5-k20-p0.05-IC.csv.csv"
 
 df = pd.read_csv(filename)
 x = df["n_nodes"].to_list()
