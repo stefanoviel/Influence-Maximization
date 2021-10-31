@@ -2258,3 +2258,443 @@ OBSERVERRRR
  OBSERVERRRR 
 
 1088.9798171520233
+Name: 
+Type: Graph
+Number of nodes: 796
+Number of edges: 3513
+Average degree:   8.8266
+      node  comm
+0        1     1
+1        2     1
+2        3     1
+3        4     1
+4        5     1
+...    ...   ...
+2410   801     7
+2411   802     7
+2412   803     7
+2413   804     7
+2414   805     7
+
+[2415 rows x 2 columns]
+comm
+1    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14...
+2    [69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 8...
+3    [81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 9...
+4    [238, 239, 240, 241, 242, 243, 244, 245, 246, ...
+5    [506, 507, 508, 509, 510, 511, 512, 513, 514, ...
+6    [656, 657, 658, 659, 660, 661, 662, 663, 664, ...
+7    [697, 698, 699, 700, 701, 702, 703, 704, 705, ...
+Name: node, dtype: object
+Hypervolume 0.8007921425308361-None Generations 0
+10 0
+Hypervolume 0.7779478452870412-0.8007921425308361 Generations 1
+10 1
+Hypervolume 0.8027268349322371-0.8007921425308361 Generations 2
+10 0
+Hypervolume 0.7558841973213832-0.8027268349322371 Generations 3
+10 1
+Hypervolume 0.48974102202933856-0.8027268349322371 Generations 4
+10 2
+Hypervolume 0.24597907829189236-0.8027268349322371 Generations 5
+10 3
+Hypervolume 0.2511850921273031-0.8027268349322371 Generations 6
+10 4
+Hypervolume 0.2900291038525963-0.8027268349322371 Generations 7
+10 5
+Hypervolume 0.34763295644891123-0.8027268349322371 Generations 8
+10 6
+Hypervolume 0.29966038525963157-0.8027268349322371 Generations 9
+10 7
+Hypervolume 0.3115443886097151-0.8027268349322371 Generations 10
+10 8
+Hypervolume 0.24553070910106078-0.8027268349322371 Generations 11
+10 9
+Hypervolume 0.269178391959799-0.8027268349322371 Generations 12
+10 10
+Hypervolume 0.3165477386934673-0.8027268349322371 Generations 13
+OBSERVERRRR 
+  OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+
+56.64827752113342
+Name: 
+Type: Graph
+Number of nodes: 1001
+Number of edges: 5464
+Average degree:  10.9171
+      node  comm
+0        1     1
+1        2     1
+2        3     1
+3        4     1
+4        5     1
+...    ...   ...
+1004  1005     7
+1005  1006     7
+1006  1007     7
+1007  1008     7
+1008  1009     7
+
+[1009 rows x 2 columns]
+comm
+1    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14...
+2    [86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 9...
+3    [422, 423, 424, 425, 426, 427, 428, 429, 430, ...
+4    [619, 620, 621, 622, 623, 624, 625, 626, 627, ...
+5    [670, 671, 672, 673, 674, 675, 676, 677, 678, ...
+6    [858, 859, 860, 861, 862, 863, 864, 865, 866, ...
+7    [873, 874, 875, 876, 877, 878, 879, 880, 881, ...
+Name: node, dtype: object
+Hypervolume 0.8472643908886145-None Generations 0
+10 0
+Hypervolume 0.7849452214452215-0.8472643908886145 Generations 1
+10 1
+Hypervolume 0.7342189502416776-0.8472643908886145 Generations 2
+10 2
+Hypervolume 0.4954761310118453-0.8472643908886145 Generations 3
+10 3
+Hypervolume 0.4064276364660979-0.8472643908886145 Generations 4
+10 4
+Hypervolume 0.44460490958317056-0.8472643908886145 Generations 5
+10 5
+Hypervolume -0.03552546659689537-0.8472643908886145 Generations 6
+10 6
+Hypervolume 0.3641079375170284-0.8472643908886145 Generations 7
+10 7
+Hypervolume 0.014264790764790702-0.8472643908886145 Generations 8
+10 8
+Hypervolume 0.308473581973582-0.8472643908886145 Generations 9
+10 9
+Hypervolume 0.3712100677100675-0.8472643908886145 Generations 10
+10 10
+Hypervolume 0.44922689215546363-0.8472643908886145 Generations 11
+OBSERVERRRR 
+  OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+
+71.62148189544678
+Name: 
+Type: Graph
+Number of nodes: 1342
+Number of edges: 9795
+Average degree:  14.5976
+      node  comm
+0        1     1
+1        2     1
+2        3     1
+3        4     1
+4        5     1
+...    ...   ...
+1338  1339     7
+1339  1340     7
+1340  1341     7
+1341  1342     7
+1342  1343     7
+
+[1343 rows x 2 columns]
+comm
+1    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14...
+2    [117, 118, 119, 120, 121, 122, 123, 124, 125, ...
+3    [185, 186, 187, 188, 189, 190, 191, 192, 193, ...
+4    [633, 634, 635, 636, 637, 638, 639, 640, 641, ...
+5    [883, 884, 885, 886, 887, 888, 889, 890, 891, ...
+6    [1142, 1143, 1144, 1145, 1146, 1147, 1148, 114...
+7    [1324, 1325, 1326, 1327, 1328, 1329, 1330, 133...
+Name: node, dtype: object
+Hypervolume 0.835091080057548-None Generations 0
+10 0
+Hypervolume 0.42161423834051104-0.835091080057548 Generations 1
+10 1
+Hypervolume 0.5711901077892134-0.835091080057548 Generations 2
+10 2
+Hypervolume 0.4799963251460496-0.835091080057548 Generations 3
+10 3
+Hypervolume 0.28734813901030853-0.835091080057548 Generations 4
+10 4
+Hypervolume 0.46664692001987085-0.835091080057548 Generations 5
+10 5
+Hypervolume 0.4763631035713747-0.835091080057548 Generations 6
+10 6
+Hypervolume 0.5010510964445389-0.835091080057548 Generations 7
+10 7
+Hypervolume 0.284533159959762-0.835091080057548 Generations 8
+10 8
+Hypervolume 0.311959459938968-0.835091080057548 Generations 9
+10 9
+Hypervolume 0.3287606725117903-0.835091080057548 Generations 10
+10 10
+Hypervolume 0.35321811149605487-0.835091080057548 Generations 11
+OBSERVERRRR 
+  OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+
+122.47265577316284
+Name: 
+Type: Graph
+Number of nodes: 2019
+Number of edges: 21992
+Average degree:  21.7850
+      node  comm
+0        1     1
+1        2     1
+2        3     1
+3        4     1
+4        5     1
+...    ...   ...
+2014  2015     7
+2015  2016     7
+2016  2017     7
+2017  2018     7
+2018  2019     7
+
+[2019 rows x 2 columns]
+comm
+1    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14...
+2    [171, 172, 173, 174, 175, 176, 177, 178, 179, ...
+3    [274, 275, 276, 277, 278, 279, 280, 281, 282, ...
+4    [668, 669, 670, 671, 672, 673, 674, 675, 676, ...
+5    [1340, 1341, 1342, 1343, 1344, 1345, 1346, 134...
+6    [1716, 1717, 1718, 1719, 1720, 1721, 1722, 172...
+7    [1746, 1747, 1748, 1749, 1750, 1751, 1752, 175...
+Name: node, dtype: object
+Hypervolume 0.8063498240067233-None Generations 0
+10 0
+Hypervolume 0.6038342326720836-0.8063498240067233 Generations 1
+10 1
+Hypervolume 0.49757061967545757-0.8063498240067233 Generations 2
+10 2
+Hypervolume 0.5628458544149558-0.8063498240067233 Generations 3
+10 3
+Hypervolume 0.4379539019927382-0.8063498240067233 Generations 4
+10 4
+Hypervolume 0.47864405266188326-0.8063498240067233 Generations 5
+10 5
+Hypervolume 0.4716318187343447-0.8063498240067233 Generations 6
+10 6
+Hypervolume 0.4654602231184697-0.8063498240067233 Generations 7
+10 7
+Hypervolume 0.4635385268520483-0.8063498240067233 Generations 8
+10 8
+Hypervolume 0.47118577875264356-0.8063498240067233 Generations 9
+10 9
+Hypervolume 0.25048285730009345-0.8063498240067233 Generations 10
+10 10
+Hypervolume 0.34658083917073523-0.8063498240067233 Generations 11
+OBSERVERRRR 
+  OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+
+257.78575325012207
+Name: 
+Type: Graph
+Number of nodes: 2691
+Number of edges: 39150
+Average degree:  29.0970
+      node  comm
+0        1     1
+1        2     1
+2        3     1
+3        4     1
+4        5     1
+...    ...   ...
+2686  2687     7
+2687  2688     7
+2688  2689     7
+2689  2690     7
+2690  2691     7
+
+[2691 rows x 2 columns]
+comm
+1    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14...
+2    [234, 235, 236, 237, 238, 239, 240, 241, 242, ...
+3    [1130, 1131, 1132, 1133, 1134, 1135, 1136, 113...
+4    [1631, 1632, 1633, 1634, 1635, 1636, 1637, 163...
+5    [2150, 2151, 2152, 2153, 2154, 2155, 2156, 215...
+6    [2515, 2516, 2517, 2518, 2519, 2520, 2521, 252...
+7    [2652, 2653, 2654, 2655, 2656, 2657, 2658, 265...
+Name: node, dtype: object
+Hypervolume 0.45796115801465986-None Generations 0
+10 0
+Hypervolume 0.4336436813354724-0.45796115801465986 Generations 1
+10 1
+Hypervolume 0.4355721521754018-0.45796115801465986 Generations 2
+10 2
+Hypervolume 0.628233025213426-0.45796115801465986 Generations 3
+10 0
+Hypervolume 0.4403355802754363-0.628233025213426 Generations 4
+10 1
+Hypervolume 0.4606319003502791-0.628233025213426 Generations 5
+10 2
+Hypervolume 0.5122153858303744-0.628233025213426 Generations 6
+10 3
+Hypervolume 0.5564422652091696-0.628233025213426 Generations 7
+10 4
+Hypervolume 0.465242313911027-0.628233025213426 Generations 8
+10 5
+Hypervolume 0.39694645626936154-0.628233025213426 Generations 9
+10 6
+Hypervolume 0.4696680349551662-0.628233025213426 Generations 10
+10 7
+Hypervolume 0.4415813010499099-0.628233025213426 Generations 11
+10 8
+Hypervolume 0.2173892719549333-0.628233025213426 Generations 12
+10 9
+Hypervolume 0.5156255882180367-0.628233025213426 Generations 13
+10 10
+Hypervolume 0.4388926271228062-0.628233025213426 Generations 14
+OBSERVERRRR 
+  OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+
+558.5511918067932
+Name: 
+Type: Graph
+Number of nodes: 3034
+Number of edges: 49748
+Average degree:  32.7937
+       node  comm
+0         1     1
+1         2     1
+2         3     1
+3         4     1
+4         5     1
+...     ...   ...
+15165  3030     7
+15166  3031     7
+15167  3032     7
+15168  3033     7
+15169  3034     7
+
+[15170 rows x 2 columns]
+comm
+1    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14...
+2    [257, 258, 259, 260, 261, 262, 263, 264, 265, ...
+3    [1272, 1273, 1274, 1275, 1276, 1277, 1278, 127...
+4    [1837, 1838, 1839, 1840, 1841, 1842, 1843, 184...
+5    [2424, 2425, 2426, 2427, 2428, 2429, 2430, 243...
+6    [2578, 2579, 2580, 2581, 2582, 2583, 2584, 258...
+7    [2990, 2991, 2992, 2993, 2994, 2995, 2996, 299...
+Name: node, dtype: object
+Hypervolume 0.527338112638386-None Generations 0
+10 0
+Hypervolume 0.42529435319914444-0.527338112638386 Generations 1
+10 1
+Hypervolume 0.6323769851066066-0.527338112638386 Generations 2
+10 0
+Hypervolume 0.35965888892743836-0.6323769851066066 Generations 3
+10 1
+Hypervolume 0.5751201515792337-0.6323769851066066 Generations 4
+10 2
+Hypervolume 0.6463458023368609-0.6323769851066066 Generations 5
+10 0
+Hypervolume 0.6186697728583158-0.6463458023368609 Generations 6
+10 1
+Hypervolume 0.5385953297878844-0.6463458023368609 Generations 7
+10 2
+Hypervolume 0.5454953738581787-0.6463458023368609 Generations 8
+10 3
+Hypervolume 0.5041491152222859-0.6463458023368609 Generations 9
+10 4
+Hypervolume 0.538226186758921-0.6463458023368609 Generations 10
+10 5
+Hypervolume 0.4979652862793106-0.6463458023368609 Generations 11
+10 6
+Hypervolume 0.5639939572343295-0.6463458023368609 Generations 12
+10 7
+Hypervolume 0.5227694464820588-0.6463458023368609 Generations 13
+10 8
+Hypervolume 0.520925459867533-0.6463458023368609 Generations 14
+10 9
+Hypervolume 0.5592044485802508-0.6463458023368609 Generations 15
+10 10
+Hypervolume 0.6371721992026871-0.6463458023368609 Generations 16
+OBSERVERRRR 
+  OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+
+806.6604495048523
+Name: 
+Type: Graph
+Number of nodes: 4039
+Number of edges: 88234
+Average degree:  43.6910
+      node  comm
+0        0     1
+1        1     1
+2        2     1
+3        3     1
+4        4     1
+...    ...   ...
+8073  3975     7
+8074  3976     7
+8075  3977     7
+8076  3978     7
+8077  3979     7
+
+[8078 rows x 2 columns]
+comm
+1    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,...
+2    [34, 107, 173, 198, 348, 414, 428, 353, 363, 3...
+3    [686, 687, 688, 689, 690, 691, 692, 693, 694, ...
+4    [136, 1912, 1465, 1577, 1718, 1926, 1932, 1939...
+5    [1684, 3173, 990, 1140, 1450, 1505, 1534, 1642...
+6    [1085, 3437, 3454, 3487, 3723, 3861, 3961, 857...
+7    [1085, 3437, 3454, 3487, 3723, 3861, 3961, 857...
+Name: node, dtype: object
+Hypervolume 0.87966880488395-None Generations 0
+10 0
+Hypervolume 0.494525498170328-0.87966880488395 Generations 1
+10 1
+Hypervolume 0.455005935659322-0.87966880488395 Generations 2
+10 2
+Hypervolume 0.49437327920038465-0.87966880488395 Generations 3
+10 3
+Hypervolume 0.47612895627241114-0.87966880488395 Generations 4
+10 4
+Hypervolume 0.4619803621277886-0.87966880488395 Generations 5
+10 5
+Hypervolume 0.4927872958627163-0.87966880488395 Generations 6
+10 6
+Hypervolume 0.48451477089483697-0.87966880488395 Generations 7
+10 7
+Hypervolume 0.4966715239397761-0.87966880488395 Generations 8
+10 8
+Hypervolume 0.5024770528505875-0.87966880488395 Generations 9
+10 9
+Hypervolume 0.508981136853266-0.87966880488395 Generations 10
+10 10
+Hypervolume 0.505605114836229-0.87966880488395 Generations 11
+OBSERVERRRR 
+  OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+
+964.7948608398438
