@@ -57,12 +57,12 @@ for item in x5:
     t.append(5)
 
 
-x = [*x, *x0, *x1, *x2, *x3,*x4,*x5]
-z = [*z, *z0, *z1, *z2, *z3,*z4,*z5]
+x_final = [*x, *x0, *x1, *x2, *x3,*x4,*x5]
+z_final = [*z, *z0, *z1, *z2, *z3,*z4,*z5]
 
 df = pd.DataFrame()
-df["nodes"] = x
-df["influence"] = z
+df["nodes"] = [round(t,2) for t in x_final]
+df["influence"] = z_final
 df["scale"] = t
 
 print(df)
@@ -70,7 +70,22 @@ import numpy as np; np.random.seed(0)
 import seaborn as sns; sns.set_theme()
 
 flights = df.pivot("scale", "nodes", "influence")
-ax = sns.heatmap(flights,cmap="YlGnBu",annot=True)
+ax = sns.heatmap(flights,cmap="YlGnBu",linewidths=.5, square=False,annot=False, vmin=0, vmax=max(z))
+plt.show()
+plt.cla()
+
+
+
+
+plt.scatter(x, z,color="red", label="original")
+plt.scatter(x0, z0,color="orange", label="scale 75")
+plt.scatter(x1, z1,color="blue", label="scale 66")
+plt.scatter(x2, z2,color="grey", label="50")
+plt.scatter(x3, z3,color="purple", label="33")
+plt.scatter(x4, z4,color="brown", label="25")
+plt.scatter(x5, z5,color="pink", label="20")
+
+plt.legend()
 plt.show()
 # y = [1,2,3,4,5,6,7]
 # f,((ax1,ax2,ax3,axcb) ,(ax4,ax5,ax6,ax7)) = plt.subplots(2,4, 

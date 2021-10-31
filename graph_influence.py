@@ -135,7 +135,7 @@ if __name__ == '__main__':
             file = str(os.path.basename(filename))
             file = file.replace(".txt", "")
             file = '{0}-k{1}-p{2}-{3}.csv'.format(file, k, p , model)
-
+            #file = "ciao"
 
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             
