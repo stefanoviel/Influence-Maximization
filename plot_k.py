@@ -1,14 +1,23 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined-k100-p0.05-IC.csv.csv"
-filename1_3 = "facebook_combined_scale_1.33-k75-p0.0665-IC.csv.csv"
-filename1_5 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_1.5-k66-p0.07500000000000001-IC.csv.csv"  
-filename2= "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_2-k50-p0.1-IC.csv.csv"
-filename3 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_3-k33-p0.15000000000000002-IC.csv.csv"
-filename4 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_4-k25-p0.2-IC.csv.csv"
-filename5 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_5-k20-p0.25-IC.csv.csv"
+'''
+filename = "graph_SBM_small-k100-p0.05-IC.csv.csv"
+filename1_3 = "graph_SBM_small_scale_1.33-k75-p0.0665-IC.csv.csv"
+filename1_5 = "/Users/elia/Desktop/Influence-Maximization/graph_SBM_small_scale_1.5-k66-p0.07500000000000001-IC.csv.csv"  
+filename2= "/Users/elia/Desktop/Influence-Maximization/graph_SBM_small_scale_2-k50-p0.1-IC.csv.csv"
+filename3 = "/Users/elia/Desktop/Influence-Maximization/graph_SBM_small_scale_3-k33-p0.15000000000000002-IC.csv.csv"
+filename4 = "/Users/elia/Desktop/Influence-Maximization/graph_SBM_small_scale_4-k25-p0.2-IC.csv.csv"
+filename5 = "/Users/elia/Desktop/Influence-Maximization/graph_SBM_small_scale_5-k20-p0.25-IC.csv.csv"
+'''
 
+filename = "graph_SBM_small-k100-p0.03603869088891971-LT.csv.csv"
+filename1_3 = "graph_SBM_small_scale_1.33-k75-p0.047874953936862794-LT.csv.csv"
+filename1_5 = "graph_SBM_small_scale_1.5-k66-p0.0541089999218078-LT.csv.csv"  
+filename2= "graph_SBM_small_scale_2-k50-p0.0722841225626741-LT.csv.csv"
+filename3 = "graph_SBM_small_scale_3-k33-p0.10850393700787402-LT.csv.csv"
+filename4 = "graph_SBM_small_scale_4-k25-p0.14446318156267565-LT.csv.csv"
+filename5 = "/Users/elia/Desktop/Influence-Maximization/graph_SBM_small_scale_5-k20-p0.176038062283737-LT.csv.csv"
 t = []
 df = pd.read_csv(filename)
 x = df["n_nodes"].to_list()
