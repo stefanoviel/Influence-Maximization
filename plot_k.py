@@ -1,13 +1,13 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-filename = "facebook_combined-k100-p0.05-IC.csv.csv"
-filename1_3 = "facebook_combined_scale_1.33-k75-p0.05-IC.csv.csv"
-filename1_5 = "facebook_combined_scale_1.5-k66-p0.05-IC.csv.csv"  
-filename2= "facebook_combined_scale_2-k50-p0.05-IC.csv.csv"
-filename3 = "facebook_combined_scale_3-k33-p0.05-IC.csv.csv"
-filename4 = "facebook_combined_scale_4-k25-p0.05-IC.csv.csv"
-filename5 = "facebook_combined_scale_5-k20-p0.05-IC.csv.csv"
+filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined-k100-p0.05-IC.csv.csv"
+filename1_3 = "facebook_combined_scale_1.33-k75-p0.0665-IC.csv.csv"
+filename1_5 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_1.5-k66-p0.07500000000000001-IC.csv.csv"  
+filename2= "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_2-k50-p0.1-IC.csv.csv"
+filename3 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_3-k33-p0.15000000000000002-IC.csv.csv"
+filename4 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_4-k25-p0.2-IC.csv.csv"
+filename5 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_5-k20-p0.25-IC.csv.csv"
 
 df = pd.read_csv(filename)
 x = df["n_nodes"].to_list()

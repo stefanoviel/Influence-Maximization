@@ -125,7 +125,7 @@ if __name__ == '__main__':
 
 
 
-            n_threads = 5
+            n_threads = 1
             
             #Print Graph's information and properties
             logging.info(nx.classes.function.info(G))
@@ -135,7 +135,6 @@ if __name__ == '__main__':
             file = str(os.path.basename(filename))
             file = file.replace(".txt", "")
             file = '{0}-k{1}-p{2}-{3}.csv'.format(file, k, p , model)
-
 
 
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION

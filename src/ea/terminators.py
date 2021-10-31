@@ -48,18 +48,17 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
    
     F =  np.array(pop)
 
-    tot = args["graph"].number_of_nodes() * 1 * len(args["communities"])
-    ref_point = np.array([args["graph"].number_of_nodes(),1, len(args["communities"])])
-    # metric = Hypervolume(ref_point=ref_point, normalize=True)
-    # hv = metric.do(F)
-
+    #tot = args["graph"].number_of_nodes() * 1 * len(args["communities"])
+    #ref_point = np.array([args["graph"].number_of_nodes(),1, len(args["communities"])])
+    ref_point = np.array([args["graph"].number_of_nodes(),1])
+    tot = args["graph"].number_of_nodes() * 1
     #hv = get_performance_indicator("hv",bounds=[0,1], ref_point=np.array([args["graph"].number_of_nodes(),1, len(args["communities"])]))
     #print("hv", hv.do(F))
     hv = hypervolume(pop,ref_point)
     current_best = 1-hv/tot
     print("Hypervolume {0}-{1} Generations {2}".format(current_best,previous_best, num_generations))
 
-    if previous_best is None or previous_best >= current_best:
+    if previous_best is None or previous_best < current_best:
         args['previous_best'] = current_best
         args['generation_count'] = 0
         return False

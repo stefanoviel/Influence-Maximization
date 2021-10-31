@@ -71,7 +71,6 @@ def IC_model(G, a, p, communities, random_generator):              # a: the set 
 		if not B:
 			converged = True
 		A |= B
-    
 	comm = 0
 	for item in communities:
 		intersection = set.intersection(set(item),set(A))
@@ -139,7 +138,8 @@ def MonteCarlo_simulation(G, A, p, no_simulations, model, communities, random_ge
 			times.append(time)
 			results.append(res)
 
-	return (numpy.mean(results), numpy.std(results), int(numpy.mean(times)))
+	return (numpy.mean(results), numpy.std(results))
 
-	#return (numpy.mean(results), numpy.std(results), int(numpy.mean(times)), numpy.mean(tt))
+	#return (numpy.mean(results), numpy.std(results), int(numpy.mean(times)))
+
 

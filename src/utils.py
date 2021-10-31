@@ -398,15 +398,13 @@ def to_csv(archiver, population_file) :
         nodes.append(str(item[0]))
         influence.append(round(item[1],2))
         n_nodes.append(item[2])
-        time.append(item[3])
-        #a.append(round(item[4],2))
+        #time.append(item[3])
 
 
     df["n_nodes"] = n_nodes
     df["influence"] = influence
-    df["time"] = time
+    #df["time"] = time
     df["nodes"] = nodes
-    #df["a"] = a
     df.to_csv(population_file+".csv", sep=",", index=False)
 
 def community_detection(G,r):

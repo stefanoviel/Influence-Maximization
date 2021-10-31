@@ -23,18 +23,18 @@ if __name__ == '__main__':
     # filename4 = "facebook_combined_scale_4-k25-p0.5161290322580645-LT.csv.csv"
     # filename5 = "facebook_combined_scale_5-k20-p0.5166666666666667-LT.csv.csv"
 
-    filename = "facebook_combined-k100-p0.1-IC.csv.csv"
-    filename1_3 = "facebook_combined_scale_1.33-k75-p0.1-IC.csv.csv"
-    filename1_5 = "facebook_combined_scale_1.5-k66-p0.1-IC.csv.csv"  
-    filename2= "facebook_combined_scale_2-k50-p0.1-IC.csv.csv"
-    filename3 = "facebook_combined_scale_3-k33-p0.1-IC.csv.csv"
-    filename4 = "facebook_combined_scale_4-k25-p0.1-IC.csv.csv"
-    filename5 = "facebook_combined_scale_5-k20-p0.1-IC.csv.csv"
+    filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined-k100-p0.05-IC.csv.csv"
+    filename1_3 = "facebook_combined_scale_1.33-k75-p0.0665-IC.csv.csv"
+    filename1_5 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_1.5-k66-p0.07500000000000001-IC.csv.csv"  
+    filename2= "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_2-k50-p0.1-IC.csv.csv"
+    filename3 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_3-k33-p0.15000000000000002-IC.csv.csv"
+    filename4 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_4-k25-p0.2-IC.csv.csv"
+    filename5 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_5-k20-p0.25-IC.csv.csv"
     df = pd.read_csv(filename)
 
     x = df["n_nodes"]
     z = df["influence"]
-    y = df["time"]
+    #y = df["time"]
 
 
     plt.scatter(x, z)
@@ -46,32 +46,32 @@ if __name__ == '__main__':
 
     x0 = df0["n_nodes"]
     z0 = df0["influence"]
-    y0 = df0["time"]
+    #y0 = df0["time"]
 
     df11 = pd.read_csv(filename1_5)
     x1 =df11["n_nodes"]
     z1 =df11["influence"]
-    y1 =df11["time"]
+    #y1 =df11["time"]
 
     df1 = pd.read_csv(filename2)
     x2 =df1["n_nodes"]
     z2 =df1["influence"]
-    y2 =df1["time"]
+    #y2 =df1["time"]
    
     df3 = pd.read_csv(filename3)
     x3 =df3["n_nodes"]
     z3 =df3["influence"]
-    y3 =df3["time"]
+    #y3 =df3["time"]
 
     df4 = pd.read_csv(filename4)
     x4 =df4["n_nodes"]
     z4 =df4["influence"]
-    y4 =df4["time"]
+    #y4 =df4["time"]
    
     df5 = pd.read_csv(filename5)
     x5 =df5["n_nodes"]
     z5 =df5["influence"]
-    y5 =df5["time"]
+    #y5 =df5["time"]
 
     mean = [np.mean(z5),np.mean(z4),np.mean(z3),np.mean(z2),np.mean(z1),np.mean(z0),np.mean(z)]
     max = [max(z5),max(z4),max(z3),max(z2),max(z1),max(z0),max(z)]
@@ -79,13 +79,13 @@ if __name__ == '__main__':
 
     gt = []
     gt2 = []
+    p = []
     t = [1,1.33,1.5,2,3,4,5]
     for i in range(len(t)):
         gt.append(np.mean(z)/t[i])
-   
+
     for i in range(len(t)):
         gt2.append(np.max(z)/t[i])
-    
 
     #print(mean)
     print(max)
