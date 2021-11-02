@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "graph_influence.py", line 14, in <module>
+    from new_ea import moea_influence_maximization
+  File "/home/s2878747/Influence-Maximization/new_ea.py", line 21, in <module>
+    from src.ea.terminators import generation_termination,no_improvement_termination
+  File "/home/s2878747/Influence-Maximization/src/ea/terminators.py", line 3, in <module>
+    from pymoo.factory import get_performance_indicator
+ModuleNotFoundError: No module named 'pymoo'
