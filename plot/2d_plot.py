@@ -15,13 +15,37 @@ script and produces 3 plots in two dimensions showing the relationship/correlati
 
 if __name__ == '__main__':
    
-    # filename = "facebook_combined-k100-p0.5004784688995215-LT.csv.csv"
-    # filename1_3 = "facebook_combined_scale_1.33-k75-p0.5058139534883721-LT.csv.csv"
-    # filename1_5 = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_1.5-k66-p0.5064935064935064-LT.csv.csv"  
-    # filename2= "facebook_combined_scale_2-k50-p0.5076923076923077-LT.csv.csv"
-    # filename3 = "facebook_combined_scale_3-k33-p0.5104166666666666-LT.csv.csv"
-    # filename4 = "facebook_combined_scale_4-k25-p0.5161290322580645-LT.csv.csv"
-    # filename5 = "facebook_combined_scale_5-k20-p0.5166666666666667-LT.csv.csv"
+    '''
+    filename = "/Users/elia/Desktop/Experiments/sbm/graph_SBM_small-k100-p0.05-IC.csv.csv"
+    filename1_3 = "/Users/elia/Desktop/Experiments/sbm/graph_SBM_small_scale_1.33-k75-p0.0665-IC.csv.csv"
+    filename1_5 = "/Users/elia/Desktop/Experiments/sbm/graph_SBM_small_scale_1.5-k66-p0.07500000000000001-IC.csv.csv"  
+    filename2= "/Users/elia/Desktop/Experiments/sbm/graph_SBM_small_scale_2-k50-p0.1-IC.csv.csv"
+    filename3 = "/Users/elia/Desktop/Experiments/sbm/graph_SBM_small_scale_3-k33-p0.15000000000000002-IC.csv.csv"
+    filename4 = "/Users/elia/Desktop/Experiments/sbm/graph_SBM_small_scale_4-k25-p0.2-IC.csv.csv"
+    filename5 = "/Users/elia/Desktop/Experiments/sbm/graph_SBM_small_scale_5-k20-p0.25-IC.csv.csv"
+    '''
+    # filename = "facebook_combined-k100-p0.05-IC.csv.csv"
+    # filename1_3 = "facebook_combined_scale_1.33-k75-p0.0665-IC.csv.csv"
+    # filename1_5 = "facebook_combined_scale_1.5-k66-p0.07500000000000001-IC.csv.csv"  
+    # filename2= "facebook_combined_scale_2-k50-p0.1-IC.csv.csv"
+    # filename3 = "facebook_combined_scale_3-k33-p0.15000000000000002-IC.csv.csv"
+    # filename4 = "facebook_combined_scale_4-k25-p0.2-IC.csv.csv"
+    # filename5 = "facebook_combined_scale_5-k20-p0.25-IC.csv.csv"
+    # filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined-k100-p0.02288800235736791-LT.csv.csv"
+    # filename1_3 = "facebook_combined_scale_1.33-k75-p0.030493688188469887-LT.csv.csv"
+    # filename1_5 = "facebook_combined_scale_1.5-k66-p0.03436781609195402-LT.csv.csv"  
+    # filename2= "facebook_combined_scale_2-k50-p0.0459030556566024-LT.csv.csv"
+    # filename3 = "facebook_combined_scale_3-k33-p0.06850433894844309-LT.csv.csv"
+    # filename4 = "facebook_combined_scale_4-k25-p0.091599560761347-LT.csv.csv"
+    # filename5 = "facebook_combined_scale_5-k20-p0.11329348135496727-LT.csv.csv"
+    filename = "graph_SBM_small-k100-p0.05-IC.csv.csv"
+    filename1_3 = "graph_SBM_small_scale_1.33-k75-p0.0665-IC.csv.csv"
+    filename1_5 = "graph_SBM_small_scale_1.5-k66-p0.07500000000000001-IC.csv.csv"  
+    filename2= "graph_SBM_small_scale_2-k50-p0.1-IC.csv.csv"
+    filename3 = "graph_SBM_small_scale_3-k33-p0.15000000000000002-IC.csv.csv"
+    filename4 = "graph_SBM_small_scale_4-k25-p0.2-IC.csv.csv"
+    filename5 = "graph_SBM_small_scale_5-k20-p0.25-IC.csv.csv"
+
 
     filename = "graph_SBM_small-k100-p0.03603869088891971-LT.csv.csv"
     filename1_3 = "graph_SBM_small_scale_1.33-k75-p0.047874953936862794-LT.csv.csv"
@@ -29,7 +53,8 @@ if __name__ == '__main__':
     filename2= "graph_SBM_small_scale_2-k50-p0.0722841225626741-LT.csv.csv"
     filename3 = "graph_SBM_small_scale_3-k33-p0.10850393700787402-LT.csv.csv"
     filename4 = "graph_SBM_small_scale_4-k25-p0.14446318156267565-LT.csv.csv"
-    filename5 = "/Users/elia/Desktop/Influence-Maximization/graph_SBM_small_scale_5-k20-p0.176038062283737-LT.csv.csv"
+    filename5 = "graph_SBM_small_scale_5-k20-p0.176038062283737-LT.csv.csv"
+
     df = pd.read_csv(filename)
 
     x = df["n_nodes"]
@@ -37,11 +62,7 @@ if __name__ == '__main__':
     #y = df["time"]
 
 
-    plt.scatter(x, z)
-    plt.title("Connected Scatterplot points with line")
-    plt.xlabel("x")
-    plt.ylabel("sinx")
-    plt.show()
+
     df0 = pd.read_csv(filename1_3)
 
     x0 = df0["n_nodes"]
@@ -57,7 +78,7 @@ if __name__ == '__main__':
     x2 =df1["n_nodes"]
     z2 =df1["influence"]
     #y2 =df1["time"]
-   
+
     df3 = pd.read_csv(filename3)
     x3 =df3["n_nodes"]
     z3 =df3["influence"]
@@ -73,47 +94,59 @@ if __name__ == '__main__':
     z5 =df5["influence"]
     #y5 =df5["time"]
 
-    mean = [np.mean(z5),np.mean(z4),np.mean(z3),np.mean(z2),np.mean(z1),np.mean(z0),np.mean(z)]
+    plt.scatter(x, z, color="blue", label="original")
+    plt.scatter(x0, z0, color='red',label="75%")
+    plt.scatter(x1, z1, color='orange',label="66%")
+    plt.scatter(x2, z2, color='grey',label="50%")
+    plt.scatter(x3, z3, color='brown',label="33%")
+    plt.scatter(x4, z4, color='purple',label="25%")
+    plt.scatter(x5, z5, color='black',label="20%",)
+    plt.legend()
+    plt.title("Connected Scatterplot points with line")
+    plt.xlabel("x")
+    plt.ylabel("sinx")
+
+    plt.show() 
     max = [max(z5),max(z4),max(z3),max(z2),max(z1),max(z0),max(z)]
-    min = [min(z5),min(z4),min(z3),min(z2),min(z1),min(z0),min(z)]
 
     gt = []
     gt2 = []
     p = []
     t = [1,1.33,1.5,2,3,4,5]
-    for i in range(len(t)):
-        gt.append(np.mean(z)/t[i])
 
     for i in range(len(t)):
         gt2.append(np.max(z)/t[i])
 
     #print(mean)
     print(max)
-    #print(gt)
-    print(gt2)
 
     gt2 = gt2[::-1]
-    gt = gt[::-1]
-    value = [20,25,33,50,66,75,100]
-    fig = plt.figure()
-    ax = plt.axes()
-    ax.plot(value, mean, color="black", label="mean influence", marker='o')
-    ax.plot(value, gt, color="red", marker="o",label="ideal mean")
-    fig.suptitle("Avg. Influence LT", fontsize=16)
+    print(gt2)
 
-    plt.legend()
-    plt.show()
-    plt.cla()
+    value = [20,25,33,50,66,75,100]
     
     fig = plt.figure()
     ax = plt.axes()  
     ax.plot(value, max, color="orange", label="max influence", marker='*')
+    
     ax.plot(value, gt2, color="green", marker="o",label="ideal max")
     fig.suptitle("Max Influence LT", fontsize=16)
     plt.legend()
     plt.show()
     plt.cla()
-
+    p = []
+    for i in range(len(gt2)-1):
+        print(gt2[i], max[i])
+        if max[i]> gt2[i]:
+            p.append((gt2[i]/max[i]))
+        else:
+            p.append((max[i]/gt2[i]))
+    p_final = 1 - np.mean(p)
+    print('Final {0}'.format(p_final))
+    print(p)
+    exit(0)
+   
+   
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
 
     tit = str(os.path.basename(filename))
