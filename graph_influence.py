@@ -85,10 +85,12 @@ if __name__ == '__main__':
                 mean.append(my_degree_function[item])
                 mean_degree.append(float(1/my_degree_function[item]))
             if model == "IC":
-                p = 0.01*scale
+                p = round(0.01*scale,2)
+                t = 'first_attempt'
             else:
-                p = 0.1*scale
+                p = round(0.1*scale,2)
                 model="IC"
+                t = 'second_attempt'
             args = {}
             args["p"] = p
             args["model"] = model
@@ -137,7 +139,7 @@ if __name__ == '__main__':
             #define file where to save the results obtained from the execution
             file = str(os.path.basename(filename))
             file = file.replace(".txt", "")
-            file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,'second_attempt')
+            file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
 
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             
