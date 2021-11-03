@@ -28,39 +28,33 @@ for filename in filenames:
     print(p)
     print(k)
     print(p*k)
+    kk.append(mean_degree)
+    '''
     print("-------")
-    # sns.distplot(mean, hist=True, kde=True, 
-    #              color = 'darkblue', 
-    #             hist_kws={'edgecolor':'black'},
-    #             kde_kws={'linewidth': 4})
-    # sns.distplot(mean, hist = False, kde = True,
-    #                 kde_kws = {'shade': True, 'linewidth': 3})
-    #plt.show()
-
+    sns.distplot(mean, hist=True, kde=True, 
+                 color = 'darkblue', 
+                hist_kws={'edgecolor':'black'},
+                kde_kws={'linewidth': 4})
+    sns.distplot(mean, hist = False, kde = True,
+                    kde_kws = {'shade': True, 'linewidth': 3})
+    plt.show()
+    '''
 x = [20,25,33,50,66,75,100]
 i = 0
 for item in kk:    
     # Draw the density plot
     sns.distplot(item, hist = False, kde = True,
-                 kde_kws = {'shade': True, 'linewidth': 3}, 
+                 kde_kws = {'shade': False, 'linewidth': 3}, 
                 label = str(x[i]))
     i +=1
 plt.legend()
-#plt.show()
+plt.title('Density Plot with Multiple Airlines')
+plt.xlabel('Delay (min)')
+plt.ylabel('Density')
+plt.show()
 
 fig = plt.figure()
 ax = plt.axes()
 #ax.plot(x, pp, color="black", label="mean influence", marker='o')
 ax.plot(x, mm, color="red", marker="o",label="ideal mean")
 plt.legend()
-#plt.show()
-
-# import leidenalg
-# import igraph as ig
-# filename = "graphs/ego-twitter.txt"
-# G = read_graph(filename)
-# print(nx.info(G))
-# R = ig.Graph.from_networkx(G)
-# part = leidenalg.find_partition(R, leidenalg.ModularityVertexPartition)
-# check = list(part)
-# print(len(check))

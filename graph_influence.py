@@ -58,7 +58,7 @@ if __name__ == '__main__':
     gt = ["comm_ground_truth/facebook_combined_5.csv","comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_3.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_1.5.csv","comm_ground_truth/facebook_combined_1.33.csv","comm_ground_truth/facebook_combined.csv","comm_ground_truth/graph_SBM_small_5.csv","comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_3.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.5.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
     models = ["IC","LT"]
     scale_k=[5,4,3,2,1.5,1.33,1,5,4,3,2,1.5,1.33,1]
-    models = ["IC","LT"]
+    models = ["IC","IC_2"]
     i = 0
     for item in filenames:
         file_gt = gt[i]
@@ -84,10 +84,11 @@ if __name__ == '__main__':
             for item in G:
                 mean.append(my_degree_function[item])
                 mean_degree.append(float(1/my_degree_function[item]))
-            if model == "LT":
-                p = 1 / np.mean(mean)
+            if model == "IC":
+                p = 0.01*scale
             else:
-                p = 0.05*scale
+                p = 0.1*scale
+                model="IC"
             args = {}
             args["p"] = p
             args["model"] = model
@@ -136,7 +137,7 @@ if __name__ == '__main__':
             #define file where to save the results obtained from the execution
             file = str(os.path.basename(filename))
             file = file.replace(".txt", "")
-            file = '{0}-k{1}-p{2}-{3}.csv'.format(file, k, p , model)
+            file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,'second_attempt')
 
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             
