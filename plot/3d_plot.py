@@ -39,7 +39,7 @@ def save_video():
 
 if __name__ == '__main__':
     
-    filename = "/Users/elia/Desktop/Influence-Maximization/experiments/facebook_combined_scale_2-k50.0-p0.1-IC.csv.csv"  
+    filename = "facebook_combined_scale_2-k50-p0.1-IC-communities.csv"  
 
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
     fig.suptitle("IC", size=16)
@@ -67,7 +67,7 @@ if __name__ == '__main__':
     ax2.set_ylabel("Influence")
     
     ax3.scatter(y1,x1)
-    ax3.yaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
+    ax3.yaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 1))
     ax3.xaxis.set_ticks(np.arange(0,df["time"].max()+1, 1))
     ax3.set_xlabel("No Communities")
 
@@ -83,5 +83,14 @@ if __name__ == '__main__':
     #plt.savefig('gif/{}.png'.format(fn))
     plt.show()
 
+
+    filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_2-k50-p0.1-IC.csv.csv"
+
+    df = pd.read_csv(filename, sep=",")
+
+    x1= df["n_nodes"]
+    y1 = df["influence"]
+    plt.scatter(x1, y1)
+    plt.show()
     #uncomment to save the plot in .gif  and .mp4 format
     #save_video()
