@@ -104,8 +104,8 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
 
     # extract seed sets from the final Pareto front/archive
 
-    #seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
-    seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1]] for individual in ea.archive] 
+    seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
+    #seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1]] for individual in ea.archive] 
 
     to_csv(seed_sets, population_file)
     return seed_sets

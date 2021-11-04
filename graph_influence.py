@@ -54,11 +54,11 @@ def filter_nodes(G, args):
 
 if __name__ == '__main__':
     
-    filenames = ["scale_graphs/facebook_combined_scale_5.txt","scale_graphs/facebook_combined_scale_4.txt","scale_graphs/facebook_combined_scale_3.txt","scale_graphs/facebook_combined_scale_2.txt","scale_graphs/facebook_combined_scale_1.5.txt","scale_graphs/facebook_combined_scale_1.33.txt","graphs/facebook_combined.txt","scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
-    gt = ["comm_ground_truth/facebook_combined_5.csv","comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_3.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_1.5.csv","comm_ground_truth/facebook_combined_1.33.csv","comm_ground_truth/facebook_combined.csv","comm_ground_truth/graph_SBM_small_5.csv","comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_3.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.5.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
+    filenames = ["scale_graphs/facebook_combined_scale_4.txt","scale_graphs/facebook_combined_scale_2.txt","graphs/facebook_combined.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_2.txt","graphs/graph_SBM_small.txt"]
+    gt = ["comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_1.5.csv","comm_ground_truth/facebook_combined_1.33.csv","comm_ground_truth/facebook_combined.csv","comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small.csv"]
     models = ["IC","LT"]
-    scale_k=[5,4,3,2,1.5,1.33,1,5,4,3,2,1.5,1.33,1]
-    models = ["IC","IC_2"]
+    scale_k=[4,2,1,4,2,1]
+    models = ["IC"]
     i = 0
     for item in filenames:
         file_gt = gt[i]
@@ -67,7 +67,7 @@ if __name__ == '__main__':
         filename = item
         for m in models:
             model = m
-
+            print(model)
             G = read_graph(filename)
 
             print(nx.info(G))
@@ -84,13 +84,12 @@ if __name__ == '__main__':
             for item in G:
                 mean.append(my_degree_function[item])
                 mean_degree.append(float(1/my_degree_function[item]))
+            t = "communities"
             if model == "IC":
-                p = round(0.01*scale,2)
-                t = 'first_attempt'
+                p = 0.05*scale
             else:
-                p = round(0.1*scale,2)
-                model="IC"
-                t = 'second_attempt'
+                p = 1/np.mean(mean)
+           
             args = {}
             args["p"] = p
             args["model"] = model
@@ -122,7 +121,7 @@ if __name__ == '__main__':
             '''
 
                     
-            no_simulations = 50
+            no_simulations = 2
             max_generations = 100
             #nodes' bound of seed sets
             #k=200
@@ -130,7 +129,7 @@ if __name__ == '__main__':
 
 
 
-            n_threads = 1
+            n_threads = 5
             
             #Print Graph's information and properties
             logging.info(nx.classes.function.info(G))
@@ -140,9 +139,8 @@ if __name__ == '__main__':
             file = str(os.path.basename(filename))
             file = file.replace(".txt", "")
             file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
-
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
-            
+            file = "ciao"
             start = time.time()
             seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=50, offspring_size=50, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
             

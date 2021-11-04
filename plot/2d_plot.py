@@ -38,6 +38,7 @@ if __name__ == '__main__':
     # filename3 = "facebook_combined_scale_3-k33-p0.06850433894844309-LT.csv.csv"
     # filename4 = "facebook_combined_scale_4-k25-p0.091599560761347-LT.csv.csv"
     # filename5 = "facebook_combined_scale_5-k20-p0.11329348135496727-LT.csv.csv"
+    '''
     filename = "graph_SBM_small-k100-p0.05-IC.csv.csv"
     filename1_3 = "graph_SBM_small_scale_1.33-k75-p0.0665-IC.csv.csv"
     filename1_5 = "graph_SBM_small_scale_1.5-k66-p0.07500000000000001-IC.csv.csv"  
@@ -54,7 +55,23 @@ if __name__ == '__main__':
     filename3 = "graph_SBM_small_scale_3-k33-p0.10850393700787402-LT.csv.csv"
     filename4 = "graph_SBM_small_scale_4-k25-p0.14446318156267565-LT.csv.csv"
     filename5 = "graph_SBM_small_scale_5-k20-p0.176038062283737-LT.csv.csv"
-
+'''
+    
+    # filename = "facebook_combined-k100-p0.1-IC-second_attempt.csv"
+    # filename1_3 = "facebook_combined_scale_1.33-k75-p0.13-IC-second_attempt.csv"
+    # filename1_5 = "facebook_combined_scale_1.5-k66-p0.15-IC-second_attempt.csv"
+    # filename2= "facebook_combined_scale_2-k50-p0.2-IC-second_attempt.csv"
+    # filename3 = "facebook_combined_scale_3-k33-p0.3-IC-second_attempt.csv"
+    # filename4 = "facebook_combined_scale_4-k25-p0.4-IC-second_attempt.csv"
+    # filename5 = "facebook_combined_scale_5-k20-p0.5-IC-second_attempt.csv"
+    filename = "graph_SBM_small-k100-p0.1-IC-second_attempt.csv"
+    filename1_3 = "graph_SBM_small_scale_1.33-k75-p0.13-IC-second_attempt.csv"
+    filename1_5 = "graph_SBM_small_scale_1.5-k66-p0.15-IC-second_attempt.csv"
+    filename2= "graph_SBM_small_scale_2-k50-p0.2-IC-second_attempt.csv"
+    filename3 = "graph_SBM_small_scale_3-k33-p0.3-IC-second_attempt.csv"
+    filename4 = "graph_SBM_small_scale_4-k25-p0.4-IC-second_attempt.csv"
+    filename5 = "graph_SBM_small_scale_5-k20-p0.5-IC-second_attempt.csv"
+    
     df = pd.read_csv(filename)
 
     x = df["n_nodes"]
