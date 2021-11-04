@@ -56,7 +56,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     hv = get_performance_indicator("hv", ref_point=ref_point)
     hv =hv.do(F)
     #hv = hypervolume(pop,ref_point)
-    #current_best = 1- hv/tot
+    current_best = 1- hv/tot
     print(hv, hv/tot)
     print("Hypervolume {0}-{1} Generations {2}".format(current_best,previous_best, num_generations))
 
