@@ -39,7 +39,7 @@ def save_video():
 
 if __name__ == '__main__':
     
-    filename = "facebook_combined_scale_2-k50-p0.1-IC-communities.csv"  
+    filename = "facebook_combined-k100-p0.05-IC-communities.csv"  
 
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
     fig.suptitle("IC", size=16)
@@ -84,7 +84,7 @@ if __name__ == '__main__':
     plt.show()
 
 
-    filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_2-k50-p0.1-IC.csv.csv"
+    filename = "facebook_combined-k100-p0.05-IC.csv.csv"
 
     df = pd.read_csv(filename, sep=",")
 
