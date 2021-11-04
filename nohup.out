@@ -8916,3 +8916,47 @@ OBSERVERRRR
  OBSERVERRRR 
 
 1665.1906733512878
+IC
+Name: 
+Type: Graph
+Number of nodes: 1001
+Number of edges: 5464
+Average degree:  10.9171
+      node  comm
+0        1     1
+1        2     1
+2        3     1
+3        4     1
+4        5     1
+...    ...   ...
+1004  1005     7
+1005  1006     7
+1006  1007     7
+1007  1008     7
+1008  1009     7
+
+[1009 rows x 2 columns]
+comm
+1    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14...
+2    [86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 9...
+3    [422, 423, 424, 425, 426, 427, 428, 429, 430, ...
+4    [619, 620, 621, 622, 623, 624, 625, 626, 627, ...
+5    [670, 671, 672, 673, 674, 675, 676, 677, 678, ...
+6    [858, 859, 860, 861, 862, 863, 864, 865, 866, ...
+7    [873, 874, 875, 876, 877, 878, 879, 880, 881, ...
+Name: node, dtype: object
+1983.3607069764714 0.2830541896641175
+Traceback (most recent call last):
+  File "graph_influence.py", line 144, in <module>
+    seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=50, offspring_size=50, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
+  File "/home/s2878747/Influence-Maximization/new_ea.py", line 102, in moea_influence_maximization
+    graph = G
+  File "/home/s2878747/.local/lib/python3.6/site-packages/inspyred/ec/emo.py", line 147, in evolve
+    return ec.EvolutionaryComputation.evolve(self, generator, evaluator, pop_size, seeds, maximize, bounder, **args)
+  File "/home/s2878747/.local/lib/python3.6/site-packages/inspyred/ec/ec.py", line 461, in evolve
+    while not self._should_terminate(list(self.population), self.num_generations, self.num_evaluations):
+  File "/home/s2878747/.local/lib/python3.6/site-packages/inspyred/ec/ec.py", line 362, in _should_terminate
+    terminate = terminate or clause(population=pop, num_generations=ng, num_evaluations=ne, args=self._kwargs)
+  File "/home/s2878747/Influence-Maximization/src/ea/terminators.py", line 61, in no_improvement_termination
+    print("Hypervolume {0}-{1} Generations {2}".format(current_best,previous_best, num_generations))
+NameError: name 'current_best' is not defined
