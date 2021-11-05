@@ -17,8 +17,8 @@ script and produces a plot in three dimensions showing the relationship/correlat
 
 if __name__ == '__main__':
     
-    filename = "graph_SBM_small_scale_2-k50-p0.05-IC-communities.csv"  
-    graph = "scale_graphs/graph_SBM_small_scale_2.txt"
+    filename = "facebook_combined_scale_2-k100-p0.05-IC-communities.csv"  
+    graph = "scale_graphs/facebook_combined_scale_2.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -45,8 +45,8 @@ if __name__ == '__main__':
 
     ax1.set_xlabel("Influence")
 
-    filename = "graph_SBM_small_scale_2-k50-p0.1-IC-communities.csv"  
-    graph = "scale_graphs/graph_SBM_small_scale_2.txt"
+    filename = "facebook_combined_scale_2-k100-p0.1-IC-communities.csv"  
+    graph = "scale_graphs/facebook_combined_scale_2.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -71,8 +71,8 @@ if __name__ == '__main__':
 
 
 
-    filename = "graph_SBM_small-k100-p0.01-IC-communities.csv"  
-    graph = "graphs/graph_SBM_small.txt"
+    filename = "facebook_combined-k100-p0.05-IC-communities.csv"  
+    graph = "graphs/facebook_combined.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
