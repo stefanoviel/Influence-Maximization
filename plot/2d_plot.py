@@ -31,31 +31,31 @@ if __name__ == '__main__':
     # filename3 = "facebook_combined_scale_3-k33-p0.15000000000000002-IC.csv.csv"
     # filename4 = "facebook_combined_scale_4-k25-p0.2-IC.csv.csv"
     # filename5 = "facebook_combined_scale_5-k20-p0.25-IC.csv.csv"
-    # filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined-k100-p0.02288800235736791-LT.csv.csv"
-    # filename1_3 = "facebook_combined_scale_1.33-k75-p0.030493688188469887-LT.csv.csv"
-    # filename1_5 = "facebook_combined_scale_1.5-k66-p0.03436781609195402-LT.csv.csv"  
-    # filename2= "facebook_combined_scale_2-k50-p0.0459030556566024-LT.csv.csv"
-    # filename3 = "facebook_combined_scale_3-k33-p0.06850433894844309-LT.csv.csv"
-    # filename4 = "facebook_combined_scale_4-k25-p0.091599560761347-LT.csv.csv"
-    # filename5 = "facebook_combined_scale_5-k20-p0.11329348135496727-LT.csv.csv"
-    '''
-    filename = "graph_SBM_small-k100-p0.05-IC.csv.csv"
-    filename1_3 = "graph_SBM_small_scale_1.33-k75-p0.0665-IC.csv.csv"
-    filename1_5 = "graph_SBM_small_scale_1.5-k66-p0.07500000000000001-IC.csv.csv"  
-    filename2= "graph_SBM_small_scale_2-k50-p0.1-IC.csv.csv"
-    filename3 = "graph_SBM_small_scale_3-k33-p0.15000000000000002-IC.csv.csv"
-    filename4 = "graph_SBM_small_scale_4-k25-p0.2-IC.csv.csv"
-    filename5 = "graph_SBM_small_scale_5-k20-p0.25-IC.csv.csv"
+    filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined-k100-p0.02288800235736791-LT.csv.csv"
+    filename1_3 = "facebook_combined_scale_1.33-k75-p0.030493688188469887-LT.csv.csv"
+    filename1_5 = "facebook_combined_scale_1.5-k66-p0.03436781609195402-LT.csv.csv"  
+    filename2= "facebook_combined_scale_2-k50-p0.0459030556566024-LT.csv.csv"
+    filename3 = "facebook_combined_scale_3-k33-p0.06850433894844309-LT.csv.csv"
+    filename4 = "facebook_combined_scale_4-k25-p0.091599560761347-LT.csv.csv"
+    filename5 = "facebook_combined_scale_5-k20-p0.11329348135496727-LT.csv.csv"
+
+    # filename = "graph_SBM_small-k100-p0.05-IC.csv.csv"
+    # filename1_3 = "graph_SBM_small_scale_1.33-k75-p0.0665-IC.csv.csv"
+    # filename1_5 = "graph_SBM_small_scale_1.5-k66-p0.07500000000000001-IC.csv.csv"  
+    # filename2= "graph_SBM_small_scale_2-k50-p0.1-IC.csv.csv"
+    # filename3 = "graph_SBM_small_scale_3-k33-p0.15000000000000002-IC.csv.csv"
+    # filename4 = "graph_SBM_small_scale_4-k25-p0.2-IC.csv.csv"
+    # filename5 = "graph_SBM_small_scale_5-k20-p0.25-IC.csv.csv"
 
 
-    filename = "graph_SBM_small-k100-p0.03603869088891971-LT.csv.csv"
-    filename1_3 = "graph_SBM_small_scale_1.33-k75-p0.047874953936862794-LT.csv.csv"
-    filename1_5 = "graph_SBM_small_scale_1.5-k66-p0.0541089999218078-LT.csv.csv"  
-    filename2= "graph_SBM_small_scale_2-k50-p0.0722841225626741-LT.csv.csv"
-    filename3 = "graph_SBM_small_scale_3-k33-p0.10850393700787402-LT.csv.csv"
-    filename4 = "graph_SBM_small_scale_4-k25-p0.14446318156267565-LT.csv.csv"
-    filename5 = "graph_SBM_small_scale_5-k20-p0.176038062283737-LT.csv.csv"
-'''
+    # filename = "graph_SBM_small-k100-p0.03603869088891971-LT.csv.csv"
+    # filename1_3 = "graph_SBM_small_scale_1.33-k75-p0.047874953936862794-LT.csv.csv"
+    # filename1_5 = "graph_SBM_small_scale_1.5-k66-p0.0541089999218078-LT.csv.csv"  
+    # filename2= "graph_SBM_small_scale_2-k50-p0.0722841225626741-LT.csv.csv"
+    # filename3 = "graph_SBM_small_scale_3-k33-p0.10850393700787402-LT.csv.csv"
+    # filename4 = "graph_SBM_small_scale_4-k25-p0.14446318156267565-LT.csv.csv"
+    # filename5 = "graph_SBM_small_scale_5-k20-p0.176038062283737-LT.csv.csv"
+
     
     # filename = "facebook_combined-k100-p0.1-IC-second_attempt.csv"
     # filename1_3 = "facebook_combined_scale_1.33-k75-p0.13-IC-second_attempt.csv"
@@ -64,13 +64,13 @@ if __name__ == '__main__':
     # filename3 = "facebook_combined_scale_3-k33-p0.3-IC-second_attempt.csv"
     # filename4 = "facebook_combined_scale_4-k25-p0.4-IC-second_attempt.csv"
     # filename5 = "facebook_combined_scale_5-k20-p0.5-IC-second_attempt.csv"
-    filename = "graph_SBM_small-k100-p0.1-IC-second_attempt.csv"
-    filename1_3 = "graph_SBM_small_scale_1.33-k75-p0.13-IC-second_attempt.csv"
-    filename1_5 = "graph_SBM_small_scale_1.5-k66-p0.15-IC-second_attempt.csv"
-    filename2= "graph_SBM_small_scale_2-k50-p0.2-IC-second_attempt.csv"
-    filename3 = "graph_SBM_small_scale_3-k33-p0.3-IC-second_attempt.csv"
-    filename4 = "graph_SBM_small_scale_4-k25-p0.4-IC-second_attempt.csv"
-    filename5 = "graph_SBM_small_scale_5-k20-p0.5-IC-second_attempt.csv"
+    # filename = "graph_SBM_small-k100-p0.1-IC-second_attempt.csv"
+    # filename1_3 = "graph_SBM_small_scale_1.33-k75-p0.13-IC-second_attempt.csv"
+    # filename1_5 = "graph_SBM_small_scale_1.5-k66-p0.15-IC-second_attempt.csv"
+    # filename2= "graph_SBM_small_scale_2-k50-p0.2-IC-second_attempt.csv"
+    # filename3 = "graph_SBM_small_scale_3-k33-p0.3-IC-second_attempt.csv"
+    # filename4 = "graph_SBM_small_scale_4-k25-p0.4-IC-second_attempt.csv"
+    # filename5 = "graph_SBM_small_scale_5-k20-p0.5-IC-second_attempt.csv"
     
     df = pd.read_csv(filename)
 
@@ -119,9 +119,8 @@ if __name__ == '__main__':
     plt.scatter(x4, z4, color='purple',label="25%")
     plt.scatter(x5, z5, color='black',label="20%",)
     plt.legend()
-    plt.title("Connected Scatterplot points with line")
-    plt.xlabel("x")
-    plt.ylabel("sinx")
+    plt.xlabel("No Nodes")
+    plt.ylabel("Influence")
 
     plt.show() 
     max = [max(z5),max(z4),max(z3),max(z2),max(z1),max(z0),max(z)]
@@ -149,6 +148,8 @@ if __name__ == '__main__':
     ax.plot(value, gt2, color="green", marker="o",label="ideal max")
     fig.suptitle("Max Influence LT", fontsize=16)
     plt.legend()
+    plt.xlabel("No Nodes")
+    plt.ylabel("Influence")
     plt.show()
     plt.cla()
     p = []

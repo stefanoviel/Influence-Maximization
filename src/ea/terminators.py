@@ -41,8 +41,8 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     except:
         pass
 
-    #pop = [list(x.fitness) for x in t.archive]   
-    pop = [list(x.fitness) for x in population] 
+    #pop = [list(x.fitness) for x in t.archive]
+    pop = [list(x.fitness) for x in args["_ec"].archive] 
     #ref = max(population).fitness
    
     F =  np.array(pop)
