@@ -54,9 +54,9 @@ def filter_nodes(G, args):
 
 if __name__ == '__main__':
     
-    filenames = ["scale_graphs/graph_SBM_small_scale_2.txt"]
-    gt = ["comm_ground_truth/graph_SBM_small_2.csv"]
-    scale_k=[2]
+    filenames = ["graphs/graph_SBM_small.txt"]
+    gt = ["comm_ground_truth/graph_SBM_small.csv"]
+    scale_k=[1]
     models = ["IC"]
     i = 0
     for item in filenames:
@@ -73,7 +73,7 @@ if __name__ == '__main__':
             random_seed = 10
             prng = random.Random(random_seed)
 
-            k = 50
+            k = 100
            
 
 
@@ -85,7 +85,7 @@ if __name__ == '__main__':
                 mean_degree.append(float(1/my_degree_function[item]))
             t = "communities"
             if model == "IC":
-                p = 0.05*scale
+                p = 0.1*scale
             else:
                 p = 1/np.mean(mean)
            
