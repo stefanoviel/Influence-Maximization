@@ -73,7 +73,7 @@ if __name__ == '__main__':
             random_seed = 10
             prng = random.Random(random_seed)
 
-            k = int(100/ scale)
+            k = 50
            
 
 
