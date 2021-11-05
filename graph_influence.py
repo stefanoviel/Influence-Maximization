@@ -85,7 +85,7 @@ if __name__ == '__main__':
                 mean_degree.append(float(1/my_degree_function[item]))
             t = "communities"
             if model == "IC":
-                p = 0.1*scale
+                p = 0.01*scale
             else:
                 p = 1/np.mean(mean)
            
