@@ -71,7 +71,7 @@ if __name__ == '__main__':
 
 
 
-    filename = "graph_SBM_small-k100-p0.05-IC-communities.csv"  
+    filename = "graph_SBM_small-k100-p0.01-IC-communities.csv"  
     graph = "graphs/graph_SBM_small.txt"
 
     G = read_graph(graph)
