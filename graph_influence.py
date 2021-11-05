@@ -54,11 +54,10 @@ def filter_nodes(G, args):
 
 if __name__ == '__main__':
     
-    filenames = ["scale_graphs/facebook_combined_scale_4.txt","scale_graphs/facebook_combined_scale_2.txt","graphs/facebook_combined.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_2.txt","graphs/graph_SBM_small.txt"]
-    gt = ["comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_1.5.csv","comm_ground_truth/facebook_combined_1.33.csv","comm_ground_truth/facebook_combined.csv","comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small.csv"]
-    models = ["IC","LT"]
-    scale_k=[4,2,1,4,2,1]
-    models = ["LT"]
+    filenames = ["graphs/graph_SBM_small.txt"]
+    gt = ["comm_ground_truth/graph_SBM_small.csv"]
+    scale_k=[1]
+    models = ["IC"]
     i = 0
     for item in filenames:
         file_gt = gt[i]
@@ -129,7 +128,7 @@ if __name__ == '__main__':
 
 
 
-            n_threads = 5
+            n_threads = 1
             
             #Print Graph's information and properties
             logging.info(nx.classes.function.info(G))

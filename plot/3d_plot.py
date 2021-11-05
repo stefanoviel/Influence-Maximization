@@ -39,58 +39,68 @@ def save_video():
 
 if __name__ == '__main__':
     
-    filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_2-k50-p0.1-IC-communities.csv"  
+    filename = "facebook_combined_scale_2-k50-p0.0459030556566024-LT-communities.csv"  
 
-    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
-    fig.suptitle("IC", size=16)
+    # fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
+    # fig.suptitle("IC", size=16)
 
     df = pd.read_csv(filename, sep=",")
 
     x1= df["n_nodes"]
     y1 = df["time"]
     z1 = df["influence"]
+    print(max(z1))
+
+    # ax1.scatter(x1,z1,alpha=1)
+    # ax1.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
+    # ax1.yaxis.set_ticks(np.arange(0,df["influence"].max()+250, 250))
+    # ax1.set_xlabel("Nodes")
+
+    # ax1.set_ylabel("Influence")
 
 
-    ax1.scatter(x1,z1,alpha=1)
-    ax1.xaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 20))
-    ax1.yaxis.set_ticks(np.arange(0,df["influence"].max()+250, 250))
-    ax1.set_xlabel("Nodes")
+    # ax2.scatter(y1, z1)
+    # ax2.xaxis.set_ticks(np.arange(0, df["time"].max()+1, 1))
+    # ax2.yaxis.set_ticks(np.arange(0,df["influence"].max()+250, 250))
+    # ax2.set_xlabel("No Communities")
 
-    ax1.set_ylabel("Influence")
-
-
-    ax2.scatter(y1, z1)
-    ax2.xaxis.set_ticks(np.arange(0, df["time"].max()+1, 1))
-    ax2.yaxis.set_ticks(np.arange(0,df["influence"].max()+250, 250))
-    ax2.set_xlabel("No Communities")
-
-    ax2.set_ylabel("Influence")
+    # ax2.set_ylabel("Influence")
     
-    ax3.scatter(y1,x1)
-    ax3.yaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 1))
-    ax3.xaxis.set_ticks(np.arange(0,df["time"].max()+1, 1))
-    ax3.set_xlabel("No Communities")
+    # ax3.scatter(y1,x1)
+    # ax3.yaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 1))
+    # ax3.xaxis.set_ticks(np.arange(0,df["time"].max()+1, 1))
+    # ax3.set_xlabel("No Communities")
 
-    ax3.set_ylabel("Nodes")
+    # ax3.set_ylabel("Nodes")
 
-    ax1.set_box_aspect(1)
-    ax2.set_box_aspect(1)
-    ax3.set_box_aspect(1)
-    fig.tight_layout()
+    # ax1.set_box_aspect(1)
+    # ax2.set_box_aspect(1)
+    # ax3.set_box_aspect(1)
+    # fig.tight_layout()
     #uncomment to save the plot in .png format
     #fn = str(os.path.basename(filename))
     #fn = fn.replace(".csv", "")
     #plt.savefig('gif/{}.png'.format(fn))
-    plt.show()
+    #plt.show()
 
 
-    filename = "facebook_combined_scale_2-k50-p0.1-IC.csv.csv"
+    filename = "facebook_combined_scale_2-k50-p0.0459030556566024-LT.csv.csv"
 
     df = pd.read_csv(filename, sep=",")
 
-    x1= df["n_nodes"]
-    y1 = df["influence"]
-    plt.scatter(x1, y1)
-    plt.show()
+    x2= df["n_nodes"]
+    y2 = df["influence"]
+    #plt.scatter(x2, y2)
+    print(max(y2))
+    #plt.show()
+
+    plt.cla()
+    final = [z1,y2]
+    plt.boxplot(final)
+    plt.title("Influence")
+    plt.xlabel("Graph")
+    plt.ylabel("Influence")
+    plt.xticks([1, 2], ['#C', 'without #C'])
+    plt.show()  
     #uncomment to save the plot in .gif  and .mp4 format
     #save_video()
