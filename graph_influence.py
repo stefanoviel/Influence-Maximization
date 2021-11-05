@@ -54,8 +54,8 @@ def filter_nodes(G, args):
 
 if __name__ == '__main__':
     
-    filenames = ["graphs/graph_SBM_small.txt"]
-    gt = ["comm_ground_truth/graph_SBM_small.csv"]
+    filenames = ["graphs/facebook_combined.txt"]
+    gt = ["comm_ground_truth/facebook_combined.csv"]
     scale_k=[1]
     models = ["IC"]
     i = 0
@@ -85,7 +85,7 @@ if __name__ == '__main__':
                 mean_degree.append(float(1/my_degree_function[item]))
             t = "communities"
             if model == "IC":
-                p = 0.01*scale
+                p = 0.05*scale
             else:
                 p = 1/np.mean(mean)
            
