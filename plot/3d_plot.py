@@ -49,7 +49,7 @@ if __name__ == '__main__':
     x1= df["n_nodes"]
     y1 = df["time"]
     z1 = df["influence"]
-
+    print(max(z1))
     ax1.scatter(z1,x1)
     ax1.xaxis.set_ticks(np.arange(0,df["influence"].max()+250, 200))
     ax1.yaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 10))

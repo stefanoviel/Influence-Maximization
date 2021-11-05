@@ -54,8 +54,8 @@ def filter_nodes(G, args):
 
 if __name__ == '__main__':
     
-    filenames = ["graphs/graph_SBM_small.txt"]
-    gt = ["comm_ground_truth/graph_SBM_small.csv"]
+    filenames = ["scale_graphs/graph_SBM_small_scale_2.txt"]
+    gt = ["comm_ground_truth/graph_SBM_small_2.csv"]
     scale_k=[1]
     models = ["IC"]
     i = 0
