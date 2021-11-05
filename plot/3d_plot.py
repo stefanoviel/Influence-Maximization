@@ -39,7 +39,7 @@ def save_video():
 
 if __name__ == '__main__':
     
-    filename = "graph_SBM_small-k100-p0.05-IC-communities.csv"  
+    filename = "graph_SBM_small_scale_2-k50-p0.05-IC-communities.csv"  
 
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
     fig.suptitle("IC", size=16)
