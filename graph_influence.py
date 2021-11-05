@@ -56,7 +56,7 @@ if __name__ == '__main__':
     
     filenames = ["scale_graphs/facebook_combined_scale_2.txt"]
     gt = ["comm_ground_truth/facebook_combined_2.csv"]
-    scale_k=[1]
+    scale_k=[2]
     models = ["IC"]
     i = 0
     for item in filenames:
