@@ -2,8 +2,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
-import matplotlib
-import os
 from matplotlib import animation
 import sys
 sys.path.insert(0, '')
@@ -17,44 +15,53 @@ script and produces a plot in three dimensions showing the relationship/correlat
 
 if __name__ == '__main__':
     
-    filename = "facebook_combined_scale_2-k100-p0.05-IC-communities.csv"  
-    graph = "scale_graphs/facebook_combined_scale_2.txt"
+    filename = "graph_SBM_small_scale_2-k50-p0.05-IC-communities.csv"  
+    graph = "scale_graphs/graph_SBM_small_scale_2.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
+    my_degree_function = G.degree   
+    mean = []
+    for item in G:
+        mean.append(my_degree_function[item])
 
-
+    print(np.mean(mean))
     df = pd.read_csv(filename, sep=",")
 
-    x1= df["n_nodes"].to_list()
-    y1 = df["time"].to_list()
-    z1 = df["influence"].to_list()
+    x0= df["n_nodes"].to_list()
+    #y1 = df["time"].to_list()
+    z0 = df["influence"].to_list()
 
-    for i in range(len(z1)):
-        z1[i] = (z1[i]/N) * 100
-        x1[i] = (x1[i]/N) * 100
+    for i in range(len(z0)):
+        z0[i] = (z0[i]/N) * 100
+        x0[i] = (x0[i]/N) * 100
     
 
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
     fig.suptitle("IC", size=16)
 
-    ax1.scatter(z1,x1)
-    ax1.xaxis.set_ticks(np.arange(0,max(z1), 5))
-    ax1.yaxis.set_ticks(np.arange(0, max(x1), 0.5))
+    ax1.scatter(z0,x0)
+    ax1.xaxis.set_ticks(np.arange(0,max(z0), 5))
+    ax1.yaxis.set_ticks(np.arange(0, max(x0), 0.5))
     ax1.set_ylabel("Nodes")
 
     ax1.set_xlabel("Influence")
 
-    filename = "facebook_combined_scale_2-k100-p0.1-IC-communities.csv"  
-    graph = "scale_graphs/facebook_combined_scale_2.txt"
+    filename = "graph_SBM_small_scale_2-k50-p0.1-IC-communities.csv"  
+    graph = "scale_graphs/graph_SBM_small_scale_2.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
+    my_degree_function = G.degree   
+    mean = []
+    for item in G:
+        mean.append(my_degree_function[item])
 
+    print(np.mean(mean))
     df = pd.read_csv(filename, sep=",")
 
     x1= df["n_nodes"]
-    y1 = df["time"]
+    #y1 = df["time"]
     z1 = df["influence"]
 
     for i in range(len(z1)):
@@ -71,26 +78,32 @@ if __name__ == '__main__':
 
 
 
-    filename = "facebook_combined-k100-p0.05-IC-communities.csv"  
-    graph = "graphs/facebook_combined.txt"
+    filename = "graph_SBM_small-k100-p0.05-IC-communities.csv"  
+    graph = "graphs/graph_SBM_small.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
+    my_degree_function = G.degree   
+    mean = []
+    for item in G:
+        mean.append(my_degree_function[item])
+
+    print(np.mean(mean))
 
     df = pd.read_csv(filename, sep=",")
 
-    x1= df["n_nodes"]
+    x2= df["n_nodes"]
     y1 = df["time"]
-    z1 = df["influence"]
+    z2 = df["influence"]
 
-    for i in range(len(z1)):
-        z1[i] = (z1[i]/N) * 100
-        x1[i] = (x1[i]/N) * 100
+    for i in range(len(z2)):
+        z2[i] = (z2[i]/N) * 100
+        x2[i] = (x2[i]/N) * 100
     
 
-    ax3.scatter(z1,x1)
-    ax3.xaxis.set_ticks(np.arange(0,max(z1)+5, 5))
-    ax3.yaxis.set_ticks(np.arange(0, max(x1), 0.5))
+    ax3.scatter(z2,x2)
+    ax3.xaxis.set_ticks(np.arange(0,max(z2)+5, 5))
+    ax3.yaxis.set_ticks(np.arange(0, max(x2), 0.5))
     ax3.set_ylabel("Nodes")
 
     ax3.set_xlabel("Influence")
@@ -116,6 +129,13 @@ if __name__ == '__main__':
     #fn = str(os.path.basename(filename))
     #fn = fn.replace(".csv", "")
     #plt.savefig('gif/{}.png'.format(fn))
+    plt.show()
+    plt.cla()
+
+    plt.scatter(z0,x0,color="blue", label="p=0.05 scale")
+    plt.scatter(z1,x1,color="orange",label="p=0.1 scale")
+    plt.scatter(z2,x2,color="red",label="original")
+    plt.legend()
     plt.show()
 
     exit(0)
