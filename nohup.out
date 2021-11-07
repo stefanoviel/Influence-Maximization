@@ -10640,3 +10640,33 @@ OBSERVERRRR
  OBSERVERRRR 
 
 843.5503838062286
+Traceback (most recent call last):
+  File "graph_influence.py", line 15, in <module>
+    from src.nodes_filtering.select_best_spread_nodes import filter_best_nodes as filter_best_spread_nodes
+  File "/home/s2878747/Influence-Maximization/src/nodes_filtering/select_best_spread_nodes.py", line 3, in <module>
+    from scipy import stats
+  File "/home/s2878747/.local/lib/python3.6/site-packages/scipy/stats/__init__.py", line 388, in <module>
+    from .stats import *
+  File "/home/s2878747/.local/lib/python3.6/site-packages/scipy/stats/stats.py", line 180, in <module>
+    from . import distributions
+  File "/home/s2878747/.local/lib/python3.6/site-packages/scipy/stats/distributions.py", line 12, in <module>
+    from . import _discrete_distns
+  File "/home/s2878747/.local/lib/python3.6/site-packages/scipy/stats/_discrete_distns.py", line 1101, in <module>
+    yulesimon = yulesimon_gen(name='yulesimon', a=1)
+  File "/home/s2878747/.local/lib/python3.6/site-packages/scipy/stats/_distn_infrastructure.py", line 2855, in __init__
+    super(rv_discrete, self).__init__(seed)
+  File "/home/s2878747/.local/lib/python3.6/site-packages/scipy/stats/_distn_infrastructure.py", line 596, in __init__
+    argspec = inspect.getfullargspec(self._rvs)
+  File "/usr/lib/python3.6/inspect.py", line 1126, in getfullargspec
+    sigcls=Signature)
+  File "/usr/lib/python3.6/inspect.py", line 2202, in _signature_from_callable
+    sigcls=sigcls)
+  File "/usr/lib/python3.6/inspect.py", line 2269, in _signature_from_callable
+    return _signature_from_function(sigcls, obj)
+  File "/usr/lib/python3.6/inspect.py", line 2139, in _signature_from_function
+    kind=_POSITIONAL_OR_KEYWORD))
+  File "/usr/lib/python3.6/inspect.py", line 2454, in __init__
+    self._kind = _ParameterKind(kind)
+  File "/usr/lib/python3.6/enum.py", line 293, in __call__
+    return cls.__new__(cls, value)
+KeyboardInterrupt
