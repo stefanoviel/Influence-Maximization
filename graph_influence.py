@@ -54,10 +54,10 @@ def filter_nodes(G, args):
 
 if __name__ == '__main__':
     
-    filenames = ["scale_graphs/facebook_combined_scale_5.txt","scale_graphs/facebook_combined_scale_4.txt","scale_graphs/facebook_combined_scale_3.txt","scale_graphs/facebook_combined_scale_2.txt","scale_graphs/facebook_combined_scale_1.5.txt","scale_graphs/facebook_combined_scale_1.33.txt"]
-    gt = ["comm_ground_truth/facebook_combined_5.csv","comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_3.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_1.5.csv","comm_ground_truth/facebook_combined_1.33.csv"]
-    scale_k=[5,4,3,2,1.5,1.33,1,5,4,3,2,1.5,1.33,1]
-    models = ["IC"]
+    filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
+    gt = ["comm_ground_truth/graph_SBM_small_5.csv","comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_3.csv","comm_ground_truth/fgraph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.5.csv","comm_ground_truth/graph_SBM_small__1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
+    scale_k=[5,4,3,2,1.5,1.33,1]
+    models = ["IC","LT","ICC"]
     i = 0
     for item in filenames:
         file_gt = gt[i]
@@ -85,10 +85,12 @@ if __name__ == '__main__':
                 mean_degree.append(float(1/my_degree_function[item]))
             t = "communities"
             if model == "IC":
-                #p = 0.05*scale
-                p = 0.05
-            else:
+                p = 0.05*scale
+                #p = 0.05
+            elif model == "LT":
                 p = 1/np.mean(mean)
+            else:
+                p = 0.05
            
             args = {}
             args["p"] = p
