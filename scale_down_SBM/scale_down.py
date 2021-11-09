@@ -12,10 +12,10 @@ from src.load import read_graph
 import pandas as pd
 import os
 
-scale = 5
-resolution = 1
+scale = 2
+resolution = 10
 
-filename = "/Users/elia/Desktop/Influence-Maximization/graphs/graph_SBM_small.txt"
+filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -116,7 +116,11 @@ for i in range(len(check)):
             break
     if n == 0:
         break
-
+my_degree_function = G.degree
+degree = {}
+for item in G:
+    degree[item] = my_degree_function(item)
+print(degree)
 
 sizes = []
 for item in check:
@@ -126,15 +130,32 @@ for i in range(len(sizes)):
     print("Community {0} has {1} elements".format(i+1,sizes[i]))
 
 print(all_edges)
-i = 1
-start = 0
-for item in sizes:
-    for node in range(start+1,item+start+1):
-        with open('comm_ground_truth/'+name+"_"+str(scale), 'a') as the_file:
-            the_file.write(str(node) + ","+ str(i)+ "\n")
-    start = start + item
-    i +=1
+#i = 1
+# start = 0
+# for item in sizes:
+#     for node in range(start+1,item+start+1):
+#         with open('comm_ground_truth/'+name+"_"+str(scale), 'a') as the_file:
+#             the_file.write(str(node) + ","+ str(i)+ "\n")
+#     start = start + item
+#     i +=1
+
+
+
+maxx = []
+comm_degree = {}
+for key, value in degree.items():
+    degree[key] = int(value/scale) if int(value/scale)>1 else 1
+    maxx.append(degree[key])
+
+
+
 g = nx.stochastic_block_model(sizes, all_edges, seed=0)
+
+
+edges = g.number_of_edges()
+print(edges)
+
+
 print(nx.info(g))
 
 
@@ -148,5 +169,5 @@ for u,v in g.edges():
     text.append(f) 
 
 name = name.replace(".txt","")
-with open("scale_graphs/"+str(name)+"_"+"scale_"+str(scale)+".txt", "w") as outfile:
-        outfile.write("\n".join(text))
+#with open("scale_graphs/"+str(name)+"_"+"scale_"+str(scale)+".txt", "w") as outfile:
+#        outfile.write("\n".join(text))

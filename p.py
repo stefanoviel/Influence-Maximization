@@ -4,26 +4,10 @@ from src.load import read_graph
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-x1 = [100,10]
-x2 = [99,1000]
 
-s = 1
-for item in x1:
-    s = s * item
+#filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
+filenames = ["scale_graphs/facebook_combined_scale_2.txt","graphs/facebook_combined.txt"]
 
-print(s)
-s = 1
-for item in x2:
-    s = s * item
-
-print(s)
-if (x1 > x2):
-    print("True")
-else:
-    print("False")
-exit(0)
-
-filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
 pp = []
 mm = []
 ma = []
@@ -56,9 +40,10 @@ for filename in filenames:
                 kde_kws={'linewidth': 4})
     sns.distplot(mean, hist = False, kde = True,
                     kde_kws = {'shade': True, 'linewidth': 3})
+    plt.xlabel("In/Out-Degree")
     plt.show()
 
-x = [20,25,33,50,66,75,100]
+x = [50,100]
 i = 0
 for item in kk:    
     # Draw the density plot
