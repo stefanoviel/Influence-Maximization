@@ -90,7 +90,7 @@ if __name__ == '__main__':
                 mean_degree.append(float(1/my_degree_function[item]))
             t = "degree"
             if model == "IC":
-                p = 0.05*scale
+                p = 0.05
                 #p = 0.05
             elif model == "LT":
                 p = 1/np.mean(mean)
