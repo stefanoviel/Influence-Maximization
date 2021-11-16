@@ -1,5 +1,4 @@
 import networkx as nx
-import matplotlib.pylab as pl
 import numpy as np
 from community import community_louvain
 import matplotlib.cm as cm
@@ -11,7 +10,9 @@ sys.path.insert(0, '')
 from src.load import read_graph
 import pandas as pd
 import os
-#from graph_tool.all import *
+
+
+from graph_tool.all import *
 scale = 2
 resolution = 10
 
@@ -42,12 +43,10 @@ df = df.reset_index(name='nodes')
 check = []
 for i in range(max(partition.values())+1):
     check.append(df["nodes"].iloc[i])
-print(df)
 sum = 0
 check_ok = []
 
 
-print(len(check))
 # i = 1
 # for item in check:
 #     for node in item:
@@ -87,7 +86,8 @@ for i in range(len(list_edges)):
     nodes = len(check[i])
     edges = list_edges[i]
     print("Community {0} --> Edges = {1} , Nodes = {2}".format(i,edges,nodes))
-    all_edges[i][i] = float((2*edges)/(nodes*(nodes-1)))
+    #all_edges[i][i] = float((2*edges)/(nodes*(nodes-1)))
+    all_edges[i][i] = edges
 
 n = (len(check) * len(check)) - len(check)
 
@@ -106,11 +106,12 @@ for i in range(len(check)):
             
             nodes = len(check[i]) + len(check[j])
       
-            all_edges[i][j] = float((2*edge)/(nodes*(nodes-1)))
-            all_edges[j][i] = float((2*edge)/(nodes*(nodes-1)))
-            if  all_edges[j][i] >1:
-                all_edges[j][i] = 1
-                all_edges[i][j] = 1     
+            all_edges[i][j] = edge 
+            all_edges[j][i] = edge
+
+            #if  all_edges[j][i] > 1:
+            #    all_edges[j][i] = 1
+            #    all_edges[i][j] = 1     
             n = n -2
         if n == 0:
             break
@@ -126,36 +127,52 @@ print(degree)
 sizes = []
 for item in check:
     sizes.append(int(len(item)/scale))
-
+x = []
+start = 0
+for i in range(len(sizes)):
+    k = i
+    xx= []
+    for t in range(start,sizes[i]+start):
+        xx.append(t)
+    x.append(xx)
+    start=  start+sizes[i]
 for i in range(len(sizes)):
     print("Community {0} has {1} elements".format(i+1,sizes[i]))
 
 print(all_edges)
-#i = 1
-# start = 0
-# for item in sizes:
-#     for node in range(start+1,item+start+1):
-#         with open('comm_ground_truth/'+name+"_"+str(scale), 'a') as the_file:
-#             the_file.write(str(node) + ","+ str(i)+ "\n")
-#     start = start + item
-#     i +=1
+i = 1
+start = 0
+for item in sizes:
+    for node in range(start,item+start):
+        with open('comm_ground_truth/'+name+"_"+str(scale), 'a') as the_file:
+            the_file.write(str(node) + ","+ str(i)+ "\n")
+    start = start + item
+    i +=1
 
 
 ##------------------------------------------------------------------------------------------------------------
-'''
+
+
+my_degree_function = G.degree
+
+
+degree = {}
+for item in G:
+    degree[item] = my_degree_function(item)
+print(degree)
+
 maxx = []
 scale_degree = {}
 for key, value in degree.items():
     scale_degree[key] = int(value/scale) if int(value/scale)>1 else 1
     maxx.append(scale_degree[key])
 
+
+
 i = 0
-
-
 comm_degree = {}
 default_degree = {}
 for item in check:
-    i = i+1
     for node in item:
         print('Node {0}, Comm {1}'.format(node,i))
         try:
@@ -167,15 +184,49 @@ for item in check:
         tt.append(scale_degree[node])
         comm_degree[i] = tt
         dd.append(degree[node])
-        default_degree[i] = dd        
+        default_degree[i] = dd   
+    i +=1
+     
 
 
 
-for i in range(1,len(check)+1):
+
+
+##------------------------------------------------------------------------------------------------------------
+
+
+gt_degree = {}
+
+out = []
+nodes = []
+real_degree = {}
+for i in range(0,len(check)):
+    t = []
+    import copy
+
+    list_degree = copy.deepcopy(comm_degree[i])
+    for node in check[i]:
+        import random
+        rand_idx = random.randint(0, len(list_degree)-1)
+        out.append(list_degree[rand_idx])
+        print(list_degree[rand_idx])
+        nodes.append(i)
+        t.append(list_degree[rand_idx])
+        list_degree.pop(rand_idx)
+
+    real_degree[i] = t
+
+
+print(nodes)
+print(out)
+print(len(nodes), len(out))
+
+for i in range(0,len(check)):
     mean = default_degree[i]
     mean_1 = comm_degree[i]
+    mean_real = real_degree[i]
     import seaborn as sns
-    fig, axs = plt.subplots(ncols=2)
+    fig, axs = plt.subplots(ncols=3)
     sns.distplot(mean, hist=True, kde=True, 
                  color = 'darkblue', 
                 hist_kws={'edgecolor':'black'},
@@ -188,64 +239,79 @@ for i in range(1,len(check)+1):
                 kde_kws={'linewidth': 4},ax=axs[1])
     sns.distplot(mean_1, hist = False, kde = True,
                     kde_kws = {'shade': True, 'linewidth': 3},ax=axs[1])
-    
+   
+    sns.distplot(mean_real, hist=True, kde=True, 
+                 color = 'darkblue', 
+                hist_kws={'edgecolor':'black'},
+                kde_kws={'linewidth': 4},ax=axs[2])
+    sns.distplot(mean_real, hist = False, kde = True,
+                    kde_kws = {'shade': True, 'linewidth': 3},ax=axs[2]) 
+
     axs[0].set_title('Original Graph')  
     axs[0].set_xlabel('In\out Degree')
     axs[1].set_title('50% Graph')
     axs[1].set_xlabel('In\out Degree')
-
-    plt.show()
-
-##------------------------------------------------------------------------------------------------------------
-
-
-gt_degree = {}
-
-for i in range(1,len(check)+1):
-    #print(comm_degree[i])
-    #print(len(comm_degree[i]))
-    #print(max(comm_degree[i]))
-    t = np.random.poisson(comm_degree[i], size=len(check[i]))
-
-exit(0)
-
-'''
-g = nx.stochastic_block_model(sizes, all_edges, seed=0)
-my_degree_function = g.degree
+    axs[2].set_title('50% Graph')
+    axs[2].set_xlabel('In\out Degree')
+    #plt.show()
 i = 0
-
-# for item in sizes:
-#     mean = []
-#     x = [k for k in range(i,item+i)]
-#     for node in x:
-#         mean.append(my_degree_function(node))
+for item in sizes:
+    mean = []
+    x = [k for k in range(i,item+i)]
+    for node in x:
+        mean.append(my_degree_function(node))
     
-#     sns.distplot(mean, hist=True, kde=True, 
-#                  color = 'darkblue', 
-#                 hist_kws={'edgecolor':'black'},
-#                 kde_kws={'linewidth': 4})
-#     sns.distplot(mean, hist = False, kde = True,
-#                     kde_kws = {'shade': True, 'linewidth': 3})
-#     plt.show()
-#     i = item + i
-
-
-edges = g.number_of_edges()
-print(edges)
-
-
-print(nx.info(g))
+    sns.distplot(mean, hist=True, kde=True, 
+                 color = 'darkblue', 
+                hist_kws={'edgecolor':'black'},
+                kde_kws={'linewidth': 4})
+    sns.distplot(mean, hist = False, kde = True,
+                    kde_kws = {'shade': True, 'linewidth': 3})
+    #plt.show()
+    i = item + i
 
 
 
-den = (2*g.number_of_edges())/ (g.number_of_nodes()*(g.number_of_nodes()-1))
-print("Density --> {0}".format(den)) 
+from scipy import sparse
+m = np.array(all_edges)
+m=sparse.csr_matrix(m)
+print(m)
+
+mrs, out_teta = graph_tool.generation.solve_sbm_fugacities(nodes, m, out_degs=out, in_degs=None, multigraph=False, self_loops=False, epsilon=1e-08, iter_solve=True, max_iter=0, min_args={}, root_args={}, verbose=False)
+#print(mrs)
+#print(out_teta)
+g = graph_tool.generation.generate_maxent_sbm(nodes, mrs, out_teta, in_theta=None, directed=False, multigraph=False, self_loops=False)
+#graph_draw(g, vertex_text=g.vertex_index, output="two-nodes.pdf")
+sum = 0
+for v in g.vertices():
+    sum +=1
+edges = 0
+for e in g.edges():
+    edges += 1
 
 text = []
-for u,v in g.edges():
-    f = "{0} {1}".format(u,v)
+
+for e in g.edges():
+    edges += 1
+    t = str(e)
+    t = t.replace("(","")
+    t = t.replace(")","")
+    t = t.replace(",","")
+    nodes = list(t.split(" "))
+    f = "{0} {1}".format(nodes[0],nodes[1])
     text.append(f) 
 
-name = name.replace(".txt","")
-#with open("scale_graphs/"+str(name)+"_"+"scale_"+str(scale)+".txt", "w") as outfile:
-#        outfile.write("\n".join(text))
+
+
+
+print('Density {0}'.format((2*edges)/(sum * (sum-1))))
+
+
+# text = []
+# for u,v in g.edges():
+#     f = "{0} {1}".format(u,v)
+#     text.append(f) 
+
+# name = name.replace(".txt","")
+with open("scale_graphs/"+str(name)+"_"+"scale_degree_distribution"+str(scale)+".txt", "w") as outfile:
+        outfile.write("\n".join(text))

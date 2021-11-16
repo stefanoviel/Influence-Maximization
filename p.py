@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 #filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
-filenames = ["scale_graphs/facebook_combined_scale_2.txt","graphs/facebook_combined.txt"]
+filenames = ["scale_graphs/facebook_combined.txt_scale_degree_distribution2.txt","graphs/facebook_combined.txt"]
 
 pp = []
 mm = []
@@ -14,7 +14,13 @@ ma = []
 kk = []
 for filename in filenames:
     G = read_graph(filename)
+    position = nx.spring_layout(G)
 
+    nx.draw(G, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
+    plt.savefig("degree_facebook.png", dpi=300)
+    plt.show()
+    plt.cla()
+    exit(0)
     my_degree_function = G.degree
     mean = []
     mean_degree = []
@@ -40,7 +46,8 @@ for filename in filenames:
                 kde_kws={'linewidth': 4})
     sns.distplot(mean, hist = False, kde = True,
                     kde_kws = {'shade': True, 'linewidth': 3})
-    plt.xlabel("In/Out-Degree")
+    plt.xlabel("In/Out - Degree")
+    plt.title('Original Graph')
     plt.show()
 
 x = [50,100]
