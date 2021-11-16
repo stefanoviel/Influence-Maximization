@@ -15,8 +15,8 @@ script and produces a plot in three dimensions showing the relationship/correlat
 
 if __name__ == '__main__':
     
-    filename = "graph_SBM_small_scale_2-k50-p0.05-IC-communities.csv"  
-    graph = "scale_graphs/graph_SBM_small_scale_2.txt"
+    filename = "facebook_combined_scale_2-k50-p0.05-IC-communities.csv"  
+    graph = "scale_graphs/facebook_combined_scale_2.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -29,7 +29,7 @@ if __name__ == '__main__':
     df = pd.read_csv(filename, sep=",")
 
     x0= df["n_nodes"].to_list()
-    #y0 = df["time"].to_list()
+    y0 = df["time"].to_list()
     z0 = df["influence"].to_list()
 
     for i in range(len(z0)):
@@ -38,8 +38,8 @@ if __name__ == '__main__':
     
 
 
-    filename = "graph_SBM_small_scale_2-k50-p0.1-IC-communities.csv"  
-    graph = "scale_graphs/graph_SBM_small_scale_2.txt"
+    filename = "facebook_combined_scale_2-k50-p0.1-IC-communities.csv"  
+    graph = "scale_graphs/facebook_combined_scale_2.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -52,7 +52,7 @@ if __name__ == '__main__':
     df = pd.read_csv(filename, sep=",")
 
     x1= df["n_nodes"]
-    #y1 = df["time"]
+    y1 = df["time"]
     z1 = df["influence"]
 
     for i in range(len(z1)):
@@ -63,8 +63,8 @@ if __name__ == '__main__':
 
 
 
-    filename = "graph_SBM_small-k100-p0.05-IC-communities.csv"  
-    graph = "graphs/graph_SBM_small.txt"
+    filename = "facebook_combined-k100-p0.05-IC-communities.csv"  
+    graph = "graphs/facebook_combined.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -132,10 +132,10 @@ if __name__ == '__main__':
     plt.show()
     plt.cla()
 
-    plt.scatter(z0,x0,color="blue", label="scale 50% p=0.05")
-    plt.scatter(z1,x1,color="orange",label="scale 50% p=0.1")
-    plt.scatter(z2,x2,color="red",label="original SBM p=0.05")
-    plt.xlabel('% Nodes Influenced')
+    plt.scatter(y0,x0,color="blue", label="scale 50% p=0.05")
+    plt.scatter(y1,x1,color="orange",label="scale 50% p=0.1")
+    plt.scatter(y2,x2,color="red",label="original Facebook p=0.05")
+    plt.xlabel('% Influenced Nodes')
     plt.ylabel('% Nodes as seed set')
     plt.legend()
     plt.show()
