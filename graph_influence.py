@@ -60,7 +60,7 @@ if __name__ == '__main__':
     filenames = ["scale_graphs/facebook_combined.txt_scale_degree_distribution2.txt"]
 
     gt = ["comm_ground_truth/facebook_combined_2_degree.csv"]
-    scale_k=[2]
+    scale_k=[2.092]
     models = ["IC"]
     i = 0
     for item in filenames:
@@ -90,7 +90,7 @@ if __name__ == '__main__':
                 mean_degree.append(float(1/my_degree_function[item]))
             t = "degree"
             if model == "IC":
-                p = 0.05
+                p = 0.05 * scale
                 #p = 0.05
             elif model == "LT":
                 p = 1/np.mean(mean)
