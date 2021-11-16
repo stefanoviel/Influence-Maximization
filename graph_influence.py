@@ -60,7 +60,7 @@ if __name__ == '__main__':
     filenames = ["scale_graphs/facebook_combined.txt_scale_degree_distribution2.txt"]
 
     gt = ["comm_ground_truth/facebook_combined_2_degree.csv"]
-    scale_k=[2.092]
+    scale_k=[2.03]
     models = ["IC"]
     i = 0
     for item in filenames:
@@ -78,8 +78,8 @@ if __name__ == '__main__':
             random_seed = 10
             prng = random.Random(random_seed)
 
-            k = int(100/scale)
-           
+            #k = int(100/scale)
+            k = 50
 
 
             my_degree_function = G.degree

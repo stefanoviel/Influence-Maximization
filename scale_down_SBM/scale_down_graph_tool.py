@@ -210,14 +210,25 @@ for i in range(0,len(sizes)):
     probability = []
     items = []
     for item in set(list_degree):
-        print(list_degree.count(item), item)
         probability.append(list_degree.count(item) / len(list_degree))
         items.append(item)
-    print(probability)
-    print(items)
 
-    final_list = random.choices(items, probability,k=k)
-    print(final_list)
+    current_best = None
+    for z in range(10):
+        mm_list = random.choices(items, probability,k=k)
+        if current_best == None:
+            current_best = max(mm_list)
+            final_list = mm_list
+        else:
+            if current_best < max(mm_list):
+                current_best = max(mm_list)
+                final_list = mm_list     
+        print(current_best, max(mm_list)) 
+
+    print(current_best)
+    
+
+    #print(final_list)
     print(max(final_list))
     for item in final_list:
         nodes.append(i)

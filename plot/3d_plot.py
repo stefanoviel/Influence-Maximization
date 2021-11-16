@@ -15,7 +15,7 @@ script and produces a plot in three dimensions showing the relationship/correlat
 
 if __name__ == '__main__':
     
-    filename = "facebook_combined_scale_degree_distribution2-k50-p0.05-IC-degree.csv"  
+    filename = "facebook_combined_scale_degree_distribution2-k47-p0.10460000000000001-IC-degree.csv"  
     graph = "scale_graphs/facebook_combined.txt_scale_degree_distribution2.txt"
 
     G = read_graph(graph)
