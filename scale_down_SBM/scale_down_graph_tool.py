@@ -117,16 +117,11 @@ for i in range(len(check)):
             break
     if n == 0:
         break
-'''
-my_degree_function = G.degree
-degree = {}
-for item in G:
-    degree[item] = my_degree_function(item)
-print(degree)
-'''
+
 sizes = []
 for item in check:
     sizes.append(int(len(item)/scale))
+
 x = []
 start = 0
 for i in range(len(sizes)):
@@ -200,20 +195,34 @@ gt_degree = {}
 out = []
 nodes = []
 real_degree = {}
-for i in range(0,len(check)):
+
+
+
+for i in range(0,len(sizes)):
     t = []
-    import copy
+    import copy, random
 
     list_degree = copy.deepcopy(comm_degree[i])
-    for node in check[i]:
-        import random
-        rand_idx = random.randint(0, len(list_degree)-1)
-        out.append(list_degree[rand_idx])
-        print(list_degree[rand_idx])
-        nodes.append(i)
-        t.append(list_degree[rand_idx])
-        list_degree.pop(rand_idx)
+    print('Community {0}'.format(i+1))
+    print("--------")
 
+    k = sizes[i]
+    probability = []
+    items = []
+    for item in set(list_degree):
+        print(list_degree.count(item), item)
+        probability.append(list_degree.count(item) / len(list_degree))
+        items.append(item)
+    print(probability)
+    print(items)
+
+    final_list = random.choices(items, probability,k=k)
+    print(final_list)
+    print(max(final_list))
+    for item in final_list:
+        nodes.append(i)
+        t.append(item)
+        out.append(item)
     real_degree[i] = t
 
 
@@ -253,7 +262,7 @@ for i in range(0,len(check)):
     axs[1].set_xlabel('In\out Degree')
     axs[2].set_title('50% Graph')
     axs[2].set_xlabel('In\out Degree')
-    #plt.show()
+    plt.show()
 i = 0
 for item in sizes:
     mean = []
@@ -278,8 +287,8 @@ m=sparse.csr_matrix(m)
 print(m)
 
 mrs, out_teta = graph_tool.generation.solve_sbm_fugacities(nodes, m, out_degs=out, in_degs=None, multigraph=False, self_loops=False, epsilon=1e-08, iter_solve=True, max_iter=0, min_args={}, root_args={}, verbose=False)
-#print(mrs)
-#print(out_teta)
+print(mrs)
+print(out_teta)
 g = graph_tool.generation.generate_maxent_sbm(nodes, mrs, out_teta, in_theta=None, directed=False, multigraph=False, self_loops=False)
 #graph_draw(g, vertex_text=g.vertex_index, output="two-nodes.pdf")
 sum = 0
