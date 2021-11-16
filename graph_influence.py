@@ -60,8 +60,8 @@ if __name__ == '__main__':
     filenames = ["scale_graphs/facebook_combined.txt_scale_degree_distribution2.txt"]
 
     gt = ["comm_ground_truth/facebook_combined_2_degree.csv"]
-    scale_k=[2.03]
-    models = ["IC"]
+    scale_k=[2.24]
+    models = ["IC", "IC_2"]
     i = 0
     for item in filenames:
         file_gt = gt[i]
@@ -94,6 +94,9 @@ if __name__ == '__main__':
                 #p = 0.05
             elif model == "LT":
                 p = 1/np.mean(mean)
+            elif model == "IC_2":
+                p = 0.05
+                model = "IC"
             
             args = {}
             args["p"] = p

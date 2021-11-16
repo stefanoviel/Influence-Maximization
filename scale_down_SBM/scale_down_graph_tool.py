@@ -87,7 +87,7 @@ for i in range(len(list_edges)):
     edges = list_edges[i]
     print("Community {0} --> Edges = {1} , Nodes = {2}".format(i,edges,nodes))
     #all_edges[i][i] = float((2*edges)/(nodes*(nodes-1)))
-    all_edges[i][i] = edges
+    all_edges[i][i] = int(edges / scale)
 
 n = (len(check) * len(check)) - len(check)
 
@@ -106,8 +106,8 @@ for i in range(len(check)):
             
             nodes = len(check[i]) + len(check[j])
       
-            all_edges[i][j] = edge 
-            all_edges[j][i] = edge
+            all_edges[i][j] = int(edge / scale)
+            all_edges[j][i] = int(edge / scale)
 
             #if  all_edges[j][i] > 1:
             #    all_edges[j][i] = 1
@@ -241,6 +241,7 @@ print(nodes)
 print(out)
 print(len(nodes), len(out))
 
+print(max(out))
 for i in range(0,len(check)):
     mean = default_degree[i]
     mean_1 = comm_degree[i]
@@ -273,7 +274,7 @@ for i in range(0,len(check)):
     axs[1].set_xlabel('In\out Degree')
     axs[2].set_title('50% Graph')
     axs[2].set_xlabel('In\out Degree')
-    plt.show()
+    #plt.show()
 i = 0
 for item in sizes:
     mean = []

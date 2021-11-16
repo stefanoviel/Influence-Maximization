@@ -65,6 +65,7 @@ nx.draw(G1, position,  edgecolors='black',node_color='white',arrowsize=1,node_si
 plt.show()
 plt.cla()
 
+
 import seaborn as sns
 fig, axs = plt.subplots(ncols=2)
 sns.distplot(mean, hist=True, kde=True, 
@@ -80,14 +81,13 @@ sns.distplot(mean_1, hist=True, kde=True,
 sns.distplot(mean_1, hist = False, kde = True,
                 kde_kws = {'shade': True, 'linewidth': 3},ax=axs[1])
 
-
+kk = [mean, mean_1]
 axs[0].set_title('Original Graph')  
 axs[0].set_xlabel('In\out Degree')
 axs[1].set_title('50% Graph')
 axs[1].set_xlabel('In\out Degree')
 plt.show()
 
-exit(0)
 
 x = [50,100]
 i = 0
