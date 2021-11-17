@@ -60,8 +60,8 @@ if __name__ == '__main__':
     filenames = ["scale_graphs/facebook_combined.txt_example4.txt"]
 
     gt = ["comm_ground_truth/facebook_combined_4_degree.csv"]
-    scale_k=[4]
-    models = ["IC", "IC_2"]
+    scale_k=[2]
+    models = ["IC"]
     i = 0
     for item in filenames:
         file_gt = gt[i]
