@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 #filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
-filenames = ["scale_graphs/facebook_combined.txt_example2.txt","graphs/facebook_combined.txt"]
+filenames = ["scale_graphs/facebook_combined.txt_example10.txt","graphs/facebook_combined.txt"]
 
 pp = []
 mm = []
@@ -44,6 +44,8 @@ kk = []
 
 G = read_graph(filenames[1])
 print(nx.info(G))
+den = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
+print("Density --> {0}".format(den))
 my_degree_function = G.degree
 mean = []
 mean_degree = []
@@ -53,6 +55,8 @@ for item in G:
 
 G1 = read_graph(filenames[0])
 print(nx.info(G1))
+den = (2*G1.number_of_edges()) / (G1.number_of_nodes()*(G1.number_of_nodes()-1))
+print("Density --> {0}".format(den))
 my_degree_function = G1.degree
 mean_1 = []
 mean_degree_1 = []
