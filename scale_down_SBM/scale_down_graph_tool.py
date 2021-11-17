@@ -20,7 +20,14 @@ filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
+my_degree_function = G.degree
 
+avg_degree = []
+for item in G:
+    avg_degree.append(my_degree_function[item])
+
+avg_degree = np.mean(avg_degree)
+print(avg_degree)
 
 print(nx.info(G))
 
@@ -87,7 +94,7 @@ for i in range(len(list_edges)):
     edges = list_edges[i]
     print("Community {0} --> Edges = {1} , Nodes = {2}".format(i,edges,nodes))
     #all_edges[i][i] = float((2*edges)/(nodes*(nodes-1)))
-    all_edges[i][i] = int(edges / scale)
+    all_edges[i][i] = edges
 
 n = (len(check) * len(check)) - len(check)
 
@@ -106,8 +113,8 @@ for i in range(len(check)):
             
             nodes = len(check[i]) + len(check[j])
       
-            all_edges[i][j] = int(edge / scale)
-            all_edges[j][i] = int(edge / scale)
+            all_edges[i][j] = int(edge)
+            all_edges[j][i] = int(edge)
 
             #if  all_edges[j][i] > 1:
             #    all_edges[j][i] = 1
@@ -274,7 +281,7 @@ for i in range(0,len(check)):
     axs[1].set_xlabel('In\out Degree')
     axs[2].set_title('50% Graph')
     axs[2].set_xlabel('In\out Degree')
-    #plt.show()
+    plt.show()
 i = 0
 for item in sizes:
     mean = []
@@ -298,14 +305,21 @@ m = np.array(all_edges)
 m=sparse.csr_matrix(m)
 print(m)
 
-mrs, out_teta = graph_tool.generation.solve_sbm_fugacities(nodes, m, out_degs=out, in_degs=None, multigraph=False, self_loops=False, epsilon=1e-08, iter_solve=True, max_iter=0, min_args={}, root_args={}, verbose=False)
-print(mrs)
-print(out_teta)
-g = graph_tool.generation.generate_maxent_sbm(nodes, mrs, out_teta, in_theta=None, directed=False, multigraph=False, self_loops=False)
+#mrs, out_teta = graph_tool.generation.solve_sbm_fugacities(nodes, m, out_degs=out, in_degs=None, multigraph=False, self_loops=False, epsilon=1e-08, iter_solve=True, max_iter=0, min_args={}, root_args={}, verbose=False)
+#print(mrs)
+#print(out_teta)
+g = graph_tool.generation.generate_sbm(nodes, m, out_degs=out, in_degs=None, directed=False, micro_ers=False, micro_degs=False)
+sum = 0
+for v in g.vertices():
+    sum +=1
+print(sum)
+graph_tool.stats.remove_self_loops(g)
+#g = graph_tool.generation.generate_maxent_sbm(nodes, mrs, out_teta, in_theta=None, directed=False, multigraph=False, self_loops=False)
 #graph_draw(g, vertex_text=g.vertex_index, output="two-nodes.pdf")
 sum = 0
 for v in g.vertices():
     sum +=1
+print(sum)
 edges = 0
 for e in g.edges():
     edges += 1
@@ -334,5 +348,5 @@ print('Density {0}'.format((2*edges)/(sum * (sum-1))))
 #     text.append(f) 
 
 # name = name.replace(".txt","")
-with open("scale_graphs/"+str(name)+"_"+"scale_degree_distribution"+str(scale)+".txt", "w") as outfile:
+with open("scale_graphs/"+str(name)+"_"+"example"+str(scale)+".txt", "w") as outfile:
         outfile.write("\n".join(text))
