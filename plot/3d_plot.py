@@ -38,7 +38,7 @@ if __name__ == '__main__':
     
 
 
-    filename = "facebook_combined_example4-k25-p0.2-IC-degree.csv"  
+    filename = "facebook_combined_example4-k25-p0.1-IC-degree.csv"  
     graph = "scale_graphs/facebook_combined.txt_example4.txt"
 
     G = read_graph(graph)
