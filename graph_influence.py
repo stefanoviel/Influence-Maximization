@@ -57,10 +57,10 @@ if __name__ == '__main__':
     #filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
     #gt = ["comm_ground_truth/graph_SBM_small_5.csv","comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_3.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.5.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
 
-    filenames = ["scale_graphs/facebook_combined.txt_example2.txt","scale_graphs/facebook_combined.txt_example4.txt"]
+    filenames = ["scale_graphs/facebook_combined.txt_example2.txt","scale_graphs/facebook_combined.txt_example4.txt","graphs/facebook_combined.txt"]
 
-    gt = ["comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_4.csv"]
-    scale_k=[2,4]
+    gt = ["comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined.csv"]
+    scale_k=[2,4,1]
     models = ["WC"]
     i = 0
     p = 0
