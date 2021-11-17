@@ -13,7 +13,7 @@ import os
 
 
 from graph_tool.all import *
-scale = 2
+scale = 4
 resolution = 10
 
 filename = "graphs/facebook_combined.txt"
@@ -96,7 +96,8 @@ for i in range(len(list_edges)):
     #all_edges[i][i] = float((2*edges)/(nodes*(nodes-1)))
     avg =  edges / nodes
     all_edges[i][i] = ((nodes / scale) * avg) /scale
-
+    all_edges[i][i] = ((nodes / scale) * avg) /scale
+    #all_edges[i][i] = edges
 n = (len(check) * len(check)) - len(check)
 
 
@@ -117,7 +118,8 @@ for i in range(len(check)):
             avg = (edge / nodes) 
             all_edges[i][j] = (nodes / scale) * avg
             all_edges[j][i] = (nodes / scale) * avg
-
+            #all_edges[i][j] = edge
+            #all_edges[j][i] = edge
             #if  all_edges[j][i] > 1:
             #    all_edges[j][i] = 1
             #    all_edges[i][j] = 1     
@@ -211,7 +213,7 @@ for i in range(0,len(sizes)):
     t = []
     import copy, random
 
-    list_degree = copy.deepcopy(default_degree[i])
+    list_degree = copy.deepcopy(comm_degree[i])
     print('Community {0}'.format(i+1))
     print("--------")
 
@@ -307,17 +309,17 @@ m = np.array(all_edges)
 m=sparse.csr_matrix(m)
 print(m)
 
-#mrs, out_teta = graph_tool.generation.solve_sbm_fugacities(nodes, m, out_degs=out, in_degs=None, multigraph=False, self_loops=False, epsilon=1e-08, iter_solve=True, max_iter=0, min_args={}, root_args={}, verbose=False)
+mrs, out_teta = graph_tool.generation.solve_sbm_fugacities(nodes, m, out_degs=out, in_degs=None, multigraph=False, self_loops=False, epsilon=1e-08, iter_solve=True, max_iter=0, min_args={}, root_args={}, verbose=False)
 #print(mrs)
 #print(out_teta)
 
-g = graph_tool.generation.generate_sbm(nodes, m, out_degs=out, in_degs=None, directed=False, micro_ers=True, micro_degs=True)
-sum = 0
-for v in g.vertices():
-    sum +=1
-print(sum)
-graph_tool.stats.remove_self_loops(g)
-#g = graph_tool.generation.generate_maxent_sbm(nodes, mrs, out_teta, in_theta=None, directed=False, multigraph=False, self_loops=False)
+#g = graph_tool.generation.generate_sbm(nodes, m, out_degs=out, in_degs=None, directed=False, micro_ers=False, micro_degs=True)
+# sum = 0
+# for v in g.vertices():
+#     sum +=1
+# print(sum)
+# graph_tool.stats.remove_self_loops(g)
+g = graph_tool.generation.generate_maxent_sbm(nodes, mrs, out_teta, in_theta=None, directed=False, multigraph=False, self_loops=False)
 #graph_draw(g, vertex_text=g.vertex_index, output="two-nodes.pdf")
 sum = 0
 for v in g.vertices():
@@ -328,7 +330,7 @@ for e in g.edges():
     edges += 1
 
 text = []
-
+edges = 0
 for e in g.edges():
     edges += 1
     t = str(e)
@@ -343,7 +345,7 @@ for e in g.edges():
 
 
 print('Density {0}'.format((2*edges)/(sum * (sum-1))))
-
+print(max(out))
 
 # text = []
 # for u,v in g.edges():

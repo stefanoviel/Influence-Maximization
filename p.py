@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 #filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
-filenames = ["scale_graphs/facebook_combined.txt_example2.txt","graphs/facebook_combined.txt"]
+filenames = ["scale_graphs/facebook_combined.txt_example10.txt","graphs/facebook_combined.txt"]
 #scale_graphs/graph_SBM_big.txt_example5.txt","graphs/graph_SBM_big.txt"]
 pp = []
 mm = []
@@ -53,7 +53,7 @@ for item in G:
     mean.append(my_degree_function[item])
     mean_degree.append(float(1/my_degree_function[item]))
 
-print(np.mean(mean_degree))
+print(np.mean(mean_degree), max(mean))
 G1 = read_graph(filenames[0])
 print(nx.info(G1))
 den = (2*G1.number_of_edges()) / (G1.number_of_nodes()*(G1.number_of_nodes()-1))
@@ -64,7 +64,7 @@ mean_degree_1 = []
 for item in G1:
     mean_1.append(my_degree_function[item])
     mean_degree_1.append(float(1/my_degree_function[item]))
-print(np.mean(mean_degree_1))
+print(np.mean(mean_degree_1), max(mean_1))
 
 position = nx.spring_layout(G1)
 
