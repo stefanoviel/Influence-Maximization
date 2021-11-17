@@ -65,7 +65,7 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
     ea.variator = [ea_one_point_crossover,ea_global_random_mutation]
     ea.terminator = [no_improvement_termination,generation_termination]
 	
-    #ea.replacer = inspyred.ec.replacers.plus_replacement
+    ea.replacer = inspyred.ec.replacers.generational_replacement
     #ea.replacer = inspyred.ec.replacers.plus_replacement
     bounder = inspyred.ec.DiscreteBounder(nodes)
 
