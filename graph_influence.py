@@ -78,8 +78,8 @@ if __name__ == '__main__':
             random_seed = 10
             prng = random.Random(random_seed)
 
-            k = int(100/scale)
-            #k = 50
+            #k = int(100/scale)
+            k = 25
 
 
             my_degree_function = G.degree
