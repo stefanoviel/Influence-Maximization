@@ -38,8 +38,8 @@ if __name__ == '__main__':
     
 
 
-    filename = "facebook_combined_example2-k50-p0.1-IC-degree.csv"  
-    graph = "scale_graphs/facebook_combined.txt_example2.txt"
+    filename = "facebook_combined_example4-k25-p0.05-IC-degree.csv"  
+    graph = "scale_graphs/facebook_combined.txt_example4.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
