@@ -13,7 +13,7 @@ import os
 
 
 from graph_tool.all import *
-scale = 4
+scale = 2
 resolution = 10
 
 filename = "graphs/facebook_combined.txt"
@@ -95,7 +95,7 @@ for i in range(len(list_edges)):
     print("Community {0} --> Edges = {1} , Nodes = {2}".format(i,edges,nodes))
     #all_edges[i][i] = float((2*edges)/(nodes*(nodes-1)))
     avg =  edges / nodes
-    all_edges[i][i] = (nodes / scale) * avg
+    all_edges[i][i] = ((nodes / scale) * avg) /scale
 
 n = (len(check) * len(check)) - len(check)
 
@@ -211,7 +211,7 @@ for i in range(0,len(sizes)):
     t = []
     import copy, random
 
-    list_degree = copy.deepcopy(comm_degree[i])
+    list_degree = copy.deepcopy(default_degree[i])
     print('Community {0}'.format(i+1))
     print("--------")
 
@@ -310,7 +310,8 @@ print(m)
 #mrs, out_teta = graph_tool.generation.solve_sbm_fugacities(nodes, m, out_degs=out, in_degs=None, multigraph=False, self_loops=False, epsilon=1e-08, iter_solve=True, max_iter=0, min_args={}, root_args={}, verbose=False)
 #print(mrs)
 #print(out_teta)
-g = graph_tool.generation.generate_sbm(nodes, m, out_degs=out, in_degs=None, directed=False, micro_ers=False, micro_degs=False)
+
+g = graph_tool.generation.generate_sbm(nodes, m, out_degs=out, in_degs=None, directed=False, micro_ers=True, micro_degs=True)
 sum = 0
 for v in g.vertices():
     sum +=1
