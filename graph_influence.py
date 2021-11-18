@@ -59,9 +59,9 @@ if __name__ == '__main__':
 
     gt = ["comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_4.csv"]
 
-    filenames = ["scale_graphs/facebook_combined.txt_example_sbm2.txt","scale_graphs/facebook_combined.txt_example_sbm4.txt"]
+    filenames = ["scale_graphs/facebook_combined_sbm2.txt","scale_graphs/facebook_combined_sbm4.txt"]
     scale_k=[2,4]
-    models = ["IC", "IC_1","WC"]
+    models = ["IC", "IC_2"]
     i = 0
     for item in filenames:
         file_gt = gt[i]
@@ -137,7 +137,7 @@ if __name__ == '__main__':
 
 
 
-            n_threads = 1
+            n_threads = 5
             
             #Print Graph's information and properties
             logging.info(nx.classes.function.info(G))
