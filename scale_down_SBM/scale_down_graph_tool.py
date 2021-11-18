@@ -13,7 +13,7 @@ import os
 
 
 from graph_tool.all import *
-scale = 4
+scale = 1
 resolution = 10
 
 filename = "graphs/facebook_combined.txt"
@@ -95,8 +95,8 @@ for i in range(len(list_edges)):
     print("Community {0} --> Edges = {1} , Nodes = {2}".format(i,edges,nodes))
     #all_edges[i][i] = float((2*edges)/(nodes*(nodes-1)))
     avg =  edges / nodes
-    all_edges[i][i] = ((nodes / scale) * avg) /scale
-    all_edges[i][i] = ((nodes / scale) * avg) /scale
+    all_edges[i][i] = (((nodes / scale) * avg) /scale) #* 2
+    all_edges[i][i] = (((nodes / scale) * avg) /scale) #* 2
     #all_edges[i][i] = edges
 n = (len(check) * len(check)) - len(check)
 
