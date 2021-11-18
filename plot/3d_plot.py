@@ -15,8 +15,30 @@ script and produces a plot in three dimensions showing the relationship/correlat
 
 if __name__ == '__main__':
     
-    filename = "facebook_combined_sbm2-k50-p0-WC-degree.csv"  
-    graph = "scale_graphs/facebook_combined_sbm2.txt"
+    filename = "graph_SBM_small_example_sbm4-k25-p0.05-IC-degree.csv"
+    graph = "scale_graphs/graph_SBM_small.txt_example_sbm4.txt"
+
+    G = read_graph(graph)
+    N = G.number_of_nodes()
+    my_degree_function = G.degree   
+    mean = []
+    for item in G:
+        mean.append(my_degree_function[item])
+
+    print(np.mean(mean))
+
+    df = pd.read_csv(filename, sep=",")
+
+    x= df["n_nodes"]
+    y = df["time"]
+    z = df["influence"]
+
+    for i in range(len(z)):
+        z[i] = (z[i]/N) * 100
+        x[i] = (x[i]/N) * 100
+    
+    filename = "graph_SBM_small_example_sbm2-k50-p0.05-IC-degree.csv"  
+    graph = "scale_graphs/graph_SBM_small.txt_example_sbm2.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -38,8 +60,8 @@ if __name__ == '__main__':
     
 
 
-    filename = "facebook_combined_sbm4-k25-p0-WC-degree.csv" 
-    graph = "scale_graphs/facebook_combined_sbm4.txt"
+    filename = "graph_SBM_small_example_sbm1.5-k66-p0.05-IC-degree.csv" 
+    graph = "scale_graphs/graph_SBM_small.txt_example_sbm1.5.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -64,8 +86,8 @@ if __name__ == '__main__':
 
 
     #filename = "experiments/facebook_combined-k100-p0.05-IC-communities.csv"  
-    filename = "facebook_combined-k100-p0-WC-degree.csv"
-    graph = "graphs/facebook_combined.txt"
+    filename = "graph_SBM_small-k100-p0.05-IC-degree.csv"
+    graph = "graphs/graph_SBM_small.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -86,6 +108,7 @@ if __name__ == '__main__':
         z2[i] = (z2[i]/N) * 100
         x2[i] = (x2[i]/N) * 100
     
+
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
     fig.suptitle("IC", size=16)
 
@@ -132,10 +155,11 @@ if __name__ == '__main__':
     #plt.savefig('gif/{}.png'.format(fn))
     plt.show()
     plt.cla()
-
-    plt.scatter(z0,x0,color="blue", label="scale 2% p=0.05")
-    plt.scatter(z1,x1,color="orange",label="scale 4% p=0.1")
+    plt.scatter(z,x,color="green",label="scale 25%")
+    plt.scatter(z0,x0,color="blue", label="scale 50%")
+    plt.scatter(z1,x1,color="orange",label="scale 75%")
     plt.scatter(z2,x2,color="red",label="original Facebook p=0.05")
+
     plt.xlabel('% Influenced Nodes')
     plt.ylabel('% Nodes as seed set')
     plt.legend()

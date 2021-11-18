@@ -57,10 +57,10 @@ if __name__ == '__main__':
     #filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
     #gt = ["comm_ground_truth/graph_SBM_small_5.csv","comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_3.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.5.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
 
-    gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.5.csv","comm_ground_truth/graph_SBM_small.csv"]
+    gt = ["comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_1.5.csv"]
 
-    filenames = ["scale_graphs/graph_SBM_small.txt_example_sbm4.txt","scale_graphs/graph_SBM_small.txt_example_sbm2.txt","scale_graphs/graph_SBM_small.txt_example_sbm1.5.txt","graphs/graph_SBM_small.txt"]
-    scale_k=[4,2,1.5,1]
+    filenames = ["scale_graphs/facebook_combined.txt_example_sbm4.txt","scale_graphs/facebook_combined.txt_example_sbm1.5.txt"]
+    scale_k=[4,1.5]
     models = ["IC","WC"]
     i = 0
     for item in filenames:
