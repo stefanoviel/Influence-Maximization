@@ -60,7 +60,7 @@ if __name__ == '__main__':
     gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.5.csv","comm_ground_truth/graph_SBM_small.csv"]
 
     filenames = ["scale_graphs/graph_SBM_small.txt_example_sbm4.txt","scale_graphs/graph_SBM_small.txt_example_sbm2.txt","scale_graphs/graph_SBM_small.txt_example_sbm1.5.txt","graphs/graph_SBM_small.txt"]
-    scale_k=[1,2,4]
+    scale_k=[4,2,1.5,1]
     models = ["IC","WC"]
     i = 0
     for item in filenames:
