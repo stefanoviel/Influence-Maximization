@@ -13,7 +13,7 @@ import os
 
 
 from graph_tool.all import *
-scale = 4
+scale = 1
 resolution = 10
 
 filename = "graphs/facebook_combined.txt"
@@ -315,7 +315,7 @@ print(m)
 #print(mrs)
 #print(out_teta)
 
-g = graph_tool.generation.generate_sbm(nodes, m, out_degs=out, in_degs=None, directed=False, micro_ers=True, micro_degs=False)
+g = graph_tool.generation.generate_sbm(nodes, m, out_degs=out, in_degs=None, directed=False, micro_ers=False, micro_degs=False)
 # sum = 0
 # for v in g.vertices():
 #     sum +=1
