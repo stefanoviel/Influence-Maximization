@@ -57,11 +57,11 @@ if __name__ == '__main__':
     #filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
     #gt = ["comm_ground_truth/graph_SBM_small_5.csv","comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_3.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.5.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
 
-    gt = ["comm_ground_truth/facebook_combined.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_4.csv"]
+    gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.5.csv","comm_ground_truth/graph_SBM_small.csv"]
 
-    filenames = ["graphs/facebook_combined.txt","scale_graphs/facebook_combined_sbm2.txt","scale_graphs/facebook_combined_sbm4.txt"]
+    filenames = ["scale_graphs/graph_SBM_small.txt_example_sbm4.txt","scale_graphs/graph_SBM_small.txt_example_sbm2.txt","scale_graphs/graph_SBM_small.txt_example_sbm1.5.txt","graphs/graph_SBM_small.txt"]
     scale_k=[1,2,4]
-    models = ["WC"]
+    models = ["IC","WC"]
     i = 0
     for item in filenames:
         file_gt = gt[i]
@@ -88,13 +88,9 @@ if __name__ == '__main__':
                 mean_degree.append(float(1/my_degree_function[item]))
             t = "degree"
             if model == "IC":
-                p = 0.05 * scale
-                #p = 0.05
+                p = 0.05
             elif model == "LT":
                 p = 1/np.mean(mean)
-            elif model == "IC_2":
-                p = 0.05
-                model = "IC"
             else:
                 p = 0
             

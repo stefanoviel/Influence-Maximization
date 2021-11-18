@@ -13,10 +13,10 @@ import os
 
 
 from graph_tool.all import *
-scale = 5
-resolution = 2
+scale = 1.5
+resolution = 1
 
-filename = "graphs/graph_SBM_big.txt"
+filename = "graphs/graph_SBM_small.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -53,14 +53,14 @@ for i in range(max(partition.values())+1):
 sum = 0
 check_ok = []
 
-
-# i = 1
-# for item in check:
-#     for node in item:
-#         with open('comm_ground_truth/'+name, 'a') as the_file:
-#             the_file.write(str(node) + ","+ str(i)+ "\n")
-#     i +=1
-
+'''
+i = 1
+for item in check:
+    for node in item:
+        with open('comm_ground_truth/'+name, 'a') as the_file:
+            the_file.write(str(node) + ","+ str(i)+ "\n")
+    i +=1
+'''
 for item in check:
     sum = sum + len(item)
 
