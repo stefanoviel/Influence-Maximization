@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 #filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
-filenames = ["scale_graphs/facebook_combined.txt_example_sbm1.txt","graphs/facebook_combined.txt"]
+filenames = ["scale_graphs/graph_SBM_big.txt_example_sbm5.txt","graphs/graph_SBM_big.txt"]
 #scale_graphs/graph_SBM_big.txt_example5.txt","graphs/graph_SBM_big.txt"]
 pp = []
 mm = []
@@ -72,6 +72,11 @@ print(den1/den)
 #plt.show()
 #plt.cla()
 
+position = nx.spring_layout(G)
+
+nx.draw(G, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
+plt.show()
+plt.cla()
 
 import seaborn as sns
 fig, axs = plt.subplots(ncols=2)
