@@ -15,8 +15,8 @@ script and produces a plot in three dimensions showing the relationship/correlat
 
 if __name__ == '__main__':
     
-    filename = "graph_SBM_small_example_sbm4-k25-p0.05-IC-degree.csv"
-    graph = "scale_graphs/graph_SBM_small.txt_example_sbm4.txt"
+    filename = "facebook_combined_sbm4-k25-p0-WC-degree.csv"
+    graph = "scale_graphs/facebook_combined.txt_example_sbm4.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -37,8 +37,8 @@ if __name__ == '__main__':
         z[i] = (z[i]/N) * 100
         x[i] = (x[i]/N) * 100
     
-    filename = "graph_SBM_small_example_sbm2-k50-p0.05-IC-degree.csv"  
-    graph = "scale_graphs/graph_SBM_small.txt_example_sbm2.txt"
+    filename = "facebook_combined_sbm2-k50-p0-WC-degree.csv"  
+    graph = "scale_graphs/facebook_combined_sbm2.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -60,8 +60,8 @@ if __name__ == '__main__':
     
 
 
-    filename = "graph_SBM_small_example_sbm1.5-k66-p0.05-IC-degree.csv" 
-    graph = "scale_graphs/graph_SBM_small.txt_example_sbm1.5.txt"
+    filename = "facebook_combined_example_sbm1.5-k66-p0-WC-degree.csv" 
+    graph = "scale_graphs/facebook_combined.txt_example_sbm1.5.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -86,8 +86,8 @@ if __name__ == '__main__':
 
 
     #filename = "experiments/facebook_combined-k100-p0.05-IC-communities.csv"  
-    filename = "graph_SBM_small-k100-p0.05-IC-degree.csv"
-    graph = "graphs/graph_SBM_small.txt"
+    filename = "facebook_combined-k100-p0-WC-degree.csv"
+    graph = "graphs/facebook_combined.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
