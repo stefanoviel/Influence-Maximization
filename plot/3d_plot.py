@@ -63,7 +63,7 @@ if __name__ == '__main__':
 
 
 
-    filename = "experiments/facebook_combined-k100-p0.05-IC-communities.csv"  
+    filename = "facebook_combined-k100-p0-WC-degree.csv"  
     graph = "graphs/facebook_combined.txt"
 
     G = read_graph(graph)
@@ -132,8 +132,8 @@ if __name__ == '__main__':
     plt.show()
     plt.cla()
 
-    plt.scatter(z0,x0,color="blue", label="scale 50% p=0.05")
-    plt.scatter(z1,x1,color="orange",label="scale 50% p=0.1")
+    plt.scatter(z0,x0,color="blue", label="scale 2% p=0.05")
+    plt.scatter(z1,x1,color="orange",label="scale 4% p=0.1")
     plt.scatter(z2,x2,color="red",label="original Facebook p=0.05")
     plt.xlabel('% Influenced Nodes')
     plt.ylabel('% Nodes as seed set')
