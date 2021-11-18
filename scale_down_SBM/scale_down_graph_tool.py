@@ -13,10 +13,10 @@ import os
 
 
 from graph_tool.all import *
-scale = 1.5
-resolution = 1
+scale = 4
+resolution = 10
 
-filename = "graphs/graph_SBM_small.txt"
+filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
