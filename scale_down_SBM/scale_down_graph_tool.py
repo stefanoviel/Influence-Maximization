@@ -13,7 +13,7 @@ import os
 
 
 from graph_tool.all import *
-scale = 1
+scale = 4
 resolution = 10
 
 filename = "graphs/facebook_combined.txt"
@@ -311,17 +311,17 @@ m = np.array(all_edges)
 m=sparse.csr_matrix(m)
 print(m)
 
-mrs, out_teta = graph_tool.generation.solve_sbm_fugacities(nodes, m, out_degs=out, in_degs=None, multigraph=False, self_loops=False, epsilon=1e-08, iter_solve=True, max_iter=0, min_args={}, root_args={}, verbose=False)
+#mrs, out_teta = graph_tool.generation.solve_sbm_fugacities(nodes, m, out_degs=out, in_degs=None, multigraph=False, self_loops=False, epsilon=1e-08, iter_solve=True, max_iter=0, min_args={}, root_args={}, verbose=False)
 #print(mrs)
 #print(out_teta)
 
-#g = graph_tool.generation.generate_sbm(nodes, m, out_degs=out, in_degs=None, directed=False, micro_ers=False, micro_degs=True)
+g = graph_tool.generation.generate_sbm(nodes, m, out_degs=out, in_degs=None, directed=False, micro_ers=True, micro_degs=False)
 # sum = 0
 # for v in g.vertices():
 #     sum +=1
 # print(sum)
 # graph_tool.stats.remove_self_loops(g)
-g = graph_tool.generation.generate_maxent_sbm(nodes, mrs, out_teta, in_theta=None, directed=False, multigraph=False, self_loops=False)
+##g = graph_tool.generation.generate_maxent_sbm(nodes, mrs, out_teta, in_theta=None, directed=False, multigraph=False, self_loops=False)
 #graph_draw(g, vertex_text=g.vertex_index, output="two-nodes.pdf")
 sum = 0
 for v in g.vertices():
@@ -333,6 +333,7 @@ for e in g.edges():
 
 text = []
 edges = 0
+n = []
 for e in g.edges():
     edges += 1
     t = str(e)
@@ -341,12 +342,15 @@ for e in g.edges():
     t = t.replace(",","")
     nodes = list(t.split(" "))
     f = "{0} {1}".format(nodes[0],nodes[1])
+    n.append(int(nodes[0]))
+    n.append(int(nodes[1]))
     text.append(f) 
 
 
 
-
+sum = len(set(n))
 print('Density {0}'.format((2*edges)/(sum * (sum-1))))
+print(sum)
 print(max(out))
 
 # text = []
@@ -355,5 +359,5 @@ print(max(out))
 #     text.append(f) 
 
 # name = name.replace(".txt","")
-with open("scale_graphs/"+str(name)+"_"+"example"+str(scale)+".txt", "w") as outfile:
+with open("scale_graphs/"+str(name)+"_"+"example_sbm"+str(scale)+".txt", "w") as outfile:
         outfile.write("\n".join(text))
