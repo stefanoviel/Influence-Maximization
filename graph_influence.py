@@ -10,7 +10,6 @@ import pandas as pd
 from src.load import read_graph
 from src.spread.monte_carlo import MonteCarlo_simulation as MonteCarlo_simulation
 from src.spread.monte_carlo_max_hop import MonteCarlo_simulation_max_hop as MonteCarlo_simulation_max_hop
-
 from new_ea import moea_influence_maximization
 from src.nodes_filtering.select_best_spread_nodes import filter_best_nodes as filter_best_spread_nodes
 from src.nodes_filtering.select_min_degree_nodes import filter_best_nodes as filter_min_degree_nodes
@@ -57,11 +56,11 @@ if __name__ == '__main__':
     #filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
     #gt = ["comm_ground_truth/graph_SBM_small_5.csv","comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_3.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.5.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
 
-    gt = ["comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_1.5.csv","comm_ground_truth/facebook_combined.csv"]
+    gt = ["comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_1.33.csv","comm_ground_truth/facebook_combined.csv"]
 
-    filenames = ["scale_graphs/facebook_combined.txt_example_sbm4.txt","scale_graphs/facebook_combined_sbm2.txt","scale_graphs/facebook_combined.txt_example_sbm1.5.txt","graphs/facebook_combined.txt"]
-    scale_k=[4,2,1.5,1]
-    models = ["LT"]
+    filenames = ["scale_graphs/facebook_combined.txt_False-4.txt","scale_graphs/facebook_combined.txt_False-2.txt","scale_graphs/facebook_combined.txt_False-1.33.txt","graphs/facebook_combined.txt"]
+    scale_k=[4,2,1.33]
+    models = ["IC", "IC_1",'WC']
     i = 0
     for item in filenames:
         file_gt = gt[i]
@@ -91,7 +90,10 @@ if __name__ == '__main__':
                 p = 0.05
             elif model == "LT":
                 p = 0
-            else:
+            elif model == "IC_1":
+                p = 0.01
+                model = "IC"
+            elif model == "WC":
                 p = 0
             
             args = {}
@@ -125,8 +127,8 @@ if __name__ == '__main__':
             '''
 
                     
-            no_simulations = 50
-            max_generations = 100
+            no_simulations = 1
+            max_generations = 10
             #nodes' bound of seed sets
             #k=200
             #max_generations = 10 * k
@@ -142,11 +144,11 @@ if __name__ == '__main__':
             #define file where to save the results obtained from the execution
             file = str(os.path.basename(filename))
             file = file.replace(".txt", "")
-            file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
+            #file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
+            file = 'prova'
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             start = time.time()
             seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=50, offspring_size=50, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
             
             exec_time = time.time() - start
             print(exec_time)
-    

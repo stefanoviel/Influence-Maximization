@@ -9,7 +9,7 @@ from functools import reduce
 import pandas as pd
 from community import community_louvain
 
-#import src.graph_sampling.SRW_RWF_ISRW as Graph_Sampling
+from src.spread.monte_carlo_time import MonteCarlo_simulation_time
 
 
 def args2cmd(args, exec_name, hpc=False):
@@ -383,7 +383,7 @@ def inverse_ncr(combinations, r):
 	return n
 import pandas as pd
 
-def to_csv(archiver, population_file) :
+def to_csv(archiver, population_file, times) :
     
     print("OBSERVERRRR \n  OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n")
 
@@ -392,18 +392,19 @@ def to_csv(archiver, population_file) :
     nodes = []
     influence = []
     n_nodes = []
-    time = []
+    communities = []
     a = []
     for item in archiver:
         nodes.append(str(item[0]))
         influence.append(round(item[1],2))
         n_nodes.append(item[2])
-        time.append(item[3])
+        communities.append(item[3])
 
 
     df["n_nodes"] = n_nodes
     df["influence"] = influence
-    df["time"] = time
+    df["communities"] = communities
+    df["time"] = times
     df["nodes"] = nodes
     df.to_csv(population_file+".csv", sep=",", index=False)
 
@@ -449,3 +450,12 @@ def community_detection(G,r):
     check = list(part)
     print(len(check))
     return check
+
+def compute_time(archiver, population_file, G, model, p, no_simulations, communities, random_gen):
+    times = []
+    for item in archiver:
+        A = item[0]
+        _, _, _,time = MonteCarlo_simulation_time(G, A, p, no_simulations, model, communities)
+        times.append(time)      
+
+    return times

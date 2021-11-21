@@ -15,8 +15,8 @@ script and produces a plot in three dimensions showing the relationship/correlat
 
 if __name__ == '__main__':
     
-    filename = "facebook_combined_sbm4-k25-p0-WC-degree.csv"
-    graph = "scale_graphs/facebook_combined.txt_example_sbm4.txt"
+    filename = "facebook_combined_example_sbm4-k25-p0-LT-degree.csv"
+    graph = "scale_graphs/facebook_combined_sbm4.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -37,7 +37,7 @@ if __name__ == '__main__':
         z[i] = (z[i]/N) * 100
         x[i] = (x[i]/N) * 100
     
-    filename = "facebook_combined_sbm2-k50-p0-WC-degree.csv"  
+    filename = "facebook_combined_sbm2-k50-p0-LT-degree.csv"  
     graph = "scale_graphs/facebook_combined_sbm2.txt"
 
     G = read_graph(graph)
@@ -60,7 +60,7 @@ if __name__ == '__main__':
     
 
 
-    filename = "facebook_combined_example_sbm1.5-k66-p0-WC-degree.csv" 
+    filename = "facebook_combined_example_sbm1.5-k66-p0-LT-degree.csv" 
     graph = "scale_graphs/facebook_combined.txt_example_sbm1.5.txt"
 
     G = read_graph(graph)
@@ -85,8 +85,8 @@ if __name__ == '__main__':
 
 
 
-    #filename = "experiments/facebook_combined-k100-p0.05-IC-communities.csv"  
-    filename = "facebook_combined-k100-p0-WC-degree.csv"
+    filename = "facebook_combined-k100-p0-LT-degree.csv"  
+    #filename = "facebook_combined-k100-p0-WC-degree.csv"
     graph = "graphs/facebook_combined.txt"
 
     G = read_graph(graph)
@@ -155,11 +155,11 @@ if __name__ == '__main__':
     #plt.savefig('gif/{}.png'.format(fn))
     plt.show()
     plt.cla()
-    plt.scatter(z,x,color="green",label="scale 25%")
-    plt.scatter(z0,x0,color="blue", label="scale 50%")
-    plt.scatter(z1,x1,color="orange",label="scale 75%")
-    plt.scatter(z2,x2,color="red",label="original Facebook p=0.05")
-
+    plt.scatter(z,x,color="green",label="25%")
+    plt.scatter(z0,x0,color="blue", label="50%")
+    plt.scatter(z1,x1,color="orange",label="75%")
+    plt.scatter(z2,x2,color="red",label="100%")
+    plt.title('Synthetic SBM IC MODEL p=0.05')
     plt.xlabel('% Influenced Nodes')
     plt.ylabel('% Nodes as seed set')
     plt.legend()

@@ -13,7 +13,7 @@ import os
 
 
 from graph_tool.all import *
-scale = 4
+scale = 2
 resolution = 10
 
 filename = "graphs/facebook_combined.txt"
@@ -71,7 +71,6 @@ for item in check:
 
 print("Total number of nodes after selection {0} \nCommunities before check {1} \nCommunities after check {2}".format(sum,len(check),len(check_ok)))
 check = check_ok
-
 
 
 list_edges = []
@@ -150,14 +149,22 @@ for i in range(len(sizes)):
 print(all_edges)
 i = 1
 start = 0
+nodes = []
+comm = []
 for item in sizes:
     for node in range(start,item+start):
-        with open('comm_ground_truth/'+name+"_"+str(scale), 'a') as the_file:
-            the_file.write(str(node) + ","+ str(i)+ "\n")
+        nodes.append(node)
+        comm.append(i)
     start = start + item
     i +=1
 
+df = pd.DataFrame()
+df["node"] = nodes
+df["comm"] = comm
 
+save = name.replace(".txt","")
+
+df.to_csv('comm_ground_truth/'+save+'_'+str(scale)+'.csv',index=False, sep=",")
 ##------------------------------------------------------------------------------------------------------------
 
 
@@ -288,22 +295,6 @@ for i in range(0,len(check)):
     axs[2].set_title('50% Graph')
     axs[2].set_xlabel('In\out Degree')
     #plt.show()
-i = 0
-for item in sizes:
-    mean = []
-    x = [k for k in range(i,item+i)]
-    for node in x:
-        mean.append(my_degree_function(node))
-    
-    sns.distplot(mean, hist=True, kde=True, 
-                 color = 'darkblue', 
-                hist_kws={'edgecolor':'black'},
-                kde_kws={'linewidth': 4})
-    sns.distplot(mean, hist = False, kde = True,
-                    kde_kws = {'shade': True, 'linewidth': 3})
-    #plt.show()
-    i = item + i
-
 
 
 from scipy import sparse
@@ -315,7 +306,7 @@ print(m)
 #print(mrs)
 #print(out_teta)
 
-g = graph_tool.generation.generate_sbm(nodes, m, out_degs=out, in_degs=None, directed=False, micro_ers=True, micro_degs=False)
+g = graph_tool.generation.generate_sbm(nodes, m, out_degs=out, in_degs=None, directed=False, micro_ers=False, micro_degs=False)
 # sum = 0
 # for v in g.vertices():
 #     sum +=1
@@ -359,5 +350,8 @@ print(max(out))
 #     text.append(f) 
 
 # name = name.replace(".txt","")
-with open("scale_graphs/"+str(name)+"_"+"example_sbm"+str(scale)+".txt", "w") as outfile:
+
+with open("scale_graphs/"+str(name)+"_"+"False-"+str(scale)+".txt", "w") as outfile:
         outfile.write("\n".join(text))
+    
+print("ok")
