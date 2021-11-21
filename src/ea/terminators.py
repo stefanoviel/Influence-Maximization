@@ -4,16 +4,15 @@ from pymoo.factory import get_performance_indicator
 #from pymoo.indicators.hv import Hypervolume
 import numpy as np
 def generation_termination(population, num_generations, num_evaluations, args):
-	"""
-	generation termination function
-	key args argument: generations_budget
-	:param population:
-	:param num_generations:
-	:param num_evaluations:
-	:param args:
-	:return:
-	"""
-	return num_generations == args["generations_budget"]
+    if num_generations == args["generations_budget"]:
+        x = [x for x in range(1,len(args["hypervolume"])+1)]
+        import matplotlib.pyplot as plt
+
+        plt.plot(x, args["hypervolume"], color='b')
+        plt.xlabel('Generations')
+        plt.ylabel('Hypervolume')
+        plt.savefig(args["population_file"])
+    return num_generations == args["generations_budget"]
 
 def no_improvement_termination(population, num_generations, num_evaluations, args):
     """Return True if the best fitness does not change for a number of generations.
@@ -56,16 +55,23 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     hv = get_performance_indicator("hv", ref_point=ref_point)
     hv =hv.do(F)
     #hv = hypervolume(pop,ref_point)
-    current_best = 1- hv/tot
+    current_best = round(1- hv/tot,3)
     print(hv, hv/tot)
     print("Hypervolume {0}-{1} Generations {2}".format(current_best,previous_best, num_generations))
-
+    args["hypervolume"].append(current_best)
     if previous_best is None or previous_best < current_best:
         args['previous_best'] = current_best
         args['generation_count'] = 0
         return False
     else:
         if args['generation_count'] >= max_generations:
+            x = [x for x in range(1,len(args["hypervolume"])+1)]
+            import matplotlib.pyplot as plt
+
+            plt.plot(x, args["hypervolume"])
+            plt.xlabel('Generations')
+            plt.ylabel('Hypervolume')
+            plt.savefig(args["population_file"])
             return True
         else:
             args['generation_count'] += 1

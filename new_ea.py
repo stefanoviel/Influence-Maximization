@@ -16,7 +16,7 @@ from src.ea.evaluator import nsga2_evaluator
 from src.ea.crossover import ea_one_point_crossover
 from src.ea.generator import nsga2_generator
 from src.ea.generators import generator
-from src.utils import to_csv
+from src.utils import to_csv, compute_time
 from src.ea.mutators import ea_global_random_mutation
 from src.ea.terminators import generation_termination,no_improvement_termination
 
@@ -99,15 +99,16 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
         fitness_function_kargs = fitness_function_kargs,
         mutation_operator=ea_global_random_mutation,
         communities = communities,
-        graph = G
+        graph = G,
+        hypervolume = []
     )
 
     # extract seed sets from the final Pareto front/archive
 
     seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
     #seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1]] for individual in ea.archive] 
-
-    to_csv(seed_sets, population_file)
+    times = compute_time(seed_sets, population_file, G, model, p, no_simulations, communities, random_gen)
+    to_csv(seed_sets, population_file, times)
     return seed_sets
 
 
