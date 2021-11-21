@@ -116,27 +116,27 @@ def MonteCarlo_simulation_time(G, A, p, no_simulations, model, communities, rand
 		random_generator.seed(next(iter(A))) # initialize random number generator with first seed in the seed set, to make experiment repeatable; TODO evaluate computational cost
 
 	results = []
-	communities = []
+	comm_list = []
 	times = []
 	if model == 'WC':
 		for i in range(no_simulations):
-			res, comm, time = WC_model(G, A, communities,random_generator=random_generator)
-			communities.append(comm)
+			res, comm, time = WC_model(G, A, communities=communities,random_generator=random_generator)
+			comm_list.append(comm)
 			results.append(res)
 			times.append(time)
 	elif model == 'IC':
 		for i in range(no_simulations):
-			res, comm ,time= IC_model(G, A, p, communities, random_generator=random_generator)
-			communities.append(comm)
+			res, comm ,time= IC_model(G, A, p,  communities=communities, random_generator=random_generator)
+			comm_list.append(comm)
 			results.append(res)
 			times.append(time)
 	elif model == 'LT':
 		for i in range(no_simulations):
-			res, comm , time= LT_model(G, A, p,communities,random_generator=random_generator)
-			communities.append(comm)
+			res, comm , time= LT_model(G, A, p, communities=communities,random_generator=random_generator)
+			comm_list.append(comm)
 			results.append(res)
 			times.append(time)
 
-	return (numpy.mean(results), numpy.std(results), int(numpy.mean(communities)), int(numpy.mean(times)))
+	return (numpy.mean(results), numpy.std(results), int(numpy.mean(comm_list)), int(numpy.mean(times)))
 
 

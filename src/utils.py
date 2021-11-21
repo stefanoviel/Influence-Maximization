@@ -455,8 +455,7 @@ def compute_time(archiver, population_file, G, model, p, no_simulations, communi
     times = []
     for item in archiver:
         A = item[0]
-        print(type(item[0]))
-        _, _, _,time = MonteCarlo_simulation_time(G, A, p, no_simulations, model, communities)
+        _, _, _,time = MonteCarlo_simulation_time(G, A, p, no_simulations, model, communities,random_gen)
         times.append(time)      
 
     return times
