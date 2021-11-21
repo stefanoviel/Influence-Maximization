@@ -68,7 +68,6 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
     #ea.replacer = inspyred.ec.replacers.generational_replacement
     #ea.replacer = inspyred.ec.replacers.plus_replacement
     bounder = inspyred.ec.DiscreteBounder(nodes)
-
     # start the evolutionary process
     ea.evolve(
         generator = nsga2_generator,
