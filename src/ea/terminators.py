@@ -11,7 +11,7 @@ def generation_termination(population, num_generations, num_evaluations, args):
         plt.plot(x, args["hypervolume"], color='b')
         plt.xlabel('Generations')
         plt.ylabel('Hypervolume')
-        plt.savefig(args["population_file"])
+        plt.savefig(args["population_file"]+'.png')
     return num_generations == args["generations_budget"]
 
 def no_improvement_termination(population, num_generations, num_evaluations, args):
@@ -71,7 +71,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
             plt.plot(x, args["hypervolume"])
             plt.xlabel('Generations')
             plt.ylabel('Hypervolume')
-            plt.savefig(args["population_file"])
+            plt.savefig(args["population_file"]+'.png')
             return True
         else:
             args['generation_count'] += 1
