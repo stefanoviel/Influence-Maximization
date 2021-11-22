@@ -15,7 +15,7 @@ script and produces a plot in three dimensions showing the relationship/correlat
 
 if __name__ == '__main__':
     
-    filename = "facebook_combined_False-4-k25-p0-WC-degree.csv"
+    filename = "facebook/facebook_combined_False-4-k25-p0-WC-degree.csv"
     graph = "scale_graphs/facebook_combined.txt_False-4.txt"
 
     G = read_graph(graph)
@@ -37,8 +37,8 @@ if __name__ == '__main__':
         z[i] = (z[i]/N) * 100
         x[i] = (x[i]/N) * 100
     
-    filename = "facebook_combined_False-2-k50-p0-WC-degree.csv"  
-    graph = "scale_graphs/facebook_combined.txt_False-2.txt"
+    filename = "lastf_asia_True-2-k50-p0-WC-degree.csv"  
+    graph = "scale_graphs/lastf_asia.txt_True-2.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -60,7 +60,7 @@ if __name__ == '__main__':
     
 
 
-    filename = "facebook_combined_False-1.33-k75-p0-WC-degree.csv" 
+    filename = "facebook/facebook_combined_False-1.33-k75-p0-WC-degree.csv" 
     graph = "scale_graphs/facebook_combined.txt_False-1.33.txt"
 
     G = read_graph(graph)
@@ -85,9 +85,9 @@ if __name__ == '__main__':
 
 
 
-    filename = "facebook_combined-k100-p0-WC-degree.csv"  
-    #filename = "facebook_combined-k100-p0-WC-degree.csv"
-    graph = "graphs/facebook_combined.txt"
+    filename = "lastf_asia-k100-p0-WC-degree.csv"  
+    #filename = "experiments_correct/facebook_combined-k100-p0-WC-degree.csv"
+    graph = "lastf_asia.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -155,9 +155,9 @@ if __name__ == '__main__':
     #plt.savefig('gif/{}.png'.format(fn))
     plt.show()
     plt.cla()
-    plt.scatter(z,x,color="green",label="25%")
+    #plt.scatter(z,x,color="green",label="25%")
     plt.scatter(z0,x0,color="blue", label="50%")
-    plt.scatter(z1,x1,color="orange",label="75%")
+    #plt.scatter(z1,x1,color="orange",label="75%")
     plt.scatter(z2,x2,color="red",label="100%")
     plt.title('Facebook LT model')
     plt.xlabel('% Influenced Nodes')

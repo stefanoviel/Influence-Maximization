@@ -56,10 +56,10 @@ if __name__ == '__main__':
     #filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
     #gt = ["comm_ground_truth/graph_SBM_small_5.csv","comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_3.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.5.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
 
-    gt = ["comm_ground_truth/lastf_asia.csv","comm_ground_truth/lastf_asia_2.csv"]
+    gt = ["comm_ground_truth/lastf_asia_4.csv","comm_ground_truth/lastf_asia_1.33.csv"]
 
-    filenames = ["lastf_asia.txt","scale_graphs/lastf_asia.txt_True-2.txt"]
-    scale_k=[1,2]
+    filenames = ["scale_graphs/lastf_asia.txt_True-4.txt","scale_graphs/lastf_asia.txt_True-1.33.txt"]
+    scale_k=[4,1.33]
     models = ["IC", "IC_1",'WC']
     i = 0
     for item in filenames:

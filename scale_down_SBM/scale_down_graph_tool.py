@@ -13,7 +13,7 @@ import os
 
 
 from graph_tool.all import *
-scale = 2
+scale = 4
 resolution = 6
 
 filename = "lastf_asia.txt"
