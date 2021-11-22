@@ -14,9 +14,9 @@ import os
 
 from graph_tool.all import *
 scale = 2
-resolution = 10
+resolution = 6
 
-filename = "graphs/facebook_combined.txt"
+filename = "lastf_asia.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -53,14 +53,14 @@ for i in range(max(partition.values())+1):
 sum = 0
 check_ok = []
 
-'''
+
 i = 1
 for item in check:
     for node in item:
         with open('comm_ground_truth/'+name, 'a') as the_file:
             the_file.write(str(node) + ","+ str(i)+ "\n")
     i +=1
-'''
+
 for item in check:
     sum = sum + len(item)
 
@@ -306,7 +306,7 @@ print(m)
 #print(mrs)
 #print(out_teta)
 
-g = graph_tool.generation.generate_sbm(nodes, m, out_degs=out, in_degs=None, directed=False, micro_ers=False, micro_degs=False)
+g = graph_tool.generation.generate_sbm(nodes, m, out_degs=out, in_degs=None, directed=False, micro_ers=True, micro_degs=False)
 # sum = 0
 # for v in g.vertices():
 #     sum +=1
@@ -351,7 +351,7 @@ print(max(out))
 
 # name = name.replace(".txt","")
 
-with open("scale_graphs/"+str(name)+"_"+"False-"+str(scale)+".txt", "w") as outfile:
+with open("scale_graphs/"+str(name)+"_"+"True-"+str(scale)+".txt", "w") as outfile:
         outfile.write("\n".join(text))
     
 print("ok")
