@@ -56,10 +56,10 @@ if __name__ == '__main__':
     #filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
     #gt = ["comm_ground_truth/graph_SBM_small_5.csv","comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_3.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.5.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
 
-    gt = ["comm_ground_truth/lastf_asia_4.csv","comm_ground_truth/lastf_asia_1.33.csv"]
+    gt = ["comm_ground_truth/large_facebook_4.csv","comm_ground_truth/large_facebook.csv"]
 
-    filenames = ["scale_graphs/lastf_asia.txt_True-4.txt","scale_graphs/lastf_asia.txt_True-1.33.txt"]
-    scale_k=[4,1.33]
+    filenames = ["scale_graphs/large_facebook.txt_True-4.txt","large_facebook.txt"]
+    scale_k=[4,1]
     models = ["IC", "IC_1",'WC']
     i = 0
     for item in filenames:

@@ -14,9 +14,9 @@ import os
 
 from graph_tool.all import *
 scale = 4
-resolution = 6
+resolution = 10
 
-filename = "lastf_asia.txt"
+filename = "large_facebook.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
