@@ -15,7 +15,7 @@ script and produces a plot in three dimensions showing the relationship/correlat
 
 if __name__ == '__main__':
     
-    filename = "lastf_asia/lastf_asia_True-4-k25-p0-WC-degree.csv"
+    filename = "lastf_asia/lastf_asia_True-4-k25-p0.05-IC-degree.csv"
     graph = "scale_graphs/lastf_asia.txt_True-4.txt"
 
     G = read_graph(graph)
@@ -30,14 +30,14 @@ if __name__ == '__main__':
     df = pd.read_csv(filename, sep=",")
 
     x= df["n_nodes"]
-    y = df["time"]
+    y = df["communities"]
     z = df["influence"]
-
+    time = df["time"]
     for i in range(len(z)):
         z[i] = (z[i]/N) * 100
         x[i] = (x[i]/N) * 100
     
-    filename = "lastf_asia/lastf_asia_True-2-k50-p0-WC-degree.csv"  
+    filename = "lastf_asia/lastf_asia_True-2-k50-p0.05-IC-degree.csv"  
     graph = "scale_graphs/lastf_asia.txt_True-2.txt"
 
     G = read_graph(graph)
@@ -51,16 +51,16 @@ if __name__ == '__main__':
     df = pd.read_csv(filename, sep=",")
 
     x0= df["n_nodes"].to_list()
-    y0 = df["time"].to_list()
+    y0 = df["communities"].to_list()
     z0 = df["influence"].to_list()
-
+    time0 = df["time"]
     for i in range(len(z0)):
         z0[i] = (z0[i]/N) * 100
         x0[i] = (x0[i]/N) * 100
     
 
 
-    filename = "lastf_asia/lastf_asia_True-1.33-k75-p0-WC-degree.csv" 
+    filename = "lastf_asia/lastf_asia_True-1.33-k75-p0.05-IC-degree.csv" 
     graph = "scale_graphs/lastf_asia.txt_True-1.33.txt"
 
     G = read_graph(graph)
@@ -74,9 +74,9 @@ if __name__ == '__main__':
     df = pd.read_csv(filename, sep=",")
 
     x1= df["n_nodes"]
-    y1 = df["time"]
+    y1 = df["communities"]
     z1 = df["influence"]
-
+    time1 = df["time"]
     for i in range(len(z1)):
         z1[i] = (z1[i]/N) * 100
         x1[i] = (x1[i]/N) * 100
@@ -85,8 +85,7 @@ if __name__ == '__main__':
 
 
 
-    filename = "lastf_asia/lastf_asia-k100-p0-WC-degree.csv"  
-    #filename = "experiments_correct/facebook_combined-k100-p0-WC-degree.csv"
+    filename = "lastf_asia/lastf_asia-k100-p0.05-IC-degree.csv"  
     graph = "graphs/lastf_asia.txt"
 
     G = read_graph(graph)
@@ -101,9 +100,9 @@ if __name__ == '__main__':
     df = pd.read_csv(filename, sep=",")
 
     x2= df["n_nodes"]
-    y2 = df["time"]
+    y2 = df["communities"]
     z2 = df["influence"]
-
+    time2= df["time"]
     for i in range(len(z2)):
         z2[i] = (z2[i]/N) * 100
         x2[i] = (x2[i]/N) * 100
@@ -120,17 +119,18 @@ if __name__ == '__main__':
     ax1.set_xlabel("Influence")
     fig.suptitle("IC", size=16)
     
-    ax2.scatter(y2,z2)
-    ax2.yaxis.set_ticks(np.arange(0,max(z2), 5))
+    ax2.scatter(y2,x2)
+    ax2.yaxis.set_ticks(np.arange(0,max(x2), 0.5))
     ax2.xaxis.set_ticks(np.arange(0, max(y2)+1, 1))
+    
     ax2.set_ylabel("Nodes")
-    ax3.scatter(y2,x2)
-    ax3.xaxis.set_ticks(np.arange(0,max(y2)+1, 1))
-    ax3.yaxis.set_ticks(np.arange(0, max(x2), 0.5))
+    ax3.scatter(z2,y2)
+    ax3.xaxis.set_ticks(np.arange(0,max(z2), 5))
+    ax3.yaxis.set_ticks(np.arange(0, max(y2)+2, 1))
     ax3.set_ylabel("Nodes")
 
-    ax3.set_xlabel("Influence")
-    ax2.set_xlabel("Influence")
+    ax3.set_xlabel("")
+    ax2.set_xlabel("Communities")
     # ax2.scatter(y1, z1)
     # ax2.xaxis.set_ticks(np.arange(0, df["time"].max()+1, 1))
     # ax2.yaxis.set_ticks(np.arange(0,df["influence"].max()+250, 250))
@@ -164,6 +164,11 @@ if __name__ == '__main__':
     plt.ylabel('% Nodes as seed set')
     plt.legend()
     plt.show()
+
+
+    print(np.mean(time),np.mean(time0),np.mean(time1),np.mean(time2))
+    print(max(time),max(time0),max(time1),max(time2))
+    print(min(time),min(time0),min(time1),min(time2))
 
     exit(0)
 

@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 #filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
-filenames = ["scale_graphs/facebook_107.txt_True-1.txt","facebook_107.txt"]
+filenames = ["scale_graphs/facebook_L1.txt_False-4.txt","facebook_L1.txt"]
 #scale_graphs/graph_SBM_big.txt_example5.txt","graphs/graph_SBM_big.txt"]
 pp = []
 mm = []
@@ -66,6 +66,7 @@ for item in G1:
     mean_degree_1.append(float(1/my_degree_function[item]))
 print(max(mean_1), np.mean(mean_1), np.std(mean_1))
 print(den1/den)
+
 position = nx.spring_layout(G1)
 nx.draw(G1, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
 plt.show()
@@ -100,7 +101,7 @@ axs[1].set_xlabel('In\out Degree')
 plt.show()
 
 
-x = [50,100]
+x = ["True","False"]
 i = 0
 for item in kk:    
     # Draw the density plot
