@@ -13,10 +13,23 @@ import os
 
 
 from graph_tool.all import *
+'''
+g= gt.collection.ns["ego_social/facebook_3980"]
+print(g)
+state = gt.minimize_blockmodel_dl(g)
+print(state)
+b = state.get_blocks()
+blocks = []
+for v in g.vertices():
+    blocks.append(b[v])
+print(len(set(blocks)))
+state.draw(pos=g.vp.pos, output="football-sbm-fit.svg")
+exit(0)
+'''
 scale = 4
-resolution = 1
+resolution = 3
 
-filename = "facebook_107.txt"
+filename = "facebook_L1.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -350,7 +363,7 @@ print(max(out))
 
 # name = name.replace(".txt","")
 
-with open("scale_graphs/"+str(name)+"_"+"True-"+str(scale)+".txt", "w") as outfile:
+with open("scale_graphs/"+str(name)+"_"+"False-"+str(scale)+".txt", "w") as outfile:
         outfile.write("\n".join(text))
     
 print("ok")
