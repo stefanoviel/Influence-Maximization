@@ -2,14 +2,14 @@ import networkx as nx
 from networkx.algorithms.centrality.degree_alg import degree_centrality
 from src.load import read_graph
 import pandas as pd
-filename = "scale_graphs/facebook_combined_scale_4.txt"
+filename = "scale_graphs/large_facebook.txt_True-4.txt"
 
 G = read_graph(filename=filename)
 
 
 T = degree_centrality(G)
 #T = nx.pagerank(G, alpha = 0.8)
-df = pd.read_csv("/Users/elia/Desktop/Influence-Maximization/facebook_combined_scale_4-k25-p0.2-IC.csv.csv",sep=",")
+df = pd.read_csv("large_facebook/large_facebook_True-4-k25-p0.05-IC-degree.csv",sep=",")
 
 nodes = df["nodes"]
 
@@ -28,7 +28,7 @@ data["centrality"] = centr
 
 data = data.sort_values(by='centrality', ascending=False)
 data["rank"] = rank
-data.to_csv("prova.csv")
+data.to_csv("prova.csv", index=False)
 
 print(data)
 community = pd.read_csv("comm_ground_truth/facebook_combined_4.csv",sep=",")
@@ -54,11 +54,9 @@ data_comm["node"] = node
 
 int_df = pd.merge(int_df, data_comm, how ='inner', on =['node'])
 print(int_df)
-#groups = community.groupby('comm')['node'].apply(list)
-#communities = groups.reset_index(name='nodes')
-#communities = communities["nodes"].to_list()
+solution_nodes = []
+soluition_comm = []
 for item in nodes:
-
     item = item.replace("[","")
     item = item.replace("]","")
     item = item.replace(",","")
@@ -66,14 +64,15 @@ for item in nodes:
     print("---------")
     A = []
     C = []
+    R = []
     for node in nodes:
         node = int(node)
         t = int_df.loc[int_df["node"] == node]
         print(t)
 
-        #A.append(node)
-        #C.append(int(c["comm"]))
-
+        A.append(node)
+        C.append((t.comm))
+        R.append((t.rank_comm))
 
 
 
@@ -82,18 +81,18 @@ print(C)
 from src.spread.monte_carlo import MonteCarlo_simulation
 
 
-original_filename = "graphs/facebook_combined.txt"
+original_filename = "graphs/large_facebook.txt"
 p = 0.05
 no_simulations = 100
 model = "IC"
+G = read_graph(original_filename)
 
-
-df = pd.read_csv("/Users/elia/Desktop/Influence-Maximization/comm_ground_truth/facebook_combined.csv",sep=",")
+df = pd.read_csv("comm_ground_truth/large_facebook.csv",sep=",")
 groups = df.groupby('comm')['node'].apply(list)
 df = groups.reset_index(name='nodes')
 communities_original = df["nodes"].to_list()
 
 
-spread , time = MonteCarlo_simulation(G, A, p, no_simulations, model, communities_original, random_generator=None)
+spread  = MonteCarlo_simulation(G, A, p, no_simulations, model, communities_original, random_generator=None)
 print(spread)
 
