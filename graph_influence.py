@@ -145,7 +145,6 @@ if __name__ == '__main__':
             file = str(os.path.basename(filename))
             file = file.replace(".txt", "")
             file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
-            file = 'prova'
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             start = time.time()
             seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=50, offspring_size=50, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
