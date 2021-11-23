@@ -15,7 +15,7 @@ script and produces a plot in three dimensions showing the relationship/correlat
 
 if __name__ == '__main__':
     
-    filename = "lastf_asia_True-4-k25-p0.01-IC-degree.csv"
+    filename = "lastf_asia/lastf_asia_True-4-k25-p0-WC-degree.csv"
     graph = "scale_graphs/lastf_asia.txt_True-4.txt"
 
     G = read_graph(graph)
@@ -37,7 +37,7 @@ if __name__ == '__main__':
         z[i] = (z[i]/N) * 100
         x[i] = (x[i]/N) * 100
     
-    filename = "lastf_asia_True-2-k50-p0.01-IC-degree.csv"  
+    filename = "lastf_asia/lastf_asia_True-2-k50-p0-WC-degree.csv"  
     graph = "scale_graphs/lastf_asia.txt_True-2.txt"
 
     G = read_graph(graph)
@@ -60,7 +60,7 @@ if __name__ == '__main__':
     
 
 
-    filename = "lastf_asia_True-1.33-k75-p0.01-IC-degree.csv" 
+    filename = "lastf_asia/lastf_asia_True-1.33-k75-p0-WC-degree.csv" 
     graph = "scale_graphs/lastf_asia.txt_True-1.33.txt"
 
     G = read_graph(graph)
@@ -85,9 +85,9 @@ if __name__ == '__main__':
 
 
 
-    filename = "lastf_asia-k100-p0.01-IC-degree.csv"  
-    #filename = "experiments_correct/facebook_combined-k100-p0.01-IC-degree.csv"
-    graph = "lastf_asia.txt"
+    filename = "lastf_asia/lastf_asia-k100-p0-WC-degree.csv"  
+    #filename = "experiments_correct/facebook_combined-k100-p0-WC-degree.csv"
+    graph = "graphs/lastf_asia.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()

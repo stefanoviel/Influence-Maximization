@@ -1,7 +1,8 @@
 
 from inspyred.ec.analysis import hypervolume
 from pymoo.factory import get_performance_indicator
-#from pymoo.indicators.hv import Hypervolume
+import pandas as pd
+import matplotlib.pyplot as plt
 import numpy as np
 def generation_termination(population, num_generations, num_evaluations, args):
     if num_generations == args["generations_budget"]:
@@ -41,33 +42,39 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     except:
         pass
 
-    #pop = [list(x.fitness) for x in t.archive]
     pop = [list(x.fitness) for x in args["_ec"].archive] 
-    #ref = max(population).fitness
-   
     F =  np.array(pop)
 
     tot = args["graph"].number_of_nodes() * 1 * len(args["communities"])
     ref_point = np.array([args["graph"].number_of_nodes(),1, len(args["communities"])])
-    #ref_point = np.array([args["graph"].number_of_nodes(),1])
-    #tot = args["graph"].number_of_nodes() * 1
-    
     
     hv = get_performance_indicator("hv", ref_point=ref_point)
     hv =hv.do(F)
-    #hv = hypervolume(pop,ref_point)
     current_best = round(1- hv/tot,3)
     print(hv, hv/tot)
     print("Hypervolume {0}-{1} Generations {2}".format(current_best,previous_best, num_generations))
+    print('Len of archive {0}'.format(len(pop)))
     args["hypervolume"].append(current_best)
+
+    # one = []
+    # two = []
+    # three = []
+    # for item in pop:
+    #     one.append(item[0])
+    #     two.append(item[1])
+    #     three.append(item[2])
+    # df = pd.DataFrame()
+    # df["influence"] = one
+    # df["nodes"] = two
+    # df["comm"] = three
     if previous_best is None or previous_best < current_best:
         args['previous_best'] = current_best
         args['generation_count'] = 0
+        #df.to_csv('best.csv', index=False)
         return False
     else:
         if args['generation_count'] >= max_generations:
             x = [x for x in range(1,len(args["hypervolume"])+1)]
-            import matplotlib.pyplot as plt
 
             plt.plot(x, args["hypervolume"])
             plt.xlabel('Generations')
@@ -77,4 +84,5 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
             return True
         else:
             args['generation_count'] += 1
+            #df.to_csv('worse.csv', index=False)
             return False

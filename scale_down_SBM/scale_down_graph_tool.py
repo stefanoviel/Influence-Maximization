@@ -14,9 +14,9 @@ import os
 
 from graph_tool.all import *
 scale = 4
-resolution = 10
+resolution = 1
 
-filename = "large_facebook.txt"
+filename = "facebook_107.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -71,7 +71,6 @@ for item in check:
 
 print("Total number of nodes after selection {0} \nCommunities before check {1} \nCommunities after check {2}".format(sum,len(check),len(check_ok)))
 check = check_ok
-
 
 list_edges = []
 for i in range(len(check)):
