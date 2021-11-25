@@ -56,10 +56,10 @@ if __name__ == '__main__':
     #filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
     #gt = ["comm_ground_truth/graph_SBM_small_5.csv","comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_3.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.5.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
 
-    gt = ["comm_ground_truth/facebook_L1_4.csv","comm_ground_truth/facebook_L1_2.csv","comm_ground_truth/facebook_L1_1.csv"]
+    gt = ["comm_ground_truth/facebook_L1_4.csv","comm_ground_truth/facebook_L1.csv"]
 
-    filenames = ["scale_graphs/facebook_L1.txt_False-4.txt","scale_graphs/facebook_L1.txt_False-2.txt","facebook_L1.txt"]
-    scale_k=[4,2,1]
+    filenames = ["scale_graphs/large_facebook.txt_True-4.txt","graphs/large_facebook.txt"]
+    scale_k=[4,1]
     models = ["IC", "IC_1",'WC',"LT"]
     i = 0
     for item in filenames:

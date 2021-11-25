@@ -13,101 +13,7 @@ script and produces a plot in three dimensions showing the relationship/correlat
 
 '''
 
-if __name__ == '__main__':
-    
-    filename = "lastf_asia/lastf_asia_True-4-k25-p0.05-IC-degree.csv"
-    graph = "scale_graphs/lastf_asia.txt_True-4.txt"
-
-    G = read_graph(graph)
-    N = G.number_of_nodes()
-    my_degree_function = G.degree   
-    mean = []
-    for item in G:
-        mean.append(my_degree_function[item])
-
-    print(np.mean(mean))
-
-    df = pd.read_csv(filename, sep=",")
-
-    x= df["n_nodes"]
-    y = df["communities"]
-    z = df["influence"]
-    time = df["time"]
-    for i in range(len(z)):
-        z[i] = (z[i]/N) * 100
-        x[i] = (x[i]/N) * 100
-    
-    filename = "lastf_asia/lastf_asia_True-2-k50-p0.05-IC-degree.csv"  
-    graph = "scale_graphs/lastf_asia.txt_True-2.txt"
-
-    G = read_graph(graph)
-    N = G.number_of_nodes()
-    my_degree_function = G.degree   
-    mean = []
-    for item in G:
-        mean.append(my_degree_function[item])
-
-    print(np.mean(mean))
-    df = pd.read_csv(filename, sep=",")
-
-    x0= df["n_nodes"].to_list()
-    y0 = df["communities"].to_list()
-    z0 = df["influence"].to_list()
-    time0 = df["time"]
-    for i in range(len(z0)):
-        z0[i] = (z0[i]/N) * 100
-        x0[i] = (x0[i]/N) * 100
-    
-
-
-    filename = "lastf_asia/lastf_asia_True-1.33-k75-p0.05-IC-degree.csv" 
-    graph = "scale_graphs/lastf_asia.txt_True-1.33.txt"
-
-    G = read_graph(graph)
-    N = G.number_of_nodes()
-    my_degree_function = G.degree   
-    mean = []
-    for item in G:
-        mean.append(my_degree_function[item])
-
-    print(np.mean(mean))
-    df = pd.read_csv(filename, sep=",")
-
-    x1= df["n_nodes"]
-    y1 = df["communities"]
-    z1 = df["influence"]
-    time1 = df["time"]
-    for i in range(len(z1)):
-        z1[i] = (z1[i]/N) * 100
-        x1[i] = (x1[i]/N) * 100
-    
-
-
-
-
-    filename = "lastf_asia/lastf_asia-k100-p0.05-IC-degree.csv"  
-    graph = "graphs/lastf_asia.txt"
-
-    G = read_graph(graph)
-    N = G.number_of_nodes()
-    my_degree_function = G.degree   
-    mean = []
-    for item in G:
-        mean.append(my_degree_function[item])
-
-    print(np.mean(mean))
-
-    df = pd.read_csv(filename, sep=",")
-
-    x2= df["n_nodes"]
-    y2 = df["communities"]
-    z2 = df["influence"]
-    time2= df["time"]
-    for i in range(len(z2)):
-        z2[i] = (z2[i]/N) * 100
-        x2[i] = (x2[i]/N) * 100
-    
-
+def plot(x2,y2,z2):
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
     fig.suptitle("IC", size=16)
 
@@ -131,35 +37,117 @@ if __name__ == '__main__':
 
     ax3.set_xlabel("")
     ax2.set_xlabel("Communities")
-    # ax2.scatter(y1, z1)
-    # ax2.xaxis.set_ticks(np.arange(0, df["time"].max()+1, 1))
-    # ax2.yaxis.set_ticks(np.arange(0,df["influence"].max()+250, 250))
-    # ax2.set_xlabel("No Communities")
-
-    # ax2.set_ylabel("Influence")
-    
-    # ax3.scatter(y1,x1)
-    # ax3.yaxis.set_ticks(np.arange(0, df["n_nodes"].max()+1, 10))
-    # ax3.xaxis.set_ticks(np.arange(0,df["time"].max()+1, 1))
-    # ax3.set_xlabel("No Communities")
-
-    # ax3.set_ylabel("Nodes")
 
     ax1.set_box_aspect(1)
     ax2.set_box_aspect(1)
     ax3.set_box_aspect(1)
     fig.tight_layout()
-    #uncomment to save the plot in .png format
-    #fn = str(os.path.basename(filename))
-    #fn = fn.replace(".csv", "")
-    #plt.savefig('gif/{}.png'.format(fn))
     plt.show()
-    plt.cla()
+if __name__ == '__main__':
+    
+    filename = "lastf_asia/lastf_asia_True-4-k25-p0.01-IC-degree.csv"
+    graph = "scale_graphs/lastf_asia.txt_True-4.txt"
+
+    G = read_graph(graph)
+    N = G.number_of_nodes()
+    my_degree_function = G.degree   
+    mean = []
+    for item in G:
+        mean.append(my_degree_function[item])
+
+    print(np.mean(mean))
+
+    df = pd.read_csv(filename, sep=",")
+
+    x=  df["n_nodes"]
+    y = df["communities"]
+    z = df["influence"]
+    time = df["time"]
+    for i in range(len(z)):
+        z[i] = (z[i]/N) * 100
+        x[i] = (x[i]/N) * 100
+    
+    plot(x,y,z)
+    graph = "scale_graphs/lastf_asia.txt_True-2.txt"  
+    filename = "lastf_asia/lastf_asia_True-2-k50-p0.01-IC-degree.csv"
+
+    G = read_graph(graph)
+    N = G.number_of_nodes()
+    my_degree_function = G.degree   
+    mean = []
+    for item in G:
+        mean.append(my_degree_function[item])
+
+    print(np.mean(mean))
+    df = pd.read_csv(filename, sep=",")
+
+    x0= df["n_nodes"].to_list()
+    y0 = df["communities"].to_list()
+    z0 = df["influence"].to_list()
+    time0 = df["time"]
+    for i in range(len(z0)):
+        z0[i] = (z0[i]/N) * 100
+        x0[i] = (x0[i]/N) * 100
+    
+
+    plot(x0,y0,z0)
+
+    filename = "lastf_asia/lastf_asia_True-1.33-k75-p0.01-IC-degree.csv" 
+    graph = "scale_graphs/lastf_asia.txt_True-1.33.txt"
+
+    G = read_graph(graph)
+    N = G.number_of_nodes()
+    my_degree_function = G.degree   
+    mean = []
+    for item in G:
+        mean.append(my_degree_function[item])
+
+    print(np.mean(mean))
+    df = pd.read_csv(filename, sep=",")
+
+    x1= df["n_nodes"]
+    y1 = df["communities"]
+    z1 = df["influence"]
+    time1 = df["time"]
+    for i in range(len(z1)):
+        z1[i] = (z1[i]/N) * 100
+        x1[i] = (x1[i]/N) * 100
+    
+
+
+
+    plot(x1,y1,z1)
+
+    filename = "lastf_asia/lastf_asia-k100-p0.01-IC-degree.csv"  
+    graph = "graphs/lastf_asia.txt"
+
+    G = read_graph(graph)
+    N = G.number_of_nodes()
+    my_degree_function = G.degree   
+    mean = []
+    for item in G:
+        mean.append(my_degree_function[item])
+
+    print(np.mean(mean))
+
+    df = pd.read_csv(filename, sep=",")
+
+    x2= df["n_nodes"]
+    y2 = df["communities"]
+    z2 = df["influence"]
+    time2= df["time"]
+    for i in range(len(z2)):
+        z2[i] = (z2[i]/N) * 100
+        x2[i] = (x2[i]/N) * 100
+    
+
+    plot(x2,y2,z2)
+
     plt.scatter(z,x,color="green",label="25%")
     plt.scatter(z0,x0,color="blue", label="50%")
     plt.scatter(z1,x1,color="orange",label="75%")
     plt.scatter(z2,x2,color="red",label="100%")
-    plt.title('Facebook LT model')
+    plt.title('Facebook WC model')
     plt.xlabel('% Influenced Nodes')
     plt.ylabel('% Nodes as seed set')
     plt.legend()
@@ -169,7 +157,5 @@ if __name__ == '__main__':
     print(np.mean(time),np.mean(time0),np.mean(time1),np.mean(time2))
     print(max(time),max(time0),max(time1),max(time2))
     print(min(time),min(time0),min(time1),min(time2))
-
-    exit(0)
 
     
