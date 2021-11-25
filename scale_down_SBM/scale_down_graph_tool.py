@@ -26,10 +26,10 @@ print(len(set(blocks)))
 state.draw(pos=g.vp.pos, output="football-sbm-fit.svg")
 exit(0)
 '''
-scale = 4
-resolution = 3
+scale = 2
+resolution = 10
 
-filename = "facebook_L1.txt"
+filename = "graphs/large_facebook.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -363,7 +363,7 @@ print(max(out))
 
 # name = name.replace(".txt","")
 
-with open("scale_graphs/"+str(name)+"_"+"False-"+str(scale)+".txt", "w") as outfile:
+with open("scale_graphs/"+str(name)+"_"+"TRUE-"+str(scale)+".txt", "w") as outfile:
         outfile.write("\n".join(text))
     
 print("ok")
