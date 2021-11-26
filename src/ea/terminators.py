@@ -38,7 +38,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     max_generations = args.setdefault('max_generations', 10)
     previous_best = args.setdefault('previous_best', None)
     try:
-        print(max_generations,args["generation_count"])
+        print('Max Generations without improvements{0}, now {1}'.format(max_generations,args["generation_count"]))
     except:
         pass
 
@@ -52,13 +52,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
 
     tot = args["graph"].number_of_nodes() * 1 * len(args["communities"])
 
-    print('TOT {0}'.format(tot))
-    ref_point = [-args["graph"].number_of_nodes(),-1, -len(args["communities"])]
-    #ref_point = [float(1), float(1/args["graph"].number_of_nodes()), float(1)]
-    print(arch)
-    print(ref_point)
     t = 1/args["graph"].number_of_nodes()
-
 
     from pymoo.indicators.hv import Hypervolume
 
@@ -69,7 +63,6 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     current_best = hv/tot
 
     print("Hypervolume {0}-{1} Generations {2}".format(current_best,previous_best, num_generations))
-    #print('Len of archive {0}'.format(len(pop)))
     args["hypervolume"].append(current_best)
     one = []
     two = []
@@ -97,12 +90,11 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     #ax.set_zlim([1,550])
     ax.set_xlim([1,(args["max_seed_nodes"])])
     plt.savefig('PF/'+ str(num_generations)+'.png')
-    plt.show()
+    #plt.show()
 
-    if previous_best is None or previous_best < current_best:
+    if previous_best is None or current_best > previous_best:
         args['previous_best'] = current_best
         args['generation_count'] = 0
-        df.to_csv('best.csv', index=False)
         return False
     else:
         if args['generation_count'] >= max_generations:
@@ -117,5 +109,4 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
             return True
         else:
             args['generation_count'] += 1
-            df.to_csv('worse.csv', index=False)
             return False
