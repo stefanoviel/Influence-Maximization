@@ -78,7 +78,7 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
         pop_size = population_size,
         num_selected = offspring_size,
         generations_budget=max_generations,
-        max_generations=int(max_generations*0.15),
+        max_generations=int(max_generations*0.05),
         tournament_size=5,
         mutation_rate=0.1,
         crossover_rate=0.1,
@@ -106,8 +106,8 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
 
     seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
     #seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1]] for individual in ea.archive] 
-    times = compute_time(seed_sets, population_file, G, model, p, no_simulations, communities, random_gen)
-    to_csv(seed_sets, population_file, times)
+    std, times = compute_time(seed_sets, population_file, G, model, p, no_simulations, communities, random_gen)
+    to_csv(seed_sets, population_file, std, times)
     return seed_sets
 
 
