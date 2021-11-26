@@ -45,8 +45,8 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "lastf_asia/lastf_asia_True-4-k25-p0.01-IC-degree.csv"
-    graph = "scale_graphs/lastf_asia.txt_True-4.txt"
+    filename = "facebook_L1_False-4-k25-p0-LT-degree.csv"
+    graph = "scale_graphs/facebook_L1.txt_False-4.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -68,8 +68,8 @@ if __name__ == '__main__':
         x[i] = (x[i]/N) * 100
     
     plot(x,y,z)
-    graph = "scale_graphs/lastf_asia.txt_True-2.txt"  
-    filename = "lastf_asia/lastf_asia_True-2-k50-p0.01-IC-degree.csv"
+    filename = "facebook_L1_False-2-k50-p0-LT-degree.csv"  
+    graph = "scale_graphs/facebook_L1.txt_False-2.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -92,7 +92,7 @@ if __name__ == '__main__':
 
     plot(x0,y0,z0)
 
-    filename = "lastf_asia/lastf_asia_True-1.33-k75-p0.01-IC-degree.csv" 
+    filename = "lastf_asia/lastf_asia_True-1.33-k75-p0-WC-degree.csv" 
     graph = "scale_graphs/lastf_asia.txt_True-1.33.txt"
 
     G = read_graph(graph)
@@ -118,8 +118,8 @@ if __name__ == '__main__':
 
     plot(x1,y1,z1)
 
-    filename = "lastf_asia/lastf_asia-k100-p0.01-IC-degree.csv"  
-    graph = "graphs/lastf_asia.txt"
+    filename = "facebook_L1-k100-p0-LT-degree.csv"  
+    graph = "facebook_L1.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -157,5 +157,31 @@ if __name__ == '__main__':
     print(np.mean(time),np.mean(time0),np.mean(time1),np.mean(time2))
     print(max(time),max(time0),max(time1),max(time2))
     print(min(time),min(time0),min(time1),min(time2))
+
+
+    times = [np.mean(time),np.mean(time0),np.mean(time2)]
+    print(times)
+
+
+    x = [25, 50,100]
+
+    times = [np.mean(time),np.mean(time0),np.mean(time2)]
+
+    std = [np.std(time),np.std(time0),np.std(time2)]
+
+    print(times)
+    x = [25, 50, 100]
+
+    plt.errorbar(x, times, std, linestyle='None', marker='o')
+    plt.xlabel('Graph')
+    plt.ylabel('Time')
+    plt.title('Facebook Combined IC')
+    plt.show()
+
+    plt.plot(x, times, marker='*')
+    plt.xlabel('Graph')
+    plt.ylabel('Time')
+    plt.title('facebook_L1 WC')
+    plt.show()
 
     
