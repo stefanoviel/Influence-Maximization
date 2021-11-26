@@ -91,7 +91,7 @@ if __name__ == '__main__':
             elif model == "LT":
                 p = 0
             elif model == "IC_1":
-                p = 0.01
+                p = 0.1
                 model = "IC"
             elif model == "WC":
                 p = 0
@@ -127,7 +127,7 @@ if __name__ == '__main__':
             '''
 
                     
-            no_simulations = 100
+            no_simulations = 10
             max_generations = 200
             #nodes' bound of seed sets
             #k=200

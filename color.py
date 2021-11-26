@@ -3,12 +3,13 @@ import networkx as nx
 from src.load import read_graph
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("graph_SBM_small-k100-p0.05-IC-degree.csv", sep=",")
-G = read_graph("graphs/graph_SBM_small.txt")
+df = pd.read_csv("facebook_L1_False-4-k25-p0.05-IC-degree.csv", sep=",")
+G = read_graph("scale_graphs/facebook_L1.txt_False-4.txt")
 
+print(nx.info(G))
 color_map = []
 
-df = df.sort_values(by="n_nodes", ascending=True)
+df = df.sort_values(by="n_nodes", ascending=False)
 nodes = df["nodes"]
 
 for item in nodes:

@@ -1,9 +1,10 @@
 
-from inspyred.ec.analysis import hypervolume
+#from inspyred.ec.analysis import hypervolume
 from pymoo.factory import get_performance_indicator
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+from deap.benchmarks.tools import hypervolume
 def generation_termination(population, num_generations, num_evaluations, args):
     if num_generations == args["generations_budget"]:
         x = [x for x in range(1,len(args["hypervolume"])+1)]
@@ -42,35 +43,78 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     except:
         pass
 
-    pop = [list(x.fitness) for x in args["_ec"].archive] 
-    F =  np.array(pop)
+    arch = [list(x.fitness) for x in args["_ec"].archive] 
+    import copy
+    original_arch = copy.deepcopy(arch)
+    for i in range(len(arch)):
+        for j in range(len(arch[i])):
+            arch[i][j] = -  arch[i][j]
+    F =  np.array(arch)
 
     tot = args["graph"].number_of_nodes() * 1 * len(args["communities"])
-    ref_point = np.array([args["graph"].number_of_nodes(),1, len(args["communities"])])
-    
-    hv = get_performance_indicator("hv", ref_point=ref_point)
-    hv =hv.do(F)
-    current_best = round(1- hv/tot,3)
-    print(hv, hv/tot)
-    print("Hypervolume {0}-{1} Generations {2}".format(current_best,previous_best, num_generations))
-    print('Len of archive {0}'.format(len(pop)))
-    args["hypervolume"].append(current_best)
 
-    # one = []
-    # two = []
-    # three = []
-    # for item in pop:
-    #     one.append(item[0])
-    #     two.append(item[1])
-    #     three.append(item[2])
-    # df = pd.DataFrame()
-    # df["influence"] = one
-    # df["nodes"] = two
-    # df["comm"] = three
+    print('TOT {0}'.format(tot))
+    ref_point = [-args["graph"].number_of_nodes(),-1, -len(args["communities"])]
+    #ref_point = [float(1), float(1/args["graph"].number_of_nodes()), float(1)]
+    print(arch)
+    print(ref_point)
+    t = 1/args["graph"].number_of_nodes()
+    
+    
+    hv = get_performance_indicator("hv", ref_point=np.array(ref_point))
+    
+    
+    hv = hv.do(F)
+    print(hv, hv/tot)
+
+    #hv = hypervolume(F, [1,1,1])
+    #print(hv, 1- hv/tot)
+
+
+
+    from pymoo.indicators.hv import Hypervolume
+
+    metric = Hypervolume(ref_point= np.array([-1,-t,-1]),
+                        norm_ref_point=False,
+                        zero_to_one=False)
+    hv = metric.do(F)
+    print("HVVVV {0}".format(hv/tot))
+    current_best = hv/tot
+
+    #print("Hypervolume {0}-{1} Generations {2}".format(current_best,previous_best, num_generations))
+    #print('Len of archive {0}'.format(len(pop)))
+    args["hypervolume"].append(current_best)
+    one = []
+    two = []
+    three = []
+    for item in original_arch:
+        one.append(item[0])
+        two.append(1/item[1])
+        three.append(item[2])
+    df = pd.DataFrame()
+    df["influence"] = one
+    df["nodes"] = two
+    df["comm"] = three
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+
+    ax.scatter(two,three,one, color='red')
+    ax.set_xlabel("No nodes")
+
+    ax.set_zlabel("Influence")
+
+    ax.set_ylabel("Communities")
+
+    ax.set_ylim([1,len(args["communities"])])
+    #ax.set_zlim([1,2000])
+    ax.set_xlim([1,(args["max_seed_nodes"])])
+    plt.savefig('PF/'+ str(num_generations)+'.png')
+
     if previous_best is None or previous_best < current_best:
         args['previous_best'] = current_best
         args['generation_count'] = 0
-        #df.to_csv('best.csv', index=False)
+        df.to_csv('best.csv', index=False)
         return False
     else:
         if args['generation_count'] >= max_generations:
@@ -84,5 +128,5 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
             return True
         else:
             args['generation_count'] += 1
-            #df.to_csv('worse.csv', index=False)
+            df.to_csv('worse.csv', index=False)
             return False
