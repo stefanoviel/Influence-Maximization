@@ -86,7 +86,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
 
-    ax.scatter(two,three,one, color='red')
+    ax.scatter(two,three,one, color='red', alpha=1,linewidth=0)
     ax.set_xlabel("No nodes")
 
     ax.set_zlabel("Influence")
@@ -94,9 +94,10 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     ax.set_ylabel("Communities")
 
     ax.set_ylim([1,len(args["communities"])])
-    #ax.set_zlim([1,2000])
+    #ax.set_zlim([1,550])
     ax.set_xlim([1,(args["max_seed_nodes"])])
     plt.savefig('PF/'+ str(num_generations)+'.png')
+    plt.show()
 
     if previous_best is None or previous_best < current_best:
         args['previous_best'] = current_best
