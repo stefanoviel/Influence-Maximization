@@ -4,7 +4,6 @@ from pymoo.factory import get_performance_indicator
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-from deap.benchmarks.tools import hypervolume
 def generation_termination(population, num_generations, num_evaluations, args):
     if num_generations == args["generations_budget"]:
         x = [x for x in range(1,len(args["hypervolume"])+1)]
@@ -59,17 +58,6 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     print(arch)
     print(ref_point)
     t = 1/args["graph"].number_of_nodes()
-    
-    
-    hv = get_performance_indicator("hv", ref_point=np.array(ref_point))
-    
-    
-    hv = hv.do(F)
-    print(hv, hv/tot)
-
-    #hv = hypervolume(F, [1,1,1])
-    #print(hv, 1- hv/tot)
-
 
 
     from pymoo.indicators.hv import Hypervolume
@@ -78,10 +66,9 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
                         norm_ref_point=False,
                         zero_to_one=False)
     hv = metric.do(F)
-    print("HVVVV {0}".format(hv/tot))
     current_best = hv/tot
-
-    #print("Hypervolume {0}-{1} Generations {2}".format(current_best,previous_best, num_generations))
+    
+    print("Hypervolume {0}-{1} Generations {2}".format(current_best,previous_best, num_generations))
     #print('Len of archive {0}'.format(len(pop)))
     args["hypervolume"].append(current_best)
     one = []
