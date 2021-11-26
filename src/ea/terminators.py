@@ -8,7 +8,7 @@ def generation_termination(population, num_generations, num_evaluations, args):
     if num_generations == args["generations_budget"]:
         x = [x for x in range(1,len(args["hypervolume"])+1)]
         import matplotlib.pyplot as plt
-
+        plt.cla()
         plt.plot(x, args["hypervolume"], color='b')
         plt.xlabel('Generations')
         plt.ylabel('Hypervolume')
@@ -67,7 +67,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
                         zero_to_one=False)
     hv = metric.do(F)
     current_best = hv/tot
-    
+
     print("Hypervolume {0}-{1} Generations {2}".format(current_best,previous_best, num_generations))
     #print('Len of archive {0}'.format(len(pop)))
     args["hypervolume"].append(current_best)
@@ -105,11 +105,12 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
         return False
     else:
         if args['generation_count'] >= max_generations:
+            plt.cla()
             x = [x for x in range(1,len(args["hypervolume"])+1)]
-
             plt.plot(x, args["hypervolume"])
             plt.xlabel('Generations')
             plt.ylabel('Hypervolume')
+            plt.title('Generations {0}'.format(num_generations))
             plt.savefig(args["population_file"]+'.png')
             plt.cla()
             return True
