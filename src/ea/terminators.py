@@ -10,7 +10,7 @@ def generation_termination(population, num_generations, num_evaluations, args):
         import matplotlib.pyplot as plt
         plt.cla()
         plt.plot(x, args["hypervolume"], color='b')
-        plt.xlabel('Generations')
+        plt.xlabel('Generation')
         plt.ylabel('Hypervolume')
         plt.savefig(args["population_file"]+'.png')
         plt.cla()
@@ -89,7 +89,9 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     ax.set_ylim([1,len(args["communities"])])
     #ax.set_zlim([1,550])
     ax.set_xlim([1,(args["max_seed_nodes"])])
+    plt.title('Generations {0}'.format(num_generations))
     plt.savefig('PF/'+ str(num_generations)+'.png')
+    plt.close()
     #plt.show()
 
     if previous_best is None or current_best > previous_best:
@@ -101,9 +103,8 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
             plt.cla()
             x = [x for x in range(1,len(args["hypervolume"])+1)]
             plt.plot(x, args["hypervolume"])
-            plt.xlabel('Generations')
+            plt.xlabel('Generation')
             plt.ylabel('Hypervolume')
-            plt.title('Generations {0}'.format(num_generations))
             plt.savefig(args["population_file"]+'.png')
             plt.cla()
             return True
