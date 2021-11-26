@@ -383,7 +383,7 @@ def inverse_ncr(combinations, r):
 	return n
 import pandas as pd
 
-def to_csv(archiver, population_file, times) :
+def to_csv(archiver, population_file, std, times) :
     
     print("OBSERVERRRR \n  OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n")
 
@@ -406,6 +406,7 @@ def to_csv(archiver, population_file, times) :
     df["communities"] = communities
     df["time"] = times
     df["nodes"] = nodes
+    df["std"] = std
     df.to_csv(population_file+".csv", sep=",", index=False)
 
 def to_csv2(archiver, population_file) :
@@ -453,9 +454,11 @@ def community_detection(G,r):
 
 def compute_time(archiver, population_file, G, model, p, no_simulations, communities, random_gen):
     times = []
+    std = []
     for item in archiver:
         A = item[0]
-        _, _, _,time = MonteCarlo_simulation_time(G, A, p, no_simulations, model, communities,random_gen)
-        times.append(time)      
+        _, standard, _,time = MonteCarlo_simulation_time(G, A, p, no_simulations, model, communities,random_gen)
+        times.append(time)
+        std.append(standard)      
 
-    return times
+    return std, times

@@ -7,8 +7,7 @@ import numpy as np
 def generation_termination(population, num_generations, num_evaluations, args):
     if num_generations == args["generations_budget"]:
         x = [x for x in range(1,len(args["hypervolume"])+1)]
-        import matplotlib.pyplot as plt
-        plt.cla()
+        #plt.cla()
         plt.plot(x, args["hypervolume"], color='b')
         plt.xlabel('Generation')
         plt.ylabel('Hypervolume')
@@ -62,36 +61,36 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     hv = metric.do(F)
     current_best = hv/tot
 
-    print("Hypervolume {0}-{1} Generations {2}".format(current_best,previous_best, num_generations))
+    #print("Hypervolume {0}-{1} Generations {2}".format(current_best,previous_best, num_generations))
     args["hypervolume"].append(current_best)
-    one = []
-    two = []
-    three = []
-    for item in original_arch:
-        one.append(item[0])
-        two.append(1/item[1])
-        three.append(item[2])
-    df = pd.DataFrame()
-    df["influence"] = one
-    df["nodes"] = two
-    df["comm"] = three
+    # one = []
+    # two = []
+    # three = []
+    # for item in original_arch:
+    #     one.append(item[0])
+    #     two.append(1/item[1])
+    #     three.append(item[2])
+    # df = pd.DataFrame()
+    # df["influence"] = one
+    # df["nodes"] = two
+    # df["comm"] = three
 
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111, projection='3d')
 
-    ax.scatter(two,three,one, color='red', alpha=1,linewidth=0)
-    ax.set_xlabel("No nodes")
+    # ax.scatter(two,three,one, color='red', alpha=1,linewidth=0)
+    # ax.set_xlabel("No nodes")
 
-    ax.set_zlabel("Influence")
+    # ax.set_zlabel("Influence")
 
-    ax.set_ylabel("Communities")
+    # ax.set_ylabel("Communities")
 
-    ax.set_ylim([1,len(args["communities"])])
+    # ax.set_ylim([1,len(args["communities"])])
     #ax.set_zlim([1,550])
-    ax.set_xlim([1,(args["max_seed_nodes"])])
-    plt.title('Generations {0}'.format(num_generations))
-    plt.savefig('PF/'+ str(num_generations)+'.png')
-    plt.close()
+    #ax.set_xlim([1,(args["max_seed_nodes"])])
+    #plt.title('Generations {0}'.format(num_generations))
+    #plt.savefig('PF/'+ str(num_generations)+'.png')
+    #plt.close()
     #plt.show()
 
     if previous_best is None or current_best > previous_best:
@@ -100,7 +99,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
         return False
     else:
         if args['generation_count'] >= max_generations:
-            plt.cla()
+            #plt.cla()
             x = [x for x in range(1,len(args["hypervolume"])+1)]
             plt.plot(x, args["hypervolume"])
             plt.xlabel('Generation')
