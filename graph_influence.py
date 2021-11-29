@@ -60,8 +60,8 @@ if __name__ == '__main__':
 
     filenames = ["scale_graphs/facebook_1684.txt_TRUE-4.txt","scale_graphs/facebook_1684.txt_TRUE-2.txt","facebook_1684.txt"]
     scale_k=[4,2,1]
-    models = ["IC",'WC',"LT"]
-    #models = ['IC']
+    #models = ["IC",'WC',"LT"]
+    models = ['IC']
     i = 0
     for item in filenames:
         file_gt = gt[i]
