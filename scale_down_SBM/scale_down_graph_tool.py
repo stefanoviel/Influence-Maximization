@@ -26,10 +26,10 @@ print(len(set(blocks)))
 state.draw(pos=g.vp.pos, output="football-sbm-fit.svg")
 exit(0)
 '''
-scale = 4
-resolution = 1
+scale = 2
+resolution = 2
 
-filename = "facebook_1684.txt"
+filename = "facebook_1912.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -84,6 +84,7 @@ for item in check:
 
 print("Total number of nodes after selection {0} \nCommunities before check {1} \nCommunities after check {2}".format(sum,len(check),len(check_ok)))
 check = check_ok
+
 
 
 #exit(0)
