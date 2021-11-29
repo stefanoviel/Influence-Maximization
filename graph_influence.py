@@ -56,11 +56,12 @@ if __name__ == '__main__':
     #filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
     #gt = ["comm_ground_truth/graph_SBM_small_5.csv","comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_3.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.5.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
 
-    gt = ["comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_1.33.csv","comm_ground_truth/facebook_combined.csv"]
+    gt = ["comm_ground_truth/facebook_1684_4.csv","comm_ground_truth/facebook_1684_2.csv","comm_ground_truth/facebook_1684.csv"]
 
-    filenames = ["scale_graphs/facebook_combined.txt_TRUE-4.txt","scale_graphs/facebook_combined.txt_TRUE-2.txt","scale_graphs/facebook_combined.txt_TRUE-1.33.txt","graphs/facebook_combined.txt"]
-    scale_k=[4,2,1.33,1]
-    models = ["IC",'WC',"LT"]
+    filenames = ["scale_graphs/facebook_1684.txt_TRUE-4.txt","scale_graphs/facebook_1684.txt_TRUE-2.txt","facebook_1684.txt"]
+    scale_k=[4,2,1]
+    #models = ["IC",'WC',"LT"]
+    models = ['IC']
     i = 0
     for item in filenames:
         file_gt = gt[i]
@@ -128,7 +129,7 @@ if __name__ == '__main__':
 
                     
             no_simulations = 100
-            max_generations = 1000
+            max_generations = 500
             #nodes' bound of seed sets
             #k=200
             #max_generations = 10 * k

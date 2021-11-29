@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 #filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
-filenames = ["scale_graphs/facebook_combined.txt_TRUE-1.33.txt","graphs/facebook_combined.txt"]
+filenames = ["scale_graphs/facebook_1684.txt_TRUE-1.txt","facebook_1684.txt"]
 #scale_graphs/graph_SBM_big.txt_example5.txt","graphs/graph_SBM_big.txt"]
 pp = []
 mm = []
@@ -67,16 +67,17 @@ for item in G1:
 print(max(mean_1), np.mean(mean_1), np.std(mean_1))
 print(den1/den)
 
-#position = nx.spring_layout(G1)
-#nx.draw(G1, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
-#plt.show()
-#plt.cla()
+position = nx.spring_layout(G1)
+nx.draw(G1, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
+plt.show()
 
-#position = nx.spring_layout(G)
+plt.cla()
 
-#nx.draw(G, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
-#plt.show()
-#plt.cla()
+position = nx.spring_layout(G)
+
+nx.draw(G, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
+plt.show()
+plt.cla()
 
 import seaborn as sns
 fig, axs = plt.subplots(ncols=2)
@@ -105,6 +106,7 @@ x = ["True","False"]
 i = 0
 for item in kk:    
     # Draw the density plot
+    print(item)
     sns.distplot(item, hist = False, kde = True,
                  kde_kws = {'shade': False, 'linewidth': 3}, 
                 label = str(x[i]))
@@ -115,11 +117,6 @@ plt.xlabel('Avg Degree Nodes')
 plt.ylabel('Density')
 plt.show()
 
-fig = plt.figure()
-ax = plt.axes()
-#ax.plot(x, pp, color="black", label="mean influence", marker='o')
-ax.plot(x, mm, color="red", marker="o",label="ideal mean")
-plt.legend()
 
 
 # G = read_graph("graphs/graph_SBM_small.txt")
