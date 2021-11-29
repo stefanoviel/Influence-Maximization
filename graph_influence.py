@@ -60,8 +60,8 @@ if __name__ == '__main__':
 
     filenames = ["scale_graphs/facebook_1684.txt_TRUE-4.txt","scale_graphs/facebook_1684.txt_TRUE-2.txt","facebook_1684.txt"]
     scale_k=[4,2,1]
-    #models = ["IC",'WC',"LT"]
-    models = ['IC']
+    models = ["IC",'WC',"LT"]
+    #models = ['IC']
     i = 0
     for item in filenames:
         file_gt = gt[i]
@@ -78,7 +78,7 @@ if __name__ == '__main__':
             random_seed = 10
             prng = random.Random(random_seed)
 
-            k = int(100/scale)
+            k = int(20/scale)
 
             my_degree_function = G.degree
             mean = []
@@ -109,7 +109,7 @@ if __name__ == '__main__':
             mean = int(np.mean(mean))  
             args["min_degree"] = mean + 1
             args["smart_initialization_percentage"] = 0.5
-            args["population_size"] = 50
+            args["population_size"] = 100
             nodes = filter_nodes(G, args)
             initial_population = create_initial_population(G, args, prng, nodes)
 
@@ -148,7 +148,7 @@ if __name__ == '__main__':
             file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             start = time.time()
-            seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=50, offspring_size=50, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
+            seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
             
             exec_time = time.time() - start
             print(exec_time)
