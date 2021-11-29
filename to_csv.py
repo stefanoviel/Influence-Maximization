@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-df = pd.read_csv("/Users/elia/Downloads/network/edges.csv",sep=",")
+df = pd.read_csv("/Users/elia/Downloads/facebook_1684/edges.csv",sep=",")
 node1 = df["node_1"]
 node2 = df["node_2"]
 
@@ -11,5 +11,5 @@ for i in range(len(node1)):
     f = "{0} {1}".format(node1[i],node2[i])
     text.append(f)
 
-with open("google.txt", "w") as outfile:
+with open("facebook_1684.txt", "w") as outfile:
         outfile.write("\n".join(text))

@@ -41,6 +41,7 @@ def LT_model(G, a, p, communities,random_generator):
         if not B:
             converged = True
         A |= B
+    
     comm = 0
     for item in communities:
         intersection = set.intersection(set(item),set(A))
