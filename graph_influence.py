@@ -109,7 +109,7 @@ if __name__ == '__main__':
             mean = int(np.mean(mean))  
             args["min_degree"] = mean + 1
             args["smart_initialization_percentage"] = 0.5
-            args["population_size"] = 100
+            args["population_size"] = 50
             nodes = filter_nodes(G, args)
             initial_population = create_initial_population(G, args, prng, nodes)
 
@@ -128,8 +128,8 @@ if __name__ == '__main__':
             '''
 
                     
-            no_simulations = 100
-            max_generations = 500
+            no_simulations = 50
+            max_generations = 200
             #nodes' bound of seed sets
             #k=200
             #max_generations = 10 * k
@@ -148,7 +148,7 @@ if __name__ == '__main__':
             file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             start = time.time()
-            seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
+            seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=50, offspring_size=50, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
             
             exec_time = time.time() - start
             print(exec_time)
