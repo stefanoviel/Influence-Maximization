@@ -78,7 +78,7 @@ if __name__ == '__main__':
             random_seed = 10
             prng = random.Random(random_seed)
 
-            k = int(20/scale)
+            k = int(100/scale)
 
             my_degree_function = G.degree
             mean = []
