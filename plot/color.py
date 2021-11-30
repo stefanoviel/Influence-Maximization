@@ -1,10 +1,13 @@
 import pandas as pd
 import networkx as nx
+import sys
+sys.path.insert(0, '')
+from src.load import read_graph
 from src.load import read_graph
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("facebook_L1_False-4-k25-p0.05-IC-degree.csv", sep=",")
-G = read_graph("scale_graphs/facebook_L1.txt_False-4.txt")
+df = pd.read_csv("facebook_1684_TRUE-4-k5-p0-WC-degree.csv", sep=",")
+G = read_graph("scale_graphs/facebook_1684.txt_TRUE-4.txt")
 
 print(nx.info(G))
 color_map = []

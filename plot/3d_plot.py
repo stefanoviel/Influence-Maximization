@@ -45,8 +45,8 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "facebook_combined_TRUE-4-k25-p0-WC-degree.csv"
-    graph = "scale_graphs/facebook_combined.txt_TRUE-4.txt"
+    filename = "facebook_1684_TRUE-4-k5-p0-WC-degree.csv"
+    graph = "scale_graphs/facebook_1684.txt_TRUE-4.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -63,13 +63,14 @@ if __name__ == '__main__':
     y = df["communities"]
     z = df["influence"]
     time = df["time"]
+    std = df["std"] / 5
     for i in range(len(z)):
         z[i] = (z[i]/N) * 100
         x[i] = (x[i]/N) * 100
     
     plot(x,y,z)
-    filename = "facebook/facebook_combined_False-2-k50-p0-WC-degree.csv"  
-    graph = "scale_graphs/facebook_combined.txt_False-2.txt"
+    filename = "facebook_1684_TRUE-2-k10-p0.05-IC-degree.csv"  
+    graph = "scale_graphs/facebook_1684.txt_TRUE-2.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -85,6 +86,8 @@ if __name__ == '__main__':
     y0 = df["communities"].to_list()
     z0 = df["influence"].to_list()
     time0 = df["time"]
+    std0 = df["std"] / 10
+
     for i in range(len(z0)):
         z0[i] = (z0[i]/N) * 100
         x0[i] = (x0[i]/N) * 100
@@ -118,8 +121,8 @@ if __name__ == '__main__':
 
     plot(x1,y1,z1)
 
-    filename = "facebook/facebook_combined-k100-p0-WC-degree.csv"  
-    graph = "graphs/facebook_combined.txt"
+    filename = "facebook_1684-k20-p0.05-IC-degree.csv"  
+    graph = "facebook_1684.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -144,7 +147,7 @@ if __name__ == '__main__':
     plot(x2,y2,z2)
 
     plt.scatter(z,x,color="green",label="25%")
-    #plt.scatter(z0,x0,color="blue", label="50%")
+    plt.scatter(z0,x0,color="blue", label="50%")
     #plt.scatter(z1,x1,color="orange",label="75%")
     plt.scatter(z2,x2,color="red",label="100%")
     plt.title('Facebook WC model')
@@ -161,6 +164,32 @@ if __name__ == '__main__':
 
     times = [np.mean(time),np.mean(time0),np.mean(time2)]
     print(times)
+    plt.cla()
+    plt.close()
+
+
+    fig = plt.figure(1, figsize=(9, 6))
+
+    # Create an axes instance
+    ax = fig.add_subplot(111)
+
+    # Create the boxplot
+    data_plot = [time, time0]
+    bp = ax.boxplot(data_plot)
+    plt.show()
+    plt.cla()
+    plt.close()
+    fig = plt.figure(1, figsize=(9, 6))
+
+    # Create an axes instance
+    ax = fig.add_subplot(111)
+
+    # Create the boxplot
+    data_plot = [std, std0]
+    bp = ax.boxplot(data_plot)
+    plt.show()
+    # Save the figure
+    #fig.savefig('fig1.png', bbox_inches='tight')
 
 
     x = [25, 50,100]
