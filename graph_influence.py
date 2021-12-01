@@ -61,7 +61,7 @@ if __name__ == '__main__':
     gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small.csv"]
     scale_k=[4,2,1]
     #models = ["IC",'WC',"LT"]
-    models = ['WC','IC']
+    models = ['LT']
     i = 0
     for item in filenames:
         file_gt = gt[i]
