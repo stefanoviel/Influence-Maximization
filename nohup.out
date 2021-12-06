@@ -3129,3 +3129,717 @@ OBSERVERRRR
  OBSERVERRRR 
 
 4655.890509605408
+LT
+Name: 
+Type: Graph
+Number of nodes: 517
+Number of edges: 6073
+Average degree:  23.4932
+     node  comm
+0       0     1
+1       1     1
+2       2     1
+3       3     1
+4       4     1
+..    ...   ...
+512   512     7
+513   513     7
+514   514     7
+515   515     7
+516   516     7
+
+[517 rows x 2 columns]
+comm
+1    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,...
+2    [108, 109, 110, 111, 112, 113, 114, 115, 116, ...
+3    [216, 217, 218, 219, 220, 221, 222, 223, 224, ...
+4    [281, 282, 283, 284, 285, 286, 287, 288, 289, ...
+5    [389, 390, 391, 392, 393, 394, 395, 396, 397, ...
+6    [462, 463, 464, 465, 466, 467, 468, 469, 470, ...
+7    [491, 492, 493, 494, 495, 496, 497, 498, 499, ...
+Name: node, dtype: object
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 4
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 4
+Max Generations without improvements30, now 5
+Max Generations without improvements30, now 6
+Max Generations without improvements30, now 7
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 4
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 4
+Max Generations without improvements30, now 5
+Max Generations without improvements30, now 6
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 4
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 4
+Max Generations without improvements30, now 5
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 4
+Max Generations without improvements30, now 5
+Max Generations without improvements30, now 6
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+OBSERVERRRR 
+  OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+
+8134.389089584351
+LT
+Name: 
+Type: Graph
+Number of nodes: 1038
+Number of edges: 13331
+Average degree:  25.6859
+      node  comm
+0        0     1
+1        1     1
+2        2     1
+3        3     1
+4        4     1
+...    ...   ...
+1033  1033     7
+1034  1034     7
+1035  1035     7
+1036  1036     7
+1037  1037     7
+
+[1038 rows x 2 columns]
+comm
+1    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,...
+2    [216, 217, 218, 219, 220, 221, 222, 223, 224, ...
+3    [433, 434, 435, 436, 437, 438, 439, 440, 441, ...
+4    [564, 565, 566, 567, 568, 569, 570, 571, 572, ...
+5    [781, 782, 783, 784, 785, 786, 787, 788, 789, ...
+6    [928, 929, 930, 931, 932, 933, 934, 935, 936, ...
+7    [986, 987, 988, 989, 990, 991, 992, 993, 994, ...
+Name: node, dtype: object
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 4
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 4
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 4
+Max Generations without improvements30, now 5
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 4
+Max Generations without improvements30, now 5
+Max Generations without improvements30, now 6
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 4
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 4
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+OBSERVERRRR 
+  OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+
+20926.085864067078
+LT
+Name: 
+Type: Graph
+Number of nodes: 2079
+Number of edges: 28844
+Average degree:  27.7480
+      node  comm
+0        0     1
+1       36     1
+2       41     1
+3      113     1
+4      118     1
+...    ...   ...
+4153   971     7
+4154   938     7
+4155   942     7
+4156   939     7
+4157   968     7
+
+[4158 rows x 2 columns]
+comm
+1    [0, 36, 41, 113, 118, 125, 126, 133, 142, 170,...
+2    [667, 502, 730, 556, 609, 847, 591, 755, 706, ...
+3    [1830, 2064, 1941, 1977, 1892, 2006, 1852, 184...
+4    [1209, 1139, 1091, 1305, 1277, 1367, 1361, 106...
+5    [1673, 1807, 1594, 1690, 1628, 1686, 896, 1747...
+6    [1502, 1439, 1501, 1437, 1504, 1418, 1434, 141...
+7    [911, 887, 876, 943, 944, 923, 955, 881, 947, ...
+Name: node, dtype: object
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 3
+Max Generations without improvements30, now 4
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 2
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 0
+Max Generations without improvements30, now 1
+Max Generations without improvements30, now 0
+OBSERVERRRR 
+  OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+
+51990.49969410896
