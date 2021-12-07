@@ -45,7 +45,7 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "graph_SBM_small_TRUE-4-k25-p0-WC-degree.csv"
+    filename = "graph_SBM_small_TRUE-4-k25-p0-LT-degree.csv"
     graph = "scale_graphs/graph_SBM_small.txt_TRUE-4.txt"
 
     G = read_graph(graph)
@@ -63,13 +63,13 @@ if __name__ == '__main__':
     y = df["communities"]
     z = df["influence"]
     time = df["time"]
-    std = df["std"] / 5
+    std = df["std"] / N
     for i in range(len(z)):
         z[i] = (z[i]/N) * 100
         x[i] = (x[i]/N) * 100
     
     plot(x,y,z)
-    filename = "graph_SBM_small_TRUE-2-k50-p0-WC-degree.csv"  
+    filename = "graph_SBM_small_TRUE-2-k50-p0-LT-degree.csv"  
     graph = "scale_graphs/graph_SBM_small.txt_TRUE-2.txt"
 
     G = read_graph(graph)
@@ -86,7 +86,7 @@ if __name__ == '__main__':
     y0 = df["communities"].to_list()
     z0 = df["influence"].to_list()
     time0 = df["time"]
-    std0 = df["std"] / 10
+    std0 = df["std"] / N 
 
     for i in range(len(z0)):
         z0[i] = (z0[i]/N) * 100
@@ -121,7 +121,7 @@ if __name__ == '__main__':
 
     plot(x1,y1,z1)
 
-    filename = "graph_SBM_small-k100-p0-WC-degree.csv"  
+    filename = "graph_SBM_small-k100-p0-LT-degree.csv"  
     graph = "graphs/graph_SBM_small.txt"
 
     G = read_graph(graph)
@@ -139,6 +139,7 @@ if __name__ == '__main__':
     y2 = df["communities"]
     z2 = df["influence"]
     time2= df["time"]
+    std2 = df["std"] / N
     for i in range(len(z2)):
         z2[i] = (z2[i]/N) * 100
         x2[i] = (x2[i]/N) * 100
@@ -158,60 +159,32 @@ if __name__ == '__main__':
     plt.show()
 
 
-    print(np.mean(time),np.mean(time0),np.mean(time1),np.mean(time2))
-    print(max(time),max(time0),max(time1),max(time2))
-    print(min(time),min(time0),min(time1),min(time2))
 
 
-    times = [np.mean(time),np.mean(time0),np.mean(time2)]
-    print(times)
+    ## Time
+    fig = plt.figure(1, figsize=(9, 6))
+
+    ax = fig.add_subplot(111)
+
+    data_plot = [time, time0, time2]
+    bp = ax.boxplot(data_plot)
+    fig.suptitle('Time')
+    plt.show()
     plt.cla()
     plt.close()
 
 
+    ## STD
     fig = plt.figure(1, figsize=(9, 6))
 
     # Create an axes instance
     ax = fig.add_subplot(111)
 
     # Create the boxplot
-    data_plot = [time, time0]
+    data_plot = [std, std0, std2]
     bp = ax.boxplot(data_plot)
-    plt.show()
-    plt.cla()
-    plt.close()
-    fig = plt.figure(1, figsize=(9, 6))
+    fig.suptitle('STD')
 
-    # Create an axes instance
-    ax = fig.add_subplot(111)
-
-    # Create the boxplot
-    data_plot = [std, std0]
-    bp = ax.boxplot(data_plot)
-    plt.show()
-    # Save the figure
-    #fig.savefig('fig1.png', bbox_inches='tight')
-
-
-    x = [25, 50,100]
-
-    times = [np.mean(time),np.mean(time0),np.mean(time2)]
-
-    std = [np.std(time),np.std(time0),np.std(time2)]
-
-    print(times)
-    x = [25, 50, 100]
-
-    plt.errorbar(x, times, std, linestyle='None', marker='o')
-    plt.xlabel('Graph')
-    plt.ylabel('Time')
-    plt.title('Facebook Combined IC')
-    plt.show()
-
-    plt.plot(x, times, marker='*')
-    plt.xlabel('Graph')
-    plt.ylabel('Time')
-    plt.title('facebook_L1 WC')
     plt.show()
 
     
