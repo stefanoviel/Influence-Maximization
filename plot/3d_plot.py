@@ -45,7 +45,7 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "graph_SBM_small_TRUE-4-k25-p0-LT-degree.csv"
+    filename = "graph_SBM_small_TRUE-4-k25-p0.05-IC-degree-pop.csv"
     graph = "scale_graphs/graph_SBM_small.txt_TRUE-4.txt"
 
     G = read_graph(graph)
@@ -69,7 +69,7 @@ if __name__ == '__main__':
         x[i] = (x[i]/N) * 100
     
     plot(x,y,z)
-    filename = "graph_SBM_small_TRUE-2-k50-p0-LT-degree.csv"  
+    filename = "graph_SBM_small_TRUE-2-k50-p0.05-IC-degree-pop.csv"  
     graph = "scale_graphs/graph_SBM_small.txt_TRUE-2.txt"
 
     G = read_graph(graph)
@@ -121,7 +121,7 @@ if __name__ == '__main__':
 
     plot(x1,y1,z1)
 
-    filename = "graph_SBM_small-k100-p0-LT-degree.csv"  
+    filename = "graph_SBM_small-k100-p0.05-IC-degree.csv"  
     graph = "graphs/graph_SBM_small.txt"
 
     G = read_graph(graph)
@@ -147,11 +147,11 @@ if __name__ == '__main__':
 
     plot(x2,y2,z2)
 
-    plt.scatter(z,x,color="green",label="25%")
+    #plt.scatter(z,x,color="green",label="25%")
     plt.scatter(z0,x0,color="blue", label="50%")
     #plt.scatter(z1,x1,color="orange",label="75%")
     plt.scatter(z2,x2,color="red",label="100%")
-    plt.title('Facebook WC model')
+    plt.title('Facebook LT model')
     plt.xlabel('% Influenced Nodes')
     plt.ylabel('% Nodes as seed set')
     plt.legend()
