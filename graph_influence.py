@@ -5,6 +5,7 @@ import logging
 import networkx as nx
 from functools import partial
 import numpy as np
+from numpy.core.fromnumeric import size
 import pandas as pd
 # local libraries
 from src.load import read_graph
@@ -56,12 +57,12 @@ if __name__ == '__main__':
     #filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
     #gt = ["comm_ground_truth/graph_SBM_small_5.csv","comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_3.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.5.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
 
-    filenames = ["scale_graphs/graph_SBM_small.txt_TRUE-4.txt","scale_graphs/graph_SBM_small.txt_TRUE-2.txt","graphs/graph_SBM_small.txt"]
+    filenames = ["scale_graphs/graph_SBM_small.txt_TRUE-4.txt","scale_graphs/graph_SBM_small.txt_TRUE-2.txt"]
 
-    gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small.csv"]
-    scale_k=[4,2,1]
-    #models = ["IC",'WC',"LT"]
-    models = ['LT']
+    gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv"]
+    scale_k=[4,2]
+    models = ["IC",'WC',"LT"]
+    #models = ['IC']
     i = 0
     for item in filenames:
         file_gt = gt[i]
@@ -86,7 +87,7 @@ if __name__ == '__main__':
             for item in G:
                 mean.append(my_degree_function[item])
                 mean_degree.append(float(1/my_degree_function[item]))
-            t = "degree"
+            t = "degree-pop"
             if model == "IC":
                 p = 0.05
             elif model == "LT":
@@ -109,7 +110,7 @@ if __name__ == '__main__':
             mean = int(np.mean(mean))  
             args["min_degree"] = mean + 1
             args["smart_initialization_percentage"] = 0.5
-            args["population_size"] = 50
+            args["population_size"] = int(50 / scale)
             nodes = filter_nodes(G, args)
             initial_population = create_initial_population(G, args, prng, nodes)
 
@@ -133,7 +134,8 @@ if __name__ == '__main__':
             #nodes' bound of seed sets
             #k=200
             #max_generations = 10 * k
-
+            population_size = int(50/scale)
+            offspring_size = int(50/scale)
 
 
             n_threads = 5
@@ -148,7 +150,7 @@ if __name__ == '__main__':
             file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             start = time.time()
-            seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=50, offspring_size=50, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
+            seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=population_size, offspring_size=offspring_size, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
             
             exec_time = time.time() - start
             print(exec_time)
