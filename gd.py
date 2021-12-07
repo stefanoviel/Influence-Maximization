@@ -2,9 +2,9 @@ from pymoo.factory import get_performance_indicator
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv("facebook/facebook_combined-k100-p0.05-IC-degree.csv",sep=",")
+df = pd.read_csv("graph_SBM_small-k100-p0-LT-degree.csv",sep=",")
 
-df1 = pd.read_csv("facebook/facebook_combined_False-2-k50-p0.05-IC-degree.csv",sep=",")
+df1 = pd.read_csv("graph_SBM_small_TRUE-2-k50-p0-LT-degree-pop.csv",sep=",")
 
 
 
