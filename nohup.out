@@ -5271,3 +5271,21 @@ OBSERVERRRR
  OBSERVERRRR 
 
 9906.008067369461
+Traceback (most recent call last):
+  File "graph_influence.py", line 5, in <module>
+    import networkx as nx
+  File "/home/s2878747/.local/lib/python3.6/site-packages/networkx/__init__.py", line 61, in <module>
+    import networkx.generators
+  File "/home/s2878747/.local/lib/python3.6/site-packages/networkx/generators/__init__.py", line 16, in <module>
+    from networkx.generators.intersection import *
+  File "/home/s2878747/.local/lib/python3.6/site-packages/networkx/generators/intersection.py", line 5, in <module>
+    from networkx.algorithms import bipartite
+  File "/home/s2878747/.local/lib/python3.6/site-packages/networkx/algorithms/__init__.py", line 69, in <module>
+    import networkx.algorithms.community
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 764, in get_code
+  File "<frozen importlib._bootstrap_external>", line 832, in get_data
+KeyboardInterrupt
