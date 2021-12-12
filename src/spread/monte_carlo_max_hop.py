@@ -1,6 +1,6 @@
 import networkx as nx
 import random
-import numpy
+import numpy 
 
 """ Spread models """
 
@@ -59,7 +59,37 @@ def WC_model(G, a, max_hop, random_generator):  # a: the set of initial active n
 
 	return len(A)
 
+def LT_model(G, a, max_hop, random_generator):
+    A = set(a)                      # A: the set of active nodes, initially a
+    B = set(a)                      # B: the set of nodes activated in the last completed iteration
+    
+    converged = False
+    threshold = {}
+    l = numpy.random.uniform(low=0.0, high=1.0, size=G.number_of_nodes())
 
+    for i, node in enumerate(G.nodes()):
+            threshold[node] = l[i]
+            #threshold[node] = p
+
+    while (not converged) and (max_hop > 0):
+        nextB = set()
+        for n in B: 
+            for m in set(G.neighbors(n)) - A:
+                total_weight = 0
+                prob = float(1/G.degree(m))
+                for each in G.neighbors(m):
+                    if each in A:
+                        total_weight =  total_weight + prob			
+                if total_weight > threshold[m]:
+                    nextB.add(m)
+        B = set(nextB)
+        if not B:
+            converged = True
+        A |= B
+        max_hop -= 1
+    
+				    	
+    return len(A)
 def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop, random_generator=None):
 	"""
 	calculates approximated influence spread of a given seed set A, with
@@ -84,6 +114,9 @@ def MonteCarlo_simulation_max_hop(G, A, p, no_simulations, model, max_hop, rando
 	elif model == 'IC':
 		for i in range(no_simulations):
 			results.append(IC_model(G, A, p, max_hop, random_generator))
+	elif model == 'LT':
+		for i in range(no_simulations):
+			results.append(LT_model(G, A, max_hop, random_generator))
 
 	return (numpy.mean(results), numpy.std(results))
 

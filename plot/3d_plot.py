@@ -45,7 +45,7 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "prova_4_FINAL.csv"
+    filename = "graph_SBM_small_TRUE-4-k25-p0-LT-best_hv.csv"
     graph = "scale_graphs/graph_SBM_small.txt_TRUE-4.txt"
 
     G = read_graph(graph)
@@ -70,7 +70,7 @@ if __name__ == '__main__':
     
     plot(x,y,z)
 
-    filename = "prova_2_FINAL.csv"
+    filename = "graph_SBM_small_TRUE-2-k50-p0-LT-best_hv.csv"
     graph = "scale_graphs/graph_SBM_small.txt_TRUE-2.txt"
 
     G = read_graph(graph)
@@ -96,7 +96,7 @@ if __name__ == '__main__':
 
     plot(x0,y0,z0)
 
-    filename = "facebook_combined_TRUE-2-k50-p0.05-IC-degree-pop.csv"
+    filename = "graph_SBM_small_TRUE-4-k25-p0.05-IC-best_hv.csv"
     graph = "scale_graphs/facebook_combined.txt_TRUE-2.txt"
 
     G = read_graph(graph)
@@ -122,7 +122,7 @@ if __name__ == '__main__':
 
     plot(x1,y1,z1)
 
-    filename = "graph_SBM_small-k100-p0.05-IC-degree.csv"  
+    filename = "graph_SBM_small-k100-p0-WC-best_hv.csv"  
     graph = "graphs/graph_SBM_small.txt"
 
     G = read_graph(graph)
@@ -154,7 +154,7 @@ if __name__ == '__main__':
     plt.scatter(z0,x0,color="blue", label="50%")
     #plt.scatter(z1,x1,color="orange",label="75%")
     plt.scatter(z2,x2,color="red",label="100%")
-    plt.title('SBM WC model')
+    plt.title('SBM LT model')
     plt.xlabel('% Influenced Nodes')
     plt.ylabel('% Nodes as seed set')
     plt.legend()
@@ -168,7 +168,7 @@ if __name__ == '__main__':
     plt.scatter(y0,x0,color="blue", label="50%")
     #plt.scatter(z1,x1,color="orange",label="75%")
     plt.scatter(y2,x2,color="red",label="100%")
-    plt.title('SBM WC model')
+    plt.title('SBM LT model')
     plt.xlabel('Communities')
     plt.ylabel('% Nodes as seed set')
     plt.legend()
@@ -179,7 +179,7 @@ if __name__ == '__main__':
     plt.scatter(z0,y0,color="blue", label="50%")
     #plt.scatter(z1,x1,color="orange",label="75%")
     plt.scatter(z2,y2,color="red",label="100%")
-    plt.title('SBM WC model')
+    plt.title('SBM LT model')
     plt.xlabel('% Influenced Nodes')
     plt.ylabel('Communities')
     plt.legend()
