@@ -5289,3 +5289,530 @@ Traceback (most recent call last):
   File "<frozen importlib._bootstrap_external>", line 764, in get_code
   File "<frozen importlib._bootstrap_external>", line 832, in get_data
 KeyboardInterrupt
+/home/s2878747/.local/lib/python3.6/site-packages/numpy/core/fromnumeric.py:3373: RuntimeWarning: Mean of empty slice.
+  out=out, **kwargs)
+/home/s2878747/.local/lib/python3.6/site-packages/numpy/core/_methods.py:170: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+/home/s2878747/.local/lib/python3.6/site-packages/numpy/core/_methods.py:234: RuntimeWarning: Degrees of freedom <= 0 for slice
+  keepdims=keepdims)
+/home/s2878747/.local/lib/python3.6/site-packages/numpy/core/_methods.py:195: RuntimeWarning: invalid value encountered in true_divide
+  arrmean, rcount, out=arrmean, casting='unsafe', subok=False)
+/home/s2878747/.local/lib/python3.6/site-packages/numpy/core/_methods.py:226: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+/home/s2878747/.local/lib/python3.6/site-packages/numpy/core/fromnumeric.py:3373: RuntimeWarning: Mean of empty slice.
+  out=out, **kwargs)
+/home/s2878747/.local/lib/python3.6/site-packages/numpy/core/_methods.py:170: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+/home/s2878747/.local/lib/python3.6/site-packages/numpy/core/_methods.py:234: RuntimeWarning: Degrees of freedom <= 0 for slice
+  keepdims=keepdims)
+/home/s2878747/.local/lib/python3.6/site-packages/numpy/core/_methods.py:195: RuntimeWarning: invalid value encountered in true_divide
+  arrmean, rcount, out=arrmean, casting='unsafe', subok=False)
+/home/s2878747/.local/lib/python3.6/site-packages/numpy/core/_methods.py:226: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+/home/s2878747/.local/lib/python3.6/site-packages/numpy/core/fromnumeric.py:3373: RuntimeWarning: Mean of empty slice.
+  out=out, **kwargs)
+/home/s2878747/.local/lib/python3.6/site-packages/numpy/core/_methods.py:170: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+/home/s2878747/.local/lib/python3.6/site-packages/numpy/core/_methods.py:234: RuntimeWarning: Degrees of freedom <= 0 for slice
+  keepdims=keepdims)
+/home/s2878747/.local/lib/python3.6/site-packages/numpy/core/_methods.py:195: RuntimeWarning: invalid value encountered in true_divide
+  arrmean, rcount, out=arrmean, casting='unsafe', subok=False)
+/home/s2878747/.local/lib/python3.6/site-packages/numpy/core/_methods.py:226: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+LT
+Name: 
+Type: Graph
+Number of nodes: 517
+Number of edges: 6073
+Average degree:  23.4932
+Nodes filtering iter: 1
+Node 0/517 Node 1/517 Node 2/517 Node 3/517 Node 4/517 Node 5/517 Node 6/517 Node 7/517 Node 8/517 Node 9/517 Node 10/517 Node 11/517 Node 12/517 Node 13/517 Node 14/517 Node 15/517 Node 16/517 Node 17/517 Node 18/517 Node 19/517 Node 20/517 Node 21/517 Node 22/517 Node 23/517 Node 24/517 Node 25/517 Node 26/517 Node 27/517 Node 28/517 Node 29/517 Node 30/517 Node 31/517 Node 32/517 Node 33/517 Node 34/517 Node 35/517 Node 36/517 Node 37/517 Node 38/517 Node 39/517 Node 40/517 Node 41/517 Node 42/517 Node 43/517 Node 44/517 Node 45/517 Node 46/517 Node 47/517 Node 48/517 Node 49/517 Node 50/517 Node 51/517 Node 52/517 Node 53/517 Node 54/517 Node 55/517 Node 56/517 Node 57/517 Node 58/517 Node 59/517 Node 60/517 Node 61/517 Node 62/517 Node 63/517 Node 64/517 Node 65/517 Node 66/517 Node 67/517 Node 68/517 Node 69/517 Node 70/517 Node 71/517 Node 72/517 Node 73/517 Node 74/517 Node 75/517 Node 76/517 Node 77/517 Node 78/517 Node 79/517 Node 80/517 Node 81/517 Node 82/517 Node 83/517 Node 84/517 Node 85/517 Node 86/517 Node 87/517 Node 88/517 Node 89/517 Node 90/517 Node 91/517 Node 92/517 Node 93/517 Node 94/517 Node 95/517 Node 96/517 Node 97/517 Node 98/517 Node 99/517 Node 100/517 Node 101/517 Node 102/517 Node 103/517 Node 104/517 Node 105/517 Node 106/517 Node 107/517 Node 108/517 Node 109/517 Node 110/517 Node 111/517 Node 112/517 Node 113/517 Node 114/517 Node 115/517 Node 116/517 Node 117/517 Node 118/517 Node 119/517 Node 120/517 Node 121/517 Node 122/517 Node 123/517 Node 124/517 Node 125/517 Node 126/517 Node 127/517 Node 128/517 Node 129/517 Node 130/517 Node 131/517 Node 132/517 Node 133/517 Node 134/517 Node 135/517 Node 136/517 Node 137/517 Node 138/517 Node 139/517 Node 140/517 Node 141/517 Node 142/517 Node 143/517 Node 144/517 Node 145/517 Node 146/517 Node 147/517 Node 148/517 Node 149/517 Node 150/517 Node 151/517 Node 152/517 Node 153/517 Node 154/517 Node 155/517 Node 156/517 Node 157/517 Node 158/517 Node 159/517 Node 160/517 Node 161/517 Node 162/517 Node 163/517 Node 164/517 Node 165/517 Node 166/517 Node 167/517 Node 168/517 Node 169/517 Node 170/517 Node 171/517 Node 172/517 Node 173/517 Node 174/517 Node 175/517 Node 176/517 Node 177/517 Node 178/517 Node 179/517 Node 180/517 Node 181/517 Node 182/517 Node 183/517 Node 184/517 Node 185/517 Node 186/517 Node 187/517 Node 188/517 Node 189/517 Node 190/517 Node 191/517 Node 192/517 Node 193/517 Node 194/517 Node 195/517 Node 196/517 Node 197/517 Node 198/517 Node 199/517 Node 200/517 Node 201/517 Node 202/517 Node 203/517 Node 204/517 Node 205/517 Node 206/517 Node 207/517 Node 208/517 Node 209/517 Node 210/517 Node 211/517 Node 212/517 Node 213/517 Node 214/517 Node 215/517 Node 216/517 Node 217/517 Node 218/517 Node 219/517 Node 220/517 Node 221/517 Node 222/517 Node 223/517 Node 224/517 Node 225/517 Node 226/517 Node 227/517 Node 228/517 Node 229/517 Node 230/517 Node 231/517 Node 232/517 Node 233/517 Node 234/517 Node 235/517 Node 236/517 Node 237/517 Node 238/517 Node 239/517 Node 240/517 Node 241/517 Node 242/517 Node 243/517 Node 244/517 Node 245/517 Node 246/517 Node 247/517 Node 248/517 Node 249/517 Node 250/517 Node 251/517 Node 252/517 Node 253/517 Node 254/517 Node 255/517 Node 256/517 Node 257/517 Node 258/517 Node 259/517 Node 260/517 Node 261/517 Node 262/517 Node 263/517 Node 264/517 Node 265/517 Node 266/517 Node 267/517 Node 268/517 Node 269/517 Node 270/517 Node 271/517 Node 272/517 Node 273/517 Node 274/517 Node 275/517 Node 276/517 Node 277/517 Node 278/517 Node 279/517 Node 280/517 Node 281/517 Node 282/517 Node 283/517 Node 284/517 Node 285/517 Node 286/517 Node 287/517 Node 288/517 Node 289/517 Node 290/517 Node 291/517 Node 292/517 Node 293/517 Node 294/517 Node 295/517 Node 296/517 Node 297/517 Node 298/517 Node 299/517 Node 300/517 Node 301/517 Node 302/517 Node 303/517 Node 304/517 Node 305/517 Node 306/517 Node 307/517 Node 308/517 Node 309/517 Node 310/517 Node 311/517 Node 312/517 Node 313/517 Node 314/517 Node 315/517 Node 316/517 Node 317/517 Node 318/517 Node 319/517 Node 320/517 Node 321/517 Node 322/517 Node 323/517 Node 324/517 Node 325/517 Node 326/517 Node 327/517 Node 328/517 Node 329/517 Node 330/517 Node 331/517 Node 332/517 Node 333/517 Node 334/517 Node 335/517 Node 336/517 Node 337/517 Node 338/517 Node 339/517 Node 340/517 Node 341/517 Node 342/517 Node 343/517 Node 344/517 Node 345/517 Node 346/517 Node 347/517 Node 348/517 Node 349/517 Node 350/517 Node 351/517 Node 352/517 Node 353/517 Node 354/517 Node 355/517 Node 356/517 Node 357/517 Node 358/517 Node 359/517 Node 360/517 Node 361/517 Node 362/517 Node 363/517 Node 364/517 Node 365/517 Node 366/517 Node 367/517 Node 368/517 Node 369/517 Node 370/517 Node 371/517 Node 372/517 Node 373/517 Node 374/517 Node 375/517 Node 376/517 Node 377/517 Node 378/517 Node 379/517 Node 380/517 Node 381/517 Node 382/517 Node 383/517 Node 384/517 Node 385/517 Node 386/517 Node 387/517 Node 388/517 Node 389/517 Node 390/517 Node 391/517 Node 392/517 Node 393/517 Node 394/517 Node 395/517 Node 396/517 Node 397/517 Node 398/517 Node 399/517 Node 400/517 Node 401/517 Node 402/517 Node 403/517 Node 404/517 Node 405/517 Node 406/517 Node 407/517 Node 408/517 Node 409/517 Node 410/517 Node 411/517 Node 412/517 Node 413/517 Node 414/517 Node 415/517 Node 416/517 Node 417/517 Node 418/517 Node 419/517 Node 420/517 Node 421/517 Node 422/517 Node 423/517 Node 424/517 Node 425/517 Node 426/517 Node 427/517 Node 428/517 Node 429/517 Node 430/517 Node 431/517 Node 432/517 Node 433/517 Node 434/517 Node 435/517 Node 436/517 Node 437/517 Node 438/517 Node 439/517 Node 440/517 Node 441/517 Node 442/517 Node 443/517 Node 444/517 Node 445/517 Node 446/517 Node 447/517 Node 448/517 Node 449/517 Node 450/517 Node 451/517 Node 452/517 Node 453/517 Node 454/517 Node 455/517 Node 456/517 Node 457/517 Node 458/517 Node 459/517 Node 460/517 Node 461/517 Node 462/517 Node 463/517 Node 464/517 Node 465/517 Node 466/517 Node 467/517 Node 468/517 Node 469/517 Node 470/517 Node 471/517 Node 472/517 Node 473/517 Node 474/517 Node 475/517 Node 476/517 Node 477/517 Node 478/517 Node 479/517 Node 480/517 Node 481/517 Node 482/517 Node 483/517 Node 484/517 Node 485/517 Node 486/517 Node 487/517 Node 488/517 Node 489/517 Node 490/517 Node 491/517 Node 492/517 Node 493/517 Node 494/517 Node 495/517 Node 496/517 Node 497/517 Node 498/517 Node 499/517 Node 500/517 Node 501/517 Node 502/517 Node 503/517 Node 504/517 Node 505/517 Node 506/517 Node 507/517 Node 508/517 Node 509/517 Node 510/517 Node 511/517 Node 512/517 Node 513/517 Node 514/517 Node 515/517 Node 516/517      node  comm
+0       0     1
+1       1     1
+2       2     1
+3       3     1
+4       4     1
+..    ...   ...
+512   512     7
+513   513     7
+514   514     7
+515   515     7
+516   516     7
+
+[517 rows x 2 columns]
+comm
+1    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,...
+2    [108, 109, 110, 111, 112, 113, 114, 115, 116, ...
+3    [216, 217, 218, 219, 220, 221, 222, 223, 224, ...
+4    [281, 282, 283, 284, 285, 286, 287, 288, 289, ...
+5    [389, 390, 391, 392, 393, 394, 395, 396, 397, ...
+6    [462, 463, 464, 465, 466, 467, 468, 469, 470, ...
+7    [491, 492, 493, 494, 495, 496, 497, 498, 499, ...
+Name: node, dtype: object
+Hypervolume 0.019946616378759406-72.1868046747303 Generations 0
+Max Generations without improvements15, now 0
+Hypervolume 0.022479683642109827-81.35397510079547 Generations 1
+Max Generations without improvements15, now 0
+Hypervolume 0.02594846831910119-93.9075068468272 Generations 2
+Max Generations without improvements15, now 0
+Hypervolume 0.026926983058774143-97.44875168970363 Generations 3
+Max Generations without improvements15, now 0
+Hypervolume 0.028620396730191337-103.57721576656245 Generations 4
+Max Generations without improvements15, now 0
+Hypervolume 0.03010489456407327-108.94961342738117 Generations 5
+Max Generations without improvements15, now 0
+Hypervolume 0.03129778762595425-113.26669341832843 Generations 6
+Max Generations without improvements15, now 0
+Hypervolume 0.03210341226136612-116.182248973884 Generations 7
+Max Generations without improvements15, now 0
+Hypervolume 0.03257750016250099-117.89797308809108 Generations 8
+Max Generations without improvements15, now 0
+Hypervolume 0.03287937306808722-118.99045113340765 Generations 9
+Max Generations without improvements15, now 0
+Hypervolume 0.03297354811845751-119.33127064069774 Generations 10
+Max Generations without improvements15, now 0
+Hypervolume 0.03405252875340485-123.23610155857214 Generations 11
+Max Generations without improvements15, now 0
+Hypervolume 0.03553544300227654-128.6027682252388 Generations 12
+Max Generations without improvements15, now 0
+Hypervolume 0.036447861010241-131.90480899606217 Generations 13
+Max Generations without improvements15, now 0
+Hypervolume 0.037248272207153266-134.80149711768766 Generations 14
+Max Generations without improvements15, now 0
+Hypervolume 0.037448802892806325-135.5272176690661 Generations 15
+Max Generations without improvements15, now 0
+Hypervolume 0.03846871371411363-139.21827493137724 Generations 16
+Max Generations without improvements15, now 0
+Hypervolume 0.038525512707082835-139.4238304869328 Generations 17
+Max Generations without improvements15, now 0
+Hypervolume 0.04052422321643164-146.6571638202661 Generations 18
+Max Generations without improvements15, now 0
+Hypervolume 0.041372281010468984-149.72628497688726 Generations 19
+Max Generations without improvements15, now 0
+Hypervolume 0.04171911520020958-150.98147790955846 Generations 20
+Max Generations without improvements15, now 0
+Hypervolume 0.04171911520020958-150.98147790955846 Generations 21
+Max Generations without improvements15, now 1
+Hypervolume 0.0417477847057944-151.08523285026993 Generations 22
+Max Generations without improvements15, now 0
+Hypervolume 0.042038445581561654-152.13713455967164 Generations 23
+Max Generations without improvements15, now 0
+Hypervolume 0.042038445581561654-152.13713455967164 Generations 24
+Max Generations without improvements15, now 1
+Hypervolume 0.04210292011412129-152.37046789300496 Generations 25
+Max Generations without improvements15, now 0
+Hypervolume 0.04319671441045773-156.32890945144652 Generations 26
+Max Generations without improvements15, now 0
+Hypervolume 0.04319671441045773-156.32890945144652 Generations 27
+Max Generations without improvements15, now 1
+Hypervolume 0.04320401885439492-156.35534423405522 Generations 28
+Max Generations without improvements15, now 0
+Hypervolume 0.04378275453951359-158.44978867849966 Generations 29
+Max Generations without improvements15, now 0
+Hypervolume 0.0450758762873199-163.1295962838107 Generations 30
+Max Generations without improvements15, now 0
+Hypervolume 0.0450758762873199-163.1295962838107 Generations 31
+Max Generations without improvements15, now 1
+Hypervolume 0.04514403507888295-163.37626295047738 Generations 32
+Max Generations without improvements15, now 0
+Hypervolume 0.04514403507888295-163.37626295047738 Generations 33
+Max Generations without improvements15, now 1
+Hypervolume 0.04514403507888295-163.37626295047738 Generations 34
+Max Generations without improvements15, now 2
+Hypervolume 0.04621707551362551-167.2595962838107 Generations 35
+Max Generations without improvements15, now 0
+Hypervolume 0.04621707551362551-167.2595962838107 Generations 36
+Max Generations without improvements15, now 1
+Hypervolume 0.046364445873761824-167.79292961714404 Generations 37
+Max Generations without improvements15, now 0
+Hypervolume 0.046364445873761824-167.79292961714404 Generations 38
+Max Generations without improvements15, now 1
+Hypervolume 0.04644365744233509-168.0795962838107 Generations 39
+Max Generations without improvements15, now 0
+Hypervolume 0.046602718239693766-168.65523730945173 Generations 40
+Max Generations without improvements15, now 0
+Hypervolume 0.046611823502219346-168.6881892545318 Generations 41
+Max Generations without improvements15, now 0
+Hypervolume 0.04693301531277287-169.85058241692502 Generations 42
+Max Generations without improvements15, now 0
+Hypervolume 0.04693301531277287-169.85058241692502 Generations 43
+Max Generations without improvements15, now 1
+Hypervolume 0.04699322018232934-170.0684638398499 Generations 44
+Max Generations without improvements15, now 0
+Hypervolume 0.04699322018232934-170.0684638398499 Generations 45
+Max Generations without improvements15, now 1
+Hypervolume 0.04728335557884771-171.11846383984988 Generations 46
+Max Generations without improvements15, now 0
+Hypervolume 0.047561045636173034-172.1234241573102 Generations 47
+Max Generations without improvements15, now 0
+Hypervolume 0.047561045636173034-172.1234241573102 Generations 48
+Max Generations without improvements15, now 1
+Hypervolume 0.04767157340627527-172.52342415731022 Generations 49
+Max Generations without improvements15, now 0
+Hypervolume 0.04767423032382581-172.5330395419256 Generations 50
+Max Generations without improvements15, now 0
+Hypervolume 0.04767423032382581-172.5330395419256 Generations 51
+Max Generations without improvements15, now 1
+Hypervolume 0.04769396742562978-172.60446811335416 Generations 52
+Max Generations without improvements15, now 0
+Hypervolume 0.04773886933223381-172.76696811335418 Generations 53
+Max Generations without improvements15, now 0
+Hypervolume 0.049235877896111675-178.18464210602815 Generations 54
+Max Generations without improvements15, now 0
+Hypervolume 0.049280549536528-178.34630877269484 Generations 55
+Max Generations without improvements15, now 0
+Hypervolume 0.0493804931415108-178.70800467912758 Generations 56
+Max Generations without improvements15, now 0
+Hypervolume 0.049459910822475875-178.9954172665402 Generations 57
+Max Generations without improvements15, now 0
+Hypervolume 0.049459910822475875-178.9954172665402 Generations 58
+Max Generations without improvements15, now 1
+Hypervolume 0.04988496582241945-180.53369131133599 Generations 59
+Max Generations without improvements15, now 0
+Hypervolume 0.04988496582241945-180.53369131133599 Generations 60
+Max Generations without improvements15, now 1
+Hypervolume 0.04988496582241945-180.53369131133599 Generations 61
+Max Generations without improvements15, now 2
+Hypervolume 0.04997182795753568-180.84804537832161 Generations 62
+Max Generations without improvements15, now 0
+Hypervolume 0.04997182795753568-180.84804537832161 Generations 63
+Max Generations without improvements15, now 1
+Hypervolume 0.04997182795753568-180.84804537832161 Generations 64
+Max Generations without improvements15, now 2
+Hypervolume 0.04997182795753568-180.84804537832161 Generations 65
+Max Generations without improvements15, now 3
+Hypervolume 0.04999443591051113-180.92986356013978 Generations 66
+Max Generations without improvements15, now 0
+Hypervolume 0.04999443591051113-180.92986356013978 Generations 67
+Max Generations without improvements15, now 1
+Hypervolume 0.04999443591051113-180.92986356013978 Generations 68
+Max Generations without improvements15, now 2
+Hypervolume 0.0508351596919644-183.97244292521916 Generations 69
+Max Generations without improvements15, now 0
+Hypervolume 0.05129495156669427-185.63642971986658 Generations 70
+Max Generations without improvements15, now 0
+Hypervolume 0.05129495156669427-185.63642971986658 Generations 71
+Max Generations without improvements15, now 1
+Hypervolume 0.05129495156669427-185.63642971986658 Generations 72
+Max Generations without improvements15, now 2
+Hypervolume 0.05129495156669427-185.63642971986658 Generations 73
+Max Generations without improvements15, now 3
+Hypervolume 0.05133993156357066-185.79921232856222 Generations 74
+Max Generations without improvements15, now 0
+Hypervolume 0.05133993156357066-185.79921232856222 Generations 75
+Max Generations without improvements15, now 1
+Hypervolume 0.051368764894901685-185.9035601546492 Generations 76
+Max Generations without improvements15, now 0
+Hypervolume 0.051368764894901685-185.9035601546492 Generations 77
+Max Generations without improvements15, now 1
+Hypervolume 0.051368764894901685-185.9035601546492 Generations 78
+Max Generations without improvements15, now 2
+Hypervolume 0.051368764894901685-185.9035601546492 Generations 79
+Max Generations without improvements15, now 3
+Hypervolume 0.051368764894901685-185.9035601546492 Generations 80
+Max Generations without improvements15, now 4
+Hypervolume 0.051368764894901685-185.9035601546492 Generations 81
+Max Generations without improvements15, now 5
+Hypervolume 0.05145350285198007-186.21022682131587 Generations 82
+Max Generations without improvements15, now 0
+Hypervolume 0.05145350285198007-186.21022682131587 Generations 83
+Max Generations without improvements15, now 1
+Hypervolume 0.05145350285198007-186.21022682131587 Generations 84
+Max Generations without improvements15, now 2
+Hypervolume 0.05154560932706527-186.5435601546492 Generations 85
+Max Generations without improvements15, now 0
+Hypervolume 0.05199972714440498-188.1870125356016 Generations 86
+Max Generations without improvements15, now 0
+Hypervolume 0.052000373505633635-188.18935171688813 Generations 87
+Max Generations without improvements15, now 0
+Hypervolume 0.05202109746252781-188.26435171688814 Generations 88
+Max Generations without improvements15, now 0
+Hypervolume 0.05202109746252781-188.26435171688814 Generations 89
+Max Generations without improvements15, now 1
+Hypervolume 0.05202109746252781-188.26435171688814 Generations 90
+Max Generations without improvements15, now 2
+Hypervolume 0.05202109746252781-188.26435171688814 Generations 91
+Max Generations without improvements15, now 3
+Hypervolume 0.05202109746252781-188.26435171688814 Generations 92
+Max Generations without improvements15, now 4
+Hypervolume 0.05202109746252781-188.26435171688814 Generations 93
+Max Generations without improvements15, now 5
+Hypervolume 0.05202109746252781-188.26435171688814 Generations 94
+Max Generations without improvements15, now 6
+Hypervolume 0.05204412408129911-188.3476850502215 Generations 95
+Max Generations without improvements15, now 0
+Hypervolume 0.05204412408129911-188.3476850502215 Generations 96
+Max Generations without improvements15, now 1
+Hypervolume 0.05204412408129911-188.3476850502215 Generations 97
+Max Generations without improvements15, now 2
+Hypervolume 0.05204412408129911-188.3476850502215 Generations 98
+Max Generations without improvements15, now 3
+Hypervolume 0.05204412408129911-188.3476850502215 Generations 99
+Max Generations without improvements15, now 4
+Hypervolume 0.05204412408129911-188.3476850502215 Generations 100
+OBSERVERRRR 
+  OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+
+719.830536365509
+LT
+Name: 
+Type: Graph
+Number of nodes: 1038
+Number of edges: 13331
+Average degree:  25.6859
+Nodes filtering iter: 1
+Node 0/1038 Node 1/1038 Node 2/1038 Node 3/1038 Node 4/1038 Node 5/1038 Node 6/1038 Node 7/1038 Node 8/1038 Node 9/1038 Node 10/1038 Node 11/1038 Node 12/1038 Node 13/1038 Node 14/1038 Node 15/1038 Node 16/1038 Node 17/1038 Node 18/1038 Node 19/1038 Node 20/1038 Node 21/1038 Node 22/1038 Node 23/1038 Node 24/1038 Node 25/1038 Node 26/1038 Node 27/1038 Node 28/1038 Node 29/1038 Node 30/1038 Node 31/1038 Node 32/1038 Node 33/1038 Node 34/1038 Node 35/1038 Node 36/1038 Node 37/1038 Node 38/1038 Node 39/1038 Node 40/1038 Node 41/1038 Node 42/1038 Node 43/1038 Node 44/1038 Node 45/1038 Node 46/1038 Node 47/1038 Node 48/1038 Node 49/1038 Node 50/1038 Node 51/1038 Node 52/1038 Node 53/1038 Node 54/1038 Node 55/1038 Node 56/1038 Node 57/1038 Node 58/1038 Node 59/1038 Node 60/1038 Node 61/1038 Node 62/1038 Node 63/1038 Node 64/1038 Node 65/1038 Node 66/1038 Node 67/1038 Node 68/1038 Node 69/1038 Node 70/1038 Node 71/1038 Node 72/1038 Node 73/1038 Node 74/1038 Node 75/1038 Node 76/1038 Node 77/1038 Node 78/1038 Node 79/1038 Node 80/1038 Node 81/1038 Node 82/1038 Node 83/1038 Node 84/1038 Node 85/1038 Node 86/1038 Node 87/1038 Node 88/1038 Node 89/1038 Node 90/1038 Node 91/1038 Node 92/1038 Node 93/1038 Node 94/1038 Node 95/1038 Node 96/1038 Node 97/1038 Node 98/1038 Node 99/1038 Node 100/1038 Node 101/1038 Node 102/1038 Node 103/1038 Node 104/1038 Node 105/1038 Node 106/1038 Node 107/1038 Node 108/1038 Node 109/1038 Node 110/1038 Node 111/1038 Node 112/1038 Node 113/1038 Node 114/1038 Node 115/1038 Node 116/1038 Node 117/1038 Node 118/1038 Node 119/1038 Node 120/1038 Node 121/1038 Node 122/1038 Node 123/1038 Node 124/1038 Node 125/1038 Node 126/1038 Node 127/1038 Node 128/1038 Node 129/1038 Node 130/1038 Node 131/1038 Node 132/1038 Node 133/1038 Node 134/1038 Node 135/1038 Node 136/1038 Node 137/1038 Node 138/1038 Node 139/1038 Node 140/1038 Node 141/1038 Node 142/1038 Node 143/1038 Node 144/1038 Node 145/1038 Node 146/1038 Node 147/1038 Node 148/1038 Node 149/1038 Node 150/1038 Node 151/1038 Node 152/1038 Node 153/1038 Node 154/1038 Node 155/1038 Node 156/1038 Node 157/1038 Node 158/1038 Node 159/1038 Node 160/1038 Node 161/1038 Node 162/1038 Node 163/1038 Node 164/1038 Node 165/1038 Node 166/1038 Node 167/1038 Node 168/1038 Node 169/1038 Node 170/1038 Node 171/1038 Node 172/1038 Node 173/1038 Node 174/1038 Node 175/1038 Node 176/1038 Node 177/1038 Node 178/1038 Node 179/1038 Node 180/1038 Node 181/1038 Node 182/1038 Node 183/1038 Node 184/1038 Node 185/1038 Node 186/1038 Node 187/1038 Node 188/1038 Node 189/1038 Node 190/1038 Node 191/1038 Node 192/1038 Node 193/1038 Node 194/1038 Node 195/1038 Node 196/1038 Node 197/1038 Node 198/1038 Node 199/1038 Node 200/1038 Node 201/1038 Node 202/1038 Node 203/1038 Node 204/1038 Node 205/1038 Node 206/1038 Node 207/1038 Node 208/1038 Node 209/1038 Node 210/1038 Node 211/1038 Node 212/1038 Node 213/1038 Node 214/1038 Node 215/1038 Node 216/1038 Node 217/1038 Node 218/1038 Node 219/1038 Node 220/1038 Node 221/1038 Node 222/1038 Node 223/1038 Node 224/1038 Node 225/1038 Node 226/1038 Node 227/1038 Node 228/1038 Node 229/1038 Node 230/1038 Node 231/1038 Node 232/1038 Node 233/1038 Node 234/1038 Node 235/1038 Node 236/1038 Node 237/1038 Node 238/1038 Node 239/1038 Node 240/1038 Node 241/1038 Node 242/1038 Node 243/1038 Node 244/1038 Node 245/1038 Node 246/1038 Node 247/1038 Node 248/1038 Node 249/1038 Node 250/1038 Node 251/1038 Node 252/1038 Node 253/1038 Node 254/1038 Node 255/1038 Node 256/1038 Node 257/1038 Node 258/1038 Node 259/1038 Node 260/1038 Node 261/1038 Node 262/1038 Node 263/1038 Node 264/1038 Node 265/1038 Node 266/1038 Node 267/1038 Node 268/1038 Node 269/1038 Node 270/1038 Node 271/1038 Node 272/1038 Node 273/1038 Node 274/1038 Node 275/1038 Node 276/1038 Node 277/1038 Node 278/1038 Node 279/1038 Node 280/1038 Node 281/1038 Node 282/1038 Node 283/1038 Node 284/1038 Node 285/1038 Node 286/1038 Node 287/1038 Node 288/1038 Node 289/1038 Node 290/1038 Node 291/1038 Node 292/1038 Node 293/1038 Node 294/1038 Node 295/1038 Node 296/1038 Node 297/1038 Node 298/1038 Node 299/1038 Node 300/1038 Node 301/1038 Node 302/1038 Node 303/1038 Node 304/1038 Node 305/1038 Node 306/1038 Node 307/1038 Node 308/1038 Node 309/1038 Node 310/1038 Node 311/1038 Node 312/1038 Node 313/1038 Node 314/1038 Node 315/1038 Node 316/1038 Node 317/1038 Node 318/1038 Node 319/1038 Node 320/1038 Node 321/1038 Node 322/1038 Node 323/1038 Node 324/1038 Node 325/1038 Node 326/1038 Node 327/1038 Node 328/1038 Node 329/1038 Node 330/1038 Node 331/1038 Node 332/1038 Node 333/1038 Node 334/1038 Node 335/1038 Node 336/1038 Node 337/1038 Node 338/1038 Node 339/1038 Node 340/1038 Node 341/1038 Node 342/1038 Node 343/1038 Node 344/1038 Node 345/1038 Node 346/1038 Node 347/1038 Node 348/1038 Node 349/1038 Node 350/1038 Node 351/1038 Node 352/1038 Node 353/1038 Node 354/1038 Node 355/1038 Node 356/1038 Node 357/1038 Node 358/1038 Node 359/1038 Node 360/1038 Node 361/1038 Node 362/1038 Node 363/1038 Node 364/1038 Node 365/1038 Node 366/1038 Node 367/1038 Node 368/1038 Node 369/1038 Node 370/1038 Node 371/1038 Node 372/1038 Node 373/1038 Node 374/1038 Node 375/1038 Node 376/1038 Node 377/1038 Node 378/1038 Node 379/1038 Node 380/1038 Node 381/1038 Node 382/1038 Node 383/1038 Node 384/1038 Node 385/1038 Node 386/1038 Node 387/1038 Node 388/1038 Node 389/1038 Node 390/1038 Node 391/1038 Node 392/1038 Node 393/1038 Node 394/1038 Node 395/1038 Node 396/1038 Node 397/1038 Node 398/1038 Node 399/1038 Node 400/1038 Node 401/1038 Node 402/1038 Node 403/1038 Node 404/1038 Node 405/1038 Node 406/1038 Node 407/1038 Node 408/1038 Node 409/1038 Node 410/1038 Node 411/1038 Node 412/1038 Node 413/1038 Node 414/1038 Node 415/1038 Node 416/1038 Node 417/1038 Node 418/1038 Node 419/1038 Node 420/1038 Node 421/1038 Node 422/1038 Node 423/1038 Node 424/1038 Node 425/1038 Node 426/1038 Node 427/1038 Node 428/1038 Node 429/1038 Node 430/1038 Node 431/1038 Node 432/1038 Node 433/1038 Node 434/1038 Node 435/1038 Node 436/1038 Node 437/1038 Node 438/1038 Node 439/1038 Node 440/1038 Node 441/1038 Node 442/1038 Node 443/1038 Node 444/1038 Node 445/1038 Node 446/1038 Node 447/1038 Node 448/1038 Node 449/1038 Node 450/1038 Node 451/1038 Node 452/1038 Node 453/1038 Node 454/1038 Node 455/1038 Node 456/1038 Node 457/1038 Node 458/1038 Node 459/1038 Node 460/1038 Node 461/1038 Node 462/1038 Node 463/1038 Node 464/1038 Node 465/1038 Node 466/1038 Node 467/1038 Node 468/1038 Node 469/1038 Node 470/1038 Node 471/1038 Node 472/1038 Node 473/1038 Node 474/1038 Node 475/1038 Node 476/1038 Node 477/1038 Node 478/1038 Node 479/1038 Node 480/1038 Node 481/1038 Node 482/1038 Node 483/1038 Node 484/1038 Node 485/1038 Node 486/1038 Node 487/1038 Node 488/1038 Node 489/1038 Node 490/1038 Node 491/1038 Node 492/1038 Node 493/1038 Node 494/1038 Node 495/1038 Node 496/1038 Node 497/1038 Node 498/1038 Node 499/1038 Node 500/1038 Node 501/1038 Node 502/1038 Node 503/1038 Node 504/1038 Node 505/1038 Node 506/1038 Node 507/1038 Node 508/1038 Node 509/1038 Node 510/1038 Node 511/1038 Node 512/1038 Node 513/1038 Node 514/1038 Node 515/1038 Node 516/1038 Node 517/1038 Node 518/1038 Node 519/1038 Node 520/1038 Node 521/1038 Node 522/1038 Node 523/1038 Node 524/1038 Node 525/1038 Node 526/1038 Node 527/1038 Node 528/1038 Node 529/1038 Node 530/1038 Node 531/1038 Node 532/1038 Node 533/1038 Node 534/1038 Node 535/1038 Node 536/1038 Node 537/1038 Node 538/1038 Node 539/1038 Node 540/1038 Node 541/1038 Node 542/1038 Node 543/1038 Node 544/1038 Node 545/1038 Node 546/1038 Node 547/1038 Node 548/1038 Node 549/1038 Node 550/1038 Node 551/1038 Node 552/1038 Node 553/1038 Node 554/1038 Node 555/1038 Node 556/1038 Node 557/1038 Node 558/1038 Node 559/1038 Node 560/1038 Node 561/1038 Node 562/1038 Node 563/1038 Node 564/1038 Node 565/1038 Node 566/1038 Node 567/1038 Node 568/1038 Node 569/1038 Node 570/1038 Node 571/1038 Node 572/1038 Node 573/1038 Node 574/1038 Node 575/1038 Node 576/1038 Node 577/1038 Node 578/1038 Node 579/1038 Node 580/1038 Node 581/1038 Node 582/1038 Node 583/1038 Node 584/1038 Node 585/1038 Node 586/1038 Node 587/1038 Node 588/1038 Node 589/1038 Node 590/1038 Node 591/1038 Node 592/1038 Node 593/1038 Node 594/1038 Node 595/1038 Node 596/1038 Node 597/1038 Node 598/1038 Node 599/1038 Node 600/1038 Node 601/1038 Node 602/1038 Node 603/1038 Node 604/1038 Node 605/1038 Node 606/1038 Node 607/1038 Node 608/1038 Node 609/1038 Node 610/1038 Node 611/1038 Node 612/1038 Node 613/1038 Node 614/1038 Node 615/1038 Node 616/1038 Node 617/1038 Node 618/1038 Node 619/1038 Node 620/1038 Node 621/1038 Node 622/1038 Node 623/1038 Node 624/1038 Node 625/1038 Node 626/1038 Node 627/1038 Node 628/1038 Node 629/1038 Node 630/1038 Node 631/1038 Node 632/1038 Node 633/1038 Node 634/1038 Node 635/1038 Node 636/1038 Node 637/1038 Node 638/1038 Node 639/1038 Node 640/1038 Node 641/1038 Node 642/1038 Node 643/1038 Node 644/1038 Node 645/1038 Node 646/1038 Node 647/1038 Node 648/1038 Node 649/1038 Node 650/1038 Node 651/1038 Node 652/1038 Node 653/1038 Node 654/1038 Node 655/1038 Node 656/1038 Node 657/1038 Node 658/1038 Node 659/1038 Node 660/1038 Node 661/1038 Node 662/1038 Node 663/1038 Node 664/1038 Node 665/1038 Node 666/1038 Node 667/1038 Node 668/1038 Node 669/1038 Node 670/1038 Node 671/1038 Node 672/1038 Node 673/1038 Node 674/1038 Node 675/1038 Node 676/1038 Node 677/1038 Node 678/1038 Node 679/1038 Node 680/1038 Node 681/1038 Node 682/1038 Node 683/1038 Node 684/1038 Node 685/1038 Node 686/1038 Node 687/1038 Node 688/1038 Node 689/1038 Node 690/1038 Node 691/1038 Node 692/1038 Node 693/1038 Node 694/1038 Node 695/1038 Node 696/1038 Node 697/1038 Node 698/1038 Node 699/1038 Node 700/1038 Node 701/1038 Node 702/1038 Node 703/1038 Node 704/1038 Node 705/1038 Node 706/1038 Node 707/1038 Node 708/1038 Node 709/1038 Node 710/1038 Node 711/1038 Node 712/1038 Node 713/1038 Node 714/1038 Node 715/1038 Node 716/1038 Node 717/1038 Node 718/1038 Node 719/1038 Node 720/1038 Node 721/1038 Node 722/1038 Node 723/1038 Node 724/1038 Node 725/1038 Node 726/1038 Node 727/1038 Node 728/1038 Node 729/1038 Node 730/1038 Node 731/1038 Node 732/1038 Node 733/1038 Node 734/1038 Node 735/1038 Node 736/1038 Node 737/1038 Node 738/1038 Node 739/1038 Node 740/1038 Node 741/1038 Node 742/1038 Node 743/1038 Node 744/1038 Node 745/1038 Node 746/1038 Node 747/1038 Node 748/1038 Node 749/1038 Node 750/1038 Node 751/1038 Node 752/1038 Node 753/1038 Node 754/1038 Node 755/1038 Node 756/1038 Node 757/1038 Node 758/1038 Node 759/1038 Node 760/1038 Node 761/1038 Node 762/1038 Node 763/1038 Node 764/1038 Node 765/1038 Node 766/1038 Node 767/1038 Node 768/1038 Node 769/1038 Node 770/1038 Node 771/1038 Node 772/1038 Node 773/1038 Node 774/1038 Node 775/1038 Node 776/1038 Node 777/1038 Node 778/1038 Node 779/1038 Node 780/1038 Node 781/1038 Node 782/1038 Node 783/1038 Node 784/1038 Node 785/1038 Node 786/1038 Node 787/1038 Node 788/1038 Node 789/1038 Node 790/1038 Node 791/1038 Node 792/1038 Node 793/1038 Node 794/1038 Node 795/1038 Node 796/1038 Node 797/1038 Node 798/1038 Node 799/1038 Node 800/1038 Node 801/1038 Node 802/1038 Node 803/1038 Node 804/1038 Node 805/1038 Node 806/1038 Node 807/1038 Node 808/1038 Node 809/1038 Node 810/1038 Node 811/1038 Node 812/1038 Node 813/1038 Node 814/1038 Node 815/1038 Node 816/1038 Node 817/1038 Node 818/1038 Node 819/1038 Node 820/1038 Node 821/1038 Node 822/1038 Node 823/1038 Node 824/1038 Node 825/1038 Node 826/1038 Node 827/1038 Node 828/1038 Node 829/1038 Node 830/1038 Node 831/1038 Node 832/1038 Node 833/1038 Node 834/1038 Node 835/1038 Node 836/1038 Node 837/1038 Node 838/1038 Node 839/1038 Node 840/1038 Node 841/1038 Node 842/1038 Node 843/1038 Node 844/1038 Node 845/1038 Node 846/1038 Node 847/1038 Node 848/1038 Node 849/1038 Node 850/1038 Node 851/1038 Node 852/1038 Node 853/1038 Node 854/1038 Node 855/1038 Node 856/1038 Node 857/1038 Node 858/1038 Node 859/1038 Node 860/1038 Node 861/1038 Node 862/1038 Node 863/1038 Node 864/1038 Node 865/1038 Node 866/1038 Node 867/1038 Node 868/1038 Node 869/1038 Node 870/1038 Node 871/1038 Node 872/1038 Node 873/1038 Node 874/1038 Node 875/1038 Node 876/1038 Node 877/1038 Node 878/1038 Node 879/1038 Node 880/1038 Node 881/1038 Node 882/1038 Node 883/1038 Node 884/1038 Node 885/1038 Node 886/1038 Node 887/1038 Node 888/1038 Node 889/1038 Node 890/1038 Node 891/1038 Node 892/1038 Node 893/1038 Node 894/1038 Node 895/1038 Node 896/1038 Node 897/1038 Node 898/1038 Node 899/1038 Node 900/1038 Node 901/1038 Node 902/1038 Node 903/1038 Node 904/1038 Node 905/1038 Node 906/1038 Node 907/1038 Node 908/1038 Node 909/1038 Node 910/1038 Node 911/1038 Node 912/1038 Node 913/1038 Node 914/1038 Node 915/1038 Node 916/1038 Node 917/1038 Node 918/1038 Node 919/1038 Node 920/1038 Node 921/1038 Node 922/1038 Node 923/1038 Node 924/1038 Node 925/1038 Node 926/1038 Node 927/1038 Node 928/1038 Node 929/1038 Node 930/1038 Node 931/1038 Node 932/1038 Node 933/1038 Node 934/1038 Node 935/1038 Node 936/1038 Node 937/1038 Node 938/1038 Node 939/1038 Node 940/1038 Node 941/1038 Node 942/1038 Node 943/1038 Node 944/1038 Node 945/1038 Node 946/1038 Node 947/1038 Node 948/1038 Node 949/1038 Node 950/1038 Node 951/1038 Node 952/1038 Node 953/1038 Node 954/1038 Node 955/1038 Node 956/1038 Node 957/1038 Node 958/1038 Node 959/1038 Node 960/1038 Node 961/1038 Node 962/1038 Node 963/1038 Node 964/1038 Node 965/1038 Node 966/1038 Node 967/1038 Node 968/1038 Node 969/1038 Node 970/1038 Node 971/1038 Node 972/1038 Node 973/1038 Node 974/1038 Node 975/1038 Node 976/1038 Node 977/1038 Node 978/1038 Node 979/1038 Node 980/1038 Node 981/1038 Node 982/1038 Node 983/1038 Node 984/1038 Node 985/1038 Node 986/1038 Node 987/1038 Node 988/1038 Node 989/1038 Node 990/1038 Node 991/1038 Node 992/1038 Node 993/1038 Node 994/1038 Node 995/1038 Node 996/1038 Node 997/1038 Node 998/1038 Node 999/1038 Node 1000/1038 Node 1001/1038 Node 1002/1038 Node 1003/1038 Node 1004/1038 Node 1005/1038 Node 1006/1038 Node 1007/1038 Node 1008/1038 Node 1009/1038 Node 1010/1038 Node 1011/1038 Node 1012/1038 Node 1013/1038 Node 1014/1038 Node 1015/1038 Node 1016/1038 Node 1017/1038 Node 1018/1038 Node 1019/1038 Node 1020/1038 Node 1021/1038 Node 1022/1038 Node 1023/1038 Node 1024/1038 Node 1025/1038 Node 1026/1038 Node 1027/1038 Node 1028/1038 Node 1029/1038 Node 1030/1038 Node 1031/1038 Node 1032/1038 Node 1033/1038 Node 1034/1038 Node 1035/1038 Node 1036/1038 Node 1037/1038       node  comm
+0        0     1
+1        1     1
+2        2     1
+3        3     1
+4        4     1
+...    ...   ...
+1033  1033     7
+1034  1034     7
+1035  1035     7
+1036  1036     7
+1037  1037     7
+
+[1038 rows x 2 columns]
+comm
+1    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,...
+2    [216, 217, 218, 219, 220, 221, 222, 223, 224, ...
+3    [433, 434, 435, 436, 437, 438, 439, 440, 441, ...
+4    [564, 565, 566, 567, 568, 569, 570, 571, 572, ...
+5    [781, 782, 783, 784, 785, 786, 787, 788, 789, ...
+6    [928, 929, 930, 931, 932, 933, 934, 935, 936, ...
+7    [986, 987, 988, 989, 990, 991, 992, 993, 994, ...
+Name: node, dtype: object
+Hypervolume 0.018776623687652313-136.4309477144817 Generations 0
+Max Generations without improvements15, now 0
+Hypervolume 0.02488126867296131-180.7872981777369 Generations 1
+Max Generations without improvements15, now 0
+Hypervolume 0.027423338379564458-199.25797666591535 Generations 2
+Max Generations without improvements15, now 0
+Hypervolume 0.02774570075889368-201.60026171412147 Generations 3
+Max Generations without improvements15, now 0
+Hypervolume 0.028471399615012074-206.87318960267774 Generations 4
+Max Generations without improvements15, now 0
+Hypervolume 0.02856363401502859-207.54336475319775 Generations 5
+Max Generations without improvements15, now 0
+Hypervolume 0.02944046654501858-213.914429916105 Generations 6
+Max Generations without improvements15, now 0
+Hypervolume 0.029748254416133286-216.15081658762446 Generations 7
+Max Generations without improvements15, now 0
+Hypervolume 0.031163760650180505-226.43588488421156 Generations 8
+Max Generations without improvements15, now 0
+Hypervolume 0.031244703422407125-227.02401506721017 Generations 9
+Max Generations without improvements15, now 0
+Hypervolume 0.03195460550006203-232.18216356345073 Generations 10
+Max Generations without improvements15, now 0
+Hypervolume 0.03220841665900814-234.02635544435316 Generations 11
+Max Generations without improvements15, now 0
+Hypervolume 0.03230620665725501-234.73689757161492 Generations 12
+Max Generations without improvements15, now 0
+Hypervolume 0.03232391640563049-234.86557660331113 Generations 13
+Max Generations without improvements15, now 0
+Hypervolume 0.03389223953701047-246.26101247591808 Generations 14
+Max Generations without improvements15, now 0
+Hypervolume 0.03455682461169051-251.08988762854324 Generations 15
+Max Generations without improvements15, now 0
+Hypervolume 0.0345884788918997-251.31988762854323 Generations 16
+Max Generations without improvements15, now 0
+Hypervolume 0.03493959941008635-253.8711293136874 Generations 17
+Max Generations without improvements15, now 0
+Hypervolume 0.03591291367505681-260.94323076296274 Generations 18
+Max Generations without improvements15, now 0
+Hypervolume 0.04034171498659965-293.1229010926331 Generations 19
+Max Generations without improvements15, now 0
+Hypervolume 0.040358313673718574-293.24350715323914 Generations 20
+Max Generations without improvements15, now 0
+Hypervolume 0.04076067693116027-296.16707858181053 Generations 21
+Max Generations without improvements15, now 0
+Hypervolume 0.04077422386974398-296.2655106375597 Generations 22
+Max Generations without improvements15, now 0
+Hypervolume 0.040784491751681105-296.3401170677149 Generations 23
+Max Generations without improvements15, now 0
+Hypervolume 0.04083143249329567-296.6811884962863 Generations 24
+Max Generations without improvements15, now 0
+Hypervolume 0.04083143249329567-296.6811884962863 Generations 25
+Max Generations without improvements15, now 1
+Hypervolume 0.041931882199496416-304.67705606154095 Generations 26
+Max Generations without improvements15, now 0
+Hypervolume 0.041931882199496416-304.67705606154095 Generations 27
+Max Generations without improvements15, now 1
+Hypervolume 0.04193340334339662-304.68810869311983 Generations 28
+Max Generations without improvements15, now 0
+Hypervolume 0.04240418462154156-308.10880546012095 Generations 29
+Max Generations without improvements15, now 0
+Hypervolume 0.04240727416903923-308.13125411223905 Generations 30
+Max Generations without improvements15, now 0
+Hypervolume 0.04240727416903923-308.13125411223905 Generations 31
+Max Generations without improvements15, now 1
+Hypervolume 0.043628880345228396-317.0074445884295 Generations 32
+Max Generations without improvements15, now 0
+Hypervolume 0.043638055498912226-317.0741112550962 Generations 33
+Max Generations without improvements15, now 0
+Hypervolume 0.044128500231718645-320.63768268366766 Generations 34
+Max Generations without improvements15, now 0
+Hypervolume 0.044163847910900285-320.89451892060146 Generations 35
+Max Generations without improvements15, now 0
+Hypervolume 0.044165405272512406-320.90583471007517 Generations 36
+Max Generations without improvements15, now 0
+Hypervolume 0.044165405272512406-320.90583471007517 Generations 37
+Max Generations without improvements15, now 1
+Hypervolume 0.044213428860998424-321.25477410401453 Generations 38
+Max Generations without improvements15, now 0
+Hypervolume 0.04434325626842346-322.19810004636486 Generations 39
+Max Generations without improvements15, now 0
+Hypervolume 0.04434325626842346-322.19810004636486 Generations 40
+Max Generations without improvements15, now 1
+Hypervolume 0.04434869927312763-322.23764891854535 Generations 41
+Max Generations without improvements15, now 0
+Hypervolume 0.04498997697881491-326.89717272806917 Generations 42
+Max Generations without improvements15, now 0
+Hypervolume 0.04498997697881491-326.89717272806917 Generations 43
+Max Generations without improvements15, now 1
+Hypervolume 0.0450401066821238-327.26141515231154 Generations 44
+Max Generations without improvements15, now 0
+Hypervolume 0.04557606414390377-331.1556820696048 Generations 45
+Max Generations without improvements15, now 0
+Hypervolume 0.045604862398830937-331.3649301899056 Generations 46
+Max Generations without improvements15, now 0
+Hypervolume 0.04565303195567101-331.71493018990554 Generations 47
+Max Generations without improvements15, now 0
+Hypervolume 0.04565876716285576-331.75660220530995 Generations 48
+Max Generations without improvements15, now 0
+Hypervolume 0.045679411258644366-331.90660220531 Generations 49
+Max Generations without improvements15, now 0
+Hypervolume 0.045679411258644366-331.90660220531 Generations 50
+Max Generations without improvements15, now 1
+Hypervolume 0.045679411258644366-331.90660220531 Generations 51
+Max Generations without improvements15, now 2
+Hypervolume 0.045679411258644366-331.90660220531 Generations 52
+Max Generations without improvements15, now 3
+Hypervolume 0.045679411258644366-331.90660220531 Generations 53
+Max Generations without improvements15, now 4
+Hypervolume 0.045679411258644366-331.90660220531 Generations 54
+Max Generations without improvements15, now 5
+Hypervolume 0.045679411258644366-331.90660220531 Generations 55
+Max Generations without improvements15, now 6
+Hypervolume 0.045679411258644366-331.90660220531 Generations 56
+Max Generations without improvements15, now 7
+Hypervolume 0.046137710185151386-335.23660220530996 Generations 57
+Max Generations without improvements15, now 0
+Hypervolume 0.04613964179645324-335.25063729302923 Generations 58
+Max Generations without improvements15, now 0
+Hypervolume 0.04613964179645324-335.25063729302923 Generations 59
+Max Generations without improvements15, now 1
+Hypervolume 0.046318557293287814-336.55063729302924 Generations 60
+Max Generations without improvements15, now 0
+Hypervolume 0.04657155813192905-338.38894138659646 Generations 61
+Max Generations without improvements15, now 0
+Hypervolume 0.046575457572244676-338.4172747199298 Generations 62
+Max Generations without improvements15, now 0
+Hypervolume 0.046575457572244676-338.4172747199298 Generations 63
+Max Generations without improvements15, now 1
+Hypervolume 0.04659947979279868-338.59182017447523 Generations 64
+Max Generations without improvements15, now 0
+Hypervolume 0.04659947979279868-338.59182017447523 Generations 65
+Max Generations without improvements15, now 1
+Hypervolume 0.04660980184069299-338.6668201744752 Generations 66
+Max Generations without improvements15, now 0
+Hypervolume 0.04660980184069299-338.6668201744752 Generations 67
+Max Generations without improvements15, now 1
+Hypervolume 0.046616584900737806-338.7161058887609 Generations 68
+Max Generations without improvements15, now 0
+Hypervolume 0.046620077714924275-338.7414846766398 Generations 69
+Max Generations without improvements15, now 0
+Hypervolume 0.04662342009233767-338.7657703909255 Generations 70
+Max Generations without improvements15, now 0
+Hypervolume 0.04683106255844421-340.2745005496556 Generations 71
+Max Generations without improvements15, now 0
+Hypervolume 0.0468629300185684-340.506049514918 Generations 72
+Max Generations without improvements15, now 0
+Hypervolume 0.04693414172272808-341.02347375734223 Generations 73
+Max Generations without improvements15, now 0
+Hypervolume 0.047005650576751386-341.5430570906756 Generations 74
+Max Generations without improvements15, now 0
+Hypervolume 0.047016702466416-341.62336012097865 Generations 75
+Max Generations without improvements15, now 0
+Hypervolume 0.04704373640137727-341.8197886924072 Generations 76
+Max Generations without improvements15, now 0
+Hypervolume 0.047047177084008705-341.84478869240723 Generations 77
+Max Generations without improvements15, now 0
+Hypervolume 0.04705864602611348-341.92812202574055 Generations 78
+Max Generations without improvements15, now 0
+Hypervolume 0.04705968865721392-341.9356977833163 Generations 79
+Max Generations without improvements15, now 0
+Hypervolume 0.04705968865721392-341.9356977833163 Generations 80
+Max Generations without improvements15, now 1
+Hypervolume 0.04705968865721392-341.9356977833163 Generations 81
+Max Generations without improvements15, now 2
+Hypervolume 0.047082709951911515-342.10297051058905 Generations 82
+Max Generations without improvements15, now 0
+Hypervolume 0.047221872876849307-343.11412832318706 Generations 83
+Max Generations without improvements15, now 0
+Hypervolume 0.047221872876849307-343.11412832318706 Generations 84
+Max Generations without improvements15, now 1
+Hypervolume 0.047221872876849307-343.11412832318706 Generations 85
+Max Generations without improvements15, now 2
+Hypervolume 0.04727692379895226-343.5141283231871 Generations 86
+Max Generations without improvements15, now 0
+Hypervolume 0.047641636157884276-346.16412832318713 Generations 87
+Max Generations without improvements15, now 0
+Hypervolume 0.047641636157884276-346.16412832318713 Generations 88
+Max Generations without improvements15, now 1
+Hypervolume 0.04764868251494584-346.2153271535965 Generations 89
+Max Generations without improvements15, now 0
+Hypervolume 0.04777025330125651-347.0986604869298 Generations 90
+Max Generations without improvements15, now 0
+Hypervolume 0.04789916421051424-348.0353271535965 Generations 91
+Max Generations without improvements15, now 0
+Hypervolume 0.047902693115777245-348.0609681792375 Generations 92
+Max Generations without improvements15, now 0
+Hypervolume 0.047913015163671545-348.13596817923747 Generations 93
+Max Generations without improvements15, now 0
+Hypervolume 0.048127713759873035-349.69596817923747 Generations 94
+Max Generations without improvements15, now 0
+Hypervolume 0.048127713759873035-349.69596817923747 Generations 95
+Max Generations without improvements15, now 1
+Hypervolume 0.048127713759873035-349.69596817923747 Generations 96
+Max Generations without improvements15, now 2
+Hypervolume 0.048127713759873035-349.69596817923747 Generations 97
+Max Generations without improvements15, now 3
+Hypervolume 0.048127713759873035-349.69596817923747 Generations 98
+Max Generations without improvements15, now 4
+Hypervolume 0.048127713759873035-349.69596817923747 Generations 99
+Max Generations without improvements15, now 5
+Hypervolume 0.04831509232772229-351.05746085323017 Generations 100
+OBSERVERRRR 
+  OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+ OBSERVERRRR 
+
+1623.089117527008
+LT
+Name: 
+Type: Graph
+Number of nodes: 2079
+Number of edges: 28844
+Average degree:  27.7480
+Nodes filtering iter: 1
+Node 0/2079 Node 1/2079 Node 2/2079 Node 3/2079 Node 4/2079 Node 5/2079 Node 6/2079 Node 7/2079 Node 8/2079 Node 9/2079 Node 10/2079 Node 11/2079 Node 12/2079 Node 13/2079 Node 14/2079 Node 15/2079 Node 16/2079 Node 17/2079 Node 18/2079 Node 19/2079 Node 20/2079 Node 21/2079 Node 22/2079 Node 23/2079 Node 24/2079 Node 25/2079 Node 26/2079 Node 27/2079 Node 28/2079 Node 29/2079 Node 30/2079 Node 31/2079 Node 32/2079 Node 33/2079 Node 34/2079 Node 35/2079 Node 36/2079 Node 37/2079 Node 38/2079 Node 39/2079 Node 40/2079 Node 41/2079 Node 42/2079 Node 43/2079 Node 44/2079 Node 45/2079 Node 46/2079 Node 47/2079 Node 48/2079 Node 49/2079 Node 50/2079 Node 51/2079 Node 52/2079 Node 53/2079 Node 54/2079 Node 55/2079 Node 56/2079 Node 57/2079 Node 58/2079 Node 59/2079 Node 60/2079 Node 61/2079 Node 62/2079 Node 63/2079 Node 64/2079 Node 65/2079 Node 66/2079 Node 67/2079 Node 68/2079 Node 69/2079 Node 70/2079 Node 71/2079 Node 72/2079 Node 73/2079 Node 74/2079 Node 75/2079 Node 76/2079 Node 77/2079 Node 78/2079 Node 79/2079 Node 80/2079 Node 81/2079 Node 82/2079 Node 83/2079 Node 84/2079 Node 85/2079 Node 86/2079 Node 87/2079 Node 88/2079 Node 89/2079 Node 90/2079 Node 91/2079 Node 92/2079 Node 93/2079 Node 94/2079 Node 95/2079 Node 96/2079 Node 97/2079 Node 98/2079 Node 99/2079 Node 100/2079 Node 101/2079 Node 102/2079 Node 103/2079 Node 104/2079 Node 105/2079 Node 106/2079 Node 107/2079 Node 108/2079 Node 109/2079 Node 110/2079 Node 111/2079 Node 112/2079 Node 113/2079 Node 114/2079 Node 115/2079 Node 116/2079 Node 117/2079 Node 118/2079 Node 119/2079 Node 120/2079 Node 121/2079 Node 122/2079 Node 123/2079 Node 124/2079 Node 125/2079 Node 126/2079 Node 127/2079 Node 128/2079 Node 129/2079 Node 130/2079 Node 131/2079 Node 132/2079 Node 133/2079 Node 134/2079 Node 135/2079 Node 136/2079 Node 137/2079 Node 138/2079 Node 139/2079 Node 140/2079 Node 141/2079 Node 142/2079 Node 143/2079 Node 144/2079 Node 145/2079 Node 146/2079 Node 147/2079 Node 148/2079 Node 149/2079 Node 150/2079 Node 151/2079 Node 152/2079 Node 153/2079 Node 154/2079 Node 155/2079 Node 156/2079 Node 157/2079 Node 158/2079 Node 159/2079 Node 160/2079 Node 161/2079 Node 162/2079 Node 163/2079 Node 164/2079 Node 165/2079 Node 166/2079 Node 167/2079 Node 168/2079 Node 169/2079 Node 170/2079 Node 171/2079 Node 172/2079 Node 173/2079 Node 174/2079 Node 175/2079 Node 176/2079 Node 177/2079 Node 178/2079 Node 179/2079 Node 180/2079 Node 181/2079 Node 182/2079 Node 183/2079 Node 184/2079 Node 185/2079 Node 186/2079 Node 187/2079 Node 188/2079 Node 189/2079 Node 190/2079 Node 191/2079 Node 192/2079 Node 193/2079 Node 194/2079 Node 195/2079 Node 196/2079 Node 197/2079 Node 198/2079 Node 199/2079 Node 200/2079 Node 201/2079 Node 202/2079 Node 203/2079 Node 204/2079 Node 205/2079 Node 206/2079 Node 207/2079 Node 208/2079 Node 209/2079 Node 210/2079 Node 211/2079 Node 212/2079 Node 213/2079 Node 214/2079 Node 215/2079 Node 216/2079 Node 217/2079 Node 218/2079 Node 219/2079 Node 220/2079 Node 221/2079 Node 222/2079 Node 223/2079 Node 224/2079 Node 225/2079 Node 226/2079 Node 227/2079 Node 228/2079 Node 229/2079 Node 230/2079 Node 231/2079 Node 232/2079 Node 233/2079 Node 234/2079 Node 235/2079 Node 236/2079 Node 237/2079 Node 238/2079 Node 239/2079 Node 240/2079 Node 241/2079 Node 242/2079 Node 243/2079 Node 244/2079 Node 245/2079 Node 246/2079 Node 247/2079 Node 248/2079 Node 249/2079 Node 250/2079 Node 251/2079 Node 252/2079 Node 253/2079 Node 254/2079 Node 255/2079 Node 256/2079 Node 257/2079 Node 258/2079 Node 259/2079 Node 260/2079 Node 261/2079 Node 262/2079 Node 263/2079 Node 264/2079 Node 265/2079 Node 266/2079 Node 267/2079 Node 268/2079 Node 269/2079 Node 270/2079 Node 271/2079 Node 272/2079 Node 273/2079 Node 274/2079 Node 275/2079 Node 276/2079 Node 277/2079 Node 278/2079 Node 279/2079 Node 280/2079 Node 281/2079 Node 282/2079 Node 283/2079 Node 284/2079 Node 285/2079 Node 286/2079 Node 287/2079 Node 288/2079 Node 289/2079 Node 290/2079 Node 291/2079 Node 292/2079 Node 293/2079 Node 294/2079 Node 295/2079 Node 296/2079 Node 297/2079 Node 298/2079 Node 299/2079 Node 300/2079 Node 301/2079 Node 302/2079 Node 303/2079 Node 304/2079 Node 305/2079 Node 306/2079 Node 307/2079 Node 308/2079 Node 309/2079 Node 310/2079 Node 311/2079 Node 312/2079 Node 313/2079 Node 314/2079 Node 315/2079 Node 316/2079 Node 317/2079 Node 318/2079 Node 319/2079 Node 320/2079 Node 321/2079 Node 322/2079 Node 323/2079 Node 324/2079 Node 325/2079 Node 326/2079 Node 327/2079 Node 328/2079 Node 329/2079 Node 330/2079 Node 331/2079 Node 332/2079 Node 333/2079 Node 334/2079 Node 335/2079 Node 336/2079 Node 337/2079 Node 338/2079 Node 339/2079 Node 340/2079 Node 341/2079 Node 342/2079 Node 343/2079 Node 344/2079 Node 345/2079 Node 346/2079 Node 347/2079 Node 348/2079 Node 349/2079 Node 350/2079 Node 351/2079 Node 352/2079 Node 353/2079 Node 354/2079 Node 355/2079 Node 356/2079 Node 357/2079 Node 358/2079 Node 359/2079 Node 360/2079 Node 361/2079 Node 362/2079 Node 363/2079 Node 364/2079 Node 365/2079 Node 366/2079 Node 367/2079 Node 368/2079 Node 369/2079 Node 370/2079 Node 371/2079 Node 372/2079 Node 373/2079 Node 374/2079 Node 375/2079 Node 376/2079 Node 377/2079 Node 378/2079 Node 379/2079 Node 380/2079 Node 381/2079 Node 382/2079 Node 383/2079 Node 384/2079 Node 385/2079 Node 386/2079 Node 387/2079 Node 388/2079 Node 389/2079 Node 390/2079 Node 391/2079 Node 392/2079 Node 393/2079 Node 394/2079 Node 395/2079 Node 396/2079 Node 397/2079 Node 398/2079 Node 399/2079 Node 400/2079 Node 401/2079 Node 402/2079 Node 403/2079 Node 404/2079 Node 405/2079 Node 406/2079 Node 407/2079 Node 408/2079 Node 409/2079 Node 410/2079 Node 411/2079 Node 412/2079 Node 413/2079 Node 414/2079 Node 415/2079 Node 416/2079 Node 417/2079 Node 418/2079 Node 419/2079 Node 420/2079 Node 421/2079 Node 422/2079 Node 423/2079 Node 424/2079 Node 425/2079 Node 426/2079 Node 427/2079 Node 428/2079 Node 429/2079 Node 430/2079 Node 431/2079 Node 432/2079 Node 433/2079 Node 434/2079 Node 435/2079 Node 436/2079 Node 437/2079 Node 438/2079 Node 439/2079 Node 440/2079 Node 441/2079 Node 442/2079 Node 443/2079 Node 444/2079 Node 445/2079 Node 446/2079 Node 447/2079 Node 448/2079 Node 449/2079 Node 450/2079 Node 451/2079 Node 452/2079 Node 453/2079 Node 454/2079 Node 455/2079 Node 456/2079 Node 457/2079 Node 458/2079 Node 459/2079 Node 460/2079 Node 461/2079 Node 462/2079 Node 463/2079 Node 464/2079 Node 465/2079 Node 466/2079 Node 467/2079 Node 468/2079 Node 469/2079 Node 470/2079 Node 471/2079 Node 472/2079 Node 473/2079 Node 474/2079 Node 475/2079 Node 476/2079 Node 477/2079 Node 478/2079 Node 479/2079 Node 480/2079 Node 481/2079 Node 482/2079 Node 483/2079 Node 484/2079 Node 485/2079 Node 486/2079 Node 487/2079 Node 488/2079 Node 489/2079 Node 490/2079 Node 491/2079 Node 492/2079 Node 493/2079 Node 494/2079 Node 495/2079 Node 496/2079 Node 497/2079 Node 498/2079 Node 499/2079 Node 500/2079 Node 501/2079 Node 502/2079 Node 503/2079 Node 504/2079 Node 505/2079 Node 506/2079 Node 507/2079 Node 508/2079 Node 509/2079 Node 510/2079 Node 511/2079 Node 512/2079 Node 513/2079 Node 514/2079 Node 515/2079 Node 516/2079 Node 517/2079 Node 518/2079 Node 519/2079 Node 520/2079 Node 521/2079 Node 522/2079 Node 523/2079 Node 524/2079 Node 525/2079 Node 526/2079 Node 527/2079 Node 528/2079 Node 529/2079 Node 530/2079 Node 531/2079 Node 532/2079 Node 533/2079 Node 534/2079 Node 535/2079 Node 536/2079 Node 537/2079 Node 538/2079 Node 539/2079 Node 540/2079 Node 541/2079 Node 542/2079 Node 543/2079 Node 544/2079 Node 545/2079 Node 546/2079 Node 547/2079 Node 548/2079 Node 549/2079 Node 550/2079 Node 551/2079 Node 552/2079 Node 553/2079 Node 554/2079 Node 555/2079 Node 556/2079 Node 557/2079 Node 558/2079 Node 559/2079 Node 560/2079 Node 561/2079 Node 562/2079 Node 563/2079 Node 564/2079 Node 565/2079 Node 566/2079 Node 567/2079 Node 568/2079 Node 569/2079 Node 570/2079 Node 571/2079 Node 572/2079 Node 573/2079 Node 574/2079 Node 575/2079 Node 576/2079 Node 577/2079 Node 578/2079 Node 579/2079 Node 580/2079 Node 581/2079 Node 582/2079 Node 583/2079 Node 584/2079 Node 585/2079 Node 586/2079 Node 587/2079 Node 588/2079 Node 589/2079 Node 590/2079 Node 591/2079 Node 592/2079 Node 593/2079 Node 594/2079 Node 595/2079 Node 596/2079 Node 597/2079 Node 598/2079 Node 599/2079 Node 600/2079 Node 601/2079 Node 602/2079 Node 603/2079 Node 604/2079 Node 605/2079 Node 606/2079 Node 607/2079 Node 608/2079 Node 609/2079 Node 610/2079 Node 611/2079 Node 612/2079 Node 613/2079 Node 614/2079 Node 615/2079 Node 616/2079 Node 617/2079 Node 618/2079 Node 619/2079 Node 620/2079 Node 621/2079 Node 622/2079 Node 623/2079 Node 624/2079 Node 625/2079 Node 626/2079 Node 627/2079 Node 628/2079 Node 629/2079 Node 630/2079 Node 631/2079 Node 632/2079 Node 633/2079 Node 634/2079 Node 635/2079 Node 636/2079 Node 637/2079 Node 638/2079 Node 639/2079 Node 640/2079 Node 641/2079 Node 642/2079 Node 643/2079 Node 644/2079 Node 645/2079 Node 646/2079 Node 647/2079 Node 648/2079 Node 649/2079 Node 650/2079 Node 651/2079 Node 652/2079 Node 653/2079 Node 654/2079 Node 655/2079 Node 656/2079 Node 657/2079 Node 658/2079 Node 659/2079 Node 660/2079 Node 661/2079 Node 662/2079 Node 663/2079 Node 664/2079 Node 665/2079 Node 666/2079 Node 667/2079 Node 668/2079 Node 669/2079 Node 670/2079 Node 671/2079 Node 672/2079 Node 673/2079 Node 674/2079 Node 675/2079 Node 676/2079 Node 677/2079 Node 678/2079 Node 679/2079 Node 680/2079 Node 681/2079 Node 682/2079 Node 683/2079 Node 684/2079 Node 685/2079 Node 686/2079 Node 687/2079 Node 688/2079 Node 689/2079 Node 690/2079 Node 691/2079 Node 692/2079 Node 693/2079 Node 694/2079 Node 695/2079 Node 696/2079 Node 697/2079 Node 698/2079 Node 699/2079 Node 700/2079 Node 701/2079 Node 702/2079 Node 703/2079 Node 704/2079 Node 705/2079 Node 706/2079 Node 707/2079 Node 708/2079 Node 709/2079 Node 710/2079 Node 711/2079 Node 712/2079 Node 713/2079 Node 714/2079 Node 715/2079 Node 716/2079 Node 717/2079 Node 718/2079 Node 719/2079 Node 720/2079 Node 721/2079 Node 722/2079 Node 723/2079 Node 724/2079 Node 725/2079 Node 726/2079 Node 727/2079 Node 728/2079 Node 729/2079 Node 730/2079 Node 731/2079 Node 732/2079 Node 733/2079 Node 734/2079 Node 735/2079 Node 736/2079 Node 737/2079 Node 738/2079 Node 739/2079 Node 740/2079 Node 741/2079 Node 742/2079 Node 743/2079 Node 744/2079 Node 745/2079 Node 746/2079 Node 747/2079 Node 748/2079 Node 749/2079 Node 750/2079 Node 751/2079 Node 752/2079 Node 753/2079 Node 754/2079 Node 755/2079 Node 756/2079 Node 757/2079 Node 758/2079 Node 759/2079 Node 760/2079 Node 761/2079 Node 762/2079 Node 763/2079 Node 764/2079 Node 765/2079 Node 766/2079 Node 767/2079 Node 768/2079 Node 769/2079 Node 770/2079 Node 771/2079 Node 772/2079 Node 773/2079 Node 774/2079 Node 775/2079 Node 776/2079 Node 777/2079 Node 778/2079 Node 779/2079 Node 780/2079 Node 781/2079 Node 782/2079 Node 783/2079 Node 784/2079 Node 785/2079 Node 786/2079 Node 787/2079 Node 788/2079 Node 789/2079 Node 790/2079 Node 791/2079 Node 792/2079 Node 793/2079 Node 794/2079 Node 795/2079 Node 796/2079 Node 797/2079 Node 798/2079 Node 799/2079 Node 800/2079 Node 801/2079 Node 802/2079 Node 803/2079 Node 804/2079 Node 805/2079 Node 806/2079 Node 807/2079 Node 808/2079 Node 809/2079 Node 810/2079 Node 811/2079 Node 812/2079 Node 813/2079 Node 814/2079 Node 815/2079 Node 816/2079 Node 817/2079 Node 818/2079 Node 819/2079 Node 820/2079 Node 821/2079 Node 822/2079 Node 823/2079 Node 824/2079 Node 825/2079 Node 826/2079 Node 827/2079 Node 828/2079 Node 829/2079 Node 830/2079 Node 831/2079 Node 832/2079 Node 833/2079 Node 834/2079 Node 835/2079 Node 836/2079 Node 837/2079 Node 838/2079 Node 839/2079 Node 840/2079 Node 841/2079 Node 842/2079 Node 843/2079 Node 844/2079 Node 845/2079 Node 846/2079 Node 847/2079 Node 848/2079 Node 849/2079 Node 850/2079 Node 851/2079 Node 852/2079 Node 853/2079 Node 854/2079 Node 855/2079 Node 856/2079 Node 857/2079 Node 858/2079 Node 859/2079 Node 860/2079 Node 861/2079 Node 862/2079 Node 863/2079 Node 864/2079 Node 865/2079 Node 866/2079 Node 867/2079 Node 868/2079 Node 869/2079 Node 870/2079 Node 871/2079 Node 872/2079 Node 873/2079 Node 874/2079 Node 875/2079 Node 876/2079 Node 877/2079 Node 878/2079 Node 879/2079 Node 880/2079 Node 881/2079 Node 882/2079 Node 883/2079 Node 884/2079 Node 885/2079 Node 886/2079 Node 887/2079 Node 888/2079 Node 889/2079 Node 890/2079 Node 891/2079 Node 892/2079 Node 893/2079 Node 894/2079 Node 895/2079 Node 896/2079 Node 897/2079 Node 898/2079 Node 899/2079 Node 900/2079 Node 901/2079 Node 902/2079 Node 903/2079 Node 904/2079 Node 905/2079 Node 906/2079 Node 907/2079 Node 908/2079 Node 909/2079 Node 910/2079 Node 911/2079 Node 912/2079 Node 913/2079 Node 914/2079 Node 915/2079 Node 916/2079 Node 917/2079 Node 918/2079 Node 919/2079 Node 920/2079 Node 921/2079 Node 922/2079 Node 923/2079 Node 924/2079 Node 925/2079 Node 926/2079 Node 927/2079 Node 928/2079 Node 929/2079 Node 930/2079 Node 931/2079 Node 932/2079 Node 933/2079 Node 934/2079 Node 935/2079 Node 936/2079 Node 937/2079 Node 938/2079 Node 939/2079 Node 940/2079 Node 941/2079 Node 942/2079 Node 943/2079 Node 944/2079 Node 945/2079 Node 946/2079 Node 947/2079 Node 948/2079 Node 949/2079 Node 950/2079 Node 951/2079 Node 952/2079 Node 953/2079 Node 954/2079 Node 955/2079 Node 956/2079 Node 957/2079 Node 958/2079 Node 959/2079 Node 960/2079 Node 961/2079 Node 962/2079 Node 963/2079 Node 964/2079 Node 965/2079 Node 966/2079 Node 967/2079 Node 968/2079 Node 969/2079 Node 970/2079 Node 971/2079 Node 972/2079 Node 973/2079 Node 974/2079 Node 975/2079 Node 976/2079 Node 977/2079 Node 978/2079 Node 979/2079 Node 980/2079 Node 981/2079 Node 982/2079 Node 983/2079 Node 984/2079 Node 985/2079 Node 986/2079 Node 987/2079 Node 988/2079 Node 989/2079 Node 990/2079 Node 991/2079 Node 992/2079 Node 993/2079 Node 994/2079 Node 995/2079 Node 996/2079 Node 997/2079 Node 998/2079 Node 999/2079 Node 1000/2079 Node 1001/2079 Node 1002/2079 Node 1003/2079 Node 1004/2079 Node 1005/2079 Node 1006/2079 Node 1007/2079 Node 1008/2079 Node 1009/2079 Node 1010/2079 Node 1011/2079 Node 1012/2079 Node 1013/2079 Node 1014/2079 Node 1015/2079 Node 1016/2079 Node 1017/2079 Node 1018/2079 Node 1019/2079 Node 1020/2079 Node 1021/2079 Node 1022/2079 Node 1023/2079 Node 1024/2079 Node 1025/2079 Node 1026/2079 Node 1027/2079 Node 1028/2079 Node 1029/2079 Node 1030/2079 Node 1031/2079 Node 1032/2079 Node 1033/2079 Node 1034/2079 Node 1035/2079 Node 1036/2079 Node 1037/2079 Node 1038/2079 Node 1039/2079 Node 1040/2079 Node 1041/2079 Node 1042/2079 Node 1043/2079 Node 1044/2079 Node 1045/2079 Node 1046/2079 Node 1047/2079 Node 1048/2079 Node 1049/2079 Node 1050/2079 Node 1051/2079 Node 1052/2079 Node 1053/2079 Node 1054/2079 Node 1055/2079 Node 1056/2079 Node 1057/2079 Node 1058/2079 Node 1059/2079 Node 1060/2079 Node 1061/2079 Node 1062/2079 Node 1063/2079 Node 1064/2079 Node 1065/2079 Node 1066/2079 Node 1067/2079 Node 1068/2079 Node 1069/2079 Node 1070/2079 Node 1071/2079 Node 1072/2079 Node 1073/2079 Node 1074/2079 Node 1075/2079 Node 1076/2079 Node 1077/2079 Node 1078/2079 Node 1079/2079 Node 1080/2079 Node 1081/2079 Node 1082/2079 Node 1083/2079 Node 1084/2079 Node 1085/2079 Node 1086/2079 Node 1087/2079 Node 1088/2079 Node 1089/2079 Node 1090/2079 Node 1091/2079 Node 1092/2079 Node 1093/2079 Node 1094/2079 Node 1095/2079 Node 1096/2079 Node 1097/2079 Node 1098/2079 Node 1099/2079 Node 1100/2079 Node 1101/2079 Node 1102/2079 Node 1103/2079 Node 1104/2079 Node 1105/2079 Node 1106/2079 Node 1107/2079 Node 1108/2079 Node 1109/2079 Node 1110/2079 Node 1111/2079 Node 1112/2079 Node 1113/2079 Node 1114/2079 Node 1115/2079 Node 1116/2079 Node 1117/2079 Node 1118/2079 Node 1119/2079 Node 1120/2079 Node 1121/2079 Node 1122/2079 Node 1123/2079 Node 1124/2079 Node 1125/2079 Node 1126/2079 Node 1127/2079 Node 1128/2079 Node 1129/2079 Node 1130/2079 Node 1131/2079 Node 1132/2079 Node 1133/2079 Node 1134/2079 Node 1135/2079 Node 1136/2079 Node 1137/2079 Node 1138/2079 Node 1139/2079 Node 1140/2079 Node 1141/2079 Node 1142/2079 Node 1143/2079 Node 1144/2079 Node 1145/2079 Node 1146/2079 Node 1147/2079 Node 1148/2079 Node 1149/2079 Node 1150/2079 Node 1151/2079 Node 1152/2079 Node 1153/2079 Node 1154/2079 Node 1155/2079 Node 1156/2079 Node 1157/2079 Node 1158/2079 Node 1159/2079 Node 1160/2079 Node 1161/2079 Node 1162/2079 Node 1163/2079 Node 1164/2079 Node 1165/2079 Node 1166/2079 Node 1167/2079 Node 1168/2079 Node 1169/2079 Node 1170/2079 Node 1171/2079 Node 1172/2079 Node 1173/2079 Node 1174/2079 Node 1175/2079 Node 1176/2079 Node 1177/2079 Node 1178/2079 Node 1179/2079 Node 1180/2079 Node 1181/2079 Node 1182/2079 Node 1183/2079 Node 1184/2079 Node 1185/2079 Node 1186/2079 Node 1187/2079 Node 1188/2079 Node 1189/2079 Node 1190/2079 Node 1191/2079 Node 1192/2079 Node 1193/2079 Node 1194/2079 Node 1195/2079 Node 1196/2079 Node 1197/2079 Node 1198/2079 Node 1199/2079 Node 1200/2079 Node 1201/2079 Node 1202/2079 Node 1203/2079 Node 1204/2079 Node 1205/2079 Node 1206/2079 Node 1207/2079 Node 1208/2079 Node 1209/2079 Node 1210/2079 Node 1211/2079 Node 1212/2079 Node 1213/2079 Node 1214/2079 Node 1215/2079 Node 1216/2079 Node 1217/2079 Node 1218/2079 Node 1219/2079 Node 1220/2079 Node 1221/2079 Node 1222/2079 Node 1223/2079 Node 1224/2079 Node 1225/2079 Node 1226/2079 Node 1227/2079 Node 1228/2079 Node 1229/2079 Node 1230/2079 Node 1231/2079 Node 1232/2079 Node 1233/2079 Node 1234/2079 Node 1235/2079 Node 1236/2079 Node 1237/2079 Node 1238/2079 Node 1239/2079 Node 1240/2079 Node 1241/2079 Node 1242/2079 Node 1243/2079 Node 1244/2079 Node 1245/2079 Node 1246/2079 Node 1247/2079 Node 1248/2079 Node 1249/2079 Node 1250/2079 Node 1251/2079 Node 1252/2079 Node 1253/2079 Node 1254/2079 Node 1255/2079 Node 1256/2079 Node 1257/2079 Node 1258/2079 Node 1259/2079 Node 1260/2079 Node 1261/2079 Node 1262/2079 Node 1263/2079 Node 1264/2079 Node 1265/2079 Node 1266/2079 Node 1267/2079 Node 1268/2079 Node 1269/2079 Node 1270/2079 Node 1271/2079 Node 1272/2079 Node 1273/2079 Node 1274/2079 Node 1275/2079 Node 1276/2079 Node 1277/2079 Node 1278/2079 Node 1279/2079 Node 1280/2079 Node 1281/2079 Node 1282/2079 Node 1283/2079 Node 1284/2079 Node 1285/2079 Node 1286/2079 Node 1287/2079 Node 1288/2079 Node 1289/2079 Node 1290/2079 Node 1291/2079 Node 1292/2079 Node 1293/2079 Node 1294/2079 Node 1295/2079 Node 1296/2079 Node 1297/2079 Node 1298/2079 Node 1299/2079 Node 1300/2079 Node 1301/2079 Node 1302/2079 Node 1303/2079 Node 1304/2079 Node 1305/2079 Node 1306/2079 Node 1307/2079 Node 1308/2079 Node 1309/2079 Node 1310/2079 Node 1311/2079 Node 1312/2079 Node 1313/2079 Node 1314/2079 Node 1315/2079 Node 1316/2079 Node 1317/2079 Node 1318/2079 Node 1319/2079 Node 1320/2079 Node 1321/2079 Node 1322/2079 Node 1323/2079 Node 1324/2079 Node 1325/2079 Node 1326/2079 Node 1327/2079 Node 1328/2079 Node 1329/2079 Node 1330/2079 Node 1331/2079 Node 1332/2079 Node 1333/2079 Node 1334/2079 Node 1335/2079 Node 1336/2079 Node 1337/2079 Node 1338/2079 Node 1339/2079 Node 1340/2079 Node 1341/2079 Node 1342/2079 Node 1343/2079 Node 1344/2079 Node 1345/2079 Node 1346/2079 Node 1347/2079 Node 1348/2079 Node 1349/2079 Node 1350/2079 Node 1351/2079 Node 1352/2079 Node 1353/2079 Node 1354/2079 Node 1355/2079 Node 1356/2079 Node 1357/2079 Node 1358/2079 Node 1359/2079 Node 1360/2079 Node 1361/2079 Node 1362/2079 Node 1363/2079 Node 1364/2079 Node 1365/2079 Node 1366/2079 Node 1367/2079 Node 1368/2079 Node 1369/2079 Node 1370/2079 Node 1371/2079 Node 1372/2079 Node 1373/2079 Node 1374/2079 Node 1375/2079 Node 1376/2079 Node 1377/2079 Node 1378/2079 Node 1379/2079 Node 1380/2079 Node 1381/2079 Node 1382/2079 Node 1383/2079 Node 1384/2079 Node 1385/2079 Node 1386/2079 Node 1387/2079 Node 1388/2079 Node 1389/2079 Node 1390/2079 Node 1391/2079 Node 1392/2079 Node 1393/2079 Node 1394/2079 Node 1395/2079 Node 1396/2079 Node 1397/2079 Node 1398/2079 Node 1399/2079 Node 1400/2079 Node 1401/2079 Node 1402/2079 Node 1403/2079 Node 1404/2079 Node 1405/2079 Node 1406/2079 Node 1407/2079 Node 1408/2079 Node 1409/2079 Node 1410/2079 Node 1411/2079 Node 1412/2079 Node 1413/2079 Node 1414/2079 Node 1415/2079 Node 1416/2079 Node 1417/2079 Node 1418/2079 Node 1419/2079 Node 1420/2079 Node 1421/2079 Node 1422/2079 Node 1423/2079 Node 1424/2079 Node 1425/2079 Node 1426/2079 Node 1427/2079 Node 1428/2079 Node 1429/2079 Node 1430/2079 Node 1431/2079 Node 1432/2079 Node 1433/2079 Node 1434/2079 Node 1435/2079 Node 1436/2079 Node 1437/2079 Node 1438/2079 Node 1439/2079 Node 1440/2079 Node 1441/2079 Node 1442/2079 Node 1443/2079 Node 1444/2079 Node 1445/2079 Node 1446/2079 Node 1447/2079 Node 1448/2079 Node 1449/2079 Node 1450/2079 Node 1451/2079 Node 1452/2079 Node 1453/2079 Node 1454/2079 Node 1455/2079 Node 1456/2079 Node 1457/2079 Node 1458/2079 Node 1459/2079 Node 1460/2079 Node 1461/2079 Node 1462/2079 Node 1463/2079 Node 1464/2079 Node 1465/2079 Node 1466/2079 Node 1467/2079 Node 1468/2079 Node 1469/2079 Node 1470/2079 Node 1471/2079 Node 1472/2079 Node 1473/2079 Node 1474/2079 Node 1475/2079 Node 1476/2079 Node 1477/2079 Node 1478/2079 Node 1479/2079 Node 1480/2079 Node 1481/2079 Node 1482/2079 Node 1483/2079 Node 1484/2079 Node 1485/2079 Node 1486/2079 Node 1487/2079 Node 1488/2079 Node 1489/2079 Node 1490/2079 Node 1491/2079 Node 1492/2079 Node 1493/2079 Node 1494/2079 Node 1495/2079 Node 1496/2079 Node 1497/2079 Node 1498/2079 Node 1499/2079 Node 1500/2079 Node 1501/2079 Node 1502/2079 Node 1503/2079 Node 1504/2079 Node 1505/2079 Node 1506/2079 Node 1507/2079 Node 1508/2079 Node 1509/2079 Node 1510/2079 Node 1511/2079 Node 1512/2079 Node 1513/2079 Node 1514/2079 Node 1515/2079 Node 1516/2079 Node 1517/2079 Node 1518/2079 Node 1519/2079 Node 1520/2079 Node 1521/2079 Node 1522/2079 Node 1523/2079 Node 1524/2079 Node 1525/2079 Node 1526/2079 Node 1527/2079 Node 1528/2079 Node 1529/2079 Node 1530/2079 Node 1531/2079 Node 1532/2079 Node 1533/2079 Node 1534/2079 Node 1535/2079 Node 1536/2079 Node 1537/2079 Node 1538/2079 Node 1539/2079 Node 1540/2079 Node 1541/2079 Node 1542/2079 Node 1543/2079 Node 1544/2079 Node 1545/2079 Node 1546/2079 Node 1547/2079 Node 1548/2079 Node 1549/2079 Node 1550/2079 Node 1551/2079 Node 1552/2079 Node 1553/2079 Node 1554/2079 Node 1555/2079 Node 1556/2079 Node 1557/2079 Node 1558/2079 Node 1559/2079 Node 1560/2079 Node 1561/2079 Node 1562/2079 Node 1563/2079 Node 1564/2079 Node 1565/2079 Node 1566/2079 Node 1567/2079 Node 1568/2079 Node 1569/2079 Node 1570/2079 Node 1571/2079 Node 1572/2079 Node 1573/2079 Node 1574/2079 Node 1575/2079 Node 1576/2079 Node 1577/2079 Node 1578/2079 Node 1579/2079 Node 1580/2079 Node 1581/2079 Node 1582/2079 Node 1583/2079 Node 1584/2079 Node 1585/2079 Node 1586/2079 Node 1587/2079 Node 1588/2079 Node 1589/2079 Node 1590/2079 Node 1591/2079 Node 1592/2079 Node 1593/2079 Node 1594/2079 Node 1595/2079 Node 1596/2079 Node 1597/2079 Node 1598/2079 Node 1599/2079 Node 1600/2079 Node 1601/2079 Node 1602/2079 Node 1603/2079 Node 1604/2079 Node 1605/2079 Node 1606/2079 Node 1607/2079 Node 1608/2079 Node 1609/2079 Node 1610/2079 Node 1611/2079 Node 1612/2079 Node 1613/2079 Node 1614/2079 Node 1615/2079 Node 1616/2079 Node 1617/2079 Node 1618/2079 Node 1619/2079 Node 1620/2079 Node 1621/2079 Node 1622/2079 Node 1623/2079 Node 1624/2079 Node 1625/2079 Node 1626/2079 Node 1627/2079 Node 1628/2079 Node 1629/2079 Node 1630/2079 Node 1631/2079 Node 1632/2079 Node 1633/2079 Node 1634/2079 Node 1635/2079 Node 1636/2079 Node 1637/2079 Node 1638/2079 Node 1639/2079 Node 1640/2079 Node 1641/2079 Node 1642/2079 Node 1643/2079 Node 1644/2079 Node 1645/2079 Node 1646/2079 Node 1647/2079 Node 1648/2079 Node 1649/2079 Node 1650/2079 Node 1651/2079 Node 1652/2079 Node 1653/2079 Node 1654/2079 Node 1655/2079 Node 1656/2079 Node 1657/2079 Node 1658/2079 Node 1659/2079 Node 1660/2079 Node 1661/2079 Node 1662/2079 Node 1663/2079 Node 1664/2079 Node 1665/2079 Node 1666/2079 Node 1667/2079 Node 1668/2079 Node 1669/2079 Node 1670/2079 Node 1671/2079 Node 1672/2079 Node 1673/2079 Node 1674/2079 Node 1675/2079 Node 1676/2079 Node 1677/2079 Node 1678/2079 Node 1679/2079 Node 1680/2079 Node 1681/2079 Node 1682/2079 Node 1683/2079 Node 1684/2079 Node 1685/2079 Node 1686/2079 Node 1687/2079 Node 1688/2079 Node 1689/2079 Node 1690/2079 Node 1691/2079 Node 1692/2079 Node 1693/2079 Node 1694/2079 Node 1695/2079 Node 1696/2079 Node 1697/2079 Node 1698/2079 Node 1699/2079 Node 1700/2079 Node 1701/2079 Node 1702/2079 Node 1703/2079 Node 1704/2079 Node 1705/2079 Node 1706/2079 Node 1707/2079 Node 1708/2079 Node 1709/2079 Node 1710/2079 Node 1711/2079 Node 1712/2079 Node 1713/2079 Node 1714/2079 Node 1715/2079 Node 1716/2079 Node 1717/2079 Node 1718/2079 Node 1719/2079 Node 1720/2079 Node 1721/2079 Node 1722/2079 Node 1723/2079 Node 1724/2079 Node 1725/2079 Node 1726/2079 Node 1727/2079 Node 1728/2079 Node 1729/2079 Node 1730/2079 Node 1731/2079 Node 1732/2079 Node 1733/2079 Node 1734/2079 Node 1735/2079 Node 1736/2079 Node 1737/2079 Node 1738/2079 Node 1739/2079 Node 1740/2079 Node 1741/2079 Node 1742/2079 Node 1743/2079 Node 1744/2079 Node 1745/2079 Node 1746/2079 Node 1747/2079 Node 1748/2079 Node 1749/2079 Node 1750/2079 Node 1751/2079 Node 1752/2079 Node 1753/2079 Node 1754/2079 Node 1755/2079 Node 1756/2079 Node 1757/2079 Node 1758/2079 Node 1759/2079 Node 1760/2079 Node 1761/2079 Node 1762/2079 Node 1763/2079 Node 1764/2079 Node 1765/2079 Node 1766/2079 Node 1767/2079 Node 1768/2079 Node 1769/2079 Node 1770/2079 Node 1771/2079 Node 1772/2079 Node 1773/2079 Node 1774/2079 Node 1775/2079 Node 1776/2079 Node 1777/2079 Node 1778/2079 Node 1779/2079 Node 1780/2079 Node 1781/2079 Node 1782/2079 Node 1783/2079 Node 1784/2079 Node 1785/2079 Node 1786/2079 Node 1787/2079 Node 1788/2079 Node 1789/2079 Node 1790/2079 Node 1791/2079 Node 1792/2079 Node 1793/2079 Node 1794/2079 Node 1795/2079 Node 1796/2079 Node 1797/2079 Node 1798/2079 Node 1799/2079 Node 1800/2079 Node 1801/2079 Node 1802/2079 Node 1803/2079 Node 1804/2079 Node 1805/2079 Node 1806/2079 Node 1807/2079 Node 1808/2079 Node 1809/2079 Node 1810/2079 Node 1811/2079 Node 1812/2079 Node 1813/2079 Node 1814/2079 Node 1815/2079 Node 1816/2079 Node 1817/2079 Node 1818/2079 Node 1819/2079 Node 1820/2079 Node 1821/2079 Node 1822/2079 Node 1823/2079 Node 1824/2079 Node 1825/2079 Node 1826/2079 Node 1827/2079 Node 1828/2079 Node 1829/2079 Node 1830/2079 Node 1831/2079 Node 1832/2079 Node 1833/2079 Node 1834/2079 Node 1835/2079 Node 1836/2079 Node 1837/2079 Node 1838/2079 Node 1839/2079 Node 1840/2079 Node 1841/2079 Node 1842/2079 Node 1843/2079 Node 1844/2079 Node 1845/2079 Node 1846/2079 Node 1847/2079 Node 1848/2079 Node 1849/2079 Node 1850/2079 Node 1851/2079 Node 1852/2079 Node 1853/2079 Node 1854/2079 Node 1855/2079 Node 1856/2079 Node 1857/2079 Node 1858/2079 Node 1859/2079 Node 1860/2079 Node 1861/2079 Node 1862/2079 Node 1863/2079 Node 1864/2079 Node 1865/2079 Node 1866/2079 Node 1867/2079 Node 1868/2079 Node 1869/2079 Node 1870/2079 Node 1871/2079 Node 1872/2079 Node 1873/2079 Node 1874/2079 Node 1875/2079 Node 1876/2079 Node 1877/2079 Node 1878/2079 Node 1879/2079 Node 1880/2079 Node 1881/2079 Node 1882/2079 Node 1883/2079 Node 1884/2079 Node 1885/2079 Node 1886/2079 Node 1887/2079 Node 1888/2079 Node 1889/2079 Node 1890/2079 Node 1891/2079 Node 1892/2079 Node 1893/2079 Node 1894/2079 Node 1895/2079 Node 1896/2079 Node 1897/2079 Node 1898/2079 Node 1899/2079 Node 1900/2079 Node 1901/2079 Node 1902/2079 Node 1903/2079 Node 1904/2079 Node 1905/2079 Node 1906/2079 Node 1907/2079 Node 1908/2079 Node 1909/2079 Node 1910/2079 Node 1911/2079 Node 1912/2079 Node 1913/2079 Node 1914/2079 Node 1915/2079 Node 1916/2079 Node 1917/2079 Node 1918/2079 Node 1919/2079 Node 1920/2079 Node 1921/2079 Node 1922/2079 Node 1923/2079 Node 1924/2079 Node 1925/2079 Node 1926/2079 Node 1927/2079 Node 1928/2079 Node 1929/2079 Node 1930/2079 Node 1931/2079 Node 1932/2079 Node 1933/2079 Node 1934/2079 Node 1935/2079 Node 1936/2079 Node 1937/2079 Node 1938/2079 Node 1939/2079 Node 1940/2079 Node 1941/2079 Node 1942/2079 Node 1943/2079 Node 1944/2079 Node 1945/2079 Node 1946/2079 Node 1947/2079 Node 1948/2079 Node 1949/2079 Node 1950/2079 Node 1951/2079 Node 1952/2079 Node 1953/2079 Node 1954/2079 Node 1955/2079 Node 1956/2079 Node 1957/2079 Node 1958/2079 Node 1959/2079 Node 1960/2079 Node 1961/2079 Node 1962/2079 Node 1963/2079 Node 1964/2079 Node 1965/2079 Node 1966/2079 Node 1967/2079 Node 1968/2079 Node 1969/2079 Node 1970/2079 Node 1971/2079 Node 1972/2079 Node 1973/2079 Node 1974/2079 Node 1975/2079 Node 1976/2079 Node 1977/2079 Node 1978/2079 Node 1979/2079 Node 1980/2079 Node 1981/2079 Node 1982/2079 Node 1983/2079 Node 1984/2079 Node 1985/2079 Node 1986/2079 Node 1987/2079 Node 1988/2079 Node 1989/2079 Node 1990/2079 Node 1991/2079 Node 1992/2079 Node 1993/2079 Node 1994/2079 Node 1995/2079 Node 1996/2079 Node 1997/2079 Node 1998/2079 Node 1999/2079 Node 2000/2079 Node 2001/2079 Node 2002/2079 Node 2003/2079 Node 2004/2079 Node 2005/2079 Node 2006/2079 Node 2007/2079 Node 2008/2079 Node 2009/2079 Node 2010/2079 Node 2011/2079 Node 2012/2079 Node 2013/2079 Node 2014/2079 Node 2015/2079 Node 2016/2079 Node 2017/2079 Node 2018/2079 Node 2019/2079 Node 2020/2079 Node 2021/2079 Node 2022/2079 Node 2023/2079 Node 2024/2079 Node 2025/2079 Node 2026/2079 Node 2027/2079 Node 2028/2079 Node 2029/2079 Node 2030/2079 Node 2031/2079 Node 2032/2079 Node 2033/2079 Node 2034/2079 Node 2035/2079 Node 2036/2079 Node 2037/2079 Node 2038/2079 Node 2039/2079 Node 2040/2079 Node 2041/2079 Node 2042/2079 Node 2043/2079 Node 2044/2079 Node 2045/2079 Node 2046/2079 Node 2047/2079 Node 2048/2079 Node 2049/2079 Node 2050/2079 Node 2051/2079 Node 2052/2079 Node 2053/2079 Node 2054/2079 Node 2055/2079 Node 2056/2079 Node 2057/2079 Node 2058/2079 Node 2059/2079 Node 2060/2079 Node 2061/2079 Node 2062/2079 Node 2063/2079 Node 2064/2079 Node 2065/2079 Node 2066/2079 Node 2067/2079 Node 2068/2079 Node 2069/2079 Node 2070/2079 Node 2071/2079 Node 2072/2079 Node 2073/2079 Node 2074/2079 Node 2075/2079 Node 2076/2079 Node 2077/2079 Node 2078/2079 Traceback (most recent call last):
+  File "graph_influence.py", line 117, in <module>
+    initial_population = create_initial_population(G, args, prng, nodes)
+  File "graph_influence.py", line 29, in create_initial_population
+    prng, nodes=nodes)
+  File "/home/s2878747/Influence-Maximization/src/smart_initialization.py", line 54, in degree_random
+    new_node = prng.choices(nodes_, probs)[0]
+  File "/usr/lib/python3.6/random.py", line 362, in choices
+    total = cum_weights[-1]
+IndexError: list index out of range
