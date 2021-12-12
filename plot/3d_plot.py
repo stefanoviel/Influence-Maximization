@@ -27,11 +27,11 @@ def plot(x2,y2,z2):
     
     ax2.scatter(y2,x2)
     ax2.yaxis.set_ticks(np.arange(0,max(x2), 0.5))
-    ax2.xaxis.set_ticks(np.arange(0, max(y2)+1, 1))
+    ax2.xaxis.set_ticks(np.arange(0, 20, 1))
     
     ax2.set_ylabel("Nodes")
     ax3.scatter(z2,y2)
-    ax3.xaxis.set_ticks(np.arange(0,max(z2), 5))
+    ax3.xaxis.set_ticks(np.arange(0,100, 5))
     ax3.yaxis.set_ticks(np.arange(0, max(y2)+2, 1))
     ax3.set_ylabel("Nodes")
 
@@ -45,7 +45,7 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "graph_SBM_small_TRUE-4-k25-p0.05-IC-degree-pop.csv"
+    filename = "prova_4_FINAL.csv"
     graph = "scale_graphs/graph_SBM_small.txt_TRUE-4.txt"
 
     G = read_graph(graph)
@@ -69,7 +69,8 @@ if __name__ == '__main__':
         x[i] = (x[i]/N) * 100
     
     plot(x,y,z)
-    filename = "graph_SBM_small_TRUE-2-k50-p0.05-IC-degree-pop.csv"  
+
+    filename = "prova_2_FINAL.csv"
     graph = "scale_graphs/graph_SBM_small.txt_TRUE-2.txt"
 
     G = read_graph(graph)
@@ -95,8 +96,8 @@ if __name__ == '__main__':
 
     plot(x0,y0,z0)
 
-    filename = "facebook_combined_TRUE-4-k25-p0-WC-degree.csv" 
-    graph = "scale_graphs/lastf_asia.txt_True-1.33.txt"
+    filename = "facebook_combined_TRUE-2-k50-p0.05-IC-degree-pop.csv"
+    graph = "scale_graphs/facebook_combined.txt_TRUE-2.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -147,16 +148,54 @@ if __name__ == '__main__':
 
     plot(x2,y2,z2)
 
-    #plt.scatter(z,x,color="green",label="25%")
+    #plt.scatter(z,x,color="green",label="scale pop/offspring")
+    #plt.scatter(z0,x0,color="blue", label="original pop/offspring")
+    plt.scatter(z,x,color="green",label="25%")
     plt.scatter(z0,x0,color="blue", label="50%")
     #plt.scatter(z1,x1,color="orange",label="75%")
     plt.scatter(z2,x2,color="red",label="100%")
-    plt.title('Facebook LT model')
+    plt.title('SBM WC model')
     plt.xlabel('% Influenced Nodes')
     plt.ylabel('% Nodes as seed set')
     plt.legend()
     plt.xlim(0,100)
     plt.show()
+    plt.cla()
+
+    #plt.scatter(y,x,color="green",label="scale pop/offspring")
+    #plt.scatter(z0,x0,color="blue", label="original pop/offspring")
+    plt.scatter(y,x,color="green",label="25%")
+    plt.scatter(y0,x0,color="blue", label="50%")
+    #plt.scatter(z1,x1,color="orange",label="75%")
+    plt.scatter(y2,x2,color="red",label="100%")
+    plt.title('SBM WC model')
+    plt.xlabel('Communities')
+    plt.ylabel('% Nodes as seed set')
+    plt.legend()
+    plt.show()
+    plt.cla()
+
+    plt.scatter(z,y,color="green",label="25%")
+    plt.scatter(z0,y0,color="blue", label="50%")
+    #plt.scatter(z1,x1,color="orange",label="75%")
+    plt.scatter(z2,y2,color="red",label="100%")
+    plt.title('SBM WC model')
+    plt.xlabel('% Influenced Nodes')
+    plt.ylabel('Communities')
+    plt.legend()
+    plt.xlim(0,100)
+    plt.show()
+    plt.cla()
+
+
+    fig = plt.figure()
+    ax = fig.add_subplot(projection='3d')
+    ax.scatter(x, y, z, marker='o', color="green")
+    ax.scatter(x0, y0, z0, marker='o', color="blue")
+    ax.scatter(x2, y2, z2, marker='o', color="red")
+    plt.show()
+    exit(0)
+
 
 
 
@@ -167,8 +206,10 @@ if __name__ == '__main__':
     ax = fig.add_subplot(111)
 
     data_plot = [time, time0, time2]
+
     bp = ax.boxplot(data_plot)
-    fig.suptitle('Time')
+    plt.xticks([1, 2, 3], ['25%', '50%', 'Original Graph'])
+    fig.suptitle('Time LT SBM')
     plt.show()
     plt.cla()
     plt.close()
@@ -176,14 +217,14 @@ if __name__ == '__main__':
 
     ## STD
     fig = plt.figure(1, figsize=(9, 6))
-
     # Create an axes instance
     ax = fig.add_subplot(111)
 
     # Create the boxplot
     data_plot = [std, std0, std2]
     bp = ax.boxplot(data_plot)
-    fig.suptitle('STD')
+    fig.suptitle('STD LT SBM')
+    plt.xticks([1, 2, 3], ['25%', '50%', 'Original Graph'])
 
     plt.show()
 

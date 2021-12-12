@@ -13,6 +13,10 @@ def generation_termination(population, num_generations, num_evaluations, args):
         plt.ylabel('Hypervolume')
         plt.savefig(args["population_file"]+'.png')
         plt.cla()
+        df = pd.DataFrame()
+        df["generation"] = x
+        df["hv"] = args["hypervolume"]
+        df.to_csv(args["population_file"] +"_hv_.csv", sep=",",index=False)
     return num_generations == args["generations_budget"]
 
 def no_improvement_termination(population, num_generations, num_evaluations, args):
@@ -46,12 +50,11 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     original_arch = copy.deepcopy(arch)
     for i in range(len(arch)):
         for j in range(len(arch[i])):
-            arch[i][j] = -  arch[i][j]
+            arch[i][j] = -float(arch[i][j])
     F =  np.array(arch)
-
     tot = args["graph"].number_of_nodes() * 1 * len(args["communities"])
 
-    t = 1/args["graph"].number_of_nodes()
+    t = 1/args["max_seed_nodes"]
 
     from pymoo.indicators.hv import Hypervolume
 
@@ -61,7 +64,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     hv = metric.do(F)
     current_best = hv/tot
 
-    #print("Hypervolume {0}-{1} Generations {2}".format(current_best,previous_best, num_generations))
+    print("Hypervolume {0}-{1} Generations {2}".format(current_best,hv, num_generations))
     args["hypervolume"].append(current_best)
     # one = []
     # two = []
@@ -106,6 +109,10 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
             plt.ylabel('Hypervolume')
             plt.savefig(args["population_file"]+'.png')
             plt.cla()
+            df = pd.DataFrame()
+            df["generation"] = x
+            df["hv"] = args["hypervolume"]
+            df.to_csv(args["population_file"] +"_hv_.csv", sep=",",index=False)
             return True
         else:
             args['generation_count'] += 1
