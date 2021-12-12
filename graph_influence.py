@@ -57,12 +57,14 @@ if __name__ == '__main__':
     #filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
     #gt = ["comm_ground_truth/graph_SBM_small_5.csv","comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_3.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.5.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
 
-    filenames = ["scale_graphs/facebook_combined.txt_TRUE-4.txt","scale_graphs/facebook_combined.txt_TRUE-2.txt","graphs/facebook_combined.txt"]
+    filenames = ["scale_graphs/graph_SBM_small.txt_TRUE-4.txt","scale_graphs/graph_SBM_small.txt_TRUE-2.txt","graphs/graph_SBM_small.txt"]
 
-    gt = ["comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined.csv"]
+    gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small.csv"]
     scale_k=[4,2,1]
-    models = ["IC",'WC',"LT"]
-    #models = ['IC']
+    models = ["IC"]
+
+
+    #models = ['WC']
     i = 0
     for item in filenames:
         file_gt = gt[i]
@@ -87,7 +89,7 @@ if __name__ == '__main__':
             for item in G:
                 mean.append(my_degree_function[item])
                 mean_degree.append(float(1/my_degree_function[item]))
-            t = "degree-pop"
+            t = "best_hv"
             if model == "IC":
                 p = 0.05
             elif model == "LT":
@@ -102,15 +104,15 @@ if __name__ == '__main__':
             args["p"] = p
             args["model"] = model
             args["k"] = k
-            args["filter_best_spread_nodes"] = False
-            args["search_space_size_max"] = 100
-            args["search_space_size_min"] = 10
+            args["filter_best_spread_nodes"] = True
+            args["search_space_size_max"] = 1e11
+            args["search_space_size_min"] = 1e9
             
             
             mean = int(np.mean(mean))  
             args["min_degree"] = mean + 1
             args["smart_initialization_percentage"] = 0.5
-            args["population_size"] = int(50 / scale)
+            args["population_size"] = 50 
             nodes = filter_nodes(G, args)
             initial_population = create_initial_population(G, args, prng, nodes)
 
@@ -129,13 +131,13 @@ if __name__ == '__main__':
             '''
 
                     
-            no_simulations = 50
-            max_generations = 200
+            no_simulations = 5
+            max_generations = 100
             #nodes' bound of seed sets
             #k=200
             #max_generations = 10 * k
-            population_size = int(50/scale)
-            offspring_size = int(50/scale)
+            population_size = 50
+            offspring_size = 50
 
 
             n_threads = 5
@@ -154,3 +156,4 @@ if __name__ == '__main__':
             
             exec_time = time.time() - start
             print(exec_time)
+            exit(0)
