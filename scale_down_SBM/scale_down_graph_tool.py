@@ -26,7 +26,7 @@ print(len(set(blocks)))
 state.draw(pos=g.vp.pos, output="football-sbm-fit.svg")
 exit(0)
 '''
-scale = 1.33
+scale = 4
 resolution = 2
 
 filename = "graphs/graph_SBM_small.txt"

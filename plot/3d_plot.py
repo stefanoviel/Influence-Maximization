@@ -97,8 +97,8 @@ if __name__ == '__main__':
 
     #plot(x0,y0,z0)
 
-    filename = "graph_SBM_small_TRUE-4-k25-p0.05-IC-best_hv.csv"
-    graph = "scale_graphs/facebook_combined.txt_TRUE-2.txt"
+    filename = "graph_SBM_small_TRUE-1.33-k75-p0.05-IC-best_hv.csv"
+    graph = "scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -151,7 +151,7 @@ if __name__ == '__main__':
 
     plt.scatter(z,x,color="green",label="25%")
     plt.scatter(z0,x0,color="blue", label="50%")
-    #plt.scatter(z1,x1,color="orange",label="75%")
+    plt.scatter(z1,x1,color="orange",label="75%")
     plt.scatter(z2,x2,color="red",label="100%")
     plt.title('SBM LT model')
     plt.xlabel('% Influenced Nodes')
@@ -193,6 +193,7 @@ if __name__ == '__main__':
     ax = fig.add_subplot(projection='3d')
     ax.scatter(x, y, z, marker='o', color="green")
     ax.scatter(x0, y0, z0, marker='o', color="blue")
+    ax.scatter(x1, y1, z1, marker='o', color="orange")
     ax.scatter(x2, y2, z2, marker='o', color="red")
     plt.show()
     exit(0)
