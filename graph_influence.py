@@ -130,7 +130,7 @@ if __name__ == '__main__':
 
                     
             no_simulations = 10
-            max_generations = 50
+            max_generations = 2 * k
             #nodes' bound of seed sets
             #k=200
             #max_generations = 10 * k
