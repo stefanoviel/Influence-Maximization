@@ -16,6 +16,9 @@ def generation_termination(population, num_generations, num_evaluations, args):
         df = pd.DataFrame()
         df["generation"] = x
         df["hv"] = args["hypervolume"]
+        df["influence-k"] = args["hv_influence_k"]
+        df["influence-comm"] = args["hv_influence_comm"]
+        df["k-comm"] = args["hv_k_comm"]
         df.to_csv(args["population_file"] +"_hv_.csv", sep=",",index=False)
     return num_generations == args["generations_budget"]
 
@@ -63,9 +66,63 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
                         zero_to_one=False)
     hv = metric.do(F)
     current_best = hv/tot
-
     print("Hypervolume {0}-{1} Generations {2}".format(current_best,hv, num_generations))
     args["hypervolume"].append(current_best)
+
+    # HV INFLUENCE - K
+    arch_2 = []
+    for i in range(len(original_arch)):
+        obj = []
+        for j in range(len(original_arch[i])):
+            if j != 2:
+                obj.append(-float(original_arch[i][j]))            
+        arch_2.append(obj)
+    metric = Hypervolume(ref_point= np.array([-1,-t]),
+                        norm_ref_point=False,
+                        zero_to_one=False)
+    F1 = np.array(arch_2)
+    tot_1 =args["graph"].number_of_nodes() * 1  
+    hv_1 = metric.do(F1)
+    b = hv_1/tot_1
+    args["hv_influence_k"].append(b)
+    print('INFLUENCE-K {0}'.format(b))
+    
+    # HV INFLUENCE - COMM
+    arch_2 = []
+    for i in range(len(original_arch)):
+        obj = []
+        for j in range(len(original_arch[i])):
+            if j != 1:
+                obj.append(-float(original_arch[i][j]))            
+        arch_2.append(obj)
+    metric = Hypervolume(ref_point= np.array([-1,-1]),
+                        norm_ref_point=False,
+                        zero_to_one=False)
+    F1 = np.array(arch_2)
+    tot_1 =args["graph"].number_of_nodes() * len(args["communities"])  
+    hv_1 = metric.do(F1)
+    b = hv_1/tot_1
+    args["hv_influence_comm"].append(b)
+    print('INFLUENCE-COMM {0}'.format(b))
+
+    #HV K - COMM
+    arch_2 = []
+    for i in range(len(original_arch)):
+        obj = []
+        for j in range(len(original_arch[i])):
+            if j != 0:
+                obj.append(-float(original_arch[i][j]))            
+        arch_2.append(obj)
+    metric = Hypervolume(ref_point= np.array([-t,-1]),
+                        norm_ref_point=False,
+                        zero_to_one=False)
+    F1 = np.array(arch_2)
+    tot_1 = 1 * len(args["communities"]) 
+    hv_1 = metric.do(F1)
+    b = hv_1/tot_1
+    args["hv_k_comm"].append(b)
+    print('K-COMM {0}'.format(b))
+
     # one = []
     # two = []
     # three = []
@@ -112,6 +169,10 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
             df = pd.DataFrame()
             df["generation"] = x
             df["hv"] = args["hypervolume"]
+            df["influence-k"] = args["hv_influence_k"]
+            df["influence-comm"] = args["hv_influence_comm"]
+            df["k-comm"] = args["hv_k_comm"]
+
             df.to_csv(args["population_file"] +"_hv_.csv", sep=",",index=False)
             return True
         else:

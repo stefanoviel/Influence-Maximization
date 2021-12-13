@@ -27,7 +27,7 @@ def plot(x2,y2,z2):
     
     ax2.scatter(y2,x2)
     ax2.yaxis.set_ticks(np.arange(0,max(x2), 0.5))
-    ax2.xaxis.set_ticks(np.arange(0, 20, 1))
+    ax2.xaxis.set_ticks(np.arange(0, 100, 10))
     
     ax2.set_ylabel("Nodes")
     ax3.scatter(z2,y2)
@@ -67,8 +67,9 @@ if __name__ == '__main__':
     for i in range(len(z)):
         z[i] = (z[i]/N) * 100
         x[i] = (x[i]/N) * 100
+        #y[i] = (y[i]/N) * 100
     
-    plot(x,y,z)
+    #plot(x,y,z)
 
     filename = "graph_SBM_small_TRUE-2-k50-p0-LT-best_hv.csv"
     graph = "scale_graphs/graph_SBM_small.txt_TRUE-2.txt"
@@ -92,9 +93,9 @@ if __name__ == '__main__':
     for i in range(len(z0)):
         z0[i] = (z0[i]/N) * 100
         x0[i] = (x0[i]/N) * 100
-    
+        #y0[i] = (y0[i]/N) * 100
 
-    plot(x0,y0,z0)
+    #plot(x0,y0,z0)
 
     filename = "graph_SBM_small_TRUE-4-k25-p0.05-IC-best_hv.csv"
     graph = "scale_graphs/facebook_combined.txt_TRUE-2.txt"
@@ -116,11 +117,11 @@ if __name__ == '__main__':
     for i in range(len(z1)):
         z1[i] = (z1[i]/N) * 100
         x1[i] = (x1[i]/N) * 100
-    
+        #y1[i] = (y1[i]/N) * 100
 
 
 
-    plot(x1,y1,z1)
+    #plot(x1,y1,z1)
 
     filename = "graph_SBM_small-k100-p0-LT-best_hv.csv"  
     graph = "graphs/graph_SBM_small.txt"
@@ -136,17 +137,17 @@ if __name__ == '__main__':
 
     df = pd.read_csv(filename, sep=",")
 
-    x2= df["n_nodes"]
-    y2 = df["communities"]
-    z2 = df["influence"]
+    x2= df["n_nodes"].to_list()
+    y2 = df["communities"].to_list()
+    z2 = df["influence"].to_list()
     time2= df["time"]
     std2 = df["std"] / N
     for i in range(len(z2)):
         z2[i] = (z2[i]/N) * 100
         x2[i] = (x2[i]/N) * 100
-    
+        #y2[i] = (y2[i]/N) * 100
 
-    plot(x2,y2,z2)
+    #plot(x2,y2,z2)
 
     plt.scatter(z,x,color="green",label="25%")
     plt.scatter(z0,x0,color="blue", label="50%")
@@ -191,6 +192,18 @@ if __name__ == '__main__':
     ax.scatter(x, y, z, marker='o', color="green")
     ax.scatter(x0, y0, z0, marker='o', color="blue")
     ax.scatter(x2, y2, z2, marker='o', color="red")
+    plt.show()
+    exit(0)
+    fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
+
+
+    from matplotlib import cm
+    fig = plt.figure()
+    ax = Axes3D(fig)
+    ax.plot_trisurf(x, y, z, color="green",linewidth=0.1,shade=True)
+    ax.plot_trisurf(x0, y0, z0, color="blue",linewidth=0.1,shade=True)
+    ax.plot_trisurf(x2, y2, z2, color="red",linewidth=0.1,shade=True)
+
     plt.show()
     exit(0)
 
