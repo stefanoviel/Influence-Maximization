@@ -4,6 +4,7 @@ from pymoo.factory import get_performance_indicator
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+
 def generation_termination(population, num_generations, num_evaluations, args):
     if num_generations == args["generations_budget"]:
         x = [x for x in range(1,len(args["hypervolume"])+1)]
