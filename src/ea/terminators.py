@@ -58,10 +58,13 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     for i in range(len(arch)):
         for j in range(len(arch[i])):
             arch[i][j] = -float(arch[i][j])
+            if j == 1:
+                arch[i][j] = - (args["graph"].number_of_nodes() - float(1/arch[i][j]))
     F =  np.array(arch)
-    tot = args["graph"].number_of_nodes() * 1 * len(args["communities"])
+    tot = args["graph"].number_of_nodes() * args["graph"].number_of_nodes() * len(args["communities"])
 
-    t = 1/args["max_seed_nodes"]
+    #t = 1/args["max_seed_nodes"]
+    t = args["graph"].number_of_nodes() - args["max_seed_nodes"]
 
     from pymoo.indicators.hv import Hypervolume
 
@@ -78,14 +81,17 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     for i in range(len(original_arch)):
         obj = []
         for j in range(len(original_arch[i])):
-            if j != 2:
-                obj.append(-float(original_arch[i][j]))            
+            if j == 1:
+                obj.append(-(args["graph"].number_of_nodes() - float(1/original_arch[i][j])))
+            elif j != 2:
+                obj.append(-float(original_arch[i][j])) 
+            
         arch_2.append(obj)
     metric = Hypervolume(ref_point= np.array([-1,-t]),
                         norm_ref_point=False,
                         zero_to_one=False)
     F1 = np.array(arch_2)
-    tot_1 =args["graph"].number_of_nodes() * 1  
+    tot_1 =args["graph"].number_of_nodes() * args["graph"].number_of_nodes()
     hv_1 = metric.do(F1)
     b = hv_1/tot_1
     args["hv_influence_k"].append(b)
@@ -114,14 +120,16 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     for i in range(len(original_arch)):
         obj = []
         for j in range(len(original_arch[i])):
-            if j != 0:
+            if j == 1:
+                obj.append(-(args["graph"].number_of_nodes() - float(1/original_arch[i][j])))
+            elif j != 0:
                 obj.append(-float(original_arch[i][j]))            
         arch_2.append(obj)
     metric = Hypervolume(ref_point= np.array([-t,-1]),
                         norm_ref_point=False,
                         zero_to_one=False)
     F1 = np.array(arch_2)
-    tot_1 = 1 * len(args["communities"]) 
+    tot_1 = args["graph"].number_of_nodes() * len(args["communities"]) 
     hv_1 = metric.do(F1)
     b = hv_1/tot_1
     args["hv_k_comm"].append(b)
