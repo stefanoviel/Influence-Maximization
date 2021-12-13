@@ -16,9 +16,9 @@ def generation_termination(population, num_generations, num_evaluations, args):
         df = pd.DataFrame()
         df["generation"] = x
         df["hv"] = args["hypervolume"]
-        df["influence-k"] = args["hv_influence_k"]
-        df["influence-comm"] = args["hv_influence_comm"]
-        df["k-comm"] = args["hv_k_comm"]
+        df["influence_k"] = args["hv_influence_k"]
+        df["influence_comm"] = args["hv_influence_comm"]
+        df["k_comm"] = args["hv_k_comm"]
         df.to_csv(args["population_file"] +"_hv_.csv", sep=",",index=False)
     return num_generations == args["generations_budget"]
 
@@ -45,8 +45,11 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     previous_best = args.setdefault('previous_best', None)
     try:
         print('Max Generations without improvements{0}, now {1}'.format(max_generations,args["generation_count"]))
+        previous_best = args["hypervolume"][-1]
+
     except:
         pass
+
 
     arch = [list(x.fitness) for x in args["_ec"].archive] 
     import copy
@@ -123,6 +126,9 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     args["hv_k_comm"].append(b)
     print('K-COMM {0}'.format(b))
 
+
+    if previous_best != None:
+        print('Current Best - Previous Best {0}'.format((current_best-previous_best)))
     # one = []
     # two = []
     # three = []
@@ -159,7 +165,6 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
         return False
     else:
         if args['generation_count'] >= max_generations:
-            #plt.cla()
             x = [x for x in range(1,len(args["hypervolume"])+1)]
             plt.plot(x, args["hypervolume"])
             plt.xlabel('Generation')
@@ -169,10 +174,9 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
             df = pd.DataFrame()
             df["generation"] = x
             df["hv"] = args["hypervolume"]
-            df["influence-k"] = args["hv_influence_k"]
-            df["influence-comm"] = args["hv_influence_comm"]
-            df["k-comm"] = args["hv_k_comm"]
-
+            df["influence_k"] = args["hv_influence_k"]
+            df["influence_comm"] = args["hv_influence_comm"]
+            df["k_comm"] = args["hv_k_comm"]
             df.to_csv(args["population_file"] +"_hv_.csv", sep=",",index=False)
             return True
         else:

@@ -45,7 +45,7 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "graph_SBM_small_TRUE-4-k25-p0-LT-best_hv.csv"
+    filename = "graph_SBM_small_TRUE-4-k25-p0.1-IC-best_hv.csv"
     graph = "scale_graphs/graph_SBM_small.txt_TRUE-4.txt"
 
     G = read_graph(graph)
@@ -71,7 +71,7 @@ if __name__ == '__main__':
     
     #plot(x,y,z)
 
-    filename = "graph_SBM_small_TRUE-2-k50-p0-LT-best_hv.csv"
+    filename = "graph_SBM_small_TRUE-2-k50-p0.1-IC-best_hv.csv"
     graph = "scale_graphs/graph_SBM_small.txt_TRUE-2.txt"
 
     G = read_graph(graph)
@@ -123,7 +123,7 @@ if __name__ == '__main__':
 
     #plot(x1,y1,z1)
 
-    filename = "graph_SBM_small-k100-p0-LT-best_hv.csv"  
+    filename = "graph_SBM_small-k100-p0.1-IC-best_hv.csv"  
     graph = "graphs/graph_SBM_small.txt"
 
     G = read_graph(graph)
