@@ -57,10 +57,10 @@ if __name__ == '__main__':
     #filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
     #gt = ["comm_ground_truth/graph_SBM_small_5.csv","comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_3.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.5.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
 
-    filenames = ["scale_graphs/facebook_combined.txt_TRUE-2.txt"]
+    filenames = ["scale_graphs/facebook_combined.txt_TRUE-4.txt","scale_graphs/facebook_combined.txt_TRUE-4.txt","graphs/facebook_combined.txt"]
 
-    gt = ["comm_ground_truth/facebook_combined_2.csv"]
-    scale_k=[2]
+    gt = ["comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined.csv"]
+    scale_k=[4,2,1]
     models = ["IC"]
 
 
@@ -112,7 +112,6 @@ if __name__ == '__main__':
             args["smart_initialization_percentage"] = 0.5
             args["population_size"] = 50 
             nodes = filter_nodes(G, args)
-
             initial_population = create_initial_population(G, args, prng, nodes)
 
             communities =[]
@@ -131,7 +130,7 @@ if __name__ == '__main__':
 
                     
             no_simulations = 10
-            max_generations = 100
+            max_generations = 50
             #nodes' bound of seed sets
             #k=200
             #max_generations = 10 * k
