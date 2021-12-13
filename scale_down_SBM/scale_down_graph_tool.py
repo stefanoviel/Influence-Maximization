@@ -26,10 +26,10 @@ print(len(set(blocks)))
 state.draw(pos=g.vp.pos, output="football-sbm-fit.svg")
 exit(0)
 '''
-scale = 1
-resolution = 1
+scale = 1.33
+resolution = 2
 
-filename = "1912.txt"
+filename = "graphs/graph_SBM_small.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
