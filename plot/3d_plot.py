@@ -122,7 +122,7 @@ if __name__ == '__main__':
 
     plot(x1,y1,z1)
 
-    filename = "graph_SBM_small-k100-p0-WC-best_hv.csv"  
+    filename = "graph_SBM_small-k100-p0-LT-best_hv.csv"  
     graph = "graphs/graph_SBM_small.txt"
 
     G = read_graph(graph)
@@ -148,8 +148,6 @@ if __name__ == '__main__':
 
     plot(x2,y2,z2)
 
-    #plt.scatter(z,x,color="green",label="scale pop/offspring")
-    #plt.scatter(z0,x0,color="blue", label="original pop/offspring")
     plt.scatter(z,x,color="green",label="25%")
     plt.scatter(z0,x0,color="blue", label="50%")
     #plt.scatter(z1,x1,color="orange",label="75%")

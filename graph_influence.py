@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
     gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small.csv"]
     scale_k=[4,2,1]
-    models = ["LT"]
+    models = ["IC"]
 
 
     #models = ['WC']
@@ -91,7 +91,7 @@ if __name__ == '__main__':
                 mean_degree.append(float(1/my_degree_function[item]))
             t = "best_hv"
             if model == "IC":
-                p = 0.05
+                p = 0.1
             elif model == "LT":
                 p = 0
             elif model == "IC_1":
