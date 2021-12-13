@@ -62,7 +62,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
 
     t = (1/args["max_seed_nodes"]) 
     print(t, (1-t))
-    tot = args["graph"].number_of_nodes() * (1 -t) * len(args["communities"])
+    tot = args["graph"].number_of_nodes() * (1 - (1-t)) * len(args["communities"])
 
     from pymoo.indicators.hv import Hypervolume
 
@@ -85,7 +85,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
                         norm_ref_point=False,
                         zero_to_one=False)
     F1 = np.array(arch_2)
-    tot_1 =args["graph"].number_of_nodes() * (1 -t)
+    tot_1 =args["graph"].number_of_nodes() * (1 - (1-t))
     hv_1 = metric.do(F1)
     b = hv_1/tot_1
     args["hv_influence_k"].append(b)
@@ -121,7 +121,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
                         norm_ref_point=False,
                         zero_to_one=False)
     F1 = np.array(arch_2)
-    tot_1 = (1 -t) * len(args["communities"]) 
+    tot_1 = (1-(1-t)) * len(args["communities"]) 
     hv_1 = metric.do(F1)
     b = hv_1/tot_1
     args["hv_k_comm"].append(b)
