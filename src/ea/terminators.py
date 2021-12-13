@@ -65,6 +65,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
 
     #t = 1/args["max_seed_nodes"]
     t = args["graph"].number_of_nodes() - args["max_seed_nodes"]
+    tot = args["graph"].number_of_nodes() * t * len(args["communities"])
 
     from pymoo.indicators.hv import Hypervolume
 
