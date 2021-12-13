@@ -12,10 +12,10 @@ from src.load import read_graph
 import pandas as pd
 import os
 #from graph_tool.all import *
-scale = 2
-resolution = 10
+scale = 1.33
+resolution = 2
 
-filename = "graphs/facebook_combined.txt"
+filename = "graphs/graph_SBM_small.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()

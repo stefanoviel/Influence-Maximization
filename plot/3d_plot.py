@@ -45,8 +45,8 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "facebook_combined_TRUE-4-k25-p0.05-IC-best_hv.csv"
-    graph = "scale_graphs/facebook_combined.txt_TRUE-4.txt"
+    filename = "graph_SBM_small_TRUE-4-k25-p0.05-IC-best_hv.csv"
+    graph = "scale_graphs/graph_SBM_small.txt_TRUE-4.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -71,8 +71,8 @@ if __name__ == '__main__':
     
     #plot(x,y,z)
 
-    filename = "facebook_combined_TRUE-2-k50-p0.05-IC-best_hv.csv"
-    graph = "scale_graphs/facebook_combined.txt_TRUE-2.txt"
+    filename = "graph_SBM_small_TRUE-2-k50-p0.05-IC-best_hv.csv"
+    graph = "scale_graphs/graph_SBM_small.txt_TRUE-2.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -123,8 +123,8 @@ if __name__ == '__main__':
 
     #plot(x1,y1,z1)
 
-    filename = "facebook_combined-k100-p0.05-IC-best_hv.csv"  
-    graph = "graphs/facebook_combined.txt"
+    filename = "graph_SBM_small-k100-p0.05-IC-best_hv.csv"  
+    graph = "graphs/graph_SBM_small.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -160,6 +160,7 @@ if __name__ == '__main__':
     plt.xlim(0,100)
     plt.show()
     plt.cla()
+
 
 
     #plt.scatter(y,x,color="green",label="scale pop/offspring")
