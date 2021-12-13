@@ -99,7 +99,10 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
         mutation_operator=ea_global_random_mutation,
         communities = communities,
         graph = G,
-        hypervolume = []
+        hypervolume = [],
+        hv_influence_k = [],
+        hv_influence_comm = [],
+        hv_k_comm = []
     )
 
     # extract seed sets from the final Pareto front/archive
