@@ -62,7 +62,7 @@ if __name__ == '__main__':
     gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
     #scale_k=[4,2,1.33,1]
     scale_k = [4,2,1.33,1]
-    models = ["IC"]
+    models = ["WC"]
 
 
     #models = ['WC']

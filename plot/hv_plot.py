@@ -5,11 +5,11 @@ sys.path.insert(0, '')
 from src.load import read_graph
 
 
-df = pd.read_csv("graph_SBM_small-k100-p0.1-IC-best_hv_hv_.csv",sep=",")
-df1 = pd.read_csv("graph_SBM_small_TRUE-1.33-k75-p0.1-IC-best_hv_hv_.csv",sep=",")
+df = pd.read_csv("graph_SBM_small-k100-p0.05-IC-0.01_hv_.csv",sep=",")
+df1 = pd.read_csv("graph_SBM_small_TRUE-1.33-k75-p0.05-IC-0.013333333333333334_hv_.csv",sep=",")
 
-df2 = pd.read_csv("graph_SBM_small_TRUE-2-k50-p0.1-IC-best_hv_hv_.csv",sep=",")
-df4= pd.read_csv("graph_SBM_small_TRUE-4-k25-p0.1-IC-best_hv_hv_.csv",sep=",")
+df2 = pd.read_csv("graph_SBM_small_TRUE-2-k50-p0.05-IC-0.02_hv_.csv",sep=",")
+df4= pd.read_csv("graph_SBM_small_TRUE-4-k25-p0.05-IC-0.04_hv_.csv",sep=",")
 
 
 plt.plot(df.generation, df.hv, color="red", label="0riginal")
