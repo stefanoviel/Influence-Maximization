@@ -9750,3 +9750,30 @@ OBSERVERRRR
  OBSERVERRRR 
 
 7392.072195291519
+Traceback (most recent call last):
+  File "graph_influence.py", line 18, in <module>
+    from src.smart_initialization import max_centrality_individual, Community_initialization, degree_random
+  File "/home/s2878747/Influence-Maximization/src/smart_initialization.py", line 4, in <module>
+    from sklearn.cluster import SpectralClustering
+  File "/home/s2878747/.local/lib/python3.6/site-packages/sklearn/cluster/__init__.py", line 6, in <module>
+    from ._spectral import spectral_clustering, SpectralClustering
+  File "/home/s2878747/.local/lib/python3.6/site-packages/sklearn/cluster/_spectral.py", line 17, in <module>
+    from ..neighbors import kneighbors_graph, NearestNeighbors
+  File "/home/s2878747/.local/lib/python3.6/site-packages/sklearn/neighbors/__init__.py", line 17, in <module>
+    from ._nca import NeighborhoodComponentsAnalysis
+  File "/home/s2878747/.local/lib/python3.6/site-packages/sklearn/neighbors/_nca.py", line 22, in <module>
+    from ..decomposition import PCA
+  File "/home/s2878747/.local/lib/python3.6/site-packages/sklearn/decomposition/__init__.py", line 12, in <module>
+    from ._sparse_pca import SparsePCA, MiniBatchSparsePCA
+  File "/home/s2878747/.local/lib/python3.6/site-packages/sklearn/decomposition/_sparse_pca.py", line 10, in <module>
+    from ..linear_model import ridge_regression
+  File "/home/s2878747/.local/lib/python3.6/site-packages/sklearn/linear_model/__init__.py", line 19, in <module>
+    from ._huber import HuberRegressor
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 758, in get_code
+  File "<frozen importlib._bootstrap_external>", line 842, in path_stats
+  File "<frozen importlib._bootstrap_external>", line 82, in _path_stat
+KeyboardInterrupt
