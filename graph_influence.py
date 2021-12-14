@@ -129,7 +129,7 @@ if __name__ == '__main__':
 
 
             no_simulations = 50
-            max_generations = 2 * k
+            max_generations = 50
             #max_generations = 50
             #nodes' bound of seed sets
             #k=200
@@ -142,7 +142,7 @@ if __name__ == '__main__':
             
 
 
-            N_initial_population = 10
+            N_initial_population = 50 * 1/scale 
             populations = []
             hv_value = []
             for ii in range(N_initial_population):
