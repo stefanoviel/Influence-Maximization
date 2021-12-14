@@ -54,12 +54,12 @@ def filter_nodes(G, args):
 
 if __name__ == '__main__':
     
-    gt = ["comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_1.33.csv","comm_ground_truth/facebook_combined.csv"]
-    filenames = ["scale_graphs/facebook_combined.txt_TRUE-4.txt","scale_graphs/facebook_combined.txt_TRUE-2.txt","scale_graphs/facebook_combined.txt_TRUE-1.33.txt","graphs/facebook_combined.txt"]
+    #gt = ["comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_1.33.csv","comm_ground_truth/facebook_combined.csv"]
+    #filenames = ["scale_graphs/facebook_combined.txt_TRUE-4.txt","scale_graphs/facebook_combined.txt_TRUE-2.txt","scale_graphs/facebook_combined.txt_TRUE-1.33.txt","graphs/facebook_combined.txt"]
 
-    #filenames = ["scale_graphs/graph_SBM_small.txt_TRUE-4.txt","scale_graphs/graph_SBM_small.txt_TRUE-2.txt","scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt","graphs/graph_SBM_small.txt"]
+    filenames = ["scale_graphs/graph_SBM_small.txt_TRUE-4.txt","scale_graphs/graph_SBM_small.txt_TRUE-2.txt","scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt","graphs/graph_SBM_small.txt"]
 
-    #gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
+    gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
     #scale_k=[4,2,1.33,1]
     scale_k = [4,2,1.33,1]
     models = ["IC"]
@@ -112,11 +112,8 @@ if __name__ == '__main__':
             args["min_degree"] = mean + 1
             args["smart_initialization_percentage"] = 0.5
             args["population_size"] = 50 
-            nodes = filter_nodes(G, args)
-            initial_population = create_initial_population(G, args, prng, nodes)
 
             communities =[]
-
             df = pd.read_csv(file_gt,sep=",")
             print(df)
             groups = df.groupby('comm')['node'].apply(list)
@@ -128,11 +125,12 @@ if __name__ == '__main__':
             model: type of propagation model either IC (Indipendent Cascade) or WC(Weighted Cascade)
             no_simulations: number of simulations of the selected propagation model 
             '''
+            nodes = filter_nodes(G, args)
 
-                    
+
             no_simulations = 50
-            #max_generations = 2 * k
-            max_generations = 50
+            max_generations = 2 * k
+            #max_generations = 50
             #nodes' bound of seed sets
             #k=200
             #max_generations = 10 * k
@@ -142,6 +140,48 @@ if __name__ == '__main__':
 
             n_threads = 5
             
+
+
+            N_initial_population = 10
+            populations = []
+            hv_value = []
+            for ii in range(N_initial_population):
+                initial_population = create_initial_population(G, args, prng, nodes)
+                populations.append(initial_population)
+                fitness = []               
+                for iii in range(len(initial_population)):
+                    A_set = set(initial_population[iii])
+                    influence_mean, _, comm = MonteCarlo_simulation(G, A_set, p, no_simulations, model, communities, random_generator=None)
+                    t = []
+                    t.append(influence_mean)
+                    t.append(float(1.0 / len(A_set)))
+                    t.append(comm)
+                    fitness.append(t)
+                for z in range(len(fitness)):
+                    for j in range(len(fitness[z])):
+                            fitness[z][j] = -float(fitness[z][j])
+                
+                F =  np.array(fitness)
+
+                t = (1/args["k"]) 
+                tot = G.number_of_nodes() * (1 - t) * len(communities)
+
+                from pymoo.indicators.hv import Hypervolume
+
+                metric = Hypervolume(ref_point= np.array([-1,-t,-1]),
+                                    norm_ref_point=False,
+                                    zero_to_one=False)
+                hv = metric.do(F)
+                print(hv/tot)
+                hv_value.append(hv/tot)
+
+            max_value = max(hv_value)
+
+            max_index = hv_value.index(max_value)
+
+            initial_population = populations[max_index]
+
+
             #Print Graph's information and properties
             logging.info(nx.classes.function.info(G))
             
