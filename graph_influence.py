@@ -128,7 +128,7 @@ if __name__ == '__main__':
             nodes = filter_nodes(G, args)
 
 
-            no_simulations = 50
+            no_simulations = 10
             max_generations = 50
             #max_generations = 50
             #nodes' bound of seed sets
@@ -142,7 +142,7 @@ if __name__ == '__main__':
             
 
 
-            N_initial_population = 50 * 1/scale 
+            N_initial_population = int(50 * 1/scale) 
             populations = []
             hv_value = []
             for ii in range(N_initial_population):
@@ -152,11 +152,11 @@ if __name__ == '__main__':
                 for iii in range(len(initial_population)):
                     A_set = set(initial_population[iii])
                     influence_mean, _, comm = MonteCarlo_simulation(G, A_set, p, no_simulations, model, communities, random_generator=None)
-                    t = []
-                    t.append(influence_mean)
-                    t.append(float(1.0 / len(A_set)))
-                    t.append(comm)
-                    fitness.append(t)
+                    s = []
+                    s.append(influence_mean)
+                    s.append(float(1.0 / len(A_set)))
+                    s.append(comm)
+                    fitness.append(s)
                 for z in range(len(fitness)):
                     for j in range(len(fitness[z])):
                             fitness[z][j] = -float(fitness[z][j])
