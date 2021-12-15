@@ -45,8 +45,8 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "facebook_combined_TRUE-4-k25-p0-WC-0.04.csv"
-    graph = "scale_graphs/facebook_combined.txt_TRUE-4.txt"
+    filename = "graph_SBM_small_TRUE-4-k12-p0.05-IC-prova.csv"
+    graph = "scale_graphs/graph_SBM_small.txt_TRUE-4.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -70,8 +70,8 @@ if __name__ == '__main__':
     
     #plot(x,y,z)
 
-    filename = "facebook_combined_TRUE-2-k50-p0-WC-0.02.csv"
-    graph = "scale_graphs/facebook_combined.txt_TRUE-2.txt"
+    filename = "graph_SBM_small_TRUE-2-k25-p0.05-IC-prova.csv"
+    graph = "scale_graphs/graph_SBM_small.txt_TRUE-2.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -95,8 +95,8 @@ if __name__ == '__main__':
 
     #plot(x0,y0,z0)
 
-    filename = "facebook_combined_TRUE-1.33-k75-p0-WC-0.013333333333333334.csv"
-    graph = "scale_graphs/facebook_combined.txt_TRUE-1.33.txt"
+    filename = "graph_SBM_small_TRUE-1.33-k38-p0.05-IC-prova.csv"
+    graph = "scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -123,8 +123,8 @@ if __name__ == '__main__':
 
     #plot(x1,y1,z1)
 
-    filename = "facebook_combined-k100-p0-WC-0.01.csv"  
-    graph = "graphs/facebook_combined.txt"
+    filename = "graph_SBM_small-k51-p0.05-IC-prova.csv"  
+    graph = "graphs/graph_SBM_small.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
