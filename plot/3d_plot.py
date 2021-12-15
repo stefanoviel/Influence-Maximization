@@ -45,8 +45,8 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "graph_SBM_small_TRUE-4-k25-p0.05-IC-0.04.csv"
-    graph = "scale_graphs/graph_SBM_small.txt_TRUE-4.txt"
+    filename = "facebook_combined_TRUE-4-k25-p0-WC-0.04.csv"
+    graph = "scale_graphs/facebook_combined.txt_TRUE-4.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -62,8 +62,7 @@ if __name__ == '__main__':
     x=  df["n_nodes"]
     y = df["communities"]
     z = df["influence"]
-    time = df["time"]
-    std = df["std"] / N
+    time = df["time"] / (1/np.mean(x))
     for i in range(len(z)):
         z[i] = (z[i]/N) * 100
         x[i] = (x[i]/N) * 100
@@ -71,8 +70,8 @@ if __name__ == '__main__':
     
     #plot(x,y,z)
 
-    filename = "graph_SBM_small_TRUE-2-k50-p0.05-IC-0.02.csv"
-    graph = "scale_graphs/graph_SBM_small.txt_TRUE-2.txt"
+    filename = "facebook_combined_TRUE-2-k50-p0-WC-0.02.csv"
+    graph = "scale_graphs/facebook_combined.txt_TRUE-2.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -87,8 +86,7 @@ if __name__ == '__main__':
     x0= df["n_nodes"].to_list()
     y0 = df["communities"].to_list()
     z0 = df["influence"].to_list()
-    time0 = df["time"]
-    std0 = df["std"] / N 
+    time0 = df["time"]  / (1/np.mean(x0))
 
     for i in range(len(z0)):
         z0[i] = (z0[i]/N) * 100
@@ -97,8 +95,8 @@ if __name__ == '__main__':
 
     #plot(x0,y0,z0)
 
-    filename = "graph_SBM_small_TRUE-1.33-k75-p0.05-IC-0.013333333333333334.csv"
-    graph = "scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt"
+    filename = "facebook_combined_TRUE-1.33-k75-p0-WC-0.013333333333333334.csv"
+    graph = "scale_graphs/facebook_combined.txt_TRUE-1.33.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -113,7 +111,9 @@ if __name__ == '__main__':
     x1= df["n_nodes"]
     y1 = df["communities"]
     z1 = df["influence"]
-    time1 = df["time"]
+    time1 = df["time"]  /(1/np.mean(x1))
+
+
     for i in range(len(z1)):
         z1[i] = (z1[i]/N) * 100
         x1[i] = (x1[i]/N) * 100
@@ -123,8 +123,8 @@ if __name__ == '__main__':
 
     #plot(x1,y1,z1)
 
-    filename = "graph_SBM_small-k100-p0.05-IC-0.01.csv"  
-    graph = "graphs/graph_SBM_small.txt"
+    filename = "facebook_combined-k100-p0-WC-0.01.csv"  
+    graph = "graphs/facebook_combined.txt"
 
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -140,8 +140,9 @@ if __name__ == '__main__':
     x2= df["n_nodes"].to_list()
     y2 = df["communities"].to_list()
     z2 = df["influence"].to_list()
-    time2= df["time"]
-    std2 = df["std"] / N
+    time2= df["time"]  / (1/np.mean(x2))
+
+
     for i in range(len(z2)):
         z2[i] = (z2[i]/N) * 100
         x2[i] = (x2[i]/N) * 100
@@ -167,7 +168,7 @@ if __name__ == '__main__':
     #plt.scatter(z0,x0,color="blue", label="original pop/offspring")
     plt.scatter(y,x,color="green",label="25%")
     plt.scatter(y0,x0,color="blue", label="50%")
-    #plt.scatter(z1,x1,color="orange",label="75%")
+    plt.scatter(y1,x1,color="orange",label="75%")
     plt.scatter(y2,x2,color="red",label="100%")
     plt.title('SBM LT model')
     plt.xlabel('Communities')
@@ -178,7 +179,7 @@ if __name__ == '__main__':
 
     plt.scatter(z,y,color="green",label="25%")
     plt.scatter(z0,y0,color="blue", label="50%")
-    #plt.scatter(z1,x1,color="orange",label="75%")
+    plt.scatter(z1,y1,color="orange",label="75%")
     plt.scatter(z2,y2,color="red",label="100%")
     plt.title('SBM LT model')
     plt.xlabel('% Influenced Nodes')
@@ -196,19 +197,18 @@ if __name__ == '__main__':
     ax.scatter(x1, y1, z1, marker='o', color="orange")
     ax.scatter(x2, y2, z2, marker='o', color="red")
     plt.show()
-    exit(0)
-    fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
+
+    # fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
 
 
-    from matplotlib import cm
-    fig = plt.figure()
-    ax = Axes3D(fig)
-    ax.plot_trisurf(x, y, z, color="green",linewidth=0.1,shade=True)
-    ax.plot_trisurf(x0, y0, z0, color="blue",linewidth=0.1,shade=True)
-    ax.plot_trisurf(x2, y2, z2, color="red",linewidth=0.1,shade=True)
+    # from matplotlib import cm
+    # fig = plt.figure()
+    # ax = Axes3D(fig)
+    # ax.plot_trisurf(x, y, z, color="green",linewidth=0.1,shade=True)
+    # ax.plot_trisurf(x0, y0, z0, color="blue",linewidth=0.1,shade=True)
+    # ax.plot_trisurf(x2, y2, z2, color="red",linewidth=0.1,shade=True)
 
-    plt.show()
-    exit(0)
+    # plt.show()
 
 
 
@@ -219,27 +219,14 @@ if __name__ == '__main__':
 
     ax = fig.add_subplot(111)
 
-    data_plot = [time, time0, time2]
+    data_plot = [time, time0, time1, time2]
 
     bp = ax.boxplot(data_plot)
-    plt.xticks([1, 2, 3], ['25%', '50%', 'Original Graph'])
+    plt.xticks([1, 2, 3, 4], ['25%', '50%','75%', 'Original Graph'])
     fig.suptitle('Time LT SBM')
     plt.show()
     plt.cla()
     plt.close()
 
-
-    ## STD
-    fig = plt.figure(1, figsize=(9, 6))
-    # Create an axes instance
-    ax = fig.add_subplot(111)
-
-    # Create the boxplot
-    data_plot = [std, std0, std2]
-    bp = ax.boxplot(data_plot)
-    fig.suptitle('STD LT SBM')
-    plt.xticks([1, 2, 3], ['25%', '50%', 'Original Graph'])
-
-    plt.show()
 
     

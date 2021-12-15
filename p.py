@@ -5,41 +5,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-#filenames = ["scale_graphs/graph_SBM_small_scale_5.txt","scale_graphs/graph_SBM_small_scale_4.txt","scale_graphs/graph_SBM_small_scale_3.txt","scale_graphs/graph_SBM_small_scale_2.txt","scale_graphs/graph_SBM_small_scale_1.5.txt","scale_graphs/graph_SBM_small_scale_1.33.txt","graphs/graph_SBM_small.txt"]
-filenames = ["scale_graphs/graph_SBM_small.txt_TRUE-1.txt","graphs/graph_SBM_small.txt"]
-#scale_graphs/graph_SBM_big.txt_example5.txt","graphs/graph_SBM_big.txt"]
+filenames = ["scale_graphs/graph_SBM_small.txt_TRUE-4.txt","graphs/graph_SBM_small.txt"]
 pp = []
 mm = []
 ma = []
 kk = []
-# for filename in filenames:
-#     G = read_graph(filename)
-#     my_degree_function = G.degree
-#     mean = []
-#     mean_degree_1 = []
-#     for item in G:
-#         mean.append(my_degree_function[item])
-#         mean_degree.append(float(1/my_degree_function[item]))
-
-#     p = np.mean(mean_degree)
-#     k = np.mean(mean)
-#     mm.append(p)
-#     print(p)
-#     print(k)
-#     print(p*k)
-#     kk.append(mean)
-
-#     print("-------")
-#     sns.distplot(mean, hist=True, kde=True, 
-#                  color = 'darkblue', 
-#                 hist_kws={'edgecolor':'black'},
-#                 kde_kws={'linewidth': 4})
-#     sns.distplot(mean, hist = False, kde = True,
-#                     kde_kws = {'shade': True, 'linewidth': 3})
-    
-#     plt.xlabel("In/Out - Degree")
-#     plt.title('Original Graph')
-#     plt.show()
 
 
 G = read_graph(filenames[1])
@@ -67,7 +37,10 @@ for item in G1:
 print(max(mean_1), np.mean(mean_1), np.std(mean_1))
 print(den1/den)
 
+print(G1.number_of_nodes()/G.number_of_nodes())
+
 position = nx.spring_layout(G1)
+
 nx.draw(G1, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
 plt.show()
 
@@ -102,7 +75,7 @@ axs[1].set_xlabel('In\out Degree')
 plt.show()
 
 
-x = ["True","False"]
+x = ["Original","Scaled"]
 i = 0
 for item in kk:    
     # Draw the density plot
