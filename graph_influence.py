@@ -54,15 +54,21 @@ def filter_nodes(G, args):
 
 if __name__ == '__main__':
     
-    gt = ["comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_1.33.csv","comm_ground_truth/facebook_combined.csv"]
-    filenames = ["scale_graphs/facebook_combined.txt_TRUE-4.txt","scale_graphs/facebook_combined.txt_TRUE-2.txt","scale_graphs/facebook_combined.txt_TRUE-1.33.txt","graphs/facebook_combined.txt"]
 
-    #filenames = ["scale_graphs/graph_SBM_small.txt_TRUE-4.txt","scale_graphs/graph_SBM_small.txt_TRUE-2.txt","scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt","graphs/graph_SBM_small.txt"]
+    '''
+    -1 !!!!!!!!!!!!
+    terminators + here!
+    
+    '''
+    #gt = ["comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_1.33.csv","comm_ground_truth/facebook_combined.csv"]
+    #filenames = ["scale_graphs/facebook_combined.txt_TRUE-4.txt","scale_graphs/facebook_combined.txt_TRUE-2.txt","scale_graphs/facebook_combined.txt_TRUE-1.33.txt","graphs/facebook_combined.txt"]
 
-    #gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
+    filenames = ["scale_graphs/graph_SBM_small.txt_TRUE-4.txt","scale_graphs/graph_SBM_small.txt_TRUE-2.txt","scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt","graphs/graph_SBM_small.txt"]
+
+    gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
     #scale_k=[4,2,1.33,1]
     scale_k = [4,2,1.33,1]
-    models = ["WC"]
+    models = ["IC"]
 
 
     #models = ['WC']
@@ -129,7 +135,7 @@ if __name__ == '__main__':
 
 
             no_simulations = 10
-            max_generations = 50
+            max_generations = 10
             #max_generations = 50
             #nodes' bound of seed sets
             #k=200
@@ -164,8 +170,8 @@ if __name__ == '__main__':
                 F =  np.array(fitness)
 
                 t = (1/args["k"]) 
-                tot = G.number_of_nodes() * (1 - t) * len(communities)
-
+                tot = (G.number_of_nodes() -1) * (1 - t) * (len(communities) -1)
+            
                 from pymoo.indicators.hv import Hypervolume
 
                 metric = Hypervolume(ref_point= np.array([-1,-t,-1]),
@@ -189,6 +195,7 @@ if __name__ == '__main__':
             #define file where to save the results obtained from the execution
             file = str(os.path.basename(filename))
             file = file.replace(".txt", "")
+            t = 'prova'
             file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             start = time.time()
@@ -196,4 +203,3 @@ if __name__ == '__main__':
             
             exec_time = time.time() - start
             print(exec_time)
-            
