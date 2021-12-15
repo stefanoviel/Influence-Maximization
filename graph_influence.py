@@ -60,18 +60,18 @@ if __name__ == '__main__':
     terminators + here!
     
     '''
-    #gt = ["comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_1.33.csv","comm_ground_truth/facebook_combined.csv"]
-    #filenames = ["scale_graphs/facebook_combined.txt_TRUE-4.txt","scale_graphs/facebook_combined.txt_TRUE-2.txt","scale_graphs/facebook_combined.txt_TRUE-1.33.txt","graphs/facebook_combined.txt"]
+    gt = ["comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_1.33.csv","comm_ground_truth/facebook_combined.csv"]
+    filenames = ["scale_graphs/facebook_combined.txt_TRUE-4.txt","scale_graphs/facebook_combined.txt_TRUE-2.txt","scale_graphs/facebook_combined.txt_TRUE-1.33.txt","graphs/facebook_combined.txt"]
 
-    filenames = ["graphs/facebook_combined.txt"]
-    gt = ["comm_ground_truth/facebook_combined.csv"]
+    #filenames = ["graphs/facebook_combined.txt"]
+    #gt = ["comm_ground_truth/facebook_combined.csv"]
     #filenames = ["scale_graphs/graph_SBM_small.txt_TRUE-4.txt","scale_graphs/graph_SBM_small.txt_TRUE-2.txt","scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt","graphs/graph_SBM_small.txt"]
 
-    #gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
+   # gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
     #scale_k=[4,2,1.33,1]
     scale_k = [4,2,1.33,1]
-    scale_k = [1]
-    models = ["WC"]
+    #scale_k = [1]
+    models = ["IC"]
 
 
     #models = ['WC']
@@ -137,7 +137,7 @@ if __name__ == '__main__':
             nodes = filter_nodes(G, args)
 
 
-            no_simulations = 10
+            no_simulations = 50
             max_generations = 100
             #max_generations = 50
             #nodes' bound of seed sets
@@ -198,7 +198,7 @@ if __name__ == '__main__':
             #define file where to save the results obtained from the execution
             file = str(os.path.basename(filename))
             file = file.replace(".txt", "")
-            t = 'prova'
+            t = 'prova_100_sim'
             file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             start = time.time()
@@ -206,3 +206,4 @@ if __name__ == '__main__':
             
             exec_time = time.time() - start
             print(exec_time)
+            exit(0)
