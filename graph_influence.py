@@ -68,7 +68,7 @@ if __name__ == '__main__':
     gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
     #scale_k=[4,2,1.33,1]
     scale_k = [4,2,1.33,1]
-    models = ["IC"]
+    models = ["LT"]
 
 
     #models = ['WC']
@@ -88,7 +88,7 @@ if __name__ == '__main__':
             random_seed = 10
             prng = random.Random(random_seed)
 
-            k = int(100/scale)
+            k = int(G.number_of_nodes() * 0.025)
 
             my_degree_function = G.degree
             mean = []
@@ -135,7 +135,7 @@ if __name__ == '__main__':
 
 
             no_simulations = 10
-            max_generations = 10
+            max_generations = 50
             #max_generations = 50
             #nodes' bound of seed sets
             #k=200
