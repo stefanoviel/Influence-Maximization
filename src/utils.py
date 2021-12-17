@@ -409,7 +409,7 @@ def to_csv(archiver, population_file, std, times) :
     df["std"] = std
     df.to_csv(population_file+".csv", sep=",", index=False)
 
-def to_csv2(archiver, population_file) :
+def to_csv2(archiver, population_file, std,times) :
     
     print("OBSERVERRRR \n  OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n")
 
@@ -424,14 +424,15 @@ def to_csv2(archiver, population_file) :
         nodes.append(str(item[0]))
         influence.append(round(item[1],2))
         n_nodes.append(item[2])
-        #time.append(item[3])
 
 
     df["n_nodes"] = n_nodes
     df["influence"] = influence
-    #df["time"] = time
     df["nodes"] = nodes
+    df["time"] = times
+    df["std"] = std
     df.to_csv(population_file+".csv", sep=",", index=False)
+
 def community_detection(G,r):
 	# partition = community_louvain.best_partition(G, resolution=r)
 

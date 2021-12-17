@@ -14,6 +14,7 @@ def nsga2_evaluator(candidates, args):
     fitness_function = args["fitness_function"]
     fitness_function_kargs = args["fitness_function_kargs"]
     k = args["max_seed_nodes"]
+    no_obj =  args["no_obj"]
     # we start with a list where every element is None
     fitness = [None] * len(candidates)
 
@@ -33,9 +34,11 @@ def nsga2_evaluator(candidates, args):
 
             influence_mean, influence_std, comm = fitness_function(*fitness_function_args, **fitness_function_kargs)
             #influence_mean, influence_std= fitness_function(*fitness_function_args, **fitness_function_kargs)
+            if no_obj == 3:
+                fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), comm])
+            elif no_obj == 2:
+                fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100)])
 
-            fitness[index] = inspyred.ec.emo.Pareto([influence_mean, float(1.0 / len(A_set)), comm])
-            #fitness[index] = inspyred.ec.emo.Pareto([influence_mean, float(1.0 / len(A_set))])
 
     else :
         thread_pool = ThreadPool(n_threads)
@@ -54,7 +57,7 @@ def nsga2_evaluator(candidates, args):
                 max_hop = args["max_hop"]
                 fitness_function_args = [G, A_set, p, no_simulations, model, max_hop]
 
-            tasks.append((fitness_function, fitness_function_args, fitness_function_kargs, fitness, A_set, index,k, G,thread_lock))
+            tasks.append((fitness_function, fitness_function_args, fitness_function_kargs, fitness, A_set, index,k, G,no_obj,thread_lock))
 
         thread_pool.map(nsga2_evaluator_threaded, tasks)
 
@@ -64,14 +67,17 @@ def nsga2_evaluator(candidates, args):
     return fitness
 
 
-def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_function_kargs, fitness_values, A_set, index, k,G,thread_lock, thread_id) :
+def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_function_kargs, fitness_values, A_set, index, k,G, no_obj,thread_lock, thread_id) :
 
     influence_mean, influence_std, comm = fitness_function(*fitness_function_args, **fitness_function_kargs)
 
     # lock data structure before writing in it
     thread_lock.acquire()
-   
-    fitness_values[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), comm])
+    if no_obj == 3:
+        fitness_values[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), comm])
+    elif no_obj == 2:
+        fitness_values[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100)])
+
     #fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, len(A_set), comm])
 
     thread_lock.release()

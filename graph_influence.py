@@ -71,7 +71,7 @@ if __name__ == '__main__':
     #scale_k=[4,2,1.33,1]
     scale_k = [4,2,1.33,1]
     #scale_k = [1]
-    models = ["WC"]
+    models = ["IC"]
 
 
     #models = ['WC']
@@ -138,6 +138,7 @@ if __name__ == '__main__':
             initial_population = create_initial_population(G, args, prng, nodes)
 
 
+            no_obj = 2
             no_simulations = 50
             max_generations = 100
             #max_generations = 50
@@ -199,12 +200,12 @@ if __name__ == '__main__':
             #define file where to save the results obtained from the execution
             file = str(os.path.basename(filename))
             file = file.replace(".txt", "")
-            t = 'NEW'
+            t = 'NEW_2_OBJ'
             file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
-            #file = 'prova_obj'
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             start = time.time()
-            seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=population_size, offspring_size=offspring_size, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population)
+            seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=population_size, offspring_size=offspring_size, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population ,no_obj=no_obj)
             
             exec_time = time.time() - start
             print(exec_time)
+            exit(0)
