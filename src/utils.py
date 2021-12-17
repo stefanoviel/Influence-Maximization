@@ -398,12 +398,12 @@ def to_csv(archiver, population_file, std, times) :
         nodes.append(str(item[0]))
         influence.append(round(item[1],2))
         n_nodes.append(item[2])
-        communities.append(item[3])
+        #communities.append(item[3])
 
 
     df["n_nodes"] = n_nodes
     df["influence"] = influence
-    df["communities"] = communities
+    #df["communities"] = communities
     df["time"] = times
     df["nodes"] = nodes
     df["std"] = std
