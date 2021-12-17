@@ -199,7 +199,7 @@ if __name__ == '__main__':
             #define file where to save the results obtained from the execution
             file = str(os.path.basename(filename))
             file = file.replace(".txt", "")
-            t = 'prova_100_sim'
+            t = 'NEW'
             file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
             file = 'prova_obj'
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
@@ -208,4 +208,3 @@ if __name__ == '__main__':
             
             exec_time = time.time() - start
             print(exec_time)
-            exit(0)

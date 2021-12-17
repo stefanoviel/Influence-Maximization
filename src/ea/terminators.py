@@ -61,11 +61,11 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     F =  np.array(arch)
 
 
-    tot = (args["graph"].number_of_nodes() -1) * args["max_seed_nodes"] * (len(args["communities"])-1)
+    tot = 100 * ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100) * (len(args["communities"])-1)
 
     from pymoo.indicators.hv import Hypervolume
 
-    metric = Hypervolume(ref_point= np.array([-1,-0,-1]),
+    metric = Hypervolume(ref_point= np.array([0,0,-1]),
                         norm_ref_point=False,
                         zero_to_one=False)
     hv = metric.do(F)
@@ -80,11 +80,11 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
             if j != 2:
                 obj.append(-float(original_arch[i][j]))            
         arch_2.append(obj)
-    metric = Hypervolume(ref_point= np.array([-1,-0]),
+    metric = Hypervolume(ref_point= np.array([0,0]),
                         norm_ref_point=False,
                         zero_to_one=False)
     F1 = np.array(arch_2)
-    tot_1 = (args["graph"].number_of_nodes() -1) * args["max_seed_nodes"]
+    tot_1 = 100 * ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100)
     hv_1 = metric.do(F1)
     b = hv_1/tot_1
     args["hv_influence_k"].append(b)
@@ -98,11 +98,11 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
             if j != 1:
                 obj.append(-float(original_arch[i][j]))            
         arch_2.append(obj)
-    metric = Hypervolume(ref_point= np.array([-1,-1]),
+    metric = Hypervolume(ref_point= np.array([0,-1]),
                         norm_ref_point=False,
                         zero_to_one=False)
     F1 = np.array(arch_2)
-    tot_1 = (args["graph"].number_of_nodes()-1) * (len(args["communities"])   -1)
+    tot_1 = 100 * (len(args["communities"])  -1)
     hv_1 = metric.do(F1)
     b = hv_1/tot_1
     args["hv_influence_comm"].append(b)
@@ -116,11 +116,11 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
             if j != 0:
                 obj.append(-float(original_arch[i][j]))            
         arch_2.append(obj)
-    metric = Hypervolume(ref_point= np.array([-0,-1]),
+    metric = Hypervolume(ref_point= np.array([0,-1]),
                         norm_ref_point=False,
                         zero_to_one=False)
     F1 = np.array(arch_2)
-    tot_1 = args["max_seed_nodes"] * (len(args["communities"]) -1)
+    tot_1 = ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100) * (len(args["communities"]) -1)
     hv_1 = metric.do(F1)
     b = hv_1/tot_1
     args["hv_k_comm"].append(b)
