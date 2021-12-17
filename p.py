@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-filenames = ["scale_graphs/graph_SBM_small.txt_TRUE-4.txt","graphs/graph_SBM_small.txt"]
+filenames = ["scale_graphs/fb_politician.txt_TRUE-4.txt","graphs/fb_politician.txt"]
 pp = []
 mm = []
 ma = []
@@ -46,11 +46,11 @@ plt.show()
 
 plt.cla()
 
-position = nx.spring_layout(G)
+#position = nx.spring_layout(G)
 
-nx.draw(G, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
-plt.show()
-plt.cla()
+#nx.draw(G, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
+#plt.show()
+#plt.cla()
 
 import seaborn as sns
 fig, axs = plt.subplots(ncols=2)

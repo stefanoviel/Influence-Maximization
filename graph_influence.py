@@ -63,15 +63,16 @@ if __name__ == '__main__':
     #gt = ["comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_1.33.csv","comm_ground_truth/facebook_combined.csv"]
     #filenames = ["scale_graphs/facebook_combined.txt_TRUE-4.txt","scale_graphs/facebook_combined.txt_TRUE-2.txt","scale_graphs/facebook_combined.txt_TRUE-1.33.txt","graphs/facebook_combined.txt"]
 
-    #filenames = ["graphs/facebook_combined.txt"]
-    #gt = ["comm_ground_truth/facebook_combined.csv"]
-    filenames = ["scale_graphs/graph_SBM_small.txt_TRUE-4.txt","scale_graphs/graph_SBM_small.txt_TRUE-2.txt","scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt","graphs/graph_SBM_small.txt"]
+    #filenames = ["scale_graphs/graph_SBM_small.txt_TRUE-4.txt","scale_graphs/graph_SBM_small.txt_TRUE-2.txt","scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt","graphs/graph_SBM_small.txt"]
 
-    gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
+    #gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
     #scale_k=[4,2,1.33,1]
-    scale_k = [4,2,1.33,1]
+    
+    gt = ["scale_graphs/fb_politician.txt_TRUE-4.txt","scale_graphs/fb_politician.txt_TRUE-2.txt","graphs/fb_politician.txt"]
+    filenames = ["comm_ground_truth/fb_politician_4.csv","comm_ground_truth/fb_politician_2.csv","comm_ground_truth/fb_politician.csv"]
+    scale_k = [4,2,1]
     #scale_k = [1]
-    models = ["WC"]
+    models = ["IC"]
 
 
     #models = ['WC']
