@@ -208,4 +208,4 @@ if __name__ == '__main__':
             
             exec_time = time.time() - start
             print(exec_time)
-            exit(0)
+            #exit(0)
