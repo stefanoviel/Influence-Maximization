@@ -19,7 +19,7 @@ def plot(x2,y2,z2):
 
     ax1.scatter(z2,x2)
     ax1.xaxis.set_ticks(np.arange(0,max(z2), 5))
-    ax1.yaxis.set_ticks(np.arange(0, max(x2), 1))
+    ax1.yaxis.set_ticks(np.arange(0, max(x2), 0.5))
     ax1.set_ylabel("Nodes")
 
     ax1.set_xlabel("Influence")
@@ -27,7 +27,7 @@ def plot(x2,y2,z2):
     
     ax2.scatter(y2,x2)
     ax2.yaxis.set_ticks(np.arange(0,max(x2), 0.5))
-    ax2.xaxis.set_ticks(np.arange(0, max(y2)+1, 1))
+    ax2.xaxis.set_ticks(np.arange(0, 100, 10))
     
     ax2.set_ylabel("Nodes")
     ax3.scatter(z2,y2)
@@ -45,13 +45,14 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    #filename = "facebook_combined_TRUE-4-k25-p0-WC-prova.csv"
-    #graph = "scale_graphs/facebook_combined.txt_TRUE-4.txt"
+
+    #filename = "graph_SBM_small_TRUE-4-k12-p0-WC-prova.csv"
+    graph = "scale_graphs/graph_SBM_small.txt_TRUE-4.txt"
     filename = "graph_SBM_small_TRUE-4-k12-p0-WC-NEW.csv"
     #graph = "scale_graphs//graph_SBM_small.txt_TRUE-4.txt"
-    filename = "graph_SBM_small_TRUE-4-k12-p0-WC-NEW.csv"
-    #filename = "graph_SBM_small_TRUE-4-k12-p0-WC-prova.csv"
-    graph = "scale_graphs//graph_SBM_small.txt_TRUE-4.txt"
+    #filename = "facebook_combined_TRUE-4-k25-p0-WC-prova.csv"
+    #graph = "scale_graphs/facebook_combined.txt_TRUE-4.txt"
+
     G = read_graph(graph)
     N = G.number_of_nodes()
     my_degree_function = G.degree   
@@ -61,25 +62,26 @@ if __name__ == '__main__':
 
     df = pd.read_csv(filename, sep=",")
 
-    x=  df["n_nodes"]
+
+    x=  df["n_nodes"].to_list()
     y = df["communities"]
     z = df["influence"]
     t = df["time"].to_list()
     time = sum(np.array(x) * np.array(t)) / sum(np.array(t))
     time = np.mean(t) / np.mean(x)
-    #time = df["time"] / (1/np.mean(x))
-    for i in range(len(z)):
-        #z[i] = (z[i]/N) * 100
-        x[i] =  (((N*0.025) - x[i]) / N ) * 100
-        #y[i] = (y[i]/N) * 100
+
     
-    print(x)
+    print(len(df))
+    plot(x,y,z)
+    filename = "graph_SBM_small_TRUE-2-k25-p0-WC-NEW.csv"
+    graph = "scale_graphs/graph_SBM_small.txt_TRUE-2.txt"
+    #filename = "graph_SBM_small_TRUE-2-k25-p0-LT-prova_100_sim.csv"
+    #graph = "scale_graphs//graph_SBM_small.txt_TRUE-2.txt"
+
     #filename = "facebook_combined_TRUE-2-k50-p0-WC-prova.csv"
     #graph = "scale_graphs/facebook_combined.txt_TRUE-2.txt"
-    filename = "graph_SBM_small_TRUE-2-k25-p0-WC-NEW.csv"
-    # graph = "scale_graphs//graph_SBM_small.txt_TRUE-2.txt"
-    #filename = "graph_SBM_small_TRUE-2-k25-p0-WC-prova.csv"
-    graph = "scale_graphs//graph_SBM_small.txt_TRUE-2.txt"
+    #filename = "graph_SBM_small_TRUE-4-k12-p0-WC-prova.csv"
+    #graph = "scale_graphs//graph_SBM_small.txt_TRUE-4.txt"
     G = read_graph(graph)
     N = G.number_of_nodes()
     my_degree_function = G.degree   
@@ -90,7 +92,7 @@ if __name__ == '__main__':
     print(np.mean(mean))
     df = pd.read_csv(filename, sep=",")
 
-    x0= df["n_nodes"]
+    x0= df["n_nodes"].to_list()
     y0 = df["communities"].to_list()
     z0 = df["influence"].to_list()
     #time0 = df["time"]  / (1/np.mean(x0))
@@ -98,19 +100,18 @@ if __name__ == '__main__':
     time0 = sum(np.array(x0) * np.array(t0)) / sum(np.array(t0))
     time0 = np.mean(t0) / np.mean(x0)
   
-    for i in range(len(z0)):
-        x0[i] = (((N*0.025) - x0[i]) / N ) * 100
-        #x0[i] = (x0[i]/N) * 100
-        #y0[i] = (y0[i]/N) * 100
-    print(x0)
+
     #plot(x0,y0,z0)
     print(len(df))
+
+    filename = "graph_SBM_small_TRUE-1.33-k38-p0-WC-NEW.csv"
+    graph = "scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt"
+
+    #filename = "graph_SBM_small_TRUE-1.33-k38-p0-LT-prova_100_sim.csv"
+    #graph = "scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt"
+
     #filename = "facebook_combined_TRUE-1.33-k74-p0-WC-prova.csv"
     #graph = "scale_graphs/facebook_combined.txt_TRUE-1.33.txt"
-    filename = "graph_SBM_small_TRUE-1.33-k38-p0-WC-NEW.csv"
-    # graph = "scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt"
-    #filename = "graph_SBM_small_TRUE-1.33-k38-p0-WC-prova.csv"
-    graph = "scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt"
     G = read_graph(graph)
     N = G.number_of_nodes()
     my_degree_function = G.degree   
@@ -129,20 +130,18 @@ if __name__ == '__main__':
     time1 = sum(np.array(x1) * np.array(t1)) / sum(np.array(t1))
     time1 = np.mean(t1) / np.mean(x1)
 
-    for i in range(len(z1)):
-        x1[i] = (((N*0.025) - x1[i]) / N ) * 100
-        #x1[i] = (x1[i]/N) * 100
-        #y1[i] = (y1[i]/N) * 100
+
 
 
     print(len(df))
 
-    #plot(x1,y1,z1)
+    plot(x1,y1,z1)
 
+    graph = "graphs/graph_SBM_small.txt"  
     filename = "graph_SBM_small-k51-p0-WC-NEW.csv"  
-    # graph = "graphs/graph_SBM_small.txt"
-    #filename = "graph_SBM_small-k51-p0-WC-prova.csv"  
-    graph = "graphs/graph_SBM_small.txt"
+    #filename = "graph_SBM_small-k51-p0-LT-prova_100_sim.csv"  
+    ##graph = "graphs/graph_SBM_small.txt"
+
     #filename = "facebook_combined-k100-p0-WC-prova.csv"
     #graph = "graphs/facebook_combined.txt"
     G = read_graph(graph)
@@ -156,23 +155,17 @@ if __name__ == '__main__':
 
     df = pd.read_csv(filename, sep=",")
 
-    x2= df["n_nodes"]
+    x2= df["n_nodes"].to_list()
     y2 = df["communities"].to_list()
     z2 = df["influence"].to_list()
     #time2= df["time"]  / (1/np.mean(x2))
     t2= df["time"].to_list()
     time2 = sum(np.array(x2) * np.array(t2)) / sum(np.array(t2))
     time2 = np.mean(t2) / np.mean(x2)
-    for i in range(len(z2)):
-        x2[i] = (((N*0.025) - x2[i]) / N ) * 100
-        #x2[i] = (x2[i]/N) * 100
-        #y2[i] = (y2[i]/N) * 100
+
 
     print(len(df))
     #plot(x2,y2,z2)
-    ref1 = [0]
-    ref2 = [0]
-    plt.plot(ref1, ref2, marker="o", markersize=10, markeredgecolor="black", markerfacecolor="black")
 
     plt.scatter(z,x,color="green",label="25%")
     plt.scatter(z0,x0,color="blue", label="50%")
@@ -180,18 +173,23 @@ if __name__ == '__main__':
     plt.scatter(z2,x2,color="red",label="100%")
     plt.title('SBM IC model')
     plt.xlabel('% Influenced Nodes')
-    plt.ylabel('MAX_K - K  (normalized)')
+    plt.ylabel('% Nodes as seed set')
     plt.legend()
+    plt.xlim(1,100)
     plt.show()
     plt.cla()
 
-    plt.scatter(y,x,color="green",label="25%", alpha=1)
-    plt.scatter(y0,x0,color="blue", label="50%", alpha=1)
-    plt.scatter(y1,x1,color="orange",label="75%", alpha=1)
-    plt.scatter(y2,x2,color="red",label="100%", alpha=1)
-    plt.title('SBM WC model')
+
+
+    #plt.scatter(y,x,color="green",label="scale pop/offspring")
+    #plt.scatter(z0,x0,color="blue", label="original pop/offspring")
+    plt.scatter(y,x,color="green",label="25%")
+    plt.scatter(y0,x0,color="blue", label="50%")
+    plt.scatter(y1,x1,color="orange",label="75%")
+    plt.scatter(y2,x2,color="red",label="100%")
+    plt.title('SBM LT model')
     plt.xlabel('Communities')
-    plt.ylabel('1/len(k)')
+    plt.ylabel('% Nodes as seed set')
     plt.legend()
     plt.show()
     plt.cla()
@@ -200,10 +198,11 @@ if __name__ == '__main__':
     plt.scatter(z0,y0,color="blue", label="50%")
     plt.scatter(z1,y1,color="orange",label="75%")
     plt.scatter(z2,y2,color="red",label="100%")
-    plt.title('SBM WC model')
+    plt.title('SBM LT model')
     plt.xlabel('% Influenced Nodes')
     plt.ylabel('Communities')
     plt.legend()
+    plt.xlim(0,100)
     plt.show()
     plt.cla()
 
@@ -250,10 +249,3 @@ if __name__ == '__main__':
 
 
     
-    fig = plt.figure()
-    ax = fig.add_subplot(projection='3d')
-    ax.scatter(x, y, z, marker='o', color="green")
-    ax.scatter(x0, y0, z0, marker='o', color="blue")
-    ax.scatter(x1, y1, z1, marker='o', color="orange")
-    ax.scatter(x2, y2, z2, marker='o', color="red")
-    plt.show()
