@@ -71,7 +71,7 @@ if __name__ == '__main__':
     #scale_k=[4,2,1.33,1]
     scale_k = [4,2,1.33,1]
     #scale_k = [1]
-    models = ["IC"]
+    models = ["WC"]
 
 
     #models = ['WC']
