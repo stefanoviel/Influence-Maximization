@@ -48,10 +48,11 @@ if __name__ == '__main__':
 
     #filename = "graph_SBM_small_TRUE-4-k12-p0.05-IC-prova.csv"
     graph = "scale_graphs//graph_SBM_small.txt_TRUE-4.txt"
-    filename = "graph_SBM_small_TRUE-4-k12-p0-LT-prova_100_sim.csv"
+    filename = "prova_obj.csv"
     #graph = "scale_graphs//graph_SBM_small.txt_TRUE-4.txt"
     #filename = "facebook_combined_TRUE-4-k25-p0.05-IC-prova.csv"
     #graph = "scale_graphs/facebook_combined.txt_TRUE-4.txt"
+
     G = read_graph(graph)
     N = G.number_of_nodes()
     my_degree_function = G.degree   
@@ -63,7 +64,7 @@ if __name__ == '__main__':
 
 
     x=  df["n_nodes"].to_list()
-    y = df["communities"]
+    #y = df["communities"]
     z = df["influence"]
     t = df["time"].to_list()
     time = sum(np.array(x) * np.array(t)) / sum(np.array(t))
@@ -81,11 +82,13 @@ if __name__ == '__main__':
 
     filename = "graph_SBM_small_TRUE-2-k25-p0.05-IC-prova.csv"
     graph = "scale_graphs//graph_SBM_small.txt_TRUE-2.txt"
-    filename = "graph_SBM_small_TRUE-2-k25-p0-LT-prova_100_sim.csv"
+    #filename = "graph_SBM_small_TRUE-2-k25-p0-LT-prova_100_sim.csv"
     #graph = "scale_graphs//graph_SBM_small.txt_TRUE-2.txt"
 
     #filename = "facebook_combined_TRUE-2-k50-p0.05-IC-prova.csv"
     #graph = "scale_graphs/facebook_combined.txt_TRUE-2.txt"
+    filename = "graph_SBM_small_TRUE-4-k12-p0.05-IC-prova.csv"
+    graph = "scale_graphs//graph_SBM_small.txt_TRUE-4.txt"
     G = read_graph(graph)
     N = G.number_of_nodes()
     my_degree_function = G.degree   
@@ -115,7 +118,7 @@ if __name__ == '__main__':
     filename = "graph_SBM_small_TRUE-1.33-k38-p0.05-IC-prova.csv"
     graph = "scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt"
 
-    filename = "graph_SBM_small_TRUE-1.33-k38-p0-LT-prova_100_sim.csv"
+    #filename = "graph_SBM_small_TRUE-1.33-k38-p0-LT-prova_100_sim.csv"
     #graph = "scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt"
 
     #filename = "facebook_combined_TRUE-1.33-k74-p0.05-IC-prova.csv"
@@ -150,8 +153,8 @@ if __name__ == '__main__':
 
     filename = "graph_SBM_small-k51-p0.05-IC-prova.csv"  
     graph = "graphs/graph_SBM_small.txt"
-    filename = "graph_SBM_small-k51-p0-LT-prova_100_sim.csv"  
-    #graph = "graphs/graph_SBM_small.txt"
+    #filename = "graph_SBM_small-k51-p0-LT-prova_100_sim.csv"  
+    ##graph = "graphs/graph_SBM_small.txt"
 
     #filename = "facebook_combined-k100-p0.05-IC-prova.csv"
     #graph = "graphs/facebook_combined.txt"
@@ -183,8 +186,8 @@ if __name__ == '__main__':
 
     plt.scatter(z,x,color="green",label="25%")
     plt.scatter(z0,x0,color="blue", label="50%")
-    plt.scatter(z1,x1,color="orange",label="75%")
-    plt.scatter(z2,x2,color="red",label="100%")
+    #plt.scatter(z1,x1,color="orange",label="75%")
+    #plt.scatter(z2,x2,color="red",label="100%")
     plt.title('SBM LT model')
     plt.xlabel('% Influenced Nodes')
     plt.ylabel('% Nodes as seed set')

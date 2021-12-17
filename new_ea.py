@@ -110,8 +110,9 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
     #seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
   
     #seed_sets = [[individual.candidate, individual.fitness[0],individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
-    seed_sets = [[individual.candidate, individual.fitness[0], max_seed_nodes -  individual.fitness[1]] for individual in ea.archive] 
-    
+    seed_sets = [[individual.candidate, individual.fitness[0], ((max_seed_nodes / G.number_of_nodes()) * 100) - individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
+
+
     std, times = compute_time(seed_sets, population_file, G, model, p, no_simulations, communities, random_gen)
     to_csv(seed_sets, population_file, std, times)
     return seed_sets

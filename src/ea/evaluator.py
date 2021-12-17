@@ -54,7 +54,7 @@ def nsga2_evaluator(candidates, args):
                 max_hop = args["max_hop"]
                 fitness_function_args = [G, A_set, p, no_simulations, model, max_hop]
 
-            tasks.append((fitness_function, fitness_function_args, fitness_function_kargs, fitness, A_set, index,k, thread_lock))
+            tasks.append((fitness_function, fitness_function_args, fitness_function_kargs, fitness, A_set, index,k, G,thread_lock))
 
         thread_pool.map(nsga2_evaluator_threaded, tasks)
 
@@ -64,14 +64,14 @@ def nsga2_evaluator(candidates, args):
     return fitness
 
 
-def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_function_kargs, fitness_values, A_set, index, k,thread_lock, thread_id) :
+def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_function_kargs, fitness_values, A_set, index, k,G,thread_lock, thread_id) :
 
     influence_mean, influence_std, comm = fitness_function(*fitness_function_args, **fitness_function_kargs)
 
     # lock data structure before writing in it
     thread_lock.acquire()
    
-    fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, k-len(A_set), comm])
+    fitness_values[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), comm])
     #fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, len(A_set), comm])
 
     thread_lock.release()
