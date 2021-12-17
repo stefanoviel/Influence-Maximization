@@ -5,57 +5,65 @@ sys.path.insert(0, '')
 from src.load import read_graph
 
 
-df = pd.read_csv("graph_SBM_small-k51-p0.05-IC-prova_hv_.csv",sep=",")
-df1 = pd.read_csv("graph_SBM_small_TRUE-1.33-k38-p0.05-IC-prova_hv_.csv",sep=",")
+df = pd.read_csv("graph_SBM_small-k51-p0-LT-prova_100_sim_hv_.csv",sep=",")
+df1 = pd.read_csv("graph_SBM_small_TRUE-1.33-k38-p0-LT-prova_100_sim_hv_.csv",sep=",")
 
-df2 = pd.read_csv("graph_SBM_small_TRUE-2-k25-p0.05-IC-prova_hv_.csv",sep=",")
-df4= pd.read_csv("graph_SBM_small_TRUE-4-k12-p0.05-IC-prova_hv_.csv",sep=",")
+df2 = pd.read_csv("graph_SBM_small_TRUE-2-k25-p0-LT-prova_100_sim_hv_.csv",sep=",")
+df4= pd.read_csv("graph_SBM_small_TRUE-4-k12-p0-LT-prova_100_sim_hv_.csv",sep=",")
 
+#df = pd.read_csv("facebook_combined-k100-p0.05-IC-prova_hv_.csv",sep=",")
+#df1 = pd.read_csv("graph_SBM_small_TRUE-1.33-k38-p0.05-IC-prova_hv_.csv",sep=",")
 
-plt.plot(df.generation, df.hv, color="red", label="0riginal")
-plt.plot(df1.generation, df1.hv, color="orange", label="75%")
-plt.plot(df2.generation, df2.hv, color="blue", label="50%")
-plt.plot(df4.generation, df4.hv, color="green", label="25%")
-plt.xlabel('Generation')
-plt.ylabel('Hypervolume')
-plt.legend()
-plt.title('HV')
-plt.show()
-plt.cla()
-plt.close()
+#df2 = pd.read_csv("facebook_combined_TRUE-2-k50-p0.05-IC-prova_hv_.csv",sep=",")
+#df4= pd.read_csv("facebook_combined_TRUE-4-k25-p0.05-IC-prova_hv_.csv",sep=",")
+fig, axs = plt.subplots(2, 2)
 
-plt.plot(df.generation, df.influence_k, color="red", label="0riginal")
-plt.plot(df1.generation, df1.influence_k, color="orange", label="75%")
-plt.plot(df2.generation, df2.influence_k, color="blue", label="50%")
-plt.plot(df4.generation, df4.influence_k, color="green", label="25%")
-plt.xlabel('Generation')
-plt.ylabel('Hypervolume')
-plt.title('HV INFLUENCE-K')
-
-plt.legend()
-plt.show()
+axs[0,0].plot(df.generation, df.hv, color="red", label="0riginal")
+axs[0,0].plot(df1.generation, df1.hv, color="orange", label="75%")
+axs[0,0].plot(df2.generation, df2.hv, color="blue", label="50%")
+axs[0,0].plot(df4.generation, df4.hv, color="green", label="25%")
+#axs[0,0].xlabel('Generation')
+#axs[0,0].ylabel('Hypervolume')
+axs[0,0].legend()
+axs[0,0].set_title('HV')
 
 
-plt.plot(df.generation, df.influence_comm, color="red", label="0riginal")
-plt.plot(df1.generation, df1.influence_comm, color="orange", label="75%")
-plt.plot(df2.generation, df2.influence_comm, color="blue", label="50%")
-plt.plot(df4.generation, df4.influence_comm, color="green", label="25%")
-plt.xlabel('Generation')
-plt.ylabel('Hypervolume')
-plt.title('HV INFLUENCE-COMM')
-
-plt.legend()
-plt.show()
+axs[0,1].plot(df.generation, df.influence_k, color="red", label="0riginal")
+axs[0,1].plot(df1.generation, df1.influence_k, color="orange", label="75%")
+axs[0,1].plot(df2.generation, df2.influence_k, color="blue", label="50%")
+axs[0,1].plot(df4.generation, df4.influence_k, color="green", label="25%")
+#axs[0,1].xlabel('Generation')
+#axs[0,1].ylabel('Hypervolume')
+axs[0,1].set_title('HV INFLUENCE-K')
 
 
-plt.plot(df.generation, df.k_comm, color="red", label="0riginal")
-plt.plot(df1.generation, df1.k_comm, color="orange", label="75%")
-plt.plot(df2.generation, df2.k_comm, color="blue", label="50%")
-plt.plot(df4.generation, df4.k_comm, color="green", label="25%")
-plt.xlabel('Generation')
-plt.ylabel('Hypervolume')
-plt.title('HV K-COMM')
-plt.legend()
+
+axs[1,0].plot(df.generation, df.influence_comm, color="red", label="0riginal")
+axs[1,0].plot(df1.generation, df1.influence_comm, color="orange", label="75%")
+axs[1,0].plot(df2.generation, df2.influence_comm, color="blue", label="50%")
+axs[1,0].plot(df4.generation, df4.influence_comm, color="green", label="25%")
+#axs[1,0].xlabel('Generation')
+#axs[1,0].ylabel('Hypervolume')
+axs[1,0].set_title('HV INFLUENCE-COMM')
+
+
+
+
+axs[1,1].plot(df.generation, df.k_comm, color="red", label="0riginal")
+axs[1,1].plot(df1.generation, df1.k_comm, color="orange", label="75%")
+axs[1,1].plot(df2.generation, df2.k_comm, color="blue", label="50%")
+axs[1,1].plot(df4.generation, df4.k_comm, color="green", label="25%")
+#axs[1,1].xlabel('Generation')
+#axs[1,1].ylabel('Hypervolume')
+axs[1,1].set_title('HV K-COMM')
+
+for ax in axs.flat:
+    ax.set(xlabel='Generation', ylabel='Hypervolume')
+
+# Hide x labels and tick labels for top plots and y ticks for right plots.
+for ax in axs.flat:
+    ax.label_outer()
+fig.suptitle('HYPERVOLUME SBM LT MODEL')
 plt.show()
 
 

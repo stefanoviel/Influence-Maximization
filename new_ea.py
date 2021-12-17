@@ -73,7 +73,7 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
         generator = nsga2_generator,
         evaluator = nsga2_evaluator,
         bounder= bounder,
-        maximize = True,
+        maximize = [True, False, True],
         seeds = initial_population,
         pop_size = population_size,
         num_selected = offspring_size,
@@ -107,8 +107,10 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
 
     # extract seed sets from the final Pareto front/archive
 
-    seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
-    #seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1]] for individual in ea.archive] 
+    #seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
+  
+    seed_sets = [[individual.candidate, individual.fitness[0],individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
+  #seed_sets = [[individual.candidate, individual.fitness[0], 1/ individual.fitness[1]] for individual in ea.archive] 
     std, times = compute_time(seed_sets, population_file, G, model, p, no_simulations, communities, random_gen)
     to_csv(seed_sets, population_file, std, times)
     return seed_sets
