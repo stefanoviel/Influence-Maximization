@@ -47,9 +47,9 @@ if __name__ == '__main__':
     
     #filename = "facebook_combined_TRUE-4-k25-p0-WC-prova.csv"
     #graph = "scale_graphs/facebook_combined.txt_TRUE-4.txt"
-    filename = "graph_SBM_small_TRUE-4-k12-p0-WC-NEW.csv"
+    filename = "graph_SBM_small_TRUE-4-k12-p0-WC-NEW_2_OBJ.csv"
     #graph = "scale_graphs//graph_SBM_small.txt_TRUE-4.txt"
-    filename = "graph_SBM_small_TRUE-4-k12-p0-WC-NEW.csv"
+    filename = "graph_SBM_small_TRUE-4-k12-p0-WC-NEW_2_OBJ.csv"
     #filename = "graph_SBM_small_TRUE-4-k12-p0-WC-prova.csv"
     graph = "scale_graphs//graph_SBM_small.txt_TRUE-4.txt"
     G = read_graph(graph)
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     df = pd.read_csv(filename, sep=",")
 
     x=  df["n_nodes"]
-    y = df["communities"]
+    #y = df["communities"]
     z = df["influence"]
     t = df["time"].to_list()
     time = sum(np.array(x) * np.array(t)) / sum(np.array(t))
@@ -76,7 +76,7 @@ if __name__ == '__main__':
     print(x)
     #filename = "facebook_combined_TRUE-2-k50-p0-WC-prova.csv"
     #graph = "scale_graphs/facebook_combined.txt_TRUE-2.txt"
-    filename = "graph_SBM_small_TRUE-2-k25-p0-WC-NEW.csv"
+    filename = "graph_SBM_small_TRUE-2-k25-p0-WC-NEW_2_OBJ.csv"
     # graph = "scale_graphs//graph_SBM_small.txt_TRUE-2.txt"
     #filename = "graph_SBM_small_TRUE-2-k25-p0-WC-prova.csv"
     graph = "scale_graphs//graph_SBM_small.txt_TRUE-2.txt"
@@ -91,7 +91,7 @@ if __name__ == '__main__':
     df = pd.read_csv(filename, sep=",")
 
     x0= df["n_nodes"]
-    y0 = df["communities"].to_list()
+    #y0 = df["communities"].to_list()
     z0 = df["influence"].to_list()
     #time0 = df["time"]  / (1/np.mean(x0))
     t0= df["time"].to_list()
@@ -107,7 +107,7 @@ if __name__ == '__main__':
     print(len(df))
     #filename = "facebook_combined_TRUE-1.33-k74-p0-WC-prova.csv"
     #graph = "scale_graphs/facebook_combined.txt_TRUE-1.33.txt"
-    filename = "graph_SBM_small_TRUE-1.33-k38-p0-WC-NEW.csv"
+    filename = "graph_SBM_small_TRUE-1.33-k38-p0-WC-NEW_2_OBJ.csv"
     # graph = "scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt"
     #filename = "graph_SBM_small_TRUE-1.33-k38-p0-WC-prova.csv"
     graph = "scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt"
@@ -122,7 +122,7 @@ if __name__ == '__main__':
     df = pd.read_csv(filename, sep=",")
 
     x1= df["n_nodes"]
-    y1 = df["communities"]
+    #y1 = df["communities"]
     z1 = df["influence"]
     #time1 = df["time"]  /(1/np.mean(x1))
     t1= df["time"].to_list()
@@ -139,7 +139,7 @@ if __name__ == '__main__':
 
     #plot(x1,y1,z1)
 
-    filename = "graph_SBM_small-k51-p0-WC-NEW.csv"  
+    filename = "graph_SBM_small-k51-p0-WC-NEW_2_OBJ.csv"  
     # graph = "graphs/graph_SBM_small.txt"
     #filename = "graph_SBM_small-k51-p0-WC-prova.csv"  
     graph = "graphs/graph_SBM_small.txt"
@@ -157,7 +157,7 @@ if __name__ == '__main__':
     df = pd.read_csv(filename, sep=",")
 
     x2= df["n_nodes"]
-    y2 = df["communities"].to_list()
+    #y2 = df["communities"].to_list()
     z2 = df["influence"].to_list()
     #time2= df["time"]  / (1/np.mean(x2))
     t2= df["time"].to_list()

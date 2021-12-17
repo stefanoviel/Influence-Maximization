@@ -5,11 +5,11 @@ sys.path.insert(0, '')
 from src.load import read_graph
 
 
-df = pd.read_csv("graph_SBM_small-k51-p0-WC-NEW_hv_.csv",sep=",")
-df1 = pd.read_csv("graph_SBM_small_TRUE-1.33-k38-p0-WC-NEW_hv_.csv",sep=",")
+df = pd.read_csv("graph_SBM_small-k51-p0.05-IC-NEW_2_OBJ_hv_.csv",sep=",")
+df1 = pd.read_csv("graph_SBM_small_TRUE-1.33-k38-p0.05-IC-NEW_2_OBJ_hv_.csv",sep=",")
 
-df2 = pd.read_csv("graph_SBM_small_TRUE-2-k25-p0-WC-NEW_hv_.csv",sep=",")
-df4= pd.read_csv("graph_SBM_small_TRUE-4-k12-p0-WC-NEW_hv_.csv",sep=",")
+df2 = pd.read_csv("graph_SBM_small_TRUE-2-k25-p0.05-IC-NEW_2_OBJ_hv_.csv",sep=",")
+df4= pd.read_csv("graph_SBM_small_TRUE-4-k12-p0.05-IC-NEW_2_OBJ_hv_.csv",sep=",")
 
 #df = pd.read_csv("facebook_combined-k100-p0.05-IC-prova_hv_.csv",sep=",")
 #df1 = pd.read_csv("graph_SBM_small_TRUE-1.33-k38-p0.05-IC-prova_hv_.csv",sep=",")
@@ -27,6 +27,7 @@ axs[0,0].plot(df4.generation, df4.hv, color="green", label="25%")
 axs[0,0].legend()
 axs[0,0].set_title('HV')
 
+plt.show()
 
 axs[0,1].plot(df.generation, df.influence_k, color="red", label="0riginal")
 axs[0,1].plot(df1.generation, df1.influence_k, color="orange", label="75%")
