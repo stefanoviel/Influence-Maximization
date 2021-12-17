@@ -70,8 +70,9 @@ def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_fu
     # lock data structure before writing in it
     thread_lock.acquire()
    
-    fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, float(1.0 / len(A_set)), comm])
-   
+    #fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, float(1.0 / len(A_set)), comm])
+    fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, len(A_set), comm])
+
     thread_lock.release()
 
     return 

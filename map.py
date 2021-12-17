@@ -9,7 +9,7 @@ G = read_graph(filename=filename)
 
 T = degree_centrality(G)
 #T = nx.pagerank(G, alpha = 0.8)
-df = pd.read_csv("graph_SBM_small_TRUE-4-k25-p0.05-IC-degree-pop.csv",sep=",")
+df = pd.read_csv("graph_SBM_small_TRUE-4-k12-p0.05-IC-prova_100_sim.csv",sep=",")
 
 nodes = df["nodes"]
 
@@ -75,7 +75,7 @@ for item in nodes:
         R.append((t.rank_comm))
 
 
-
+    exit(0)
     #print(A)
     #print(C)
     from src.spread.monte_carlo import MonteCarlo_simulation

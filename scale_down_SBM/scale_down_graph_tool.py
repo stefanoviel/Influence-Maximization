@@ -309,7 +309,7 @@ for i in range(0,len(check)):
     axs[1].set_xlabel('In\out Degree')
     axs[2].set_title('50% Graph')
     axs[2].set_xlabel('In\out Degree')
-    #plt.show()
+    plt.show()
 
 
 from scipy import sparse
