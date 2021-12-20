@@ -72,7 +72,7 @@ if __name__ == '__main__':
     gt = ["comm_ground_truth/fb_politician_4.csv","comm_ground_truth/fb_politician_2.csv","comm_ground_truth/fb_politician.csv"]
     scale_k = [4,2,1]
     #scale_k = [1]
-    models = ["LT"]
+    models = ["IC"]
 
 
     #models = ['WC']
@@ -139,7 +139,7 @@ if __name__ == '__main__':
             initial_population = create_initial_population(G, args, prng, nodes)
 
 
-            no_obj = 2
+            no_obj = 3
             no_simulations = 50
             max_generations = 100
             #max_generations = 50
@@ -201,7 +201,7 @@ if __name__ == '__main__':
             #define file where to save the results obtained from the execution
             file = str(os.path.basename(filename))
             file = file.replace(".txt", "")
-            t = 'NEW_2_OBJ'
+            t = 'NEW_3_OBJ'
             file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             start = time.time()
