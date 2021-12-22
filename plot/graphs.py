@@ -14,4 +14,4 @@ for g in graphs:
     nx.draw(G, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
     g = os.path.basename(g)
     plt.savefig(g + '.png', dpi=1000)
-    exit(0)
+
