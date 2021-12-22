@@ -26,10 +26,10 @@ print(len(set(blocks)))
 state.draw(pos=g.vp.pos, output="football-sbm-fit.svg")
 exit(0)
 '''
-scale = 4
-resolution = 2
+scale = 10
+resolution = 10
 
-filename = "graphs/fb_politician.txt"
+filename = "graphs/deezerEU.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -95,7 +95,6 @@ df_original["comm"] = comm_original
 save = name.replace(".txt","")
 
 df_original.to_csv('comm_ground_truth/'+save+'.csv',index=False, sep=",")
-exit(0)
 
 #exit(0)
 list_edges = []
