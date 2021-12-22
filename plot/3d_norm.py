@@ -47,13 +47,13 @@ if __name__ == '__main__':
     
 
     graph = "scale_graphs/graph_SBM_small.txt_TRUE-4.txt"
-    #filename = "graph_SBM_small_TRUE-4-k12-p0.1-IC-NEW_2_obj.csv"
+    #filename = "graph_SBM_small_TRUE-4-k12-p0.01-IC-NEW_2_obj.csv"
 
     graph = "scale_graphs/fb_politician.txt_TRUE-4.txt"
-    filename = "fb_politician_TRUE-4-k36-p0.1-IC-NEW_3_OBJ.csv"
+    filename = "fb_politician_TRUE-4-k36-p0.01-IC-NEW_3_OBJ.csv"
 
     #graph = "scale_graphs//graph_SBM_small.txt_TRUE-4.txt"
-    #filename = "facebook_combined_TRUE-4-k25-p0.1-IC-prova.csv"
+    #filename = "facebook_combined_TRUE-4-k25-p0.01-IC-prova.csv"
     #graph = "scale_graphs/facebook_combined.txt_TRUE-4.txt"
 
     G = read_graph(graph)
@@ -76,13 +76,13 @@ if __name__ == '__main__':
     
     print(len(df))
     #plot(x,y,z)
-    #filename = "graph_SBM_small_TRUE-2-k25-p0.1-IC-NEW_2_obj.csv"
+    #filename = "graph_SBM_small_TRUE-2-k25-p0.01-IC-NEW_2_obj.csv"
     graph = "scale_graphs/graph_SBM_small.txt_TRUE-2.txt"
 
 
     graph = "scale_graphs/fb_politician.txt_TRUE-2.txt"
-    filename = "fb_politician_TRUE-2-k70-p0.1-IC-NEW_3_OBJ.csv"
-    #filename = "graph_SBM_small_TRUE-2-k25-p0.1-IC-prova_100_sim.csv"
+    filename = "fb_politician_TRUE-2-k70-p0.01-IC-NEW_3_OBJ.csv"
+    #filename = "graph_SBM_small_TRUE-2-k25-p0.01-IC-prova_100_sim.csv"
     #graph = "scale_graphs//graph_SBM_small.txt_TRUE-2.txt"
 
     #filename = "facebook_combined_TRUE-2-k50-p0-LT-prova.csv"
@@ -153,11 +153,11 @@ if __name__ == '__main__':
 
 
     graph = "graphs/fb_politician.txt"
-    filename = "fb_politician-k147-p0.1-IC-NEW_3_OBJ.csv"
-    #filename = "graph_SBM_small-k51-p0.1-IC-prova_100_sim.csv"  
+    filename = "fb_politician-k147-p0.01-IC-NEW_3_OBJ.csv"
+    #filename = "graph_SBM_small-k51-p0.01-IC-prova_100_sim.csv"  
     ##graph = "graphs/graph_SBM_small.txt"
 
-    #filename = "facebook_combined-k100-p0.1-IC-prova.csv"
+    #filename = "facebook_combined-k100-p0.01-IC-prova.csv"
     #graph = "graphs/facebook_combined.txt"
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -186,11 +186,11 @@ if __name__ == '__main__':
     plt.scatter(z0,x0,color="blue", label="50%")
     #plt.scatter(z1,x1,color="orange",label="75%")
     plt.scatter(z2,x2,color="red",label="100%")
-    plt.title('Facebook Politicians IC p=0.1 model')
+    plt.title('Facebook Politicians IC p=0.01 model')
     plt.xlabel('% Influenced Nodes')
     plt.ylabel('% Nodes as seed set')
     plt.legend()
-    plt.xlim(1,100)
+    plt.xlim(-5,100)
     plt.show()
     plt.cla()
 
