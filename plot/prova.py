@@ -5,9 +5,9 @@ import numpy as np
 import os
 sys.path.insert(0, '')
 from src.load import read_graph
-filename1 = "scale_results_csv/ego-twitter_5.csv"
+filename1 = "scale_graphs/facebook_combined.txt_TRUE-4.txt"
 df = pd.read_csv(filename1, sep=",")
-filename="graphs/ego-twitter.txt"
+filename="graphs/fb_politician.txt"
 g =read_graph(filename)
 name = os.path.basename(filename1)
 original_density = (2*g.number_of_edges())/ (g.number_of_nodes()*(g.number_of_nodes()-1))

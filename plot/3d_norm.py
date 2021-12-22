@@ -46,11 +46,14 @@ def plot(x2,y2,z2):
 if __name__ == '__main__':
     
 
-    #filename = "graph_SBM_small_TRUE-4-k12-p0-WC-prova.csv"
     graph = "scale_graphs/graph_SBM_small.txt_TRUE-4.txt"
-    filename = "graph_SBM_small_TRUE-4-k12-p0-WC-NEW_2_obj.csv"
+    #filename = "graph_SBM_small_TRUE-4-k12-p0.1-IC-NEW_2_obj.csv"
+
+    graph = "scale_graphs/fb_politician.txt_TRUE-4.txt"
+    filename = "fb_politician_TRUE-4-k36-p0.1-IC-NEW_3_OBJ.csv"
+
     #graph = "scale_graphs//graph_SBM_small.txt_TRUE-4.txt"
-    #filename = "facebook_combined_TRUE-4-k25-p0-WC-prova.csv"
+    #filename = "facebook_combined_TRUE-4-k25-p0.1-IC-prova.csv"
     #graph = "scale_graphs/facebook_combined.txt_TRUE-4.txt"
 
     G = read_graph(graph)
@@ -73,14 +76,18 @@ if __name__ == '__main__':
     
     print(len(df))
     #plot(x,y,z)
-    filename = "graph_SBM_small_TRUE-2-k25-p0-WC-NEW_2_obj.csv"
+    #filename = "graph_SBM_small_TRUE-2-k25-p0.1-IC-NEW_2_obj.csv"
     graph = "scale_graphs/graph_SBM_small.txt_TRUE-2.txt"
-    #filename = "graph_SBM_small_TRUE-2-k25-p0-LT-prova_100_sim.csv"
+
+
+    graph = "scale_graphs/fb_politician.txt_TRUE-2.txt"
+    filename = "fb_politician_TRUE-2-k70-p0.1-IC-NEW_3_OBJ.csv"
+    #filename = "graph_SBM_small_TRUE-2-k25-p0.1-IC-prova_100_sim.csv"
     #graph = "scale_graphs//graph_SBM_small.txt_TRUE-2.txt"
 
-    #filename = "facebook_combined_TRUE-2-k50-p0-WC-prova.csv"
+    #filename = "facebook_combined_TRUE-2-k50-p0-LT-prova.csv"
     #graph = "scale_graphs/facebook_combined.txt_TRUE-2.txt"
-    #filename = "graph_SBM_small_TRUE-4-k12-p0-WC-prova.csv"
+    #filename = "graph_SBM_small_TRUE-4-k12-p0-LT-prova.csv"
     #graph = "scale_graphs//graph_SBM_small.txt_TRUE-4.txt"
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -104,14 +111,16 @@ if __name__ == '__main__':
     #plot(x0,y0,z0)
     print(len(df))
 
-    filename = "graph_SBM_small_TRUE-1.33-k38-p0-WC-NEW_2_obj.csv"
-    graph = "scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt"
+    #filename = "graph_SBM_small_TRUE-1.33-k38-p0-LT-NEW_2_obj.csv"
+    #graph = "scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt"
 
     #filename = "graph_SBM_small_TRUE-1.33-k38-p0-LT-prova_100_sim.csv"
     #graph = "scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt"
 
-    #filename = "facebook_combined_TRUE-1.33-k74-p0-WC-prova.csv"
+    #filename = "facebook_combined_TRUE-1.33-k74-p0-LT-prova.csv"
     #graph = "scale_graphs/facebook_combined.txt_TRUE-1.33.txt"
+    filename = "fb_politician-k147-p0-LT-NEW_3_OBJ.csv"
+
     G = read_graph(graph)
     N = G.number_of_nodes()
     my_degree_function = G.degree   
@@ -137,12 +146,18 @@ if __name__ == '__main__':
 
     #plot(x1,y1,z1)
 
+
+
     graph = "graphs/graph_SBM_small.txt"  
-    filename = "graph_SBM_small-k51-p0-WC-NEW_2_obj.csv"  
-    #filename = "graph_SBM_small-k51-p0-LT-prova_100_sim.csv"  
+    filename = "graph_SBM_small-k51-p0-LT-NEW_2_obj.csv"  
+
+
+    graph = "graphs/fb_politician.txt"
+    filename = "fb_politician-k147-p0.1-IC-NEW_3_OBJ.csv"
+    #filename = "graph_SBM_small-k51-p0.1-IC-prova_100_sim.csv"  
     ##graph = "graphs/graph_SBM_small.txt"
 
-    #filename = "facebook_combined-k100-p0-WC-prova.csv"
+    #filename = "facebook_combined-k100-p0.1-IC-prova.csv"
     #graph = "graphs/facebook_combined.txt"
     G = read_graph(graph)
     N = G.number_of_nodes()
@@ -169,9 +184,9 @@ if __name__ == '__main__':
 
     plt.scatter(z,x,color="green",label="25%")
     plt.scatter(z0,x0,color="blue", label="50%")
-    plt.scatter(z1,x1,color="orange",label="75%")
+    #plt.scatter(z1,x1,color="orange",label="75%")
     plt.scatter(z2,x2,color="red",label="100%")
-    plt.title('SBM IC model')
+    plt.title('Facebook Politicians IC p=0.1 model')
     plt.xlabel('% Influenced Nodes')
     plt.ylabel('% Nodes as seed set')
     plt.legend()
@@ -185,9 +200,9 @@ if __name__ == '__main__':
     #plt.scatter(z0,x0,color="blue", label="original pop/offspring")
     plt.scatter(y,x,color="green",label="25%")
     plt.scatter(y0,x0,color="blue", label="50%")
-    plt.scatter(y1,x1,color="orange",label="75%")
+    #plt.scatter(y1,x1,color="orange",label="75%")
     plt.scatter(y2,x2,color="red",label="100%")
-    plt.title('SBM LT model')
+    plt.title('Facebook Politicians IC model')
     plt.xlabel('Communities')
     plt.ylabel('% Nodes as seed set')
     plt.legend()
@@ -196,9 +211,9 @@ if __name__ == '__main__':
 
     plt.scatter(z,y,color="green",label="25%")
     plt.scatter(z0,y0,color="blue", label="50%")
-    plt.scatter(z1,y1,color="orange",label="75%")
+    #plt.scatter(z1,y1,color="orange",label="75%")
     plt.scatter(z2,y2,color="red",label="100%")
-    plt.title('SBM LT model')
+    plt.title('Facebook Politicians IC model')
     plt.xlabel('% Influenced Nodes')
     plt.ylabel('Communities')
     plt.legend()
@@ -210,7 +225,7 @@ if __name__ == '__main__':
     fig = plt.figure()
     ax = fig.add_subplot(projection='3d')
     ax.scatter(x, y, z, marker='o', color="green")
-    ax.scatter(x0, y0, z0, marker='o', color="blue")
+    #ax.scatter(x0, y0, z0, marker='o', color="blue")
     ax.scatter(x1, y1, z1, marker='o', color="orange")
     ax.scatter(x2, y2, z2, marker='o', color="red")
     plt.show()
