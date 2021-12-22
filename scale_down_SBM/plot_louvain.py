@@ -16,68 +16,67 @@ import pandas as pd
 import os
 import os
 
-no_simulations = 1
-X = 10
 
 
 
-filename = "graphs/fb_politician.txt"
-name = os.path.basename(filename)
-name = name.replace('.txt','')
-G = read_graph(filename)
-G = G.to_undirected()
 
-print(nx.info(G))
-original_density = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
-print("Density --> {0}".format(original_density))
+graphs = ["graphs/facebook_combined.txt","graphs/fb_org.txt","graphs/fb_politician.txt","graphs/pgp.txt","graphs/deezerEU.txt"]
 
-N = G.number_of_nodes()
+for filename in graphs:
+    name = os.path.basename(filename)
+    name = name.replace('.txt','')
+    G = read_graph(filename)
+    G = G.to_undirected()
 
-no_simulations = 10
-X = 100
+    print(nx.info(G))
+    original_density = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
+    print("Density --> {0}".format(original_density))
 
-C = []
-S = []
-for i in range(int(X)):
-    resolution = 1
-    comm_values = []
-    size_values = []
-    list_check = []
-    print(resolution)
-    for n in range(no_simulations):
-        partition = community_louvain.best_partition(G, resolution=resolution)
+    N = G.number_of_nodes()
 
-        """REDIFNE CHECK LIST HERE"""
-        df = pd.DataFrame()
-        df["nodes"] = list(partition.keys())
-        df["comm"] = list(partition.values()) 
-        df = df.groupby('comm')['nodes'].apply(list)
-        df = df.reset_index(name='nodes')
-        check = []
-        for j in range(max(partition.values())+1):
-            check.append(df["nodes"].iloc[j])
+    no_simulations = 10
+    X = 100
 
-        list_check.append(check)
-        size = []
-        for k in range(len(check)):
-            size.append(len(check[k]))
-    
-    
-        comm_values.append(len(df["comm"]))
-        size_values.append(min(size))
-        print("Com Values {0} , Size Values {1}".format(comm_values,size_values))
+    C = []
+    S = []
+    for i in range(int(X)):
+        resolution = i +1
+        comm_values = []
+        size_values = []
+        list_check = []
+        print(resolution)
+        for n in range(no_simulations):
+            partition = community_louvain.best_partition(G, resolution=resolution)
+            """REDIFNE CHECK LIST HERE"""
+            df = pd.DataFrame()
+            df["nodes"] = list(partition.keys())
+            df["comm"] = list(partition.values()) 
+            df = df.groupby('comm')['nodes'].apply(list)
+            df = df.reset_index(name='nodes')
+            check = []
+            for j in range(max(partition.values())+1):
+                check.append(df["nodes"].iloc[j])
+
+            list_check.append(check)
+            size = []
+            for k in range(len(check)):
+                size.append(len(check[k]))
         
-    com_max = max(comm_values)
-    index = comm_values.index(com_max)
-    size = size_values[index]
-    
+        
+            comm_values.append(len(df["comm"]))
+            size_values.append(min(size))
+            print("Com Values {0} , Size Values {1}".format(comm_values,size_values))
+            
+        com_max = max(comm_values)
+        index = comm_values.index(com_max)
+        size_final = size_values[index]
+        
 
-    C.append(com_max)
-    S.append(size)
-    print(size, com_max)    
-    resolution = round(resolution+1,2)
+        C.append(com_max)
+        S.append(size_final)
+        print(com_max ,size_final)    
 
-df = pd.DataFrame()
-df["#C"] = C
-df["min_size"] = S
-df.to_csv('scale_results_csv/'+name+'.csv', index=False, sep=",")
+    df = pd.DataFrame()
+    df["#C"] = C
+    df["min_size"] = S
+    df.to_csv('scale_results_csv/'+name+'.csv', index=False, sep=",")
