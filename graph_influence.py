@@ -68,7 +68,7 @@ if __name__ == '__main__':
     #gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
     #scale_k=[4,2,1.33,1]
     
-    filenames = ["scale_graphs/fb_politician.txt_TRUE-4.txt","scale_graphs/fb_politician.txt_TRUE-2.txt","graphs/fb_politician.txt"]
+    filenames = ["scale_graphs/facebook_combined.txt_TRUE-4.txt","scale_graphs/facebook_combined.txt_TRUE-4.txt","graphs/facebook_combined.txt"]
     gt = ["comm_ground_truth/fb_politician_4.csv","comm_ground_truth/fb_politician_2.csv","comm_ground_truth/fb_politician.csv"]
     scale_k = [4,2,1]
     #scale_k = [1]
@@ -100,7 +100,7 @@ if __name__ == '__main__':
                 mean.append(my_degree_function[item])
             t = "best_hv"
             if model == "IC":
-                p = 0.01
+                p = 0.05
             elif model == "LT":
                 p = 0
             elif model == "IC_1":
@@ -139,7 +139,7 @@ if __name__ == '__main__':
             initial_population = create_initial_population(G, args, prng, nodes)
 
 
-            no_obj = 3
+            no_obj = 2
             no_simulations = 50
             max_generations = 100
             #max_generations = 50
@@ -201,7 +201,7 @@ if __name__ == '__main__':
             #define file where to save the results obtained from the execution
             file = str(os.path.basename(filename))
             file = file.replace(".txt", "")
-            t = 'NEW_3_OBJ'
+            t = 'NEW_2_OBJ'
             file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             start = time.time()
