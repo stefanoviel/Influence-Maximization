@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "graphs.py", line 4, in <module>
-    from src.load import read_graph
-ModuleNotFoundError: No module named 'src'
