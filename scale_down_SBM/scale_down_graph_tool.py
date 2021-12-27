@@ -26,10 +26,13 @@ print(len(set(blocks)))
 state.draw(pos=g.vp.pos, output="football-sbm-fit.svg")
 exit(0)
 '''
-scale = 4
+
+
+scale_factor = 0.5
+scale = round(1/scale_factor,3)
 resolution = 1
 
-filename = "graphs/facebook_combined.txt"
+filename = "graphs/graph_SBM_big.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
