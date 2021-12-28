@@ -4,6 +4,7 @@ from community import community_louvain
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import networkx as nx
+from numpy.core.numeric import False_
 from numpy.lib.function_base import append
 import sys
 sys.path.insert(0, '')
@@ -32,7 +33,7 @@ scale_factor = 0.5
 scale = round(1/scale_factor,3)
 resolution = 1
 
-filename = "graphs/graph_SBM_big.txt"
+filename = "graphs/pgp.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -54,32 +55,43 @@ Resolution is a parameter for the Louvain community detection algorithm that aff
 recovered clusters. Smaller resolutions recover smaller, and therefore a larger number of clusters, 
 and conversely, larger values recover clusters containing more data points.
 """
-      
-partition = community_louvain.best_partition(G, resolution=resolution)
+test = True
+while (test): 
+    partition = community_louvain.best_partition(G, resolution=resolution)
 
-"""REDIFNE CHECK LIST HERE"""
-df = pd.DataFrame()
-df["nodes"] = list(partition.keys())
-df["comm"] = list(partition.values()) 
-df = df.groupby('comm')['nodes'].apply(list)
-df = df.reset_index(name='nodes')
-check = []
-for i in range(max(partition.values())+1):
-    check.append(df["nodes"].iloc[i])
-sum = 0
-check_ok = []
-
-
-
-for item in check:
-    sum = sum + len(item)
-
-    if len(item) > 2*scale:
-        check_ok.append(item)
+    """REDIFNE CHECK LIST HERE"""
+    df = pd.DataFrame()
+    df["nodes"] = list(partition.keys())
+    df["comm"] = list(partition.values()) 
+    df = df.groupby('comm')['nodes'].apply(list)
+    df = df.reset_index(name='nodes')
+    check = []
+    for i in range(max(partition.values())+1):
+        check.append(df["nodes"].iloc[i])
+    sum = 0
+    check_ok = []
 
 
 
-print("Total number of nodes after selection {0} \nCommunities before check {1} \nCommunities after check {2}".format(sum,len(check),len(check_ok)))
+    for item in check:
+        sum = sum + len(item)
+
+        if len(item) > scale+1:
+            check_ok.append(item)
+
+
+
+    print("Total number of nodes after selection {0} \nCommunities before check {1} \nCommunities after check {2}".format(sum,len(check),len(check_ok)))
+    if len(check) != 32:
+        resolution +=1
+    else:
+        test = False
+
+    if resolution ==100:
+        print('Impossibile')
+        exit(0)
+
+
 check = check_ok
 
 i = 1
