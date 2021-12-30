@@ -21,6 +21,8 @@ def nsga2_evaluator(candidates, args):
     # depending on how many threads we have at our disposal,
     # we use a different methodology
     # if we just have one thread, let's just evaluate individuals old style 
+
+    time_gen = []
     if n_threads == 1 :
         for index, A in enumerate(candidates) :
 
@@ -32,8 +34,8 @@ def nsga2_evaluator(candidates, args):
                 max_hop = args["max_hop"]
                 fitness_function_args = [G, A_set, p, no_simulations, model, max_hop]
 
-            influence_mean, influence_std, comm = fitness_function(*fitness_function_args, **fitness_function_kargs)
-            #influence_mean, influence_std= fitness_function(*fitness_function_args, **fitness_function_kargs)
+            influence_mean, influence_std, comm, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
+            time_gen.append(time)
             if no_obj == 3:
                 fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), comm])
             elif no_obj == 2:
@@ -64,12 +66,13 @@ def nsga2_evaluator(candidates, args):
         # start thread pool and wait for conclusion
         thread_pool.wait_completion()
 
+    args["time"].append(time_gen)
     return fitness
 
 
 def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_function_kargs, fitness_values, A_set, index, k,G, no_obj,thread_lock, thread_id) :
 
-    influence_mean, influence_std, comm = fitness_function(*fitness_function_args, **fitness_function_kargs)
+    influence_mean, influence_std, comm, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
 
     # lock data structure before writing in it
     thread_lock.acquire()

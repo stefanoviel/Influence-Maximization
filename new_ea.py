@@ -10,7 +10,7 @@ from time import time
 # local libraries
 from src.spread.monte_carlo import MonteCarlo_simulation
 from src.spread.monte_carlo_max_hop import MonteCarlo_simulation_max_hop as MonteCarlo_simulation_max_hop
-from src.ea.observer import ea_observer0, ea_observer1, ea_observer2
+from src.ea.observer import time_observer
 
 from src.ea.evaluator import nsga2_evaluator
 from src.ea.crossover import ea_one_point_crossover
@@ -62,7 +62,7 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
     ea = inspyred.ec.emo.NSGA2(random_gen)
     
     
-    #ea.observer = [ea_observer0, ea_observer1, ea_observer2] 
+    ea.observer = [time_observer] 
     ea.variator = [ea_one_point_crossover,ea_global_random_mutation]
     ea.terminator = [no_improvement_termination,generation_termination]
 	
@@ -104,7 +104,8 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
         hv_influence_k = [],
         hv_influence_comm = [],
         hv_k_comm = [],
-        no_obj = no_obj
+        no_obj = no_obj, 
+        time = []
     )
 
     # extract seed sets from the final Pareto front/archive
@@ -120,7 +121,6 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
         seed_sets = [[individual.candidate, individual.fitness[0], ((max_seed_nodes / G.number_of_nodes()) * 100) - individual.fitness[1]] for individual in ea.archive] 
         std, times = compute_time(seed_sets, population_file, G, model, p, no_simulations, communities, random_gen)
         to_csv2(seed_sets, population_file, std, times)
-
 
     return seed_sets
 
