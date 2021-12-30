@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-filenames = ["scale_graphs/fb_org.txt_TRUE-4.0.txt","graphs/fb_org.txt"]
+filenames = ["scale_graphs/pgp.txt_TRUE-2.0.txt","graphs/pgp.txt"]
 pp = []
 mm = []
 ma = []
