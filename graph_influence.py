@@ -55,11 +55,7 @@ def filter_nodes(G, args):
 if __name__ == '__main__':
     
 
-    '''
-    -1 !!!!!!!!!!!!
-    terminators + here!
-    
-    '''
+   
     #gt = ["comm_ground_truth/facebook_combined_4.csv","comm_ground_truth/facebook_combined_2.csv","comm_ground_truth/facebook_combined_1.33.csv","comm_ground_truth/facebook_combined.csv"]
     #filenames = ["scale_graphs/facebook_combined.txt_TRUE-4.txt","scale_graphs/facebook_combined.txt_TRUE-2.txt","scale_graphs/facebook_combined.txt_TRUE-1.33.txt","graphs/facebook_combined.txt"]
 
@@ -68,9 +64,9 @@ if __name__ == '__main__':
     #gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
     #scale_k=[4,2,1.33,1]
     
-    filenames = ["scale_graphs/fb_org.txt_TRUE-2.0.txt"]
-    gt = ["comm_ground_truth/fb_org_2.0.csv"]
-    scale_k = [4]
+    filenames = ["scale_graphs/fb_org.txt_TRUE-8.0.txt","scale_graphs/fb_org.txt_TRUE-4.0.txt","scale_graphs/fb_org.txt_TRUE-2.0.txt","graphs/fb_org.txt"]
+    gt = ["comm_ground_truth/fb_org_8.0.csv","comm_ground_truth/fb_org_4.0.csv","comm_ground_truth/fb_org_2.0.csv","comm_ground_truth/fb_org.csv"]
+    scale_k = [8,4,2,1]
     #scale_k = [1]
     models = ["IC"]
 
@@ -141,7 +137,7 @@ if __name__ == '__main__':
 
             no_obj = 3
             no_simulations = 10
-            max_generations = 5
+            max_generations = 50
             #max_generations = 50
             #nodes' bound of seed sets
             #k=200
@@ -171,4 +167,3 @@ if __name__ == '__main__':
             
             exec_time = time.time() - start
             print(exec_time)
-            #exit(0)

@@ -62,7 +62,6 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
     ea = inspyred.ec.emo.NSGA2(random_gen)
     
     
-    ea.observer = [time_observer] 
     ea.variator = [ea_one_point_crossover,ea_global_random_mutation]
     ea.terminator = [no_improvement_termination,generation_termination]
 	

@@ -4,7 +4,7 @@ from pymoo.factory import get_performance_indicator
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-
+from src.ea.observer import time_observer
 def generation_termination(population, num_generations, num_evaluations, args):
     if num_generations == args["generations_budget"]:
         x = [x for x in range(1,len(args["hypervolume"])+1)]
@@ -22,6 +22,8 @@ def generation_termination(population, num_generations, num_evaluations, args):
             df["influence_comm"] = args["hv_influence_comm"]
             df["k_comm"] = args["hv_k_comm"]
         df.to_csv(args["population_file"] +"_hv_.csv", sep=",",index=False)
+        time_observer(population, num_generations, num_evaluations, args)
+
     return num_generations == args["generations_budget"]
 
 def no_improvement_termination(population, num_generations, num_evaluations, args):
@@ -143,35 +145,6 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
 
     if previous_best != None:
         print('Current Best - Previous Best {0}'.format((current_best-previous_best)))
-    # one = []
-    # two = []
-    # three = []
-    # for item in original_arch:
-    #     one.append(item[0])
-    #     two.append(1/item[1])
-    #     three.append(item[2])
-    # df = pd.DataFrame()
-    # df["influence"] = one
-    # df["nodes"] = two
-    # df["comm"] = three
-
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111, projection='3d')
-
-    # ax.scatter(two,three,one, color='red', alpha=1,linewidth=0)
-    # ax.set_xlabel("No nodes")
-
-    # ax.set_zlabel("Influence")
-
-    # ax.set_ylabel("Communities")
-
-    # ax.set_ylim([1,len(args["communities"])])
-    #ax.set_zlim([1,550])
-    #ax.set_xlim([1,(args["max_seed_nodes"])])
-    #plt.title('Generations {0}'.format(num_generations))
-    #plt.savefig('PF/'+ str(num_generations)+'.png')
-    #plt.close()
-    #plt.show()
 
     if previous_best is None or current_best > previous_best:
         args['previous_best'] = current_best
@@ -194,6 +167,9 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
                 df["k_comm"] = args["hv_k_comm"]
             
             df.to_csv(args["population_file"] +"_hv_.csv", sep=",",index=False)
+
+            time_observer(population, num_generations, num_evaluations, args)
+
             return True
         else:
             args['generation_count'] += 1
