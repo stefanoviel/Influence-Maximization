@@ -45,7 +45,7 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "facebook_combined_TRUE-8.0-k12-p0.05-IC-NEW_3_OBJ.csv"
+    filename = "pgp_TRUE-8.0-k32-p0.3-IC-NEW_3_OBJ.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -57,7 +57,7 @@ if __name__ == '__main__':
     time = sum(np.array(x) * np.array(t)) / sum(np.array(t))
     time = np.mean(t) / np.mean(x)
 
-    filename = "facebook_combined_TRUE-4.0-k24-p0.05-IC-NEW_3_OBJ.csv"
+    filename = "pgp_TRUE-4.0-k62-p0.3-IC-NEW_3_OBJ.csv"
     df = pd.read_csv(filename, sep=",")
 
     x0= df["n_nodes"].to_list()
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     time0 = np.mean(t0) / np.mean(x0)
   
 
-    filename = "facebook_combined_TRUE-2.0-k49-p0.05-IC-NEW_3_OBJ.csv"
+    filename = "pgp_TRUE-2.0-k118-p0.3-IC-NEW_3_OBJ.csv"
 
 
     df = pd.read_csv(filename, sep=",")
@@ -87,7 +87,7 @@ if __name__ == '__main__':
 
 
 
-    filename = "facebook_combined-k100-p0.05-IC-NEW_3_OBJ.csv"
+    filename = "pgp-k267-p0.3-IC-NEW_3_OBJ.csv"
    
 
     df = pd.read_csv(filename, sep=",")
@@ -108,7 +108,7 @@ if __name__ == '__main__':
     plt.xlabel('% Influenced Nodes')
     plt.ylabel('% Nodes as seed set')
     plt.legend()
-    #plt.xlim(-5,100)
+    plt.xlim(0,100)
     plt.show()
     plt.cla()
 
@@ -140,10 +140,10 @@ if __name__ == '__main__':
 
     fig = plt.figure()
     ax = fig.add_subplot(projection='3d')
-    ax.scatter(x, y, z, marker='o', color="green")
-    ax.scatter(x0, y0, z0, marker='o', color="blue")
-    ax.scatter(x1, y1, z1, marker='o', color="orange")
-    ax.scatter(x2, y2, z2, marker='o', color="red")
+    ax.scatter(z, y, x, marker='o', color="green")
+    ax.scatter(z0, y0, x0, marker='o', color="blue")
+    ax.scatter(z1, y1, x1, marker='o', color="orange")
+    ax.scatter(z2, y2, x2, marker='o', color="red")
     plt.show()
 
     # fig, ax = plt.subplots(subplot_kw={"projection": "3d"})

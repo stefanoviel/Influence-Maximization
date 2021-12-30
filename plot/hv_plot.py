@@ -5,11 +5,11 @@ sys.path.insert(0, '')
 from src.load import read_graph
 
 
-df = pd.read_csv("facebook_combined-k100-p0.05-IC-NEW_3_OBJ_hv_.csv",sep=",")
-df1 = pd.read_csv("facebook_combined_TRUE-2.0-k49-p0.05-IC-NEW_3_OBJ_hv_.csv",sep=",")
+df = pd.read_csv("pgp-k267-p0-WC-NEW_3_OBJ_hv_.csv",sep=",")
+df1 = pd.read_csv("pgp_TRUE-2.0-k118-p0.05-IC-NEW_3_OBJ_hv_.csv",sep=",")
 
-df2 = pd.read_csv("facebook_combined_TRUE-4.0-k24-p0.05-IC-NEW_3_OBJ_hv_.csv",sep=",")
-df4= pd.read_csv("facebook_combined_TRUE-8.0-k12-p0.05-IC-NEW_3_OBJ_hv_.csv",sep=",")
+df2 = pd.read_csv("pgp_TRUE-4.0-k62-p0.2-IC-NEW_3_OBJ_hv_.csv",sep=",")
+df4= pd.read_csv("pgp_TRUE-8.0-k32-p0-WC-NEW_3_OBJ_hv_.csv",sep=",")
 
 fig, axs = plt.subplots(2, 2)
 
