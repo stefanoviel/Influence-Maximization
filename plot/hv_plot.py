@@ -5,17 +5,12 @@ sys.path.insert(0, '')
 from src.load import read_graph
 
 
-df = pd.read_csv("graph_SBM_small-k51-p0.05-IC-NEW_2_OBJ_hv_.csv",sep=",")
-df1 = pd.read_csv("graph_SBM_small_TRUE-1.33-k38-p0.05-IC-NEW_2_OBJ_hv_.csv",sep=",")
+df = pd.read_csv("fb_org-k138-p0.05-IC-NEW_3_OBJ_hv_.csv",sep=",")
+df1 = pd.read_csv("fb_org_TRUE-2.0-k68-p0.05-IC-NEW_3_OBJ_hv_.csv",sep=",")
 
-df2 = pd.read_csv("graph_SBM_small_TRUE-2-k25-p0.05-IC-NEW_2_OBJ_hv_.csv",sep=",")
-df4= pd.read_csv("graph_SBM_small_TRUE-4-k12-p0.05-IC-NEW_2_OBJ_hv_.csv",sep=",")
+df2 = pd.read_csv("fb_org_TRUE-4.0-k34-p0.05-IC-NEW_3_OBJ_hv_.csv",sep=",")
+df4= pd.read_csv("fb_org_TRUE-8.0-k17-p0.05-IC-NEW_3_OBJ_hv_.csv",sep=",")
 
-#df = pd.read_csv("facebook_combined-k100-p0.05-IC-prova_hv_.csv",sep=",")
-#df1 = pd.read_csv("graph_SBM_small_TRUE-1.33-k38-p0.05-IC-prova_hv_.csv",sep=",")
-
-#df2 = pd.read_csv("facebook_combined_TRUE-2-k50-p0.05-IC-prova_hv_.csv",sep=",")
-#df4= pd.read_csv("facebook_combined_TRUE-4-k25-p0.05-IC-prova_hv_.csv",sep=",")
 fig, axs = plt.subplots(2, 2)
 
 axs[0,0].plot(df.generation, df.hv, color="red", label="0riginal")
