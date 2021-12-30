@@ -6,8 +6,7 @@ import matplotlib.pyplot as plt
 
 
 
-df8 = pd.read_csv("fb_org_TRUE-8.0-k17-p0.05-IC-NEW_3_OBJ-time.csv", sep=",")
-print(df8)
+df8 = pd.read_csv("facebook_combined_TRUE-8.0-k12-p0.05-IC-NEW_3_OBJ-time.csv", sep=",")
 
 p8 = {}
 p8["avg"] = np.array([])
@@ -22,7 +21,7 @@ for i in range(len(df8)):
     p8["generation"]  = np.append(p8["generation"],i)
 
 
-df4 = pd.read_csv("fb_org_TRUE-4.0-k34-p0.05-IC-NEW_3_OBJ-time.csv", sep=",")
+df4 = pd.read_csv("facebook_combined_TRUE-4.0-k24-p0.05-IC-NEW_3_OBJ-time.csv", sep=",")
 
 p4 = {}
 p4["avg"] = np.array([])
@@ -36,9 +35,10 @@ for i in range(len(df4)):
     p4["avg"] = np.append(p4["avg"], np.mean(t))
     p4["std"] = np.append(p4["std"], np.std(t))
     p4["generation"]  = np.append(p4["generation"],i)
-df2 = pd.read_csv("fb_org_TRUE-2.0-k68-p0.05-IC-NEW_3_OBJ-time.csv", sep=",")
 
 
+
+df2 = pd.read_csv("facebook_combined_TRUE-2.0-k49-p0.05-IC-NEW_3_OBJ-time.csv", sep=",")
 p2 = {}
 p2["avg"] = np.array([])
 p2["std"] = np.array([])
@@ -55,7 +55,7 @@ for i in range(len(df2)):
 
 
 
-df0 = pd.read_csv("fb_org-k138-p0.05-IC-NEW_3_OBJ-time.csv",sep=',')
+df0 = pd.read_csv("facebook_combined-k100-p0.05-IC-NEW_3_OBJ-time.csv",sep=',')
 p_original = {}
 p_original["avg"] = np.array([])
 p_original["std"] = np.array([])
@@ -67,8 +67,9 @@ for i in range(len(df0)):
     p_original_total += sum(t)
     p_original["avg"] = np.append(p_original["avg"], np.mean(t))
     p_original["std"] = np.append(p_original["std"], np.std(t))
-    p_original["generation"]  = np.append(p_original["generation"],i)
-gen =(p_original["generation"])
+    p_original["generation"] = np.append(p_original["generation"],i)
+
+gen =(p8["generation"])
 
 plt.plot(gen, p8["avg"], label = 'Scale 1/8', color="green")
 plt.fill_between(gen, p8["avg"]-p8["std"], p8["avg"]+p8["std"],alpha=0.3, facecolor='green')
@@ -96,6 +97,6 @@ performance = [p8_total, p4_total, p2_total, p_original_total]
 plt.bar(y_pos, performance, align='center', alpha=0.5)
 plt.xticks(y_pos, objects)
 plt.ylabel('Usage')
-plt.title('Programming language usage')
+plt.title('')
 
 plt.show()
