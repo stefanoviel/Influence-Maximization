@@ -137,6 +137,6 @@ def MonteCarlo_simulation_time(G, A, p, no_simulations, model, communities, rand
 			results.append(res)
 			times.append(time)
 
-	return (numpy.mean(results), numpy.std(results), int(numpy.mean(comm_list)), int(numpy.mean(times)))
+	return (numpy.mean(results), numpy.std(results), int(numpy.mean(comm_list)), sum(times))
 
 
