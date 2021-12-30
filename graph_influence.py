@@ -96,7 +96,7 @@ if __name__ == '__main__':
                 mean.append(my_degree_function[item])
             t = "best_hv"
             if model == "IC":
-                p = 0.2
+                p = 0.3
             elif model == "LT":
                 p = 0
             elif model == "IC_1":
