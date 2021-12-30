@@ -68,10 +68,10 @@ if __name__ == '__main__':
     gt = ["comm_ground_truth/pgp_8.0.csv","comm_ground_truth/pgp_4.0.csv","comm_ground_truth/pgp_2.0.csv","comm_ground_truth/pgp.csv"]
     scale_k = [8,4,2,1]
     #scale_k = [1]
-    models = ["IC"]
+    #models = ["IC"]
 
 
-    #models = ['WC']
+    models = ['WC']
     i = 0
     for item in filenames:
         file_gt = gt[i]
