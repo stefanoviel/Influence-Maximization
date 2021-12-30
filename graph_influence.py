@@ -68,9 +68,9 @@ if __name__ == '__main__':
     #gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
     #scale_k=[4,2,1.33,1]
     
-    filenames = ["scale_graphs/facebook_combined.txt_TRUE-4.txt","scale_graphs/facebook_combined.txt_TRUE-4.txt","graphs/facebook_combined.txt"]
-    gt = ["comm_ground_truth/fb_politician_4.csv","comm_ground_truth/fb_politician_2.csv","comm_ground_truth/fb_politician.csv"]
-    scale_k = [4,2,1]
+    filenames = ["scale_graphs/fb_org.txt_TRUE-2.0.txt"]
+    gt = ["comm_ground_truth/fb_org_2.0.csv"]
+    scale_k = [4]
     #scale_k = [1]
     models = ["IC"]
 
@@ -139,9 +139,9 @@ if __name__ == '__main__':
             initial_population = create_initial_population(G, args, prng, nodes)
 
 
-            no_obj = 2
-            no_simulations = 50
-            max_generations = 100
+            no_obj = 3
+            no_simulations = 10
+            max_generations = 5
             #max_generations = 50
             #nodes' bound of seed sets
             #k=200
@@ -150,49 +150,11 @@ if __name__ == '__main__':
             offspring_size = 50
 
 
-            n_threads = 5
+            n_threads = 1 
             
 
 
-            # N_initial_population = int(50 * 1/scale) 
-            # populations = []
-            # hv_value = []
-            # for ii in range(N_initial_population):
-            #     initial_population = create_initial_population(G, args, prng, nodes)
-            #     populations.append(initial_population)
-            #     fitness = []               
-            #     for iii in range(len(initial_population)):
-            #         A_set = set(initial_population[iii])
-            #         influence_mean, _, comm = MonteCarlo_simulation(G, A_set, p, no_simulations, model, communities, random_generator=None)
-            #         s = []
-            #         s.append(influence_mean)
-            #         s.append(float(1.0 / len(A_set)))
-            #         s.append(comm)
-            #         fitness.append(s)
-            #     for z in range(len(fitness)):
-            #         for j in range(len(fitness[z])):
-            #                 fitness[z][j] = -float(fitness[z][j])
-                
-            #     F =  np.array(fitness)
-
-            #     t = (1/args["k"]) 
-            #     tot = (G.number_of_nodes() -1) * (1 - t) * (len(communities) -1)
-            
-            #     from pymoo.indicators.hv import Hypervolume
-
-            #     metric = Hypervolume(ref_point= np.array([-1,-t,-1]),
-            #                         norm_ref_point=False,
-            #                         zero_to_one=False)
-            #     hv = metric.do(F)
-            #     print(hv/tot)
-            #     hv_value.append(hv/tot)
-
-            # max_value = max(hv_value)
-
-            # max_index = hv_value.index(max_value)
-
-            #initial_population = populations[max_index]
-
+        
 
             #Print Graph's information and properties
             logging.info(nx.classes.function.info(G))
@@ -201,7 +163,7 @@ if __name__ == '__main__':
             #define file where to save the results obtained from the execution
             file = str(os.path.basename(filename))
             file = file.replace(".txt", "")
-            t = 'NEW_2_OBJ'
+            t = 'NEW_3_OBJ'
             file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             start = time.time()

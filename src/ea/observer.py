@@ -2,7 +2,7 @@ import os
 import inspyred.ec
 from src.ea.generators import generator_new_nodes
 from src.utils import diversity, individuals_diversity
-
+import pandas as pd
 
 def adjust_population_size(num_generations, population, args):
 	prev_best = args["prev_population_best"]
@@ -94,3 +94,9 @@ def ea_observer2(population, num_generations, num_evaluations, args):
 		sf.write("\n")
 
 	return
+
+def time_observer(population, num_generations, num_evaluations, args):
+	df = pd.DataFrame(args["time"])
+	print(df)
+	df.to_csv(args["population_file"] + '-time.csv', index=False)
+	return False

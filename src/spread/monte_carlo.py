@@ -1,3 +1,4 @@
+import time
 from networkx.generators import intersection
 import numpy
 import random
@@ -24,7 +25,7 @@ def LT_model(G, a, p, communities,random_generator):
 
     for i, node in enumerate(G.nodes()):
             threshold[node] = l[i]
-            #threshold[node] = p
+    time = 0
 
     while not converged:
         nextB = set()
@@ -40,7 +41,8 @@ def LT_model(G, a, p, communities,random_generator):
         B = set(nextB)
         if not B:
             converged = True
-        A |= B
+        A |= B        
+        time += 1
     
     comm = 0
     for item in communities:
@@ -48,7 +50,7 @@ def LT_model(G, a, p, communities,random_generator):
         if len(intersection) > 0:
             comm += 1
 				    	
-    return len(A), comm
+    return len(A), comm, time
 
 
 	#This returns all the nodes in the network that have been activated/converted in the diffusion process
@@ -58,7 +60,7 @@ def IC_model(G, a, p, communities, random_generator):              # a: the set 
 	A = set(a)                      # A: the set of active nodes, initially a
 	B = set(a)  
 	converged = False
-	#time = 0
+	time = 0
 
 	while not converged:
 		nextB = set()
@@ -68,7 +70,7 @@ def IC_model(G, a, p, communities, random_generator):              # a: the set 
 				if prob <= p:
 					nextB.add(m)
 		B = set(nextB)
-		#time = time+1  
+		time = time+1  
 		if not B:
 			converged = True
 		A |= B
@@ -77,7 +79,7 @@ def IC_model(G, a, p, communities, random_generator):              # a: the set 
 		intersection = set.intersection(set(item),set(A))
 		if len(intersection) > 0:
 			comm += 1	
-	return len(A), comm
+	return len(A), comm, time
 
 
 def WC_model(G, a, communities,random_generator):                 # a: the set of initial active nodes
@@ -90,7 +92,7 @@ def WC_model(G, a, communities,random_generator):                 # a: the set o
 		my_degree_function = G.in_degree
 	else:
 		my_degree_function = G.degree
-	
+	time = 0
 	while not converged:
 		nextB = set()
 		for n in B:
@@ -103,12 +105,13 @@ def WC_model(G, a, communities,random_generator):                 # a: the set o
 		if not B:
 			converged = True
 		A |= B
+		time +=1
 	comm = 0
 	for item in communities:
 		intersection = set.intersection(set(item),set(A))
 		if len(intersection) > 0:
 			comm += 1	
-	return len(A), comm
+	return len(A), comm, time
 
 
 """ Evaluates a given seed set A, simulated "no_simulations" times.
@@ -121,26 +124,28 @@ def MonteCarlo_simulation(G, A, p, no_simulations, model, communities, random_ge
 
 	results = []
 	times = []
-	tt = []
+	comm_list = []
 	if model == 'WC':
 		for i in range(no_simulations):
-			res, time = WC_model(G, A, communities,random_generator=random_generator)
+			res, comm, time  = WC_model(G, A, communities,random_generator=random_generator)
 			times.append(time)
 			results.append(res)
+			comm_list.append(comm)
 	elif model == 'IC':
 		for i in range(no_simulations):
-			res, time = IC_model(G, A, p, communities, random_generator=random_generator)
+			res, comm, time  = IC_model(G, A, p, communities, random_generator=random_generator)
 			times.append(time)
 			results.append(res)
-			#tt.append(t)
+			comm_list.append(comm)
 	elif model == 'LT':
 		for i in range(no_simulations):
-			res, time = LT_model(G, A, p,communities,random_generator=random_generator)
+			res, comm, time = LT_model(G, A, p,communities,random_generator=random_generator)
 			times.append(time)
 			results.append(res)
+			comm_list.append(comm)
 
 	#return (numpy.mean(results), numpy.std(results))
 
-	return (numpy.mean(results), numpy.std(results), int(numpy.mean(times)))
+	return (numpy.mean(results), numpy.std(results), int(numpy.mean(comm_list)),int(numpy.mean(times)))
 
 
