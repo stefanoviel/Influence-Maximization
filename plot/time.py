@@ -52,7 +52,23 @@ for i in range(len(df2)):
     p2["std"] = np.append(p2["std"], np.std(t))
     p2["generation"]  = np.append(p2["generation"],i)
 
-gen =(p2["generation"])
+
+
+
+df0 = pd.read_csv("fb_org-k138-p0.05-IC-NEW_3_OBJ-time.csv",sep=',')
+p_original = {}
+p_original["avg"] = np.array([])
+p_original["std"] = np.array([])
+p_original["generation"] = np.array([])
+p_original_total = 0
+
+for i in range(len(df0)):
+    t = list(df0.iloc[i])
+    p_original_total += sum(t)
+    p_original["avg"] = np.append(p_original["avg"], np.mean(t))
+    p_original["std"] = np.append(p_original["std"], np.std(t))
+    p_original["generation"]  = np.append(p_original["generation"],i)
+gen =(p_original["generation"])
 
 plt.plot(gen, p8["avg"], label = 'Scale 1/8', color="green")
 plt.fill_between(gen, p8["avg"]-p8["std"], p8["avg"]+p8["std"],alpha=0.3, facecolor='green')
@@ -65,16 +81,17 @@ plt.fill_between(gen, p4["avg"]-p4["std"], p4["avg"]+p4["std"],alpha=0.3, faceco
 plt.plot(gen, p2["avg"], label = 'Scale 1/2', color="blue")
 plt.fill_between(gen, p2["avg"]-p2["std"], p2["avg"]+p2["std"],alpha=0.3, facecolor='blue')
 
-
+plt.plot(gen, p_original["avg"], label = 'Original', color="red")
+plt.fill_between(gen, p_original["avg"]-p_original["std"], p_original["avg"]+p_original["std"],alpha=0.3, facecolor='red')
 
 
 plt.legend()
 plt.show()
 plt.cla()
 
-objects = ['Scale 1/8', 'Scale 1/4','Scale 1/2']
+objects = ['Scale 1/8', 'Scale 1/4','Scale 1/2', 'Original']
 y_pos = np.arange(len(objects))
-performance = [p8_total, p4_total, p2_total]
+performance = [p8_total, p4_total, p2_total, p_original_total]
 
 plt.bar(y_pos, performance, align='center', alpha=0.5)
 plt.xticks(y_pos, objects)

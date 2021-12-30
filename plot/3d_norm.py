@@ -45,62 +45,23 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-
-    graph = "scale_graphs/graph_SBM_small.txt_TRUE-4.txt"
-    #filename = "graph_SBM_small_TRUE-4-k12-p0.01-IC-NEW_2_obj.csv"
-
-    graph = "scale_graphs/fb_politician.txt_TRUE-4.txt"
-    filename = "fb_politician_TRUE-4-k36-p0.01-IC-NEW_3_OBJ.csv"
-
-    #graph = "scale_graphs//graph_SBM_small.txt_TRUE-4.txt"
-    #filename = "facebook_combined_TRUE-4-k25-p0.01-IC-prova.csv"
-    #graph = "scale_graphs/facebook_combined.txt_TRUE-4.txt"
-
-    G = read_graph(graph)
-    N = G.number_of_nodes()
-    my_degree_function = G.degree   
-    mean = []
-    for item in G:
-        mean.append(my_degree_function[item])
+    filename = "fb_org_TRUE-8.0-k17-p0.05-IC-NEW_3_OBJ.csv"
 
     df = pd.read_csv(filename, sep=",")
 
 
     x=  df["n_nodes"].to_list()
-    #y = df["communities"]
+    y = df["communities"]
     z = df["influence"]
     t = df["time"].to_list()
     time = sum(np.array(x) * np.array(t)) / sum(np.array(t))
     time = np.mean(t) / np.mean(x)
 
-    
-    print(len(df))
-    #plot(x,y,z)
-    #filename = "graph_SBM_small_TRUE-2-k25-p0.01-IC-NEW_2_obj.csv"
-    graph = "scale_graphs/graph_SBM_small.txt_TRUE-2.txt"
-
-
-    graph = "scale_graphs/fb_politician.txt_TRUE-2.txt"
-    filename = "fb_politician_TRUE-2-k70-p0.01-IC-NEW_3_OBJ.csv"
-    #filename = "graph_SBM_small_TRUE-2-k25-p0.01-IC-prova_100_sim.csv"
-    #graph = "scale_graphs//graph_SBM_small.txt_TRUE-2.txt"
-
-    #filename = "facebook_combined_TRUE-2-k50-p0-LT-prova.csv"
-    #graph = "scale_graphs/facebook_combined.txt_TRUE-2.txt"
-    #filename = "graph_SBM_small_TRUE-4-k12-p0-LT-prova.csv"
-    #graph = "scale_graphs//graph_SBM_small.txt_TRUE-4.txt"
-    G = read_graph(graph)
-    N = G.number_of_nodes()
-    my_degree_function = G.degree   
-    mean = []
-    for item in G:
-        mean.append(my_degree_function[item])
-
-    print(np.mean(mean))
+    filename = "fb_org_TRUE-4.0-k34-p0.05-IC-NEW_3_OBJ.csv"
     df = pd.read_csv(filename, sep=",")
 
     x0= df["n_nodes"].to_list()
-    #y0 = df["communities"].to_list()
+    y0 = df["communities"].to_list()
     z0 = df["influence"].to_list()
     #time0 = df["time"]  / (1/np.mean(x0))
     t0= df["time"].to_list()
@@ -108,31 +69,13 @@ if __name__ == '__main__':
     time0 = np.mean(t0) / np.mean(x0)
   
 
-    #plot(x0,y0,z0)
-    print(len(df))
+    filename = "fb_org_TRUE-2.0-k68-p0.05-IC-NEW_3_OBJ.csv"
 
-    #filename = "graph_SBM_small_TRUE-1.33-k38-p0-LT-NEW_2_obj.csv"
-    #graph = "scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt"
 
-    #filename = "graph_SBM_small_TRUE-1.33-k38-p0-LT-prova_100_sim.csv"
-    #graph = "scale_graphs/graph_SBM_small.txt_TRUE-1.33.txt"
-
-    #filename = "facebook_combined_TRUE-1.33-k74-p0-LT-prova.csv"
-    #graph = "scale_graphs/facebook_combined.txt_TRUE-1.33.txt"
-    filename = "fb_politician-k147-p0-LT-NEW_3_OBJ.csv"
-
-    G = read_graph(graph)
-    N = G.number_of_nodes()
-    my_degree_function = G.degree   
-    mean = []
-    for item in G:
-        mean.append(my_degree_function[item])
-
-    print(np.mean(mean))
     df = pd.read_csv(filename, sep=",")
 
     x1= df["n_nodes"]
-    #y1 = df["communities"]
+    y1 = df["communities"]
     z1 = df["influence"]
     #time1 = df["time"]  /(1/np.mean(x1))
     t1= df["time"].to_list()
@@ -140,67 +83,40 @@ if __name__ == '__main__':
     time1 = np.mean(t1) / np.mean(x1)
 
 
-
-
-    print(len(df))
-
     #plot(x1,y1,z1)
 
 
 
-    graph = "graphs/graph_SBM_small.txt"  
-    filename = "graph_SBM_small-k51-p0-LT-NEW_2_obj.csv"  
-
-
-    graph = "graphs/fb_politician.txt"
-    filename = "fb_politician-k147-p0.01-IC-NEW_3_OBJ.csv"
-    #filename = "graph_SBM_small-k51-p0.01-IC-prova_100_sim.csv"  
-    ##graph = "graphs/graph_SBM_small.txt"
-
-    #filename = "facebook_combined-k100-p0.01-IC-prova.csv"
-    #graph = "graphs/facebook_combined.txt"
-    G = read_graph(graph)
-    N = G.number_of_nodes()
-    my_degree_function = G.degree   
-    mean = []
-    for item in G:
-        mean.append(my_degree_function[item])
-
-    print(np.mean(mean))
+    filename = "fb_org-k138-p0.05-IC-NEW_3_OBJ.csv"
+   
 
     df = pd.read_csv(filename, sep=",")
 
     x2= df["n_nodes"].to_list()
-    #y2 = df["communities"].to_list()
+    y2 = df["communities"].to_list()
     z2 = df["influence"].to_list()
     #time2= df["time"]  / (1/np.mean(x2))
     t2= df["time"].to_list()
     time2 = sum(np.array(x2) * np.array(t2)) / sum(np.array(t2))
     time2 = np.mean(t2) / np.mean(x2)
 
-
-    print(len(df))
-    #plot(x2,y2,z2)
-
     plt.scatter(z,x,color="green",label="25%")
     plt.scatter(z0,x0,color="blue", label="50%")
-    #plt.scatter(z1,x1,color="orange",label="75%")
+    plt.scatter(z1,x1,color="orange",label="75%")
     plt.scatter(z2,x2,color="red",label="100%")
     plt.title('Facebook Politicians IC p=0.01 model')
     plt.xlabel('% Influenced Nodes')
     plt.ylabel('% Nodes as seed set')
     plt.legend()
-    plt.xlim(-5,100)
+    #plt.xlim(-5,100)
     plt.show()
     plt.cla()
 
 
 
-    #plt.scatter(y,x,color="green",label="scale pop/offspring")
-    #plt.scatter(z0,x0,color="blue", label="original pop/offspring")
     plt.scatter(y,x,color="green",label="25%")
     plt.scatter(y0,x0,color="blue", label="50%")
-    #plt.scatter(y1,x1,color="orange",label="75%")
+    plt.scatter(y1,x1,color="orange",label="75%")
     plt.scatter(y2,x2,color="red",label="100%")
     plt.title('Facebook Politicians IC model')
     plt.xlabel('Communities')
@@ -211,7 +127,7 @@ if __name__ == '__main__':
 
     plt.scatter(z,y,color="green",label="25%")
     plt.scatter(z0,y0,color="blue", label="50%")
-    #plt.scatter(z1,y1,color="orange",label="75%")
+    plt.scatter(z1,y1,color="orange",label="75%")
     plt.scatter(z2,y2,color="red",label="100%")
     plt.title('Facebook Politicians IC model')
     plt.xlabel('% Influenced Nodes')
