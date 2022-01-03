@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-filenames = ["scale_graphs/graph_SBM_big.txt_TRUE-8.0.txt","graphs/graph_SBM_big.txt"]
+filenames = ["scale_graphs/deezerEU.txt_TRUE-8.0.txt","graphs/deezerEU.txt"]
 pp = []
 mm = []
 ma = []

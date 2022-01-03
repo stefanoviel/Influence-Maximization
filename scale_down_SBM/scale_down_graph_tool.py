@@ -29,11 +29,11 @@ exit(0)
 '''
 
 
-scale_factor = 0.5
+scale_factor = 0.125
 scale = round(1/scale_factor,3)
 resolution = 1
 
-filename = "graphs/pgp.txt"
+filename = "graphs/deezerEU.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()

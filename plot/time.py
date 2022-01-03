@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 
-df8 = pd.read_csv("graph_SBM_big_TRUE-8.0-k16-p0-LT-NEW_3_OBJ-time.csv", sep=",")
+df8 = pd.read_csv("graph_SBM_big_TRUE-8.0-k16-p0.01-IC-NEW_3_OBJ-time.csv", sep=",")
 
 p8 = {}
 p8["avg"] = np.array([])
@@ -21,7 +21,7 @@ for i in range(len(df8)):
     p8["generation"]  = np.append(p8["generation"],i)
 
 
-df4 = pd.read_csv("graph_SBM_big_TRUE-4.0-k33-p0-LT-NEW_3_OBJ-time.csv", sep=",")
+df4 = pd.read_csv("graph_SBM_big_TRUE-4.0-k33-p0.01-IC-NEW_3_OBJ-time.csv", sep=",")
 
 p4 = {}
 p4["avg"] = np.array([])
@@ -38,7 +38,7 @@ for i in range(len(df4)):
 
 
 
-df2 = pd.read_csv("graph_SBM_big_TRUE-2.0-k66-p0-LT-NEW_3_OBJ-time.csv", sep=",")
+df2 = pd.read_csv("graph_SBM_big_TRUE-2.0-k66-p0.01-IC-NEW_3_OBJ-time.csv", sep=",")
 p2 = {}
 p2["avg"] = np.array([])
 p2["std"] = np.array([])
@@ -55,7 +55,7 @@ for i in range(len(df2)):
 
 
 
-df0 = pd.read_csv("graph_SBM_big-k132-p0-LT-NEW_3_OBJ-time.csv",sep=',')
+df0 = pd.read_csv("graph_SBM_big-k132-p0.01-IC-NEW_3_OBJ-time.csv",sep=',')
 p_original = {}
 p_original["avg"] = np.array([])
 p_original["std"] = np.array([])
