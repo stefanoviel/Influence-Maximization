@@ -45,7 +45,7 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "fb_org_TRUE-8.0-k17-p0.1-IC-NEW_3_OBJ.csv"
+    filename = "pgp_TRUE-8.0-k30-p0.2-IC-NEW_3_OBJ.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -56,8 +56,10 @@ if __name__ == '__main__':
     t = df["time"].to_list()
     time = sum(np.array(x) * np.array(t)) / sum(np.array(t))
     time = np.mean(t) / np.mean(x)
+   
+   
+    filename = "pgp_TRUE-4.0-k60-p0.2-IC-NEW_3_OBJ.csv"
 
-    filename = "fb_org_TRUE-4.0-k34-p0.1-IC-NEW_3_OBJ.csv"
     df = pd.read_csv(filename, sep=",")
 
     x0= df["n_nodes"].to_list()
@@ -69,7 +71,7 @@ if __name__ == '__main__':
     time0 = np.mean(t0) / np.mean(x0)
   
 
-    filename = "fb_org_TRUE-2.0-k68-p0.1-IC-NEW_3_OBJ.csv"
+    filename = "pgp_TRUE-2.0-k116-p0.2-IC-NEW_3_OBJ.csv"
 
 
     df = pd.read_csv(filename, sep=",")
@@ -87,7 +89,7 @@ if __name__ == '__main__':
 
 
 
-    filename = "fb_org-k138-p0.1-IC-NEW_3_OBJ.csv"
+    filename = "pgp-k267-p0.2-IC-NEW_3_OBJ.csv"
    
 
     df = pd.read_csv(filename, sep=",")

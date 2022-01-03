@@ -64,8 +64,8 @@ if __name__ == '__main__':
     #gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
     #scale_k=[4,2,1.33,1]
     
-    filenames = ["scale_graphs/pgp.txt_TRUE-8.0.txt","scale_graphs/pgp.txt_TRUE-4.0.txt","scale_graphs/pgp.txt_TRUE-2.0.txt","graphs/pgp.txt"]
-    gt = ["comm_ground_truth/pgp_8.0.csv","comm_ground_truth/pgp_4.0.csv","comm_ground_truth/pgp_2.0.csv","comm_ground_truth/pgp.csv"]
+    filenames = ["scale_graphs/graph_SBM_big.txt_TRUE-8.0.txt","scale_graphs/graph_SBM_big.txt_TRUE-4.0.txt","scale_graphs/graph_SBM_big.txt_TRUE-2.0.txt","graphs/graph_SBM_big.txt"]
+    gt = ["comm_ground_truth/graph_SBM_big_8.0.csv","comm_ground_truth/graph_SBM_big_4.0.csv","comm_ground_truth/graph_SBM_big_2.0.csv","comm_ground_truth/graph_SBM_big.csv"]
     scale_k = [8,4,2,1]
     #scale_k = [1]
     models = ["IC"]
