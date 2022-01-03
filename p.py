@@ -39,12 +39,12 @@ print(den1/den)
 
 print(G1.number_of_nodes()/G.number_of_nodes())
 
-position = nx.spring_layout(G1)
+#position = nx.spring_layout(G1)
 
-nx.draw(G1, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
-plt.show()
+#nx.draw(G1, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
+#plt.show()
 
-plt.cla()
+#plt.cla()
 
 #position = nx.spring_layout(G)
 
