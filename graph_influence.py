@@ -136,8 +136,8 @@ if __name__ == '__main__':
 
 
             no_obj = 3
-            no_simulations = 10
-            max_generations = 50
+            no_simulations = 50
+            max_generations = 10
             #max_generations = 50
             #nodes' bound of seed sets
             #k=200
