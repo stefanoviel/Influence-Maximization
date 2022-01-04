@@ -64,11 +64,11 @@ if __name__ == '__main__':
     #gt = ["comm_ground_truth/graph_SBM_small_4.csv","comm_ground_truth/graph_SBM_small_2.csv","comm_ground_truth/graph_SBM_small_1.33.csv","comm_ground_truth/graph_SBM_small.csv"]
     #scale_k=[4,2,1.33,1]
     
-    filenames = ["scale_graphs/fb_politician.txt_TRUE-8.0.txt","scale_graphs/fb_politician.txt_TRUE-4.0.txt","scale_graphs/fb_politician.txt_TRUE-2.0.txt","graphs/fb_politician.txt"]
-    gt = ["comm_ground_truth/fb_politician_8.0.csv","comm_ground_truth/fb_politician_4.0.csv","comm_ground_truth/fb_politician_2.0.csv","comm_ground_truth/fb_politician.csv"]
+    filenames = ["scale_graphs/fb_org.txt_TRUE-8.0.txt","scale_graphs/fb_org.txt_TRUE-4.0.txt","scale_graphs/fb_org.txt_TRUE-2.0.txt","graphs/fb_org.txt"]
+    gt = ["comm_ground_truth/fb_org_8.0.csv","comm_ground_truth/fb_org_4.0.csv","comm_ground_truth/fb_org_2.0.csv","comm_ground_truth/fb_org.csv"]
     scale_k = [8,4,2,1]
     #scale_k = [1]
-    models = ["LT"]
+    models = ["IC"]
 
 
     #models = ['WC']
