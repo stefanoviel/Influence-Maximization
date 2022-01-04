@@ -48,7 +48,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     max_generations = args.setdefault('max_generations', 10)
     previous_best = args.setdefault('previous_best', None)
     try:
-        print('Max Generations without improvements{0}, now {1}'.format(max_generations,args["generation_count"]))
+        #print('Max Generations without improvements{0}, now {1}'.format(max_generations,args["generation_count"]))
         previous_best = args["hypervolume"][-1]
 
     except:
@@ -74,7 +74,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
                             zero_to_one=False)
         hv = metric.do(F)
         current_best = hv/tot
-        print("Hypervolume {0}-{1} Generations {2}".format(current_best,hv, num_generations))
+        #print("Hypervolume {0}-{1} Generations {2}".format(current_best,hv, num_generations))
         args["hypervolume"].append(current_best)
         # HV INFLUENCE - K
         arch_2 = []
@@ -92,7 +92,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
         hv_1 = metric.do(F1)
         b = hv_1/tot_1
         args["hv_influence_k"].append(b)
-        print('INFLUENCE-K {0}'.format(b))
+        #print('INFLUENCE-K {0}'.format(b))
         
         # HV INFLUENCE - COMM
         arch_2 = []
@@ -110,7 +110,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
         hv_1 = metric.do(F1)
         b = hv_1/tot_1
         args["hv_influence_comm"].append(b)
-        print('INFLUENCE-COMM {0}'.format(b))
+        #print('INFLUENCE-COMM {0}'.format(b))
 
         #HV K - COMM
         arch_2 = []
@@ -128,7 +128,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
         hv_1 = metric.do(F1)
         b = hv_1/tot_1
         args["hv_k_comm"].append(b)
-        print('K-COMM {0}'.format(b))
+        #print('K-COMM {0}'.format(b))
     elif args["no_obj"] == 2:
         tot = 100 * ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100) 
 
@@ -139,12 +139,12 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
                             zero_to_one=False)
         hv = metric.do(F)
         current_best = hv/tot
-        print("Hypervolume {0}-{1} Generations {2}".format(current_best,hv, num_generations))
+        #print("Hypervolume {0}-{1} Generations {2}".format(current_best,hv, num_generations))
         args["hypervolume"].append(current_best)
 
 
-    if previous_best != None:
-        print('Current Best - Previous Best {0}'.format((current_best-previous_best)))
+    # if previous_best != None:
+    #     print('Current Best - Previous Best {0}'.format((current_best-previous_best)))
 
     if previous_best is None or current_best > previous_best:
         args['previous_best'] = current_best
