@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 
-df8 = pd.read_csv("fb_politician_TRUE-8.0-k17-p0.05-IC-NEW_3_OBJ-time.csv", sep=",")
+df8 = pd.read_csv("fb_org_TRUE-8.0-k17-p0.1-IC-NEW_3_OBJ-time.csv", sep=",")
 
 p8 = {}
 p8["avg"] = np.array([])
@@ -21,7 +21,7 @@ for i in range(len(df8)):
     p8["generation"]  = np.append(p8["generation"],i)
 
 
-df4 = pd.read_csv("fb_politician_TRUE-4.0-k35-p0.05-IC-NEW_3_OBJ-time.csv", sep=",")
+df4 = pd.read_csv("fb_org_TRUE-4.0-k34-p0.1-IC-NEW_3_OBJ-time.csv", sep=",")
 
 p4 = {}
 p4["avg"] = np.array([])
@@ -38,7 +38,7 @@ for i in range(len(df4)):
 
 
 
-df2 = pd.read_csv("fb_politician_TRUE-2.0-k70-p0.05-IC-NEW_3_OBJ-time.csv", sep=",")
+df2 = pd.read_csv("fb_org_TRUE-2.0-k68-p0.1-IC-NEW_3_OBJ-time.csv", sep=",")
 p2 = {}
 p2["avg"] = np.array([])
 p2["std"] = np.array([])
@@ -55,7 +55,7 @@ for i in range(len(df2)):
 
 
 
-df0 = pd.read_csv("fb_politician-k147-p0.05-IC-NEW_3_OBJ-time.csv",sep=',')
+df0 = pd.read_csv("fb_org-k138-p0.1-IC-NEW_3_OBJ-time.csv",sep=',')
 p_original = {}
 p_original["avg"] = np.array([])
 p_original["std"] = np.array([])
