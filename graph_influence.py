@@ -117,7 +117,7 @@ if __name__ == '__main__':
             mean = int(np.mean(mean))  
             args["min_degree"] = mean + 1
             args["smart_initialization_percentage"] = 0.5
-            args["population_size"] = 50 
+            args["population_size"] = 100 
 
             communities =[]
             df = pd.read_csv(file_gt,sep=",")
@@ -138,15 +138,11 @@ if __name__ == '__main__':
             no_obj = 3
             no_simulations = 100
             max_generations = 1000
-            #max_generations = 50
-            #nodes' bound of seed sets
-            #k=200
-            #max_generations = 10 * k
-            population_size = 50
-            offspring_size = 50
+            population_size = 100
+            offspring_size = 100
 
 
-            n_threads = 1 
+            n_threads = 5
             
 
 
@@ -165,5 +161,4 @@ if __name__ == '__main__':
             start = time.time()
             seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=population_size, offspring_size=offspring_size, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population ,no_obj=no_obj)
             
-            exec_time = time.time() - start
-            print(exec_time)
+            exec_time = time.time() - start           

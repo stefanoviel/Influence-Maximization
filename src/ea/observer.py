@@ -97,6 +97,5 @@ def ea_observer2(population, num_generations, num_evaluations, args):
 
 def time_observer(population, num_generations, num_evaluations, args):
 	df = pd.DataFrame(args["time"])
-	print(df)
 	df.to_csv(args["population_file"] + '-time.csv', index=False, header=None)
 	return 
