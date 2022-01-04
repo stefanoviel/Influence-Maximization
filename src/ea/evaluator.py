@@ -22,7 +22,7 @@ def nsga2_evaluator(candidates, args):
     # we use a different methodology
     # if we just have one thread, let's just evaluate individuals old style 
 
-    time_gen = []
+    time_gen = [None] * len(candidates)
     if n_threads == 1 :
         for index, A in enumerate(candidates) :
 
@@ -59,7 +59,7 @@ def nsga2_evaluator(candidates, args):
                 max_hop = args["max_hop"]
                 fitness_function_args = [G, A_set, p, no_simulations, model, max_hop]
 
-            tasks.append((fitness_function, fitness_function_args, fitness_function_kargs, fitness, A_set, index,k, G,no_obj,thread_lock))
+            tasks.append((fitness_function, fitness_function_args, fitness_function_kargs, fitness, A_set, index,k, G,no_obj,time_gen,thread_lock))
 
         thread_pool.map(nsga2_evaluator_threaded, tasks)
 
@@ -70,7 +70,7 @@ def nsga2_evaluator(candidates, args):
     return fitness
 
 
-def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_function_kargs, fitness_values, A_set, index, k,G, no_obj,thread_lock, thread_id) :
+def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_function_kargs, fitness_values, A_set, index, k,G, no_obj,time_gen_values,thread_lock,  thread_id) :
 
     influence_mean, influence_std, comm, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
 
@@ -78,9 +78,11 @@ def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_fu
     thread_lock.acquire()
     if no_obj == 3:
         fitness_values[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), comm])
+        time_gen_values[index] = time
+
     elif no_obj == 2:
         fitness_values[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100)])
-
+        #time_gen[index] = time
     #fitness_values[index] = inspyred.ec.emo.Pareto([influence_mean, len(A_set), comm])
 
     thread_lock.release()
