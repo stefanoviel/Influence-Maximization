@@ -386,6 +386,7 @@ import pandas as pd
 def to_csv(archiver, population_file, std, times) :
     
 
+
     df = pd.DataFrame()
     nodes = []
     influence = []
