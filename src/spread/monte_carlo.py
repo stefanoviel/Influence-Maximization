@@ -31,6 +31,7 @@ def LT_model(G, a, p, communities,random_generator):
         nextB = set()
         for n in B: 
             for m in set(G.neighbors(n)) - A:
+                time += 1    			
                 total_weight = 0
                 prob = float(1/G.degree(m))
                 for each in G.neighbors(m):
@@ -42,8 +43,6 @@ def LT_model(G, a, p, communities,random_generator):
         if not B:
             converged = True
         A |= B        
-        time += 1
-    
     comm = 0
     for item in communities:
         intersection = set.intersection(set(item),set(A))
@@ -99,13 +98,13 @@ def WC_model(G, a, communities,random_generator):                 # a: the set o
 			for m in set(G.neighbors(n)) - A:
 				prob = random_generator.random() # in the range [0.0, 1.0)
 				p = 1.0/my_degree_function(m) 
+				time +=1
 				if prob <= p:
 					nextB.add(m)
 		B = set(nextB)
 		if not B:
 			converged = True
 		A |= B
-		time +=1
 	comm = 0
 	for item in communities:
 		intersection = set.intersection(set(item),set(A))

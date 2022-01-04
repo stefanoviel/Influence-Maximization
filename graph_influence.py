@@ -68,7 +68,7 @@ if __name__ == '__main__':
     gt = ["comm_ground_truth/fb_politician_8.0.csv","comm_ground_truth/fb_politician_4.0.csv","comm_ground_truth/fb_politician_2.0.csv","comm_ground_truth/fb_politician.csv"]
     scale_k = [8,4,2,1]
     #scale_k = [1]
-    models = ["IC"]
+    models = ["WC"]
 
 
     #models = ['WC']
