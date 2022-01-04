@@ -67,10 +67,10 @@ def IC_model(G, a, p, communities, random_generator):              # a: the set 
 		for n in B:
 			for m in set(G.neighbors(n)) - A: # G.neighbors follows A-B and A->B (successor) edges
 				prob = random_generator.random() # in the range [0.0, 1.0)
+				time = time+1  
 				if prob <= p:
 					nextB.add(m)
 		B = set(nextB)
-		time = time+1  
 		if not B:
 			converged = True
 		A |= B
