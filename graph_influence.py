@@ -68,7 +68,7 @@ if __name__ == '__main__':
     gt = ["comm_ground_truth/fb_org_8.0.csv","comm_ground_truth/fb_org_4.0.csv","comm_ground_truth/fb_org_2.0.csv","comm_ground_truth/fb_org.csv"]
     scale_k = [8,4,2,1]
     #scale_k = [1]
-    models = ["IC"]
+    models = ["IC","WC","LT"]
 
 
     #models = ['WC']
@@ -96,7 +96,7 @@ if __name__ == '__main__':
                 mean.append(my_degree_function[item])
             t = "best_hv"
             if model == "IC":
-                p = 0.1
+                p = 0.05
             elif model == "LT":
                 p = 0
             elif model == "IC_1":
@@ -136,8 +136,8 @@ if __name__ == '__main__':
 
 
             no_obj = 3
-            no_simulations = 10
-            max_generations = 50
+            no_simulations = 100
+            max_generations = 1000
             #max_generations = 50
             #nodes' bound of seed sets
             #k=200
