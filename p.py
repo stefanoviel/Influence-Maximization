@@ -4,25 +4,24 @@ from src.load import read_graph
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import warnings
+warnings.filterwarnings("ignore")
 
-filenames = ["scale_graphs/fb_org.txt_TRUE-2.0.txt","graphs/fb_org.txt"]
-pp = []
-mm = []
-ma = []
+filenames = ["scale_graphs/facebook_combined.txt_TRUE-8.0.txt","scale_graphs/facebook_combined.txt_TRUE-4.0.txt","scale_graphs/facebook_combined.txt_TRUE-2.0.txt","graphs/facebook_combined.txt"]
 kk = []
 
-
-G = read_graph(filenames[1])
-print(nx.info(G))
-den = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
-print("Density --> {0}".format(den))
-my_degree_function = G.degree
-mean = []
-mean_degree = []
-for item in G:
-    mean.append(my_degree_function[item])
-    mean_degree.append(float(1/my_degree_function[item]))
-
+for item in filenames:
+    G = read_graph(item)
+    #print(nx.info(G))
+    #den = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
+    #print("Density --> {0}".format(den))
+    my_degree_function = G.degree
+    mean = []
+    mean_degree = []
+    for item in G:
+        mean.append(my_degree_function[item])
+    kk.append(mean)
+''''
 print(max(mean), np.mean(mean), np.std(mean))
 G1 = read_graph(filenames[0])
 print(nx.info(G1))
@@ -51,49 +50,121 @@ print(G1.number_of_nodes()/G.number_of_nodes())
 #nx.draw(G, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
 #plt.show()
 #plt.cla()
+'''
 
+
+'''
 import seaborn as sns
 fig, axs = plt.subplots(ncols=2)
-sns.distplot(mean, hist=True, kde=False, 
+sns.distplot(kk[3], hist=True, kde=False, 
                 color = 'darkblue', 
             hist_kws={'edgecolor':'black'},
             kde_kws={'linewidth': 4},ax=axs[0])
-#sns.distplot(mean, hist = False, kde = True,
-#                kde_kws = {'shade': True, 'linewidth': 3},ax=axs[0])    
-sns.distplot(mean_1, hist=True, kde=False, 
+sns.distplot(kk[3], hist = False, kde = True,
+                kde_kws = {'shade': True, 'linewidth': 3},ax=axs[0])    
+sns.distplot(kk[0], hist=True, kde=False, 
                 color = 'darkblue', 
             hist_kws={'edgecolor':'black'},
             kde_kws={'linewidth': 4},ax=axs[1])
-#sns.distplot(mean_1, hist = False, kde = True,
-#                kde_kws = {'shade': True, 'linewidth': 3},ax=axs[1])
+sns.distplot(kk[0], hist = False, kde = True,
+                kde_kws = {'shade': True, 'linewidth': 3},ax=axs[1])
 
-kk = [mean, mean_1]
+
+
 axs[0].set_title('Original Graph')  
 axs[0].set_xlabel('In\out Degree')
 axs[1].set_title('50% Graph')
 axs[1].set_xlabel('In\out Degree')
 plt.show()
+'''
 
+for item in kk:
+    print(np.mean(item))
 
-x = ["Original","Scaled"]
+x = [round(1/(i+1),2) for i in range(len(kk))]
+x = x[::-1]
+print(x)
+
+real = np.mean(kk[0])
+color = ["green", 'blue','orange','red']
+plt.figure(figsize=(6, 6)) 
 i = 0
-for item in kk:    
-    # Draw the density plot
-    print(item)
-    sns.distplot(item, hist = False, kde = True,
-                 kde_kws = {'shade': False, 'linewidth': 3}, 
-                label = str(x[i]))
+for item in filenames:
+    G = read_graph(item)   
+    # print(np.mean(item), 100 - (np.mean(item)/real) *100)
+    # sns.distplot(item, hist = False, kde = True,
+    #              kde_kws = {'shade': False, 'linewidth': 3}, 
+    #             label = str(x[i]))
+
+    degree_freq = nx.degree_histogram(G)
+    degrees = range(len(degree_freq))
+    plt.loglog(degrees, degree_freq,'go-', color=color[i], label = str(x[i]))
     i +=1
+plt.xlabel('Degree')
+plt.ylabel('Frequency')
 plt.legend()
-plt.title('Avg. Degree Nodes Distribution')
-plt.xlabel('Avg Degree Nodes')
-plt.ylabel('Density')
+plt.show()
+plt.cla()
+plt.close()
+
+
+i=0
+filenames = filenames[::-1]
+x = x[::-1]
+plt.figure(figsize=(6, 6)) 
+for item in filenames:
+    G = read_graph(item)   
+    degree_sequence = sorted([d for n, d in G.degree()], reverse=True)
+    dmax = max(degree_sequence)
+    plt.plot(degree_sequence, "b-", marker="o",color=color[i], label = str(x[i]))
+    i +=1
+plt.xlabel('Rank')
+plt.ylabel('Degree')
+plt.title('Degree Rank Plot')
+plt.legend()
 plt.show()
 
+i = 0
+fig, axs = plt.subplots(4)
+fig.suptitle('Degree Distribution')
 
+import collections
+plt.figure(figsize=(6, 6)) 
+for item in filenames:
+    G = read_graph(item)
+    degree_sequence = sorted([d for n, d in G.degree()], reverse=True)  # degree sequence
+    degreeCount = collections.Counter(degree_sequence)
+    if i == 0:
+        max_t = (max(degree_sequence))
+    deg, cnt = zip(*degreeCount.items())
+    axs[len(filenames)-1-i].bar(deg, cnt, width=0.80, color=color[i], label = str(x[i]))
+    axs[len(filenames)-1-i].set_xlim(0, max_t)
+    axs[len(filenames)-1-i].legend()
+    i +=1
+plt.legend()
+plt.show()
+from collections import Counter
 
-# G = read_graph("graphs/graph_SBM_small.txt")
-# position = nx.spring_layout(G)
-# nx.draw(G, position,  edgecolors='black',node_color='white',arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
-# plt.savefig("SBM", dpi=300)
-# plt.cla()
+color = color[::-1]
+i = 0
+plt.figure(figsize=(6, 6)) 
+for item in filenames:
+    G = read_graph(item)
+    degree_sequence = sorted([d for n, d in G.degree()], reverse=True)  # degree sequence
+    degreeCount = collections.Counter(degree_sequence)
+    x1, y = zip(*degreeCount.items())                                                      
+                                                                                                    
+                                                                                                                                                                                                                                                        
+    # prep axes                                                                                                                      
+                                                                                                          
+    plt.xscale('log')                                                                                                                
+                                                                                                       
+    plt.yscale('log')                                                                                                                
+    plt.scatter(x1, y, marker='.', color=color[i], label = str(x[i]))                                                                                                 
+    i = i+1
+plt.xlabel('degree')   
+
+                                                                                      
+plt.ylabel('frequency')   
+plt.legend()
+plt.show()
