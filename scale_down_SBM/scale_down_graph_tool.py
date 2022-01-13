@@ -29,11 +29,11 @@ exit(0)
 '''
 
 
-scale_factor = 0.125
+scale_factor = 0.5
 scale = round(1/scale_factor,3)
 resolution = 1
 
-filename = "graphs/deezerEU.txt"
+filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -76,12 +76,13 @@ check_ok = []
 for item in check:
     sum = sum + len(item)
 
-    if len(item) > scale+1:
+    if len(item) > 4+1:
         check_ok.append(item)
 
 
 
 print("Total number of nodes after selection {0} \nCommunities before check {1} \nCommunities after check {2}".format(sum,len(check),len(check_ok)))
+
     # if len(check) != 32:
     #     resolution +=1
     # else:
@@ -217,28 +218,17 @@ for item in G:
     degree[item] = my_degree_function(item)
 print(degree)
 
-maxx = []
-scale_degree = {}
-for key, value in degree.items():
-    scale_degree[key] = int(value/scale) if int(value/scale)>1 else 1
-    maxx.append(scale_degree[key])
-
 
 
 i = 0
-comm_degree = {}
 default_degree = {}
 for item in check:
     for node in item:
         print('Node {0}, Comm {1}'.format(node,i))
         try:
-            tt = comm_degree[i]
             dd = default_degree[i]
         except:
-            tt = []
             dd = []
-        tt.append(scale_degree[node])
-        comm_degree[i] = tt
         dd.append(degree[node])
         default_degree[i] = dd   
     i +=1
@@ -263,7 +253,7 @@ for i in range(0,len(sizes)):
     t = []
     import copy, random
 
-    list_degree = copy.deepcopy(comm_degree[i])
+    list_degree = copy.deepcopy(default_degree[i])
     print('Community {0}'.format(i+1))
     print("--------")
 
@@ -385,14 +375,8 @@ print('Density {0}'.format((2*edges)/(sum * (sum-1))))
 print(sum)
 print(max(out))
 
-# text = []
-# for u,v in g.edges():
-#     f = "{0} {1}".format(u,v)
-#     text.append(f) 
 
-# name = name.replace(".txt","")
-
-with open("scale_graphs/"+str(name)+"_"+"TRUE-"+str(scale)+".txt", "w") as outfile:
+with open("scale_graphs/"+str(name)+"_"+"False-"+str(scale)+".txt", "w") as outfile:
         outfile.write("\n".join(text))
     
 print("ok")
