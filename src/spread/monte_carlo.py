@@ -16,7 +16,8 @@ Added time inside the cycle of the various models of propagation with the purpos
 '''
 
 ## to re-code better
-def LT_model(G, a, p, communities,random_generator):
+'''
+def LT_model(G, a, communities):
     A = set(a)                      # A: the set of active nodes, initially a
     B = set(a)                      # B: the set of nodes activated in the last completed iteration
     converged = False
@@ -26,19 +27,52 @@ def LT_model(G, a, p, communities,random_generator):
     for i, node in enumerate(G.nodes()):
             threshold[node] = l[i]
     time = 0
-
     while not converged:
         nextB = set()
         for n in B: 
             for m in set(G.neighbors(n)) - A:
                 time += 1    			
                 total_weight = 0
-                prob = float(1/G.degree(m))
+                weight = float(1/G.degree(m))
                 for each in G.neighbors(m):
                     if each in A:
-                        total_weight =  total_weight + prob			
+                        total_weight =  total_weight + weight			
                 if total_weight > threshold[m]:
                     nextB.add(m)
+        B = set(nextB)
+        if not B:
+            converged = True
+        A |= B        
+    comm = 0
+    
+    for item in communities:
+        intersection = set.intersection(set(item),set(A))
+        if len(intersection) > 0:
+            comm += 1
+				    	
+    return len(A), comm, time
+'''
+def LT_model(G, a, p, communities,random_generator):
+    A = set(a)                      # A: the set of active nodes, initially a
+    B = set(a)                      # B: the set of nodes activated in the last completed iteration
+    converged = False
+    threshold = {}
+    l = np.random.uniform(low=0.0, high=1.0, size=G.number_of_nodes())
+    degree_list = {}	
+    for i, node in enumerate(G.nodes()):
+            threshold[node] = l[i]
+            degree_list[node] = float(1/G.degree(node))
+    time = 0
+    while not converged:
+        nextB = set()
+        S = []
+        for n in B: 
+            for m in set(G.neighbors(n)) - A - set(S):
+                time += 1    			 
+                total_weight = degree_list[m] * len(set.intersection(set(G.neighbors(m)),set(A)))			
+                if total_weight > threshold[m]:
+                    nextB.add(m)
+                S.append(m)
         B = set(nextB)
         if not B:
             converged = True
