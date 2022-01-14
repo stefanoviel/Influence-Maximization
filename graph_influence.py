@@ -68,7 +68,7 @@ if __name__ == '__main__':
     gt = ["comm_ground_truth/graph_SBM_small_8.0.csv","comm_ground_truth/graph_SBM_small_4.0.csv","comm_ground_truth/graph_SBM_small_2.0.csv","comm_ground_truth/graph_SBM_small.csv"]
     scale_k = [8,4,2,1]
     #scale_k = [1]
-    models = ["IC","WC","LT"]
+    models = ["LT"]
 
 
     #models = ['WC']
@@ -78,7 +78,7 @@ if __name__ == '__main__':
         scale = scale_k[i]
         i +=1
         filename = item
-        
+        print(filename)
         for m in models:
             model = m
             print(model)
@@ -117,7 +117,7 @@ if __name__ == '__main__':
             mean = int(np.mean(mean))  
             args["min_degree"] = mean + 1
             args["smart_initialization_percentage"] = 0.5
-            args["population_size"] = 100 
+            args["population_size"] = 10 
 
             communities =[]
             df = pd.read_csv(file_gt,sep=",")
@@ -134,12 +134,11 @@ if __name__ == '__main__':
             nodes = filter_nodes(G, args)
             initial_population = create_initial_population(G, args, prng, nodes)
 
-
             no_obj = 3
-            no_simulations = 100
-            max_generations = 1000
-            population_size = 100
-            offspring_size = 100
+            no_simulations = 10
+            max_generations = 100
+            population_size = 10
+            offspring_size = 10
 
 
             n_threads = 5
@@ -157,8 +156,11 @@ if __name__ == '__main__':
             file = file.replace(".txt", "")
             t = 'NEW_3_OBJ'
             file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
+            file = 'prova'
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             start = time.time()
             seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=population_size, offspring_size=offspring_size, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population ,no_obj=no_obj)
             
-            exec_time = time.time() - start           
+            exec_time = time.time() - start   
+            print(exec_time)        
+            exit(0)
