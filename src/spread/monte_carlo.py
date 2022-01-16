@@ -16,8 +16,8 @@ Added time inside the cycle of the various models of propagation with the purpos
 '''
 
 ## to re-code better
-'''
-def LT_model(G, a, communities):
+
+def LT_model_slow(G, a, p, communities,random_generator):
     A = set(a)                      # A: the set of active nodes, initially a
     B = set(a)                      # B: the set of nodes activated in the last completed iteration
     converged = False
@@ -51,7 +51,7 @@ def LT_model(G, a, communities):
             comm += 1
 				    	
     return len(A), comm, time
-'''
+
 def LT_model(G, a, p, communities,random_generator):
     A = set(a)                      # A: the set of active nodes, initially a
     B = set(a)                      # B: the set of nodes activated in the last completed iteration
@@ -173,6 +173,12 @@ def MonteCarlo_simulation(G, A, p, no_simulations, model, communities, random_ge
 	elif model == 'LT':
 		for i in range(no_simulations):
 			res, comm, time = LT_model(G, A, p,communities,random_generator=random_generator)
+			times.append(time)
+			results.append(res)
+			comm_list.append(comm)
+	elif model == 'LT2':
+		for i in range(no_simulations):
+			res, comm, time = LT_model_slow(G, A, p,communities,random_generator=random_generator)
 			times.append(time)
 			results.append(res)
 			comm_list.append(comm)
