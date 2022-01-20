@@ -149,6 +149,7 @@ if __name__ == '__main__':
     fig.legend(loc=7)
     fig.tight_layout()
     fig.subplots_adjust(right=0.85)  
+    plt.savefig('ok')
     plt.show()
     #plt.cla()
     exit(0)

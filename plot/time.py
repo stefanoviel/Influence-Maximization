@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 
-df8 = pd.read_csv("fb_org_TRUE-8.0-k17-p0.05-IC-NEW_3_OBJ-time.csv", sep=",")
+df8 = pd.read_csv("fb_org_TRUE-8.0-k17-p0-WC-NEW_3_OBJ-time.csv", sep=",")
 
 p8 = {}
 p8["avg"] = np.array([])
@@ -21,7 +21,7 @@ for i in range(len(df8)):
     p8["generation"]  = np.append(p8["generation"],i)
 
 
-df4 = pd.read_csv("fb_org_TRUE-4.0-k34-p0.05-IC-NEW_3_OBJ-time.csv", sep=",")
+df4 = pd.read_csv("fb_org_TRUE-4.0-k34-p0-WC-NEW_3_OBJ-time.csv", sep=",")
 
 p4 = {}
 p4["avg"] = np.array([])
@@ -38,7 +38,7 @@ for i in range(len(df4)):
 
 
 
-df2 = pd.read_csv("fb_org_TRUE-4.0-k34-p0.05-IC-NEW_3_OBJ-time.csv", sep=",")
+df2 = pd.read_csv("fb_org_TRUE-2.0-k68-p0-WC-NEW_3_OBJ-time.csv", sep=",")
 p2 = {}
 p2["avg"] = np.array([])
 p2["std"] = np.array([])
@@ -55,7 +55,7 @@ for i in range(len(df2)):
 
 
 
-df0 = pd.read_csv("fb_org_TRUE-2.0-k68-p0.05-IC-NEW_3_OBJ-time.csv",sep=',')
+df0 = pd.read_csv("fb_org_TRUE-2.0-k68-p0-WC-NEW_3_OBJ-time.csv",sep=',')
 p_original = {}
 p_original["avg"] = np.array([])
 p_original["std"] = np.array([])
@@ -92,12 +92,13 @@ plt.cla()
 
 objects = ['Scale 1/8', 'Scale 1/4','Scale 1/2', 'Original']
 y_pos = np.arange(len(objects))
-performance = [p8_total, p4_total, p2_total, p_original_total]
+#performance = [p8_total, p4_total, p2_total, p_original_total]
+performance = [p8_total, p4_total, p2_total, 0]
 
 plt.bar(y_pos, performance, align='center', alpha=0.5)
 plt.xticks(y_pos, objects)
 plt.ylabel('Cumulative Time')
 plt.xlabel('Graphs')
-plt.title('Time Fb Politicians IC MODEL')
+#plt.title('Time Fb Politicians IC MODEL')
 #plt.ylim((0,1000))
 plt.show()
