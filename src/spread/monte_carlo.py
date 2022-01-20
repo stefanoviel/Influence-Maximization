@@ -17,41 +17,6 @@ Added time inside the cycle of the various models of propagation with the purpos
 
 ## to re-code better
 
-def LT_model_slow(G, a, p, communities,random_generator):
-    A = set(a)                      # A: the set of active nodes, initially a
-    B = set(a)                      # B: the set of nodes activated in the last completed iteration
-    converged = False
-    threshold = {}
-    l = np.random.uniform(low=0.0, high=1.0, size=G.number_of_nodes())
-
-    for i, node in enumerate(G.nodes()):
-            threshold[node] = l[i]
-    time = 0
-    while not converged:
-        nextB = set()
-        for n in B: 
-            for m in set(G.neighbors(n)) - A:
-                time += 1    			
-                total_weight = 0
-                weight = float(1/G.degree(m))
-                for each in G.neighbors(m):
-                    if each in A:
-                        total_weight =  total_weight + weight			
-                if total_weight > threshold[m]:
-                    nextB.add(m)
-        B = set(nextB)
-        if not B:
-            converged = True
-        A |= B        
-    comm = 0
-    
-    for item in communities:
-        intersection = set.intersection(set(item),set(A))
-        if len(intersection) > 0:
-            comm += 1
-				    	
-    return len(A), comm, time
-
 def LT_model(G, a, p, communities,random_generator):
     A = set(a)                      # A: the set of active nodes, initially a
     B = set(a)                      # B: the set of nodes activated in the last completed iteration
@@ -59,24 +24,27 @@ def LT_model(G, a, p, communities,random_generator):
     threshold = {}
     l = np.random.uniform(low=0.0, high=1.0, size=G.number_of_nodes())
     degree_list = {}	
+    activate = {}
     for i, node in enumerate(G.nodes()):
             threshold[node] = l[i]
             degree_list[node] = float(1/G.degree(node))
+            activate[node] = len(set.intersection(set(G.neighbors(node)),set(A))) 
     time = 0
     while not converged:
         nextB = set()
         S = []
         for n in B: 
             for m in set(G.neighbors(n)) - A - set(S):
-                time += 1    			 
-                total_weight = degree_list[m] * len(set.intersection(set(G.neighbors(m)),set(A)))			
-                if total_weight > threshold[m]:
-                    nextB.add(m)
                 S.append(m)
+                time += 1    			 	
+                if activate[m] * degree_list[m] > threshold[m]:
+                    nextB.add(m)
+                    for t in set(G.neighbors(m)) - A:
+                        activate[t] +=1
         B = set(nextB)
         if not B:
             converged = True
-        A |= B        
+        A |= B 
     comm = 0
     for item in communities:
         intersection = set.intersection(set(item),set(A))
@@ -173,12 +141,6 @@ def MonteCarlo_simulation(G, A, p, no_simulations, model, communities, random_ge
 	elif model == 'LT':
 		for i in range(no_simulations):
 			res, comm, time = LT_model(G, A, p,communities,random_generator=random_generator)
-			times.append(time)
-			results.append(res)
-			comm_list.append(comm)
-	elif model == 'LT2':
-		for i in range(no_simulations):
-			res, comm, time = LT_model_slow(G, A, p,communities,random_generator=random_generator)
 			times.append(time)
 			results.append(res)
 			comm_list.append(comm)

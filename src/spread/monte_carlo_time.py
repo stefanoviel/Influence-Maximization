@@ -20,27 +20,29 @@ def LT_model(G, a, p, communities,random_generator):
     B = set(a)                      # B: the set of nodes activated in the last completed iteration
     converged = False
     threshold = {}
-    time = 0
     l = np.random.uniform(low=0.0, high=1.0, size=G.number_of_nodes())
-
+    degree_list = {}	
+    activate = {}
     for i, node in enumerate(G.nodes()):
             threshold[node] = l[i]
+            degree_list[node] = float(1/G.degree(node))
+            activate[node] = len(set.intersection(set(G.neighbors(node)),set(A))) 
+    time = 0
     while not converged:
         nextB = set()
+        S = []
         for n in B: 
-            for m in set(G.neighbors(n)) - A:
-                total_weight = 0
-                prob = float(1/G.degree(m))
-                for each in G.neighbors(m):
-                    if each in A:
-                        total_weight =  total_weight + prob			
-                if total_weight > threshold[m]:
+            for m in set(G.neighbors(n)) - A - set(S):
+                S.append(m)
+                time += 1    			 	
+                if activate[m] * degree_list[m] > threshold[m]:
                     nextB.add(m)
-        time +=1
+                    for t in set(G.neighbors(m)) - A:
+                        activate[t] +=1
         B = set(nextB)
         if not B:
             converged = True
-        A |= B
+        A |= B 
     comm = 0
     for item in communities:
         intersection = set.intersection(set(item),set(A))

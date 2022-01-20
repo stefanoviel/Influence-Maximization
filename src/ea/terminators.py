@@ -54,7 +54,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     except:
         pass
 
-
+    print('Generations', num_generations)
     arch = [list(x.fitness) for x in args["_ec"].archive] 
     import copy
     original_arch = copy.deepcopy(arch)

@@ -8,7 +8,7 @@ import seaborn as sns
 import warnings
 warnings.filterwarnings("ignore")
 from math import log
-filenames = ["scale_graphs/graph_SBM_big.txt_TRUE-8.0.txt","scale_graphs/graph_SBM_big.txt_TRUE-4.0.txt","scale_graphs/graph_SBM_big.txt_TRUE-2.0.txt","graphs/graph_SBM_big.txt"]
+filenames = ["scale_graphs/facebook_combined.txt_TRUE-8.0.txt","scale_graphs/facebook_combined.txt_TRUE-4.0.txt","scale_graphs/facebook_combined.txt_TRUE-2.0.txt","graphs/facebook_combined.txt"]
 kk = []
 
 for item in filenames:
@@ -140,7 +140,8 @@ for item in filenames:
     # Subset to the airline
     G = read_graph(item)
     degree_sequence = sorted([d for n, d in G.degree()], reverse=True) 
-    
+    degree_sequence = [log(x) for x in degree_sequence]
+    degree_sequence = sorted([x for x in degree_sequence], reverse=True)  
     # Draw the density plot
     sns.distplot(degree_sequence, hist = False, kde = True,
                  kde_kws = {'shade': False,'linewidth': 3},color=color[i], label = str(x[i]))
