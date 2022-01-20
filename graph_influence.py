@@ -57,10 +57,11 @@ if __name__ == '__main__':
 
 
     
-    filenames = ["graphs/facebook_combined.txt"]
-    gt = ["comm_ground_truth/facebook_combined.csv"]
+    filenames = ["graphs/fb_politician.txt"]
+    gt = ["comm_ground_truth/fb_politician.csv"]
     
     scale_k = [1]
+
     #scale_k = [1]
     models = ["IC"]
 
@@ -150,7 +151,7 @@ if __name__ == '__main__':
             file = file.replace(".txt", "")
             t = 'NEW_3_OBJ'
             file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
-            file = 'prova_ic_ego'
+            file = 'prova_ic_politician'
             ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
             start = time.time()
             seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=population_size, offspring_size=offspring_size, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population ,no_obj=no_obj)
