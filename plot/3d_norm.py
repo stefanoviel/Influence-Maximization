@@ -45,7 +45,7 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "fb_org_TRUE-8.0-k17-p0.05-IC-NEW_3_OBJ.csv"
+    filename = "graph_SBM_small_TRUE-8.0-k6-p0-WC-NEW_3_OBJ.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     time = np.mean(t) / np.mean(x)
    
    
-    filename = "fb_org_TRUE-4.0-k34-p0.05-IC-NEW_3_OBJ.csv"
+    filename = "graph_SBM_small_TRUE-4.0-k12-p0-WC-NEW_3_OBJ.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -71,7 +71,7 @@ if __name__ == '__main__':
     time0 = np.mean(t0) / np.mean(x0)
   
 
-    filename = "fb_org_TRUE-2.0-k68-p0.05-IC-NEW_3_OBJ.csv"
+    filename = "graph_SBM_small_TRUE-2.0-k25-p0-WC-NEW_3_OBJ.csv"
 
 
     df = pd.read_csv(filename, sep=",")
@@ -89,7 +89,7 @@ if __name__ == '__main__':
 
 
 
-    filename = "experiments_time/fb_org-k138-p0.1-IC-NEW_3_OBJ.csv"
+    filename = "prova_WC.csv"
    
 
     df = pd.read_csv(filename, sep=",")
@@ -105,13 +105,14 @@ if __name__ == '__main__':
     plt.scatter(z,x,color="green",label="25%")
     plt.scatter(z0,x0,color="blue", label="50%")
     plt.scatter(z1,x1,color="orange",label="75%")
-    #plt.scatter(z2,x2,color="red",label="100%")
+    plt.scatter(z2,x2,color="red",label="100%")
     plt.title('Facebook Politicians IC p=0.01 model')
     plt.xlabel('% Influenced Nodes')
     plt.ylabel('% Nodes as seed set')
     plt.legend()
-    plt.xlim(0,100)
-    plt.show()
+    #plt.xlim(0,100)
+    plt.savefig('aa')
+    #plt.show()
     plt.cla()
 
 
@@ -124,7 +125,9 @@ if __name__ == '__main__':
     plt.xlabel('Communities')
     plt.ylabel('% Nodes as seed set')
     plt.legend()
-    plt.show()
+    #plt.show()
+    plt.savefig('aa_a')
+
     plt.cla()
 
     plt.scatter(z,y,color="green",label="25%")
@@ -136,9 +139,11 @@ if __name__ == '__main__':
     plt.ylabel('Communities')
     plt.legend()
     plt.xlim(0,100)
-    plt.show()
-    plt.cla()
+    plt.savefig('aa_aa')
 
+    #plt.show()
+    plt.cla()
+    exit(0)
 
     fig = plt.figure()
     ax = fig.add_subplot(projection='3d')

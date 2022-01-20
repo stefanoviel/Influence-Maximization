@@ -81,7 +81,7 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
         max_generations=int(max_generations*0.9),
         tournament_size=5,
         mutation_rate=0.1,
-        crossover_rate=0.1,
+        crossover_rate=1.0,
         num_elites=2,
         # all arguments below will go inside the dictionary 'args'
         G = G,
