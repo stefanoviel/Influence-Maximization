@@ -45,7 +45,7 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "graph_SBM_small_TRUE-8.0-k6-p0-WC-NEW_3_OBJ.csv"
+    filename = "graph_SBM_small_TRUE-8.0-k6-p0.05-IC-NEW_3_OBJ.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     time = np.mean(t) / np.mean(x)
    
    
-    filename = "graph_SBM_small_TRUE-4.0-k12-p0-WC-NEW_3_OBJ.csv"
+    filename = "graph_SBM_small_TRUE-4.0-k12-p0.05-IC-NEW_3_OBJ.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -71,7 +71,7 @@ if __name__ == '__main__':
     time0 = np.mean(t0) / np.mean(x0)
   
 
-    filename = "graph_SBM_small_TRUE-2.0-k25-p0-WC-NEW_3_OBJ.csv"
+    filename = "graph_SBM_small_TRUE-2.0-k25-p0.05-IC-NEW_3_OBJ.csv"
 
 
     df = pd.read_csv(filename, sep=",")
@@ -89,7 +89,7 @@ if __name__ == '__main__':
 
 
 
-    filename = "prova_WC.csv"
+    filename = "prova_IC.csv"
    
 
     df = pd.read_csv(filename, sep=",")
