@@ -32,7 +32,7 @@ exit(0)
 scale_vector = [2,4,8]
 resolution = 1
 
-filename = "graphs/facebook_combined.txt"
+filename = "graphs/deezerEU.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -270,29 +270,32 @@ for scale in scale_vector:
             items.append(item)
 
         current_best = None
-        for z in range(10):
+        for z in range(100):
             mm_list = random.choices(items, probability,k=k)
-            
+            #print(mm_list)
             if current_best == None:
-                current_best = max(mm_list)
+                from scipy.spatial import distance
+                current_best = distance.cosine([np.mean(mm_list), np.std(mm_list)], [np.mean(list_degree), np.std(list_degree)])
                 final_list = mm_list
             else:
-                if current_best < max(mm_list):
-                    current_best = max(mm_list)
-                    final_list = mm_list     
-            print(current_best, max(mm_list)) 
+                if current_best < distance.cosine([np.mean(mm_list), np.std(mm_list)], [np.mean(list_degree), np.std(list_degree)]):
+                    current_best = distance.cosine([np.mean(mm_list), np.std(mm_list)], [np.mean(list_degree), np.std(list_degree)])
+                    final_list = mm_list  
+                # if current_best < max(mm_list):
+                #     current_best = max(mm_list)
+                #     final_list = mm_list     
+            #print(np.mean(mm_list), np.std(mm_list), np.mean(list_degree), np.std(list_degree), max(mm_list)) 
 
-        print(current_best)
+        #print(current_best, np.mean(final_list), np.std(final_list))
         
 
         #print(final_list)
-        print(max(final_list))
+        #print(max(final_list))
         for item in final_list:
             nodes.append(i)
             t.append(item)
             out.append(item)
         real_degree[i] = t
-
 
     #print(nodes)
     #print(out)
