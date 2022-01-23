@@ -11,9 +11,9 @@ import collections
 warnings.filterwarnings("ignore")
 from math import log, log10
 import math
-name = 'pgp'
+name = 'deezerEU'
 
-filenames = ["scale_graphs/pgp.txt_False-8.txt","scale_graphs/pgp.txt_False-4.txt","scale_graphs/pgp.txt_False-2.txt","graphs/pgp.txt"]
+filenames = ["scale_graphs/deezerEU.txt_False-8.txt","scale_graphs/deezerEU.txt_False-4.txt","scale_graphs/deezerEU.txt_False-2.txt","graphs/deezerEU.txt"]
 kk = []
 
 item = filenames[3]
@@ -102,7 +102,6 @@ for item in filenames:
 #plt.title("Degree Histogram")
 plt.ylabel("Count")
 plt.xlabel("Degree")
-
 plt.show()
 # i = 0
 # for item in filenames:
@@ -201,5 +200,5 @@ plt.legend()
 plt.xlabel('LOG(degree)')
 plt.ylabel('Density')
 plt.savefig(name + '_density.png')
-
+plt.xlim(0,max(degree_sequence))
 plt.show()
