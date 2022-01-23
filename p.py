@@ -9,9 +9,9 @@ import seaborn as sns
 import warnings
 warnings.filterwarnings("ignore")
 from math import log, log10
-name = 'graph_SBM_big'
+name = 'fb_org'
 
-filenames = ["scale_graphs/graph_SBM_big.txt_TRUE-8.0.txt","scale_graphs/graph_SBM_big.txt_TRUE-4.0.txt","scale_graphs/graph_SBM_big.txt_TRUE-2.0.txt","graphs/graph_SBM_big.txt"]
+filenames = ["scale_graphs/fb_org.txt_False-8.txt","scale_graphs/fb_org.txt_False-4.txt","scale_graphs/fb_org.txt_False-2.txt","graphs/fb_org.txt"]
 kk = []
 for item in filenames:
     G = read_graph(item)
@@ -70,17 +70,40 @@ for item in filenames:
     
     degreeCount = collections.Counter(degree_sequence)
     deg, cnt = zip(*degreeCount.items())
-    num_bins = len(degree_sequence)
-    deg = [float(log10(x)) for x in deg]  
+    #num_bins = len(degree_sequence)
+    #deg = [float(log10(x)) for x in deg]  
+
+    d = pd.DataFrame()
+    d["count"] = cnt
+    d["degree"] = deg
+
+    deg = [log10(x) for x in deg]
+
 
     if i == 0:
         max_t = (max(deg))
-    axs[len(filenames)-1-i].hist(deg, len(deg), color=color[i], label = str(x[i]))
+    
+    #sns.histplot(data=d, x='degree', kde=True, bins=10,
+    #sns.barplot(data=d, x='degree', y='count',ax = axs[len(filenames)-1-i],color=color[i])
+    
+    #plt.show()
+    #n,bins, patches = axs[len(filenames)-1-i].hist(degree_sequence, 100, density=True)
+    #y = ((1 / (np.sqrt(2 * np.pi) * np.std(degree_sequence))) *np.exp(-0.5 * (1 / np.std(degree_sequence) * (bins - np.mean(degree_sequence))**2)))
+    #axs[len(filenames)-1-i].set_xscale('log')
+    #axs[len(filenames)-1-i].bar(deg, cnt)#, drawstyle='steps-mid')
+    sns.histplot(x=deg, bins=int(1 + 3.322 * log(len(deg))),kde=True, ax = axs[len(filenames)-1-i],log_scale=False,color=color[i])
+    t = [0,0.5,1,1.5,2,2.5,3]
+    tt = []
+    for item in t:
+        tt.append(int(10 ** item))
+# add a 'best fit' line
+    #axs[len(filenames)-1-i].plot(bins, y, '--')
+    plt.xticks(t,tt)
     axs[len(filenames)-1-i].set_xlim(0, max_t)
     i +=1
 #plt.legend()
-#plt.show()
-
+plt.show()
+exit(0)
 plt.xlabel('log(degree)')
 plt.ylabel('count')
 plt.tight_layout()
@@ -132,7 +155,7 @@ for item in filenames:
     
 # Plot formatting
 plt.legend()
-#plt.title('Density Plot with Multiple Airlines')
+#plt.title('Density Plot with np.mean(degree_sequenceltiple Airlines')
 plt.xlabel('LOG(degree)')
 plt.ylabel('Density')
 plt.savefig(name + '_density.png')
