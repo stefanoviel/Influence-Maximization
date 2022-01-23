@@ -32,7 +32,7 @@ exit(0)
 scale_vector = [2,4,8]
 resolution = 1
 
-filename = "graphs/deezerEU.txt"
+filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -125,20 +125,20 @@ for scale in scale_vector:
         list_edges.append(edge)
 
 
-    for i in range(len(check)):
-        print("Community {0} has {1} elements".format(i,len(check[i])))
+   #for i in range(len(check)):
+   #     print("Community {0} has {1} elements".format(i,len(check[i])))
 
     all_edges =  [[0 for x in range(len(check))] for y in range(len(check))] 
     for i in range(len(list_edges)):
         nodes = len(check[i])
         edges = list_edges[i]
-        print("Community {0} --> Edges = {1} , Nodes = {2}".format(i,edges,nodes))
+        #print("Community {0} --> Edges = {1} , Nodes = {2}".format(i,edges,nodes))
         #all_edges[i][i] = float((2*edges)/(nodes*(nodes-1)))
         avg =  edges / nodes
         all_edges[i][i] = (((nodes / scale) * avg)) *2 #* 2
         all_edges[i][i] = (((nodes / scale) * avg)) * 2
-        print(nodes, nodes/scale)
-        print(edges,all_edges[i][i], edges/all_edges[i][i], avg)
+        #print(nodes, nodes/scale)
+        #print(edges,all_edges[i][i], edges/all_edges[i][i], avg)
         #all_edges[i][i] = edges
     n = (len(check) * len(check)) - len(check)
 
@@ -156,10 +156,13 @@ for scale in scale_vector:
                                 edge = edge + 1 
                 
                 nodes = len(check[i]) + len(check[j])
-
-                avg = (edge / nodes) 
-                all_edges[i][j] = (nodes / scale) * avg
-                all_edges[j][i] = (nodes / scale) * avg
+                if edge > 0:
+                    avg = (edge / nodes) 
+                    all_edges[i][j] = int((nodes / scale) * avg)
+                    all_edges[j][i] = int((nodes / scale) * avg)
+                    if all_edges[i][j] < 1:
+                        all_edges[i][j] = 1 
+                        all_edges[j][i] = 1
                 #all_edges[i][j] = edge
                 #all_edges[j][i] = edge
                 #if  all_edges[j][i] > 1:
@@ -184,10 +187,10 @@ for scale in scale_vector:
             xx.append(t)
         x.append(xx)
         start=  start+sizes[i]
-    for i in range(len(sizes)):
-        print("Community {0} has {1} elements".format(i+1,sizes[i]))
+    #for i in range(len(sizes)):
+        #print("Community {0} has {1} elements".format(i+1,sizes[i]))
 
-    print(all_edges)
+    #print(all_edges)
     i = 1
     start = 0
     nodes = []
@@ -255,8 +258,9 @@ for scale in scale_vector:
         import copy, random
 
         list_degree = copy.deepcopy(default_degree[i])
-        print('Community {0}'.format(i+1))
+        #mean = np.mean(default_degree[i])
         print("--------")
+        print('Community {0}'.format(i+1))
 
         k = sizes[i]
         probability = []
@@ -268,6 +272,7 @@ for scale in scale_vector:
         current_best = None
         for z in range(10):
             mm_list = random.choices(items, probability,k=k)
+            
             if current_best == None:
                 current_best = max(mm_list)
                 final_list = mm_list
@@ -289,11 +294,11 @@ for scale in scale_vector:
         real_degree[i] = t
 
 
-    print(nodes)
-    print(out)
-    print(len(nodes), len(out))
+    #print(nodes)
+    #print(out)
+    #print(len(nodes), len(out))
 
-    print(max(out))
+    #print(max(out))
     # for i in range(0,len(check)):
     #     mean = default_degree[i]
     #     mean_1 = comm_degree[i]

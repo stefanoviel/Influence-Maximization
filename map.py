@@ -25,16 +25,16 @@ from src.utils import inverse_ncr, community_detection
 from src.smart_initialization import max_centrality_individual, Community_initialization, degree_random
 
 
-scale_factor = 4
-filename = "scale_graphs/fb_org.txt_TRUE-8.0.txt"
-scale_comm = "comm_ground_truth/fb_org_8.0.csv"
+scale_factor = 8
+filename = "scale_graphs/deezerEU.txt_False-8.txt"
+scale_comm = "comm_ground_truth/deezerEU_8.csv"
 
 
-filename_original = "scale_graphs/fb_org.txt_TRUE-2.0.txt"
-filename_original_comm = "comm_ground_truth/fb_org_2.0.csv"
+filename_original = "graphs/deezerEU.txt"
+filename_original_comm = "comm_ground_truth/deezerEU.csv"
 
 
-df = pd.read_csv("fb_org_TRUE-8.0-k17-p0.05-IC-NEW_3_OBJ.csv",sep=",")
+df = pd.read_csv("deezerEU_False-8-k77-p0.05-IC-NEW_3_OBJ.csv",sep=",")
 
 nodes = df["nodes"].to_list()
 
@@ -185,13 +185,13 @@ for item in nodes:
 from src.spread.monte_carlo import MonteCarlo_simulation
 
 
-original_filename = "scale_graphs/fb_org.txt_TRUE-2.0.txt"
+original_filename = "graphs/deezerEU.txt"
 p = 0.05
 no_simulations = 100
 model = "IC"
 G = read_graph(original_filename)
 
-df = pd.read_csv("comm_ground_truth/fb_org_2.0.csv",sep=",")
+df = pd.read_csv("comm_ground_truth/deezerEU.csv",sep=",")
 groups = df.groupby('comm')['node'].apply(list)
 df = groups.reset_index(name='nodes')
 communities_original = df["nodes"].to_list()

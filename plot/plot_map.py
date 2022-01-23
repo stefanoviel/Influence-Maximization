@@ -9,7 +9,7 @@ from src.load import read_graph
 
 
     
-filename = "fb_org_TRUE-8.0-k17-p0.05-IC-NEW_3_OBJ.csv"
+filename = "deezerEU_False-8-k77-p0.05-IC-NEW_3_OBJ.csv"
 
 df = pd.read_csv(filename, sep=",")
 
@@ -19,7 +19,7 @@ y = df["communities"]
 z = df["influence"]
 
 
-filename = "fb_org_TRUE-2.0-k68-p0.05-IC-NEW_3_OBJ.csv"
+filename = "deezerEU-k707-p0.05-IC-NEW_3_OBJ.csv"
 
 df = pd.read_csv(filename, sep=",")
 
