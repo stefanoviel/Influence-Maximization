@@ -11,9 +11,9 @@ import collections
 warnings.filterwarnings("ignore")
 from math import log, log10
 import math
-name = 'facebook_combined'
+name = 'pgp'
 
-filenames = ["scale_graphs/facebook_combined.txt_False-8.txt","scale_graphs/facebook_combined.txt_False-4.txt","scale_graphs/facebook_combined.txt_False-2.txt","graphs/facebook_combined.txt"]
+filenames = ["scale_graphs/pgp.txt_False-8.txt","scale_graphs/pgp.txt_False-4.txt","scale_graphs/pgp.txt_False-2.txt","graphs/pgp.txt"]
 kk = []
 
 item = filenames[3]
@@ -82,7 +82,7 @@ for item in filenames:
     #axs[len(filenames)-1-i].hist(list(dict(nx.degree(G)).values()))
     #i +=1
     #plt.xscale('log')
-    n, bins, patches = axs[len(filenames)-1-i].hist(degree_sequence, 100, facecolor=color[i], alpha=0.75, log=False)
+    n, bins, patches = axs[len(filenames)-1-i].hist(degree_sequence, 20, facecolor=color[i], alpha=0.75, log=False)
     if i == 0:
         t = []
         k = 0

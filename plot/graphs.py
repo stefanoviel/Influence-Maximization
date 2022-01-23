@@ -4,7 +4,7 @@ sys.path.insert(0, '')
 from src.load import read_graph
 import matplotlib.pyplot as plt
 import  os
-graphs = ["scale_graphs/pgp.txt_False-8.txt"]
+graphs = ["scale_graphs/fb_politician.txt_False-8.txt"]
 
 
 for g in graphs:
