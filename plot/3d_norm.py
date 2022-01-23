@@ -89,7 +89,7 @@ if __name__ == '__main__':
 
 
 
-    filename = "prova_IC.csv"
+    filename = "graph_SBM_small-k51-p0.05-IC-NEW_3_OBJ.csv"
    
 
     df = pd.read_csv(filename, sep=",")
@@ -113,7 +113,9 @@ if __name__ == '__main__':
     ax1.set_xlabel('% Influenced Nodes')
     ax1.set_ylabel('% Nodes as seed set')
     #ax1.legend()
-    #ax1.set_xlim(0,100)
+    ax1.set_xlim(0,100)
+    ax1.set_ylim(0,2.5)
+
     #ax1.savefig('aa')
     #ax1.show()
     #ax1.cla()
@@ -127,6 +129,7 @@ if __name__ == '__main__':
     #ax2.title('Facebook Politicians IC model')
     ax2.set_xlabel('Communities')
     ax2.set_ylabel('% Nodes as seed set')
+    ax1.set_ylim(0,2.5)
     #ax2.set_xlim(1,max(y2))
     #ax2.legend()
     #ax2.show()
@@ -136,7 +139,7 @@ if __name__ == '__main__':
 
     ax3.scatter(z,y,color="green",label="1/8")
     ax3.scatter(z0,y0,color="blue", label="1/4")
-    ax3.scatter(z1,y1,color="orange",label="1/8")
+    ax3.scatter(z1,y1,color="orange",label="1/2")
     ax3.scatter(z2,y2,color="red",label="Original")
     #ax3.title('Facebook Politicians IC model')
     ax3.set_xlabel('% Influenced Nodes')
