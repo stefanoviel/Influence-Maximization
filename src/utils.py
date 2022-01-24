@@ -383,7 +383,7 @@ def inverse_ncr(combinations, r):
 	return n
 import pandas as pd
 
-def to_csv(archiver, population_file, std, times) :
+def to_csv(archiver, population_file) :
     
 
 
@@ -403,9 +403,7 @@ def to_csv(archiver, population_file, std, times) :
     df["n_nodes"] = n_nodes
     df["influence"] = influence
     df["communities"] = communities
-    df["time"] = times
     df["nodes"] = nodes
-    df["std"] = std
     df.to_csv(population_file+".csv", sep=",", index=False)
 
 def to_csv2(archiver, population_file, std,times) :

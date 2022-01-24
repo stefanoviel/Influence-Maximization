@@ -45,7 +45,7 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "graph_SBM_small_TRUE-8.0-k6-p0.05-IC-NEW_3_OBJ.csv"
+    filename = "fb_org_False-8-k17-p0.05-IC-NEW_3_OBJ.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     time = np.mean(t) / np.mean(x)
    
    
-    filename = "graph_SBM_small_TRUE-4.0-k12-p0.05-IC-NEW_3_OBJ.csv"
+    filename = "fb_org_False-4-k34-p0.05-IC-NEW_3_OBJ.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -71,7 +71,7 @@ if __name__ == '__main__':
     time0 = np.mean(t0) / np.mean(x0)
   
 
-    filename = "graph_SBM_small_TRUE-2.0-k25-p0.05-IC-NEW_3_OBJ.csv"
+    filename = "fb_org_False-2-k68-p0.05-IC-NEW_3_OBJ.csv"
 
 
     df = pd.read_csv(filename, sep=",")
@@ -89,7 +89,7 @@ if __name__ == '__main__':
 
 
 
-    filename = "graph_SBM_small-k51-p0.05-IC-NEW_3_OBJ.csv"
+    filename = "fb_org-k138-p0.05-IC-NEW_3_OBJ.csv"
    
 
     df = pd.read_csv(filename, sep=",")
@@ -113,7 +113,7 @@ if __name__ == '__main__':
     ax1.set_xlabel('% Influenced Nodes')
     ax1.set_ylabel('% Nodes as seed set')
     #ax1.legend()
-    ax1.set_xlim(0,100)
+    #ax1.set_xlim(0,100)
     ax1.set_ylim(0,2.5)
 
     #ax1.savefig('aa')

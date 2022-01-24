@@ -114,12 +114,12 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
     #seed_sets = [[individual.candidate, individual.fitness[0],individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
     if no_obj == 3:
         seed_sets = [[individual.candidate, individual.fitness[0], ((max_seed_nodes / G.number_of_nodes()) * 100) - individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
-        std, times = compute_time(seed_sets, population_file, G, model, p, no_simulations, communities, random_gen)
-        to_csv(seed_sets, population_file, std, times)
+        #std, times = compute_time(seed_sets, population_file, G, model, p, no_simulations, communities, random_gen)
+        to_csv(seed_sets, population_file)
     elif no_obj == 2:
         seed_sets = [[individual.candidate, individual.fitness[0], ((max_seed_nodes / G.number_of_nodes()) * 100) - individual.fitness[1]] for individual in ea.archive] 
-        std, times = compute_time(seed_sets, population_file, G, model, p, no_simulations, communities, random_gen)
-        to_csv2(seed_sets, population_file, std, times)
+        #std, times = compute_time(seed_sets, population_file, G, model, p, no_simulations, communities, random_gen)
+        to_csv2(seed_sets, population_file)
 
     return seed_sets
 
