@@ -1,7 +1,3 @@
-from ast import Break
-from turtle import position
-import networkx as nx
-from networkx.algorithms.centrality.degree_alg import degree_centrality
 from src.load import read_graph
 import pandas as pd
 import numpy as np
@@ -10,31 +6,26 @@ import time
 import random
 import logging
 import networkx as nx
-from functools import partial
 import numpy as np
-from numpy.core.fromnumeric import size
 import pandas as pd
 # local libraries
 from src.load import read_graph
 from src.spread.monte_carlo import MonteCarlo_simulation as MonteCarlo_simulation
 from src.spread.monte_carlo_max_hop import MonteCarlo_simulation_max_hop as MonteCarlo_simulation_max_hop
 from new_ea import moea_influence_maximization
-from src.nodes_filtering.select_best_spread_nodes import filter_best_nodes as filter_best_spread_nodes
-from src.nodes_filtering.select_min_degree_nodes import filter_best_nodes as filter_min_degree_nodes
-from src.utils import inverse_ncr, community_detection
-from src.smart_initialization import max_centrality_individual, Community_initialization, degree_random
+
 
 
 scale_factor = 8
-filename = "scale_graphs/deezerEU.txt_False-8.txt"
-scale_comm = "comm_ground_truth/deezerEU_8.csv"
+filename = "scale_graphs/fb_org.txt_False-8.txt"
+scale_comm = "comm_ground_truth/fb_org_8.csv"
 
 
-filename_original = "graphs/deezerEU.txt"
-filename_original_comm = "comm_ground_truth/deezerEU.csv"
+filename_original = "graphs/fb_org.txt"
+filename_original_comm = "comm_ground_truth/fb_org.csv"
 
 
-df = pd.read_csv("deezerEU_False-8-k77-p0.05-IC-NEW_3_OBJ.csv",sep=",")
+df = pd.read_csv("fb_org_False-8-k17-p0.05-IC-NEW_3_OBJ.csv",sep=",")
 
 nodes = df["nodes"].to_list()
 
@@ -185,13 +176,13 @@ for item in nodes:
 from src.spread.monte_carlo import MonteCarlo_simulation
 
 
-original_filename = "graphs/deezerEU.txt"
+original_filename = "graphs/fb_org.txt"
 p = 0.05
 no_simulations = 100
 model = "IC"
 G = read_graph(original_filename)
 
-df = pd.read_csv("comm_ground_truth/deezerEU.csv",sep=",")
+df = pd.read_csv("comm_ground_truth/fb_org.csv",sep=",")
 groups = df.groupby('comm')['node'].apply(list)
 df = groups.reset_index(name='nodes')
 communities_original = df["nodes"].to_list()

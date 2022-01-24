@@ -9,7 +9,7 @@ from src.load import read_graph
 
 
     
-filename = "deezerEU_False-8-k77-p0.05-IC-NEW_3_OBJ.csv"
+filename = "fb_org_False-8-k17-p0.05-IC-NEW_3_OBJ.csv"
 
 df = pd.read_csv(filename, sep=",")
 
@@ -19,7 +19,7 @@ y = df["communities"]
 z = df["influence"]
 
 
-filename = "deezerEU-k707-p0.05-IC-NEW_3_OBJ.csv"
+filename = "deezerEU_False-8-k80-p0.1-IC-NEW_3_OBJ.csv"
 
 df = pd.read_csv(filename, sep=",")
 
@@ -92,7 +92,7 @@ ax3.set_ylabel('Communities')
 fig.legend(loc=7)
 fig.tight_layout()
 fig.subplots_adjust(right=0.85)  
-#plt.savefig('ok')
+plt.savefig('ok')
 plt.show()
 #plt.cla()
 exit(0)
