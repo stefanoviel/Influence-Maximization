@@ -17,10 +17,12 @@ def generation_termination(population, num_generations, num_evaluations, args):
         df = pd.DataFrame()
         df["generation"] = x
         df["hv"] = args["hypervolume"]
+        '''
         if args["no_obj"] == 3:
             df["influence_k"] = args["hv_influence_k"]
             df["influence_comm"] = args["hv_influence_comm"]
             df["k_comm"] = args["hv_k_comm"]
+        '''
         df.to_csv(args["population_file"] +"_hv_.csv", sep=",",index=False)
         time_observer(population, num_generations, num_evaluations, args)
 
@@ -76,6 +78,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
         current_best = hv/tot
         #print("Hypervolume {0}-{1} Generations {2}".format(current_best,hv, num_generations))
         args["hypervolume"].append(current_best)
+        '''
         # HV INFLUENCE - K
         arch_2 = []
         for i in range(len(original_arch)):
@@ -129,6 +132,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
         b = hv_1/tot_1
         args["hv_k_comm"].append(b)
         #print('K-COMM {0}'.format(b))
+        '''
     elif args["no_obj"] == 2:
         tot = 100 * ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100) 
 
@@ -161,11 +165,13 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
             df = pd.DataFrame()
             df["generation"] = x
             df["hv"] = args["hypervolume"]
+            '''
             if args["no_obj"] == 3:
                 df["influence_k"] = args["hv_influence_k"]
                 df["influence_comm"] = args["hv_influence_comm"]
                 df["k_comm"] = args["hv_k_comm"]
             
+            '''
             df.to_csv(args["population_file"] +"_hv_.csv", sep=",",index=False)
 
             time_observer(population, num_generations, num_evaluations, args)

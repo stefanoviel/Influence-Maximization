@@ -57,8 +57,8 @@ if __name__ == '__main__':
 
 
     
-    filenames = ["scale_graphs/deezerEU.txt_False-8.txt","graphs/deezerEU.txt"]
-    gt = ["comm_ground_truth/deezerEU_8.csv","comm_ground_truth/deezerEU.csv"]
+    filenames = ["scale_graphs/fb_org.txt_False-8.txt","graphs/fb_org.txt"]
+    gt = ["comm_ground_truth/fb_org_8.csv","comm_ground_truth/fb_org.csv"]
     
     scale_k = [8,1]
 
@@ -157,4 +157,5 @@ if __name__ == '__main__':
             seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=population_size, offspring_size=offspring_size, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population ,no_obj=no_obj)
             
             exec_time = time.time() - start   
-            print(exec_time)        
+            print(exec_time)    
+            #exit(0)    
