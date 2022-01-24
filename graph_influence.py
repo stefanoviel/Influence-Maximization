@@ -57,13 +57,13 @@ if __name__ == '__main__':
 
 
     
-    filenames = ["scale_graphs/fb_org.txt_False-4.txt","scale_graphs/fb_org.txt_False-2.txt"]
-    gt = ["comm_ground_truth/fb_org_4.csv","comm_ground_truth/fb_org_2.csv"]
+    filenames = ["scale_graphs/fb_org.txt_False-8.txt","scale_graphs/fb_org.txt_False-2.txt"]
+    gt = ["comm_ground_truth/fb_org_8.csv","comm_ground_truth/fb_org_2.csv"]
     
-    scale_k = [4,2]
+    scale_k = [8,2]
 
     #scale_k = [1]
-    models = ["IC"]
+    models = ["LT"]
 
 
     #models = ['WC']
@@ -131,7 +131,7 @@ if __name__ == '__main__':
 
             no_obj = 3
             no_simulations = 10
-            max_generations = 50
+            max_generations = 5
             population_size = 10
             offspring_size = 10
 
@@ -158,4 +158,4 @@ if __name__ == '__main__':
             
             exec_time = time.time() - start   
             print(exec_time)    
-            #exit(0)    
+            exit(0)    

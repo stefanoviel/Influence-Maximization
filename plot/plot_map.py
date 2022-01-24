@@ -19,7 +19,7 @@ y = df["communities"]
 z = df["influence"]
 
 
-filename = "deezerEU_False-8-k80-p0.1-IC-NEW_3_OBJ.csv"
+filename = "fb_org-k138-p0.05-IC-NEW_3_OBJ.csv"
 
 df = pd.read_csv(filename, sep=",")
 
@@ -55,7 +55,7 @@ ax1.scatter(z1,x1,color="black")
 ax1.set_xlabel('% Influenced Nodes')
 ax1.set_ylabel('% Nodes as seed set')
 #ax1.legend()
-#ax1.set_xlim(0,100)
+ax1.set_xlim(0,100)
 ax1.set_ylim(0,2.5)
 
 #ax1.savefig('aa')
