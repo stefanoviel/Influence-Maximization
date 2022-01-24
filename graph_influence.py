@@ -57,10 +57,10 @@ if __name__ == '__main__':
 
 
     
-    filenames = ["scale_graphs/fb_org.txt_False-8.txt","graphs/fb_org.txt"]
-    gt = ["comm_ground_truth/fb_org_8.csv","comm_ground_truth/fb_org.csv"]
+    filenames = ["scale_graphs/fb_org.txt_False-4.txt","scale_graphs/fb_org.txt_False-2.txt"]
+    gt = ["comm_ground_truth/fb_org_4.csv","comm_ground_truth/fb_org_2.csv"]
     
-    scale_k = [8,1]
+    scale_k = [4,2]
 
     #scale_k = [1]
     models = ["IC"]
