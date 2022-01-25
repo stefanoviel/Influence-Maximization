@@ -4,7 +4,7 @@ sys.path.insert(0, '')
 from src.load import read_graph
 import matplotlib.pyplot as plt
 import  os
-graphs = ["scale_graphs/deezerEU_8.txt"]
+graphs = ["scale_graphs/facebook_combined_4.txt"]
 
 
 for g in graphs:

@@ -32,7 +32,7 @@ exit(0)
 scale_vector = [2,4,8]
 resolution = 1
 
-filename = "graphs/deezerEU.txt"
+filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -288,7 +288,7 @@ for scale in scale_vector:
 
         #print(current_best, np.mean(final_list), np.std(final_list))
         
-
+        
         #print(final_list)
         #print(max(final_list))
         for item in final_list:
