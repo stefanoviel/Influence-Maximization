@@ -57,13 +57,13 @@ if __name__ == '__main__':
 
 
     
-    filenames = ["scale_graphs/fb_org.txt_False-8.txt","scale_graphs/fb_org.txt_False-2.txt"]
-    gt = ["comm_ground_truth/fb_org_8.csv","comm_ground_truth/fb_org_2.csv"]
+    filenames = ["scale_graphs/pgp_8.txt","scale_graphs/pgp_4.txt","scale_graphs/pgp_1.txt","graphs/pgp.txt"]
+    gt = ["comm_ground_truth/pgp_8.csv","comm_ground_truth/pgp_4.csv","comm_ground_truth/pgp_2.csv","comm_ground_truth/pgp.csv"]
     
-    scale_k = [8,2]
+    scale_k = [8,4,2,1]
 
     #scale_k = [1]
-    models = ["LT"]
+    models = ["IC"]
 
 
     #models = ['WC']
@@ -112,7 +112,7 @@ if __name__ == '__main__':
             mean = int(np.mean(mean))  
             args["min_degree"] = mean + 1
             args["smart_initialization_percentage"] = 0.5
-            args["population_size"] = 10
+            args["population_size"] = 100
 
             communities =[]
             df = pd.read_csv(file_gt,sep=",")
@@ -130,10 +130,10 @@ if __name__ == '__main__':
             initial_population = create_initial_population(G, args, prng, nodes)
 
             no_obj = 3
-            no_simulations = 10
-            max_generations = 5
-            population_size = 10
-            offspring_size = 10
+            no_simulations = 20
+            max_generations = 10
+            population_size = 100
+            offspring_size = 100
 
 
             n_threads = 5

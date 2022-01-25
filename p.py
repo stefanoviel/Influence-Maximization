@@ -32,7 +32,7 @@ for item in filenames:
     kk.append(mean)
     print(max(mean))
 
-exit(0)
+#exit(0)
 
 
 #exit(0)
