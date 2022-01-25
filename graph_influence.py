@@ -57,13 +57,13 @@ if __name__ == '__main__':
 
 
     
-    filenames = ["scale_graphs/pgp_8.txt","scale_graphs/pgp_4.txt","scale_graphs/pgp_1.txt","graphs/pgp.txt"]
-    gt = ["comm_ground_truth/pgp_8.csv","comm_ground_truth/pgp_4.csv","comm_ground_truth/pgp_2.csv","comm_ground_truth/pgp.csv"]
+    filenames = ["scale_graphs/fb_politician_8.txt","scale_graphs/fb_politician_4.txt","scale_graphs/fb_politician_2.txt","graphs/fb_politician.txt"]
+    gt = ["comm_ground_truth/fb_politician_8.csv","comm_ground_truth/fb_politician_4.csv","comm_ground_truth/fb_politician_2.csv","comm_ground_truth/fb_politician.csv"]
     
     scale_k = [8,4,2,1]
 
     #scale_k = [1]
-    models = ["IC"]
+    models = ["LT"]
 
 
     #models = ['WC']
@@ -158,4 +158,4 @@ if __name__ == '__main__':
             
             exec_time = time.time() - start   
             print(exec_time)    
-            exit(0)    
+            #exit(0)    

@@ -5,11 +5,11 @@ sys.path.insert(0, '')
 from src.load import read_graph
 
 
-df4 = pd.read_csv("fb_org_False-8-k17-p0.05-IC-NEW_3_OBJ_hv_.csv",sep=",")
-df2 = pd.read_csv("fb_org_False-4-k34-p0.05-IC-NEW_3_OBJ_hv_.csv",sep=",")
+df4 = pd.read_csv("pgp_8-k25-p0-WC-NEW_3_OBJ_hv_.csv",sep=",")
+df2 = pd.read_csv("pgp_4-k52-p0-WC-NEW_3_OBJ_hv_.csv",sep=",")
 
-df1 = pd.read_csv("fb_org_False-2-k68-p0.05-IC-NEW_3_OBJ_hv_.csv",sep=",")
-df= pd.read_csv("fb_org-k138-p0.05-IC-NEW_3_OBJ_hv_.csv",sep=",")
+df1 = pd.read_csv("pgp_2-k107-p0-WC-NEW_3_OBJ_hv_.csv",sep=",")
+df= pd.read_csv("pgp-k267-p0-WC-NEW_3_OBJ_hv_.csv",sep=",")
 
 
 plt.plot(df.generation, df.hv, color="red", label="0riginal")
@@ -19,7 +19,8 @@ plt.plot(df4.generation, df4.hv, color="green", label="1/8")
 
 plt.xlabel('Generation')
 plt.ylabel('Hypervolume')
-plt.show()
+plt.savefig('hv')
+#plt.show()
 
 
 

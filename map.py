@@ -16,16 +16,20 @@ from new_ea import moea_influence_maximization
 
 
 
-scale_factor = 8
-filename = "scale_graphs/fb_org.txt_False-8.txt"
-scale_comm = "comm_ground_truth/fb_org_8.csv"
+
+filename = "scale_graphs/fb_politician_2.txt"
+scale_comm = "comm_ground_truth/fb_politician_2.csv"
 
 
-filename_original = "graphs/fb_org.txt"
-filename_original_comm = "comm_ground_truth/fb_org.csv"
+filename_original = "graphs/fb_politician.txt"
+filename_original_comm = "comm_ground_truth/fb_politician.csv"
 
 
-df = pd.read_csv("fb_org_False-8-k17-p0.05-IC-NEW_3_OBJ.csv",sep=",")
+G = read_graph(filename)
+G1 = read_graph(filename_original)
+scale_factor = G1.number_of_nodes() / G.number_of_nodes()
+
+df = pd.read_csv("fb_politician_2-k67-p0.05-IC-NEW_3_OBJ.csv",sep=",")
 
 nodes = df["nodes"].to_list()
 
@@ -112,45 +116,45 @@ for item in nodes:
     item = item.replace(",","")
     nodes_split = item.split()  
 
-    print("---------")
-    print(len(nodes_split),len(nodes_split)*scale_factor )
+    #print("---------")
+    #print(len(nodes_split),len(nodes_split)*scale_factor )
     N = []
     k = 0
     for node in nodes_split:
         k +=1
-        print(k)
+        #print(k)
         node = int(node)
         t = scaled_table.loc[scaled_table["node"] == node]
-    
-        r = original_table[original_table["comm"] == int(t.comm)]
-        n = r["node"].to_list()
-        l = r["page_rank"].to_list()
-        #print(n)
-        s = 0
-        ii = 0
-        print('l3n', len(l))
-        if len(l) == 0:
-            print(r)
-            print(n)
-        while ii < scale_factor:
-            myArray = np.array(l)
-            pos = (np.abs(myArray-float(t.page_rank))).argmin()
-            if n[pos] in N:# and len(n) > 0:
-                l = np.delete(myArray, pos)
-                n = np.delete(n, pos)
-            else:
-                N.append(n[pos])
-                ii +=1
-                s +=1
-                l = np.delete(myArray, pos)
-                n = np.delete(n, pos)
-            
-            if len(n) == 0:
-                print('shit')
-            if len(l) == 0:
-                print('shit')
-                break
-        print(s)
+        if len(t) > 0:
+            r = original_table[original_table["comm"] == int(t.comm)]
+            n = r["node"].to_list()
+            l = r["page_rank"].to_list()
+            #print(n)
+            s = 0
+            ii = 0
+            #print('l3n', len(l))
+            #if len(l) == 0:
+                #print(r)
+                #print(n)
+            while ii < int(scale_factor):
+                myArray = np.array(l)
+                pos = (np.abs(myArray-float(t.page_rank))).argmin()
+                if n[pos] in N:# and len(n) > 0:
+                    l = np.delete(myArray, pos)
+                    n = np.delete(n, pos)
+                else:
+                    N.append(n[pos])
+                    ii +=1
+                    s +=1
+                    l = np.delete(myArray, pos)
+                    n = np.delete(n, pos)
+                
+                if len(n) == 0:
+                    print('shit')
+                if len(l) == 0:
+                    print('shit')
+                    break
+            print(s)
         # try:
         #     N.append(int(r1.node))
         # except:
@@ -158,7 +162,7 @@ for item in nodes:
         #     print(int(t.rank_comm))
     solution.append(N)
     print(len(N), len(set(N)))
-    if len(N) != len(nodes_split) * scale_factor:
+    if len(N) != len(nodes_split) * int(scale_factor):
         print('cazzo')
         #exit(0)
 
@@ -176,13 +180,13 @@ for item in nodes:
 from src.spread.monte_carlo import MonteCarlo_simulation
 
 
-original_filename = "graphs/fb_org.txt"
+original_filename = "graphs/fb_politician.txt"
 p = 0.05
 no_simulations = 100
-model = "IC"
+model = "WC"
 G = read_graph(original_filename)
 
-df = pd.read_csv("comm_ground_truth/fb_org.csv",sep=",")
+df = pd.read_csv("comm_ground_truth/fb_politician.csv",sep=",")
 groups = df.groupby('comm')['node'].apply(list)
 df = groups.reset_index(name='nodes')
 communities_original = df["nodes"].to_list()
@@ -225,7 +229,7 @@ for idx, item in enumerate(solution):
     NODES[idx] = NODES[idx].replace("]","")
     NODES[idx] = NODES[idx].replace(",","")
     nodes_split = NODES[idx].split() 
-    print(len(item), len(A), len(nodes_split), len(nodes_split)* scale_factor)
+    print(len(item), len(A), len(nodes_split), len(nodes_split)* int(scale_factor))
     try:
         spread  = MonteCarlo_simulation(G, A, p, no_simulations, model, communities_original, random_generator=None)
         print(((spread[0] / G.number_of_nodes())* 100), spread[2], ((len(A) / G.number_of_nodes())* 100))
@@ -242,13 +246,13 @@ df["influence"] = influence
 df["communities"] = comm
 
 df.to_csv('map_map.csv', index=False)
-print(len(df))
+#print(len(df))
 
 
 exit(0)
 new_archive = []
 for ind in pop:
-    print(ind)
+    #print(ind)
     if len(new_archive) == 0:
         new_archive.append(ind)
     else:
