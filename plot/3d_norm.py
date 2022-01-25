@@ -45,7 +45,7 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "fb_org_False-8-k17-p0.05-IC-NEW_3_OBJ.csv"
+    filename = "fb_politician_8-k16-p0-LT-NEW_3_OBJ.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -53,25 +53,20 @@ if __name__ == '__main__':
     x=  df["n_nodes"].to_list()
     y = df["communities"]
     z = df["influence"]
-    t = df["time"].to_list()
-    time = sum(np.array(x) * np.array(t)) / sum(np.array(t))
-    time = np.mean(t) / np.mean(x)
+
    
    
-    filename = "fb_org_False-4-k34-p0.05-IC-NEW_3_OBJ.csv"
+    filename = "fb_politician_4-k33-p0-LT-NEW_3_OBJ.csv"
 
     df = pd.read_csv(filename, sep=",")
 
     x0= df["n_nodes"].to_list()
     y0 = df["communities"].to_list()
     z0 = df["influence"].to_list()
-    #time0 = df["time"]  / (1/np.mean(x0))
-    t0= df["time"].to_list()
-    time0 = sum(np.array(x0) * np.array(t0)) / sum(np.array(t0))
-    time0 = np.mean(t0) / np.mean(x0)
+
   
 
-    filename = "fb_org_False-2-k68-p0.05-IC-NEW_3_OBJ.csv"
+    filename = "fb_politician_2-k67-p0-LT-NEW_3_OBJ.csv"
 
 
     df = pd.read_csv(filename, sep=",")
@@ -79,17 +74,11 @@ if __name__ == '__main__':
     x1= df["n_nodes"]
     y1 = df["communities"]
     z1 = df["influence"]
-    #time1 = df["time"]  /(1/np.mean(x1))
-    t1= df["time"].to_list()
-    time1 = sum(np.array(x1) * np.array(t1)) / sum(np.array(t1))
-    time1 = np.mean(t1) / np.mean(x1)
-
-
-    #plot(x1,y1,z1)
 
 
 
-    filename = "fb_org-k138-p0.05-IC-NEW_3_OBJ.csv"
+
+    filename = "fb_politician-k147-p0-LT-NEW_3_OBJ.csv"
    
 
     df = pd.read_csv(filename, sep=",")
@@ -97,10 +86,6 @@ if __name__ == '__main__':
     x2= df["n_nodes"].to_list()
     y2 = df["communities"].to_list()
     z2 = df["influence"].to_list()
-    #time2= df["time"]  / (1/np.mean(x2))
-    t2= df["time"].to_list()
-    time2 = sum(np.array(x2) * np.array(t2)) / sum(np.array(t2))
-    time2 = np.mean(t2) / np.mean(x2)
 
 
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(10,6))
