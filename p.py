@@ -11,29 +11,33 @@ import collections
 warnings.filterwarnings("ignore")
 from math import log, log10
 import math
-name = 'deezerEU'
+name = 'fb_politician'
 
-filenames = ["scale_graphs/deezerEU.txt_False-8.txt","scale_graphs/deezerEU.txt_False-4.txt","scale_graphs/deezerEU.txt_False-2.txt","graphs/deezerEU.txt"]
+filenames = ["scale_graphs/fb_politician_8.txt","scale_graphs/fb_politician_4.txt","scale_graphs/fb_politician_2.txt","graphs/fb_politician.txt"]
 kk = []
 
-item = filenames[3]
+#item = filenames[3]
 
 
 for item in filenames:
     G = read_graph(item)
     print(nx.info(G))
-    #den = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
-    #print("Density --> {0}".format(den))
+    den = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
+    print("Density --> {0}".format(den))
     my_degree_function = G.degree
     mean = []
     mean_degree = []
     for item in G:
         mean.append(my_degree_function[item])
     kk.append(mean)
+    print(max(mean))
+
+exit(0)
 
 
-for item in kk:
-    print(np.mean(item))
+#exit(0)
+#for item in kk:
+    #print(np.mean(item))
 
 
 x = ['1', '1/2', '1/4', '1/8']
@@ -82,7 +86,7 @@ for item in filenames:
     #axs[len(filenames)-1-i].hist(list(dict(nx.degree(G)).values()))
     #i +=1
     #plt.xscale('log')
-    n, bins, patches = axs[len(filenames)-1-i].hist(degree_sequence, 20, facecolor=color[i], alpha=0.75, log=False)
+    n, bins, patches = axs[len(filenames)-1-i].hist(degree_sequence, 20, facecolor=color[i], alpha=0.75, log=True)
     if i == 0:
         t = []
         k = 0
@@ -200,5 +204,5 @@ plt.legend()
 plt.xlabel('LOG(degree)')
 plt.ylabel('Density')
 plt.savefig(name + '_density.png')
-plt.xlim(0,max(degree_sequence))
+#plt.xlim(0,max(degree_sequence))
 plt.show()
