@@ -135,7 +135,7 @@ for scale in scale_vector:
         #print("Community {0} --> Edges = {1} , Nodes = {2}".format(i,edges,nodes))
         #all_edges[i][i] = float((2*edges)/(nodes*(nodes-1)))
         avg =  edges / nodes
-        all_edges[i][i] = (((nodes / scale) * avg)) *2 #* 2
+        all_edges[i][i] = (((nodes / scale) * avg)) * 2 #* 2
         all_edges[i][i] = (((nodes / scale) * avg)) * 2
         #print(nodes, nodes/scale)
         #print(edges,all_edges[i][i], edges/all_edges[i][i], avg)
@@ -275,11 +275,11 @@ for scale in scale_vector:
             #print(mm_list)
             if current_best == None:
                 from scipy.spatial import distance
-                current_best = distance.cosine([np.mean(mm_list), np.std(mm_list)], [np.mean(list_degree), np.std(list_degree)])
+                current_best = distance.euclidean([np.mean(mm_list), np.std(mm_list)], [np.mean(list_degree), np.std(list_degree)])
                 final_list = mm_list
             else:
-                if current_best < distance.cosine([np.mean(mm_list), np.std(mm_list)], [np.mean(list_degree), np.std(list_degree)]):
-                    current_best = distance.cosine([np.mean(mm_list), np.std(mm_list)], [np.mean(list_degree), np.std(list_degree)])
+                if current_best < distance.euclidean([np.mean(mm_list), np.std(mm_list)], [np.mean(list_degree), np.std(list_degree)]):
+                    current_best = distance.euclidean([np.mean(mm_list), np.std(mm_list)], [np.mean(list_degree), np.std(list_degree)])
                     final_list = mm_list  
                 # if current_best < max(mm_list):
                 #     current_best = max(mm_list)
@@ -384,8 +384,8 @@ for scale in scale_vector:
     print(sum)
     print(max(out))
 
-
-    with open("scale_graphs/"+str(name)+"_"+"False-"+str(scale)+".txt", "w") as outfile:
+    name = name.replace('.txt',"")
+    with open("scale_graphs/"+str(name)+"_"+str(scale)+".txt", "w") as outfile:
             outfile.write("\n".join(text))
         
     print("ok")
