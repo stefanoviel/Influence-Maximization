@@ -11,9 +11,9 @@ import collections
 warnings.filterwarnings("ignore")
 from math import log, log10
 import math
-name = 'fb_politician'
+name = 'pgp'
 
-filenames = ["scale_graphs/fb_politician_8.txt","scale_graphs/fb_politician_4.txt","scale_graphs/fb_politician_2.txt","graphs/fb_politician.txt"]
+filenames = ["scale_graphs/pgp_8.txt","scale_graphs/pgp_4.txt","scale_graphs/facebook_combined_2.txt","graphs/facebook_combined.txt"]
 kk = []
 
 #item = filenames[3]
@@ -87,18 +87,18 @@ for item in filenames:
     #i +=1
     #plt.xscale('log')
     n, bins, patches = axs[len(filenames)-1-i].hist(degree_sequence, 20, facecolor=color[i], alpha=0.75, log=True)
-    if i == 0:
-        t = []
-        k = 0
-        tt = []
-        print(max(degree_sequence))
-        while k < max(degree_sequence):
-            t.append(k)
-            tt.append(int(10 ** k))
-            print(k, 10 ** k)
-            k += 0.5
+    # if i == 0:
+    #     t = []
+    #     k = 0
+    #     tt = []
+    #     print(max(degree_sequence))
+    #     while k < max(degree_sequence):
+    #         t.append(k)
+    #         tt.append(int(10 ** k))
+    #         print(k, 10 ** k)
+    #         k += 0.5
         
-        plt.xticks(t,tt)
+    #     plt.xticks(t,tt)
     # add a 'best fit' line
     #axs[len(filenames)-1-i].plot(bins, color=color[i])
     i += 1
@@ -156,30 +156,57 @@ plt.show()
 
 # from collections import Counter
 
-# i = 0
-# plt.figure(figsize=(6,6)) 
-# for item in filenames:
-#     G = read_graph(item)
-#     degree_sequence = sorted([d for n, d in G.degree()], reverse=True)  # degree sequence
+i = 0
+plt.figure(figsize=(6,6)) 
+for item in filenames:
+    G = read_graph(item)
+    degree_sequence = sorted([d for n, d in G.degree()], reverse=True)  # degree sequence
     
     
-#     degreeCount = collections.Counter(degree_sequence)
-#     print(degreeCount)
-#     x1, y = zip(*degreeCount.items())                                                                                                                      
+    degreeCount = collections.Counter(degree_sequence)
+    #print(degreeCount)
+    x1, y = zip(*degreeCount.items())                                                                                                                      
 
-#     x1 = [float(log10(x)) for x in x1]    
-#     y = [float(log10(x)) for x in y]                                                                                                          
-#     plt.scatter(x1, y, marker='.', s=100, color=color[i], label = str(x[i]))                                                                                                 
-#     i = i+1
-# plt.xlabel('log(degree)')   
+    plt.xscale('log')  
+    plt.yscale('log')                                                                                                        
+                                                                                                      
+    plt.scatter(x1, y, marker='.', s=100, facecolors='none',color=color[i], label = str(x[i]))     
+    # if i == 0:
+    #     t = []
+    #     k = 0
+    #     tt = []
+    #     print(max(degree_sequence))
+    #     while k < max(degree_sequence):
+    #         t.append(log10(k))
+    #         tt.append(k)
+    #         print(k)
+        
+    #     plt.xticks(t,tt)    
+    #plt.xlim(1, max(x1))  
+    if i == 0:   
+        t = []                                                                                  
+        k = int(max(x1) / 10)
+        print(k)
+        s = 0
+        for j in range(k):
+            t.append(s)
+            s += k
+    print(t)
+    #locs, labels = plt.xticks()
+    #plt.get_major_formatter().labelOnlyBase = False
+    #print(labels)
+
+    #plt.xticks()
+    i = i+1
+plt.xlabel('log(degree)')   
 
                                                                                       
-# plt.ylabel('log(frequency)')   
-# plt.legend()
-# plt.savefig(name + '_scatter')
-# plt.show()
-# plt.close()
-# plt.cla()
+plt.ylabel('log(frequency)')   
+plt.legend()
+plt.savefig(name + '_scatter')
+plt.show()
+plt.close()
+plt.cla()
 
 
 

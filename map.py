@@ -17,8 +17,8 @@ from new_ea import moea_influence_maximization
 
 
 
-filename = "scale_graphs/fb_politician_2.txt"
-scale_comm = "comm_ground_truth/fb_politician_2.csv"
+filename = "scale_graphs/fb_politician_8.txt"
+scale_comm = "comm_ground_truth/fb_politician_8.csv"
 
 
 filename_original = "graphs/fb_politician.txt"
@@ -29,7 +29,7 @@ G = read_graph(filename)
 G1 = read_graph(filename_original)
 scale_factor = G1.number_of_nodes() / G.number_of_nodes()
 
-df = pd.read_csv("fb_politician_2-k67-p0.05-IC-NEW_3_OBJ.csv",sep=",")
+df = pd.read_csv("fb_politician_4-k33-p0.05-IC-NEW_3_OBJ.csv",sep=",")
 
 nodes = df["nodes"].to_list()
 
@@ -43,10 +43,10 @@ def normalize_list(list_normal):
 def get_table(graph_name, comm_name,w):
     G = read_graph(filename=graph_name)
 
-    from networkx.algorithms import closeness_centrality, betweenness_centrality
-    #Z = closeness_centrality(G)
-    #F = betweenness_centrality(G, normalized=True)
-    #print(Z)
+    from networkx.algorithms import degree_centrality, closeness_centrality
+    T = degree_centrality(G)
+    #T = nx.eigenvector_centrality(G)
+    #T = closeness_centrality(G)
     T = nx.pagerank(G, alpha = 0.85)
     data = pd.DataFrame()
     node = []
@@ -55,10 +55,12 @@ def get_table(graph_name, comm_name,w):
     zz = 0
     for key,value in T.items():
         node.append(key)
-        centr.append(value / w)
+        #centr.append(value / w)
+        centr.append(value)
+
         #zz += F[key]
         z += value
-    #print(z, zz)
+    print(z)
 
     #centr = normalize_list(centr)
     
@@ -73,20 +75,18 @@ def get_table(graph_name, comm_name,w):
     data["rank"] = rank
     data.to_csv("prova.csv", index=False)
 
-    #print(data)
     community = pd.read_csv(comm_name,sep=",")
     #print(community)
 
     int_df = pd.merge(data, community, how ='inner', on =['node'])
-    #print(int_df)
-
     n_comm = len(set(int_df["comm"].to_list()))
     #print(n_comm)
     node = []
     rank_comm = []
+    len_list = []
     for i in range(n_comm):
         list_comm = int_df[int_df["comm"] == i+1]
-        #print(list_comm)
+        len_list.append(len(list_comm))
         for i in range(len(list_comm)):
             node.append(list_comm["node"].iloc[i])
             rank_comm.append(i+1)
@@ -99,13 +99,26 @@ def get_table(graph_name, comm_name,w):
     #data_comm.to_csv("comm_ground_truth/graph_SBM_big.csv", index=False)
     int_df = pd.merge(int_df, data_comm, how ='inner', on =['node'])
     #print(int_df)
+    
     return int_df
+    #return len_list
+
 
 print('Scale')
 scaled_table = get_table(filename, scale_comm, scale_factor)
-
+scaled_table.to_csv('scale.csv',index=False)
 print('Original')
 original_table = get_table(filename_original, filename_original_comm,1)
+original_table.to_csv('original.csv', index=False)
+#for i in range(len(scaled_table)):
+#    print('Original {0}, Scaled {1}, Expected {2}'.format(original_table[i], scaled_table[i],int(original_table[i] / int(8))))
+exit(0)
+
+new = pd.merge(scaled_table,original_table, how='inner',on=['rank_comm', 'comm'])
+print(new)
+
+n_scale = new["node_x"].to_list()
+n_origin = new["node_y"].to_list()
 
 
 solution = []
@@ -119,9 +132,7 @@ for item in nodes:
     #print("---------")
     #print(len(nodes_split),len(nodes_split)*scale_factor )
     N = []
-    k = 0
     for node in nodes_split:
-        k +=1
         #print(k)
         node = int(node)
         t = scaled_table.loc[scaled_table["node"] == node]
@@ -137,8 +148,10 @@ for item in nodes:
                 #print(r)
                 #print(n)
             while ii < int(scale_factor):
-                myArray = np.array(l)
-                pos = (np.abs(myArray-float(t.page_rank))).argmin()
+                myArray = np.array(l)                
+                pos = (np.abs(myArray-float(t.rank_comm))).argmin()
+
+                #pos = (np.abs(myArray-float(t.page_rank))).argmin()
                 if n[pos] in N:# and len(n) > 0:
                     l = np.delete(myArray, pos)
                     n = np.delete(n, pos)
@@ -183,7 +196,7 @@ from src.spread.monte_carlo import MonteCarlo_simulation
 original_filename = "graphs/fb_politician.txt"
 p = 0.05
 no_simulations = 100
-model = "WC"
+model = "IC"
 G = read_graph(original_filename)
 
 df = pd.read_csv("comm_ground_truth/fb_politician.csv",sep=",")
@@ -236,7 +249,9 @@ for idx, item in enumerate(solution):
         influence.append(((spread[0] / G.number_of_nodes())* 100))
         nodes_.append(((len(A) / G.number_of_nodes())* 100))
         comm.append(spread[2])
-        T = [((spread[0] / G.number_of_nodes())* 100), -((len(A) / G.number_of_nodes())* 100),spread[2]]
+        #T = [((spread[0] / G.number_of_nodes())* 100), -((len(A) / G.number_of_nodes())* 100),spread[2]]
+        T = [((spread[0] / G.number_of_nodes())* 100), -((len(A) / G.number_of_nodes())* 100)]
+
         pop.append(T)
     except:
         pass
@@ -245,30 +260,8 @@ df["n_nodes"] = nodes_
 df["influence"] = influence
 df["communities"] = comm
 
-df.to_csv('map_map.csv', index=False)
+df.to_csv('map_degree_comm.csv', index=False)
 #print(len(df))
 
 
 exit(0)
-new_archive = []
-for ind in pop:
-    #print(ind)
-    if len(new_archive) == 0:
-        new_archive.append(ind)
-    else:
-        should_remove = []
-        should_add = True
-        for a in new_archive:
-            if ind == a:
-                should_add = False
-                break
-            elif ind < a:
-                should_add = False
-            elif ind > a:
-                should_remove.append(a)
-        for r in should_remove:
-            new_archive.remove(r)
-        if should_add:
-            new_archive.append(ind)
-
-print(len(new_archive))
