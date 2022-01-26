@@ -45,7 +45,7 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "fb_politician_8-k16-p0-LT-NEW_3_OBJ.csv"
+    filename = "fb_politician_8-k16-p0-WC-NEW_3_OBJ.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -56,7 +56,7 @@ if __name__ == '__main__':
 
    
    
-    filename = "fb_politician_4-k33-p0-LT-NEW_3_OBJ.csv"
+    filename = "fb_politician_4-k33-p0-WC-NEW_3_OBJ.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -66,7 +66,7 @@ if __name__ == '__main__':
 
   
 
-    filename = "fb_politician_2-k67-p0-LT-NEW_3_OBJ.csv"
+    filename = "fb_politician_2-k67-p0-WC-NEW_3_OBJ.csv"
 
 
     df = pd.read_csv(filename, sep=",")
@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
 
 
-    filename = "fb_politician-k147-p0-LT-NEW_3_OBJ.csv"
+    filename = "fb_politician-k147-p0-WC-NEW_3_OBJ.csv"
    
 
     df = pd.read_csv(filename, sep=",")
@@ -98,7 +98,7 @@ if __name__ == '__main__':
     ax1.set_xlabel('% Influenced Nodes')
     ax1.set_ylabel('% Nodes as seed set')
     #ax1.legend()
-    #ax1.set_xlim(0,100)
+    ax1.set_xlim(0,100)
     ax1.set_ylim(0,2.5)
 
     #ax1.savefig('aa')

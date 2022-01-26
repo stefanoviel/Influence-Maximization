@@ -55,7 +55,7 @@ def filter_nodes(G, args):
 if __name__ == '__main__':
     
 
-
+    no_runs = 10
     
     filenames = ["scale_graphs/fb_politician_8.txt","scale_graphs/fb_politician_4.txt","scale_graphs/fb_politician_2.txt","graphs/fb_politician.txt"]
     gt = ["comm_ground_truth/fb_politician_8.csv","comm_ground_truth/fb_politician_4.csv","comm_ground_truth/fb_politician_2.csv","comm_ground_truth/fb_politician.csv"]
@@ -73,89 +73,94 @@ if __name__ == '__main__':
         scale = scale_k[i]
         i +=1
         filename = item
-        print(filename)
+        file = str(os.path.basename(filename))
+        file = file.replace(".txt", "")
         for m in models:
-            model = m
-            print(model)
-            G = read_graph(filename)
-
-            print(nx.info(G))
-            random_seed = 10
-            prng = random.Random(random_seed)
-
-            k = int(G.number_of_nodes() * 0.025)
-
-            my_degree_function = G.degree
-            mean = []
-            for item in G:
-                mean.append(my_degree_function[item])
-            t = "best_hv"
-            if model == "IC":
+            if m == "IC":
                 p = 0.05
-            elif model == "LT":
+            elif m == "LT":
                 p = 0
-            elif model == "IC_1":
-                p = 0.1
-                model = "IC"
-            elif model == "WC":
+            elif m == "WC":
                 p = 0
-            
-            args = {}
-            args["p"] = p
-            args["model"] = model
-            args["k"] = k
-            args["filter_best_spread_nodes"] = True
-            args["search_space_size_max"] = 1e11
-            args["search_space_size_min"] = 1e9
-            
-            
-            mean = int(np.mean(mean))  
-            args["min_degree"] = mean + 1
-            args["smart_initialization_percentage"] = 0.5
-            args["population_size"] = 100
+            path = 'experiments/{0}-{1}'.format(file,m) 
+            print(path)
+            try:
+                os.makedirs(path)
+            except OSError:
+                print ("Creation of the directory %s failed" % path)
+            else:
+                print ("Successfully created the directory %s " % path)
 
-            communities =[]
-            df = pd.read_csv(file_gt,sep=",")
-            print(df)
-            groups = df.groupby('comm')['node'].apply(list)
-            print(groups)
-            df = groups.reset_index(name='nodes')
-            communities = df["nodes"].to_list()
-            '''Propagation Simulation Parameters
-            p: propability of activating node m when m is active and n-->m (only for IC Model)
-            model: type of propagation model either IC (Indipendent Cascade) or WC(Weighted Cascade)
-            no_simulations: number of simulations of the selected propagation model 
-            '''
-            nodes = filter_nodes(G, args)
-            initial_population = create_initial_population(G, args, prng, nodes)
+            for r in range(no_runs):
+                model = m
+                print(model)
+                G = read_graph(filename)
 
-            no_obj = 3
-            no_simulations = 20
-            max_generations = 10
-            population_size = 100
-            offspring_size = 100
+                print(nx.info(G))
+                random_seed = 10
+                prng = random.Random(random_seed)
+
+                k = int(G.number_of_nodes() * 0.025)
+
+                my_degree_function = G.degree
+                mean = []
+                for item in G:
+                    mean.append(my_degree_function[item])
+                
+                args = {}
+                args["p"] = p
+                args["model"] = model
+                args["k"] = k
+                args["filter_best_spread_nodes"] = True
+                args["search_space_size_max"] = 1e11
+                args["search_space_size_min"] = 1e9
+                
+                
+                mean = int(np.mean(mean))  
+                args["min_degree"] = mean + 1
+                args["smart_initialization_percentage"] = 0.5
+                args["population_size"] = 100
+
+                communities =[]
+                df = pd.read_csv(file_gt,sep=",")
+                print(df)
+                groups = df.groupby('comm')['node'].apply(list)
+                print(groups)
+                df = groups.reset_index(name='nodes')
+                communities = df["nodes"].to_list()
+                '''Propagation Simulation Parameters
+                p: propability of activating node m when m is active and n-->m (only for IC Model)
+                model: type of propagation model either IC (Indipendent Cascade) or WC(Weighted Cascade)
+                no_simulations: number of simulations of the selected propagation model 
+                '''
+                nodes = filter_nodes(G, args)
+                initial_population = create_initial_population(G, args, prng, nodes)
+
+                no_obj = 3
+                no_simulations = 20
+                max_generations = 10
+                population_size = 100
+                offspring_size = 100
 
 
-            n_threads = 5
+                n_threads = 5
+                
+
+
             
 
+                #Print Graph's information and properties
+                logging.info(nx.classes.function.info(G))
+                
+            
+                file = 'run-{0}'.format(r)
+                print(path+'/'+file+'.csv')
+                df.to_csv(path+'/'+file+'.csv')
 
-        
-
-            #Print Graph's information and properties
-            logging.info(nx.classes.function.info(G))
-            
-            
-            #define file where to save the results obtained from the execution
-            file = str(os.path.basename(filename))
-            file = file.replace(".txt", "")
-            t = 'NEW_3_OBJ'
-            file = '{0}-k{1}-p{2}-{3}-{4}'.format(file, k, p , model,t)
-            #file = 'prova_ic_politician'
-            ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
-            start = time.time()
-            seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=population_size, offspring_size=offspring_size, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population ,no_obj=no_obj)
-            
-            exec_time = time.time() - start   
-            print(exec_time)    
-            #exit(0)    
+                ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
+                start = time.time()
+                seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=population_size, offspring_size=offspring_size, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population ,no_obj=no_obj)
+                
+                exec_time = time.time() - start   
+                print(exec_time)    
+                #exit(0)    
