@@ -9,7 +9,7 @@ from src.load import read_graph
 
 
     
-filename = "fb_politician_4-k33-p0.05-IC-NEW_3_OBJ.csv"
+filename = "experiments/pgp_8-WC/run-1.csv"
 
 df = pd.read_csv(filename, sep=",")
 
@@ -19,7 +19,7 @@ y = df["communities"]
 z = df["influence"]
 
 
-filename = "fb_politician-k147-p0.05-IC-NEW_3_OBJ.csv"
+filename = "pgp-k267-p0-WC-NEW_3_OBJ.csv"
 
 df = pd.read_csv(filename, sep=",")
 
@@ -92,7 +92,7 @@ ax3.set_ylabel('Communities')
 fig.legend(loc=7)
 fig.tight_layout()
 fig.subplots_adjust(right=0.85)  
-plt.savefig('map_DEGREE')
+plt.savefig('map_DEGREE_PGP_WC')
 plt.show()
 #plt.cla()
 exit(0)

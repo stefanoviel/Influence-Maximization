@@ -42,7 +42,7 @@ Multi-objective evolutionary influence maximization. Parameters:
     population_file: name of the file that will be used to store the population at each generation (default: file named with date and time)
     max_hop: define the size of max_hop if fitness_function=MonteCarlo_max_hop has been selected
     """
-def moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, max_generations=100, min_seed_nodes=None, max_seed_nodes=None, n_threads=1, random_gen=random.Random(), population_file=None, fitness_function=None, fitness_function_kargs=dict(),max_hop=2, nodes=None, communities=None,initial_population=None, no_obj = None) :
+def moea_influence_maximization(G, p, no_simulations, model, population_size=100, offspring_size=100, max_generations=100, min_seed_nodes=None, max_seed_nodes=None, n_threads=1, random_gen=random.Random(), population_file=None, fitness_function=None, fitness_function_kargs=dict(),max_hop=2, communities=None,initial_population=None, no_obj = None) :
     # initialize multi-objective evolutionary algorithm, NSGA-II
     nodes = list(G.nodes)
 

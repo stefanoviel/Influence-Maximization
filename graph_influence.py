@@ -55,18 +55,18 @@ def filter_nodes(G, args):
 if __name__ == '__main__':
     
 
-    no_runs = 10
+    no_runs = 7
     
-    filenames = ["scale_graphs/fb_politician_8.txt","scale_graphs/fb_politician_4.txt","scale_graphs/fb_politician_2.txt","graphs/fb_politician.txt"]
-    gt = ["comm_ground_truth/fb_politician_8.csv","comm_ground_truth/fb_politician_4.csv","comm_ground_truth/fb_politician_2.csv","comm_ground_truth/fb_politician.csv"]
+    filenames = ["scale_graphs/pgp_8.txt"]
+    gt = ["comm_ground_truth/pgp_8.csv"]
     
-    scale_k = [8,4,2,1]
+    scale_k = [8]
 
     #scale_k = [1]
-    models = ["LT"]
+    #models = ["IC"]
 
 
-    #models = ['WC']
+    models = ['IC']
     i = 0
     for item in filenames:
         file_gt = gt[i]
@@ -91,59 +91,60 @@ if __name__ == '__main__':
             else:
                 print ("Successfully created the directory %s " % path)
 
+            model = m
+            print(model)
+            G = read_graph(filename)
+
+            print(nx.info(G))
+            random_seed = 10
+            prng = random.Random(random_seed)
+
+            k = int(G.number_of_nodes() * 0.025)
+
+            my_degree_function = G.degree
+            mean = []
+            for item in G:
+                mean.append(my_degree_function[item])
+            
+            args = {}
+            args["p"] = p
+            args["model"] = model
+            args["k"] = k
+            args["filter_best_spread_nodes"] = True
+            args["search_space_size_max"] = 1e11
+            args["search_space_size_min"] = 1e9
+            
+            
+            mean = int(np.mean(mean))  
+            args["min_degree"] = mean + 1
+            args["smart_initialization_percentage"] = 0.5
+            args["population_size"] = 100
+
+            communities =[]
+            df = pd.read_csv(file_gt,sep=",")
+            print(df)
+            groups = df.groupby('comm')['node'].apply(list)
+            print(groups)
+            df = groups.reset_index(name='nodes')
+            communities = df["nodes"].to_list()
+            '''Propagation Simulation Parameters
+            p: propability of activating node m when m is active and n-->m (only for IC Model)
+            model: type of propagation model either IC (Indipendent Cascade) or WC(Weighted Cascade)
+            no_simulations: number of simulations of the selected propagation model 
+            '''
+            nodes_original = filter_nodes(G, args)
+
             for r in range(no_runs):
-                model = m
-                print(model)
-                G = read_graph(filename)
-
-                print(nx.info(G))
-                random_seed = 10
-                prng = random.Random(random_seed)
-
-                k = int(G.number_of_nodes() * 0.025)
-
-                my_degree_function = G.degree
-                mean = []
-                for item in G:
-                    mean.append(my_degree_function[item])
-                
-                args = {}
-                args["p"] = p
-                args["model"] = model
-                args["k"] = k
-                args["filter_best_spread_nodes"] = True
-                args["search_space_size_max"] = 1e11
-                args["search_space_size_min"] = 1e9
-                
-                
-                mean = int(np.mean(mean))  
-                args["min_degree"] = mean + 1
-                args["smart_initialization_percentage"] = 0.5
-                args["population_size"] = 100
-
-                communities =[]
-                df = pd.read_csv(file_gt,sep=",")
-                print(df)
-                groups = df.groupby('comm')['node'].apply(list)
-                print(groups)
-                df = groups.reset_index(name='nodes')
-                communities = df["nodes"].to_list()
-                '''Propagation Simulation Parameters
-                p: propability of activating node m when m is active and n-->m (only for IC Model)
-                model: type of propagation model either IC (Indipendent Cascade) or WC(Weighted Cascade)
-                no_simulations: number of simulations of the selected propagation model 
-                '''
-                nodes = filter_nodes(G, args)
-                initial_population = create_initial_population(G, args, prng, nodes)
+                initial_population = create_initial_population(G, args, prng, nodes_original)
 
                 no_obj = 3
-                no_simulations = 20
-                max_generations = 10
+                no_simulations = 100
+                max_generations = 1000
                 population_size = 100
                 offspring_size = 100
 
 
-                n_threads = 5
+                n_threads = 1
                 
 
 
@@ -153,14 +154,14 @@ if __name__ == '__main__':
                 logging.info(nx.classes.function.info(G))
                 
             
-                file = 'run-{0}'.format(r)
-                print(path+'/'+file+'.csv')
-                df.to_csv(path+'/'+file+'.csv')
+                file = 'run-{0}'.format(r+1)
+                file = path+'/'+file
+                print(file)
+                #df.to_csv(path+'/'+file+'.csv')
 
                 ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
                 start = time.time()
-                seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=population_size, offspring_size=offspring_size, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, nodes=nodes, communities=communities, initial_population=initial_population ,no_obj=no_obj)
+                seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=population_size, offspring_size=offspring_size, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, communities=communities, initial_population=initial_population ,no_obj=no_obj)
                 
                 exec_time = time.time() - start   
-                print(exec_time)    
-                #exit(0)    
+                #print(exec_time)    

@@ -11,9 +11,9 @@ import collections
 warnings.filterwarnings("ignore")
 from math import log, log10
 import math
-name = 'pgp'
+name = 'fb_politician'
 
-filenames = ["scale_graphs/pgp_8.txt","scale_graphs/pgp_4.txt","scale_graphs/facebook_combined_2.txt","graphs/facebook_combined.txt"]
+filenames = ["scale_graphs/fb_politician_8.txt","scale_graphs/fb_politician_4.txt","scale_graphs/fb_politician_2.txt","graphs/fb_politician.txt"]
 kk = []
 
 #item = filenames[3]
@@ -69,13 +69,15 @@ filenames = filenames[::-1]
 x = x[::-1]
 color = color[::-1]
 i = 0
-fig, axs = plt.subplots(4, sharex=True,figsize=(6, 6)) 
+fig, axs = plt.subplots(4, sharex=True,figsize=(8, 8)) 
 #fig.suptitle('Degree Distribution')
 
 i = 0
 for item in filenames:
     G = read_graph(item)
-    degree_sequence = sorted([log10(d) for n, d in G.degree()], reverse=True)  # degree sequence
+    degree_sequence = sorted([(d) for n, d in G.degree()], reverse=True)  # degree sequence
+    degree_sequence_1 = sorted([log10(d) for n, d in G.degree()], reverse=True)  # degree sequence
+
     # print "Degree sequence", degree_sequence
     #degreeCount = collections.Counter(degree_sequence)
     #àdeg, cnt = zip(*degreeCount.items())
@@ -86,7 +88,8 @@ for item in filenames:
     #axs[len(filenames)-1-i].hist(list(dict(nx.degree(G)).values()))
     #i +=1
     #plt.xscale('log')
-    n, bins, patches = axs[len(filenames)-1-i].hist(degree_sequence, 20, facecolor=color[i], alpha=0.75, log=True)
+    #n, bins, patches = axs[len(filenames)-1-i].hist(degree_sequence, 20, facecolor=color[i], alpha=0.75, log=True)
+    axs[len(filenames)-1-i].hist(degree_sequence, bins=int(max(degree_sequence)), facecolor=color[i], alpha=0.75, edgecolor='black', linewidth=0.5,log=True)
     # if i == 0:
     #     t = []
     #     k = 0
@@ -106,7 +109,9 @@ for item in filenames:
 #plt.title("Degree Histogram")
 plt.ylabel("Count")
 plt.xlabel("Degree")
-plt.show()
+plt.savefig('aaaa')
+exit(0)
+#plt.show()
 # i = 0
 # for item in filenames:
 #     G = read_graph(item)
@@ -156,8 +161,8 @@ plt.show()
 
 # from collections import Counter
 
+plt.figure(figsize=(6, 6)) 
 i = 0
-plt.figure(figsize=(6,6)) 
 for item in filenames:
     G = read_graph(item)
     degree_sequence = sorted([d for n, d in G.degree()], reverse=True)  # degree sequence
@@ -171,6 +176,8 @@ for item in filenames:
     plt.yscale('log')                                                                                                        
                                                                                                       
     plt.scatter(x1, y, marker='.', s=100, facecolors='none',color=color[i], label = str(x[i]))     
+    #axs[len(filenames)-1-i].bar(x1, y,color=color[i], label = str(x[i]))     
+
     # if i == 0:
     #     t = []
     #     k = 0
@@ -198,13 +205,11 @@ for item in filenames:
 
     #plt.xticks()
     i = i+1
-plt.xlabel('log(degree)')   
-
-                                                                                      
+plt.xlabel('log(degree)')                                                                                
 plt.ylabel('log(frequency)')   
 plt.legend()
 plt.savefig(name + '_scatter')
-plt.show()
+#plt.show()
 plt.close()
 plt.cla()
 
@@ -232,4 +237,4 @@ plt.xlabel('LOG(degree)')
 plt.ylabel('Density')
 plt.savefig(name + '_density.png')
 #plt.xlim(0,max(degree_sequence))
-plt.show()
+#plt.show()
