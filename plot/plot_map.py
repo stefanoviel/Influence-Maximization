@@ -9,7 +9,7 @@ from src.load import read_graph
 
 
     
-filename = "experiments/pgp_8-IC/run-1.csv"
+filename = "experiments/pgp_2-IC/run-1.csv"
 
 df = pd.read_csv(filename, sep=",")
 
