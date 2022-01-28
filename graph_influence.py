@@ -55,12 +55,12 @@ def filter_nodes(G, args):
 if __name__ == '__main__':
     
 
-    no_runs = 7
+    no_runs = 10
     
-    filenames = ["scale_graphs/pgp_8.txt"]
-    gt = ["comm_ground_truth/pgp_8.csv"]
+    filenames = ["scale_graphs/pgp_2.txt"]
+    gt = ["comm_ground_truth/pgp_2.csv"]
     
-    scale_k = [8]
+    scale_k = [2]
 
     #scale_k = [1]
     #models = ["IC"]
