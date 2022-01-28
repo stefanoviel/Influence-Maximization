@@ -8,12 +8,12 @@ from src.ea.observer import time_observer
 def generation_termination(population, num_generations, num_evaluations, args):
     if num_generations == args["generations_budget"]:
         x = [x for x in range(1,len(args["hypervolume"])+1)]
-        #plt.cla()
-        plt.plot(x, args["hypervolume"], color='b')
-        plt.xlabel('Generation')
-        plt.ylabel('Hypervolume')
-        plt.savefig(args["population_file"]+'.png')
-        plt.cla()
+        # plt.cla()
+        # plt.plot(x, args["hypervolume"], color='b')
+        # plt.xlabel('Generation')
+        # plt.ylabel('Hypervolume')
+        # plt.savefig(args["population_file"]+'.png')
+        # plt.cla()
         df = pd.DataFrame()
         df["generation"] = x
         df["hv"] = args["hypervolume"]
@@ -157,11 +157,11 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     else:
         if args['generation_count'] >= max_generations:
             x = [x for x in range(1,len(args["hypervolume"])+1)]
-            plt.plot(x, args["hypervolume"])
-            plt.xlabel('Generation')
-            plt.ylabel('Hypervolume')
-            plt.savefig(args["population_file"]+'.png')
-            plt.cla()
+            # plt.plot(x, args["hypervolume"])
+            # plt.xlabel('Generation')
+            # plt.ylabel('Hypervolume')
+            # plt.savefig(args["population_file"]+'.png')
+            # plt.cla()
             df = pd.DataFrame()
             df["generation"] = x
             df["hv"] = args["hypervolume"]

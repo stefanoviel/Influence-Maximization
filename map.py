@@ -17,19 +17,19 @@ from new_ea import moea_influence_maximization
 
 
 
-filename = "scale_graphs/fb_politician_8.txt"
-scale_comm = "comm_ground_truth/fb_politician_8.csv"
+filename = "scale_graphs/pgp_8.txt"
+scale_comm = "comm_ground_truth/pgp_8.csv"
 
 
-filename_original = "graphs/fb_politician.txt"
-filename_original_comm = "comm_ground_truth/fb_politician.csv"
+filename_original = "graphs/pgp.txt"
+filename_original_comm = "comm_ground_truth/pgp.csv"
 
 
 G = read_graph(filename)
 G1 = read_graph(filename_original)
 scale_factor = G1.number_of_nodes() / G.number_of_nodes()
 
-df = pd.read_csv("fb_politician_4-k33-p0.05-IC-NEW_3_OBJ.csv",sep=",")
+df = pd.read_csv("experiments/pgp_8-WC/run-1.csv",sep=",")
 
 nodes = df["nodes"].to_list()
 
@@ -112,7 +112,6 @@ original_table = get_table(filename_original, filename_original_comm,1)
 original_table.to_csv('original.csv', index=False)
 #for i in range(len(scaled_table)):
 #    print('Original {0}, Scaled {1}, Expected {2}'.format(original_table[i], scaled_table[i],int(original_table[i] / int(8))))
-exit(0)
 
 new = pd.merge(scaled_table,original_table, how='inner',on=['rank_comm', 'comm'])
 print(new)
@@ -193,13 +192,13 @@ for item in nodes:
 from src.spread.monte_carlo import MonteCarlo_simulation
 
 
-original_filename = "graphs/fb_politician.txt"
+original_filename = "graphs/pgp.txt"
 p = 0.05
 no_simulations = 100
-model = "IC"
+model = "WC"
 G = read_graph(original_filename)
 
-df = pd.read_csv("comm_ground_truth/fb_politician.csv",sep=",")
+df = pd.read_csv("comm_ground_truth/pgp.csv",sep=",")
 groups = df.groupby('comm')['node'].apply(list)
 df = groups.reset_index(name='nodes')
 communities_original = df["nodes"].to_list()
