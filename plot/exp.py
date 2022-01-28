@@ -44,6 +44,9 @@ def plot_time(path):
                     t = list(df.iloc[i])
                     import math
                     t = [x for x in t if math.isnan(x) == False]
+                    if len(t) != 100:
+                        print('MERDA')
+                        break
                     s += sum(t)
                 tot.append(s)
         m.append(np.mean(tot))

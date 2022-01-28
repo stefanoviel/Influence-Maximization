@@ -29,7 +29,7 @@ G = read_graph(filename)
 G1 = read_graph(filename_original)
 scale_factor = G1.number_of_nodes() / G.number_of_nodes()
 
-df = pd.read_csv("experiments/pgp_8-WC/run-1.csv",sep=",")
+df = pd.read_csv("experiments/pgp_8-IC/run-1.csv",sep=",")
 
 nodes = df["nodes"].to_list()
 
@@ -195,7 +195,7 @@ from src.spread.monte_carlo import MonteCarlo_simulation
 original_filename = "graphs/pgp.txt"
 p = 0.05
 no_simulations = 100
-model = "WC"
+model = "IC"
 G = read_graph(original_filename)
 
 df = pd.read_csv("comm_ground_truth/pgp.csv",sep=",")
