@@ -66,7 +66,7 @@ if __name__ == '__main__':
 
   
 
-    filename = "pgp_2-k107-p0.05-IC-NEW_3_OBJ.csv"
+    filename = "experiments/pgp_2-IC/run-1.csv"
 
 
     df = pd.read_csv(filename, sep=",")

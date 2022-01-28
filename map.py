@@ -17,8 +17,8 @@ from new_ea import moea_influence_maximization
 
 
 
-filename = "scale_graphs/pgp_8.txt"
-scale_comm = "comm_ground_truth/pgp_8.csv"
+filename = "scale_graphs/pgp_2.txt"
+scale_comm = "comm_ground_truth/pgp_2.csv"
 
 
 filename_original = "graphs/pgp.txt"
@@ -29,7 +29,9 @@ G = read_graph(filename)
 G1 = read_graph(filename_original)
 scale_factor = G1.number_of_nodes() / G.number_of_nodes()
 
-df = pd.read_csv("experiments/pgp_8-IC/run-1.csv",sep=",")
+print(scale_factor)
+exit(0)
+df = pd.read_csv("experiments/pgp_2-IC/run-1.csv",sep=",")
 
 nodes = df["nodes"].to_list()
 

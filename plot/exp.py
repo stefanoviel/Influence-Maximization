@@ -55,7 +55,7 @@ def plot_time(path):
     objects = ['Scale 1/8', 'Scale 1/4','Scale 1/2']
     y_pos = np.arange(len(objects))
     #performance = [p8_total, p4_total, p2_total, p_original_total]
-    performance = [m[0], m[1], m[2]]
+    performance = [m[0], m[1],m[2]]
     #plt.yscale('log')
     plt.bar(y_pos, performance, align='center', alpha=0.5, yerr=[std[0], std[1], std[2]])
     plt.xticks(y_pos, objects)
@@ -65,14 +65,14 @@ def plot_time(path):
     #plt.ylim((0,1000))
     plt.savefig('aa')
 
-path = 'experiments/fb_politician_8-IC'
+path = 'experiments/pgp_8-IC'
 plot_images(path, 'green')
 
 
-path ='experiments/fb_politician_4-IC'
+path ='experiments/pgp_4-IC'
 plot_images(path, 'blue')
 
-path ='experiments/deezerEU_8-IC'
+path ='experiments/pgp_2-IC'
 plot_images(path, 'orange')
 
 
@@ -82,7 +82,7 @@ plt.savefig('a')
 plt.cla()
 plt.close()
 
-path = ["experiments/fb_politician_8-IC","experiments/fb_politician_4-IC","experiments/fb_politician_2-IC"]
+path = ["experiments/pgp_8-IC","experiments/pgp_4-IC","experiments/pgp_2-IC"]
 
 plot_time(path)
 
