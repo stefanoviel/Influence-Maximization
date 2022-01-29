@@ -57,7 +57,7 @@ def plot_time(path):
     #performance = [p8_total, p4_total, p2_total, p_original_total]
     performance = [m[0], m[1],m[2]]
     #plt.yscale('log')
-    plt.bar(y_pos, performance, align='center', alpha=0.5, yerr=[std[0], std[1], std[2]])
+    plt.bar(y_pos, performance, yerr=[std[0], std[1], std[2]],align='center', alpha=0.5, ecolor='black', capsize=10)
     plt.xticks(y_pos, objects)
     plt.ylabel('Cumulative Time')
     plt.xlabel('Graphs')
@@ -65,7 +65,7 @@ def plot_time(path):
     #plt.ylim((0,1000))
     plt.savefig('aa')
 
-path = 'experiments/fb_politician_8-IC'
+path = 'experiments/facebook_combined_8-IC'
 plot_images(path, 'green')
 
 
@@ -76,9 +76,11 @@ path ='experiments/fb_politician_2-IC'
 plot_images(path, 'orange')
 
 
-
-
 plt.savefig('a')
+
+
+
+
 plt.cla()
 plt.close()
 
