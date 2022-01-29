@@ -32,7 +32,7 @@ exit(0)
 scale_vector = [2,4,8]
 resolution = 1
 
-filename = "graphs/facebook_combined.txt"
+filename = "/Users/elia/Downloads/CA-GrQc.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()

@@ -11,9 +11,9 @@ import collections
 warnings.filterwarnings("ignore")
 from math import log, log10
 import math
-name = 'fb_politician'
+name = 'CA-GrQc'
 
-filenames = ["scale_graphs/fb_politician_8.txt","scale_graphs/fb_politician_4.txt","scale_graphs/fb_politician_2.txt","graphs/fb_politician.txt"]
+filenames = ["scale_graphs/CA-GrQc_8.txt","scale_graphs/CA-GrQc_4.txt","scale_graphs/CA-GrQc_2.txt","graphs/CA-GrQc.txt"]
 kk = []
 
 #item = filenames[3]
@@ -110,6 +110,7 @@ for item in filenames:
 plt.ylabel("Count")
 plt.xlabel("Degree")
 plt.savefig('aaaa')
+plt.show()
 exit(0)
 #plt.show()
 # i = 0
