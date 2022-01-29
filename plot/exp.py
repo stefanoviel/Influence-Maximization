@@ -24,7 +24,7 @@ def plot_images(path, color):
     m = np.array(m)
     s = np.array(s)
     plt.plot(list(df["generation"]), m,color=color)
-    plt.fill_between(list(df["generation"]), m-s, m+s, alpha=0.5, color=color)
+    plt.fill_between(list(df["generation"]), m-s, m+s, alpha=0.3, color=color)
     #plt.errorbar(list(df["generation"]), m,s, linestyle='None', marker='^')
 
 
@@ -65,14 +65,14 @@ def plot_time(path):
     #plt.ylim((0,1000))
     plt.savefig('aa')
 
-path = 'experiments/pgp_8-IC'
+path = 'experiments/fb_politician_8-IC'
 plot_images(path, 'green')
 
 
-path ='experiments/pgp_4-IC'
+path ='experiments/fb_politician_4-IC'
 plot_images(path, 'blue')
 
-path ='experiments/pgp_2-IC'
+path ='experiments/fb_politician_2-IC'
 plot_images(path, 'orange')
 
 
@@ -82,7 +82,7 @@ plt.savefig('a')
 plt.cla()
 plt.close()
 
-path = ["experiments/pgp_8-IC","experiments/pgp_4-IC","experiments/pgp_2-IC"]
+path = ["experiments/fb_politician_8-IC","experiments/fb_politician_4-IC","experiments/fb_politician_2-IC"]
 
 plot_time(path)
 
