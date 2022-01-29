@@ -65,14 +65,14 @@ def plot_time(path):
     #plt.ylim((0,1000))
     plt.savefig('aa')
 
-path = 'experiments/facebook_combined_8-IC'
+path = 'experiments/CA-GrQc_8-IC'
 plot_images(path, 'green')
 
 
-path ='experiments/fb_politician_4-IC'
+path ='experiments/CA-GrQc_4-IC'
 plot_images(path, 'blue')
 
-path ='experiments/fb_politician_2-IC'
+path ='experiments/CA-GrQc_2-IC'
 plot_images(path, 'orange')
 
 
@@ -84,7 +84,7 @@ plt.savefig('a')
 plt.cla()
 plt.close()
 
-path = ["experiments/fb_politician_8-IC","experiments/fb_politician_4-IC","experiments/fb_politician_2-IC"]
+path = ["experiments/CA-GrQc_8-IC","experiments/CA-GrQc_4-IC","experiments/CA-GrQc_2-IC"]
 
 plot_time(path)
 
