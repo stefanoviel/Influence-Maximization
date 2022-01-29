@@ -57,10 +57,10 @@ if __name__ == '__main__':
 
     no_runs = 10
     
-    filenames = ["scale_graphs/facebook_combined_2.txt"]
-    gt = ["comm_ground_truth/facebook_combined_2.csv"]
+    filenames = ["graphs/CA-GrQc.txt"]
+    gt = ["comm_ground_truth/CA-GrQc.csv"]
     
-    scale_k = [2]
+    scale_k = [1]
 
     #scale_k = [1]
     #models = ["IC"]
