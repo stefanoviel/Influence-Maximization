@@ -45,7 +45,7 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "experiments/pgp_8-IC/run-1.csv"
+    filename = "experiments/fb_politician_8-IC/run-2.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -56,7 +56,7 @@ if __name__ == '__main__':
 
    
    
-    filename = "experiments/pgp_4-IC/run-1.csv"
+    filename = "experiments/fb_politician_4-IC/run-2.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -66,7 +66,7 @@ if __name__ == '__main__':
 
   
 
-    filename = "experiments/pgp_2-IC/run-1.csv"
+    filename = "experiments/fb_politician_2-IC/run-2.csv"
 
 
     df = pd.read_csv(filename, sep=",")
@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
 
 
-    filename = "pgp-k267-p0.05-IC-NEW_3_OBJ.csv"
+    filename = "fb_politician-k147-p0.05-IC-NEW_3_OBJ.csv"
    
 
     df = pd.read_csv(filename, sep=",")
@@ -137,7 +137,7 @@ if __name__ == '__main__':
     fig.legend(loc=7)
     fig.tight_layout()
     fig.subplots_adjust(right=0.85)  
-    plt.savefig('ok')
+    plt.savefig('ok_2')
     plt.show()
     #plt.cla()
     exit(0)
