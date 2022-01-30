@@ -45,7 +45,7 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "experiments/CA-GrQc_8-IC/run-2.csv"
+    filename = "experiments/pgp_8-WC/run-2.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -56,7 +56,7 @@ if __name__ == '__main__':
 
    
    
-    filename = "experiments/CA-GrQc_4-IC/run-2.csv"
+    filename = "experiments/pgp_4-WC/run-2.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -66,7 +66,7 @@ if __name__ == '__main__':
 
   
 
-    filename = "experiments/CA-GrQc_2-IC/run-1.csv"
+    filename = "experiments/pgp_2-WC/run-1.csv"
 
 
     df = pd.read_csv(filename, sep=",")
@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
 
 
-    filename = "experiments/CA-GrQc_2-IC/run-1.csv"
+    filename = "experiments/CA-GrQc-IC/run-1.csv"
    
 
     df = pd.read_csv(filename, sep=",")
@@ -90,10 +90,11 @@ if __name__ == '__main__':
 
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(10,6))
 
-    ax1.scatter(z,x,color="green")
-    ax1.scatter(z0,x0,color="blue")
-    ax1.scatter(z1,x1,color="orange")
     ax1.scatter(z2,x2,color="red")
+    ax1.scatter(z1,x1,color="orange")
+    ax1.scatter(z0,x0,color="blue")
+    ax1.scatter(z,x,color="green")
+
     #ax1.title('Facebook Politicians IC p=0.01 model')
     ax1.set_xlabel('% Influenced Nodes')
     ax1.set_ylabel('% Nodes as seed set')
@@ -107,10 +108,11 @@ if __name__ == '__main__':
 
 
 
-    ax2.scatter(y,x,color="green")
-    ax2.scatter(y0,x0,color="blue",)
-    ax2.scatter(y1,x1,color="orange")
     ax2.scatter(y2,x2,color="red")
+    ax2.scatter(y1,x1,color="orange")
+    ax2.scatter(y0,x0,color="blue",)
+    ax2.scatter(y,x,color="green")
+
     #ax2.title('Facebook Politicians IC model')
     ax2.set_xlabel('Communities')
     ax2.set_ylabel('% Nodes as seed set')
@@ -122,10 +124,12 @@ if __name__ == '__main__':
 
     #plt.cla()
 
-    ax3.scatter(z,y,color="green",label="1/8")
-    ax3.scatter(z0,y0,color="blue", label="1/4")
-    ax3.scatter(z1,y1,color="orange",label="1/2")
     ax3.scatter(z2,y2,color="red",label="Original")
+    ax3.scatter(z1,y1,color="orange",label="1/2")
+    ax3.scatter(z0,y0,color="blue", label="1/4")
+
+    ax3.scatter(z,y,color="green",label="1/8")
+
     #ax3.title('Facebook Politicians IC model')
     ax3.set_xlabel('% Influenced Nodes')
     ax3.set_ylabel('Communities')

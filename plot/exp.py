@@ -52,12 +52,12 @@ def plot_time(path):
         m.append(np.mean(tot))
         std.append(np.std(tot))
 
-    objects = ['Scale 1/8', 'Scale 1/4','Scale 1/2']
+    objects = ['Scale 1/8', 'Scale 1/4','Scale 1/2', 'Original']
     y_pos = np.arange(len(objects))
     #performance = [p8_total, p4_total, p2_total, p_original_total]
-    performance = [m[0], m[1],m[2]]
+    performance = [m[0], m[1],m[2],m[3]]
     #plt.yscale('log')
-    plt.bar(y_pos, performance, yerr=[std[0], std[1], std[2]],align='center', alpha=0.5, ecolor='black', capsize=10)
+    plt.bar(y_pos, performance, yerr=[std[0], std[1], std[2], std[3]],align='center', alpha=0.5, ecolor='black', capsize=10)
     plt.xticks(y_pos, objects)
     plt.ylabel('Cumulative Time')
     plt.xlabel('Graphs')
@@ -65,15 +65,18 @@ def plot_time(path):
     #plt.ylim((0,1000))
     plt.savefig('aa')
 
-path = 'experiments/CA-GrQc_8-IC'
+path = 'experiments/pgp_8-IC'
 plot_images(path, 'green')
 
 
-path ='experiments/CA-GrQc_4-IC'
+path ='experiments/pgp_4-IC'
 plot_images(path, 'blue')
 
-path ='experiments/CA-GrQc_2-IC'
+path ='experiments/pgp_2-IC'
 plot_images(path, 'orange')
+
+path ='experiments/pgp-IC'
+plot_images(path, 'red')
 
 
 plt.savefig('a')
@@ -84,7 +87,7 @@ plt.savefig('a')
 plt.cla()
 plt.close()
 
-path = ["experiments/CA-GrQc_8-IC","experiments/CA-GrQc_4-IC","experiments/CA-GrQc_2-IC"]
+path = ["experiments/pgp_8-IC","experiments/pgp_4-IC","experiments/pgp_2-IC","experiments/pgp-IC"]
 
 plot_time(path)
 
