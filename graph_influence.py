@@ -57,8 +57,8 @@ if __name__ == '__main__':
 
     no_runs = 10
     
-    filenames = ["graphs/CA-GrQc.txt"]
-    gt = ["comm_ground_truth/CA-GrQc.csv"]
+    filenames = ["graphs/deezerEU.txt"]
+    gt = ["comm_ground_truth/deezerEU.csv"]
     
     scale_k = [1]
 

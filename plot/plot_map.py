@@ -9,7 +9,7 @@ from src.load import read_graph
 
 
     
-filename = "experiments/pgp_2-IC/run-1.csv"
+filename = "experiments/CA-GrQc_2-IC/run-1.csv"
 
 df = pd.read_csv(filename, sep=",")
 
@@ -19,7 +19,7 @@ y = df["communities"]
 z = df["influence"]
 
 
-filename = "pgp-k267-p0.05-IC-NEW_3_OBJ.csv"
+filename = "experiments/CA-GrQc-IC/run-1.csv"
 
 df = pd.read_csv(filename, sep=",")
 

@@ -17,21 +17,19 @@ from new_ea import moea_influence_maximization
 
 
 
-filename = "scale_graphs/pgp_2.txt"
-scale_comm = "comm_ground_truth/pgp_2.csv"
+filename = "scale_graphs/CA-GrQc_2.txt"
+scale_comm = "comm_ground_truth/CA-GrQc_2.csv"
 
 
-filename_original = "graphs/pgp.txt"
-filename_original_comm = "comm_ground_truth/pgp.csv"
+filename_original = "graphs/CA-GrQc.txt"
+filename_original_comm = "comm_ground_truth/CA-GrQc.csv"
 
 
 G = read_graph(filename)
 G1 = read_graph(filename_original)
-scale_factor = G1.number_of_nodes() / G.number_of_nodes()
+scale_factor = round(G1.number_of_nodes() / G.number_of_nodes())
 
-print(scale_factor)
-exit(0)
-df = pd.read_csv("experiments/pgp_2-IC/run-1.csv",sep=",")
+df = pd.read_csv("experiments/CA-GrQc_2-IC/run-1.csv",sep=",")
 
 nodes = df["nodes"].to_list()
 
@@ -49,7 +47,7 @@ def get_table(graph_name, comm_name,w):
     T = degree_centrality(G)
     #T = nx.eigenvector_centrality(G)
     #T = closeness_centrality(G)
-    T = nx.pagerank(G, alpha = 0.85)
+    #T = nx.pagerank(G, alpha = 0.85)
     data = pd.DataFrame()
     node = []
     centr = []
@@ -194,13 +192,13 @@ for item in nodes:
 from src.spread.monte_carlo import MonteCarlo_simulation
 
 
-original_filename = "graphs/pgp.txt"
+original_filename = "graphs/CA-GrQc.txt"
 p = 0.05
 no_simulations = 100
 model = "IC"
 G = read_graph(original_filename)
 
-df = pd.read_csv("comm_ground_truth/pgp.csv",sep=",")
+df = pd.read_csv("comm_ground_truth/CA-GrQc.csv",sep=",")
 groups = df.groupby('comm')['node'].apply(list)
 df = groups.reset_index(name='nodes')
 communities_original = df["nodes"].to_list()
