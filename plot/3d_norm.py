@@ -45,7 +45,7 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "experiments/pgp_8-WC/run-2.csv"
+    filename = "experiments/deezerEU_8-IC/run-2.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -56,7 +56,7 @@ if __name__ == '__main__':
 
    
    
-    filename = "experiments/pgp_4-WC/run-1.csv"
+    filename = "experiments/deezerEU_4-IC/run-1.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -66,7 +66,7 @@ if __name__ == '__main__':
 
   
 
-    filename = "experiments/pgp_2-WC/run-1.csv"
+    filename = "experiments/deezerEU_2-IC/run-1.csv"
 
 
     df = pd.read_csv(filename, sep=",")
@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
 
 
-    filename = "experiments/fb_politician-IC/run-1.csv"
+    filename = "experiments/CA-GrQc-IC/run-1.csv"
    
 
     df = pd.read_csv(filename, sep=",")
@@ -144,7 +144,6 @@ if __name__ == '__main__':
     plt.savefig('ok_2')
     plt.show()
     #plt.cla()
-    exit(0)
 
     fig = plt.figure()
     ax = fig.add_subplot(projection='3d')
@@ -152,6 +151,7 @@ if __name__ == '__main__':
     ax.scatter(z0, y0, x0, marker='o', color="blue")
     ax.scatter(z1, y1, x1, marker='o', color="orange")
     ax.scatter(z2, y2, x2, marker='o', color="red")
+    plt.savefig('aaa')
     plt.show()
 
     # fig, ax = plt.subplots(subplot_kw={"projection": "3d"})

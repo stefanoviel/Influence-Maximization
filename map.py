@@ -17,19 +17,19 @@ from new_ea import moea_influence_maximization
 
 
 
-filename = "scale_graphs/fb_politician_4.txt"
-scale_comm = "comm_ground_truth/fb_politician_4.csv"
+filename = "scale_graphs/deezerEU_8.txt"
+scale_comm = "comm_ground_truth/deezerEU_8.csv"
 
 
-filename_original = "graphs/fb_politician.txt"
-filename_original_comm = "comm_ground_truth/fb_politician.csv"
+filename_original = "scale_graphs/deezerEU_2.txt"
+filename_original_comm = "comm_ground_truth/deezerEU_2.csv"
 
 
 G = read_graph(filename)
 G1 = read_graph(filename_original)
 scale_factor = round(G1.number_of_nodes() / G.number_of_nodes())
 
-df = pd.read_csv("experiments/fb_politician_4-IC/run-1.csv",sep=",")
+df = pd.read_csv("experiments/deezerEU_8-IC/run-1.csv",sep=",")
 
 nodes = df["nodes"].to_list()
 
@@ -192,13 +192,13 @@ for item in nodes:
 from src.spread.monte_carlo import MonteCarlo_simulation
 
 
-original_filename = "graphs/fb_politician.txt"
+original_filename = "scale_graphs/deezerEU_2.txt"
 p = 0.05
 no_simulations = 100
 model = "IC"
 G = read_graph(original_filename)
 
-df = pd.read_csv("comm_ground_truth/fb_politician.csv",sep=",")
+df = pd.read_csv("comm_ground_truth/deezerEU_2.csv",sep=",")
 groups = df.groupby('comm')['node'].apply(list)
 df = groups.reset_index(name='nodes')
 communities_original = df["nodes"].to_list()
@@ -259,7 +259,7 @@ df["n_nodes"] = nodes_
 df["influence"] = influence
 df["communities"] = comm
 
-df.to_csv('map_degree_comm.csv', index=False)
+df.to_csv('map_deezer.csv', index=False)
 #print(len(df))
 
 
