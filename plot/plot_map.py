@@ -9,7 +9,7 @@ from src.load import read_graph
 
 
     
-filename = "experiments/fb_politician_4-IC/run-1.csv"
+filename = "experiments/deezerEU_8-IC/run-1.csv"
 
 df = pd.read_csv(filename, sep=",")
 
@@ -19,7 +19,7 @@ y = df["communities"]
 z = df["influence"]
 
 
-filename = "experiments/fb_politician-IC/run-1.csv"
+filename = "experiments/deezerEU_4-IC/run-1.csv"
 
 df = pd.read_csv(filename, sep=",")
 
@@ -32,7 +32,7 @@ pf = []
 for i in range(len(x0)):
     pf.append([x0[i],y0[i], z0[i]])
 
-filename = "map_degree_comm.csv"
+filename = "map_deezer.csv"
 
 
 
@@ -90,7 +90,7 @@ ax1.set_ylim(0,2.5)
 
 #plt.cla()
 
-ax3.scatter(z,y,color="green",label="1/8")
+ax3.scatter(z,y,color="green",label="1/4")
 ax3.scatter(z0,y0,color="red", label="Original")
 ax3.scatter(z1,y1,color="black",label="MAP")
 #ax3.title('Facebook Politicians IC model')
