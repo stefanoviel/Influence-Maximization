@@ -9,7 +9,7 @@ from src.load import read_graph
 
 
     
-filename = "experiments/CA-GrQc_2-IC/run-1.csv"
+filename = "experiments/fb_politician_4-IC/run-1.csv"
 
 df = pd.read_csv(filename, sep=",")
 
@@ -19,7 +19,7 @@ y = df["communities"]
 z = df["influence"]
 
 
-filename = "experiments/CA-GrQc-IC/run-1.csv"
+filename = "experiments/fb_politician-IC/run-1.csv"
 
 df = pd.read_csv(filename, sep=",")
 
@@ -28,8 +28,14 @@ y0 = df["communities"].to_list()
 z0 = df["influence"].to_list()
 
 
+pf = []
+for i in range(len(x0)):
+    pf.append([x0[i],y0[i], z0[i]])
 
 filename = "map_degree_comm.csv"
+
+
+
 
 
 df = pd.read_csv(filename, sep=",")
@@ -38,6 +44,12 @@ x1= df["n_nodes"]
 y1 = df["communities"]
 z1 = df["influence"]
 
+
+
+A = []
+for i in range(len(x1)):
+    A.append([x1[i],y1[i], z1[i]])
+print(df)
 print(df)
 
 
@@ -95,4 +107,22 @@ fig.subplots_adjust(right=0.85)
 plt.savefig('CIAO')
 plt.show()
 #plt.cla()
+exit(0)
+
+
+
+from pymoo.factory import get_performance_indicator
+pf = np.array(pf)
+A = np.array(A)
+gd = get_performance_indicator("gd", pf)
+print("GD", gd.do(A))
+
+
+
+fig = plt.figure()
+ax = fig.add_subplot(projection='3d')
+ax.scatter(z, y, x, marker='o', color="green")
+ax.scatter(z0, y0, x0, marker='o', color="red")
+ax.scatter(z1, y1, x1, marker='o', color="black")
+plt.show()
 exit(0)

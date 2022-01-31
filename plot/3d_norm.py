@@ -56,7 +56,7 @@ if __name__ == '__main__':
 
    
    
-    filename = "experiments/pgp_4-WC/run-2.csv"
+    filename = "experiments/pgp_4-WC/run-1.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
 
 
-    filename = "experiments/CA-GrQc-IC/run-1.csv"
+    filename = "experiments/fb_politician-IC/run-1.csv"
    
 
     df = pd.read_csv(filename, sep=",")
