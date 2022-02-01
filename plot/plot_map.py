@@ -8,9 +8,12 @@ sys.path.insert(0, '')
 from src.load import read_graph
 
 
-    
-filename = "experiments/deezerEU_8-IC/run-1.csv"
+G_scaled = read_graph('scale_graphs/deezerEU_8.txt')
+k_scaled = G_scaled.number_of_nodes() * 0.025
+comm_scaled = pd.read_csv('comm_ground_truth/deezerEU_8.csv')
+comm_scaled = max(set(comm_scaled["comm"].to_list()))
 
+filename = "experiments/deezerEU_8-IC/run-1.csv"
 df = pd.read_csv(filename, sep=",")
 
 
@@ -19,7 +22,13 @@ y = df["communities"]
 z = df["influence"]
 
 
-filename = "experiments/deezerEU_4-IC/run-1.csv"
+G_original = read_graph('graphs/deezerEU.txt')
+k_original = G_original.number_of_nodes() * 0.025
+comm_original = pd.read_csv('comm_ground_truth/deezerEU.csv')
+comm_original = max(set(comm_original["comm"].to_list()))
+
+
+filename = "experiments/deezerEU-IC/run-1.csv"
 
 df = pd.read_csv(filename, sep=",")
 
@@ -30,7 +39,7 @@ z0 = df["influence"].to_list()
 
 pf = []
 for i in range(len(x0)):
-    pf.append([x0[i],y0[i], z0[i]])
+    pf.append([-x0[i],-y0[i],-z0[i]])
 
 filename = "map_deezer.csv"
 
@@ -44,13 +53,12 @@ x1= df["n_nodes"]
 y1 = df["communities"]
 z1 = df["influence"]
 
+print(max(y1))
 
 
 A = []
 for i in range(len(x1)):
-    A.append([x1[i],y1[i], z1[i]])
-print(df)
-print(df)
+    A.append([-x1[i],-y1[i], -z1[i]])
 
 
 #plot(x1,y1,z1)
@@ -83,7 +91,7 @@ ax2.scatter(y1,x1,color="black")
 ax2.set_xlabel('Communities')
 ax2.set_ylabel('% Nodes as seed set')
 ax1.set_ylim(0,2.5)
-#ax2.set_xlim(1,max(y2))
+#ax2.set_xlim(1,max(y0))
 #ax2.legend()
 #ax2.show()
 #ax2.savefig('aa_a')
@@ -107,7 +115,7 @@ fig.subplots_adjust(right=0.85)
 plt.savefig('CIAO')
 plt.show()
 #plt.cla()
-exit(0)
+
 
 
 
@@ -119,10 +127,32 @@ print("GD", gd.do(A))
 
 
 
+
+
+tot_original = 100 * ((k_original / G_original.number_of_nodes()) * 100) * (comm_original - 1)
+from pymoo.indicators.hv import Hypervolume
+
+metric = Hypervolume(ref_point= np.array([0,0,-1]),
+                    norm_ref_point=False,
+                    zero_to_one=False)
+hv_original = metric.do(pf) /tot_original
+
+
+tot_scaled = 100 * ((k_scaled / G_scaled.number_of_nodes()) * 100) * (comm_scaled - 1)
+metric = Hypervolume(ref_point= np.array([0,0,-1]),
+                    norm_ref_point=False,
+                    zero_to_one=False)
+hv_scaled = metric.do(A) / tot_scaled
+
+
+print((hv_scaled/hv_original) * 100)
+
+print(hv_original - hv_scaled)
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
 ax.scatter(z, y, x, marker='o', color="green")
 ax.scatter(z0, y0, x0, marker='o', color="red")
 ax.scatter(z1, y1, x1, marker='o', color="black")
+plt.savefig('a3d')
 plt.show()
 exit(0)
