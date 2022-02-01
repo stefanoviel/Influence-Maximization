@@ -21,8 +21,8 @@ filename = "scale_graphs/deezerEU_8.txt"
 scale_comm = "comm_ground_truth/deezerEU_8.csv"
 
 
-filename_original = "scale_graphs/deezerEU_2.txt"
-filename_original_comm = "comm_ground_truth/deezerEU_2.csv"
+filename_original = "graphs/deezerEU.txt"
+filename_original_comm = "comm_ground_truth/deezerEU.csv"
 
 
 G = read_graph(filename)
@@ -161,12 +161,13 @@ for item in nodes:
                     l = np.delete(myArray, pos)
                     n = np.delete(n, pos)
                 
-                if len(n) == 0:
-                    print('shit')
                 if len(l) == 0:
-                    print('shit')
                     break
-            print(s)
+            if len(n) == 0:
+                print('shit')
+            if len(l) == 0:
+                print('shit_2')
+            #print(s)
         # try:
         #     N.append(int(r1.node))
         # except:
@@ -192,13 +193,13 @@ for item in nodes:
 from src.spread.monte_carlo import MonteCarlo_simulation
 
 
-original_filename = "scale_graphs/deezerEU_2.txt"
+original_filename = "graphs/deezerEU.txt"
 p = 0.05
 no_simulations = 100
 model = "IC"
 G = read_graph(original_filename)
 
-df = pd.read_csv("comm_ground_truth/deezerEU_2.csv",sep=",")
+df = pd.read_csv("comm_ground_truth/deezerEU.csv",sep=",")
 groups = df.groupby('comm')['node'].apply(list)
 df = groups.reset_index(name='nodes')
 communities_original = df["nodes"].to_list()

@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
 
 
-    filename = "experiments/CA-GrQc-IC/run-1.csv"
+    filename = "experiments/deezerEU-IC/run-1.csv"
    
 
     df = pd.read_csv(filename, sep=",")
