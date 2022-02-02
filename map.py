@@ -17,19 +17,21 @@ from new_ea import moea_influence_maximization
 
 
 
-filename = "scale_graphs/deezerEU_8.txt"
-scale_comm = "comm_ground_truth/deezerEU_8.csv"
+filename = "scale_graphs/pgp_2.txt"
+scale_comm = "comm_ground_truth/pgp_2.csv"
 
 
-filename_original = "graphs/deezerEU.txt"
-filename_original_comm = "comm_ground_truth/deezerEU.csv"
+filename_original = "graphs/pgp.txt"
+filename_original_comm = "comm_ground_truth/pgp.csv"
 
 
 G = read_graph(filename)
 G1 = read_graph(filename_original)
-scale_factor = round(G1.number_of_nodes() / G.number_of_nodes())
 
-df = pd.read_csv("experiments/deezerEU_8-IC/run-1.csv",sep=",")
+scale_factor = round(G1.number_of_nodes() / G.number_of_nodes())
+scale_original = G1.number_of_nodes() / G.number_of_nodes()
+
+df = pd.read_csv("experiments/pgp_2-WC/run-1.csv",sep=",")
 
 nodes = df["nodes"].to_list()
 
@@ -132,7 +134,6 @@ for item in nodes:
     #print(len(nodes_split),len(nodes_split)*scale_factor )
     N = []
     for node in nodes_split:
-        #print(k)
         node = int(node)
         t = scaled_table.loc[scaled_table["node"] == node]
         if len(t) > 0:
@@ -173,10 +174,49 @@ for item in nodes:
         # except:
         #     print(r["rank_comm"])
         #     print(int(t.rank_comm))
+
+    if len(N) != int(len(nodes_split) * (scale_original)):
+        print('probelm here', int(len(nodes_split) * (scale_original)) - len(N))
+        k = int(len(nodes_split) * (scale_original)) - len(N)
+        n = random.sample(nodes_split, k)
+        print(n)
+        for node in n:
+            node = int(node)
+            t = scaled_table.loc[scaled_table["node"] == node]
+            if len(t) > 0:
+                r = original_table[original_table["comm"] == int(t.comm)]
+                n = r["node"].to_list()
+                l = r["page_rank"].to_list()
+                #print(n)
+                s = 0
+                ii = 0
+                #print('l3n', len(l))
+                #if len(l) == 0:
+                    #print(r)
+                    #print(n)
+                while ii < 1:
+                    myArray = np.array(l)                
+                    pos = (np.abs(myArray-float(t.rank_comm))).argmin()
+
+                    #pos = (np.abs(myArray-float(t.page_rank))).argmin()
+                    if n[pos] in N:# and len(n) > 0:
+                        l = np.delete(myArray, pos)
+                        n = np.delete(n, pos)
+                    else:
+                        N.append(n[pos])
+                        ii +=1
+                        s +=1
+                        l = np.delete(myArray, pos)
+                        n = np.delete(n, pos)
+                    
+                    if len(l) == 0:
+                        break
+        print('probelm solved', int(len(nodes_split) * (scale_original)) - len(N))
+    #print(len(N), len(set(N)))
     solution.append(N)
-    print(len(N), len(set(N)))
-    if len(N) != len(nodes_split) * int(scale_factor):
-        print('cazzo')
+
+    #if len(N) != len(nodes_split) * int(scale_factor):
+    #    print('cazzo')
         #exit(0)
 
 #print(solution, len(solution), len(nodes))
@@ -193,13 +233,13 @@ for item in nodes:
 from src.spread.monte_carlo import MonteCarlo_simulation
 
 
-original_filename = "graphs/deezerEU.txt"
+original_filename = "graphs/pgp.txt"
 p = 0.05
 no_simulations = 100
-model = "IC"
+model = "WC"
 G = read_graph(original_filename)
 
-df = pd.read_csv("comm_ground_truth/deezerEU.csv",sep=",")
+df = pd.read_csv("comm_ground_truth/pgp.csv",sep=",")
 groups = df.groupby('comm')['node'].apply(list)
 df = groups.reset_index(name='nodes')
 communities_original = df["nodes"].to_list()
@@ -242,7 +282,7 @@ for idx, item in enumerate(solution):
     NODES[idx] = NODES[idx].replace("]","")
     NODES[idx] = NODES[idx].replace(",","")
     nodes_split = NODES[idx].split() 
-    print(len(item), len(A), len(nodes_split), len(nodes_split)* int(scale_factor))
+    print(len(item), len(A), len(nodes_split), int(len(nodes_split)* (scale_original))
     try:
         spread  = MonteCarlo_simulation(G, A, p, no_simulations, model, communities_original, random_generator=None)
         print(((spread[0] / G.number_of_nodes())* 100), spread[2], ((len(A) / G.number_of_nodes())* 100))
@@ -260,7 +300,7 @@ df["n_nodes"] = nodes_
 df["influence"] = influence
 df["communities"] = comm
 
-df.to_csv('map_deezer.csv', index=False)
+df.to_csv('map_ca.csv', index=False)
 #print(len(df))
 
 
