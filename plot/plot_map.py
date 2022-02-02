@@ -7,21 +7,21 @@ import sys
 sys.path.insert(0, '')
 from src.load import read_graph
 
-G_original = read_graph('graphs/deezerEU.txt')
+G_original = read_graph('graphs/pgp.txt')
 k = G_original.number_of_nodes() * 0.025
-comm_original = pd.read_csv('comm_ground_truth/deezerEU.csv')
+comm_original = pd.read_csv('comm_ground_truth/pgp.csv')
 comm_original = max(set(comm_original["comm"].to_list()))
 
 
 
 
-filename = "experiments/deezerEU_8-IC/run-1.csv"
+filename = "experiments/pgp_2-WC/run-1.csv"
 df = pd.read_csv(filename, sep=",")
 x=  df["n_nodes"].to_list()
 y = df["communities"]
 z = df["influence"]
 
-filename = "experiments/deezerEU-IC/run-1.csv"
+filename = "experiments/pgp-WC/run-1.csv"
 df = pd.read_csv(filename, sep=",")
 
 x0= df["n_nodes"].to_list()
@@ -33,7 +33,7 @@ pf = []
 for i in range(len(x0)):
     pf.append([-z0[i],-(2.5 - x0[i]), -y0[i]])
 
-filename = "map_deezer.csv"
+filename = "map_ca.csv"
 
 
 
@@ -122,11 +122,6 @@ metric = Hypervolume(ref_point= np.array([0,0,-1]),
                     zero_to_one=False)
 
 hv_original = metric.do(pf) /tot
-
-
-metric = Hypervolume(ref_point= np.array([0,0,-1]),
-                    norm_ref_point=False,
-                    zero_to_one=False)
 
 hv_MAP = metric.do(A) / tot
 
