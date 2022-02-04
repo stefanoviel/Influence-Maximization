@@ -15,13 +15,13 @@ comm_original = max(set(comm_original["comm"].to_list()))
 
 
 
-filename = "experiments/pgp_2-WC/run-1.csv"
+filename = "experiments/fb_politician_8-IC/run-1.csv"
 df = pd.read_csv(filename, sep=",")
 x=  df["n_nodes"].to_list()
 y = df["communities"]
 z = df["influence"]
 
-filename = "experiments/pgp-WC/run-1.csv"
+filename = "experiments/fb_politician-IC/run-1.csv"
 df = pd.read_csv(filename, sep=",")
 
 x0= df["n_nodes"].to_list()

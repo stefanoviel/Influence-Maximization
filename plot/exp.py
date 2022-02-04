@@ -65,17 +65,17 @@ def plot_time(path):
     #plt.ylim((0,1000))
     plt.savefig('aa')
 
-path = 'experiments/pgp_8-WC'
+path = 'experiments/pgp_8-IC'
 plot_images(path, 'green')
 
 
-path ='experiments/pgp_4-WC'
+path ='experiments/pgp_4-IC'
 plot_images(path, 'blue')
 
-path ='experiments/pgp_2-WC'
+path ='experiments/pgp_2-IC'
 plot_images(path, 'orange')
 
-path ='experiments/pgp-WC'
+path ='experiments/pgp-IC'
 plot_images(path, 'red')
 
 
@@ -87,7 +87,7 @@ plt.savefig('a')
 plt.cla()
 plt.close()
 
-path = ["experiments/pgp_8-WC","experiments/pgp_4-WC","experiments/pgp_2-WC","experiments/pgp-WC"]
+path = ["experiments/pgp_8-IC","experiments/pgp_4-IC","experiments/pgp_2-IC","experiments/pgp-IC"]
 
 plot_time(path)
 
