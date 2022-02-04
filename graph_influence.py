@@ -57,16 +57,16 @@ if __name__ == '__main__':
 
     no_runs = 10
 
-    filenames = ["scale_graphs/fb_org_2.txt"]
-    gt = ["comm_ground_truth/fb_org_2.csv"]
+    filenames = ["graphs/deezerEU.txt"]
+    gt = ["comm_ground_truth/deezerEU.csv"]
     
-    scale_k = [2]
+    scale_k = [1]
 
     #scale_k = [1]
     #models = ["IC"]
 
 
-    models = ['IC']
+    models = ['WC']
     i = 0
     for item in filenames:
         file_gt = gt[i]
