@@ -17,12 +17,12 @@ from new_ea import moea_influence_maximization
 
 
 
-filename = "scale_graphs/fb_politician_8.txt"
-scale_comm = "comm_ground_truth/fb_politician_8.csv"
+filename = "scale_graphs/pgp_8.txt"
+scale_comm = "comm_ground_truth/pgp_8.csv"
 
 
-filename_original = "graphs/fb_politician.txt"
-filename_original_comm = "comm_ground_truth/fb_politician.csv"
+filename_original = "graphs/pgp.txt"
+filename_original_comm = "comm_ground_truth/pgp.csv"
 
 
 G = read_graph(filename)
@@ -31,7 +31,7 @@ G1 = read_graph(filename_original)
 scale_factor = round(G1.number_of_nodes() / G.number_of_nodes())
 scale_original = G1.number_of_nodes() / G.number_of_nodes()
 
-df = pd.read_csv("experiments/fb_politician_8-IC/run-1.csv",sep=",")
+df = pd.read_csv("experiments/pgp_8-WC/run-1.csv",sep=",")
 
 nodes = df["nodes"].to_list()
 
@@ -45,11 +45,17 @@ def normalize_list(list_normal):
 def get_table(graph_name, comm_name,w):
     G = read_graph(filename=graph_name)
 
-    from networkx.algorithms import degree_centrality, closeness_centrality
-    T = degree_centrality(G)
+    from networkx.algorithms import degree_centrality, closeness_centrality, core_number, betweenness_centrality
+    from networkx.algorithms import katz_centrality, katz_centrality_numpy, eigenvector_centrality_numpy
     #T = nx.eigenvector_centrality(G)
     #T = closeness_centrality(G)
-    #T = nx.pagerank(G, alpha = 0.85)
+    T = nx.pagerank(G, alpha = 0.85)
+    #G.remove_edges_from(nx.selfloop_edges(G))
+    #T = degree_centrality(G)
+    #T = katz_centrality_numpy(G)
+    #T = core_number(G)
+    #T = eigenvector_centrality_numpy(G)
+  #  T = betweenness_centrality(G)
     data = pd.DataFrame()
     node = []
     centr = []
@@ -233,13 +239,13 @@ for item in nodes:
 from src.spread.monte_carlo import MonteCarlo_simulation
 
 
-original_filename = "graphs/fb_politician.txt"
+original_filename = "graphs/pgp.txt"
 p = 0.05
 no_simulations = 100
-model = "IC"
+model = "WC"
 G = read_graph(original_filename)
 
-df = pd.read_csv("comm_ground_truth/fb_politician.csv",sep=",")
+df = pd.read_csv("comm_ground_truth/pgp.csv",sep=",")
 groups = df.groupby('comm')['node'].apply(list)
 df = groups.reset_index(name='nodes')
 communities_original = df["nodes"].to_list()
@@ -300,7 +306,7 @@ df["n_nodes"] = nodes_
 df["influence"] = influence
 df["communities"] = comm
 
-df.to_csv('map_ca.csv', index=False)
+df.to_csv('page_RANK_pgp.csv', index=False)
 #print(len(df))
 
 

@@ -15,13 +15,13 @@ comm_original = max(set(comm_original["comm"].to_list()))
 
 
 
-filename = "experiments/fb_politician_8-IC/run-1.csv"
+filename = "experiments/pgp_8-WC/run-1.csv"
 df = pd.read_csv(filename, sep=",")
 x=  df["n_nodes"].to_list()
 y = df["communities"]
 z = df["influence"]
 
-filename = "experiments/fb_politician-IC/run-1.csv"
+filename = "experiments/pgp-WC/run-1.csv"
 df = pd.read_csv(filename, sep=",")
 
 x0= df["n_nodes"].to_list()
@@ -33,7 +33,7 @@ pf = []
 for i in range(len(x0)):
     pf.append([-z0[i],-(2.5 - x0[i]), -y0[i]])
 
-filename = "map_ca.csv"
+filename = "core_8_PGP_true.csv"
 
 
 
@@ -85,7 +85,7 @@ ax1.set_ylim(0,2.5)
 
 #plt.cla()
 
-ax3.scatter(z,y,color="green",label="1/4")
+ax3.scatter(z,y,color="green",label="1/2")
 ax3.scatter(z0,y0,color="red", label="Original")
 ax3.scatter(z1,y1,color="black",label="MAP")
 #ax3.title('Facebook Politicians IC model')
@@ -99,7 +99,8 @@ ax3.set_ylabel('Communities')
 fig.legend(loc=7)
 fig.tight_layout()
 fig.subplots_adjust(right=0.85)  
-plt.savefig('CIAO')
+plt.title('Degree Centrality')
+plt.savefig('k_core_8')
 plt.show()
 #plt.cla()
 
