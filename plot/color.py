@@ -6,8 +6,8 @@ from src.load import read_graph
 from src.load import read_graph
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("deezerEU_False-8-k77-p0.05-IC-NEW_3_OBJ.csv", sep=",")
-G = read_graph("scale_graphs/deezerEU.txt_False-8.txt")
+df = pd.read_csv("fb.csv", sep=",")
+G = read_graph("graphs/facebook_combined.txt")
 
 print(nx.info(G))
 color_map = []
@@ -29,7 +29,6 @@ for item in nodes:
     nx.draw(G, position,  edgecolors='black',node_color=color_map,arrowsize=1,node_size=20,linewidths=1, edge_color="#C0C0C0", width=0.5)
     plt.show()
     plt.cla()
-    break
 
 
 

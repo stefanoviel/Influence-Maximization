@@ -9,14 +9,13 @@ from numpy.core.fromnumeric import size
 import pandas as pd
 # local libraries
 from src.load import read_graph
-from src.spread.monte_carlo import MonteCarlo_simulation as MonteCarlo_simulation
+from src.spread.monte_carlo_2_obj import MonteCarlo_simulation as MonteCarlo_simulation
 from src.spread.monte_carlo_max_hop import MonteCarlo_simulation_max_hop as MonteCarlo_simulation_max_hop
 from new_ea import moea_influence_maximization
 from src.nodes_filtering.select_best_spread_nodes import filter_best_nodes as filter_best_spread_nodes
 from src.nodes_filtering.select_min_degree_nodes import filter_best_nodes as filter_min_degree_nodes
-from src.utils import inverse_ncr, community_detection
-from src.smart_initialization import max_centrality_individual, Community_initialization, degree_random
-
+from src.utils import inverse_ncr
+from src.smart_initialization import degree_random
 def create_initial_population(G, args, prng=None, nodes=None):
     """
 	Smart initialization techniques.
@@ -46,7 +45,6 @@ def filter_nodes(G, args):
         filter_function = partial(MonteCarlo_simulation_max_hop, G=G, random_generator=prng, p=args["p"], model=args["model"],
                                   max_hop=3, no_simulations=1)
         nodes = filter_best_spread_nodes(G, best_nodes, error, filter_function)
-
     nodes = filter_min_degree_nodes(G, args["min_degree"], nodes)
 
     return nodes
@@ -55,18 +53,14 @@ def filter_nodes(G, args):
 if __name__ == '__main__':
     
 
-    no_runs = 10
+    no_runs = 1
 
-    filenames = ["graphs/deezerEU.txt"]
-    gt = ["comm_ground_truth/deezerEU.csv"]
+    filenames = ["scale_graphs/fb_org_8.txt"]
+    gt = ["comm_ground_truth/fb_org_8.csv"]
     
-    scale_k = [1]
+    scale_k = [8]
 
-    #scale_k = [1]
-    #models = ["IC"]
-
-
-    models = ['WC']
+    models = ['LT']
     i = 0
     for item in filenames:
         file_gt = gt[i]
@@ -118,7 +112,7 @@ if __name__ == '__main__':
             mean = int(np.mean(mean))  
             args["min_degree"] = mean + 1
             args["smart_initialization_percentage"] = 0.5
-            args["population_size"] = 100
+            args["population_size"] = 10
 
             communities =[]
             df = pd.read_csv(file_gt,sep=",")
@@ -137,11 +131,11 @@ if __name__ == '__main__':
             for r in range(no_runs):
                 initial_population = create_initial_population(G, args, prng, nodes_original)
 
-                no_obj = 3
-                no_simulations = 100
-                max_generations = 1000
-                population_size = 100
-                offspring_size = 100
+                no_obj = 2
+                no_simulations = 10
+                max_generations = 2
+                population_size = 10
+                offspring_size = 10
 
 
                 n_threads = 1
@@ -156,9 +150,9 @@ if __name__ == '__main__':
             
                 file = 'run-{0}'.format(r+1)
                 file = path+'/'+file
-                print(file)
-                #df.to_csv(path+'/'+file+'.csv')
-
+                #print(file)
+                
+                file = 'ciao'
                 ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
                 start = time.time()
                 seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=population_size, offspring_size=offspring_size, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, communities=communities, initial_population=initial_population ,no_obj=no_obj)

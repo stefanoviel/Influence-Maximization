@@ -8,21 +8,9 @@ from src.ea.observer import time_observer
 def generation_termination(population, num_generations, num_evaluations, args):
     if num_generations == args["generations_budget"]:
         x = [x for x in range(1,len(args["hypervolume"])+1)]
-        # plt.cla()
-        # plt.plot(x, args["hypervolume"], color='b')
-        # plt.xlabel('Generation')
-        # plt.ylabel('Hypervolume')
-        # plt.savefig(args["population_file"]+'.png')
-        # plt.cla()
         df = pd.DataFrame()
         df["generation"] = x
         df["hv"] = args["hypervolume"]
-        '''
-        if args["no_obj"] == 3:
-            df["influence_k"] = args["hv_influence_k"]
-            df["influence_comm"] = args["hv_influence_comm"]
-            df["k_comm"] = args["hv_k_comm"]
-        '''
         df.to_csv(args["population_file"] +"_hv_.csv", sep=",",index=False)
         time_observer(population, num_generations, num_evaluations, args)
 
@@ -50,13 +38,10 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     max_generations = args.setdefault('max_generations', 10)
     previous_best = args.setdefault('previous_best', None)
     try:
-        #print('Max Generations without improvements{0}, now {1}'.format(max_generations,args["generation_count"]))
         previous_best = args["hypervolume"][-1]
-
     except:
         pass
 
-    print('Generations', num_generations)
     arch = [list(x.fitness) for x in args["_ec"].archive] 
     import copy
     original_arch = copy.deepcopy(arch)
@@ -76,7 +61,6 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
                             zero_to_one=False)
         hv = metric.do(F)
         current_best = hv/tot
-        #print("Hypervolume {0}-{1} Generations {2}".format(current_best,hv, num_generations))
         args["hypervolume"].append(current_best)
         '''
         # HV INFLUENCE - K
@@ -143,12 +127,8 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
                             zero_to_one=False)
         hv = metric.do(F)
         current_best = hv/tot
-        #print("Hypervolume {0}-{1} Generations {2}".format(current_best,hv, num_generations))
         args["hypervolume"].append(current_best)
-
-
-    # if previous_best != None:
-    #     print('Current Best - Previous Best {0}'.format((current_best-previous_best)))
+        print('Terminators', current_best)
 
     if previous_best is None or current_best > previous_best:
         args['previous_best'] = current_best
@@ -157,21 +137,9 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     else:
         if args['generation_count'] >= max_generations:
             x = [x for x in range(1,len(args["hypervolume"])+1)]
-            # plt.plot(x, args["hypervolume"])
-            # plt.xlabel('Generation')
-            # plt.ylabel('Hypervolume')
-            # plt.savefig(args["population_file"]+'.png')
-            # plt.cla()
             df = pd.DataFrame()
             df["generation"] = x
             df["hv"] = args["hypervolume"]
-            '''
-            if args["no_obj"] == 3:
-                df["influence_k"] = args["hv_influence_k"]
-                df["influence_comm"] = args["hv_influence_comm"]
-                df["k_comm"] = args["hv_k_comm"]
-            
-            '''
             df.to_csv(args["population_file"] +"_hv_.csv", sep=",",index=False)
 
             time_observer(population, num_generations, num_evaluations, args)

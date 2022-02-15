@@ -1,5 +1,5 @@
 from src.threadpool import ThreadPool
-from src.spread.monte_carlo import MonteCarlo_simulation
+from src.spread.monte_carlo_2_obj import MonteCarlo_simulation
 from src.spread.monte_carlo_max_hop import MonteCarlo_simulation_max_hop as MonteCarlo_simulation_max_hop
 
 import inspyred
@@ -34,11 +34,15 @@ def nsga2_evaluator(candidates, args):
                 max_hop = args["max_hop"]
                 fitness_function_args = [G, A_set, p, no_simulations, model, max_hop]
 
-            influence_mean, influence_std, comm, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
-            time_gen.append(time)
+
+
             if no_obj == 3:
+                influence_mean, _, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
+                time_gen[index] = time
                 fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), comm])
             elif no_obj == 2:
+                influence_mean, _, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
+                time_gen[index] = time
                 fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100)])
 
 

@@ -406,10 +406,8 @@ def to_csv(archiver, population_file) :
     df["nodes"] = nodes
     df.to_csv(population_file+".csv", sep=",", index=False)
 
-def to_csv2(archiver, population_file, std,times) :
+def to_csv2(archiver, population_file):
     
-    print("OBSERVERRRR \n  OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n OBSERVERRRR \n")
-
     
     df = pd.DataFrame()
     nodes = []
@@ -426,22 +424,9 @@ def to_csv2(archiver, population_file, std,times) :
     df["n_nodes"] = n_nodes
     df["influence"] = influence
     df["nodes"] = nodes
-    df["time"] = times
-    df["std"] = std
     df.to_csv(population_file+".csv", sep=",", index=False)
 
 def community_detection(G,r):
-	# partition = community_louvain.best_partition(G, resolution=r)
-
-	# """REDIFNE CHECK LIST HERE"""
-	# df = pd.DataFrame()
-	# df["nodes"] = list(partition.keys())
-	# df["comm"] = list(partition.values()) 
-	# df = df.groupby('comm')['nodes'].apply(list)
-	# df = df.reset_index(name='nodes')
-	# check = []
-	# for j in range(max(partition.values())+1):
-	# 	check.append(df["nodes"].iloc[j])
     import leidenalg
     import igraph as ig
     R = ig.Graph.from_networkx(G)

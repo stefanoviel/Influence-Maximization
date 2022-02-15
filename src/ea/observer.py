@@ -3,6 +3,8 @@ import inspyred.ec
 from src.ea.generators import generator_new_nodes
 from src.utils import diversity, individuals_diversity
 import pandas as pd
+import numpy as np
+from pymoo.indicators.hv import Hypervolume
 
 def adjust_population_size(num_generations, population, args):
 	prev_best = args["prev_population_best"]
@@ -99,3 +101,30 @@ def time_observer(population, num_generations, num_evaluations, args):
 	df = pd.DataFrame(args["time"])
 	df.to_csv(args["population_file"] + '-time.csv', index=False, header=None)
 	return 
+
+
+def hypervolume(population, num_generations, num_evaluations, args):
+    arch = [list(x.fitness) for x in args["_ec"].archive] 
+    for i in range(len(arch)):
+        for j in range(len(arch[i])):
+                arch[i][j] = -float(arch[i][j])
+    F =  np.array(arch)
+
+    if args["no_obj"] == 3:
+        tot = 100 * ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100) * (len(args["communities"])-1)
+        metric = Hypervolume(ref_point= np.array([0,0,-1]),
+                            norm_ref_point=False,
+                            zero_to_one=False)
+        hv = metric.do(F)
+        current_best = hv/tot
+        args["hypervolume"].append(current_best)
+    elif args["no_obj"] == 2:
+        tot = 100 * ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100) 
+        metric = Hypervolume(ref_point= np.array([0,0]),
+                            norm_ref_point=False,
+                            zero_to_one=False)
+        hv = metric.do(F)
+        current_best = hv/tot
+        args["hypervolume"].append(current_best)
+        print('Observer', current_best)
+

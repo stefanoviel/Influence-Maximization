@@ -2,6 +2,7 @@ from cmath import log10
 from pickle import TRUE
 import pandas as pd
 import networkx as nx
+from sklearn.cluster import MeanShift
 from src.load import read_graph
 import numpy as np
 import matplotlib.pyplot as plt
@@ -11,28 +12,28 @@ import collections
 warnings.filterwarnings("ignore")
 from math import log, log10
 import math
-name = 'CA-GrQc'
+name = 'pgp'
 
-filenames = ["scale_graphs/CA-GrQc_8.txt","scale_graphs/CA-GrQc_4.txt","scale_graphs/CA-GrQc_2.txt","graphs/CA-GrQc.txt"]
+filenames = ["scale_graphs/pgp_8.txt","scale_graphs/pgp_4.txt","scale_graphs/pgp_2.txt","graphs/pgp.txt"]
 kk = []
 
-#item = filenames[3]
+item = filenames[3]
 
 
-for item in filenames:
-    G = read_graph(item)
-    print(nx.info(G))
-    den = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
-    print("Density --> {0}".format(den))
-    my_degree_function = G.degree
-    mean = []
-    mean_degree = []
-    for item in G:
-        mean.append(my_degree_function[item])
-    kk.append(mean)
-    print(max(mean))
-
-#exit(0)
+G = read_graph(item)
+print(nx.info(G))
+den = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
+print("Density --> {0}".format(den))
+my_degree_function = G.degree
+mean = []
+mean_degree = []
+for item in G:
+    mean.append(my_degree_function[item])
+kk.append(mean)
+print(max(mean))
+print(min(mean))
+print(np.median(mean))
+print(np.std(mean))
 
 
 #exit(0)
@@ -40,7 +41,7 @@ for item in filenames:
     #print(np.mean(item))
 
 
-x = ['1', '1/2', '1/4', '1/8']
+x = ['Original', '2', '4', '8']
 x = x[::-1]
 print(x)
 
@@ -79,8 +80,8 @@ for item in filenames:
     degree_sequence_1 = sorted([log10(d) for n, d in G.degree()], reverse=True)  # degree sequence
 
     # print "Degree sequence", degree_sequence
-    #degreeCount = collections.Counter(degree_sequence)
-    #àdeg, cnt = zip(*degreeCount.items())
+    degreeCount = collections.Counter(degree_sequence)
+    deg, cnt = zip(*degreeCount.items())
 
     #axs[len(filenames)-1-i].set_yscale('log')
     #axs[len(filenames)-1-i].set_xscale('log')
@@ -90,6 +91,8 @@ for item in filenames:
     #plt.xscale('log')
     #n, bins, patches = axs[len(filenames)-1-i].hist(degree_sequence, 20, facecolor=color[i], alpha=0.75, log=True)
     axs[len(filenames)-1-i].hist(degree_sequence, bins=int(max(degree_sequence)), facecolor=color[i], alpha=0.75, edgecolor='black', linewidth=0.5,log=True)
+    #axs[len(filenames)-1-i].loglog(deg, cnt, basex=10, basey=10, 
+    #       markeredgecolor='red')
     # if i == 0:
     #     t = []
     #     k = 0
@@ -109,9 +112,8 @@ for item in filenames:
 #plt.title("Degree Histogram")
 plt.ylabel("Count")
 plt.xlabel("Degree")
-plt.savefig('aaaa')
+#plt.savefig('aaaa')
 plt.show()
-exit(0)
 #plt.show()
 # i = 0
 # for item in filenames:
@@ -176,7 +178,7 @@ for item in filenames:
     plt.xscale('log')  
     plt.yscale('log')                                                                                                        
                                                                                                       
-    plt.scatter(x1, y, marker='.', s=100, facecolors='none',color=color[i], label = str(x[i]))     
+    plt.scatter(x1, y, marker='.',  s=100,color=color[i], label = str(x[i]))    
     #axs[len(filenames)-1-i].bar(x1, y,color=color[i], label = str(x[i]))     
 
     # if i == 0:
@@ -191,30 +193,21 @@ for item in filenames:
         
     #     plt.xticks(t,tt)    
     #plt.xlim(1, max(x1))  
-    if i == 0:   
-        t = []                                                                                  
-        k = int(max(x1) / 10)
-        print(k)
-        s = 0
-        for j in range(k):
-            t.append(s)
-            s += k
-    print(t)
     #locs, labels = plt.xticks()
     #plt.get_major_formatter().labelOnlyBase = False
     #print(labels)
 
     #plt.xticks()
     i = i+1
-plt.xlabel('log(degree)')                                                                                
-plt.ylabel('log(frequency)')   
+plt.xlabel('Degree')
+plt.ylabel('Frequency')  
 plt.legend()
-plt.savefig(name + '_scatter')
-#plt.show()
+#plt.savefig(name + '_scatter')
+plt.show()
 plt.close()
 plt.cla()
 
-
+exit(0)
 
 plt.figure(figsize=(6, 6)) 
 i = 0
