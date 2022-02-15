@@ -38,15 +38,9 @@ def plot_time(path):
             if 'time' in filename:
 
                 df = pd.read_csv(filename,sep=',')
-                df = df.dropna(how='all')
                 s = 0
                 for i in range(len(df)):
                     t = list(df.iloc[i])
-                    import math
-                    t = [x for x in t if math.isnan(x) == False]
-                    if len(t) != 100:
-                        print('MERDA')
-                        break
                     s += sum(t)
                 tot.append(s)
         m.append(np.mean(tot))
@@ -61,25 +55,25 @@ def plot_time(path):
     plt.xticks(y_pos, objects)
     plt.ylabel('Cumulative Time')
     plt.xlabel('Graphs')
-    #plt.title('Time Fb Politicians IC MODEL')
+    #plt.title('Time Fb PolitLTians WC MODEL')
     #plt.ylim((0,1000))
-    plt.savefig('aa')
+    plt.savefig('pgp_time_LT')
 
-path = 'experiments/pgp_8-IC'
+path = 'experiments/pgp_8-LT'
 plot_images(path, 'green')
 
 
-path ='experiments/pgp_4-IC'
+path ='experiments/pgp_4-LT'
 plot_images(path, 'blue')
 
-path ='experiments/pgp_2-IC'
+path ='experiments/pgp_2-LT'
 plot_images(path, 'orange')
 
-path ='experiments/pgp-IC'
+path ='experiments/pgp-LT'
 plot_images(path, 'red')
 
 
-plt.savefig('a')
+plt.savefig('pgp_hv_LT')
 
 
 
@@ -87,7 +81,7 @@ plt.savefig('a')
 plt.cla()
 plt.close()
 
-path = ["experiments/pgp_8-IC","experiments/pgp_4-IC","experiments/pgp_2-IC","experiments/pgp-IC"]
+path = ["experiments/pgp_8-LT","experiments/pgp_4-LT","experiments/pgp_2-LT","experiments/pgp-LT"]
 
 plot_time(path)
 

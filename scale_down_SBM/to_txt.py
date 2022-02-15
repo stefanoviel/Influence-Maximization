@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-filename = "/Users/elia/Downloads/ego-twitter/ego-twitter.edges"
+filename = "/Users/elia/Downloads/fb-pages-public-figure/fb-pages-public-figure.edges"
 name = (os.path.basename(filename))
 name = name.replace(".edges","")
 
@@ -18,6 +18,6 @@ for i in range(len(n1)):
 
     f = "{0} {1}".format(n1[i],n2[i])
     text.append(f) 
-with open("/Users/elia/Downloads/"+ str(name)+".txt", "w") as outfile:
+with open(str(name)+".txt", "w") as outfile:
         outfile.write("\n".join(text))
         

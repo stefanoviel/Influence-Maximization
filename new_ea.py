@@ -8,7 +8,7 @@ from src.threadpool import ThreadPool
 from time import time
 
 # local libraries
-from src.spread.monte_carlo import MonteCarlo_simulation
+from src.spread.monte_carlo_2_obj import MonteCarlo_simulation
 from src.spread.monte_carlo_max_hop import MonteCarlo_simulation_max_hop as MonteCarlo_simulation_max_hop
 from src.ea.observer import time_observer
 
@@ -16,9 +16,10 @@ from src.ea.evaluator import nsga2_evaluator
 from src.ea.crossover import ea_one_point_crossover
 from src.ea.generator import nsga2_generator
 from src.ea.generators import generator
-from src.utils import to_csv, compute_time, to_csv2
+from src.utils import to_csv, to_csv2
 from src.ea.mutators import ea_global_random_mutation
 from src.ea.terminators import generation_termination,no_improvement_termination
+from src.ea.observer import hypervolume
 
 # inspyred libriaries
 import inspyred
@@ -63,8 +64,8 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
     
     
     ea.variator = [ea_one_point_crossover,ea_global_random_mutation]
-    ea.terminator = [no_improvement_termination,generation_termination]
-	
+    ea.terminator = [generation_termination]
+    ea.observer = [hypervolume]
     #ea.replacer = inspyred.ec.replacers.generational_replacement
     #ea.replacer = inspyred.ec.replacers.plus_replacement
     bounder = inspyred.ec.DiscreteBounder(nodes)
@@ -100,9 +101,6 @@ def moea_influence_maximization(G, p, no_simulations, model, population_size=100
         communities = communities,
         graph = G,
         hypervolume = [],
-        hv_influence_k = [],
-        hv_influence_comm = [],
-        hv_k_comm = [],
         no_obj = no_obj, 
         time = []
     )

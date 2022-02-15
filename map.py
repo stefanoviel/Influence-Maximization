@@ -17,12 +17,12 @@ from new_ea import moea_influence_maximization
 
 
 
-filename = "scale_graphs/pgp_8.txt"
-scale_comm = "comm_ground_truth/pgp_8.csv"
+filename = "scale_graphs/facebook_combined_4.txt"
+scale_comm = "comm_ground_truth/facebook_combined_4.csv"
 
 
-filename_original = "graphs/pgp.txt"
-filename_original_comm = "comm_ground_truth/pgp.csv"
+filename_original = "graphs/facebook_combined.txt"
+filename_original_comm = "comm_ground_truth/facebook_combined.csv"
 
 
 G = read_graph(filename)
@@ -31,8 +31,10 @@ G1 = read_graph(filename_original)
 scale_factor = round(G1.number_of_nodes() / G.number_of_nodes())
 scale_original = G1.number_of_nodes() / G.number_of_nodes()
 
-df = pd.read_csv("experiments/pgp_8-WC/run-1.csv",sep=",")
 
+print(scale_factor, scale_original)
+df = pd.read_csv("experiments/facebook_combined_8-IC/run-1.csv",sep=",")
+df = df.sort_values(by="n_nodes", ascending=False)
 nodes = df["nodes"].to_list()
 
 def normalize_list(list_normal):
@@ -49,9 +51,9 @@ def get_table(graph_name, comm_name,w):
     from networkx.algorithms import katz_centrality, katz_centrality_numpy, eigenvector_centrality_numpy
     #T = nx.eigenvector_centrality(G)
     #T = closeness_centrality(G)
-    T = nx.pagerank(G, alpha = 0.85)
+    #T = nx.pagerank(G, alpha = 0.85)
     #G.remove_edges_from(nx.selfloop_edges(G))
-    #T = degree_centrality(G)
+    T = degree_centrality(G)
     #T = katz_centrality_numpy(G)
     #T = core_number(G)
     #T = eigenvector_centrality_numpy(G)
@@ -137,7 +139,7 @@ for item in nodes:
     nodes_split = item.split()  
 
     #print("---------")
-    #print(len(nodes_split),len(nodes_split)*scale_factor )
+    print(len(nodes_split),len(nodes_split)*scale_factor )
     N = []
     for node in nodes_split:
         node = int(node)
@@ -184,6 +186,7 @@ for item in nodes:
     if len(N) != int(len(nodes_split) * (scale_original)):
         print('probelm here', int(len(nodes_split) * (scale_original)) - len(N))
         k = int(len(nodes_split) * (scale_original)) - len(N)
+        print(k)
         n = random.sample(nodes_split, k)
         print(n)
         for node in n:
@@ -239,13 +242,13 @@ for item in nodes:
 from src.spread.monte_carlo import MonteCarlo_simulation
 
 
-original_filename = "graphs/pgp.txt"
+original_filename = "graphs/facebook_combined.txt"
 p = 0.05
 no_simulations = 100
-model = "WC"
+model = "IC"
 G = read_graph(original_filename)
 
-df = pd.read_csv("comm_ground_truth/pgp.csv",sep=",")
+df = pd.read_csv("comm_ground_truth/facebook_combined.csv",sep=",")
 groups = df.groupby('comm')['node'].apply(list)
 df = groups.reset_index(name='nodes')
 communities_original = df["nodes"].to_list()
@@ -253,7 +256,7 @@ print(len(communities_original))
 nodes_ = []
 comm = []
 influence = []
-
+n_nodes = []
 # my_degree_function = G.degree
 # mean = []
 # for item in G:
@@ -295,18 +298,20 @@ for idx, item in enumerate(solution):
         influence.append(((spread[0] / G.number_of_nodes())* 100))
         nodes_.append(((len(A) / G.number_of_nodes())* 100))
         comm.append(spread[2])
+        n_nodes.append(list(A))
         #T = [((spread[0] / G.number_of_nodes())* 100), -((len(A) / G.number_of_nodes())* 100),spread[2]]
         T = [((spread[0] / G.number_of_nodes())* 100), -((len(A) / G.number_of_nodes())* 100)]
-
+        
         pop.append(T)
     except:
         pass
+    break
 df = pd.DataFrame()
 df["n_nodes"] = nodes_
 df["influence"] = influence
 df["communities"] = comm
-
-df.to_csv('page_RANK_pgp.csv', index=False)
+df["nodes"] = n_nodes
+df.to_csv('fb.csv', index=False)
 #print(len(df))
 
 

@@ -1,3 +1,4 @@
+from tkinter import Label
 import matplotlib.pyplot as plt
 import pandas as pd
 from mpl_toolkits.mplot3d import Axes3D
@@ -15,24 +16,24 @@ script and produces a plot in three dimensions showing the relationship/correlat
 
 def plot(x2,y2,z2):
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8,3))
-    fig.suptitle("IC", size=16)
+    fig.suptitle("WC", size=16)
 
     ax1.scatter(z2,x2)
-    ax1.xaxis.set_ticks(np.arange(0,max(z2), 5))
-    ax1.yaxis.set_ticks(np.arange(0, max(x2), 0.5))
+    ax1.xaxis.set_tWCks(np.arange(0,max(z2), 5))
+    ax1.yaxis.set_tWCks(np.arange(0, max(x2), 0.5))
     ax1.set_ylabel("Nodes")
 
     ax1.set_xlabel("Influence")
-    fig.suptitle("IC", size=16)
+    fig.suptitle("WC", size=16)
     
     ax2.scatter(y2,x2)
-    ax2.yaxis.set_ticks(np.arange(0,max(x2), 0.5))
-    ax2.xaxis.set_ticks(np.arange(0, 100, 10))
+    ax2.yaxis.set_tWCks(np.arange(0,max(x2), 0.5))
+    ax2.xaxis.set_tWCks(np.arange(0, 100, 10))
     
     ax2.set_ylabel("Nodes")
     ax3.scatter(z2,y2)
-    ax3.xaxis.set_ticks(np.arange(0,100, 5))
-    ax3.yaxis.set_ticks(np.arange(0, max(y2)+2, 1))
+    ax3.xaxis.set_tWCks(np.arange(0,100, 5))
+    ax3.yaxis.set_tWCks(np.arange(0, max(y2)+2, 1))
     ax3.set_ylabel("Nodes")
 
     ax3.set_xlabel("")
@@ -45,7 +46,7 @@ def plot(x2,y2,z2):
     plt.show()
 if __name__ == '__main__':
     
-    filename = "experiments/pgp_8-WC/run-2.csv"
+    filename = "experiments/pgp_8-LT/run-2.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -56,7 +57,7 @@ if __name__ == '__main__':
 
    
    
-    filename = "experiments/pgp_4-WC/run-1.csv"
+    filename = "experiments/pgp_4-LT/run-1.csv"
 
     df = pd.read_csv(filename, sep=",")
 
@@ -66,7 +67,7 @@ if __name__ == '__main__':
 
   
 
-    filename = "experiments/pgp_2-WC/run-1.csv"
+    filename = "experiments/pgp_2-LT/run-1.csv"
 
 
     df = pd.read_csv(filename, sep=",")
@@ -78,7 +79,7 @@ if __name__ == '__main__':
 
 
 
-    filename = "experiments/pgp-WC/run-1.csv"
+    filename = "experiments/pgp-LT/run-1.csv"
    
 
     df = pd.read_csv(filename, sep=",")
@@ -88,6 +89,20 @@ if __name__ == '__main__':
     z2 = df["influence"].to_list()
 
 
+    plt.scatter(z2,x2,color="red",label='Original')
+    plt.scatter(z1,x1,color="orange",label='2')
+    plt.scatter(z0,x0,color="blue",label='4')
+    plt.scatter(z,x,color="green",label='8')
+
+    #plt.title('Facebook PolitLTians WC p=0.01 model')
+    plt.xlabel('% Influenced Nodes')
+    plt.ylabel('% Nodes as seed set')
+    plt.legend()
+    #åplt.set_xlim(0,100)
+    plt.ylim(0,2.5)
+    plt.legend()
+    plt.show()
+    exit(0)
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(10,6))
 
     ax1.scatter(z2,x2,color="red")
@@ -95,7 +110,7 @@ if __name__ == '__main__':
     ax1.scatter(z0,x0,color="blue")
     ax1.scatter(z,x,color="green")
 
-    #ax1.title('Facebook Politicians WC p=0.01 model')
+    #ax1.title('Facebook PolitWCians WC p=0.01 model')
     ax1.set_xlabel('% Influenced Nodes')
     ax1.set_ylabel('% Nodes as seed set')
     #ax1.legend()
@@ -113,7 +128,7 @@ if __name__ == '__main__':
     ax2.scatter(y0,x0,color="blue",)
     ax2.scatter(y,x,color="green")
 
-    #ax2.title('Facebook Politicians IC model')
+    #ax2.title('Facebook PolitWCians WC model')
     ax2.set_xlabel('Communities')
     ax2.set_ylabel('% Nodes as seed set')
     ax1.set_ylim(0,2.5)
@@ -130,7 +145,7 @@ if __name__ == '__main__':
 
     ax3.scatter(z,y,color="green",label="1/8")
 
-    #ax3.title('Facebook Politicians IC model')
+    #ax3.title('Facebook PolitWCians WC model')
     ax3.set_xlabel('% Influenced Nodes')
     ax3.set_ylabel('Communities')
     #ax3.legend()
@@ -180,7 +195,7 @@ if __name__ == '__main__':
     data_plot = [t,t0,t1,t2]
 
     bp = ax.boxplot(data_plot)
-    plt.xticks([1, 2, 3, 4], ['25%', '1/4','1/8', 'Original Graph'])
+    plt.xtWCks([1, 2, 3, 4], ['25%', '1/4','1/8', 'Original Graph'])
     fig.suptitle('Time LT SBM')
     plt.show()
     plt.cla()

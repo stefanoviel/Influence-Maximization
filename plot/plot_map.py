@@ -15,13 +15,13 @@ comm_original = max(set(comm_original["comm"].to_list()))
 
 
 
-filename = "experiments/pgp_8-WC/run-1.csv"
+filename = "experiments/pgp_2-IC/run-1.csv"
 df = pd.read_csv(filename, sep=",")
 x=  df["n_nodes"].to_list()
 y = df["communities"]
 z = df["influence"]
 
-filename = "experiments/pgp-WC/run-1.csv"
+filename = "experiments/pgp-IC/run-1.csv"
 df = pd.read_csv(filename, sep=",")
 
 x0= df["n_nodes"].to_list()
@@ -30,10 +30,11 @@ z0 = df["influence"].to_list()
 
 
 pf = []
+pf_G = []
 for i in range(len(x0)):
-    pf.append([-z0[i],-(2.5 - x0[i]), -y0[i]])
-
-filename = "core_8_PGP_true.csv"
+    pf.append([-z0[i],-(2.5 - x0[i])])
+    pf_G.append([z0[i], x0[i]])
+filename = "map_results/pgp_ic_2.csv"
 
 
 
@@ -47,62 +48,76 @@ z1 = df["influence"]
 
 
 A = []
+A_G = []
 for i in range(len(x1)):
-    A.append([-z1[i],-(2.5 - x1[i]), -y1[i]])
+    A.append([-z1[i],-(2.5 - x1[i])])
+    A_G.append([z1[i], x1[i]])
 
 
+plt.scatter(z,x,color="green",label='8')
+plt.scatter(z0,x0,color="red", label='Original')
+plt.scatter(z1,x1,color="black", label='Map')
+plt.xlabel('% Influenced Nodes')
+plt.ylabel('% Nodes as seed set')
+plt.legend()
+#plt.set_xlim(0,100)
+plt.ylim(0,2.5)
 
-
-fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(10,6))
-
-ax1.scatter(z,x,color="green")
-ax1.scatter(z0,x0,color="red")
-ax1.scatter(z1,x1,color="black")
-#ax1.title('Facebook Politicians IC p=0.01 model')
-ax1.set_xlabel('% Influenced Nodes')
-ax1.set_ylabel('% Nodes as seed set')
-#ax1.legend()
-#ax1.set_xlim(0,100)
-ax1.set_ylim(0,2.5)
-
-#ax1.savefig('aa')
-#ax1.show()
-#ax1.cla()
-
-
-
-ax2.scatter(y,x,color="green")
-ax2.scatter(y0,x0,color="red",)
-ax2.scatter(y1,x1,color="black")
-#ax2.title('Facebook Politicians IC model')
-ax2.set_xlabel('Communities')
-ax2.set_ylabel('% Nodes as seed set')
-ax1.set_ylim(0,2.5)
-#ax2.set_xlim(1,max(y0))
-#ax2.legend()
-#ax2.show()
-#ax2.savefig('aa_a')
-
-#plt.cla()
-
-ax3.scatter(z,y,color="green",label="1/2")
-ax3.scatter(z0,y0,color="red", label="Original")
-ax3.scatter(z1,y1,color="black",label="MAP")
-#ax3.title('Facebook Politicians IC model')
-ax3.set_xlabel('% Influenced Nodes')
-ax3.set_ylabel('Communities')
-#ax3.legend()
-#ax3.set_xlim(0,100)
-#ax3.savefig('aa_aa')
-#plt.legend(loc='center left')
-
-fig.legend(loc=7)
-fig.tight_layout()
-fig.subplots_adjust(right=0.85)  
-plt.title('Degree Centrality')
-plt.savefig('k_core_8')
+#plt.savefig('aa')
 plt.show()
-#plt.cla()
+
+
+
+# fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(10,6))
+
+# ax1.scatter(z,x,color="green")
+# ax1.scatter(z0,x0,color="red")
+# ax1.scatter(z1,x1,color="black")
+# #ax1.title('Facebook Politicians IC p=0.01 model')
+# ax1.set_xlabel('% Influenced Nodes')
+# ax1.set_ylabel('% Nodes as seed set')
+# #ax1.legend()
+# #ax1.set_xlim(0,100)
+# ax1.set_ylim(0,2.5)
+
+# #ax1.savefig('aa')
+# #ax1.show()
+# #ax1.cla()
+
+
+
+# ax2.scatter(y,x,color="green")
+# ax2.scatter(y0,x0,color="red",)
+# ax2.scatter(y1,x1,color="black")
+# #ax2.title('Facebook Politicians IC model')
+# ax2.set_xlabel('Communities')
+# ax2.set_ylabel('% Nodes as seed set')
+# ax1.set_ylim(0,2.5)
+# #ax2.set_xlim(1,max(y0))
+# #ax2.legend()
+# #ax2.show()
+# #ax2.savefig('aa_a')
+
+# #plt.cla()
+
+# ax3.scatter(z,y,color="green",label="1/2")
+# ax3.scatter(z0,y0,color="red", label="Original")
+# ax3.scatter(z1,y1,color="black",label="MAP")
+# #ax3.title('Facebook Politicians IC model')
+# ax3.set_xlabel('% Influenced Nodes')
+# ax3.set_ylabel('Communities')
+# #ax3.legend()
+# #ax3.set_xlim(0,100)
+# #ax3.savefig('aa_aa')
+# #plt.legend(loc='center left')
+
+# fig.legend(loc=7)
+# fig.tight_layout()
+# fig.subplots_adjust(right=0.85)  
+# plt.title('Degree Centrality')
+# plt.savefig('k_core_8')
+# plt.show()
+# #plt.cla()
 
 
 
@@ -110,15 +125,17 @@ plt.show()
 from pymoo.factory import get_performance_indicator
 pf = np.array(pf)
 A = np.array(A)
-gd = get_performance_indicator("gd", pf)
-print("GD", gd.do(A))
+pf_G = np.array(pf_G)
+A_G = np.array(A_G)
+gd = get_performance_indicator("gd", pf_G)
+print("GD", gd.do(A_G))
 
 
 
-tot = 100 * 2.5 * (comm_original-1)
+tot = 100 * 2.5 
 from pymoo.indicators.hv import Hypervolume
 
-metric = Hypervolume(ref_point= np.array([0,0,-1]),
+metric = Hypervolume(ref_point= np.array([0,0]),
                     norm_ref_point=False,
                     zero_to_one=False)
 
