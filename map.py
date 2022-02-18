@@ -37,12 +37,12 @@ degree_measure = ['two-hop','page_rank', 'degree_centrality','katz_centrality', 
 MAP_RESULTS = {}
 for measure in degree_measure:
     MAP_RESULTS[measure] = []
-filename = "scale_graphs/fb-pages-public-figure_2.txt"
-scale_comm = "comm_ground_truth/fb-pages-public-figure_2.csv"
+filename = "scale_graphs/fb_politician_2.txt"
+scale_comm = "comm_ground_truth/fb_politician_2.csv"
 
 
-filename_original = "graphs/fb-pages-public-figure.txt"
-filename_original_comm = "comm_ground_truth/fb-pages-public-figure.csv"
+filename_original = "graphs/fb_politician.txt"
+filename_original_comm = "comm_ground_truth/fb_politician.csv"
 
 
 
@@ -57,11 +57,11 @@ scale_original = G1.number_of_nodes() / G.number_of_nodes()
 
 
 print('Scale Factor',scale_factor, scale_original)
-df_scale_results = pd.read_csv("experiments/fb-pages-public-figure_2-IC/run-1.csv",sep=",")
+df_scale_results = pd.read_csv("experiments/fb_politician_2-WC/run-1.csv",sep=",")
 df_scale_results = df_scale_results.sort_values(by="n_nodes", ascending=False)
 nodes = df_scale_results["nodes"].to_list()
 
-filename_original_results = "experiments/fb-pages-public-figure-IC/run-1.csv"
+filename_original_results = "experiments/fb_politician-WC/run-1.csv"
 
 def get_table(graph_name, comm_name, measure):
     G = read_graph(filename=graph_name)
@@ -242,10 +242,10 @@ for measure in degree_measure:
     from src.spread.monte_carlo import MonteCarlo_simulation
 
 
-    original_filename = "graphs/fb-pages-public-figure.txt"
+    original_filename = "graphs/fb_politician.txt"
     p = 0.05
     no_simulations = 100
-    model = "IC"
+    model = "WC"
     G = read_graph(original_filename)
 
     nodes_ = []
@@ -282,7 +282,7 @@ for measure in degree_measure:
     df_mapping["n_nodes"] = nodes_
     df_mapping["influence"] = influence
     df_mapping["nodes"] = n_nodes
-    df_mapping.to_csv('fb-pages-public-figure_IC_2-'+str(measure)+'.csv', index=False)
+    df_mapping.to_csv('fb_politician_WC_2-'+str(measure)+'.csv', index=False)
 
 
 
@@ -350,5 +350,5 @@ df_final["measure"] = measure
 df_final["Hyperarea"] = hv
 df_final["GD"] = gd
 print(df)
-df_final.to_csv('fb-pages-public-figure_IC_2_MAPPING.csv', index=False)
+df_final.to_csv('fb_politician_WC_2_MAPPING.csv', index=False)
 exit(0)
