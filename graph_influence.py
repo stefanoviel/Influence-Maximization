@@ -54,12 +54,12 @@ if __name__ == '__main__':
     
 
     no_runs = 10
-    filenames = ["scale_graphs/facebook_combined_8.txt"]
-    gt = ["comm_ground_truth/facebook_combined_8.csv"]
+    filenames = ["scale_graphs/facebook_combined_prova8.txt"]
+    gt = ["comm_ground_truth/facebook_combined_prova8.csv"]
     
     scale_k = [8]
 
-    models = ['WC']
+    models = ['IC']
     i = 0
     for item in filenames:
         file_gt = gt[i]
@@ -111,7 +111,7 @@ if __name__ == '__main__':
             mean = int(np.mean(mean))  
             args["min_degree"] = mean + 1
             args["smart_initialization_percentage"] = 0.5
-            args["population_size"] = 100
+            args["population_size"] = 20
 
             communities =[]
             df = pd.read_csv(file_gt,sep=",")
@@ -131,10 +131,10 @@ if __name__ == '__main__':
                 initial_population = create_initial_population(G, args, prng, nodes_original)
 
                 no_obj = 2
-                no_simulations = 100
-                max_generations = 1000
-                population_size = 100
-                offspring_size = 100
+                no_simulations = 10
+                max_generations = 10
+                population_size = 20
+                offspring_size = 20
 
 
                 n_threads = 1
@@ -149,6 +149,7 @@ if __name__ == '__main__':
             
                 file = 'run-{0}'.format(r+1)
                 file = path+'/'+file
+                file = 'ciao'
                 #print(file)
                 
                 ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
@@ -156,4 +157,6 @@ if __name__ == '__main__':
                 seed_sets = moea_influence_maximization(G, p, no_simulations, model, population_size=population_size, offspring_size=offspring_size, random_gen=prng, max_generations=max_generations, n_threads=n_threads, max_seed_nodes=k, fitness_function=MonteCarlo_simulation, population_file=file, communities=communities, initial_population=initial_population ,no_obj=no_obj)
                 
                 exec_time = time.time() - start   
+                exit(0)
                 #print(exec_time)    
+
