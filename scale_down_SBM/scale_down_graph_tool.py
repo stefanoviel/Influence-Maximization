@@ -15,9 +15,9 @@ sys.path.insert(0, '')
 from src.load import read_graph
 
 
-scale_vector = [2,4,8]
+scale_vector = [8]
 
-filename = "graphs/deezerEU.txt"
+filename = "graphs/facebook_combined.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()

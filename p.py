@@ -12,33 +12,27 @@ import collections
 warnings.filterwarnings("ignore")
 from math import log, log10
 import math
-name = 'pgp'
+name = 'ffb-pages-public-figure'
 
-filenames = ["scale_graphs/pgp_8.txt","scale_graphs/pgp_4.txt","scale_graphs/pgp_2.txt","graphs/pgp.txt"]
+filenames = ["scale_graphs/fb-pages-public-figure_8.txt","scale_graphs/fb-pages-public-figure_4.txt","scale_graphs/fb-pages-public-figure_2.txt","graphs/fb-pages-public-figure.txt"]
+#filenames = ["scale_graphs/facebook_combined_prova8.txt","scale_graphs/facebook_combined_8.txt","graphs/facebook_combined.txt"]
 kk = []
 
-item = filenames[3]
 
+for item in filenames:
+    G = read_graph(item)
+    print(nx.info(G))
+    den = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
+    print("Density --> {0}".format(den))
+    my_degree_function = G.degree
+    mean = []
+    mean_degree = []
+    for item in G:
+        mean.append(my_degree_function[item])
+    kk.append(mean)
 
-G = read_graph(item)
-print(nx.info(G))
-den = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
-print("Density --> {0}".format(den))
-my_degree_function = G.degree
-mean = []
-mean_degree = []
-for item in G:
-    mean.append(my_degree_function[item])
-kk.append(mean)
-print(max(mean))
-print(min(mean))
-print(np.median(mean))
-print(np.std(mean))
-
-
-#exit(0)
-#for item in kk:
-    #print(np.mean(item))
+for item in kk:
+    print(np.mean(item))
 
 
 x = ['Original', '2', '4', '8']
