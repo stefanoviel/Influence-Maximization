@@ -1,0 +1,12 @@
+\begin{tabular}{lrrrr}
+\toprule
+{} &     0 &     1 &     2 &     3 \\
+\midrule
+pgp                    &  1.70 &  1.60 &  1.60 &  1.62 \\
+fb\_politician          &  1.54 &  1.48 &  2.37 &  1.51 \\
+fb-pages-public-figure &  1.55 &  1.60 &  1.66 &  1.70 \\
+facebook\_combined      &  1.81 &  2.05 &  2.06 &  8.72 \\
+fb\_org                 &  3.08 &  1.52 &  5.54 &  3.40 \\
+deezerEU               &  1.35 &  1.38 &  1.44 &  1.46 \\
+\bottomrule
+\end{tabular}

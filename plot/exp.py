@@ -25,9 +25,9 @@ def plot_images(path, color):
     s = np.array(s)
     plt.plot(list(df["generation"]), m,color=color)
     plt.fill_between(list(df["generation"]), m-s, m+s, alpha=0.3, color=color)
-    plt.ylim(0,1)
+    #plt.ylim(0,1)
     #plt.errorbar(list(df["generation"]), m,s, linestyle='None', marker='^')
-
+    
     return max(m)
 
 def plot_time(path):
@@ -55,54 +55,97 @@ def plot_time(path):
     plt.xticks(y_pos, objects)
     plt.ylabel('Cumulative Time')
     plt.xlabel('Graphs')
-    #plt.plot(objects, performance)
+    plt.plot(objects, performance)
  
     #plt.errorbar(objects, performance , yerr=[std[0], std[1], std[2], std[3]], fmt ='o')    
     #plt.savefig('pgp_time_LT')
     plt.show()
-path = 'experiments/facebook_combined_8-WC'
-m8 = plot_images(path, 'green')
 
 
-path ='experiments/facebook_combined_4-WC'
-m4= plot_images(path, 'blue')
+def gen_dist(path_original,path_scale):
+    print(path_scale, path_original)
+    gd_list = []
+    for i in range(10):
+        for j in range(10):
+            try:
+                df = pd.read_csv(path_scale +  '/run-{0}.csv'.format(i+1))
+                z = df["influence"].to_list()
+                x = df["n_nodes"].to_list()
+                df = pd.read_csv(path_original +  '/run-{0}.csv'.format(j+1))
+                z1 = df["influence"].to_list()
+                x1 = df["n_nodes"].to_list()
+            except:
+                pass
+           
+            pf = []
+    
+            for k in range(len(x1)):
+                pf.append([z1[k], x1[k]])
+            A = []
+    
+            for k in range(len(x)):
+                A.append([z[k], x[k]])
 
-path ='experiments/facebook_combined_2-WC'
-m2 = plot_images(path, 'orange')
+            
+            from pymoo.factory import get_performance_indicator
+            pf = np.array(pf)
+            A = np.array(A)
 
-path ='experiments/facebook_combined-WC'
-m1= plot_images(path, 'red')
+            gd = get_performance_indicator("gd", pf)
+            gd_list.append(gd.do(A))
 
+            #print(gd.do(A), i+1, j+1)
 
-
-#pIC.savefig('fb_politician_hv_')
-plt.show()
-plt.cla()
-plt.close()
-
-
-
-x = [8,4,2,1]
-y = [m8, m4, m2,m1]
-df = pd.DataFrame()
-df["scale"] = [8,4,2]
-df["HyperArea"] = [m8/m1,m4/m1,m2/m1]
-name = path.replace('experiments/','')
-df.to_csv('matrix_MOEA_results/'+name, sep=',', index=False)
-#print(x,y)
-#plt.plot(x,y, 'go-')
-#plt.show()
+    return np.mean(gd_list)
+graphs = ['pgp', 'fb_politician','fb-pages-public-figure', 'facebook_combined', 'fb_org', 'deezerEU']
+models = ['IC', 'WC']
+for name in graphs:
+    for model in models:
+        path8 = 'experiments/{0}_8-{1}'.format(name, model)
+        m8 = plot_images(path8, 'green')
 
 
-exit(0)
+        path4 ='experiments/{0}_4-{1}'.format(name, model)
+        m4= plot_images(path4, 'blue')
 
-path = ["experiments/fb_politician_8-IC","experiments/fb_politician_4-IC","experiments/fb_politician_2-IC","experiments/fb_politician-IC"]
+        path2 ='experiments/{0}_2-{1}'.format(name, model)
+        m2 = plot_images(path2, 'orange')
 
-#path = ["experiments/pgp_8-IC", "experiments/pgp_4-IC"]
-plot_time(path)
+        path ='experiments/{0}-{1}'.format(name, model)
+        m1= plot_images(path, 'red')
 
 
 
-exit(0)
+        #pWC.savefig('fb_politWCian_hv_')
+        #plt.show()
+        #plt.cla()
+        #plt.close()
+
+        gd8 = gen_dist(path, path8)
+        gd4 = gen_dist(path, path4)
+        gd2 = gen_dist(path, path2)   
+        #gd1 = gen_dist(path, path)   
+
+
+        print(gd8, gd4,gd2)
+        df = pd.DataFrame()
+        df["scale"] = [8,4,2]
+        df["Hyperarea"] = [m8/m1,m4/m1,m2/m1]
+        df["GD"] = [gd8,gd4,gd2]
+        path = path.replace('experiments/','')
+        df.to_csv('matrix_MOEA_results/'+path, sep=',', index=False)
+        #print(x,y)
+        #plt.plot(x,y, 'go-')
+        #plt.show()
+
+
+
+        path = ["experiments/{0}_8-{1}".format(name,model),"experiments/{0}_4-{1}".format(name,model),"experiments/{0}_2-{1}".format(name,model),"experiments/{0}-{1}".format(name,model)]
+
+        #,modelpath = ["experiments/{0}_8-IC".format(name), "experiments/pgp_4-IC"]
+        #plot_time(path)
+
+
+
 
 
