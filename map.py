@@ -32,7 +32,7 @@ def n_neighbor(G, id, n_hop):
 
 scale_list = [8,4,2]
 graph_list = ['deezerEU']
-model_list = ['IC', 'LT']
+model_list = ['WC']
 for graph in graph_list:
     for model_ in model_list:
         for scale_number in scale_list:
