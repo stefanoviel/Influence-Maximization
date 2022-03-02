@@ -31,8 +31,8 @@ def n_neighbor(G, id, n_hop):
     return list(set(neighbors))
 
 scale_list = [8,4,2]
-graph_list = ['deezerEU']
-model_list = ['WC']
+graph_list = ['facebook_combined']
+model_list = ['LT']
 for graph in graph_list:
     for model_ in model_list:
         for scale_number in scale_list:
