@@ -1,9 +1,10 @@
+from tkinter import FALSE
 import matplotlib.pyplot as plt
 import pandas as pd
 import os 
 import numpy as np
 import glob
-
+import seaborn as sns
 
 
 def plot_images(path, color):
@@ -30,10 +31,12 @@ def plot_images(path, color):
     
     return max(m)
 
-def plot_time(path):
+def plot_time(path, name):
     m = []
     std = []
-    for item in path:
+    df_new = pd.DataFrame()
+    scale = [8,4,2,1]
+    for idx, item in enumerate(path):
         tot = []
         for filename in glob.glob(os.path.join(item, '*.csv')):
             if 'time' in filename:
@@ -44,22 +47,28 @@ def plot_time(path):
                     t = list(df.iloc[i])
                     s += sum(t)
                 tot.append(s)
-        m.append(np.mean(tot))
-        std.append(np.std(tot))
+        if idx == 0:
+            df_new['time'] =  tot
+            df_new['Dataset'] = [name for i in range(len(tot))]
+            df_new["scale_factor"] = [scale[idx] for i in range(len(tot))]
+        else:
+            df1 = pd.DataFrame()
+            df1['time'] =  tot
+            df1['Dataset'] = [name for i in range(len(tot))]
+            df1["scale_factor"] = [scale[idx] for i in range(len(tot))]
+            df_new = pd.concat([df_new, df1], join="inner")
 
-    objects = ['Scale 1/8', 'Scale 1/4','Scale 1/2', 'Original']
-    #objects = [8,4,2,1]
-    y_pos = np.arange(len(objects))
-    performance = [m[0], m[1],m[2],m[3]]
-    plt.bar(y_pos, performance, yerr=[std[0], std[1], std[2], std[3]],align='center', alpha=0.5, ecolor='black', capsize=10)
-    plt.xticks(y_pos, objects)
-    plt.ylabel('Cumulative Time')
-    plt.xlabel('Graphs')
-    plt.plot(objects, performance)
+    #plt.bar(y_pos, performance, yerr=[std[0], std[1], std[2], std[3]],align='center', alpha=0.5, ecolor='black', capsize=10)
+    #plt.xticks(y_pos, objects)
+    #plt.ylabel('Cumulative Time')
+    #plt.xlabel('Graphs')
+    #plt.plot(objects, performance)
  
     #plt.errorbar(objects, performance , yerr=[std[0], std[1], std[2], std[3]], fmt ='o')    
     #plt.savefig('pgp_time_LT')
-    plt.show()
+    #plt.show()
+    
+    return df_new
 
 
 def gen_dist(path_original,path_scale):
@@ -97,55 +106,83 @@ def gen_dist(path_original,path_scale):
             #print(gd.do(A), i+1, j+1)
 
     return np.mean(gd_list)
-graphs = ['pgp', 'fb_politician','fb-pages-public-figure', 'facebook_combined', 'fb_org', 'deezerEU']
+graphs = ['pgp','deezerEU', 'fb_politician','fb-pages-public-figure', 'facebook_combined', 'fb_org']
+fig,(ax1, ax2) = plt.subplots(1, 2, sharex=False, sharey=False,figsize=(8,3))
 models = ['IC', 'WC']
-for name in graphs:
-    for model in models:
-        path8 = 'experiments/{0}_8-{1}'.format(name, model)
-        m8 = plot_images(path8, 'green')
+for model in models:
+    TIME = {}
+    for g in graphs:
+        TIME[g] = []
+    df_ = pd.DataFrame()
+    for idx, name in enumerate(graphs):
+        # path8 = 'experiments/{0}_8-{1}'.format(name, model)
+        # m8 = plot_images(path8, 'green')
 
 
-        path4 ='experiments/{0}_4-{1}'.format(name, model)
-        m4= plot_images(path4, 'blue')
+        # path4 ='experiments/{0}_4-{1}'.format(name, model)
+        # m4= plot_images(path4, 'blue')
 
-        path2 ='experiments/{0}_2-{1}'.format(name, model)
-        m2 = plot_images(path2, 'orange')
+        # path2 ='experiments/{0}_2-{1}'.format(name, model)
+        # m2 = plot_images(path2, 'orange')
 
-        path ='experiments/{0}-{1}'.format(name, model)
-        m1= plot_images(path, 'red')
-
-
-
-        #pWC.savefig('fb_politWCian_hv_')
-        #plt.show()
-        #plt.cla()
-        #plt.close()
-
-        gd8 = gen_dist(path, path8)
-        gd4 = gen_dist(path, path4)
-        gd2 = gen_dist(path, path2)   
-        #gd1 = gen_dist(path, path)   
+        # path ='experiments/{0}-{1}'.format(name, model)
+        # m1= plot_images(path, 'red')
 
 
-        print(gd8, gd4,gd2)
-        df = pd.DataFrame()
-        df["scale"] = [8,4,2]
-        df["Hyperarea"] = [m8/m1,m4/m1,m2/m1]
-        df["GD"] = [gd8,gd4,gd2]
-        path = path.replace('experiments/','')
-        df.to_csv('matrix_MOEA_results/'+path, sep=',', index=False)
-        #print(x,y)
-        #plt.plot(x,y, 'go-')
-        #plt.show()
 
+        # #pWC.savefig('fb_politWCian_hv_')
+        # #plt.show()
+        # #plt.cla()
+        # #plt.close()
+
+        # gd8 = gen_dist(path, path8)
+        # gd4 = gen_dist(path, path4)
+        # gd2 = gen_dist(path, path2)   
+        # gd1 = gen_dist(path, path)   
+
+
+        # print(gd8, gd4,gd2)
+        # df = pd.DataFrame()
+        # df["scale"] = [8,4,2]
+        # df["Hyperarea"] = [m8/m1,m4/m1,m2/m1]
+        # df["GD"] = [gd8,gd4,gd2]
+        # path = path.replace('experiments/','')
+        # df.to_csv('matrix_MOEA_results/'+path, sep=',', index=False)
+        # #print(x,y)
+        # #plt.plot(x,y, 'go-')
+        # #plt.show()
 
 
         path = ["experiments/{0}_8-{1}".format(name,model),"experiments/{0}_4-{1}".format(name,model),"experiments/{0}_2-{1}".format(name,model),"experiments/{0}-{1}".format(name,model)]
+        print(name)
+        df_results = plot_time(path, name)
+        scale = [8,4,2,1]
+        if idx == 0:
+            df_ = df_results
+        else:
+            df_ = pd.concat([df_, df_results], join="inner")
+    
+    if model == 'IC':
+        sns.lineplot(x='scale_factor', y='time', hue='Dataset', data = df_, ax=ax1,err_style="bars",style="Dataset", markers=True)
+        ax1.set_title('TIME {0} MODEL'.format(model))
+        ax1.get_legend().remove()
+        ax1.set_xticks([1,2,4,8])
+    else:
+        sns.lineplot(x='scale_factor', y='time', hue='Dataset', data = df_, ax=ax2,err_style="bars",style="Dataset", markers=True)
+        ax2.set_title('TIME {0} MODEL'.format(model))          
+        ax2.set_xticks([1,2,4,8])
+    df = pd.DataFrame.from_dict(TIME, orient='index')
+    df.to_latex('A',index=True)
+    print(df)
 
-        #,modelpath = ["experiments/{0}_8-IC".format(name), "experiments/pgp_4-IC"]
-        #plot_time(path)
-
-
-
+plt.subplots_adjust(left=0.06,
+            bottom=0.1, 
+            right=0.97, 
+            top=0.9, 
+            wspace=0.2, 
+            hspace=0.35)
+#fig.legend(loc = 'upper center', ncol=3,
+#        bbox_transform = plt.gcf().transFigure)
+plt.show() 
 
 

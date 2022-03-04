@@ -16,7 +16,10 @@ import math
 
 LAW = {}
 graphs = ['pgp', 'fb_politician','fb-pages-public-figure', 'facebook_combined', 'fb_org', 'deezerEU']
-for name in graphs:
+fig,a =  plt.subplots(2,3, sharey=True, sharex=True, figsize=(8,6))
+ax = [[0,0], [0,1], [0,2], [1,0], [1,1], [1,2]]
+
+for idx, name in enumerate(graphs):
     print(name)
     filenames = ["scale_graphs/{0}_8.txt".format(name),"scale_graphs/{0}_4.txt".format(name),"scale_graphs/{0}_2.txt".format(name),"graphs/{0}.txt".format(name)]    #filenames = ["scale_graphs/facebook_combined_prova8.txt","scale_graphs/facebook_combined_8.txt","graphs/facebook_combined.txt"]
     kk = []
@@ -38,9 +41,8 @@ for name in graphs:
 #        print(np.mean(item))
 
 
-    x = ['Original', '2', '4', '8']
-    x = x[::-1]
-    print(x)
+    x = ['Original', 's=2', 's=4', 's=8']
+    #x = x[::-1]
     filenames = filenames[::-1]
     real = np.mean(kk[0])
     color = ["green", 'blue','orange','red']
@@ -86,9 +88,13 @@ for name in graphs:
     plt.show()
     '''
 
-    plt.figure(figsize=(6, 6)) 
     i = 0
-    for item in filenames:
+    t = ax[idx]
+    print(t)
+    check = True
+    
+    list_leg = []
+    for id, item in enumerate(filenames):
         G = read_graph(item)
         degree_sequence = sorted([d for n, d in G.degree()], reverse=True)  # degree sequence
         
@@ -97,10 +103,13 @@ for name in graphs:
         #print(degreeCount)
         x1, y = zip(*degreeCount.items())                                                                                                                      
 
-        plt.xscale('log')  
-        plt.yscale('log')                                                                                                        
-                                                                                                        
-        plt.scatter(x1, y, marker='.',  s=100,color=color[i], label = str(x[i]))    
+        a[t[0]][t[1]].set_xscale('log')  
+        a[t[0]][t[1]].set_yscale('log')                                                                                                        
+        if idx == 5:    
+                k = a[t[0]][t[1]].scatter(x1, y, marker='.',  s=25,color=color[i], label = str(x[i]))
+                list_leg.append(k)
+        else:
+            a[t[0]][t[1]].scatter(x1, y, marker='.',  s=25,color=color[i])
         import powerlaw
         #y = [log10(x) for x in y]
         #x1 = [log10(x) for x in x1]
@@ -113,17 +122,37 @@ for name in graphs:
         #from scipy.stats import powerlaw as pw
         LAW[name].append(round(fit.power_law.alpha,2))
         #x = np.linspace(pw.ppf(0, a),pw.ppf(1, a), 1000)
-        #plt.plot(x, pw.pdf(x, a), 'r-', lw=5, alpha=0.6, label='powerlaw pdf',color=color[i])
-        #plt.show()
+        #a[idx].plot(x, pw.pdf(x, a), 'r-', lw=5, alpha=0.6, label='powerlaw pdf',color=color[i])
+        #a[idx].show()
         i = i+1
-    plt.xlabel('Degree')
-    plt.ylabel('Frequency')  
-    plt.legend()
+    #a[t[0]][t[1]].set_xlabel('Degree')
+    #a[t[0]][t[1]].set_ylabel('Frequency')  
+    #a[t[0]][t[1]].legend()
     #plt.savefig(name + '_scatter')
-    #plt.show()
-    plt.close()
-    plt.cla()
+    a[t[0]][t[1]].set_title(name, size=10)
+    #plt.close()
+    #plt.cla()
 
+
+
+labels = [l.get_label() for l in list_leg]
+print(labels)
+
+plt.setp(a[-1, :], xlabel='Degree')
+plt.setp(a[:, 0], ylabel='Frequency')
+#plt.legend()
+
+#plt.legend(list_leg, labels, loc='upper right', bbox_to_anchor=(0.5, -0.05))
+#plt.tight_layout()
+
+fig.legend(list_leg, labels,loc='upper center',ncol=4)
+plt.subplots_adjust(left=0.08,
+            bottom=0.1, 
+            right=0.96, 
+            top=0.85, 
+            wspace=0.05, 
+            hspace=0.2)
+plt.show()
 print(LAW)
 
 df = pd.DataFrame.from_dict(LAW, orient='index')
