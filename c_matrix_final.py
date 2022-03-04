@@ -8,7 +8,7 @@ r = ['Hyperarea', 'GD']
 model = ['IC','WC']
 scale = [8,4,2]
 for indicator in r:
-    graphs = ['pgp', 'fb_politician','fb-pages-public-figure', 'facebook_combined', 'fb_org']
+    graphs = ['pgp','deezerEU','fb_politician','fb-pages-public-figure', 'facebook_combined', 'fb_org']
     MAP = {}
     LATEX = {}
     for item in graphs:
@@ -32,7 +32,7 @@ for indicator in r:
         conf_arr.append(MAP[key])
 
 
-    fig = plt.figure(figsize=(12,6)) 
+    fig = plt.figure(figsize=(4,4)) 
     plt.clf()
     ax = fig.add_subplot(111)
     ax.set_aspect(1)

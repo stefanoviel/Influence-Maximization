@@ -72,8 +72,10 @@ def get_values(filename):
     return z,x
 if __name__ == '__main__':
     
-    graphs = ['deezerEU', 'pgp', 'fb_politician','fb-pages-public-figure', 'facebook_combined', 'fb_org']
-    models = ['IC', 'WC']
+    #graphs = ['deezerEU', 'pgp', 'fb_politician','fb-pages-public-figure', 'facebook_combined', 'fb_org']
+    #models = ['IC', 'WC']
+    graphs = [ 'pgp', 'fb_politician','facebook_combined']
+    models = ['LT']
     for idx, name in enumerate(graphs):
         for model in models:
             print(name, model, '-----')
@@ -124,95 +126,58 @@ if __name__ == '__main__':
             # print(df, area, cl, pcm, d)
             # print the results
 
-
+            from fastdtw import fastdtw
             scale = [8,4,2]
-            diff = [similaritymeasures.frechet_dist(t[:,1],t8[:,1]),similaritymeasures.frechet_dist(t[:,1],t4[:,1]),similaritymeasures.frechet_dist(t[:,1],t2[:,1])]
+            diff = [fastdtw(t[:,0],t8[:,0])[0],fastdtw(t[:,0],t4[:,0])[0],fastdtw(t[:,0],t2[:,0])[0]]
             #diff = [pcm8, pcm4, pcm2]
             df = pd.DataFrame()
             df["scale"] = scale
             df["diff"] = [float(x) for x in diff]
             df.to_csv('coef/{0}-{1}'.format(name, model),index=False)     
 
-            import numpy as np
-            import matplotlib.pyplot as plt
             from scipy.spatial.distance import euclidean
-            from fastdtw import fastdtw as fdw
-            
-            start=0
-            end=2*np.pi
-            step=0.1
-            k=2
-            
-            #x1=np.arange(start,end,k*step)
-            #x2=np.arange(start,end/k,step)
 
-            sin1=plt.plot(t[:,1],t[:,0])
-            
-            plt.setp(sin1,color='b',linewidth=2.0)
-            
-            sin2=plt.plot(t8[:,1],t8[:,0])
-            plt.setp(sin2,color='r',linewidth=2.0)
-            time_series_A=  np.array([[t[:,1][i],t[:,0][i]] for i in range(len(t))])
+            x = t[:,1]
+            y = t2[:,1]
+            x = (x - np.min(x)) / (np.max(x) - np.min(x))
+            y = (y - np.min(y)) / (np.max(y) - np.min(y))
+            print(x)
+            print(y)
+            dtw_distance, warp_path = fastdtw(x, y, dist=euclidean)
 
-            time_series_B= np.array([[t8[:,1][i],t8[:,0][i]] for i in range(len(t8))])
+            fig, ax = plt.subplots(figsize=(6, 6))
 
-            distance, path = fdw(time_series_A, time_series_B, dist=euclidean)
-            print(distance)
-            #print(path)
+            # Remove the border and axes ticks
+            #fig.patch.set_visible(False)
+            #ax.axis('off')
 
+            for [map_x, map_y] in warp_path:
+                ax.plot([map_x, map_y], [x[map_x], y[map_y]], '--k', linewidth=4)
 
-            
-            
-            index_a,index_b=zip(*path)
-            for i in index_a:
-                try:
-                    x1=time_series_A[i][0]
-                    y1=time_series_A[i][1]
-                    x2=time_series_B[i][0]
-                    y2=time_series_B[i][1]
-                
-                    plt.plot([x1, x2], [y1, y2], color='k', linestyle='-', linewidth=2)
-                except:
-                    pass
-            plt.show()
+            ax.plot(x, '-ro', label='x', linewidth=4, markersize=1, markerfacecolor='lightcoral', markeredgecolor='lightcoral')
+            ax.plot(y, '-bo', label='y', linewidth=4, markersize=1, markerfacecolor='skyblue', markeredgecolor='skyblue')
+            ax.set_title("DTW Distance", fontsize=28, fontweight="bold")
+
+            fig.savefig("AA.png")
+            #exit(0)
+            #plt.show()
 #------------------------------------------------------------------------------------------------------------------------
            
            
-            # plt.scatter(z2,x2,color="red",label='Original')
-            # plt.scatter(z1,x1,color="orange",label='2')
-            # plt.scatter(z0,x0,color="blue",label='4')
-            # plt.scatter(z,x,color="green",label='8')
+            plt.scatter(t[:,1],t[:,0],color="red",label='Original')
+            plt.scatter(t2[:,1],t2[:,0],color="orange",label='2')
+            plt.scatter(t4[:,1],t4[:,0],color="blue",label='4')
+            plt.scatter(t8[:,1],t8[:,0],color="green",label='8')
 
-            # #plt.title('Facebook PolitLTians WC p=0.01 model')
-            # plt.xlabel('% Influenced Nodes')
-            # plt.ylabel('% Nodes as seed set')
-            # plt.legend()
-            # plt.xlim(0,100)
-            # plt.ylim(0,2.5)
-            # plt.legend()
-            # plt.title(name + ' ' +model )
-            # plt.show()
+            #plt.title('Facebook PolitLTians WC p=0.01 model')
+            plt.xlabel('% Influenced Nodes')
+            plt.ylabel('% Nodes as seed set')
+            plt.legend()
+            plt.xlim(0,100)
+            plt.ylim(0,2.5)
+            plt.legend()
+            plt.title(name + ' ' +model )
+            plt.show()
 
-
-
-            # scale = [8,4,2]
-            # diff = [euclidean_distances(np.array(m.reshape(1, -1)) , np.array(m8.reshape(1, -1))),euclidean_distances(np.array(m.reshape(1, -1)) , np.array(m4.reshape(1, -1))),euclidean_distances(np.array(m.reshape(1, -1)) , np.array(m2.reshape(1, -1)))]
-            # df = pd.DataFrame()
-            # df["scale"] = scale
-            # df["diff"] = [float(x) for x in diff]
-            # df.to_csv('coef/{0}-{1}'.format(name, model),index=False)
            
-            # plt.scatter(z2,x2,color="red",label='Original')
-            # plt.scatter(z1,x1,color="orange",label='2')
-            # plt.scatter(z0,x0,color="blue",label='4')
-            # plt.scatter(z,x,color="green",label='8')
-
-            # #plt.title('Facebook PolitLTians WC p=0.01 model')
-            # plt.xlabel('% Influenced Nodes')
-            # plt.ylabel('% Nodes as seed set')
-            # plt.legend()
-            # plt.xlim(0,100)
-            # plt.ylim(0,2.5)
-            # plt.legend()
-            # plt.title(name + ' ' +model )
-            # plt.show()
+        
