@@ -31,13 +31,9 @@ if __name__ == '__main__':
     # filename3 = "facebook_combined_scale_3-k33-p0.15000000000000002-IC.csv.csv"
     # filename4 = "facebook_combined_scale_4-k25-p0.2-IC.csv.csv"
     # filename5 = "facebook_combined_scale_5-k20-p0.25-IC.csv.csv"
-    filename = "/Users/elia/Desktop/Influence-Maximization/facebook_combined-k100-p0.02288800235736791-LT.csv.csv"
-    filename1_3 = "facebook_combined_scale_1.33-k75-p0.030493688188469887-LT.csv.csv"
-    filename1_5 = "facebook_combined_scale_1.5-k66-p0.03436781609195402-LT.csv.csv"  
-    filename2= "facebook_combined_scale_2-k50-p0.0459030556566024-LT.csv.csv"
-    filename3 = "facebook_combined_scale_3-k33-p0.06850433894844309-LT.csv.csv"
-    filename4 = "facebook_combined_scale_4-k25-p0.091599560761347-LT.csv.csv"
-    filename5 = "facebook_combined_scale_5-k20-p0.11329348135496727-LT.csv.csv"
+    filename = "experiments/pgp-WC/run-1.csv"
+    filename1_3 = "experiments_old/pgp-WC/run-1.csv"
+
 
     # filename = "graph_SBM_small-k100-p0.05-IC.csv.csv"
     # filename1_3 = "graph_SBM_small_scale_1.33-k75-p0.0665-IC.csv.csv"
@@ -86,6 +82,8 @@ if __name__ == '__main__':
     z0 = df0["influence"]
     #y0 = df0["time"]
 
+
+    '''
     df11 = pd.read_csv(filename1_5)
     x1 =df11["n_nodes"]
     z1 =df11["influence"]
@@ -110,19 +108,22 @@ if __name__ == '__main__':
     x5 =df5["n_nodes"]
     z5 =df5["influence"]
     #y5 =df5["time"]
-
-    plt.scatter(x, z, color="blue", label="original")
-    plt.scatter(x0, z0, color='red',label="75%")
-    plt.scatter(x1, z1, color='orange',label="66%")
-    plt.scatter(x2, z2, color='grey',label="50%")
-    plt.scatter(x3, z3, color='brown',label="33%")
-    plt.scatter(x4, z4, color='purple',label="25%")
-    plt.scatter(x5, z5, color='black',label="20%",)
+    '''
+    plt.scatter(z, x, color="black", label="2")
+    plt.scatter(z0, x0, color='red',label="3")
+    #plt.scatter(x1, z1, color='orange',label="66%")
+    #plt.scatter(x2, z2, color='grey',label="50%")
+    #plt.scatter(x3, z3, color='brown',label="33%")
+    #plt.scatter(x4, z4, color='purple',label="25%")
+    #plt.scatter(x5, z5, color='black',label="20%",)
     plt.legend()
     plt.xlabel("No Nodes")
     plt.ylabel("Influence")
 
     plt.show() 
+
+
+    exit(0)
     max = [max(z5),max(z4),max(z3),max(z2),max(z1),max(z0),max(z)]
 
     gt = []

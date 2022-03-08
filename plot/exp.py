@@ -6,7 +6,7 @@ import numpy as np
 import glob
 import seaborn as sns
 
-
+#sns.set(font_scale = 2)
 def plot_images(path, color):
     t = []
     for filename in glob.glob(os.path.join(path, '*.csv')):
@@ -35,7 +35,9 @@ def plot_time(path, name):
     m = []
     std = []
     df_new = pd.DataFrame()
-    scale = [8,4,2,1]
+    scale = ['s=8', 's=4', 's=2', 'Original']
+    scale = scale[::-1]
+    path = path[::-1]
     for idx, item in enumerate(path):
         tot = []
         for filename in glob.glob(os.path.join(item, '*.csv')):
@@ -48,14 +50,14 @@ def plot_time(path, name):
                     s += sum(t)
                 tot.append(s)
         if idx == 0:
-            df_new['time'] =  tot
+            df_new['Time'] =  tot
             df_new['Dataset'] = [name for i in range(len(tot))]
-            df_new["scale_factor"] = [scale[idx] for i in range(len(tot))]
+            df_new["Graph"] = [scale[idx] for i in range(len(tot))]
         else:
             df1 = pd.DataFrame()
-            df1['time'] =  tot
+            df1['Time'] =  tot
             df1['Dataset'] = [name for i in range(len(tot))]
-            df1["scale_factor"] = [scale[idx] for i in range(len(tot))]
+            df1["Graph"] = [scale[idx] for i in range(len(tot))]
             df_new = pd.concat([df_new, df1], join="inner")
 
     #plt.bar(y_pos, performance, yerr=[std[0], std[1], std[2], std[3]],align='center', alpha=0.5, ecolor='black', capsize=10)
@@ -106,8 +108,9 @@ def gen_dist(path_original,path_scale):
             #print(gd.do(A), i+1, j+1)
 
     return np.mean(gd_list)
-graphs = ['pgp','deezerEU', 'fb_politician','fb-pages-public-figure', 'facebook_combined', 'fb_org']
-fig,(ax1, ax2) = plt.subplots(1, 2, sharex=False, sharey=False,figsize=(8,3))
+graphs = ['facebook_combined',  'fb_politician', 'fb_org', 'fb-pages-public-figure', 'pgp','deezerEU']
+alias = ['Ego Fb.','Fb. Pol.', 'Fb. Org.', 'Fb. Pag.', 'PGP','Deezer']
+fig,(ax1, ax2) = plt.subplots(1, 2, sharex=False, sharey=True,figsize=(10,4.5))
 models = ['IC', 'WC']
 for model in models:
     TIME = {}
@@ -155,7 +158,7 @@ for model in models:
 
         path = ["experiments/{0}_8-{1}".format(name,model),"experiments/{0}_4-{1}".format(name,model),"experiments/{0}_2-{1}".format(name,model),"experiments/{0}-{1}".format(name,model)]
         print(name)
-        df_results = plot_time(path, name)
+        df_results = plot_time(path, alias[idx])
         scale = [8,4,2,1]
         if idx == 0:
             df_ = df_results
@@ -163,26 +166,43 @@ for model in models:
             df_ = pd.concat([df_, df_results], join="inner")
     
     if model == 'IC':
-        sns.lineplot(x='scale_factor', y='time', hue='Dataset', data = df_, ax=ax1,err_style="bars",style="Dataset", markers=True)
-        ax1.set_title('TIME {0} MODEL'.format(model))
+        sns.barplot(x='Graph', y='Time', hue='Dataset', data = df_, ax=ax1)
+        #ax1.set_xticklabels(fontsize=14)
+        #ax1.set_yticklabels(fontsize=14)
+
+        ax1.set_title('{0} Model'.format(model), x=0.5, y=0.9, fontsize=14)
         ax1.get_legend().remove()
-        ax1.set_xticks([1,2,4,8])
+        ax1.set(xlabel='Graph', ylabel='Time')
+        ax1.xaxis.get_label().set_fontsize(14)
+        ax1.yaxis.get_label().set_fontsize(14)
+        s = ['s=8', 's=4', 's=2', 'Original']
+        s = s[::-1]
+        ax1.set_xticklabels(s,rotation=0, fontsize=14)
+
     else:
-        sns.lineplot(x='scale_factor', y='time', hue='Dataset', data = df_, ax=ax2,err_style="bars",style="Dataset", markers=True)
-        ax2.set_title('TIME {0} MODEL'.format(model))          
-        ax2.set_xticks([1,2,4,8])
+        sns.barplot(x='Graph', y='Time', hue='Dataset', data = df_, ax=ax2)
+        ax2.set_title('{0} Model'.format(model), x=0.5, y=0.9, fontsize=14)
+        ax2.set(xlabel='Graph', ylabel='')
+        ax2.xaxis.get_label().set_fontsize(14)
+        s = ['s=8', 's=4', 's=2', 'Original']
+        s = s[::-1]
+        ax2.set_xticklabels(s,rotation=0, fontsize=14)
+
+
     df = pd.DataFrame.from_dict(TIME, orient='index')
     df.to_latex('A',index=True)
     print(df)
 
 plt.subplots_adjust(left=0.06,
-            bottom=0.1, 
-            right=0.97, 
-            top=0.9, 
-            wspace=0.2, 
+            bottom=0.12, 
+            right=0.99, 
+            top=0.95, 
+            wspace=0, 
             hspace=0.35)
 #fig.legend(loc = 'upper center', ncol=3,
 #        bbox_transform = plt.gcf().transFigure)
+
+plt.savefig('time.eps', format='eps')
 plt.show() 
 
 

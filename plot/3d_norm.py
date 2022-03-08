@@ -151,14 +151,12 @@ if __name__ == '__main__':
             #fig.patch.set_visible(False)
             #ax.axis('off')
 
-            for [map_x, map_y] in warp_path:
-                ax.plot([map_x, map_y], [x[map_x], y[map_y]], '--k', linewidth=4)
+                #ax.plot([map_x, map_y], [x[map_x], y[map_y]], '--k', linewidth=4)
 
-            ax.plot(x, '-ro', label='x', linewidth=4, markersize=1, markerfacecolor='lightcoral', markeredgecolor='lightcoral')
-            ax.plot(y, '-bo', label='y', linewidth=4, markersize=1, markerfacecolor='skyblue', markeredgecolor='skyblue')
-            ax.set_title("DTW Distance", fontsize=28, fontweight="bold")
+            #ax.plot(x, '-ro', label='x', linewidth=4, markersize=1, markerfacecolor='lightcoral', markeredgecolor='lightcoral')
+            #ax.plot(y, '-bo', label='y', linewidth=4, markersize=1, markerfacecolor='skyblue', markeredgecolor='skyblue')
+            #ax.set_title("DTW Distance", fontsize=28, fontweight="bold")
 
-            fig.savefig("AA.png")
             #exit(0)
             #plt.show()
 #------------------------------------------------------------------------------------------------------------------------

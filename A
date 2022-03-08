@@ -1,9 +1,12 @@
-\begin{tabular}{l}
+\begin{tabular}{lrrrrrr}
 \toprule
-Empty DataFrame
-Columns: RangeIndex(start=0, stop=0, step=1)
-Index: Index(['pgp', 'deezerEU', 'fb\_politician', 'fb-pages-public-figure',
-       'facebook\_combined', 'fb\_org'],
-      dtype='object') \\
+{} &  IC s=8 &  IC s=4 &  IC s=2 &  WC s=8 &  WC s=4 &  WC s=2 \\
+\midrule
+Ego Fb.  &    2.22 &   12.36 &   30.16 &    0.44 &    0.76 &    1.05 \\
+Fb. Pol. &    2.65 &    6.52 &   10.45 &    0.23 &    0.47 &    0.62 \\
+Fb. Org. &    1.38 &    4.37 &   10.96 &    0.31 &    0.23 &    0.20 \\
+Fb. Pag. &    0.61 &    0.23 &    2.19 &    0.75 &    0.65 &    0.68 \\
+PGP      &    0.25 &    0.61 &    0.88 &    0.16 &    0.23 &    0.39 \\
+Deezer   &    0.31 &    0.56 &    0.39 &    0.05 &    0.11 &    0.19 \\
 \bottomrule
 \end{tabular}
