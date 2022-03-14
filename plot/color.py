@@ -11,7 +11,6 @@ import matplotlib.pyplot as plt
 graphs = ['facebook_combined',  'fb_politician', 'fb_org', 'fb-pages-public-figure', 'pgp','deezerEU']
 models = ['IC','WC']
 
-
 for name in graphs:
     for m in models:
         fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12,6))
@@ -39,16 +38,20 @@ for name in graphs:
             n = item.split(" ")
             x = [int(x) for x in n]
             print(f'Number of elements in the biggest seed set : {len(x)}')
-            color_map = ['red' if node in x else 'white' for node in G] 
+            color_map = ['red' if node in x else 'None' for node in G] 
+            size = [30 if node in x else 10 for node in G]
             if i == 0:
-                POSITION = nx.spring_layout(G)
+                POSITION = nx.spring_layout(G) # spring_layout
                 nx.draw_networkx(G, POSITION,  edgecolors='black',node_color=color_map,arrowsize=1,node_size=20,linewidths=0.5, edge_color="#C0C0C0", width=0.5, ax=a, with_labels=False)
             elif i == 1:
-                #G = [G.subgraph(c).copy() for c in nx.connected_components(G)]
+                Gcc = sorted(nx.connected_components(G), key=len, reverse=True)
+                G = G.subgraph(Gcc[0])                
+
+                color_map = ['red' if node in x else 'None' for node in G] 
                 position = nx.spring_layout(G)
-                nx.draw_networkx(G, position,  edgecolors='black',node_color=color_map,arrowsize=1,node_size=20,linewidths=0.5, edge_color="#C0C0C0", width=0.5, ax=a, with_labels=False)         
+                nx.draw_networkx(G, position,  edgecolors='black',node_color=color_map,arrowsize=1,node_size=20,linewidths=0.5, edge_color="#C0C0C0", width=0.5, ax=a, with_labels=False)        
             else:
-                nx.draw_networkx(G, POSITION,  edgecolors='black',node_color=color_map,arrowsize=1,node_size=20,linewidths=0.5, edge_color="#C0C0C0", width=0.5, ax=a, with_labels=False)
+               nx.draw_networkx(G, POSITION,  edgecolors='black',node_color=color_map,arrowsize=1,node_size=20,linewidths=0.5, edge_color="#C0C0C0", width=0.5, ax=a, with_labels=False)
             
             a.set_title(titles[i])
 
@@ -58,9 +61,5 @@ for name in graphs:
                     top=0.95, 
                     wspace=0, 
                     hspace=0.35)
-        plt.savefig(f'net_images/graph_{name}-{m}.eps', format='eps')
-        #plt.show()
-        #plt.cla()
-
-
+        plt.savefig(f'net_images/graph_{name}-{m}_low_resolution.png', format='png', dpi=2000)
 
