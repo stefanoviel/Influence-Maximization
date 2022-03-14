@@ -57,6 +57,7 @@ for idk, graph in enumerate(name_graph):
     degree_measure = ['degree_centrality','closeness', 'betweenness', 'eigenvector_centrality', 'katz_centrality','page_rank','core']
     MAP = {}
     MAP['MOEA'] = []
+    MAP[''] = [None for x in range(6)]
     for item in degree_measure:
         MAP[item] = []
     model = ['IC', 'WC']
@@ -102,16 +103,25 @@ for idk, graph in enumerate(name_graph):
         sns.heatmap(df, annot=True,cmap ="YlGnBu",vmin=0, vmax=1, linecolor='white', linewidths=.1, ax= axn[t[0]][t[1]],cbar=True, cbar_ax=cbar_ax,annot_kws={"fontsize":12})
     else:
         sns.heatmap(df, annot=True,cmap ="YlGnBu",vmin=0, vmax=1, linecolor='white', linewidths=.1, ax= axn[t[0]][t[1]],cbar=False, annot_kws={"fontsize":12})
+    df.iloc[0] = [0,0,0,0,0,0]
+    df = df.round(2)
+
     column_max = df.idxmax(axis=0)
+
     from matplotlib.patches import Rectangle
     for col, variable in enumerate(df):
         position = df.index.get_loc(column_max[variable])
+        #print(position , col, variable)
         axn[t[0]][t[1]].add_patch(Rectangle((col, position),1,1, fill=False, edgecolor='red', lw=1))
+    #axn[t[0]][t[1]].hlines([1], *axn[t[0]][t[1]].get_xlim(), color='yellow', linewidth=4)
     
+    #axn[t[0]][t[1]].add_patch(Rectangle((0, 0), 6, 1, fill=False, edgecolor='black', lw=4, clip_on=False))
+
     axn[t[0]][t[1]].set_title(alias[idk], fontsize=14)
     labels = ['IC s=2','IC s=4','IC s=8','WC s=2','WC s=4','WC s=8']
     axn[t[0]][t[1]].set_xticklabels(labels,rotation=90,fontsize=14)
     axn[t[0]][t[1]].set_yticklabels(list(MAP2.keys()),rotation=0,fontsize=14)
+    axn[t[0]][t[1]].tick_params(left=False, bottom=False)
 plt.subplots_adjust(left=0.07,
             bottom=0.1, 
             right=0.99, 

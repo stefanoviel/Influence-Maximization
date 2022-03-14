@@ -134,7 +134,9 @@ for idx, name in enumerate(graphs):
     #a[t[0]][t[1]].set_ylabel('Frequency')  
     #a[t[0]][t[1]].legend()
     #plt.savefig(name + '_scatter')
-    a[t[0]][t[1]].set_title(alias[idx], x=0.5, y=0.9)
+    a[t[0]][t[1]].set_title(alias[idx], x=0.5, y=0.9, fontsize=12)
+    a[t[0]][t[1]].xaxis.get_label().set_fontsize(12)
+    a[t[0]][t[1]].yaxis.get_label().set_fontsize(12)
     #plt.close()
     #plt.cla()
 

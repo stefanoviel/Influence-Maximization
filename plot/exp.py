@@ -50,12 +50,12 @@ def plot_time(path, name):
                     s += sum(t)
                 tot.append(s)
         if idx == 0:
-            df_new['Time'] =  tot
+            df_new['Activation Attempts'] =  tot
             df_new['Dataset'] = [name for i in range(len(tot))]
             df_new["Graph"] = [scale[idx] for i in range(len(tot))]
         else:
             df1 = pd.DataFrame()
-            df1['Time'] =  tot
+            df1['Activation Attempts'] =  tot
             df1['Dataset'] = [name for i in range(len(tot))]
             df1["Graph"] = [scale[idx] for i in range(len(tot))]
             df_new = pd.concat([df_new, df1], join="inner")
@@ -166,13 +166,13 @@ for model in models:
             df_ = pd.concat([df_, df_results], join="inner")
     
     if model == 'IC':
-        sns.barplot(x='Graph', y='Time', hue='Dataset', data = df_, ax=ax1)
+        sns.barplot(x='Graph', y='Activation Attempts', hue='Dataset', data = df_, ax=ax1)
         #ax1.set_xticklabels(fontsize=14)
         #ax1.set_yticklabels(fontsize=14)
 
         ax1.set_title('{0} Model'.format(model), x=0.5, y=0.9, fontsize=14)
         ax1.get_legend().remove()
-        ax1.set(xlabel='Graph', ylabel='Time')
+        ax1.set(xlabel='Graph', ylabel='Activation Attempts')
         ax1.xaxis.get_label().set_fontsize(14)
         ax1.yaxis.get_label().set_fontsize(14)
         s = ['s=8', 's=4', 's=2', 'Original']
@@ -180,7 +180,7 @@ for model in models:
         ax1.set_xticklabels(s,rotation=0, fontsize=14)
 
     else:
-        sns.barplot(x='Graph', y='Time', hue='Dataset', data = df_, ax=ax2)
+        sns.barplot(x='Graph', y='Activation Attempts', hue='Dataset', data = df_, ax=ax2)
         ax2.set_title('{0} Model'.format(model), x=0.5, y=0.9, fontsize=14)
         ax2.set(xlabel='Graph', ylabel='')
         ax2.xaxis.get_label().set_fontsize(14)

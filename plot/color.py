@@ -11,7 +11,6 @@ import matplotlib.pyplot as plt
 graphs = ['facebook_combined',  'fb_politician', 'fb_org', 'fb-pages-public-figure', 'pgp','deezerEU']
 models = ['IC','WC']
 
-
 for name in graphs:
     for m in models:
         fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12,6))
@@ -58,9 +57,6 @@ for name in graphs:
                     top=0.95, 
                     wspace=0, 
                     hspace=0.35)
-        plt.savefig(f'net_images/graph_{name}-{m}.eps', format='eps')
-        #plt.show()
-        #plt.cla()
+        plt.savefig(f'net_images/graph_{name}-{m}_low_resolution.png', format='png', dpi=2000)
 
-
-
+        ##proviamo
