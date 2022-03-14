@@ -63,3 +63,4 @@ for name in graphs:
                     hspace=0.35)
         plt.savefig(f'net_images/graph_{name}-{m}_low_resolution.png', format='png', dpi=2000)
 
+        ##proviamo
