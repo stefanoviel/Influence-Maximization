@@ -118,7 +118,7 @@ for idk, graph in enumerate(name_graph):
     #axn[t[0]][t[1]].add_patch(Rectangle((0, 0), 6, 1, fill=False, edgecolor='black', lw=4, clip_on=False))
 
     axn[t[0]][t[1]].set_title(alias[idk], fontsize=14)
-    labels = ['IC s=2','IC s=4','IC s=8','WC s=2','WC s=4','WC s=8']
+    labels = ['IC $\it{s}$=2','IC $\it{s}$=4','IC $\it{s}$=8','WC $\it{s}$=2','WC $\it{s}$=4','WC $\it{s}$=8']
     axn[t[0]][t[1]].set_xticklabels(labels,rotation=90,fontsize=14)
     axn[t[0]][t[1]].set_yticklabels(list(MAP2.keys()),rotation=0,fontsize=14)
     axn[t[0]][t[1]].tick_params(left=False, bottom=False)
