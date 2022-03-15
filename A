@@ -1,12 +1,9 @@
-\begin{tabular}{lrrrr}
+\begin{tabular}{l}
 \toprule
-{} &     0 &     1 &     2 &     3 \\
-\midrule
-Ego Fb.  &  1.32 &  1.35 &  1.38 &  1.42 \\
-Fb. Pol. &  1.50 &  1.52 &  1.54 &  1.57 \\
-Fb. Org. &  1.40 &  1.32 &  1.33 &  1.35 \\
-Fb. Pag. &  1.60 &  1.58 &  1.60 &  1.62 \\
-PGP      &  2.11 &  1.94 &  1.97 &  1.93 \\
-Deezer   &  1.73 &  1.66 &  1.68 &  1.68 \\
+Empty DataFrame
+Columns: RangeIndex(start=0, stop=0, step=1)
+Index: Index(['facebook\_combined', 'fb\_politician', 'fb\_org',
+       'fb-pages-public-figure', 'deezerEU', 'pgp'],
+      dtype='object') \\
 \bottomrule
 \end{tabular}

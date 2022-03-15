@@ -18,7 +18,7 @@ LAW = {}
 graphs = ['facebook_combined',  'fb_politician', 'fb_org', 'fb-pages-public-figure', 'pgp','deezerEU']
 alias = ['Ego Fb.','Fb. Pol.', 'Fb. Org.', 'Fb. Pag.', 'PGP','Deezer']
 
-fig,a =  plt.subplots(2,3, sharey=True, sharex=True, figsize=(8,6))
+fig,a =  plt.subplots(2,3, sharey=True, sharex=True, figsize=(9,6))
 ax = [[0,0], [0,1], [0,2], [1,0], [1,1], [1,2]]
 
 for idx, name in enumerate(graphs):
@@ -43,7 +43,7 @@ for idx, name in enumerate(graphs):
 #        print(np.mean(item))
 
 
-    x = ['Original', 's=2', 's=4', 's=8']
+    x = ['Original', '$\it{s}$=2', '$\it{s}$=4', '$\it{s}$=8']
     #x = x[::-1]
     filenames = filenames[::-1]
     real = np.mean(kk[0])
@@ -108,37 +108,23 @@ for idx, name in enumerate(graphs):
         a[t[0]][t[1]].set_xscale('log')  
         a[t[0]][t[1]].set_yscale('log')                                                                                                        
         if idx == 5:    
-                k = a[t[0]][t[1]].scatter(x1, y, marker='.',  s=25,color=color[i], label = str(x[i]))
+                k = a[t[0]][t[1]].scatter(x1, y, marker='x', s=30,color=color[i], label = str(x[i]))
                 list_leg.append(k)
+                a[t[0]][t[1]].legend(bbox_to_anchor=(0.5,0.9), fontsize=12)
+
         else:
-            a[t[0]][t[1]].scatter(x1, y, marker='.',  s=25,color=color[i])
-        import powerlaw
-        #degree_sequence = [log10(x) for x in degree_sequence]
-        #x1 = [log10(x) for x in x1]
+            a[t[0]][t[1]].scatter(x1, y, marker='x', s=30,color=color[i])#,facecolors='none'
         import powerlaw
         fit = powerlaw.Fit(degree_sequence, xmin=min(degree_sequence), xmax=max(degree_sequence))
-        #fit.power_law.plot_pdf(color= 'b',linestyle='--',label='fit ccdf')
 
         print('alpha= ',fit.power_law.alpha,'  sigma= ',fit.power_law.sigma, fit.power_law.xmin)
-        #a = fit.power_law.alpha
-        #from scipy.stats import powerlaw as pw
         LAW[alias[idx]].append(round(fit.power_law.alpha,2))
         boh.append(round(fit.power_law.sigma,2))
-        #x = np.linspace(pw.ppf(0, a),pw.ppf(1, a), 1000)
-        #a[idx].plot(x, pw.pdf(x, a), 'r-', lw=5, alpha=0.6, label='powerlaw pdf',color=color[i])
-        #a[idx].show()
+
         i = i+1
-    #for item in boh:
-    #    LAW[name].append(item)
-    #a[t[0]][t[1]].set_xlabel('Degree')
-    #a[t[0]][t[1]].set_ylabel('Frequency')  
-    #a[t[0]][t[1]].legend()
-    #plt.savefig(name + '_scatter')
     a[t[0]][t[1]].set_title(alias[idx], x=0.5, y=0.9, fontsize=12)
     a[t[0]][t[1]].xaxis.get_label().set_fontsize(12)
     a[t[0]][t[1]].yaxis.get_label().set_fontsize(12)
-    #plt.close()
-    #plt.cla()
 
 
 
@@ -152,14 +138,14 @@ plt.setp(a[:, 0], ylabel='Frequency')
 #plt.legend(list_leg, labels, loc='upper right', bbox_to_anchor=(0.5, -0.05))
 #plt.tight_layout()
 
-fig.legend(list_leg, labels,loc='upper center',ncol=4)
+#fig.legend(list_leg, labels,loc='right',ncol=2)
 plt.subplots_adjust(left=0.07,
             bottom=0.1, 
             right=0.99, 
-            top=0.92, 
+            top=0.99, 
             wspace=0, 
             hspace=0)
-plt.savefig('plot_scaling.eps', format='eps')
+plt.savefig('plot_scaling_x.eps', format='eps')
 plt.show()
 print(LAW)
 

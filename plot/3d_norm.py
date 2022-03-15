@@ -120,6 +120,7 @@ if __name__ == '__main__':
             m2 = np.array([[b[i],a[i]] for i in range(len(b))])
             
             m4 = get_PF(m4)
+            '''
             matrix = []
             for item in t:
                 appo = []
@@ -148,11 +149,10 @@ if __name__ == '__main__':
                 if math.isnan(np.mean(item)):
                     print('male')
                     print(item)
-            exit(0)
 #max{AMSS(Qn−1, Cm−1) + 2sim(qn, cm), 
 # AMSS(Qn−2, Cm−1)+2sim(qn−1, cm)+sim(qn, cm), 
 # AMSS(Qn−1, Cm−2)+2sim(qn, cm−1)+sim(qn, cm)}
-
+'''
            ## AXES 1 
 
             if model == 'IC':
@@ -182,15 +182,16 @@ if __name__ == '__main__':
                 ## AXES 2
 
                 ax2.scatter(t[:,1],t[:,0],color="red",label='Original')
-                ax2.scatter(m2[:,1],m2[:,0],color="orange",label='2 map')
-                ax2.scatter(m4[:,1],m4[:,0],color="blue",label='4 map')
-                ax2.scatter(m8[:,1],m8[:,0],color="green",label='8 map')
+                ax2.scatter(m2[:,1],m2[:,0],color="orange",label='$\it{s}$=2')
+                ax2.scatter(m4[:,1],m4[:,0],color="blue",label='$\it{s}$=4')
+                ax2.scatter(m8[:,1],m8[:,0],color="green",label='$\it{s}$=8')
                 #ax2.set_title('Mapping', x=0.1, y=0.9,fontsize=12)
                 ax1.set_xlim(0,max((t[:,1])+0.15*max((t[:,1]))))
                 ax2.set_xlim(0,max((t[:,1])+0.15*max((t[:,1]))))
                 ax1.set_xticklabels([])
                 ax2.xaxis.get_label().set_fontsize(12)
                 ax2.yaxis.get_label().set_fontsize(12)
+                ax1.legend(fontsize=12)
                 #ax1.text(max((t[:,1]))/2,2.6,'IC Model', fontsize=12)
             else:
                 ax3.scatter(t[:,1],t[:,0],color="red",label='Original')
@@ -226,16 +227,12 @@ if __name__ == '__main__':
 
             #plt.legend()
         plt.subplots_adjust(left=0.07,
-        bottom=0.11, 
-        right=0.96, 
-        top=0.9, 
+        bottom=0.08, 
+        right=0.99, 
+        top=0.99, 
         wspace=0., 
         hspace=0.0)
 
-
-        labels = [l.get_label() for l in list_leg]
-
-        fig.legend(list_leg, labels,loc='upper center',ncol=4)
         #fig.suptitle('IC', fontsize=12)
         plt.savefig('PF/{0}.eps'.format(name), format='eps')
         plt.savefig('PF/{0}.png'.format(name), format='png')
