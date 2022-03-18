@@ -110,8 +110,8 @@ def gen_dist(path_original,path_scale):
             #print(gd.do(A), i+1, j+1)
 
     return np.mean(gd_list)
-graphs = ['facebook_combined',  'fb_politician', 'fb_org', 'fb-pages-public-figure','deezerEU','pgp']
-alias = ['Ego Fb.','Fb. Pol.', 'Fb. Org.', 'Fb. Pag.','Deezer','PGP']
+graphs = ['facebook_combined',  'fb_politician', 'fb_org', 'fb-pages-public-figure','pgp','deezerEU']
+alias = ['Ego Fb.','Fb. Pol.', 'Fb. Org.', 'Fb. Pag.','PGP','Deezer']
 fig,(ax1, ax2) = plt.subplots(1, 2, sharex=False, sharey=True,figsize=(11,4.5))
 models = ['IC', 'WC']
 for model in models:
@@ -163,28 +163,22 @@ for model in models:
     
 
     if model == 'IC':
-        ax1.set_yscale('log')     
+        #ax1.set_yscale('log')     
         bar = sns.barplot(x='Dataset', y='Activation Attempts', hue='Graph', palette=['red', 'orange', 'blue', 'green'], data = df_, ax=ax1)
-        ax1.set_title('{0} Model'.format(model), x=0.5, y=0.9, fontsize=14)
+        #ax1.set_title('{0} Model'.format(model), x=0.5, y=0.9, fontsize=14)
         ax1.get_legend().remove()
         ax1.set(xlabel='Dataset', ylabel='Activation Attempts')
         ax1.xaxis.get_label().set_fontsize(14)
         ax1.yaxis.get_label().set_fontsize(14)
-        s = ['$\it{s}$=8', '$\it{s}$=4', '$\it{s}$=2', 'Original']
-        s = s[::-1]
-        #ax1.set_xticklabels(s,rotation=0, fontsize=14)
 
     else:
-        ax2.set_yscale('log')     
+        #ax2.set_yscale('log')     
 
         bar = sns.barplot(x='Dataset', y='Activation Attempts',hue='Graph', palette=['red', 'orange', 'blue', 'green'], data = df_, ax=ax2)
         ax2.legend(fontsize=12)
-        ax2.set_title('{0} Model'.format(model), x=0.5, y=0.9, fontsize=14)
+        #ax2.set_title('{0} Model'.format(model), x=0.5, y=0.9, fontsize=14)
         ax2.set(xlabel='Dataset', ylabel='')
         ax2.xaxis.get_label().set_fontsize(14)
-        s = ['$\it{s}$=8', '$\it{s}$=4', '$\it{s}$=2', 'Original']
-        s = s[::-1]
-        #ax2.set_xticklabels(s,rotation=0, fontsize=14)
     # import itertools
     # hatches = itertools.cycle(['/', '-', 'x','*', 'o', '.'])
     # for i, bar in enumerate(bar.patches):
@@ -195,14 +189,15 @@ for model in models:
     df.to_latex('A',index=True)
     print(df)
 
-plt.subplots_adjust(left=0.07,
+plt.subplots_adjust(left=0.05,
             bottom=0.12, 
             right=0.99, 
-            top=0.98, 
+            top=0.96, 
             wspace=0, 
             hspace=0.35)
 #fig.legend(loc = 'upper center', ncol=3,
 #        bbox_transform = plt.gcf().transFigure)
 
-plt.savefig('time_log.eps', format='eps')
+plt.savefig('time.eps', format='eps')
+plt.savefig('time_eps-converted-to.pdf', format='pdf')
 plt.show() 

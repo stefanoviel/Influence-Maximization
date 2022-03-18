@@ -2,7 +2,7 @@
 
 import networkx as nx
 import heapq as hq
-import SNSigmaSim_networkx as SNSim
+from src_OLD.approximations import SNSigmaSim_networkx as SNSim
 import time
 
 # (Kempe) "The high-degree heuristic chooses nodes v in order of decreasing degrees. 
@@ -13,17 +13,16 @@ import time
 # e.g., "A influences B", "A is followed by B", "A is trusted by B".
 # -> Calculates the k nodes of highest degree
 def high_degree_nodes(k, G):
-
     if nx.is_directed(G):
         my_degree_function = G.out_degree
     else:
         my_degree_function = G.degree
 
     # the list of nodes to be returned; initialization
-    H = [(my_degree_function(i), i) for i in G.nodes()[0:k]] 
+    H = [(my_degree_function(i), i) for i in list(G.nodes())[0:k]] 
     hq.heapify(H) # min-heap
 
-    for i in G.nodes()[k:]: # iterate through the remaining nodes
+    for i in list(G.nodes())[k:]: # iterate through the remaining nodes
         if my_degree_function(i) > H[0][0]:
             hq.heappushpop(H, (my_degree_function(i), i))
  
@@ -198,7 +197,6 @@ def CELF(k, G, p, no_simulations, model):
                 eval_before = SNSim.evaluate(G, A, p, no_simulations, model)
                 delta[s] = eval_after[0] - eval_before[0]
                 curr[s] = True
-
     return A
 
 # This is incomplete; ran into some problems with understanding the CELF++ paper.
