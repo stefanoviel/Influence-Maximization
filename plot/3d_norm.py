@@ -41,7 +41,7 @@ if __name__ == '__main__':
     graphs = ['facebook_combined',  'fb_politician', 'fb_org', 'fb-pages-public-figure', 'pgp','deezerEU']
     models = ['IC', 'WC']
     for idx, name in enumerate(graphs):
-        fig,((ax1, ax3), (ax2, ax4)) = plt.subplots(2,2, figsize=(9,7), sharey=True, sharex=False)
+        fig,((ax1, ax3), (ax2, ax4)) = plt.subplots(2,2, figsize=(10,4.5), sharey=True, sharex=False)
 
         for model in models:
             print(name, model, '-----')
@@ -204,7 +204,8 @@ if __name__ == '__main__':
              
                 ax4.set_xlabel('% Influenced Nodes',fontsize=12)
 
-                ax3.set_ylim(0,2.9)
+                ax3.set_ylim(0,2.7)
+
                 #ax3.set_title('MOEA', x=0.07, y=0.9,fontsize=12)
                 ## AXES 2
                 ax3.set_xticklabels([])
@@ -227,17 +228,17 @@ if __name__ == '__main__':
 
             #plt.legend()
         plt.subplots_adjust(left=0.07,
-        bottom=0.08, 
+        bottom=0.1, 
         right=0.99, 
-        top=0.99, 
+        top=0.98, 
         wspace=0., 
         hspace=0.0)
 
         #fig.suptitle('IC', fontsize=12)
         plt.savefig('PF/{0}.eps'.format(name), format='eps')
-        plt.savefig('PF/{0}.png'.format(name), format='png')
+        plt.savefig('PF/{0}-eps-converted-to.pdf'.format(name), format='pdf')
 
-        plt.show()
+        #plt.show()
 
            
         
