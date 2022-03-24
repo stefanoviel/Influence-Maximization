@@ -1,6 +1,4 @@
-import imp
 from pprint import pprint
-from cv2 import rotate
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -109,13 +107,9 @@ for idk, graph in enumerate(name_graph):
     column_max = df.idxmax(axis=0)
 
     from matplotlib.patches import Rectangle
-    for col, variable in enumerate(df):
-        position = df.index.get_loc(column_max[variable])
-        #print(position , col, variable)
-        axn[t[0]][t[1]].add_patch(Rectangle((col, position),1,1, fill=False, edgecolor='red', lw=1))
-    #axn[t[0]][t[1]].hlines([1], *axn[t[0]][t[1]].get_xlim(), color='yellow', linewidth=4)
-    
-    #axn[t[0]][t[1]].add_patch(Rectangle((0, 0), 6, 1, fill=False, edgecolor='black', lw=4, clip_on=False))
+    # for col, variable in enumerate(df):
+    #     position = df.index.get_loc(column_max[variable])
+    #     axn[t[0]][t[1]].add_patch(Rectangle((col, position),1,1, fill=False, edgecolor='red', lw=1))
 
     axn[t[0]][t[1]].set_title(alias[idk], fontsize=14)
     labels = ['IC $\it{s}$=2','IC $\it{s}$=4','IC $\it{s}$=8','WC $\it{s}$=2','WC $\it{s}$=4','WC $\it{s}$=8']
@@ -130,5 +124,6 @@ plt.subplots_adjust(left=0.07,
             hspace=0.1)
 fig.tight_layout(rect=[0, 0, .9, 1])
 plt.savefig('mapping_BEST.eps', format='eps')
+plt.savefig('mapping_BEST-converted-to-pdf.pdf', format='pdf')
 plt.show()
     
