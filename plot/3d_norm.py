@@ -7,6 +7,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 from matplotlib import animation
 import sys
+from matplotlib.ticker import MaxNLocator
 sys.path.insert(0, '')
 from src.load import read_graph
 '''
@@ -99,14 +100,14 @@ if __name__ == '__main__':
             print(y)
             dtw_distance, warp_path = fastdtw(x, y, dist=euclidean)
 
-            filename = '{0}_{1}_8-page_rank.csv'.format(name, model)
+            filename = 'Mapping/{0}_{1}_8-page_rank.csv'.format(name, model)
             a ,b = get_values(filename)
             m8 = np.array([[b[i],a[i]] for i in range(len(b))])
             print(len(m8))
             m8 = get_PF(m8)
 
             print(len(m8))
-            filename = '{0}_{1}_4-page_rank.csv'.format(name, model)
+            filename = 'Mapping/{0}_{1}_4-page_rank.csv'.format(name, model)
             a ,b = get_values(filename)
             m4 = np.array([[b[i],a[i]] for i in range(len(b))])
 
@@ -115,7 +116,7 @@ if __name__ == '__main__':
 
             print(len(m4))
 
-            filename = '{0}_{1}_2-page_rank.csv'.format(name, model)
+            filename = 'Mapping/{0}_{1}_2-page_rank.csv'.format(name, model)
             a ,b = get_values(filename)
             m2 = np.array([[b[i],a[i]] for i in range(len(b))])
             
@@ -177,7 +178,7 @@ if __name__ == '__main__':
                 ax2.set_ylabel('% Nodes as seed set',fontsize=12)
 
                 ax1.set_ylim(0,2.5)
-                #ax1.set_title('MOEA', x=0.07, y=0.9,fontsize=12)
+                ax1.set_title('Original and \nDownscaled Solutions', x=0.2, y=0.4,fontsize=12)
 
                 ## AXES 2
 
@@ -185,14 +186,15 @@ if __name__ == '__main__':
                 ax2.scatter(m2[:,1],m2[:,0],color="orange",label='$\it{s}$=2')
                 ax2.scatter(m4[:,1],m4[:,0],color="blue",label='$\it{s}$=4')
                 ax2.scatter(m8[:,1],m8[:,0],color="green",label='$\it{s}$=8')
-                #ax2.set_title('Mapping', x=0.1, y=0.9,fontsize=12)
+                ax2.set_title('Original and \nUpscaled Solutions', x=0.2, y=0.3,fontsize=12)
                 ax1.set_xlim(0,max((t[:,1])+0.15*max((t[:,1]))))
                 ax2.set_xlim(0,max((t[:,1])+0.15*max((t[:,1]))))
                 ax1.set_xticklabels([])
                 ax2.xaxis.get_label().set_fontsize(12)
                 ax2.yaxis.get_label().set_fontsize(12)
-                ax1.legend(fontsize=12)
-                #ax1.text(max((t[:,1]))/2,2.6,'IC Model', fontsize=12)
+                ax2.legend(fontsize=10)
+                ax1.text(max((t[:,1]))/2,2.5,'IC Model', fontsize=12,weight="bold")
+                ax2.text(max((t[:,1]))/2,2.5,'IC Model', fontsize=12,weight="bold")
             else:
                 ax3.scatter(t[:,1],t[:,0],color="red",label='Original')
 
@@ -206,25 +208,26 @@ if __name__ == '__main__':
 
                 ax3.set_ylim(0,2.7)
 
-                #ax3.set_title('MOEA', x=0.07, y=0.9,fontsize=12)
                 ## AXES 2
                 ax3.set_xticklabels([])
                 ax4.scatter(t[:,1],t[:,0],color="red",label='Original')
                 ax4.scatter(m2[:,1],m2[:,0],color="orange",label='2 map')
                 ax4.scatter(m4[:,1],m4[:,0],color="blue",label='4 map')
                 ax4.scatter(m8[:,1],m8[:,0],color="green",label='8 map')
-                #ax4.set_title('Mapping', x=0.1, y=0.9,fontsize=12)
-                #ax4.set_title('Mapping', x=1.05, y=0.4,fontsize=12, rotation=90)
+                ax3.set_title('Original and \nDownscaled Solutions', x=0.2, y=0.4,fontsize=12)
 
-                ax3.set_xlim(0,max((t[:,1])+0.15*max((t[:,1]))))
-                ax4.set_xlim(0,max((t[:,1])+0.15*max((t[:,1]))))
+                ax3.set_xlim(0,int(max((t[:,1])+0.1*max((t[:,1])))))
+                ax4.set_xlim(0,int(max((t[:,1])+0.1*max((t[:,1])))))
+
+                ax3.xaxis.get_label().set_fontsize(12)
+                ax3.yaxis.get_label().set_fontsize(12)
 
                 ax3.xaxis.get_label().set_fontsize(12)
                 ax3.yaxis.get_label().set_fontsize(12)
 
-                ax3.xaxis.get_label().set_fontsize(12)
-                ax3.yaxis.get_label().set_fontsize(12)
-                #ax3.text(max((t[:,1]))/2,2.6,'WC Model', fontsize=12)
+                ax4.set_title('Original and \nUpscaled Solutions', x=0.2, y=0.3,fontsize=12)
+                ax3.text(max((t[:,1]))/2,2.5,'WC Model', fontsize=12,weight="bold")
+                ax4.text(max((t[:,1]))/2,2.5,'WC Model', fontsize=12,weight="bold")
 
             #plt.legend()
         plt.subplots_adjust(left=0.07,
@@ -238,7 +241,7 @@ if __name__ == '__main__':
         plt.savefig('PF/{0}.eps'.format(name), format='eps')
         plt.savefig('PF/{0}-eps-converted-to.pdf'.format(name), format='pdf')
 
-        #plt.show()
+        plt.show()
 
            
         
