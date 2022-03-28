@@ -16,9 +16,9 @@ from graph_tool.all import *
 # local functions
 sys.path.insert(0, '')
 from src.load import read_graph
-scale_vector = [10]
+scale_vector = [16]
 
-filename = "graphs/Amazon0302.txt"
+filename = "graphs/fb-pages-artist.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -53,7 +53,7 @@ for i in range(len(G)):
         print('error')
         k +=1
 print(len(G), k)
-exit(0)
+
 
 part = leidenalg.find_partition(R, leidenalg.ModularityVertexPartition)
 check = list(part)
