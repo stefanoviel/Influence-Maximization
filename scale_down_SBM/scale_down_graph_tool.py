@@ -15,9 +15,9 @@ sys.path.insert(0, '')
 from src.load import read_graph
 
 
-scale_vector = [8]
+scale_vector = [2,4,8]
 
-filename = "graphs/facebook_combined.txt"
+filename = "graphs/fb_politician.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -88,6 +88,7 @@ print(len(G), k)
 part = leidenalg.find_partition(R, leidenalg.ModularityVertexPartition)
 check = list(part)
 print(len(check))
+exit(0)
 sum = 0
 check_ok = []
 

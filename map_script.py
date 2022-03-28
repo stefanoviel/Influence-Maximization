@@ -1,4 +1,3 @@
-from src.load import read_graph
 import pandas as pd
 import numpy as np
 import os
