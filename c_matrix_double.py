@@ -54,6 +54,7 @@ for idk, graph in enumerate(name_graph):
 
     degree_measure = ['degree_centrality','closeness', 'betweenness', 'eigenvector_centrality', 'katz_centrality','page_rank','core']
     MAP = {}
+    MAP[' '] = [None for x in range(6)]
     MAP['MOEA'] = []
     MAP[''] = [None for x in range(6)]
     for item in degree_measure:
@@ -68,7 +69,7 @@ for idk, graph in enumerate(name_graph):
         x = x[::-1]
         for value in x:
             MAP['MOEA'].append(value)
-    filenames = [graph +'_IC_2_MAPPING.csv', graph +'_IC_4_MAPPING.csv', graph +'_IC_8_MAPPING.csv',graph +'_WC_2_MAPPING.csv',graph +'_WC_4_MAPPING.csv',graph +'_WC_8_MAPPING.csv']
+    filenames = ['Mapping/' + graph +'_IC_2_MAPPING.csv', 'Mapping/' + graph +'_IC_4_MAPPING.csv', 'Mapping/' + graph +'_IC_8_MAPPING.csv','Mapping/' + graph +'_WC_2_MAPPING.csv','Mapping/' + graph +'_WC_4_MAPPING.csv','Mapping/' + graph +'_WC_8_MAPPING.csv']
     for item in filenames:
         df = pd.read_csv(item, sep=",")
         measure = df["measure"].to_list()
@@ -116,6 +117,9 @@ for idk, graph in enumerate(name_graph):
     axn[t[0]][t[1]].set_xticklabels(labels,rotation=90,fontsize=14)
     axn[t[0]][t[1]].set_yticklabels(list(MAP2.keys()),rotation=0,fontsize=14)
     axn[t[0]][t[1]].tick_params(left=False, bottom=False)
+    axn[t[0]][t[1]].text(x=2.1, y=0.5, s='downscaling',fontsize=12)
+    axn[t[0]][t[1]].text(x=2.3, y=2.6,s='upscaling',fontsize=12)
+
 plt.subplots_adjust(left=0.07,
             bottom=0.1, 
             right=0.99, 

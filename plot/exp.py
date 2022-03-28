@@ -167,7 +167,7 @@ for model in models:
         bar = sns.barplot(x='Dataset', y='Activation Attempts', hue='Graph', palette=['red', 'orange', 'blue', 'green'], data = df_, ax=ax1)
         #ax1.set_title('{0} Model'.format(model), x=0.5, y=0.9, fontsize=14)
         ax1.get_legend().remove()
-        ax1.set(xlabel='Dataset', ylabel='Activation Attempts')
+        ax1.set(xlabel='',ylabel='Activation Attempts')
         ax1.xaxis.get_label().set_fontsize(14)
         ax1.yaxis.get_label().set_fontsize(14)
 
@@ -177,7 +177,7 @@ for model in models:
         bar = sns.barplot(x='Dataset', y='Activation Attempts',hue='Graph', palette=['red', 'orange', 'blue', 'green'], data = df_, ax=ax2)
         ax2.legend(fontsize=10)
         #ax2.set_title('{0} Model'.format(model), x=0.5, y=0.9, fontsize=14)
-        ax2.set(xlabel='Dataset', ylabel='')
+        ax2.set(xlabel='',ylabel='')
         ax2.xaxis.get_label().set_fontsize(14)
     # import itertools
     # hatches = itertools.cycle(['/', '-', 'x','*', 'o', '.'])
@@ -190,9 +190,9 @@ for model in models:
     print(df)
 
 plt.subplots_adjust(left=0.07,
-            bottom=0.14, 
+            bottom=0.09, 
             right=0.99, 
-            top=0.94, 
+            top=0.97, 
             wspace=0, 
             hspace=0.35)
 #fig.legend(loc = 'upper center', ncol=3,
