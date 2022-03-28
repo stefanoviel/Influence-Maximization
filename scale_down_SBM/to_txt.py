@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-filename = "/Users/elia/Downloads/fb-pages-public-figure/fb-pages-public-figure.edges"
+filename = "/Users/elia/Downloads/fb-pages-artist/fb-pages-artist.edges"
 name = (os.path.basename(filename))
 name = name.replace(".edges","")
 

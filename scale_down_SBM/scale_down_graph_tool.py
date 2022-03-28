@@ -18,7 +18,7 @@ sys.path.insert(0, '')
 from src.load import read_graph
 scale_vector = [10]
 
-filename = "graph_SBM.txt"
+filename = "graphs/Amazon0302.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
