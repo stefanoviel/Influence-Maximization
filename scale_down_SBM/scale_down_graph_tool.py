@@ -1,10 +1,13 @@
 #basic packages
 import os
 import sys
-import numpy as np
+import numpy as np 
+import copy, random
 import pandas as pd
 import networkx as nx
 from scipy import sparse
+import leidenalg
+import igraph as ig
 
 #graph-tool importation
 from graph_tool.all import *
@@ -13,11 +16,9 @@ from graph_tool.all import *
 # local functions
 sys.path.insert(0, '')
 from src.load import read_graph
+scale_vector = [10]
 
-
-scale_vector = [2,4,8]
-
-filename = "graphs/fb_politician.txt"
+filename = "graph_SBM.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
@@ -30,65 +31,33 @@ for item in G:
 avg_degree = np.mean(avg_degree)
 print(avg_degree)
 
-print(nx.info(G))
+print(len(G))
 
-connected_subgraphs = [G.subgraph(cc) for cc in nx.connected_components(G)]
-Gcc = max(nx.connected_components(G), key=len)
-G = G.subgraph(Gcc)
-
-index = {} 
-#for idx, node in enumerate(sorted(G)):
-    #index[node] = idx
-    #if node != idx:
-    #    print(node, idx)
-#G = nx.relabel_nodes(G, index)
+#connected_subgraphs = [G.subgraph(cc) for cc in nx.connected_components(G)]
+#Gcc = max(nx.connected_components(G), key=len)
+#G = G.subgraph(Gcc)
+print(len(G))
 print(nx.info(G))
 
 den = (2*G.number_of_edges()) / (G.number_of_nodes()*(G.number_of_nodes()-1))
 print("Density --> {0}".format(den))
-"""
-Resolution is a parameter for the Louvain community detection algorithm that affects the size of the 
-recovered clusters. Smaller resolutions recover smaller, and therefore a larger number of clusters, 
-and conversely, larger values recover clusters containing more data points.
-"""
-# test = True
-# while (test): 
 t = max(scale_vector)
-import leidenalg
-import igraph as ig
 
 filename = filename.replace('.txt', '')
 R = ig.Graph(directed=False)
-try:
-    R.add_vertices(G.nodes())
-    R.add_edges(G.edges())
-except:
-    text = []
-    for e in G.edges:
-        print(e)
-        f = "{0} {1}".format(e[0]-1,e[1]-1)
-        text.append(f) 
-    with open(filename + '_correction_.txt', "w") as outfile:
-            outfile.write("\n".join(text))
-
-    G = read_graph(filename + '_correction_.txt')
-    R = ig.Graph(directed=False)
-    R.add_vertices(G.nodes())
-    R.add_edges(G.edges())
-
+R.add_vertices(G.nodes())
+R.add_edges(G.edges())
 k = 0
 for i in range(len(G)):
     if R.degree(i) != G.degree(i):
         print('error')
         k +=1
-        exit(0)
 print(len(G), k)
-
+exit(0)
 
 part = leidenalg.find_partition(R, leidenalg.ModularityVertexPartition)
 check = list(part)
 print(len(check))
-exit(0)
 sum = 0
 check_ok = []
 
@@ -223,8 +192,6 @@ for scale in scale_vector:
 
     for i in range(0,len(sizes)):
         t = []
-        import copy, random
-
         list_degree = copy.deepcopy(default_degree[i])
         k = sizes[i]
         probability = []

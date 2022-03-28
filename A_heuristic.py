@@ -10,6 +10,7 @@ name = 'facebook_combined'
 G = read_graph(f'scale_graphs/{name}_8.txt')
 start_time = time.time()
 S = CELF(int(G.number_of_nodes() * 0.025), G, 0, 100, 'WC')
+
 #t = generalized_degree_discount(int(G.number_of_nodes() * 0.025), G, 0.05)
 
 n_nodes = []

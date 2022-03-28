@@ -14,9 +14,9 @@ import random
 
 name = "SBM"
 
-max_nodes = 5000
-min_size = int(max_nodes * 0.02)
-max_size = int(max_nodes * 0.1)
+max_nodes = 10000
+min_size = int(max_nodes * 0.005)
+max_size = int(max_nodes * 0.05)
 sizes = []
 while (max_nodes > 0):
     size = random.randint(min_size, max_size)
@@ -25,7 +25,7 @@ while (max_nodes > 0):
 
 print(len(sizes))
 N=len(sizes)
-a = np.random.uniform(0.000005, 0.0005, N)
+a = np.random.uniform(0.0000005, 0.00005, N)
 m = np.tril(a) + np.tril(a, -1).T
 m = m.tolist()
 x = 0
@@ -33,13 +33,15 @@ x = 0
 ## to change the probability of edges in a community
 for i in range(len(m)):
     new = m[i]
-    new[x] = np.random.uniform(0.05,0.1,1)
+    new[x] = np.random.uniform(0.005,0.05,1)
     m[i]=new
     x= x+1
 
 
 G = nx.stochastic_block_model(sizes, m, seed=0)
-
+for node in G:
+    print('node',node)
+    break
 
 
      
