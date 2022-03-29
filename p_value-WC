@@ -1,0 +1,12 @@
+\begin{tabular}{llll}
+\toprule
+{} &         0 &         1 &         2 \\
+\midrule
+Ego Fb.  &  1.23e-20 &  2.29e-22 &  1.73e-27 \\
+Fb. Pol. &  4.11e-15 &  5.78e-20 &  1.01e-19 \\
+Fb. Org. &  9.63e-12 &  4.83e-13 &  6.89e-20 \\
+Fb. Pag. &  6.55e-20 &  2.69e-13 &     0.327 \\
+Deezer   &  2.61e-15 &  1.86e-15 &  2.02e-17 \\
+PGP      &  2.62e-11 &  2.18e-21 &   2.3e-25 \\
+\bottomrule
+\end{tabular}

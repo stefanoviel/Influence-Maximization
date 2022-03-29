@@ -1,4 +1,4 @@
-from tkinter import FALSE
+from locale import MON_1
 import matplotlib.pyplot as plt
 import pandas as pd
 import os 
@@ -13,7 +13,7 @@ def plot_images(path, color):
         if '_hv' in filename:
             df = pd.read_csv(filename, sep=',')
             t.append(list(df["hv"]))
-
+    #print(t)
     m = []
     s = []
     for i in range(len(t[0])):
@@ -26,10 +26,10 @@ def plot_images(path, color):
     s = np.array(s)
     plt.plot(list(df["generation"]), m,color=color)
     plt.fill_between(list(df["generation"]), m-s, m+s, alpha=0.3, color=color)
-    #plt.ylim(0,1)
-    #plt.errorbar(list(df["generation"]), m,s, linestyle='None', marker='^')
-    
-    return max(m)
+    last = []
+    for i in range(len(t)):
+        last.append(t[i][len(t)-1])
+    return last
 
 def plot_time(path, name):
     m = []
@@ -119,8 +119,9 @@ for model in models:
     for g in graphs:
         TIME[g] = []
     df_ = pd.DataFrame()
+    save_results = {}
     for idx, name in enumerate(graphs):
-        '''
+        print('Graph', name)
         path8 = 'experiments/{0}_8-{1}'.format(name, model)
         m8 = plot_images(path8, 'green')
 
@@ -134,70 +135,84 @@ for model in models:
         path ='experiments/{0}-{1}'.format(name, model)
         m1= plot_images(path, 'red')
 
+        from scipy.stats import ttest_ind
+        p_values = []
+        res = ttest_ind(m8, m1)
+        p_values.append(format(res.pvalue, '.3g'))
+        res = ttest_ind(m4, m1)
+        p_values.append(format(res.pvalue, '.3g'))
+        res = ttest_ind(m2, m1)
+        p_values.append(format(res.pvalue, '.3g'))
+        res = ttest_ind(m1, m1)
+        print(p_values)
+        p_values = p_values[::-1]
+        save_results[alias[idx]] = p_values
+
+    df = pd.DataFrame.from_dict(save_results, orient='index')
+    print(df) 
+    df.to_latex(f'p_value-{model}')
+       
+#         gd8 = gen_dist(path, path8)
+#         gd4 = gen_dist(path, path4)
+#         gd2 = gen_dist(path, path2)   
+#         gd1 = gen_dist(path, path)   
 
 
-        gd8 = gen_dist(path, path8)
-        gd4 = gen_dist(path, path4)
-        gd2 = gen_dist(path, path2)   
-        gd1 = gen_dist(path, path)   
+#         print(gd8, gd4,gd2)
+#         df = pd.DataFrame()
+#         df["scale"] = [8,4,2]
+#         df["Hyperarea"] = [m8/m1,m4/m1,m2/m1]
+#         df["GD"] = [gd8,gd4,gd2]
+#         path = path.replace('experiments/','')
+#         df.to_csv('matrix_MOEA_results/'+path, sep=',', index=False)
 
 
-        print(gd8, gd4,gd2)
-        df = pd.DataFrame()
-        df["scale"] = [8,4,2]
-        df["Hyperarea"] = [m8/m1,m4/m1,m2/m1]
-        df["GD"] = [gd8,gd4,gd2]
-        path = path.replace('experiments/','')
-        df.to_csv('matrix_MOEA_results/'+path, sep=',', index=False)
-        '''
-
-
-        path = ["experiments/{0}_8-{1}".format(name,model),"experiments/{0}_4-{1}".format(name,model),"experiments/{0}_2-{1}".format(name,model),"experiments/{0}-{1}".format(name,model)]
-        print(name)
-        df_results = plot_time(path, alias[idx])
-        scale = [8,4,2,1]
-        if idx == 0:
-            df_ = df_results
-        else:
-            df_ = pd.concat([df_, df_results], join="inner")
+#         path = ["experiments/{0}_8-{1}".format(name,model),"experiments/{0}_4-{1}".format(name,model),"experiments/{0}_2-{1}".format(name,model),"experiments/{0}-{1}".format(name,model)]
+#         print(name)
+#         df_results = plot_time(path, alias[idx])
+#         scale = [8,4,2,1]
+#         if idx == 0:
+#             df_ = df_results
+#         else:
+#             df_ = pd.concat([df_, df_results], join="inner")
     
 
-    if model == 'IC':
-        ax1.set_yscale('log')     
-        bar = sns.barplot(x='Dataset', y='Activation Attempts', hue='Graph', palette=['red', 'orange', 'blue', 'green'], data = df_, ax=ax1)
-        #ax1.set_title('{0} Model'.format(model), x=0.5, y=0.9, fontsize=14)
-        ax1.get_legend().remove()
-        ax1.set(xlabel='',ylabel='Activation Attempts')
-        ax1.xaxis.get_label().set_fontsize(14)
-        ax1.yaxis.get_label().set_fontsize(14)
+#     if model == 'IC':
+#         ax1.set_yscale('log')     
+#         bar = sns.barplot(x='Dataset', y='Activation Attempts', hue='Graph', palette=['red', 'orange', 'blue', 'green'], data = df_, ax=ax1)
+#         #ax1.set_title('{0} Model'.format(model), x=0.5, y=0.9, fontsize=14)
+#         ax1.get_legend().remove()
+#         ax1.set(xlabel='',ylabel='Activation Attempts')
+#         ax1.xaxis.get_label().set_fontsize(14)
+#         ax1.yaxis.get_label().set_fontsize(14)
 
-    else:
-        ax2.set_yscale('log')     
+#     else:
+#         ax2.set_yscale('log')     
 
-        bar = sns.barplot(x='Dataset', y='Activation Attempts',hue='Graph', palette=['red', 'orange', 'blue', 'green'], data = df_, ax=ax2)
-        ax2.legend(fontsize=10)
-        #ax2.set_title('{0} Model'.format(model), x=0.5, y=0.9, fontsize=14)
-        ax2.set(xlabel='',ylabel='')
-        ax2.xaxis.get_label().set_fontsize(14)
-    # import itertools
-    # hatches = itertools.cycle(['/', '-', 'x','*', 'o', '.'])
-    # for i, bar in enumerate(bar.patches):
-    #     if i % 4 == 0:
-    #         hatch = next(hatches)
-    #     bar.set_hatch(hatch)
-    df = pd.DataFrame.from_dict(TIME, orient='index')
-    df.to_latex('A',index=True)
-    print(df)
+#         bar = sns.barplot(x='Dataset', y='Activation Attempts',hue='Graph', palette=['red', 'orange', 'blue', 'green'], data = df_, ax=ax2)
+#         ax2.legend(fontsize=10)
+#         #ax2.set_title('{0} Model'.format(model), x=0.5, y=0.9, fontsize=14)
+#         ax2.set(xlabel='',ylabel='')
+#         ax2.xaxis.get_label().set_fontsize(14)
+#     # import itertools
+#     # hatches = itertools.cycle(['/', '-', 'x','*', 'o', '.'])
+#     # for i, bar in enumerate(bar.patches):
+#     #     if i % 4 == 0:
+#     #         hatch = next(hatches)
+#     #     bar.set_hatch(hatch)
+#     df = pd.DataFrame.from_dict(TIME, orient='index')
+#     df.to_latex('A',index=True)
+#     print(df)
 
-plt.subplots_adjust(left=0.07,
-            bottom=0.09, 
-            right=0.99, 
-            top=0.97, 
-            wspace=0, 
-            hspace=0.35)
-#fig.legend(loc = 'upper center', ncol=3,
-#        bbox_transform = plt.gcf().transFigure)
+# plt.subplots_adjust(left=0.07,
+#             bottom=0.09, 
+#             right=0.99, 
+#             top=0.97, 
+#             wspace=0, 
+#             hspace=0.35)
+# #fig.legend(loc = 'upper center', ncol=3,
+# #        bbox_transform = plt.gcf().transFigure)
 
-plt.savefig('time_log.eps', format='eps')
-plt.savefig('time_log-eps-converted-to.pdf', format='pdf')
-plt.show() 
+# plt.savefig('time_log.eps', format='eps')
+# plt.savefig('time_log-eps-converted-to.pdf', format='pdf')
+# plt.show() 

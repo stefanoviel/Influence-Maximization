@@ -4,32 +4,45 @@ import pandas as pd
 from src.load import read_graph
 from pymoo.indicators.hv import Hypervolume
 from src_OLD.heuristics.SNInflMaxHeuristics_networkx import *
+from src.spread.monte_carlo_2_obj import MonteCarlo_simulation as MonteCarlo_simulation
 
 
-name = 'facebook_combined'
-G = read_graph(f'scale_graphs/{name}_8.txt')
+G = read_graph('graphs/fb-pages-artist.txt')
 start_time = time.time()
-S = CELF(int(G.number_of_nodes() * 0.025), G, 0, 100, 'WC')
+#S = CELF(100, G, 0.05, 1, 'IC')
 
-#t = generalized_degree_discount(int(G.number_of_nodes() * 0.025), G, 0.05)
+#print(S)
+# print('Running ....')
+# s = single_discount_high_degree_nodes(int(G.number_of_nodes()*0.025),G)
 
-n_nodes = []
 influence = []
-nodes = []
-pf = []
+nodes_ = []
+n_nodes = []
+# for i in range(len(s)):
+
+#     A = s[:i+1]
+#     print(i+1,'/',len(s))
+#     spread  = MonteCarlo_simulation(G, A, 0.01, 1, 'IC',  [], random_generator=None)
+#     print(((spread[0] / G.number_of_nodes())* 100), spread[2], ((len(A) / G.number_of_nodes())* 100))
+#     influence.append(((spread[0] / G.number_of_nodes())* 100))
+#     n_nodes.append(((len(A) / G.number_of_nodes())* 100))
+#     nodes_.append(list(A))
+
+S = CELF(int(G.number_of_nodes()*0.025),G,0.01, 1, 'IC')
+
 for item in S:
-    n_nodes.append(item[0])
     influence.append(item[1])
-    pf.append([-item[1], -(2.5 - item[0])])
-    nodes.append(item[2])
+    nodes_.append(item[2])
+    n_nodes.append(item[0])
+
 df = pd.DataFrame()
 df["n_nodes"] = n_nodes
 df["influence"] = influence
-df["nodes"] = nodes
-df.to_csv(f'heuristics_experiment/{name}_8_WC.csv', index=False)
+df["nodes"] = nodes_
+df.to_csv(f'heuristics_experiment/CELF_IC.csv', index=False)
 
 
-
+exit(0)
 
 tot = 100 * 2.5 
 pf = np.array(pf)

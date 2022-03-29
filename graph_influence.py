@@ -53,11 +53,11 @@ def filter_nodes(G, args):
 if __name__ == '__main__':
     
 
-    no_runs = 10
-    filenames = ["scale_graphs/facebook_combined_prova8.txt"]
-    gt = ["comm_ground_truth/facebook_combined_prova8.csv"]
+    no_runs = 1
+    filenames = ["scale_graphs/fb-pages-artist_32.txt"]
+    gt = ["comm_ground_truth/fb-pages-artist_32.csv"]
     
-    scale_k = [8]
+    scale_k = [32]
 
     models = ['IC']
     i = 0
@@ -70,19 +70,11 @@ if __name__ == '__main__':
         file = file.replace(".txt", "")
         for m in models:
             if m == "IC":
-                p = 0.05
+                p = 0.01
             elif m == "LT":
                 p = 0
             elif m == "WC":
                 p = 0
-            path = 'experiments/{0}-{1}'.format(file,m) 
-            print(path)
-            try:
-                os.makedirs(path)
-            except OSError:
-                print ("Creation of the directory %s failed" % path)
-            else:
-                print ("Successfully created the directory %s " % path)
 
             model = m
             print(model)
@@ -93,6 +85,15 @@ if __name__ == '__main__':
             prng = random.Random(random_seed)
 
             k = int(G.number_of_nodes() * 0.025)
+            #k = 100
+            path = 'experiments/{0}-{1}-{2}-0.01'.format(file,m,k) 
+            print(path)
+            try:
+                os.makedirs(path)
+            except OSError:
+                print ("Creation of the directory %s failed" % path)
+            else:
+                print ("Successfully created the directory %s " % path)
 
             my_degree_function = G.degree
             mean = []
@@ -111,7 +112,7 @@ if __name__ == '__main__':
             mean = int(np.mean(mean))  
             args["min_degree"] = mean + 1
             args["smart_initialization_percentage"] = 0.5
-            args["population_size"] = 20
+            args["population_size"] = 50
 
             communities =[]
             df = pd.read_csv(file_gt,sep=",")
@@ -131,10 +132,10 @@ if __name__ == '__main__':
                 initial_population = create_initial_population(G, args, prng, nodes_original)
 
                 no_obj = 2
-                no_simulations = 10
-                max_generations = 10
-                population_size = 20
-                offspring_size = 20
+                no_simulations = 100
+                max_generations = 1000
+                population_size = 100
+                offspring_size = 100
 
 
                 n_threads = 1
@@ -149,7 +150,7 @@ if __name__ == '__main__':
             
                 file = 'run-{0}'.format(r+1)
                 file = path+'/'+file
-                file = 'ciao'
+                #file = 'ciao'
                 #print(file)
                 
                 ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION

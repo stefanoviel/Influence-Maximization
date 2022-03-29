@@ -16,7 +16,7 @@ from graph_tool.all import *
 # local functions
 sys.path.insert(0, '')
 from src.load import read_graph
-scale_vector = [16]
+scale_vector = [32]
 
 filename = "graphs/fb-pages-artist.txt"
 name = (os.path.basename(filename))
