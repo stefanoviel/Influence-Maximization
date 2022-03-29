@@ -28,7 +28,7 @@ def plot_images(path, color):
     plt.fill_between(list(df["generation"]), m-s, m+s, alpha=0.3, color=color)
     last = []
     for i in range(len(t)):
-        last.append(t[i][len(t)-1])
+        last.append(t[i][-1])
     return last
 
 def plot_time(path, name):
@@ -145,6 +145,8 @@ for model in models:
         p_values.append(format(res.pvalue, '.3g'))
         res = ttest_ind(m1, m1)
         print(p_values)
+
+        print(len(m1), len(m2), len(m4), len(m8))
         p_values = p_values[::-1]
         save_results[alias[idx]] = p_values
 

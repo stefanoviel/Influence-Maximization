@@ -148,7 +148,7 @@ def generalized_degree_discount(k, G, p):
 # (It gets too time-expensive otherwise.)
 def general_greedy(k, G, p, no_simulations, model):
     S = []
-
+    SS = []
     for i in range(k):
         maxinfl_i = (-1, -1)
         v_i = -1
@@ -160,7 +160,8 @@ def general_greedy(k, G, p, no_simulations, model):
 
         S.append(v_i)
         print(i+1, maxinfl_i[0], maxinfl_i[1], S)
-
+        SS.append([(len(S)/G.number_of_nodes()*100), ((eval_tuple[0] / G.number_of_nodes())*100), list(S)])
+    return S
 # CELF (Leskovec, Cost-effective Outbreak Detection in Networks, KDD07) is proven to approximate within 63% of the optimal.
 # -> Prints (rather than returns) the 1..k nodes of supposedly max influence, and that influence.
 # (It gets too time-expensive otherwise.)

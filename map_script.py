@@ -42,6 +42,7 @@ def get_PF(myArray):
     
 scale_list = [32]
 graph_list = ['fb-pages-artist']
+
 model_list = ['IC']
 for graph in graph_list:
     for model_ in model_list:
@@ -69,11 +70,11 @@ for graph in graph_list:
 
             print('Scale Factor',scale_factor, scale_original)
             for j in range(10):
-                df_scale_results = pd.read_csv("experiments/{0}_{1}-{2}/run-{3}.csv".format(graph,scale_number, model_,j+1),sep=",")
+                df_scale_results = pd.read_csv("experiments/{0}_{1}-{2}-36-0.01/run-{3}.csv".format(graph,scale_number, model_,j+1),sep=",")
                 df_scale_results = df_scale_results.sort_values(by="n_nodes", ascending=False)
                 nodes = df_scale_results["nodes"].to_list()
                 for jj in range(10):
-                    #filename_original_results = "experiments/{0}_{1}/run-{3}.csv".format(graph,model_,jj+1)
+                    #filename_original_results = "experiments/{0}-{1}/run-{2}.csv".format(graph,model_,jj+1)
                     filename_original_results = None
                     print(filename_original_results)
             
@@ -194,7 +195,7 @@ for graph in graph_list:
 
                         original_filename = "graphs/{0}.txt".format(graph)
                         p = 0.05
-                        no_simulations = 25
+                        no_simulations = 100
                         model = model_
                         G = read_graph(original_filename)
 
@@ -226,10 +227,9 @@ for graph in graph_list:
                         df_mapping["n_nodes"] = nodes_
                         df_mapping["influence"] = influence
                         df_mapping["nodes"] = n_nodes
-                        df_mapping.to_csv('prova-{0}_{1}_{2}-{3}.csv'.format(graph,model_,scale_number,measure), index=False)
+                        df_mapping.to_csv('{0}_{1}_{2}-{3}.csv'.format(graph,model_,scale_number,measure), index=False)
 
                         exit(0)
-
                     #--------
 
                         x_mapping =  df_mapping["n_nodes"].to_list()

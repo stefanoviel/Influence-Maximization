@@ -15,7 +15,7 @@ def get_PF(myArray):
     return pareto_frontier
 
 
-df = pd.read_csv('prova-fb-pages-artist_WC_32-page_rank.csv', sep = ',')
+df = pd.read_csv('prova-fb-pages-artist_IC_32-page_rank.csv', sep = ',')
 nodes = df["nodes"].to_list()
 print(type(nodes[0]))
 influence = df['influence'].to_list()
@@ -60,7 +60,7 @@ print(hv_MAP)
 
 
 
-df = pd.read_csv('heuristics_experiment/single_discount_high_degree_nodes_WC_final_1.csv', sep = ',')
+df = pd.read_csv('heuristics_experiment/high_degree_nodes_IC.csv', sep = ',')
 nodes = df["nodes"].to_list()
 print(type(nodes[0]))
 influence = df['influence'].to_list()
@@ -90,7 +90,7 @@ for i in range(len(x_heu)):
 
 A = np.array(A)
 
-tot = 100 * 2.5 
+tot = 100 * 2.5
 from pymoo.indicators.hv import Hypervolume
 
 metric = Hypervolume(ref_point= np.array([0,0]),
@@ -115,8 +115,10 @@ import matplotlib.pyplot as plt
 #t2 = get_PF(t1)
 
 
-plt.scatter(x,y, color='red', label='Mapping')
 plt.scatter(x1,y1, color='blue', label='Single Discount Heuristic', facecolor='none')
+plt.scatter(x,y, color='red', label='Mapping')
+
+plt.xlim(0,100)
 plt.legend()
 
 plt.savefig('prova.png', format='png')
