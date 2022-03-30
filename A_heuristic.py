@@ -12,44 +12,44 @@ start_time = time.time()
 #S = CELF(100, G, 0.05, 1, 'IC')
 
 
-H = high_degree_nodes(int(G.number_of_nodes()*0.025),G)
+# H = high_degree_nodes(int(G.number_of_nodes()*0.025),G)
 
-s = []
-for item in H:
-    print(type(item))
-    s.append(item[1])
-print(s)
-#print(S)
-# print('Running ....')
-# s = single_discount_high_degree_nodes(int(G.number_of_nodes()*0.025),G)
+# s = []
+# for item in H:
+#     print(type(item))
+#     s.append(item[1])
+# print(s)
+# #print(S)
+# # print('Running ....')
+# # s = single_discount_high_degree_nodes(int(G.number_of_nodes()*0.025),G)
 
 influence = []
 nodes_ = []
 n_nodes = []
-for i in range(len(s)):
+# for i in range(len(s)):
 
-    A = s[:i+1]
-    print(i+1,'/',len(s))
-    spread  = MonteCarlo_simulation(G, A, 0, 10, 'WC',  [], random_generator=None)
-    print(((spread[0] / G.number_of_nodes())* 100), spread[2], ((len(A) / G.number_of_nodes())* 100))
-    influence.append(((spread[0] / G.number_of_nodes())* 100))
-    n_nodes.append(((len(A) / G.number_of_nodes())* 100))
-    nodes_.append(list(A))
+#     A = s[:i+1]
+#     print(i+1,'/',len(s))
+#     spread  = MonteCarlo_simulation(G, A, 0, 10, 'WC',  [], random_generator=None)
+#     print(((spread[0] / G.number_of_nodes())* 100), spread[2], ((len(A) / G.number_of_nodes())* 100))
+#     influence.append(((spread[0] / G.number_of_nodes())* 100))
+#     n_nodes.append(((len(A) / G.number_of_nodes())* 100))
+#     nodes_.append(list(A))
 
-#S = CELF(int(G.number_of_nodes()*0.025),G,0, 10, 'WC')
-#S = general_greedy((int(G.number_of_nodes()*0.025)),G,0, 1, 'WC')
+S = CELF(int(G.number_of_nodes()*0.025),G,0, 10, 'WC')
+S = general_greedy((int(G.number_of_nodes()*0.025)),G,0, 1, 'WC')
 
-#for item in S:
-#    influence.append(item[1])
-#    nodes_.append(item[2])
-#    n_nodes.append(item[0])
+for item in S:
+   influence.append(item[1])
+   nodes_.append(item[2])
+   n_nodes.append(item[0])
 
 df = pd.DataFrame()
 df["n_nodes"] = n_nodes
 df["influence"] = influence
 df["nodes"] = nodes_
 
-df.to_csv(f'heuristics_experiment/high_degree_nodes_WC_10.csv', index=False)
+df.to_csv(f'heuristics_experiment/CELF_WC_10.csv', index=False)
 
 
 exit(0)
