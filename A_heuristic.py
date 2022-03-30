@@ -38,7 +38,9 @@ n_nodes = []
 #S = CELF(int(G.number_of_nodes()*0.025),G,0, 1, 'WC')
 #S = general_greedy((int(G.number_of_nodes()*0.025)),G,0, 1, 'WC')
 
-S = CELF(int(G.number_of_nodes()*0.01),G,0.01, 25, 'IC')
+RES = CELF(int(G.number_of_nodes()*0.01),G,0.01, 1, 'IC')
+S = RES[0]
+print(RES[1])
 
 for item in S:
    influence.append(item[1])
@@ -49,8 +51,10 @@ df = pd.DataFrame()
 df["n_nodes"] = n_nodes
 df["influence"] = influence
 df["nodes"] = nodes_
+df["time"] = [RES[1] for x in n_nodes]
 
-df.to_csv(f'heuristics_experiment/CELF_IC_25_FINAL.csv', index=False)
+
+df.to_csv(f'heuristics_experiment/CELF_1_TIME_IC.csv', index=False)
 
 
 exit(0)

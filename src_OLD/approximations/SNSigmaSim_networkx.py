@@ -14,11 +14,12 @@ def IC_model(G, a, p):              # a: the set of initial active nodes
     A = set(a)                      # A: the set of active nodes, initially a
     B = set(a)                      # B: the set of nodes activated in the last completed iteration
     converged = False
-
+    t = 0
     while not converged:
         nextB = set()
         for n in B:
             for m in set(G.neighbors(n)) - A:
+                t +=1
                 prob = random.random()	# in the range [0.0, 1.0)
                 if prob <= p:
                     nextB.add(m)
@@ -27,7 +28,7 @@ def IC_model(G, a, p):              # a: the set of initial active nodes
             converged = True
         A |= B
 
-    return len(A)
+    return len(A), t
 
 def WC_model(G, a):                 # a: the set of initial active nodes
                                     # each edge from node u to v is assigned probability 1/in-degree(v) of activating v
@@ -39,11 +40,12 @@ def WC_model(G, a):                 # a: the set of initial active nodes
         my_degree_function = G.in_degree
     else:
         my_degree_function = G.degree
-
+    t = 0
     while not converged:
         nextB = set()
         for n in B:
             for m in set(G.neighbors(n)) - A:
+                t +=1
                 prob = random.random()	# in the range [0.0, 1.0)
                 p = 1.0/my_degree_function(m)
                 if prob <= p:
@@ -53,23 +55,26 @@ def WC_model(G, a):                 # a: the set of initial active nodes
             converged = True
         A |= B
 
-    return len(A)
+    return len(A), t
 
 # evaluates a given seed set A
 # simulated "no_simulations" times
 # returns a tuple: the mean, stdev, and 95% confidence interval
 def evaluate(G, A, p, no_simulations, model):
     results = []
-
+    time = []
     if model == 'WC':
         for i in range(no_simulations):
-            results.append(WC_model(G, A))
+            res = WC_model(G, A) 
+            results.append(res[0])
+            time.append(res[1])
     elif model == 'IC':
         for i in range(no_simulations):
-            results.append(IC_model(G, A, p))
+            res = IC_model(G, A,p) 
+            results.append(res[0])
+            time.append(res[1])
 
-    return numpy.mean(results), numpy.std(results), 1.96 * numpy.std(results) / math.sqrt(no_simulations)
-
+    return numpy.mean(results), numpy.std(results), numpy.sum(time)
 # evaluates "no_samples" random seed sets A of size "k"
 # each simulated "no_simulations" times
 # returns a list of "no_samples" tuples (mean, stdev, and 95% confidence interval)

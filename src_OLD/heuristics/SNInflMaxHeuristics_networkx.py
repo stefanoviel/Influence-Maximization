@@ -173,7 +173,7 @@ def CELF(k, G, p, no_simulations, model):
 	for v in G.nodes():
 		delta[v] = max_delta
 	curr = {}
-
+	T = 0
 	while len(A) < k:
 		for j in set(G.nodes()) - set(A):
 			curr[j] = False
@@ -189,17 +189,20 @@ def CELF(k, G, p, no_simulations, model):
 			if curr[s]:
 				A.append(s)
 				# the result for this seed set is:
-				res = MonteCarlo_simulation(G, A, p, no_simulations, model, [],random_generator=None)
+				res = SNSim.evaluate(G, A, p, no_simulations, model)
 				S.append([(len(A)/G.number_of_nodes()*100), ((res[0] / G.number_of_nodes())*100), list(A)])         
-				print([(len(A)/G.number_of_nodes()*100), ((res[0] / G.number_of_nodes())*100)])                     
+				print([(len(A)/G.number_of_nodes()*100), ((res[0] / G.number_of_nodes())*100)])  
+				T += res[2]                 
 				break
 			else:
-				eval_after  = MonteCarlo_simulation(G, A+[s], p, no_simulations, model, [],random_generator=None)
-				eval_before = MonteCarlo_simulation(G, A, p, no_simulations, model, [],random_generator=None)
+				eval_after  = SNSim.evaluate(G, A+[s], p, no_simulations, model)
+				T += eval_after[2]  
+				eval_before = SNSim.evaluate(G, A, p, no_simulations, model)
+				T += eval_before[2] 
 				delta[s] = eval_after[0] - eval_before[0]
 				curr[s] = True
 
-	return S
+	return S , T
 # This is incomplete; ran into some problems with understanding the CELF++ paper.
 #S.append([(len(A)/G.number_of_nodes()*100), ((res[0] / G.number_of_nodes())*100), list(A)])
 def CELFpp(k, G, p, no_simulations, model):
