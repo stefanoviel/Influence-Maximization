@@ -65,11 +65,11 @@ for idx, name in enumerate(name_graph):
         from scipy.stats import ttest_ind
         p_values = []
         res = ttest_ind(m8, m1)
-        p_values.append(float(format(res.pvalue, '.3g')))
+        p_values.append((format(res.pvalue, '.3g')))
         res = ttest_ind(m4, m1)
-        p_values.append(float(format(res.pvalue, '.3g')))
+        p_values.append((format(res.pvalue, '.3g')))
         res = ttest_ind(m2, m1)
-        p_values.append(float(format(res.pvalue, '.3g')))
+        p_values.append((format(res.pvalue, '.3g')))
         res = ttest_ind(m1, m1)
         print(p_values)
         p_values = p_values[::-1]

@@ -120,8 +120,10 @@ def WC_model(G, a, communities, degree, random_generator):                 # a: 
 def MonteCarlo_simulation(G, A, p, no_simulations, model, communities, random_generator=None):
 	if random_generator is None:
 		random_generator = random.Random()
-		random_generator.seed(next(iter(A))) # initialize random number generator with first seed in the seed set, to make experiment repeatable; TODO evaluate computational cost
-
+		try:
+			random_generator.seed(next(iter(A))) # initialize random number generator with first seed in the seed set, to make experiment repeatable; TODO evaluate computational cost
+		except:
+			pass
 	results = []
 	times = []
 	comm_list = []

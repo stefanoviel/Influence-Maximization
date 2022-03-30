@@ -5,6 +5,8 @@ import heapq as hq
 from src_OLD.approximations import SNSigmaSim_networkx as SNSim
 import time
 
+from src.spread.monte_carlo import MonteCarlo_simulation as MonteCarlo_simulation
+
 # (Kempe) "The high-degree heuristic chooses nodes v in order of decreasing degrees. 
 # Considering high-degree nodes as influential has long been a standard approach 
 # for social and other networks [3, 83], and is known in the sociology literature 
@@ -162,46 +164,44 @@ def general_greedy(k, G, p, no_simulations, model):
         print(i+1, maxinfl_i[0], maxinfl_i[1], S)
         SS.append([(len(S)/G.number_of_nodes()*100), ((eval_tuple[0] / G.number_of_nodes())*100), list(S)])
     return S
-# CELF (Leskovec, Cost-effective Outbreak Detection in Networks, KDD07) is proven to approximate within 63% of the optimal.
-# -> Prints (rather than returns) the 1..k nodes of supposedly max influence, and that influence.
-# (It gets too time-expensive otherwise.)
-# -> Does return only the final set of exactly k nodes.
+
 def CELF(k, G, p, no_simulations, model):
-    A = []
-    S = []
-    max_delta = len(G.nodes()) + 1
-    delta = {}
-    for v in G.nodes():
-        delta[v] = max_delta
-    curr = {}
+	A = []
+	S = []
+	max_delta = len(G.nodes()) + 1
+	delta = {}
+	for v in G.nodes():
+		delta[v] = max_delta
+	curr = {}
 
-    while len(A) < k:
-        for j in set(G.nodes()) - set(A):
-            curr[j] = False
-        while True:
-            # find the node s from V-A which maximizes delta[s]
-            max_curr = -1
-            s = -1
-            for j in set(G.nodes()) - set(A):
-                if delta[j] > max_curr:
-                    max_curr = delta[j]
-                    s = j
-            # evaluate s only if curr = False
-            if curr[s]:
-                A.append(s)
-                # the result for this seed set is:
-                res = SNSim.evaluate(G, A, p, no_simulations, model)
-                print(len(A), (res[0] / G.number_of_nodes())*100, res[2], A, sep=' ') # mean, CI95, A
-                S.append([(len(A)/G.number_of_nodes()*100), ((res[0] / G.number_of_nodes())*100), list(A)])
-                break
-            else:
-                eval_after = SNSim.evaluate(G, A+[s], p, no_simulations, model)
-                eval_before = SNSim.evaluate(G, A, p, no_simulations, model)
-                delta[s] = eval_after[0] - eval_before[0]
-                curr[s] = True
-    return S
+	while len(A) < k:
+		for j in set(G.nodes()) - set(A):
+			curr[j] = False
+		while True:
+			# find the node s from V-A which maximizes delta[s]
+			max_curr = -1
+			s = -1
+			for j in set(G.nodes()) - set(A):
+				if delta[j] > max_curr:
+					max_curr = delta[j]
+					s = j
+			# evaluate s only if curr = False
+			if curr[s]:
+				A.append(s)
+				# the result for this seed set is:
+				res = MonteCarlo_simulation(G, A, p, no_simulations, model, [],random_generator=None)
+				S.append([(len(A)/G.number_of_nodes()*100), ((res[0] / G.number_of_nodes())*100), list(A)])         
+				print([(len(A)/G.number_of_nodes()*100), ((res[0] / G.number_of_nodes())*100)])                     
+				break
+			else:
+				eval_after  = MonteCarlo_simulation(G, A+[s], p, no_simulations, model, [],random_generator=None)
+				eval_before = MonteCarlo_simulation(G, A, p, no_simulations, model, [],random_generator=None)
+				delta[s] = eval_after[0] - eval_before[0]
+				curr[s] = True
 
+	return S
 # This is incomplete; ran into some problems with understanding the CELF++ paper.
+#S.append([(len(A)/G.number_of_nodes()*100), ((res[0] / G.number_of_nodes())*100), list(A)])
 def CELFpp(k, G, p, no_simulations, model):
     S = set()
     Q = [] # heap; stores tuples ⟨u.mg1, u.prev best, u.mg2, u.f lag⟩, u = a node

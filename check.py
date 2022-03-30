@@ -15,9 +15,10 @@ def get_PF(myArray):
     return pareto_frontier
 
 
-df = pd.read_csv('prova-fb-pages-artist_WC_32-page_rank.csv', sep = ',')
+
+model = 'WC'
+df = pd.read_csv(f'fb-pages-artist_{model}_32-page_rank.csv', sep = ',')
 nodes = df["nodes"].to_list()
-print(type(nodes[0]))
 influence = df['influence'].to_list()
 n_nodes = df["n_nodes"].to_list()
 x = []
@@ -32,13 +33,17 @@ for idx, item in enumerate(nodes):
     y.append(n_nodes[idx])
 
 
-x_mapping =  df["n_nodes"].to_list()
-z_mapping = df["influence"].to_list()
+
+
+
+t1 = np.array([[x[i],y[i]] for i in range(len(x))])
+
+t1 = get_PF(t1)
 
 
 A = []
-for i in range(len(x_mapping)):
-    A.append([-z_mapping[i],- (2.5 - x_mapping[i])])
+for i in range(len(t1)):
+    A.append(list([-t1[i][0],- (2.5 - t1[i][1])]))
 
 
 
@@ -59,10 +64,8 @@ print(hv_MAP)
 
 
 
-
-df = pd.read_csv('heuristics_experiment/single_discount_high_degree_nodes_WC_final_1.csv', sep = ',')
+df = pd.read_csv(f'heuristics_experiment/SDHDN_{model}.csv', sep = ',')
 nodes = df["nodes"].to_list()
-print(type(nodes[0]))
 influence = df['influence'].to_list()
 n_nodes = df["n_nodes"].to_list()
 x1 = []
@@ -81,10 +84,15 @@ for idx, item in enumerate(nodes):
 x_heu =  df["n_nodes"].to_list()
 z_heu = df["influence"].to_list()
 
+t2 = np.array([[x1[i],y1[i]] for i in range(len(x1))])
+
+t2 = get_PF(t2)
+
+
 
 A = []
-for i in range(len(x_heu)):
-    A.append([-z_heu[i],- (2.5 - x_heu[i])])
+for i in range(len(t2)):
+    A.append([-t2[i][0],- (2.5 - t2[i][1])])
 
 
 
@@ -103,11 +111,10 @@ hv_SD = metric.do(A) / tot
 print(hv_SD)
 
 
-print('FINAL', hv_MAP/hv_SD)
+print('FINAL - single_discount_high_degree_nodes', hv_MAP/hv_SD)
 
-df = pd.read_csv('heuristics_experiment/high_degree_nodes_WC_10.csv', sep = ',')
+df = pd.read_csv(f'heuristics_experiment/HDN_{model}.csv', sep = ',')
 nodes = df["nodes"].to_list()
-print(type(nodes[0]))
 influence = df['influence'].to_list()
 n_nodes = df["n_nodes"].to_list()
 x2 = []
@@ -126,10 +133,13 @@ for idx, item in enumerate(nodes):
 x_heu =  df["n_nodes"].to_list()
 z_heu = df["influence"].to_list()
 
+t3 = np.array([[x2[i],y2[i]] for i in range(len(x2))])
+
+t3 = get_PF(t3)
 
 A = []
-for i in range(len(x_heu)):
-    A.append([-z_heu[i],- (2.5 - x_heu[i])])
+for i in range(len(t3)):
+    A.append([-t3[i][0],- (2.5 - t3[i][1])])
 
 
 
@@ -146,11 +156,10 @@ metric = Hypervolume(ref_point= np.array([0,0]),
 hv_HD = metric.do(A) / tot
 
 print(hv_HD)
-print('FINAL', hv_MAP/hv_HD)
+print('FINAL - high_degree_nodes', hv_MAP/hv_HD)
 
-df = pd.read_csv('heuristics_experiment/CELF_WC_25.csv', sep = ',')
+df = pd.read_csv(f'heuristics_experiment/CELF_{model}_25.csv', sep = ',')
 nodes = df["nodes"].to_list()
-print(type(nodes[0]))
 influence = df['influence'].to_list()
 n_nodes = df["n_nodes"].to_list()
 x3 = []
@@ -171,8 +180,11 @@ z_heu = df["influence"].to_list()
 
 
 A = []
-for i in range(len(x_heu)):
-    A.append([-z_heu[i],- (2.5 - x_heu[i])])
+t4 = np.array([[x3[i],y3[i]] for i in range(len(x3))])
+
+t4 = get_PF(t4)
+for i in range(len(t4)):
+    A.append([-t4[i][0],- (2.5 - t4[i][1])])
 
 
 
@@ -191,25 +203,29 @@ hv_CELF = metric.do(A) / tot
 print(hv_CELF)
 
 
-print('FINAL', hv_MAP/hv_CELF)
+print('FINAL - CELF', hv_MAP/hv_CELF)
 import matplotlib.pyplot as plt
 
 
-#t1 = np.array([[x[i],y[i]] for i in range(len(x))])
-
-#t1 = get_PF(t1)
-
-#t2 = np.array([[x1[i],y1[i]] for i in range(len(x1))])
-
-#t2 = get_PF(t1)
 
 
-plt.scatter(x1,y1, color='yellow', label='Single Discount Heuristic', facecolor='none')
-plt.scatter(x2,y2, color='grey', label='Highest Degree Heuristic', facecolor='none')
-plt.scatter(x2,y2, color='pink', label='CELF Heuristic', facecolor='none')
-plt.scatter(x,y, color='black', label='Mapping')
 
-plt.xlim(0,100)
+
+# plt.scatter(x1,y1, color='yellow', label='Single Discount Heuristic', facecolor='none')
+# plt.scatter(x2,y2, color='pink', label='CELF Heuristic')
+# plt.scatter(x2,y2, color='grey', label='Highest Degree Heuristic', facecolor='none')
+
+# plt.scatter(x,y, color='black', label='Mapping')
+
+
+plt.scatter(t2[:,0],t2[:,1], color='purple', label='Single Discount Heuristic', facecolor='none')
+plt.scatter(t4[:,0],t4[:,1], color='olive', label='CELF Heuristic',facecolor='none')
+plt.scatter(t3[:,0],t3[:,1] , color='grey', label='Highest Degree Heuristic', facecolor='none')
+
+plt.scatter(t1[:,0],t1[:,1],color='black', label='Mapping')
+plt.xlim(0,50)
 plt.legend()
 
+
+plt.title('IC MODEL')
 plt.savefig('prova.png', format='png')

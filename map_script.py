@@ -43,7 +43,7 @@ def get_PF(myArray):
 scale_list = [32]
 graph_list = ['fb-pages-artist']
 
-model_list = ['IC']
+model_list = ['WC']
 for graph in graph_list:
     for model_ in model_list:
         for scale_number in scale_list:
@@ -70,7 +70,7 @@ for graph in graph_list:
 
             print('Scale Factor',scale_factor, scale_original)
             for j in range(10):
-                df_scale_results = pd.read_csv("experiments/{0}_{1}-{2}-36-0.01/run-{3}.csv".format(graph,scale_number, model_,j+1),sep=",")
+                df_scale_results = pd.read_csv("experiments/{0}_{1}-{2}-14/run-{3}.csv".format(graph,scale_number, model_,j+1),sep=",")
                 df_scale_results = df_scale_results.sort_values(by="n_nodes", ascending=False)
                 nodes = df_scale_results["nodes"].to_list()
                 for jj in range(10):
@@ -194,7 +194,7 @@ for graph in graph_list:
 
 
                         original_filename = "graphs/{0}.txt".format(graph)
-                        p = 0.05
+                        p = 0.01
                         no_simulations = 100
                         model = model_
                         G = read_graph(original_filename)
