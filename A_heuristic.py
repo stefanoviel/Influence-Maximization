@@ -7,12 +7,12 @@ from src_OLD.heuristics.SNInflMaxHeuristics_networkx import *
 from src.spread.monte_carlo_2_obj import MonteCarlo_simulation as MonteCarlo_simulation
 
 
-G = read_graph('graphs/fb-pages-artist.txt')
+G = read_graph('graphs/fb_politician.txt')
 start_time = time.time()
 #S = CELF(100, G, 0.05, 1, 'IC')
 
 
-# H = high_degree_nodes(int(G.number_of_nodes()*0.01),G)
+# H = high_degree_nodes(int(G.number_of_nodes()*0.025),G)
 
 # s = []
 # for item in H:
@@ -21,7 +21,7 @@ start_time = time.time()
 # print(s)
 #print(S)
 # # print('Running ....')
-#s = single_discount_high_degree_nodes(int(G.number_of_nodes()*0.01),G)
+#s = single_discount_high_degree_nodes(int(G.number_of_nodes()*0.025),G)
 
 influence = []
 nodes_ = []
@@ -29,7 +29,7 @@ n_nodes = []
 # for i in range(len(s)):
 #     A = s[:i+1]
 #     print(i+1,'/',len(s))
-#     spread  = MonteCarlo_simulation(G, A, 0, 25, 'WC',  [], random_generator=None)
+#     spread  = MonteCarlo_simulation(G, A, 0, 100, 'WC',  [], random_generator=None)
 #     print(((spread[0] / G.number_of_nodes())* 100), spread[2], ((len(A) / G.number_of_nodes())* 100))
 #     influence.append(((spread[0] / G.number_of_nodes())* 100))
 #     n_nodes.append(((len(A) / G.number_of_nodes())* 100))
@@ -38,7 +38,7 @@ n_nodes = []
 #S = CELF(int(G.number_of_nodes()*0.025),G,0, 1, 'WC')
 #S = general_greedy((int(G.number_of_nodes()*0.025)),G,0, 1, 'WC')
 
-RES = CELF(int(G.number_of_nodes()*0.01),G,0.01, 1, 'IC')
+RES = CELF(int(G.number_of_nodes()*0.025),G,0.05, 100, 'IC')
 S = RES[0]
 print(RES[1])
 
@@ -54,7 +54,7 @@ df["nodes"] = nodes_
 df["time"] = [RES[1] for x in n_nodes]
 
 
-df.to_csv(f'heuristics_experiment/CELF_1_TIME_IC.csv', index=False)
+df.to_csv(f'heuristics_experiment/fb_politician_CELF_IC.csv', index=False)
 
 
 exit(0)

@@ -64,7 +64,7 @@ print(hv_MAP)
 
 
 
-df = pd.read_csv(f'heuristics_experiment/SDHDN_{model}.csv', sep = ',')
+df = pd.read_csv(f'heuristics_experiment/SDHHN_{model}_25.csv', sep = ',')
 nodes = df["nodes"].to_list()
 influence = df['influence'].to_list()
 n_nodes = df["n_nodes"].to_list()
@@ -113,7 +113,7 @@ print(hv_SD)
 
 print('FINAL - single_discount_high_degree_nodes', hv_MAP/hv_SD)
 
-df = pd.read_csv(f'heuristics_experiment/HDN_{model}.csv', sep = ',')
+df = pd.read_csv(f'heuristics_experiment/DHN_{model}_25.csv', sep = ',')
 nodes = df["nodes"].to_list()
 influence = df['influence'].to_list()
 n_nodes = df["n_nodes"].to_list()
@@ -158,7 +158,7 @@ hv_HD = metric.do(A) / tot
 print(hv_HD)
 print('FINAL - high_degree_nodes', hv_MAP/hv_HD)
 
-df = pd.read_csv(f'heuristics_experiment/CELF_{model}_25.csv', sep = ',')
+df = pd.read_csv(f'heuristics_experiment/CELF_1_TIME_{model}.csv', sep = ',')
 nodes = df["nodes"].to_list()
 influence = df['influence'].to_list()
 n_nodes = df["n_nodes"].to_list()
