@@ -191,7 +191,20 @@ def CELF(k, G, p, no_simulations, model):
 				# the result for this seed set is:
 				res = SNSim.evaluate(G, A, p, no_simulations, model)
 				S.append([(len(A)/G.number_of_nodes()*100), ((res[0] / G.number_of_nodes())*100), list(A)])         
-				print([(len(A)/G.number_of_nodes()*100), ((res[0] / G.number_of_nodes())*100)])  
+				
+				influence = []
+				nodes_ = []
+				n_nodes = []
+				for item in S:
+					influence.append(item[1])
+					nodes_.append(item[2])
+					n_nodes.append(item[0])
+					import pandas as pd
+					df = pd.DataFrame()
+					df["n_nodes"] = n_nodes
+					df["influence"] = influence
+					df["nodes"] = nodes_
+					df.to_csv(f'heuristics_experiment/CELF_{model}_runtime.csv', index=False)
 				T += res[2]                 
 				break
 			else:
