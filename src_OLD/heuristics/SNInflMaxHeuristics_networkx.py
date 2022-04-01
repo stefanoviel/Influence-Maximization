@@ -204,7 +204,7 @@ def CELF(k, G, p, no_simulations, model):
 					df["n_nodes"] = n_nodes
 					df["influence"] = influence
 					df["nodes"] = nodes_
-					df.to_csv(f'heuristics_experiment/CELF_{model}_runtime.csv', index=False)
+					df.to_csv(f'CELF_{model}_runtime_1_aprile.csv', index=False)
 				T += res[2]                 
 				break
 			else:

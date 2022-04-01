@@ -31,7 +31,7 @@ n_nodes = []
 # for i in range(len(s)):
 #    A = s[:i+1]
 #    print(i+1,'/',len(s))
-#    spread  = MonteCarlo_simulation(G, A, 0.01, 100, 'IC',  [], random_generator=None)
+#    spread  = MonteCarlo_simulation(G, A, 0, 100, 'WC',  [], random_generator=None)
 #    print(((spread[0] / G.number_of_nodes())* 100), spread[2], ((len(A) / G.number_of_nodes())* 100))
 #    influence.append(((spread[0] / G.number_of_nodes())* 100))
 #    n_nodes.append(((len(A) / G.number_of_nodes())* 100))
@@ -40,10 +40,9 @@ n_nodes = []
 #    df["n_nodes"] = n_nodes
 #    df["influence"] = influence
 #    df["nodes"] = nodes_
-   #df["time"] = [RES[1] for x in n_nodes]
 
 
-   #df.to_csv(f'heuristics_experiment/RUNTIME_low_distance_nodes_IC.csv', index=False)
+   #df.to_csv(f'heuristics_experiment/RUNTIME_low_distance_node_WC.csv', index=False)
 #S = CELF(int(G.number_of_nodes()*0.025),G,0, 1, 'IC')
 #S = general_greedy((int(G.number_of_nodes()*0.025)),G,0, 1, 'IC')
 
@@ -60,10 +59,10 @@ df = pd.DataFrame()
 df["n_nodes"] = n_nodes
 df["influence"] = influence
 df["nodes"] = nodes_
-df["time"] = [RES[1] for x in n_nodes]
+#df["time"] = [RES[1] for x in n_nodes]
 
 
-df.to_csv(f'heuristics_experiment/heuristic_final/FINAL_SOLUTIONS_runtime_CELF_IC_correct.csv', index=False)
+df.to_csv(f'heuristics_experiment/heuristic_final/CELF_IC_1_APRILE', index=False)
 
 
 exit(0)
