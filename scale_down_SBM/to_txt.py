@@ -11,6 +11,9 @@ print(df.index)
 n1 = df["node1"].to_list()
 n2 = df["node2"].to_list()
 
+
+n1 = [item-1 for item in n1 ]
+n2 = [item-1 for item in n2 ]
 print(len(set(n1+n2)))
 
 text = []
