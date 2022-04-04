@@ -7,7 +7,7 @@ from src_OLD.heuristics.SNInflMaxHeuristics_networkx import *
 from src.spread.monte_carlo_2_obj import MonteCarlo_simulation as MonteCarlo_simulation
 
 
-G = read_graph('graphs/fb-pages-artist.txt')
+G = read_graph('scale_graphs/fb_politician_8.txt')
 start_time = time.time()
 #S = CELF(100, G, 0.05, 1, 'IC')
 
@@ -46,7 +46,7 @@ n_nodes = []
 #S = CELF(int(G.number_of_nodes()*0.025),G,0, 1, 'IC')
 #S = general_greedy((int(G.number_of_nodes()*0.025)),G,0, 1, 'IC')
 
-RES = CELF(int(G.number_of_nodes()*0.01),G,0.01, 100, 'IC')
+RES = CELF(int(G.number_of_nodes()*0.025),G,0.05, 100, 'IC')
 S = RES[0]
 print(RES[1])
 
@@ -62,7 +62,7 @@ df["nodes"] = nodes_
 #df["time"] = [RES[1] for x in n_nodes]
 
 
-df.to_csv(f'heuristics_experiment/heuristic_final/CELF_IC_1_APRILE', index=False)
+df.to_csv(f'prova_CELF_IC_2_APRILE_0.05', index=False)
 
 
 exit(0)

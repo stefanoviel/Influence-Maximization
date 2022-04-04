@@ -18,7 +18,7 @@ sys.path.insert(0, '')
 from src.load import read_graph
 scale_vector = [32]
 
-filename = "graphs/fb-pages-artist.txt"
+filename = "graphs/soc-brightkite.txt"
 name = (os.path.basename(filename))
 G = read_graph(filename)
 G = G.to_undirected()
