@@ -1,11 +1,11 @@
 import pandas as pd
 import os
 
-filename = "/Users/elia/Downloads/fb-pages-artist/fb-pages-artist.edges"
+filename = "/Users/elia/Downloads/soc-brightkite/soc-brightkite.csv"
 name = (os.path.basename(filename))
 name = name.replace(".edges","")
 
-df = pd.read_csv(filename, sep=",",index_col=False)
+df = pd.read_csv(filename, sep=" ",index_col=False)
 print(df)
 print(df.index)
 n1 = df["node1"].to_list()
@@ -18,6 +18,6 @@ for i in range(len(n1)):
 
     f = "{0} {1}".format(n1[i],n2[i])
     text.append(f) 
-with open(str(name)+".txt", "w") as outfile:
+with open("graphs/soc-brightkite.txt", "w") as outfile:
         outfile.write("\n".join(text))
         

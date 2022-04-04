@@ -2,6 +2,7 @@ from telnetlib import TN3270E
 import pandas as pd
 import numpy as np
 from pymoo.factory import get_performance_indicator
+from sklearn.metrics import plot_precision_recall_curve
 def get_PF(myArray):
     myArray = myArray[myArray[:,0].argsort()]
     # Add first row to pareto_frontier
@@ -64,7 +65,7 @@ print(hv_MAP)
 
 
 
-df = pd.read_csv(f'heuristics_experiment/SDHHN_{model}_25.csv', sep = ',')
+df = pd.read_csv(f'heuristics_experiment/heuristic_final/high_degree_nodes_WC_100_simulation_k_505_CORRECT.csv', sep = ',')
 nodes = df["nodes"].to_list()
 influence = df['influence'].to_list()
 n_nodes = df["n_nodes"].to_list()
@@ -113,7 +114,7 @@ print(hv_SD)
 
 print('FINAL - single_discount_high_degree_nodes', hv_MAP/hv_SD)
 
-df = pd.read_csv(f'heuristics_experiment/DHN_{model}_25.csv', sep = ',')
+df = pd.read_csv(f'heuristics_experiment/heuristic_final/FINAL_SOLUTIONS_runtime_low_distance_nodes_WC_correct.csv', sep = ',')
 nodes = df["nodes"].to_list()
 influence = df['influence'].to_list()
 n_nodes = df["n_nodes"].to_list()
@@ -158,7 +159,7 @@ hv_HD = metric.do(A) / tot
 print(hv_HD)
 print('FINAL - high_degree_nodes', hv_MAP/hv_HD)
 
-df = pd.read_csv(f'heuristics_experiment/CELF_1_TIME_{model}.csv', sep = ',')
+df = pd.read_csv(f'heuristics_experiment/heuristic_final/single_discount_high_degree_nodes_WC_100_simulation_k_505.csv', sep = ',')
 nodes = df["nodes"].to_list()
 influence = df['influence'].to_list()
 n_nodes = df["n_nodes"].to_list()
@@ -218,9 +219,9 @@ import matplotlib.pyplot as plt
 # plt.scatter(x,y, color='black', label='Mapping')
 
 
-plt.scatter(t2[:,0],t2[:,1], color='purple', label='Single Discount Heuristic', facecolor='none')
-plt.scatter(t4[:,0],t4[:,1], color='olive', label='CELF Heuristic',facecolor='none')
-plt.scatter(t3[:,0],t3[:,1] , color='grey', label='Highest Degree Heuristic', facecolor='none')
+plt.scatter(t2[:,0],t2[:,1], color='purple', label='Highest Degree Heuristic', facecolor='none')
+plt.scatter(t4[:,0],t4[:,1], color='olive', label='Single Discount Heuristic',facecolor='none')
+plt.scatter(t3[:,0],t3[:,1] , color='grey', label='Low distance', facecolor='none')
 
 plt.scatter(t1[:,0],t1[:,1],color='black', label='Mapping')
 plt.xlim(0,50)
@@ -229,3 +230,5 @@ plt.legend()
 
 plt.title('IC MODEL')
 plt.savefig('prova.png', format='png')
+
+plt.show()
