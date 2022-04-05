@@ -1,9 +1,0 @@
-\begin{tabular}{l}
-\toprule
-Empty DataFrame
-Columns: RangeIndex(start=0, stop=0, step=1)
-Index: Index(['facebook\_combined', 'fb\_politician', 'fb\_org',
-       'fb-pages-public-figure', 'deezerEU', 'pgp'],
-      dtype='object') \\
-\bottomrule
-\end{tabular}
