@@ -54,8 +54,8 @@ if __name__ == '__main__':
     
 
     no_runs = 1
-    filenames = ["scale_graphs/fb-pages-artist_32.txt"]
-    gt = ["comm_ground_truth/fb-pages-artist_32.csv"]
+    filenames = ["scale_graphs/soc-gemsec_32.txt"]
+    gt = ["comm_ground_truth/soc-gemsec_32.csv"]
     
     scale_k = [32]
 
@@ -70,7 +70,7 @@ if __name__ == '__main__':
         file = file.replace(".txt", "")
         for m in models:
             if m == "IC":
-                p = 0.01
+                p = 0.05
             elif m == "LT":
                 p = 0
             elif m == "WC":
@@ -86,7 +86,7 @@ if __name__ == '__main__':
 
             k = int(G.number_of_nodes() * 0.025)
             #k = 100
-            path = 'experiments/{0}-{1}-{2}-0.01'.format(file,m,k) 
+            path = 'experiments/{0}-{1}-{2}'.format(file,m,k) 
             print(path)
             try:
                 os.makedirs(path)

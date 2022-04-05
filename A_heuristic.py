@@ -7,12 +7,12 @@ from src_OLD.heuristics.SNInflMaxHeuristics_networkx import *
 from src.spread.monte_carlo_2_obj import MonteCarlo_simulation as MonteCarlo_simulation
 
 
-G = read_graph('scale_graphs/fb_politician_8.txt')
+G = read_graph('scale_graphs/soc-gemsec_16.txt')
 start_time = time.time()
 #S = CELF(100, G, 0.05, 1, 'IC')
 
 
-# H = low_distance_nodes(int(G.number_of_nodes()*0.01),G)
+# H = low_distance_nodes(int(G.number_of_nodes()*0.025),G)
 
 
 
@@ -42,11 +42,11 @@ n_nodes = []
 #    df["nodes"] = nodes_
 
 
-   #df.to_csv(f'heuristics_experiment/RUNTIME_low_distance_node_WC.csv', index=False)
+#    df.to_csv(f'soc-gemsec_prova_runtime.csv', index=False)
 #S = CELF(int(G.number_of_nodes()*0.025),G,0, 1, 'IC')
 #S = general_greedy((int(G.number_of_nodes()*0.025)),G,0, 1, 'IC')
 
-RES = CELF(int(G.number_of_nodes()*0.025),G,0.05, 100, 'IC')
+RES = CELF(int(G.number_of_nodes()*0.025),G,0, 100, 'WC')
 S = RES[0]
 print(RES[1])
 
@@ -62,7 +62,7 @@ df["nodes"] = nodes_
 #df["time"] = [RES[1] for x in n_nodes]
 
 
-df.to_csv(f'prova_CELF_IC_2_APRILE_0.05', index=False)
+df.to_csv(f'soc-gemsec_prova_CELF.csv', index=False)
 
 
 exit(0)
