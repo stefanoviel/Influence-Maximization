@@ -101,11 +101,11 @@ def get_table(graph_name, comm_name, measure):
 
 degree_measure = ['two-hop','page_rank', 'degree_centrality','katz_centrality', 'betweenness', 'closeness', 'eigenvector_centrality', 'core']
 
-graphs = ['facebook_combined',  'fb_politician', 'fb_org', 'fb-pages-public-figure', 'pgp','deezerEU']
-graphs = ['fb-pages-artist']
-scale_factor = 1
+#graphs = ['facebook_combined',  'fb_politician', 'fb_org', 'fb-pages-public-figure', 'pgp','deezerEU']
+graphs = ['soc-brighkite']
+scale_factor = 16
 for i in range(len(graphs)):
-    filename = "graphs/{0}.txt".format(graphs[i])
+    filename = "scale_graphs/{0}_{1}.txt".format(graphs[i],scale_factor)
     scale_comm = "comm_ground_truth/{0}.csv".format(graphs[i])
     for measure in degree_measure:
         print(measure , '....')

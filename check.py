@@ -18,7 +18,7 @@ def get_PF(myArray):
 
 
 model = 'WC'
-df = pd.read_csv(f'fb-pages-artist_{model}_32-page_rank.csv', sep = ',')
+df = pd.read_csv(f'soc-brightkite_WC_16-page_rank.csv', sep = ',')
 nodes = df["nodes"].to_list()
 influence = df['influence'].to_list()
 n_nodes = df["n_nodes"].to_list()
@@ -65,7 +65,7 @@ print(hv_MAP)
 
 
 
-df = pd.read_csv(f'heuristics_experiment/heuristic_final/high_degree_nodes_WC_100_simulation_k_505_CORRECT.csv', sep = ',')
+df = pd.read_csv(f'soc-brightkite_high_degree_nodes_runtime_WC.csv', sep = ',')
 nodes = df["nodes"].to_list()
 influence = df['influence'].to_list()
 n_nodes = df["n_nodes"].to_list()
@@ -114,7 +114,7 @@ print(hv_SD)
 
 print('FINAL - single_discount_high_degree_nodes', hv_MAP/hv_SD)
 
-df = pd.read_csv(f'heuristics_experiment/heuristic_final/FINAL_SOLUTIONS_runtime_low_distance_nodes_WC_correct.csv', sep = ',')
+df = pd.read_csv(f'soc-brightkite_low_distance_nodes_runtime_WC.csv', sep = ',')
 nodes = df["nodes"].to_list()
 influence = df['influence'].to_list()
 n_nodes = df["n_nodes"].to_list()
@@ -159,7 +159,7 @@ hv_HD = metric.do(A) / tot
 print(hv_HD)
 print('FINAL - high_degree_nodes', hv_MAP/hv_HD)
 
-df = pd.read_csv(f'heuristics_experiment/heuristic_final/single_discount_high_degree_nodes_WC_100_simulation_k_505.csv', sep = ',')
+df = pd.read_csv(f'soc-brightkite_single_discount_high_degree_nodes_runtime_WC.csv', sep = ',')
 nodes = df["nodes"].to_list()
 influence = df['influence'].to_list()
 n_nodes = df["n_nodes"].to_list()
@@ -199,6 +199,56 @@ metric = Hypervolume(ref_point= np.array([0,0]),
                     zero_to_one=False)
 
 
+hv_SDD = metric.do(A) / tot
+
+print(hv_SDD)
+
+
+print('FINAL - SDD', hv_MAP/hv_SDD)
+
+
+
+
+df = pd.read_csv(f'soc-brightkite_WC_CELF_runtime.csv', sep = ',')
+nodes = df["nodes"].to_list()
+influence = df['influence'].to_list()
+n_nodes = df["n_nodes"].to_list()
+x4 = []
+y4 = []
+for idx, item in enumerate(nodes):
+    item = item.replace("[","")
+    item = item.replace("]","")
+    item = item.replace(",","")
+    nodes_split = item.split() 
+    #print(, influence[idx])
+    x4.append(influence[idx])
+    y4.append(n_nodes[idx])
+
+
+
+x_heu =  df["n_nodes"].to_list()
+z_heu = df["influence"].to_list()
+
+
+A = []
+t5 = np.array([[x4[i],y4[i]] for i in range(len(x4))])
+
+t5 = get_PF(t5)
+for i in range(len(t5)):
+    A.append([-t5[i][0],- (2.5 - t5[i][1])])
+
+
+
+A = np.array(A)
+
+tot = 100 * 2.5
+from pymoo.indicators.hv import Hypervolume
+
+metric = Hypervolume(ref_point= np.array([0,0]),
+                    norm_ref_point=False,
+                    zero_to_one=False)
+
+
 hv_CELF = metric.do(A) / tot
 
 print(hv_CELF)
@@ -222,7 +272,7 @@ import matplotlib.pyplot as plt
 plt.scatter(t2[:,0],t2[:,1], color='purple', label='Highest Degree Heuristic', facecolor='none')
 plt.scatter(t4[:,0],t4[:,1], color='olive', label='Single Discount Heuristic',facecolor='none')
 plt.scatter(t3[:,0],t3[:,1] , color='grey', label='Low distance', facecolor='none')
-
+plt.scatter(t5[:,0],t5[:,1] , color='pink', label='CELF', facecolor='none')
 plt.scatter(t1[:,0],t1[:,1],color='black', label='Mapping')
 plt.xlim(0,50)
 plt.legend()

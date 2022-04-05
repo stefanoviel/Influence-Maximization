@@ -33,4 +33,12 @@ Y.append(min(y))
 Y.append(max(y))
 plt.plot(X,Y,color='red')
 plt.savefig('prova_hv.png')
-plt.show()
+#plt.show()
+
+
+
+df = pd.read_csv('experiments/soc-gemsec_16-WC-71/run-1-time.csv')
+
+print(df.values.sum())
+
+print(round(df.values.sum(),1))

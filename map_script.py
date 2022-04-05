@@ -41,14 +41,14 @@ def get_PF(myArray):
     return pareto_frontier
     
 scale_list = [32]
-graph_list = ['fb-pages-artist']
+graph_list = ['soc-brightkite']
 
 model_list = ['WC']
 for graph in graph_list:
     for model_ in model_list:
         for scale_number in scale_list:
 
-            degree_measure = ['two-hop','page_rank', 'degree_centrality','katz_centrality', 'betweenness', 'closeness', 'eigenvector_centrality', 'core']
+            #degree_measure = ['two-hop','page_rank', 'degree_centrality','katz_centrality', 'betweenness', 'closeness', 'eigenvector_centrality', 'core']
             degree_measure = ['page_rank']
             MAP_RESULTS = {}
             for measure in degree_measure:
@@ -70,7 +70,8 @@ for graph in graph_list:
 
             print('Scale Factor',scale_factor, scale_original)
             for j in range(10):
-                df_scale_results = pd.read_csv("experiments/{0}_{1}-{2}-14/run-{3}.csv".format(graph,scale_number, model_,j+1),sep=",")
+                #df_scale_results = pd.read_csv("experiments/{0}_{1}-{2}-14/run-{3}.csv".format(graph,scale_number, model_,j+1),sep=",")
+                df_scale_results = pd.read_csv('experiments/soc-brightkite_32-WC-32/run-1.csv',sep=',')
                 df_scale_results = df_scale_results.sort_values(by="n_nodes", ascending=False)
                 nodes = df_scale_results["nodes"].to_list()
                 for jj in range(10):
@@ -186,7 +187,6 @@ for graph in graph_list:
                                             if len(l) == 0:
                                                 break
                             solution.append(N)
-
 
                         print('End Mappping ....') 
 

@@ -2,76 +2,117 @@ import time
 import numpy as np
 import pandas as pd
 from src.load import read_graph
-from pymoo.indicators.hv import Hypervolume
 from src_OLD.heuristics.SNInflMaxHeuristics_networkx import *
 from src.spread.monte_carlo_2_obj import MonteCarlo_simulation as MonteCarlo_simulation
 
 
-G = read_graph('scale_graphs/soc-gemsec_16.txt')
-start_time = time.time()
-#S = CELF(100, G, 0.05, 1, 'IC')
+G = read_graph('graphs/soc-brightkite.txt')
 
 
-# H = low_distance_nodes(int(G.number_of_nodes()*0.025),G)
+model = 'WC'
+
+heuristic = 'CELF'
+
+if heuristic == 'low_distance_nodes':
+   H = low_distance_nodes(int(G.number_of_nodes()*0.025),G)
+   s = []
+   for item in H:
+      s.append(item[1])
+   influence = []
+   nodes_ = []
+   n_nodes = []
+   for i in range(len(s)):
+      A = s[:i+1]
+      print(i+1,'/',len(s))
+      spread  = MonteCarlo_simulation(G, A, 0.05, 100, model,  [], random_generator=None)
+      print(((spread[0] / G.number_of_nodes())* 100), spread[2], ((len(A) / G.number_of_nodes())* 100))
+      influence.append(((spread[0] / G.number_of_nodes())* 100))
+      n_nodes.append(((len(A) / G.number_of_nodes())* 100))
+      nodes_.append(list(A))
+      df = pd.DataFrame()
+      df["n_nodes"] = n_nodes
+      df["influence"] = influence
+      df["nodes"] = nodes_
+      df.to_csv(f'soc-brightkite_{heuristic}_runtime_{model}.csv', index=False)
+
+   df = pd.DataFrame()
+   df["n_nodes"] = n_nodes
+   df["influence"] = influence
+   df["nodes"] = nodes_
 
 
+   df.to_csv(f'soc-brightkite_FINAL_{heuristic}_{model}.csv', index=False)
 
-# s = []
-# for item in H:
-#    s.append(item[1])
+elif heuristic == 'high_degree_nodes':
+   H = high_degree_nodes(int(G.number_of_nodes()*0.025),G)
+   s = []
+   for item in H:
+      s.append(item[1])
+   influence = []
+   nodes_ = []
+   n_nodes = []
+   for i in range(len(s)):
+      A = s[:i+1]
+      print(i+1,'/',len(s))
+      spread  = MonteCarlo_simulation(G, A, 0.05, 100, model,  [], random_generator=None)
+      print(((spread[0] / G.number_of_nodes())* 100), spread[2], ((len(A) / G.number_of_nodes())* 100))
+      influence.append(((spread[0] / G.number_of_nodes())* 100))
+      n_nodes.append(((len(A) / G.number_of_nodes())* 100))
+      nodes_.append(list(A))
+      df = pd.DataFrame()
+      df["n_nodes"] = n_nodes
+      df["influence"] = influence
+      df["nodes"] = nodes_
+      df.to_csv(f'soc-brightkite_{heuristic}_runtime_{model}.csv', index=False)
 
-# print(s)
-#print(S)
-# # print('Running ....')
-#s = single_discount_high_degree_nodes(int(G.number_of_nodes()*0.01),G)
+   df = pd.DataFrame()
+   df["n_nodes"] = n_nodes
+   df["influence"] = influence
+   df["nodes"] = nodes_
+   df.to_csv(f'soc-brightkite_FINAL_{heuristic}_{model}.csv', index=False)
 
-influence = []
-nodes_ = []
-n_nodes = []
-# for i in range(len(s)):
-#    A = s[:i+1]
-#    print(i+1,'/',len(s))
-#    spread  = MonteCarlo_simulation(G, A, 0, 100, 'WC',  [], random_generator=None)
-#    print(((spread[0] / G.number_of_nodes())* 100), spread[2], ((len(A) / G.number_of_nodes())* 100))
-#    influence.append(((spread[0] / G.number_of_nodes())* 100))
-#    n_nodes.append(((len(A) / G.number_of_nodes())* 100))
-#    nodes_.append(list(A))
-#    df = pd.DataFrame()
-#    df["n_nodes"] = n_nodes
-#    df["influence"] = influence
-#    df["nodes"] = nodes_
-
-
-#    df.to_csv(f'soc-gemsec_prova_runtime.csv', index=False)
-#S = CELF(int(G.number_of_nodes()*0.025),G,0, 1, 'IC')
-#S = general_greedy((int(G.number_of_nodes()*0.025)),G,0, 1, 'IC')
-
-RES = CELF(int(G.number_of_nodes()*0.025),G,0, 100, 'WC')
-S = RES[0]
-print(RES[1])
-
-for item in S:
-   influence.append(item[1])
-   nodes_.append(item[2])
-   n_nodes.append(item[0])
-
-df = pd.DataFrame()
-df["n_nodes"] = n_nodes
-df["influence"] = influence
-df["nodes"] = nodes_
-#df["time"] = [RES[1] for x in n_nodes]
-
-
-df.to_csv(f'soc-gemsec_prova_CELF.csv', index=False)
+elif heuristic == 'single_discount_high_degree_nodes':
+   s = single_discount_high_degree_nodes(int(G.number_of_nodes()*0.025),G)
+   influence = []
+   nodes_ = []
+   n_nodes = []
+   for i in range(len(s)):
+      A = s[:i+1]
+      print(i+1,'/',len(s))
+      spread  = MonteCarlo_simulation(G, A, 0.05, 100, model,  [], random_generator=None)
+      print(((spread[0] / G.number_of_nodes())* 100), spread[2], ((len(A) / G.number_of_nodes())* 100))
+      influence.append(((spread[0] / G.number_of_nodes())* 100))
+      n_nodes.append(((len(A) / G.number_of_nodes())* 100))
+      nodes_.append(list(A))
+      df = pd.DataFrame()
+      df["n_nodes"] = n_nodes
+      df["influence"] = influence
+      df["nodes"] = nodes_
 
 
-exit(0)
+      df.to_csv(f'soc-brightkite_{heuristic}_runtime_{model}.csv', index=False)
 
-tot = 100 * 2.5 
-pf = np.array(pf)
-metric = Hypervolume(ref_point= np.array([0,0]),
-                    norm_ref_point=False,
-                    zero_to_one=False)
+   df = pd.DataFrame()
+   df["n_nodes"] = n_nodes
+   df["influence"] = influence
+   df["nodes"] = nodes_
 
-hv_original = metric.do(pf) /tot
-print(hv_original)
+
+   df.to_csv(f'soc-brightkite_FINAL_{heuristic}_{model}.csv', index=False)
+
+elif heuristic == 'CELF':
+
+   RES = CELF(int(G.number_of_nodes()*0.025),G,0.5, 100, model)
+   S = RES[0]
+   influence = []
+   nodes_ = []
+   n_nodes = []
+   for item in S:
+      influence.append(item[1])
+      nodes_.append(item[2])
+      n_nodes.append(item[0])
+   df = pd.DataFrame()
+   df["n_nodes"] = n_nodes
+   df["influence"] = influence
+   df["nodes"] = nodes_
+   df.to_csv(f'soc-brightkite_FINAL_{heuristic}_{model}.csv', index=False)
