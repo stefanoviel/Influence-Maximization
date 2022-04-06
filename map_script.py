@@ -41,7 +41,7 @@ def get_PF(myArray):
     return pareto_frontier
     
 scale_list = [32]
-graph_list = ['soc-brightkite']
+graph_list = ['fb-pages-artist']
 
 model_list = ['WC']
 for graph in graph_list:
@@ -71,7 +71,7 @@ for graph in graph_list:
             print('Scale Factor',scale_factor, scale_original)
             for j in range(10):
                 #df_scale_results = pd.read_csv("experiments/{0}_{1}-{2}-14/run-{3}.csv".format(graph,scale_number, model_,j+1),sep=",")
-                df_scale_results = pd.read_csv('experiments/soc-brightkite_32-WC-32/run-1.csv',sep=',')
+                df_scale_results = pd.read_csv('experiments/fb-pages-artist_32-WC-14/run-1.csv',sep=',')
                 df_scale_results = df_scale_results.sort_values(by="n_nodes", ascending=False)
                 nodes = df_scale_results["nodes"].to_list()
                 for jj in range(10):
@@ -194,7 +194,7 @@ for graph in graph_list:
 
 
                         original_filename = "graphs/{0}.txt".format(graph)
-                        p = 0.01
+                        p = 0.05
                         no_simulations = 100
                         model = model_
                         G = read_graph(original_filename)

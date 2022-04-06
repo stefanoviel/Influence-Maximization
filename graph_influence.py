@@ -54,12 +54,12 @@ if __name__ == '__main__':
     
 
     no_runs = 1
-    filenames = ["scale_graphs/soc-gemsec_32.txt"]
-    gt = ["comm_ground_truth/soc-gemsec_32.csv"]
+    filenames = ["scale_graphs/fb-pages-artist_16.txt"]
+    gt = ["comm_ground_truth/fb-pages-artist_16.csv"]
     
-    scale_k = [32]
+    scale_k = [16]
 
-    models = ['IC']
+    models = ['WC']
     i = 0
     for item in filenames:
         file_gt = gt[i]
@@ -84,7 +84,7 @@ if __name__ == '__main__':
             random_seed = 10
             prng = random.Random(random_seed)
 
-            k = int(G.number_of_nodes() * 0.025)
+            k = int(G.number_of_nodes() * 0.01)
             #k = 100
             path = 'experiments/{0}-{1}-{2}'.format(file,m,k) 
             print(path)

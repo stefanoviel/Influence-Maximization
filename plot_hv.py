@@ -37,7 +37,7 @@ plt.savefig('prova_hv.png')
 
 
 
-df = pd.read_csv('experiments/soc-gemsec_16-WC-71/run-1-time.csv')
+df = pd.read_csv('experiments/fb-pages-artist_32-WC-14/run-1-time.csv')
 
 print(df.values.sum())
 

@@ -154,17 +154,17 @@ for model in models:
     # print(df) 
     # df.to_latex(f'p_value-{model}')
        
-        gd8 = gen_dist(path, path8)
-        gd4 = gen_dist(path, path4)
-        gd2 = gen_dist(path, path2)   
-        gd1 = gen_dist(path, path)   
+        # gd8 = gen_dist(path, path8)
+        # gd4 = gen_dist(path, path4)
+        # gd2 = gen_dist(path, path2)   
+        # gd1 = gen_dist(path, path)   
 
 
-        print(gd8, gd4,gd2)
+        #print(gd8, gd4,gd2)
         df = pd.DataFrame()
         df["scale"] = [8,4,2]
         df["Hyperarea"] = [m8/m1,m4/m1,m2/m1]
-        df["GD"] = [gd8,gd4,gd2]
+        #df["GD"] = [gd8,gd4,gd2]
         path = path.replace('experiments/','')
         df.to_csv('matrix_MOEA_results/'+path, sep=',', index=False)
 
