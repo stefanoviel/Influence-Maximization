@@ -17,6 +17,51 @@ def get_PF(myArray):
 
 
 model = 'WC'
+
+df = pd.read_csv(f'fb-pages-artist_WC_16-page_rank.csv', sep = ',')
+nodes = df["nodes"].to_list()
+influence = df['influence'].to_list()
+n_nodes = df["n_nodes"].to_list()
+x0 = []
+y0 = []
+for idx, item in enumerate(nodes):
+    item = item.replace("[","")
+    item = item.replace("]","")
+    item = item.replace(",","")
+    nodes_split = item.split() 
+    #print(, influence[idx])
+    x0.append(influence[idx])
+    y0.append(n_nodes[idx])
+
+
+
+
+
+t0 = np.array([[x0[i],y0[i]] for i in range(len(x0))])
+
+t0 = get_PF(t0)
+
+
+A = []
+for i in range(len(t0)):
+    A.append(list([-t0[i][0],- (2.5 - t0[i][1])]))
+
+
+
+A = np.array(A)
+
+tot = 100 * 2.5 
+from pymoo.indicators.hv import Hypervolume
+
+metric = Hypervolume(ref_point= np.array([0,0]),
+                    norm_ref_point=False,
+                    zero_to_one=False)
+
+
+hv_MAP_16 = metric.do(A) / tot
+
+print(hv_MAP_16)
+
 df = pd.read_csv(f'fb-pages-artist_WC_32-page_rank.csv', sep = ',')
 nodes = df["nodes"].to_list()
 influence = df['influence'].to_list()
@@ -272,12 +317,14 @@ plt.scatter(t2[:,0],t2[:,1], color='purple', label='Highest Degree Heuristic', f
 plt.scatter(t4[:,0],t4[:,1], color='olive', label='Single Discount Heuristic',facecolor='none')
 plt.scatter(t3[:,0],t3[:,1] , color='grey', label='Low distance', facecolor='none')
 plt.scatter(t5[:,0],t5[:,1] , color='pink', label='CELF', facecolor='none')
-plt.scatter(t1[:,0],t1[:,1],color='black', label='Mapping')
+plt.scatter(t1[:,0],t1[:,1],color='black', label='Mapping s=32')
+plt.scatter(t0[:,0],t0[:,1],color='red', label='Mapping s=16')
 plt.xlim(0,50)
 plt.legend()
+plt.xlabel('% Influenced Nodes',fontsize=12)
+plt.ylabel('% Nodes as seed set',fontsize=12)
 
-
-plt.title('IC MODEL')
+#plt.title('IC MODEL')
 plt.savefig('prova.png', format='png')
 
 plt.show()

@@ -102,7 +102,7 @@ def get_table(graph_name, comm_name, measure):
 degree_measure = ['two-hop','page_rank', 'degree_centrality','katz_centrality', 'betweenness', 'closeness', 'eigenvector_centrality', 'core']
 
 #graphs = ['facebook_combined',  'fb_politician', 'fb_org', 'fb-pages-public-figure', 'pgp','deezerEU']
-graphs = ['soc-brighkite']
+graphs = ['fb-pages-artist']
 scale_factor = 16
 for i in range(len(graphs)):
     filename = "scale_graphs/{0}_{1}.txt".format(graphs[i],scale_factor)
