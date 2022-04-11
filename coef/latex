@@ -1,9 +1,0 @@
-\begin{tabular}{rr}
-\toprule
- scale &       diff \\
-\midrule
-     8 &  19.238635 \\
-     4 &  11.627568 \\
-     2 &   9.979163 \\
-\bottomrule
-\end{tabular}
