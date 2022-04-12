@@ -1,15 +1,13 @@
-import collections
-import networkx as nx
 import os
-import numpy as np
 import random
 import argparse
-import operator as op
-from functools import reduce
+import collections
+import numpy as np
 import pandas as pd
-from community import community_louvain
+import operator as op
+import networkx as nx
+from functools import reduce
 
-from src.spread.monte_carlo_time import MonteCarlo_simulation_time
 
 
 def args2cmd(args, exec_name, hpc=False):
@@ -384,22 +382,20 @@ def inverse_ncr(combinations, r):
 import pandas as pd
 
 def to_csv(archiver, population_file) :
-    
-
+    """
+	Saving MOEA results into .csv format for 3 obj functions.
+	"""
 
     df = pd.DataFrame()
     nodes = []
     influence = []
     n_nodes = []
     communities = []
-    a = []
     for item in archiver:
         nodes.append(str(item[0]))
         influence.append(round(item[1],2))
         n_nodes.append(item[2])
         communities.append(item[3])
-
-
     df["n_nodes"] = n_nodes
     df["influence"] = influence
     df["communities"] = communities
@@ -407,41 +403,22 @@ def to_csv(archiver, population_file) :
     df.to_csv(population_file+".csv", sep=",", index=False)
 
 def to_csv2(archiver, population_file):
-    
+    """
+	Saving MOEA results into .csv format for 2 obj functions.
+	""" 
     
     df = pd.DataFrame()
     nodes = []
     influence = []
     n_nodes = []
-    time = []
-    a = []
     for item in archiver:
         nodes.append(str(item[0]))
         influence.append(round(item[1],2))
         n_nodes.append(item[2])
-
-
     df["n_nodes"] = n_nodes
     df["influence"] = influence
     df["nodes"] = nodes
     df.to_csv(population_file+".csv", sep=",", index=False)
 
-def community_detection(G,r):
-    import leidenalg
-    import igraph as ig
-    R = ig.Graph.from_networkx(G)
-    part = leidenalg.find_partition(R, leidenalg.ModularityVertexPartition)
-    check = list(part)
-    print(len(check))
-    return check
 
-def compute_time(archiver, population_file, G, model, p, no_simulations, communities, random_gen):
-    times = []
-    std = []
-    for item in archiver:
-        A = item[0]
-        _, standard, _,time = MonteCarlo_simulation_time(G, A, p, no_simulations, model, communities,random_gen)
-        times.append(time)
-        std.append(standard)      
 
-    return std, times

@@ -1,10 +1,12 @@
 import os
+import logging
+import numpy as np
 import inspyred.ec
+import pandas as pd
+from pymoo.indicators.hv import Hypervolume
+#local libraries
 from src.ea.generators import generator_new_nodes
 from src.utils import diversity, individuals_diversity
-import pandas as pd
-import numpy as np
-from pymoo.indicators.hv import Hypervolume
 
 def adjust_population_size(num_generations, population, args):
 	prev_best = args["prev_population_best"]
@@ -48,8 +50,8 @@ def ea_observer0(population, num_generations, num_evaluations, args):
 	# exploration weight exponential decay
 	if args["mab"] is not None:
 		args["mab"].exploration_weight = 1 / (num_generations + 1) ** (3)
-		print("Mab selections: {}".format(args["mab"].n_selections))
-	print("Population size: {}".format(len(population)))
+		logging.debug("Mab selections: {}".format(args["mab"].n_selections))
+	logging.debug("Population size: {}".format(len(population)))
 
 	if args["dynamic_population"]:
 		adjust_population_size(num_generations, population, args)
@@ -61,9 +63,9 @@ def ea_observer1(population, num_generations, num_evaluations, args):
 	"""
 	# to access to evolutionary computation stuff
 	div = diversity(population)
-	print("generation {}: diversity {}".format(num_generations, div))
+	logging.debug("generation {}: diversity {}".format(num_generations, div))
 	ind_div = individuals_diversity(population)
-	print("generation {}: individuals diversity {}".format(num_generations, ind_div))
+	logging.debug("generation {}: individuals diversity {}".format(num_generations, ind_div))
 
 	return
 
@@ -97,13 +99,26 @@ def ea_observer2(population, num_generations, num_evaluations, args):
 
 	return
 
+
+
 def time_observer(population, num_generations, num_evaluations, args):
+    
+	"""
+	Save Time (Activation Attempts) at the end of the evolutionary process.
+	"""
+
 	df = pd.DataFrame(args["time"])
 	df.to_csv(args["population_file"] + '-time.csv', index=False, header=None)
 	return 
 
 
-def hypervolume(population, num_generations, num_evaluations, args):
+def hypervolume_observer(population, num_generations, num_evaluations, args):
+    """
+	Updating the Hypervolume list troughout the evolutionaty process
+	""" 	
+	
+	# Switch all the obj. functions' value to -(minus) in order to have a minimization problem and 
+	# computed the Hypervolume correctly respect to the pymoo implementation taken by DEAP.
     arch = [list(x.fitness) for x in args["_ec"].archive] 
     for i in range(len(arch)):
         for j in range(len(arch[i])):
@@ -126,5 +141,5 @@ def hypervolume(population, num_generations, num_evaluations, args):
         hv = metric.do(F)
         current_best = hv/tot
         args["hypervolume"].append(current_best)
-        print('Observer', current_best)
+        logging.debug('Hypervolume: ', current_best)
 

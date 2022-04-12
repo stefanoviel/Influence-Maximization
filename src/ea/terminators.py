@@ -1,11 +1,16 @@
-
-#from inspyred.ec.analysis import hypervolume
-from pymoo.factory import get_performance_indicator
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
+from pymoo.factory import get_performance_indicator
+#local libraries
 from src.ea.observer import time_observer
+
+
 def generation_termination(population, num_generations, num_evaluations, args):
+    """
+    Return true when reached the maximum number of generations.
+    Save into format .csv the Hypervolume and Time lists reached/used the whole evolution process. 
+    """
     if num_generations == args["generations_budget"]:
         x = [x for x in range(1,len(args["hypervolume"])+1)]
         df = pd.DataFrame()
@@ -38,97 +43,11 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
     max_generations = args.setdefault('max_generations', 10)
     previous_best = args.setdefault('previous_best', None)
     try:
-        previous_best = args["hypervolume"][-1]
+        previous_best = args["hypervolume"][-2]
     except:
         pass
-
-    arch = [list(x.fitness) for x in args["_ec"].archive] 
-    import copy
-    original_arch = copy.deepcopy(arch)
-    for i in range(len(arch)):
-        for j in range(len(arch[i])):
-                arch[i][j] = -float(arch[i][j])
-    F =  np.array(arch)
-
-    if args["no_obj"] == 3:
-
-        tot = 100 * ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100) * (len(args["communities"])-1)
-
-        from pymoo.indicators.hv import Hypervolume
-
-        metric = Hypervolume(ref_point= np.array([0,0,-1]),
-                            norm_ref_point=False,
-                            zero_to_one=False)
-        hv = metric.do(F)
-        current_best = hv/tot
-        args["hypervolume"].append(current_best)
-        '''
-        # HV INFLUENCE - K
-        arch_2 = []
-        for i in range(len(original_arch)):
-            obj = []
-            for j in range(len(original_arch[i])):    
-                if j != 2:
-                    obj.append(-float(original_arch[i][j]))            
-            arch_2.append(obj)
-        metric = Hypervolume(ref_point= np.array([0,0]),
-                            norm_ref_point=False,
-                            zero_to_one=False)
-        F1 = np.array(arch_2)
-        tot_1 = 100 * ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100)
-        hv_1 = metric.do(F1)
-        b = hv_1/tot_1
-        args["hv_influence_k"].append(b)
-        #print('INFLUENCE-K {0}'.format(b))
-        
-        # HV INFLUENCE - COMM
-        arch_2 = []
-        for i in range(len(original_arch)):
-            obj = []
-            for j in range(len(original_arch[i])):
-                if j != 1:
-                    obj.append(-float(original_arch[i][j]))            
-            arch_2.append(obj)
-        metric = Hypervolume(ref_point= np.array([0,-1]),
-                            norm_ref_point=False,
-                            zero_to_one=False)
-        F1 = np.array(arch_2)
-        tot_1 = 100 * (len(args["communities"])  -1)
-        hv_1 = metric.do(F1)
-        b = hv_1/tot_1
-        args["hv_influence_comm"].append(b)
-        #print('INFLUENCE-COMM {0}'.format(b))
-
-        #HV K - COMM
-        arch_2 = []
-        for i in range(len(original_arch)):
-            obj = []
-            for j in range(len(original_arch[i])):
-                if j != 0:
-                    obj.append(-float(original_arch[i][j]))            
-            arch_2.append(obj)
-        metric = Hypervolume(ref_point= np.array([0,-1]),
-                            norm_ref_point=False,
-                            zero_to_one=False)
-        F1 = np.array(arch_2)
-        tot_1 = ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100) * (len(args["communities"]) -1)
-        hv_1 = metric.do(F1)
-        b = hv_1/tot_1
-        args["hv_k_comm"].append(b)
-        #print('K-COMM {0}'.format(b))
-        '''
-    elif args["no_obj"] == 2:
-        tot = 100 * ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100) 
-
-        from pymoo.indicators.hv import Hypervolume
-
-        metric = Hypervolume(ref_point= np.array([0,0]),
-                            norm_ref_point=False,
-                            zero_to_one=False)
-        hv = metric.do(F)
-        current_best = hv/tot
-        args["hypervolume"].append(current_best)
-        print('Terminators', current_best)
+    
+    current_best = args["hypervolume"][-1]
 
     if previous_best is None or current_best > previous_best:
         args['previous_best'] = current_best
@@ -141,9 +60,7 @@ def no_improvement_termination(population, num_generations, num_evaluations, arg
             df["generation"] = x
             df["hv"] = args["hypervolume"]
             df.to_csv(args["population_file"] +"_hv_.csv", sep=",",index=False)
-
             time_observer(population, num_generations, num_evaluations, args)
-
             return True
         else:
             args['generation_count'] += 1

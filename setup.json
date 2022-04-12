@@ -1,0 +1,23 @@
+{
+    "script_args": {
+      "k": 0.01,
+      "model": "WC",
+      "p": null,
+      "no_simulations": 5,
+      "population_size": 10,
+      "offspring_size": 10,
+      "max_generations": 10,
+      "crossover_rate": 1.0,
+      "mutation_rate": 0.1,
+      "tournament_size": 5,
+      "num_elites": 2,
+      "smart_initialization": "none",
+      "smart_initialization_percentage": null,
+      "filter_best_spread_nodes": false,
+      "search_space_size_min": null,
+      "search_space_size_max": null,
+      "mutation_operator": "ea_global_random_mutation",
+      "mutators_to_alterate": null,
+      "g_type": "wiki"
+    }
+}

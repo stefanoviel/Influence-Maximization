@@ -102,7 +102,7 @@ def WC_model(G, a, degree, random_generator):                 # a: the set of in
 """ Evaluates a given seed set A, simulated "no_simulations" times.
 	Returns a tuple: (the mean, the stdev).
 """
-def MonteCarlo_simulation(G, A, p, no_simulations, model, communities, random_generator=None):
+def MonteCarlo_simulation(G, A, p, no_simulations, model, random_generator=None):
 	if random_generator is None:
 		random_generator = random.Random()
 		random_generator.seed(next(iter(A))) # initialize random number generator with first seed in the seed set, to make experiment repeatable; TODO evaluate computational cost
