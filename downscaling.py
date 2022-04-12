@@ -1,5 +1,3 @@
-#basic packages
-from ast import expr_context
 import os
 import sys
 import copy
@@ -243,7 +241,9 @@ if __name__ == '__main__':
             communities_threshold.append(item)
     save_groud_truth_communities(communities_threshold)
     logging.info("Communities before check {0} \nCommunities after check {1}".format(len(communities),len(communities_threshold)))
+    
     communities = communities_threshold
+    
     matrix = get_simmetric_matrix_edges(G, communities)
     sizes = save_groud_truth_communities_scaled(communities, args)
     nodes, out = preserve_degree_distribution(G, communities, sizes)

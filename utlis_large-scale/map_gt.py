@@ -1,17 +1,12 @@
 from src.load import read_graph
 import pandas as pd
-import numpy as np
-import os
-import time
-import random
 import logging
 import networkx as nx
 import numpy as np
 import pandas as pd
 # local libraries
 from src.load import read_graph
-from networkx.algorithms import degree_centrality, closeness_centrality, core_number, betweenness_centrality
-from networkx.algorithms import katz_centrality, katz_centrality_numpy, eigenvector_centrality_numpy, current_flow_betweenness_centrality
+from networkx.algorithms import degree_centrality, closeness_centrality, core_number, betweenness_centrality, katz_centrality, katz_centrality_numpy, eigenvector_centrality_numpy, current_flow_betweenness_centrality
 def n_neighbor(G, id, n_hop):
     node = [id]
     node_visited = set()
@@ -32,9 +27,6 @@ def n_neighbor(G, id, n_hop):
 
 def get_table(graph_name, comm_name, measure):
     G = read_graph(filename=graph_name)
-
-    from networkx.algorithms import degree_centrality, closeness_centrality, core_number, betweenness_centrality
-    from networkx.algorithms import katz_centrality, katz_centrality_numpy, eigenvector_centrality_numpy, current_flow_betweenness_centrality
     if measure == 'page_rank':
         T = nx.pagerank(G, alpha = 0.85)
     elif measure == 'degree_centrality':
@@ -101,7 +93,6 @@ def get_table(graph_name, comm_name, measure):
 
 degree_measure = ['two-hop','page_rank', 'degree_centrality','katz_centrality', 'betweenness', 'closeness', 'eigenvector_centrality', 'core']
 
-#graphs = ['facebook_combined',  'fb_politician', 'fb_org', 'fb-pages-public-figure', 'pgp','deezerEU']
 graphs = ['fb-pages-artist']
 scale_factor = 16
 for i in range(len(graphs)):
