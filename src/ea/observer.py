@@ -141,5 +141,5 @@ def hypervolume_observer(population, num_generations, num_evaluations, args):
         hv = metric.do(F)
         current_best = hv/tot
         args["hypervolume"].append(current_best)
-        logging.debug('Hypervolume: ', current_best)
+        logging.info('Hypervolume at generation {0} : {1} '.format(num_generations,current_best))
 

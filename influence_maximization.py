@@ -57,7 +57,7 @@ def read_arguments():
                         help='EA tournament size.')
     parser.add_argument('--num_elites', type=int, default=2,
                         help='EA number of elite individuals.')
-    parser.add_argument('--no_runs', type=int, default=1,
+    parser.add_argument('--no_runs', type=int, default=10,
                         help='EA number of runs')
     parser.add_argument('--random_seed', type=int, default=10,
                         help='Seed to initialize the pseudo-random number '

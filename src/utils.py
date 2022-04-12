@@ -419,6 +419,3 @@ def to_csv2(archiver, population_file):
     df["influence"] = influence
     df["nodes"] = nodes
     df.to_csv(population_file+".csv", sep=",", index=False)
-
-
-
