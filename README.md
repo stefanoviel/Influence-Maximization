@@ -32,7 +32,7 @@ For the correct execution of downscaling.py the **graph-tool** library is needed
 
 Our MOEA implementation is an extention of a work proposed in *Iacca, G., Konotopska, K., Bucur, D., & Tonda, A.P. (2021). An evolutionary framework for maximizing influence propagation in social networks. Softw. Impacts, 9, 100107.*
 
-If you used this code please remeber to also include the following citation:
+If you used this code please remember to also include the following citation:
 ```
 @article{Iacca2021AnEF,
   title={An evolutionary framework for maximizing influence propagation in social networks},
