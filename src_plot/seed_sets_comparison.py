@@ -1,11 +1,11 @@
+import sys
 import pandas as pd
 import networkx as nx
-import sys
-sys.path.insert(0, '')
-from src.load import read_graph
-from src.load import read_graph
 import matplotlib.pyplot as plt
 
+#local library
+sys.path.insert(0, '')
+from src.load import read_graph
 
 
 graphs = ['facebook_combined',  'fb_politician', 'fb_org', 'fb-pages-public-figure', 'pgp','deezerEU']
@@ -23,9 +23,6 @@ for name in graphs:
             df = pd.read_csv(list_results[i], sep=",")
             G = read_graph(list_graphs[i])
             a = ax[i]
-
-            print(list_results[i],list_graphs[i] )
-            print(nx.info(G))
             color_map = []
             df = df.sort_values(by="n_nodes", ascending=False)
             list_item = df["nodes"]
@@ -37,7 +34,6 @@ for name in graphs:
             item = item.replace(',',"")
             n = item.split(" ")
             x = [int(x) for x in n]
-            print(f'Number of elements in the biggest seed set : {len(x)}')
             color_map = ['red' if node in x else 'white' for node in G] 
             if i == 0:
                 POSITION = nx.spring_layout(G)
@@ -57,6 +53,4 @@ for name in graphs:
                     top=0.95, 
                     wspace=0, 
                     hspace=0.35)
-        plt.savefig(f'net_images/graph_{name}-{m}_low_resolution.png', format='png', dpi=2000)
-
-        ##proviamo
+        plt.savefig('Figure-1-{name}-{m}.png', format='png', dpi=2000)
