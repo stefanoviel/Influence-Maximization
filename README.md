@@ -19,7 +19,7 @@ For each file you want to run, just run the following command to access all the 
 python name_scipt.py --help
 ```
 
-# Requirements
+## Requirements
 
 ```bash
 pip install requirements.txt
@@ -28,7 +28,7 @@ pip install requirements.txt
 For the correct execution of downscaling.py the **graph-tool** library is needed. Please refer to the official [website](https://graph-tool.skewed.de) for the correct package installation.
 
 
-# Acknowledgements
+## Acknowledgements
 
 Our MOEA implementation is an extention of a work proposed in *Iacca, G., Konotopska, K., Bucur, D., & Tonda, A.P. (2021). An evolutionary framework for maximizing influence propagation in social networks. Softw. Impacts, 9, 100107.*
 
@@ -43,7 +43,7 @@ If you used this code please remeber to also include the following citation:
   pages={100107}
 }
 ```
-# Contribution
+## Contribution
 
 Authors:
  
