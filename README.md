@@ -12,21 +12,11 @@ Code folder provides the code scripts for:
 - Upscaling Process [upscaling.py](upscaling.py)
 - Multi-Objctive Optimization with EA (MOEA) [influence_maximization.py](influence_maximization.py)
 
-## Example to run the codes
+## Code's Parameters
 
-Run downscaling:
+For each file you want to run, just run the following command to access all the code's parameters:
 ```bash
-python downscaling.py 
-```
-
-Run upscaling:
-```bash
-python upscaling.py 
-```
-Run MOEA:
-
-```bash
-python influence_maximization.py 
+python name_scipt.py --help
 ```
 
 # Requirements
