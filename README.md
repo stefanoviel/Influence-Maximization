@@ -60,3 +60,5 @@ Authors:
 - Elia Cunegatti, MSc Student University of Trento (Italy)
 - Giovanni Iacca, Associate Professor University of Trento (Italy) [website](https://sites.google.com/site/giovanniiacca/)
 - Doina Bucur, Associate Professor University of Twente (The Netherlands) [website](http://doina.net)
+
+For every type of doubts/questions about the repository please do not hesitate to contact me: [elia.cunegatti@studenti.unitn.it](elia.cunegatti@studenti.unitn.it)

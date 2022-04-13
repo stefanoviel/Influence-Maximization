@@ -198,15 +198,7 @@ def CELF(k, G, p, no_simulations, model):
 				for item in S:
 					influence.append(item[1])
 					nodes_.append(item[2])
-					n_nodes.append(item[0])
-					TIME = [T for item in n_nodes]
-					import pandas as pd
-					df = pd.DataFrame()
-					df["n_nodes"] = n_nodes
-					df["influence"] = influence
-					df["nodes"] = nodes_
-					df["time"] = TIME
-					df.to_csv(f'soc-brightkite_{model}_CELF_runtime.csv', index=False)               
+					n_nodes.append(item[0])           
 				break
 			else:
 				eval_after  = SNSim.evaluate(G, A+[s], p, no_simulations, model)
