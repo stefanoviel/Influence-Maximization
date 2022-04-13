@@ -66,7 +66,7 @@ def save_groud_truth_communities(communities_threshold):
     df["comm"] = comm_original
     save = name.replace(".txt","")
     try:
-        df.to_csv('comm_ground_truth/'+save+'.csv',index=False, sep=",")
+        df.to_csv('graph_communities/'+save+'.csv',index=False, sep=",")
     except:
         df.to_csv(save+'.csv',index=False, sep=",")
 
@@ -89,7 +89,7 @@ def save_groud_truth_communities_scaled(communities, args):
     df["comm"] = comm
     save = name.replace(".txt","")
     try:
-        df.to_csv('comm_ground_truth/'+save+'_'+str(args["s"])+'.csv',index=False, sep=",")
+        df.to_csv('graph_communities/'+save+'_'+str(args["s"])+'.csv',index=False, sep=",")
     except:
         df.to_csv(save+'_'+str(args["s"])+'.csv',index=False, sep=",")
     return sizes

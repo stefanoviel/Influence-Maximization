@@ -38,7 +38,23 @@ def read_arguments():
 
    return args
 
-
+def get_propagation(G,s,args):
+   influence = []
+   nodes_ = []
+   n_nodes = []
+   for i in range(len(s)):
+      A = s[:i+1]
+      print(i+1,'/',len(s))
+      spread  = MonteCarlo_simulation(G, A, args["p"], 100, model, random_generator=None)
+      print(((spread[0] / G.number_of_nodes())* 100), spread[2], ((len(A) / G.number_of_nodes())* 100))
+      influence.append(((spread[0] / G.number_of_nodes())* 100))
+      n_nodes.append(((len(A) / G.number_of_nodes())* 100))
+      nodes_.append(list(A))
+   df = pd.DataFrame()
+   df["n_nodes"] = n_nodes
+   df["influence"] = influence
+   df["nodes"] = nodes_
+   df.to_csv('{0}_{1}_{2}.csv'.format(args["graph"],args["heuristic"],args["model"]), index=False)
 
 if __name__ == '__main__':
    args = read_arguments() 
@@ -52,80 +68,20 @@ if __name__ == '__main__':
       s = []
       for item in H:
          s.append(item[1])
-      influence = []
-      nodes_ = []
-      n_nodes = []
-      for i in range(len(s)):
-         A = s[:i+1]
-         print(i+1,'/',len(s))
-         spread  = MonteCarlo_simulation(G, A, args["p"], args["no_simulations"], model, random_generator=None)
-         print(((spread[0] / G.number_of_nodes())* 100), spread[2], ((len(A) / G.number_of_nodes())* 100))
-         influence.append(((spread[0] / G.number_of_nodes())* 100))
-         n_nodes.append(((len(A) / G.number_of_nodes())* 100))
-         nodes_.append(list(A))
-         df = pd.DataFrame()
-         df["n_nodes"] = n_nodes
-         df["influence"] = influence
-         df["nodes"] = nodes_
-      df = pd.DataFrame()
-      df["n_nodes"] = n_nodes
-      df["influence"] = influence
-      df["nodes"] = nodes_
-
-
-      df.to_csv('{0}_{heuristic}_{model}.csv', index=False)
+      get_propagation(G,s,args)
 
    elif heuristic == 'high_degree_nodes':
       H = high_degree_nodes(int(G.number_of_nodes()*(args["k"]*100)),G)
       s = []
       for item in H:
          s.append(item[1])
-      influence = []
-      nodes_ = []
-      n_nodes = []
-      for i in range(len(s)):
-         A = s[:i+1]
-         print(i+1,'/',len(s))
-         spread  = MonteCarlo_simulation(G, A, args["p"], args["no_simulations"], model, random_generator=None)
-         print(((spread[0] / G.number_of_nodes())* 100), spread[2], ((len(A) / G.number_of_nodes())* 100))
-         influence.append(((spread[0] / G.number_of_nodes())* 100))
-         n_nodes.append(((len(A) / G.number_of_nodes())* 100))
-         nodes_.append(list(A))
-         df = pd.DataFrame()
-         df["n_nodes"] = n_nodes
-         df["influence"] = influence
-         df["nodes"] = nodes_
-      df = pd.DataFrame()
-      df["n_nodes"] = n_nodes
-      df["influence"] = influence
-      df["nodes"] = nodes_
-      df.to_csv('{0}_{heuristic}_{model}.csv', index=False)
+      get_propagation(G,s,args)
+
 
    elif heuristic == 'single_discount_high_degree_nodes':
       s = single_discount_high_degree_nodes(int(G.number_of_nodes()*(args["k"]*100)),G)
-      influence = []
-      nodes_ = []
-      n_nodes = []
-      for i in range(len(s)):
-         A = s[:i+1]
-         print(i+1,'/',len(s))
-         spread  = MonteCarlo_simulation(G, A, args["p"], 100, model, random_generator=None)
-         print(((spread[0] / G.number_of_nodes())* 100), spread[2], ((len(A) / G.number_of_nodes())* 100))
-         influence.append(((spread[0] / G.number_of_nodes())* 100))
-         n_nodes.append(((len(A) / G.number_of_nodes())* 100))
-         nodes_.append(list(A))
-         df = pd.DataFrame()
-         df["n_nodes"] = n_nodes
-         df["influence"] = influence
-         df["nodes"] = nodes_
+      get_propagation(G,s,args)
 
-      df = pd.DataFrame()
-      df["n_nodes"] = n_nodes
-      df["influence"] = influence
-      df["nodes"] = nodes_
-
-
-      df.to_csv('{0}_{heuristic}_{model}.csv', index=False)
 
    elif heuristic == 'CELF':
 

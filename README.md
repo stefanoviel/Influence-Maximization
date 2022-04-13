@@ -16,17 +16,17 @@ Code folder provides the code scripts for:
 
 Run downscaling:
 ```bash
-python downscaling.py --
+python downscaling.py 
 ```
 
 Run upscaling:
 ```bash
-python upscaling.py --
+python upscaling.py 
 ```
 Run MOEA:
 
 ```bash
-python influence_maximization.py --
+python influence_maximization.py 
 ```
 
 # Requirements
@@ -61,4 +61,4 @@ Authors:
 - Giovanni Iacca, Associate Professor University of Trento (Italy) [website](https://sites.google.com/site/giovanniiacca/)
 - Doina Bucur, Associate Professor University of Twente (The Netherlands) [website](http://doina.net)
 
-For every type of doubts/questions about the repository please do not hesitate to contact me: [elia.cunegatti@studenti.unitn.it](elia.cunegatti@studenti.unitn.it)
+For every type of doubts/questions about the repository please do not hesitate to contact me: elia.cunegatti@studenti.unitn.it

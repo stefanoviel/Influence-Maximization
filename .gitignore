@@ -4,8 +4,8 @@
 .vscode/*
 .idea/*
 *.gif
-net_images/
 *.nfs000000119c13ea740000015e
 .*
 *.out
-net_images_png/
+.DS_Store
+various_plots/

@@ -8,8 +8,10 @@ from pymoo.indicators.hv import Hypervolume
 from pymoo.factory import get_performance_indicator
 from networkx.algorithms import degree_centrality, closeness_centrality, core_number, betweenness_centrality, katz_centrality_numpy, eigenvector_centrality_numpy
 # local libraries
+sys.path.insert(0, '')
 from src.load import read_graph
 from src.spread.monte_carlo import MonteCarlo_simulation
+
 def read_arguments():
     """
 	Parameters for the upscaling process process.
@@ -27,7 +29,7 @@ def read_arguments():
     # Upscaling Parameters
     parser.add_argument('--s', type=int, default=4,
                         help='Scaling factor')  
-    parser.add_argument('--measure', default='page_rank',
+    parser.add_argument('--measure', default='betweenness',
                         choices=['two-hop','page_rank', 'degree_centrality',
                                 'katz_centrality','betweenness', 'closeness', 
                                 'eigenvector_centrality', 'core'])
@@ -46,7 +48,8 @@ def read_arguments():
     args = vars(args)
 
     return args
-#----------------------------------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------#
+
 
 def n_neighbor(G, id, n_hop):
     node = [id]
@@ -110,9 +113,9 @@ def get_ranks(graph_name, comm_name, measure):
 
     rank = [x for x in range(1,len(node)+1)]
     data["node"] = node
-    data["measure"] = centr
+    data["page_rank"] = centr
 
-    data = data.sort_values(by='measure', ascending=False)
+    data = data.sort_values(by='page_rank', ascending=False)
     data["overall_rank"] = rank
 
     community = pd.read_csv(comm_name,sep=",")
@@ -156,7 +159,7 @@ def upscaling_process(nodes, scaled_table, original_table, scale_original):
             if len(t) > 0:
                 r = original_table[original_table["comm"] == int(t.comm)]
                 n = r["node"].to_list()
-                l = r["measure"].to_list()
+                l = r["page_rank"].to_list()
                 s = 0
                 ii = 0
                 while ii < int(scale_factor):
@@ -191,7 +194,7 @@ def upscaling_process(nodes, scaled_table, original_table, scale_original):
                 if len(t) > 0:
                     r = original_table[original_table["comm"] == int(t.comm)]
                     n = r["node"].to_list()
-                    l = r["measure"].to_list()
+                    l = r["page_rank"].to_list()
                     s = 0
                     ii = 0
                     while ii < 1:
@@ -213,7 +216,7 @@ def upscaling_process(nodes, scaled_table, original_table, scale_original):
     return solution
 
 
-def get_propagation_results(G, args):
+def get_propagation_results(G, args,idx1, idx2):
     original_filename = "graphs/{0}.txt".format(args["graph"])
     p = args["p"]
     no_simulations = args["no_simulations"]
@@ -236,7 +239,7 @@ def get_propagation_results(G, args):
     df_mapping["n_nodes"] = nodes_
     df_mapping["influence"] = influence
     df_mapping["nodes"] = n_nodes
-    df_mapping.to_csv('{0}_{1}_{2}-{3}.csv'.format(args["graph"],args["model"],args["s"],args["measure"]), index=False)
+    df_mapping.to_csv('{0}_{1}_{2}-{3}-{4}-{5}.csv'.format(args["graph"],args["model"],args["s"],args["measure"], idx1, idx2), index=False)
     return df_mapping
 def get_results(df,args):
     x =  df["n_nodes"].to_list()
@@ -248,7 +251,7 @@ def get_results(df,args):
         A_gd.append([z[i], x[i]])
     
     return np.array(A_hv), np.array(A_gd)
-def performance_indicators(df_mapping,filename_original_results, args):
+def performance_indicators(df_mapping,filename_original_results, args,idx1, idx2):
     """
     Documentation: 
     
@@ -278,7 +281,7 @@ def performance_indicators(df_mapping,filename_original_results, args):
     df_final["measure"] = [args["measure"]]
     df_final["hyperarea"] = [hv_map/hv_original]
     df_final["generational_distance"] = [gd_distance]
-    df_final.to_csv('{0}_{1}_{2}_indicators.csv'.format(args["graph"],args["model"],args["s"]), index=False)
+    df_final.to_csv('upscaling_experiments/{0}_{1}_{2}_indicators-{3}-{4}.csv'.format(args["graph"],args["model"],args["s"],idx1, idx2), index=False)
 
 #-------------------------------------------------------------------------------------------#
 
@@ -287,39 +290,43 @@ if __name__ == '__main__':
 
     logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)  
     filename = "scale_graphs/{0}_{1}.txt".format(args["graph"], args["s"])
-    scale_comm = "graph_communities/{0}_{1}.csv".format(args["graph"], args["s"])
+    scale_comm = "comm_ground_truth/{0}_{1}.csv".format(args["graph"], args["s"])
     filename_original = "graphs/{0}.txt".format(args["graph"])
-    filename_original_comm = "graph_communities/{0}.csv".format(args["graph"])
-
+    filename_original_comm = "comm_ground_truth/{0}.csv".format(args["graph"])
     G = read_graph(filename)
     G1 = read_graph(filename_original)
 
     scale_factor = int(G1.number_of_nodes() / G.number_of_nodes())
     scale_original = G1.number_of_nodes() / G.number_of_nodes()
+    for idx1 in range(10):
+        for idx2 in range(10):
 
-    logging.info('Original Scaling Factor {0}'.format(args["s"])) 
-    logging.info('Actual Scaling Factor {0}'.format(scale_original)) 
+            logging.info('Original Scaling Factor {0}'.format(args["s"])) 
+            logging.info('Actual Scaling Factor {0}'.format(scale_original)) 
 
-    
-    df_scale_results = pd.read_csv("experiments/{0}_{1}-{2}/run-1.csv".format(args["graph"],args["s"], args["model"]),sep=",")
-    df_scale_results = df_scale_results.sort_values(by="n_nodes", ascending=False)
-    
-    nodes = df_scale_results["nodes"].to_list()
-    filename_original_results = "experiments/{0}-{1}/run-1.csv".format(args["graph"], args["model"])
+            
+            df_scale_results = pd.read_csv("experiments/{0}_{1}-{2}/run-{3}.csv".format(args["graph"],args["s"], args["model"], idx1+1),sep=",")
+            df_scale_results = df_scale_results.sort_values(by="n_nodes", ascending=False)
+            
+            nodes = df_scale_results["nodes"].to_list()
+            filename_original_results = "experiments/{0}-{1}/run-{2}.csv".format(args["graph"], args["model"], idx2+1)
+
+            try:
+                scaled_table = pd.read_csv('upscaling_experiments/measure_groundtruth/{0}-{1}-{2}.csv'.format(args["graph"], args["s"], args["measure"]))
+            except:
+                logging.info('Calculating {} .....'.format(args["measure"]))
+                scaled_table = get_ranks(filename, scale_comm, args["measure"])
+            try:
+                original_table = pd.read_csv('upscaling_experiments/measure_groundtruth/{0}-1-{1}.csv'.format(args["graph"], args["measure"]))
+            except:
+                logging.info('Calculating {} .....'.format(args["measure"]))
+                original_table = get_ranks(filename_original, filename_original_comm, args["measure"])
 
 
+            logging.info('{0} Done'.format(args["measure"]))
+            
+            mapped_solution = upscaling_process(nodes, scaled_table, original_table, scale_original)
+            df_mapping = get_propagation_results(G, args, idx1+1, idx2+1)
+            performance_indicators(df_mapping,filename_original_results, args,idx1+1, idx2+1)
 
-    logging.info('Calculating {} .....'.format(args["measure"]))
-    scaled_table = get_ranks(filename, scale_comm, args["measure"])
-    original_table = get_ranks(filename_original, filename_original_comm, args["measure"])
-
-    logging.info('{0} Done'.format(args["measure"]))
-
-
-    mapped_solution = upscaling_process(nodes, scaled_table, original_table, scale_original)
-    df_mapping = get_propagation_results(G, args)
-
-
-    performance_indicators(df_mapping,filename_original_results, args)
-
-    
+            
