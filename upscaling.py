@@ -249,7 +249,10 @@ def get_results(df,args):
     
     return np.array(A_hv), np.array(A_gd)
 def performance_indicators(df_mapping,filename_original_results, args):
-
+    """
+    Documentation: 
+    
+    """
     A_hv_map , A_gd_map = get_results(df_mapping, args)
 
     

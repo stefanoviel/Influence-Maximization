@@ -18,7 +18,7 @@ LAW = {}
 graphs = ['facebook_combined',  'fb_politician', 'fb_org', 'fb-pages-public-figure', 'pgp','deezerEU']
 alias = ['Ego Fb.','Fb. Pol.', 'Fb. Org.', 'Fb. Pag.', 'PGP','Deezer']
 
-fig,a =  plt.subplots(2,3, sharey=True, sharex=True, figsize=(9,6))
+fig,a =  plt.subplots(2,3, sharey=True, sharex=True, figsize=(6,6))
 ax = [[0,0], [0,1], [0,2], [1,0], [1,1], [1,2]]
 
 for idx, name in enumerate(graphs):
