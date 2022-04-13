@@ -10,7 +10,7 @@ Code folder provides the code scripts for:
 
 - Downscaling process [downscaling.py](downscaling.py)
 - Upscaling Process [upscaling.py](upscaling.py)
-- Multi-Objctive Optimization with EA (MOEA) [influence_maximization.py](influence_maximization.py)
+- Multi-Objective Optimization with EA (MOEA) [influence_maximization.py](influence_maximization.py)
 
 ## Code's Parameters
 
