@@ -110,11 +110,11 @@ def get_table(graph_name, comm_name, measure):
 if __name__ == '__main__':
     args = read_arguments() 
     if args["s"] != None:
-        filename = "scale_graphs/{0}_{1}.txt".format(args["graph"],args["s"])
+        filename = "graphs_downscaled/{0}_{1}.txt".format(args["graph"],args["s"])
         filename_communities = "graph_communities/{0}.csv".format(args["graph"])
     else:
-        filename = "scale_graphs/{0}_{1}.txt".format(args["graph"],args["s"])
+        filename = "graphs_downscaled/{0}_{1}.txt".format(args["graph"],args["s"])
         filename_communities = "graph_communities/{0}.csv".format(args["graph"])
     
     df = get_table(filename, filename_communities, args["measure"])
-    df.to_csv('upscaling_experiments/measure_groundtruth/{0}-{1}-{2}.csv'.format(args["graph"], args["s"], args["measure"]), index=False)
+    df.to_csv('experiments_upscaling/measure_groundtruth/{0}-{1}-{2}.csv'.format(args["graph"], args["s"], args["measure"]), index=False)

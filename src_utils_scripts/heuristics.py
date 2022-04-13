@@ -54,7 +54,7 @@ def get_propagation(G,s,args):
    df["n_nodes"] = n_nodes
    df["influence"] = influence
    df["nodes"] = nodes_
-   df.to_csv('{0}_{1}_{2}.csv'.format(args["graph"],args["heuristic"],args["model"]), index=False)
+   df.to_csv('experiments_heuristic/{0}_{1}_{2}.csv'.format(args["graph"],args["heuristic"],args["model"]), index=False)
 
 if __name__ == '__main__':
    args = read_arguments() 

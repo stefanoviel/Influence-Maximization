@@ -111,7 +111,7 @@ def save_downscaled_graph(g,name):
         text.append(f) 
 
     name = name.replace('.txt',"")
-    with open("scale_graphs/"+str(name)+"_"+str(args["s"])+".txt", "w") as outfile:
+    with open("graphs_downscaled/{0}_{1}.txt".format(name, args["s"]), "w") as outfile:
             outfile.write("\n".join(text))
         
 def get_simmetric_matrix_edges(G, communities):

@@ -286,7 +286,7 @@ if __name__ == '__main__':
     args = read_arguments() 
 
     logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)  
-    filename = "scale_graphs/{0}_{1}.txt".format(args["graph"], args["s"])
+    filename = "graphs_downscaled/{0}_{1}.txt".format(args["graph"], args["s"])
     scale_comm = "graph_communities/{0}_{1}.csv".format(args["graph"], args["s"])
     filename_original = "graphs/{0}.txt".format(args["graph"])
     filename_original_comm = "graph_communities/{0}.csv".format(args["graph"])
@@ -301,11 +301,11 @@ if __name__ == '__main__':
     logging.info('Actual Scaling Factor {0}'.format(scale_original)) 
 
     
-    df_scale_results = pd.read_csv("experiments/{0}_{1}-{2}/run-1.csv".format(args["graph"],args["s"], args["model"]),sep=",")
+    df_scale_results = pd.read_csv("experiments_moea/{0}_{1}-{2}/run-1.csv".format(args["graph"],args["s"], args["model"]),sep=",")
     df_scale_results = df_scale_results.sort_values(by="n_nodes", ascending=False)
     
     nodes = df_scale_results["nodes"].to_list()
-    filename_original_results = "experiments/{0}-{1}/run-1.csv".format(args["graph"], args["model"])
+    filename_original_results = "experiments_moea/{0}-{1}/run-1.csv".format(args["graph"], args["model"])
 
 
 

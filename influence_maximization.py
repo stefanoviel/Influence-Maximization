@@ -144,8 +144,8 @@ def read_arguments():
                         help="Input json file containing the experimental setup: "
                              "arguments for the script.")
     parser.add_argument('--out_dir', 
-                        #default='experiments/', 
-                        default=None,
+                        default='experiments_moea/', 
+                        #default=None,
                         type=str,
                         help='Location of the output directory in case if '
                              'outfile is preferred to have a default name.')
@@ -210,7 +210,7 @@ def filter_nodes(G, args):
 #LOCAL FUNCTIONS
 def get_graph(args):
     if args["downscaled"]:
-        filename = "scale_graphs/{0}_{1}.txt".format(args["graph"], args["s"])
+        filename = "graphs_downscaled/{0}_{1}.txt".format(args["graph"], args["s"])
     else:
         filename = 'graphs/{0}.txt'.format(args["graph"])
     graph_name = str(os.path.basename(filename))

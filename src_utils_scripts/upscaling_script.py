@@ -281,7 +281,7 @@ def performance_indicators(df_mapping,filename_original_results, args,idx1, idx2
     df_final["measure"] = [args["measure"]]
     df_final["hyperarea"] = [hv_map/hv_original]
     df_final["generational_distance"] = [gd_distance]
-    df_final.to_csv('upscaling_experiments/{0}_{1}_{2}_indicators-{3}-{4}.csv'.format(args["graph"],args["model"],args["s"],idx1, idx2), index=False)
+    df_final.to_csv('experiments_upscaling/{0}_{1}_{2}_indicators-{3}-{4}.csv'.format(args["graph"],args["model"],args["s"],idx1, idx2), index=False)
 
 #-------------------------------------------------------------------------------------------#
 
@@ -289,7 +289,7 @@ if __name__ == '__main__':
     args = read_arguments() 
 
     logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)  
-    filename = "scale_graphs/{0}_{1}.txt".format(args["graph"], args["s"])
+    filename = "graphs_downscaled/{0}_{1}.txt".format(args["graph"], args["s"])
     scale_comm = "comm_ground_truth/{0}_{1}.csv".format(args["graph"], args["s"])
     filename_original = "graphs/{0}.txt".format(args["graph"])
     filename_original_comm = "comm_ground_truth/{0}.csv".format(args["graph"])
@@ -305,19 +305,19 @@ if __name__ == '__main__':
             logging.info('Actual Scaling Factor {0}'.format(scale_original)) 
 
             
-            df_scale_results = pd.read_csv("experiments/{0}_{1}-{2}/run-{3}.csv".format(args["graph"],args["s"], args["model"], idx1+1),sep=",")
+            df_scale_results = pd.read_csv("experiments_moea/{0}_{1}-{2}/run-{3}.csv".format(args["graph"],args["s"], args["model"], idx1+1),sep=",")
             df_scale_results = df_scale_results.sort_values(by="n_nodes", ascending=False)
             
             nodes = df_scale_results["nodes"].to_list()
-            filename_original_results = "experiments/{0}-{1}/run-{2}.csv".format(args["graph"], args["model"], idx2+1)
+            filename_original_results = "experiments_moea/{0}-{1}/run-{2}.csv".format(args["graph"], args["model"], idx2+1)
 
             try:
-                scaled_table = pd.read_csv('upscaling_experiments/measure_groundtruth/{0}-{1}-{2}.csv'.format(args["graph"], args["s"], args["measure"]))
+                scaled_table = pd.read_csv('experiments_upscaling/measure_groundtruth/{0}-{1}-{2}.csv'.format(args["graph"], args["s"], args["measure"]))
             except:
                 logging.info('Calculating {} .....'.format(args["measure"]))
                 scaled_table = get_ranks(filename, scale_comm, args["measure"])
             try:
-                original_table = pd.read_csv('upscaling_experiments/measure_groundtruth/{0}-1-{1}.csv'.format(args["graph"], args["measure"]))
+                original_table = pd.read_csv('experiments_upscaling/measure_groundtruth/{0}-1-{1}.csv'.format(args["graph"], args["measure"]))
             except:
                 logging.info('Calculating {} .....'.format(args["measure"]))
                 original_table = get_ranks(filename_original, filename_original_comm, args["measure"])

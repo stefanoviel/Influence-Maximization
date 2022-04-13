@@ -44,13 +44,13 @@ if __name__ == '__main__':
     hv_upscaling = []
 
     for idx1 in range(10):
-        df = pd.read_csv('upscaling_experiments/{0}_{1}_{2}_MAPPING_{3}-{4}.csv'.format(args["graph"], args["model"], args["s"], idx1+1, 1), sep=',')
+        df = pd.read_csv('experiments_upscaling/{0}_{1}_{2}_MAPPING_{3}-{4}.csv'.format(args["graph"], args["model"], args["s"], idx1+1, 1), sep=',')
         pg = df[df["measure"] == args["measure"]].Hyperarea.item()
         hv_upscaling.append(pg)
 
     hv_moea = []
     for idx1 in range(10):
-        filename_original_results = "experiments/{0}-{1}/run-{2}_hv_.csv".format(args["graph"], args["model"],idx1+1)
+        filename_original_results = "experiments_moea/{0}-{1}/run-{2}_hv_.csv".format(args["graph"], args["model"],idx1+1)
         df = pd.read_csv(filename_original_results, sep= ',')
         hv = df[df['generation'] == max(df['generation'])].hv.item()
         hv_moea.append(hv)
