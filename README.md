@@ -1,7 +1,8 @@
 # Large-scale multi-objective influence maximisation with network downscaling
 
 Codebase for the experiments reported in:
-*Elia Cunegatti, Giovanni Iacca, Doina Bucur, Large-scale multi-objective influence maximisation with network downscaling, April 2022*
+*Large-scale multi-objective influence maximisation with network downscaling, Elia Cunegatti, Giovanni Iacca, Doina Bucur,
+Parallel Problem Solving from Nature (CORE A), Springer, Dortmund 2022, to appear **[pre-print](https://doi.org/10.48550/arXiv.2204.06250)***
 
 <ins>DOI</ins> : https://doi.org/10.48550/arXiv.2204.06250 
 
