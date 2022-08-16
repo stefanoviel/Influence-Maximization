@@ -2,9 +2,9 @@
 
 Codebase for the experiments reported in:
 *Large-scale multi-objective influence maximisation with network downscaling, Elia Cunegatti, Giovanni Iacca, Doina Bucur,
-Parallel Problem Solving from Nature, Springer, Dortmund 2022, to appear **[pre-print](https://doi.org/10.48550/arXiv.2204.06250)***
+Parallel Problem Solving from Nature, Springer, Dortmund 2022, to appear  **[[link]](https://link.springer.com/chapter/10.1007/978-3-031-14721-0_15)** **[[pre-print]](https://doi.org/10.48550/arXiv.2204.06250)***
 
-<ins>DOI</ins> : https://doi.org/10.48550/arXiv.2204.06250 
+<ins>DOI</ins> : https://doi.org/10.1007/978-3-031-14721-0_15
 
 Please cite our paper if you use our codes!!
 
