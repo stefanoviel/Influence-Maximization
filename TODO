@@ -1,0 +1,65 @@
+how evolution works: 
+    * initialize individuals based on degree
+    * apply crossover and mutation to generate new individual (do we generate a number equal to offspring size?)
+    * compute the fitness of the individual and apply tournament selection to extract population_size number of individuals
+    * iterate for the allowed number of generation
+
+what does get saved in the archive? only the best individuals?
+
+where are the dataset take from? just from https://snap.stanford.edu/? I couldn't find the matching
+
+I am not supposed to test with downscaled network, maybe in the future?
+
+3 objective functions: which format should communities have? 
+
+Possible steps for implementation
+    * implement different spread function to allow for more objective function
+    * implement function in evaluator to compute fitness when more objective functions are given
+    * "Il tuo lavoro si concentrare su aggiungere objective functions ed analizzare la loro correlazione" faccio una sola fitness function con tutte le objective function assieme o provo le diverse combinazioni? Cosa intendi con analizzare la correlazione
+    * run each one of this fitness function and compare the hypervolume, find the best hypervolume 
+
+
+
+
+
+
+    tutte le combinazioni visualizzazione grafica
+    file unico con diversi parametri in base objective function
+    https://networkrepository.com
+    https://networks.skewed.de
+
+
+    (max) communities, (min) tempo (variabile in base all'hardware) [ogni quante volte si va dentro il ciclo], numero nodi raggiunti, seed set
+
+
+    communities all'interno del seed set scelto
+
+    influence seed comunità
+    influence seed tempo
+    influence seed comunità tempo 
+
+    dopo tre objetive function non funziona bene
+
+    facebook combined -> più completo, molto collegato
+    fabook organization
+
+
+
+    
+
+    Observations
+
+    Increasing the number of threads in a small population is counterproductive. The threads are used just for evaluation, they need to interupted 
+    at the end of every generation. For a small population it takes more time to set all the threads and make then run, than to run everything without multithreads. 
+
+    The pareto front is the set of solution that aren't dominated by anything else.
+    
+
+
+Run the experiment on the same graph with different fitness functions (divided based on them), save the results 
+[hv (computed only on the two base features), metrics for each run, time]
+
+
+for each fitness function find the best run based on the hypervolume
+    
+        

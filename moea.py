@@ -8,7 +8,9 @@ from time import time
 from src.spread.monte_carlo_2_obj import MonteCarlo_simulation
 from src.spread.monte_carlo_max_hop import MonteCarlo_simulation_max_hop as MonteCarlo_simulation_max_hop
 from src.utils import to_csv
+from src.utils import to_csv2
 from src.ea.observer import hypervolume_observer
+from src.ea.observer import hypervolume_observer_2D
 from src.ea.evaluator import nsga2_evaluator
 from src.ea.generator import nsga2_generator
 from src.ea.crossover import ea_one_point_crossover
@@ -47,17 +49,22 @@ def moea_influence_maximization(G,args, fitness_function=None, fitness_function_
     if fitness_function == None :
         fitness_function = MonteCarlo_simulation
         fitness_function_kargs["random_generator"] = random_gen # pointer to pseudo-random number generator
+    
+    comm = None
+    if "communities" in fitness_function_kargs: 
+        comm = fitness_function_kargs["communities"]
 
     ea = inspyred.ec.emo.NSGA2(random_gen)
     ea.variator = [ea_one_point_crossover,ea_global_random_mutation]
     ea.terminator = [generation_termination]
-    ea.observer = [hypervolume_observer]
+    ea.observer = [hypervolume_observer_2D]
     
     #used the default NSGA-II replacer ec.replacers.nsga_replacement 
     #ea.replacer = inspyred.ec.replacers.generational_replacement
     #ea.replacer = inspyred.ec.replacers.plus_replacement
     
     bounder = inspyred.ec.DiscreteBounder(nodes)
+
     
     # start the evolutionary process
     ea.evolve(
@@ -73,14 +80,16 @@ def moea_influence_maximization(G,args, fitness_function=None, fitness_function_
         tournament_size=args["tournament_size"],
         mutation_rate=args["mutation_rate"],
         crossover_rate=args["crossover_rate"],
+        elements_objective_function=args["elements_objective_function"], 
         num_elites=args["num_elites"],
+        communities = comm,
         # all arguments below will go inside the dictionary 'args'
         G = G,
         p = args["p"],
         model = args["model"],
         no_simulations = args["no_simulations"],
         nodes = nodes,
-        n_threads = 1,
+        n_threads = args["n_threads"],
         min_seed_nodes = 1,
         max_seed_nodes = args["k"],
         population_file = population_file,
@@ -94,13 +103,15 @@ def moea_influence_maximization(G,args, fitness_function=None, fitness_function_
         time = [] # keep track of Time (Activation Attempts) trend throughout the generations
     )
 
+    # print([[i.fitness[0], i.fitness[1]] for i in ea.archive])
+
     # extract seed sets from the final Pareto front/archive 
     if args["no_obj"] == 3:
         seed_sets = [[individual.candidate, individual.fitness[0], ((args["k"]  / G.number_of_nodes()) * 100) - individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
         to_csv(seed_sets, population_file)
     elif args["no_obj"]  == 2:
         seed_sets = [[individual.candidate, individual.fitness[0], ((args["k"]  / G.number_of_nodes()) * 100) - individual.fitness[1]] for individual in ea.archive] 
-        args["no_obj"] (seed_sets, population_file)
+        to_csv2(seed_sets, population_file)
 
     return seed_sets
 

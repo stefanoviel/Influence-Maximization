@@ -5,6 +5,7 @@ import random
 import logging
 import argparse
 import numpy as np
+import pandas as pd
 import networkx as nx
 from functools import partial
 
@@ -14,6 +15,7 @@ from src.utils import inverse_ncr
 from moea import moea_influence_maximization
 # spread models
 from src.spread.monte_carlo_2_obj import MonteCarlo_simulation as MonteCarlo_simulation
+from src.spread.monte_carlo_3_obj import MonteCarlo_simulation_time 
 from src.spread.monte_carlo_max_hop import MonteCarlo_simulation_max_hop as MonteCarlo_simulation_max_hop
 # smart initialization
 from src.smart_initialization import degree_random
@@ -91,6 +93,17 @@ def read_arguments():
                         default=1e11,
                         #default=None,
                         help="Upper bound on the number of combinations.")
+
+    parser.add_argument("--elements_objective_function",
+                        type=str,
+                        default="influence_seedSize",
+                        choices=[
+                            "influence_seedSize",
+                            "influence_seedSize_time",
+                            "influence_seedSize_communities",
+                            "influence_seedSize_communities_time"
+                        ],
+                        help="Elements to be maximized in the objective function")
     # Smart mutations.
     parser.add_argument('--mutation_operator',
                         type=str,
@@ -149,6 +162,12 @@ def read_arguments():
                         type=str,
                         help='Location of the output directory in case if '
                              'outfile is preferred to have a default name.')
+
+    parser.add_argument('--n_threads',
+                        type=int,
+                        help="Number of thread to be used in evaluation")
+
+
     args = parser.parse_args()
     args = vars(args)
     if args["config_file"] is not None:
@@ -220,12 +239,26 @@ def get_graph(args):
 
     return G, graph_name
 
+def get_communities(ars): 
+    if args["downscaled"]:
+        filename = "graph_communities/{0}_{1}.csv".format(args["graph"], args["s"])
+    else:
+        filename = 'graph_communities/{0}.csv'.format(args["graph"])
+
+    df = pd.read_csv(filename, sep=",") 
+    result = df.groupby('comm')['node'].apply(list).tolist()
+    return result
+
+    
+
 def create_folder(args, graph_name):
     if args["out_dir"] != None:
             path = '{0}{1}-{2}'.format(args["out_dir"],graph_name,args["model"]) 
     else:
         path = '{0}-{1}'.format(graph_name,args["model"])
     
+    path = os.path.join(path, args["elements_objective_function"])
+
     try:
         os.makedirs(path)
     except OSError:
@@ -257,13 +290,15 @@ if __name__ == '__main__':
     
     #create directory for saving results
     path = create_folder(args, graph_name)
+    print(path)
     
     #select best nodes with smart initiliazation
     nodes_filtered = get_filter_nodes(args,G)
+
+    communities = get_communities(args)
     
     for run in range(args["no_runs"]):
         initial_population = create_initial_population(G, args, prng, nodes_filtered)
-
 
         #Print Graph's information and properties
         logging.basicConfig(stream=sys.stdout, level=logging.INFO)
@@ -274,5 +309,9 @@ if __name__ == '__main__':
         file_path = path+'/'+file_path                
         
         ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
-        seed_sets = moea_influence_maximization(G, args, fitness_function=MonteCarlo_simulation, population_file=file_path,initial_population=initial_population)
+
+        if args["no_obj"] == 2:
+            seed_sets = moea_influence_maximization(G, args, fitness_function=MonteCarlo_simulation, population_file=file_path,initial_population=initial_population)
+        else: 
+            seed_sets = moea_influence_maximization(G, args, fitness_function=MonteCarlo_simulation_time, fitness_function_kargs ={"communities":communities}, population_file=file_path,initial_population=initial_population)
         
