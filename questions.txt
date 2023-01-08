@@ -1,1 +1,1 @@
-why do we multiply by 100 two times in the normalization of the hypervolume?
+non c'è il rescaling tra 1 e 100 per le community, è da aggiungere? 

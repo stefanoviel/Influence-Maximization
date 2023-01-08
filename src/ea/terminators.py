@@ -15,7 +15,27 @@ def generation_termination(population, num_generations, num_evaluations, args):
         x = [x for x in range(1,len(args["hypervolume"])+1)]
         df = pd.DataFrame()
         df["generation"] = x
-        df["hv"] = args["hypervolume"]
+
+        if args["elements_objective_function"] == "influence_seedSize": 
+            df["hv_influence_seed"] = np.array(args["hypervolume"])[:, 0]
+            
+        elif args["elements_objective_function"] == "influence_seedSize_time": 
+            df["hv_influence_seedSize_time"] = np.array(args["hypervolume"])[:, 0]
+            df["hv_influence_seed"] = np.array(args["hypervolume"])[:, 1]
+            df["hv_influence_time"] = np.array(args["hypervolume"])[:, 2]
+            df["hv_seed_time"] = np.array(args["hypervolume"])[:, 3]
+
+        elif args["elements_objective_function"] == "influence_seedSize_communities": 
+            df["hv_influence_seedSize_communities"] = np.array(args["hypervolume"])[:, 0]
+            df["hv_influence_seed"] = np.array(args["hypervolume"])[:, 1]
+            df["hv_influence_communities"] = np.array(args["hypervolume"])[:, 2]
+            df["hv_seed_communities"] = np.array(args["hypervolume"])[:, 3]
+
+        elif args["elements_objective_function"] == "influence_seedSize_communities_time": 
+            print(args["hypervolume"])
+            df["hv_influence_seedSize_communities_time"] = np.array(args["hypervolume"])[:, 0]
+            df["hv_influence_seed"] = np.array(args["hypervolume"])[:, 1]
+          
         df.to_csv(args["population_file"] +"_hv_.csv", sep=",",index=False)
         time_observer(population, num_generations, num_evaluations, args)
 

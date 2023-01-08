@@ -13,6 +13,7 @@ def nsga2_evaluator(candidates, args):
     fitness_function = args["fitness_function"] 
     fitness_function_kargs = args["fitness_function_kargs"]
     k = args["max_seed_nodes"]
+
     no_obj =  args["no_obj"]
     # we start with a list where every element is None
     fitness = [None] * len(candidates)
@@ -34,7 +35,7 @@ def nsga2_evaluator(candidates, args):
                 max_hop = args["max_hop"]
                 fitness_function_args = [G, A_set, p, no_simulations, model, max_hop]
 
-            if no_obj == 3:
+            if no_obj == 3 or no_obj == 4:
                 influence_mean, _,comm, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
                 time_gen[index] = time
                 if args["elements_objective_function"] == "influence_seedSize_time": 
@@ -96,7 +97,7 @@ def nsga2_evaluator_threaded(fitness_function, fitness_function_args, fitness_fu
     # elif no_obj == 2:
     #     fitness_values[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100)])
 
-    if no_obj == 3:
+    if no_obj == 3 or no_obj == 4:
         if args["elements_objective_function"] == "influence_seedSize_time": 
             fitness_values[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), time])
         elif args["elements_objective_function"] == "influence_seedSize_communities": 

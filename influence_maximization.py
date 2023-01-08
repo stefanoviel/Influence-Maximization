@@ -239,7 +239,7 @@ def get_graph(args):
 
     return G, graph_name
 
-def get_communities(ars): 
+def get_communities(args): 
     if args["downscaled"]:
         filename = "graph_communities/{0}_{1}.csv".format(args["graph"], args["s"])
     else:
@@ -249,7 +249,7 @@ def get_communities(ars):
     result = df.groupby('comm')['node'].apply(list).tolist()
     return result
 
-    
+
 
 def create_folder(args, graph_name):
     if args["out_dir"] != None:
@@ -291,7 +291,7 @@ if __name__ == '__main__':
     #create directory for saving results
     path = create_folder(args, graph_name)
     print(path)
-    
+        
     #select best nodes with smart initiliazation
     nodes_filtered = get_filter_nodes(args,G)
 

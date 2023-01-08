@@ -61,5 +61,12 @@ Run the experiment on the same graph with different fitness functions (divided b
 
 
 for each fitness function find the best run based on the hypervolume
-    
-        
+
+
+6/01
+
+fix fitness function
+compute HV on all objectives
+compute HV on all pairs of objective functions
+plot without removing stuff from PF
+apply on different dataset 

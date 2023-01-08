@@ -381,10 +381,7 @@ def inverse_ncr(combinations, r):
 	return n
 import pandas as pd
 
-def to_csv(archiver, population_file) :
-    """
-	Saving MOEA results into .csv format for 3 obj functions.
-	"""
+def to_csv_influence_seedSize_communities(archiver, population_file) :
 
     df = pd.DataFrame()
     nodes = []
@@ -398,6 +395,46 @@ def to_csv(archiver, population_file) :
         communities.append(item[3])
     df["n_nodes"] = n_nodes
     df["influence"] = influence
+    df["communities"] = communities
+    df["nodes"] = nodes
+    df.to_csv(population_file+".csv", sep=",", index=False)
+
+
+def to_csv_influence_seedSize_time(archiver, population_file) :
+
+    df = pd.DataFrame()
+    nodes = []
+    influence = []
+    n_nodes = []
+    time = []
+    for item in archiver:
+        nodes.append(str(item[0]))
+        influence.append(round(item[1],2))
+        n_nodes.append(item[2])
+        time.append(item[3])
+    df["n_nodes"] = n_nodes
+    df["influence"] = influence
+    df["time"] = time
+    df["nodes"] = nodes
+    df.to_csv(population_file+".csv", sep=",", index=False)
+
+def to_csv_influence_seedSize_communities_time(archiver, population_file) :
+
+    df = pd.DataFrame()
+    nodes = []
+    influence = []
+    n_nodes = []
+    communities = []
+    time = []
+    for item in archiver:
+        nodes.append(str(item[0]))
+        influence.append(round(item[1],2))
+        n_nodes.append(item[2])
+        communities.append(item[3])
+        time.append(item[4])
+    df["n_nodes"] = n_nodes
+    df["influence"] = influence
+    df["time"] = time
     df["communities"] = communities
     df["nodes"] = nodes
     df.to_csv(population_file+".csv", sep=",", index=False)
