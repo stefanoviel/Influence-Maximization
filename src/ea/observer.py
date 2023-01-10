@@ -235,7 +235,7 @@ def hypervolume_observer_all_combinations(population, num_generations, num_evalu
 
         hv_influence_communities = metric_influence_communities(  np.concatenate([np.transpose([F[:, 0]]) , np.transpose( [F[:, 2]]) ], axis=1))
         hv_influence_communities = hv_influence_communities/tot_influence_communities
-        print("\thv_influence_seedSize_communities:", hv_influence_seedSize_communities)
+        print("\thv_influence_communities:", hv_influence_communities)
 
         hv_seed_communities = metric_seed_communities(F[:, 1:])
         hv_seed_communities = hv_seed_communities/tot_seed_communities
@@ -253,12 +253,28 @@ def hypervolume_observer_all_combinations(population, num_generations, num_evalu
         hv_influence_seedSize_communities_time = hv_influence_seedSize_communities_time/tot_influence_seedSize_communities_time
         print("\thv_influence_seedSize_communities_time:", hv_influence_seedSize_communities_time)
 
+        hv_influence_communities = metric_influence_communities(  np.concatenate([np.transpose([F[:, 0]]) , np.transpose( [F[:, 2]]) ], axis=1))
+        hv_influence_communities = hv_influence_communities/tot_influence_communities
+        print("\thv_influence_communities:", hv_influence_communities)
+
+        hv_seed_communities = metric_seed_communities(F[:, 1:3])
+        hv_seed_communities = hv_seed_communities/tot_seed_communities
+        print("\thv_seed_communities:", hv_seed_communities)
+
+        hv_influence_time = metric_influence_time( np.concatenate([np.transpose([F[:, 0]]) , np.transpose( [F[:, 2]]) ], axis=1))
+        hv_influence_time = hv_influence_time/tot_influence_time
+        print("\thv_influence_time:", hv_influence_time)
+
+        hv_seed_time = metric_seed_time(F[:, 1:3])
+        hv_seed_time = hv_seed_time/tot_seed_time
+        print("\thv_seed_time:", hv_seed_time)
+
         hv_influence_seed = metric_influence_seed(F[:, :2])
         hv_influence_seed = hv_influence_seed/tot_influence_seed
         print("\thv_influence_seed:", hv_influence_seed)
 
         # TODO: compute and save all other HV
 
-        args["hypervolume"].append([hv_influence_seedSize_communities_time, hv_influence_seed])
+        args["hypervolume"].append([hv_influence_seedSize_communities_time, hv_influence_communities, hv_seed_communities, hv_influence_time, hv_seed_time, hv_influence_seed])
     
-    logging.info('Hypervolume at generation {0} : '.format(num_generations))   
+    # logging.info('Hypervolume at generation {0} : '.format(num_generations))   

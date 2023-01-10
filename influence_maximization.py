@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import time
 import random
 import logging
 import argparse
@@ -281,6 +282,7 @@ def get_filter_nodes(args, G):
 #------------------------------------------------------------------------------------------------------------#
 
 if __name__ == '__main__':
+    
     args = read_arguments()
     G, graph_name = get_graph(args)
     prng = random.Random(args["random_seed"])
@@ -301,9 +303,8 @@ if __name__ == '__main__':
         initial_population = create_initial_population(G, args, prng, nodes_filtered)
 
         #Print Graph's information and properties
-        logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-        logging.info(nx.classes.function.info(G))
-        
+        # logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+        # logging.info(nx.classes.function.info(G))
         
         file_path = 'run-{0}'.format(run+1)
         file_path = path+'/'+file_path                

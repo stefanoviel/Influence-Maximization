@@ -18,7 +18,7 @@ def find_best(directory):
 
 if __name__ == "__main__": 
 
-    directory = "exp1_out_facebook_combined_4-IC"
+    directory = "exp1_out_facebook_combined_4-WC"
     
     fitness_function = "influence_seedSize"
     best_file, best_file_hv = find_best(os.path.join(directory, fitness_function))
@@ -131,7 +131,18 @@ if __name__ == "__main__":
     plt.ylabel('% Influenced Nodes',fontsize=12)
     plt.xlabel('% Nodes as seed set',fontsize=12)
     plt.legend()
+    plt.savefig(os.path.join(new_dir, "all_influence_seed" + ".png"))
     plt.show()
 
+    with open(os.path.join(new_dir, "hv.txt"), 'w') as file:
+
+        file.write(str(max_hv_influence_seedSize) + "\n")
+        file.write("\n")
+        file.write(str(max_hv_influence_seedSize_communities) + "\n")
+        file.write("\n")
+        file.write(str(max_hv_influence_seedSize_time) + "\n")
+        file.write("\n")
+        file.write(str(max_hv_influence_seedSize_time_communities) + "\n")
+        file.write("\n")
 
 

@@ -1,0 +1,27 @@
+generation           101.000000
+hv_influence_seed      0.358198
+Name: 100, dtype: float64
+
+generation                           101.000000
+hv_influence_seedSize_communities      0.290165
+hv_influence_seed                      0.354585
+hv_influence_communities               0.375996
+hv_seed_communities                    0.770833
+Name: 100, dtype: float64
+
+generation                    101.000000
+hv_influence_seedSize_time      0.056983
+hv_influence_seed               0.345829
+hv_influence_time               0.063714
+hv_seed_time                    0.958333
+Name: 100, dtype: float64
+
+generation                                101.000000
+hv_influence_seedSize_communities_time      0.025978
+hv_influence_communities                    0.344734
+hv_seed_communities                         0.716146
+hv_influence_time                           5.910558
+hv_seed_time                               12.416667
+hv_influence_seed                           0.348651
+Name: 100, dtype: float64
+

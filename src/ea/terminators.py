@@ -32,9 +32,12 @@ def generation_termination(population, num_generations, num_evaluations, args):
             df["hv_seed_communities"] = np.array(args["hypervolume"])[:, 3]
 
         elif args["elements_objective_function"] == "influence_seedSize_communities_time": 
-            print(args["hypervolume"])
             df["hv_influence_seedSize_communities_time"] = np.array(args["hypervolume"])[:, 0]
-            df["hv_influence_seed"] = np.array(args["hypervolume"])[:, 1]
+            df["hv_influence_communities"] = np.array(args["hypervolume"])[:, 1]
+            df["hv_seed_communities"] = np.array(args["hypervolume"])[:, 2]
+            df["hv_influence_time"] = np.array(args["hypervolume"])[:, 3]
+            df["hv_seed_time"] = np.array(args["hypervolume"])[:, 4]
+            df["hv_influence_seed"] = np.array(args["hypervolume"])[:, 5]
           
         df.to_csv(args["population_file"] +"_hv_.csv", sep=",",index=False)
         time_observer(population, num_generations, num_evaluations, args)
