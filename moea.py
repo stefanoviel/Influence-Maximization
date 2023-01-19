@@ -85,6 +85,7 @@ def moea_influence_maximization(G,args, fitness_function=None, fitness_function_
         elements_objective_function=args["elements_objective_function"], 
         num_elites=args["num_elites"],
         communities = comm,
+        communities_seed = args["communities_seed"],
         # all arguments below will go inside the dictionary 'args'
         G = G,
         p = args["p"],
