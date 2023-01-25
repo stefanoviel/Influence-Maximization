@@ -13,7 +13,7 @@ from src.utils import to_csv_influence_seedSize_communities_time
 from src.utils import to_csv2
 from src.ea.observer import hypervolume_observer
 from src.ea.observer import hypervolume_observer_all_combinations
-from src.ea.evaluator import nsga2_evaluator
+from src.ea.evaluator import Nsga2
 from src.ea.generator import nsga2_generator
 from src.ea.crossover import ea_one_point_crossover
 from src.ea.terminators import generation_termination
@@ -39,7 +39,7 @@ Multi-objective evolutionary influence maximization. Parameters:
     population_file: name of the file that will be used to store the population at each generation (default: file named with date and time)
     no_obj: number of objcetive function in the multi-objcetive optimization
     """
-def moea_influence_maximization(G,args, fitness_function=None, fitness_function_kargs=dict(),random_gen=random.Random(),population_file=None, initial_population=None) :
+def moea_influence_maximization(G,args, com_time_file, fitness_function=None, fitness_function_kargs=dict(),random_gen=random.Random(),population_file=None, initial_population=None) :
     # initialize multi-objective evolutionary algorithm, NSGA-II
     nodes = list(G.nodes)
     
@@ -66,12 +66,12 @@ def moea_influence_maximization(G,args, fitness_function=None, fitness_function_
     #ea.replacer = inspyred.ec.replacers.plus_replacement
     
     bounder = inspyred.ec.DiscreteBounder(nodes)
-
+    nsga2 = Nsga2()
     
     # start the evolutionary process
     ea.evolve(
         generator = nsga2_generator,
-        evaluator = nsga2_evaluator,
+        evaluator = nsga2.nsga2_evaluator,
         bounder= bounder,
         maximize = True,
         seeds = initial_population,
@@ -85,7 +85,6 @@ def moea_influence_maximization(G,args, fitness_function=None, fitness_function_
         elements_objective_function=args["elements_objective_function"], 
         num_elites=args["num_elites"],
         communities = comm,
-        communities_seed = args["communities_seed"],
         # all arguments below will go inside the dictionary 'args'
         G = G,
         p = args["p"],
@@ -98,6 +97,7 @@ def moea_influence_maximization(G,args, fitness_function=None, fitness_function_
         population_file = population_file,
         time_previous_generation = time(), # this will be updated in the observer
         fitness_function = fitness_function,
+        nsga2 = nsga2,  
         fitness_function_kargs = fitness_function_kargs,
         mutation_operator=ea_global_random_mutation,
         graph = G,

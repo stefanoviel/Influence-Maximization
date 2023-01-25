@@ -106,8 +106,6 @@ if __name__ == "__main__":
         plt.show()
 
 
-
-
     fitness_function = "influence_seedSize_time"
     df_influence_seedSize_time, avg_hv_influence_seedSize_time, std_hv_influence_seedSize_time = get_file_hv(os.path.join(directory, fitness_function))
     print(avg_hv_influence_seedSize_time) 

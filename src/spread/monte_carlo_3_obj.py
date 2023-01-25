@@ -1,6 +1,8 @@
 from networkx.generators import intersection
 import numpy
 import random
+import os
+import pandas as pd
 import networkx as nx
 import numpy as np
 """ Spread models """
@@ -142,42 +144,8 @@ def WC_model(G, a, communities,random_generator):                 # a: the set o
 			comm += 1	
 	return len(A), comm, time
 
-def WC_model_community_seed(G, a, communities,random_generator):                 # a: the set of initial active nodes
-                                    # each edge from node u to v is assigned probability 1/in-degree(v) of activating v
-	A = set(a)                      # A: the set of active nodes, initially a
-	B = set(a)                      # B: the set of nodes activated in the last completed iteration
-	converged = False
-	time = 0                  # B: the set of nodes activated in the last completed iteration
 
-	# compute communities on original seed set
-	comm = 0
-	for item in communities:
-		intersection = set.intersection(set(item),set(A))
-		if len(intersection) > 0:
-			comm += 1	
-
-	if nx.is_directed(G):
-		my_degree_function = G.in_degree
-	else:
-		my_degree_function = G.degree
-	
-	while not converged:
-		nextB = set()
-		for n in B:
-			for m in set(G.neighbors(n)) - A:
-				prob = random_generator.random() # in the range [0.0, 1.0)
-				p = 1.0/my_degree_function(m) 
-				if prob <= p:
-					nextB.add(m)
-		B = set(nextB)
-		time += 1
-		if not B:
-			converged = True
-		A |= B
-
-	return len(A), comm, time
-
-def MonteCarlo_simulation_time(G, A, p, no_simulations, model, communities, communities_seed, random_generator=None):
+def MonteCarlo_simulation_time(G, A, p, no_simulations, model, communities, path, random_generator=None):
 	if random_generator is None:
 		random_generator = random.Random()
 		random_generator.seed(next(iter(A))) # initialize random number generator with first seed in the seed set, to make experiment repeatable; TODO evaluate computational cost
@@ -188,19 +156,13 @@ def MonteCarlo_simulation_time(G, A, p, no_simulations, model, communities, comm
 
 	if model == 'WC':
 		for i in range(no_simulations):
-			if communities_seed:
-				res, comm, time = WC_model_community_seed(G, A, communities=communities,random_generator=random_generator)
-			else: 
-				res, comm, time = WC_model(G, A, communities=communities,random_generator=random_generator)
+			res, comm, time = WC_model(G, A, communities=communities,random_generator=random_generator)
 			comm_list.append(comm)
 			results.append(res)
 			times.append(time)
 	elif model == 'IC':
 		for i in range(no_simulations):
-			if communities_seed:
-				res, comm ,time= IC_model(G, A, p,  communities=communities, random_generator=random_generator)
-			else: 
-				res, comm ,time= IC_model(G, A, p,  communities=communities, random_generator=random_generator)
+			res, comm ,time= IC_model(G, A, p,  communities=communities, random_generator=random_generator)
 			comm_list.append(comm)
 			results.append(res)
 			times.append(time)
@@ -211,6 +173,9 @@ def MonteCarlo_simulation_time(G, A, p, no_simulations, model, communities, comm
 			results.append(res)
 			times.append(time)
 
-	return (numpy.mean(results), numpy.std(results), int(numpy.mean(comm_list)), int(numpy.mean(times)))
+
+	set_com_time = {'set': A, 'communities':comm, 'time':(1/time)}
+
+	return (numpy.mean(results), numpy.std(results), int(numpy.mean(comm_list)), int(numpy.mean(times)), set_com_time)
 
 

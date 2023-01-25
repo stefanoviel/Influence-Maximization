@@ -106,11 +106,6 @@ def read_arguments():
                         ],
                         help="Elements to be maximized in the objective function")
 
-    parser.add_argument("--communities_seed",
-                    type=bool,
-                    default=False,
-                    help="If true number of communities in the objective function is computed on seed set, \
-                    otherwise on the influenced nodes")
     # Smart mutations.
     parser.add_argument('--mutation_operator',
                         type=str,
@@ -258,16 +253,13 @@ def get_communities(args):
 
 
 
-def create_folder(args, graph_name, communities_seed):
-    if communities_seed: 
-        communities_count = "on_seed"
-    else:
-        communities_count = "on_influenced"
+def create_folder(args, graph_name):
+
 
     if args["out_dir"] != None:    
-        path = '{0}{1}_{3}-{2}'.format(args["out_dir"],graph_name,args["model"], communities_count) 
+        path = '{0}{1}-{2}'.format(args["out_dir"],graph_name,args["model"]) 
     else:
-        path = '{0}_{3}-{1}'.format(graph_name,args["model"], communities_count)
+        path = '{0}-{1}'.format(graph_name,args["model"])
     
     path = os.path.join(path, args["elements_objective_function"])
 
@@ -302,7 +294,7 @@ if __name__ == '__main__':
     args["k"] = int(G.number_of_nodes() * args["k"])
     
     #create directory for saving results
-    path = create_folder(args, graph_name, args["communities_seed"])
+    path = create_folder(args, graph_name)
     print(path)
         
     #select best nodes with smart initiliazation
@@ -318,15 +310,17 @@ if __name__ == '__main__':
         # logging.info(nx.classes.function.info(G))
         
         file_path = 'run-{0}'.format(run+1)
-        file_path = path+'/'+file_path                
-        
+        file_path = path+'/'+file_path   
+
+        com_time_file = os.path.join(path,  'run-{0}time_communties.csv'.format(run+1))
+
         ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
 
-        if args["no_obj"] == 2:
-            seed_sets = moea_influence_maximization(G, args, fitness_function=MonteCarlo_simulation, 
-            population_file=file_path, initial_population=initial_population)
-        else: 
-            seed_sets = moea_influence_maximization(G, args, fitness_function=MonteCarlo_simulation_time, 
-            fitness_function_kargs ={"communities":communities, "communities_seed":args["communities_seed"]}, 
-            population_file=file_path, initial_population=initial_population)
+        # if args["no_obj"] == 2:
+        #     seed_sets = moea_influence_maximization(G, args, fitness_function=MonteCarlo_simulation, 
+        #     population_file=file_path, initial_population=initial_population)
+        # else: 
+        seed_sets = moea_influence_maximization(G, args, com_time_file = com_time_file,  fitness_function=MonteCarlo_simulation_time, 
+        fitness_function_kargs ={"path": com_time_file, "communities":communities}, 
+        population_file=file_path, initial_population=initial_population)
         
