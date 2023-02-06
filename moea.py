@@ -10,6 +10,9 @@ from src.spread.monte_carlo_max_hop import MonteCarlo_simulation_max_hop as Mont
 from src.utils import to_csv_influence_seedSize_time
 from src.utils import to_csv_influence_seedSize_communities
 from src.utils import to_csv_influence_seedSize_communities_time
+from src.utils import to_csv_influence_communities_time
+from src.utils import to_csv_influence_communities
+from src.utils import to_csv_influence_time
 from src.utils import to_csv2
 from src.ea.observer import hypervolume_observer
 from src.ea.observer import hypervolume_observer_all_combinations
@@ -37,7 +40,6 @@ Multi-objective evolutionary influence maximization. Parameters:
     random_gen: already initialized pseudo-random number generation
     initial_population: individuals (seed sets) to be added to the initial population (the rest will be randomly generated)
     population_file: name of the file that will be used to store the population at each generation (default: file named with date and time)
-    no_obj: number of objcetive function in the multi-objcetive optimization
     """
 def moea_influence_maximization(G,args, com_time_file, fitness_function=None, fitness_function_kargs=dict(),random_gen=random.Random(),population_file=None, initial_population=None) :
     # initialize multi-objective evolutionary algorithm, NSGA-II
@@ -102,24 +104,31 @@ def moea_influence_maximization(G,args, com_time_file, fitness_function=None, fi
         mutation_operator=ea_global_random_mutation,
         graph = G,
         hypervolume = [], # keep track of HV trend throughout the generations
-        no_obj = args["no_obj"], 
         time = [] # keep track of Time (Activation Attempts) trend throughout the generations
     )
 
     # print([[i.fitness[0], i.fitness[1]] for i in ea.archive])
 
     # extract seed sets from the final Pareto front/archive 
-    if args["no_obj"] == 4:
+    if args["elements_objective_function"] == "influence_seedSize_communities_time": 
         seed_sets = [[individual.candidate, individual.fitness[0], ((args["k"]  / G.number_of_nodes()) * 100) - individual.fitness[1], individual.fitness[2], individual.fitness[3]] for individual in ea.archive] 
         to_csv_influence_seedSize_communities_time(seed_sets, population_file)
-    if args["no_obj"] == 3:
+    elif args["elements_objective_function"] == "influence_seedSize_time" :
         seed_sets = [[individual.candidate, individual.fitness[0], ((args["k"]  / G.number_of_nodes()) * 100) - individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
-        if args["elements_objective_function"] == "influence_seedSize_time": 
-            to_csv_influence_seedSize_time(seed_sets, population_file)
-        else: 
-            to_csv_influence_seedSize_communities(seed_sets, population_file)
-
-    elif args["no_obj"]  == 2:
+        to_csv_influence_seedSize_time(seed_sets, population_file)
+    elif args["elements_objective_function"] == "influence_seedSize_communities": 
+        seed_sets = [[individual.candidate, individual.fitness[0], ((args["k"]  / G.number_of_nodes()) * 100) - individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
+        to_csv_influence_seedSize_communities(seed_sets, population_file)
+    elif args["elements_objective_function"] == "influence_communities_time": 
+        seed_sets = [[individual.candidate, individual.fitness[0] , individual.fitness[1], individual.fitness[2]] for individual in ea.archive] 
+        to_csv_influence_communities_time(seed_sets,population_file)
+    elif args["elements_objective_function"] == "influence_time": 
+        seed_sets = [[individual.candidate, individual.fitness[0] , individual.fitness[1]] for individual in ea.archive] 
+        to_csv_influence_time(seed_sets, population_file)
+    elif args["elements_objective_function"] == "influence_communities": 
+        seed_sets = [[individual.candidate, individual.fitness[0] , individual.fitness[1]] for individual in ea.archive] 
+        to_csv_influence_communities(seed_sets, population_file)
+    elif args["elements_objective_function"] == "influence_seedSize": 
         seed_sets = [[individual.candidate, individual.fitness[0], ((args["k"]  / G.number_of_nodes()) * 100) - individual.fitness[1]] for individual in ea.archive] 
         to_csv2(seed_sets, population_file)
 

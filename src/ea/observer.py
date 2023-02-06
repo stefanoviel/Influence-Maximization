@@ -125,7 +125,7 @@ def hypervolume_observer(population, num_generations, num_evaluations, args):
                 arch[i][j] = -float(arch[i][j])
     F =  np.array(arch)
 
-    if args["no_obj"] == 3:
+    if args["no_obj"] == 3:  # TODO fix 
         tot = 100 * ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100) * (len(args["communities"])-1)
         metric = Hypervolume(ref_point= np.array([0,0,-1]),
                             norm_ref_point=False,
@@ -331,6 +331,32 @@ def hypervolume_observer_all_combinations(population, num_generations, num_evalu
         args["hypervolume"].append([hv_influence_seed, hv_influence_seedSize_time, hv_influence_seedSize_communities,
         hv_influence_communities, hv_seed_communities, hv_influence_time, hv_seed_time,  hv_influence_seedSize_communities_time ])
     
+    elif args["elements_objective_function"] == "influence_time": 
+
+        # TODO: save number of influenced
+
+        hv_influence_time = metric_influence_time(F)
+        hv_influence_time = hv_influence_time/tot_influence_time
+        args["hypervolume"].append([hv_influence_time])
+
+    
+    elif args["elements_objective_function"] == "influence_communities": 
+
+        hv_influence_communities = metric_influence_communities(F)
+        hv_influence_communities = hv_influence_communities/tot_influence_communities
+        args["hypervolume"].append([hv_influence_communities])
+
+    elif args["elements_objective_function"] == "influence_communities_time": 
+
+        hv_influence_time = metric_influence_time(np.concatenate([F[:, :1] , np.transpose( [F[:, 2]]) ], axis=1))
+        hv_influence_time = hv_influence_time/tot_influence_time
+
+        hv_influence_communities = metric_influence_communities(F[:, :2])
+        hv_influence_communities = hv_influence_communities/tot_influence_communities
+
+        args["hypervolume"].append([hv_influence_time, hv_influence_communities])
+
+
     # logging.info('Hypervolume at generation {0} : '.format(num_generations))   
 
     

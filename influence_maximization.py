@@ -43,8 +43,6 @@ def read_arguments():
     parser.add_argument('--model', default="WC", choices=['IC', 'WC'],
                         help='Influence propagation model.')
 
-    parser.add_argument('--no_obj', default=2, type=int, choices= [2,3],
-                        help='Number of objective functions')
     # EA setup.
     parser.add_argument('--population_size', type=int, default=100,
                         help='EA population size.')
@@ -101,8 +99,11 @@ def read_arguments():
                         choices=[
                             "influence_seedSize",
                             "influence_seedSize_time",
+                            "influence_time",
                             "influence_seedSize_communities",
+                            "influence_communities",
                             "influence_seedSize_communities_time"
+                            "influence_communities_time"
                         ],
                         help="Elements to be maximized in the objective function")
 
@@ -316,10 +317,6 @@ if __name__ == '__main__':
 
         ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
 
-        # if args["no_obj"] == 2:
-        #     seed_sets = moea_influence_maximization(G, args, fitness_function=MonteCarlo_simulation, 
-        #     population_file=file_path, initial_population=initial_population)
-        # else: 
         seed_sets = moea_influence_maximization(G, args, com_time_file = com_time_file,  fitness_function=MonteCarlo_simulation_time, 
         fitness_function_kargs ={"path": com_time_file, "communities":communities}, 
         population_file=file_path, initial_population=initial_population)

@@ -1,3 +1,5 @@
+# compute avg and std tables which can be found in result_comparison.
+
 import os
 import math
 import numpy as np

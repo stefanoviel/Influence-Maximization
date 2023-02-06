@@ -400,6 +400,54 @@ def to_csv_influence_seedSize_communities(archiver, population_file) :
     df.to_csv(population_file+".csv", sep=",", index=False)
 
 
+def to_csv_influence_communities_time(archiver, population_file) :
+
+    df = pd.DataFrame()
+    nodes = []
+    influence = []
+    time = []
+    communities = []
+    for item in archiver:
+        nodes.append(str(item[0]))
+        influence.append(round(item[1],2))
+        communities.append(item[2])
+        time.append(item[3])
+    df["time"] = time 
+    df["influence"] = influence
+    df["communities"] = communities
+    df["nodes"] = nodes
+    df.to_csv(population_file+".csv", sep=",", index=False)
+
+def to_csv_influence_communities(archiver, population_file) :
+
+    df = pd.DataFrame()
+    nodes = []
+    influence = []
+    communities = []
+    for item in archiver:
+        nodes.append(str(item[0]))
+        influence.append(round(item[1],2))
+        communities.append(item[2])
+    df["influence"] = influence
+    df["communities"] = communities
+    df["nodes"] = nodes
+    df.to_csv(population_file+".csv", sep=",", index=False)
+
+def to_csv_influence_time(archiver, population_file) :
+
+    df = pd.DataFrame()
+    nodes = []
+    influence = []
+    time = []
+    for item in archiver:
+        nodes.append(str(item[0]))
+        influence.append(round(item[1],2))
+        time.append(item[2])
+    df["time"] = time 
+    df["influence"] = influence
+    df["nodes"] = nodes
+    df.to_csv(population_file+".csv", sep=",", index=False)
+
 def to_csv_influence_seedSize_time(archiver, population_file) :
 
     df = pd.DataFrame()
