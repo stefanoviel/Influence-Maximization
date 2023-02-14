@@ -26,7 +26,7 @@ for subd in os.listdir('result_comparison'):
     sns.set(rc={'figure.figsize':(14,8)})
     # df = df.round(4)
     sns.set(font_scale=1.2)
-    ax = sns.heatmap(scaled_df,  annot = df_avg, fmt='.3f', linewidths=.5, cbar=False, xticklabels=x_axis_labels, yticklabels=y_axis_labels)
+    ax = sns.heatmap(scaled_df,  annot = df_avg, fmt='.3f', linewidths=.5,  xticklabels=x_axis_labels, yticklabels=y_axis_labels)
 
     for t, std_value in zip(ax.texts, flat_list): 
         t.set_text(t.get_text() + "\n(" + str(round(std_value, 5)) + ")")
@@ -35,4 +35,4 @@ for subd in os.listdir('result_comparison'):
     plt.tight_layout()
     plt.savefig('result_comparison/'+ subd + '/avg.png',  bbox_inches='tight', dpi=300)
     plt.show()
-    # break
+    break

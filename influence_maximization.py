@@ -304,7 +304,10 @@ if __name__ == '__main__':
     communities = get_communities(args)
     
     for run in range(args["no_runs"]):
+        print(G.number_of_nodes(), len(nodes_filtered))
         initial_population = create_initial_population(G, args, prng, nodes_filtered)
+        print(initial_population)
+        print('actual seed_set_size', len(initial_population), 'desired', G.number_of_nodes()*0.025)
 
         #Print Graph's information and properties
         # logging.basicConfig(stream=sys.stdout, level=logging.INFO)
