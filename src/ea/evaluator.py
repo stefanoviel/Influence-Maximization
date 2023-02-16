@@ -43,7 +43,6 @@ class Nsga2:
                     max_hop = args["max_hop"]
                     fitness_function_args = [G, A_set, p, no_simulations, model, max_hop]
 
-
                 influence_mean, _,comm, time, set_com_time = fitness_function(*fitness_function_args, **fitness_function_kargs)
                 time_com.append(set_com_time)
                 time_gen[index] = time
@@ -64,16 +63,11 @@ class Nsga2:
                 else: 
                     raise Exception("Elements of the objective function aren't specified correctly")
 
-
-
-
             self.df = pd.concat([self.df, pd.DataFrame.from_records(time_com)])
             
-
-            
         else :
-            thread_pool = ThreadPool(n_threads)
 
+            thread_pool = ThreadPool(n_threads)
             # create thread lock, to be used for concurrency
 
             thread_lock = threading.Lock()
@@ -99,24 +93,27 @@ class Nsga2:
         return fitness
 
 
-    def nsga2_evaluator_threaded(self, fitness_function, fitness_function_args, fitness_function_kargs, fitness_values, A_set, index, k,G,time_gen_values,thread_lock, args, thread_id) :
+    def nsga2_evaluator_threaded(self, fitness_function, fitness_function_args, fitness_function_kargs, fitness, A_set, index, k,G,time_gen_values,thread_lock, args, thread_id) :
 
-        influence_mean, _, comm, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
+        influence_mean, _,comm, time, set_com_time = fitness_function(*fitness_function_args, **fitness_function_kargs)
 
         # lock data structure before writing in it
         thread_lock.acquire()
 
         if args["elements_objective_function"] == "influence_seedSize_time": 
-            fitness_values[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), time])
+            fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), 1/time])
         elif args["elements_objective_function"] == "influence_seedSize_communities": 
-            fitness_values[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), comm])
-            # print("INSIDE:", fitness_values[index])
+            fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), comm])
         elif args["elements_objective_function"] == "influence_seedSize_communities_time": 
-            fitness_values[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), comm, time])
+            fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), comm, 1/time])
+        elif args["elements_objective_function"] == "influence_time": 
+            fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, 1/time])
+        elif args["elements_objective_function"] == "influence_communities": 
+            fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, comm])
+        elif args["elements_objective_function"] == "influence_communities_time": 
+            fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, comm, 1/time])
         elif args["elements_objective_function"] == "influence_seedSize": 
-            influence_mean, _, time = fitness_function(*fitness_function_args, **fitness_function_kargs)
-            time_gen_values[index] = time
-            fitness_values[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100)])
+            fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100)])
         else: 
             raise Exception("Elements of the objective function aren't specified correctly")
 

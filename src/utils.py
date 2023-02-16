@@ -393,8 +393,8 @@ def to_csv_influence_seedSize_communities(archiver, population_file) :
         influence.append(round(item[1],2))
         n_nodes.append(item[2])
         communities.append(item[3])
-    df["n_nodes"] = n_nodes
     df["influence"] = influence
+    df["n_nodes"] = n_nodes
     df["communities"] = communities
     df["nodes"] = nodes
     df.to_csv(population_file+".csv", sep=",", index=False)
@@ -412,9 +412,9 @@ def to_csv_influence_communities_time(archiver, population_file) :
         influence.append(round(item[1],2))
         communities.append(item[2])
         time.append(item[3])
-    df["time"] = time 
     df["influence"] = influence
     df["communities"] = communities
+    df["time"] = time 
     df["nodes"] = nodes
     df.to_csv(population_file+".csv", sep=",", index=False)
 
@@ -443,8 +443,8 @@ def to_csv_influence_time(archiver, population_file) :
         nodes.append(str(item[0]))
         influence.append(round(item[1],2))
         time.append(item[2])
-    df["time"] = time 
     df["influence"] = influence
+    df["time"] = time 
     df["nodes"] = nodes
     df.to_csv(population_file+".csv", sep=",", index=False)
 
@@ -460,8 +460,8 @@ def to_csv_influence_seedSize_time(archiver, population_file) :
         influence.append(round(item[1],2))
         n_nodes.append(item[2])
         time.append(item[3])
-    df["n_nodes"] = n_nodes
     df["influence"] = influence
+    df["n_nodes"] = n_nodes
     df["time"] = time
     df["nodes"] = nodes
     df.to_csv(population_file+".csv", sep=",", index=False)
@@ -480,10 +480,10 @@ def to_csv_influence_seedSize_communities_time(archiver, population_file) :
         n_nodes.append(item[2])
         communities.append(item[3])
         time.append(item[4])
-    df["n_nodes"] = n_nodes
     df["influence"] = influence
-    df["time"] = time
+    df["n_nodes"] = n_nodes
     df["communities"] = communities
+    df["time"] = time
     df["nodes"] = nodes
     df.to_csv(population_file+".csv", sep=",", index=False)
 
@@ -500,7 +500,7 @@ def to_csv2(archiver, population_file):
         nodes.append(str(item[0]))
         influence.append(round(item[1],2))
         n_nodes.append(item[2])
-    df["n_nodes"] = n_nodes
     df["influence"] = influence
+    df["n_nodes"] = n_nodes
     df["nodes"] = nodes
     df.to_csv(population_file+".csv", sep=",", index=False)

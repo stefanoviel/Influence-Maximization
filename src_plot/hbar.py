@@ -23,47 +23,46 @@ for subd in os.listdir('result_comparison'):
     df_new = pd.DataFrame(df_new)
     df_new.columns = ['fitness_function', 'hv_measure', 'hypervolume values', 'hypervolume std']
     
-
     # set width of bar
     barWidth = 0.2
-    fig = plt.subplots(figsize =(12, 8))
-    
+    f, ax = plt.subplots(1, 3, figsize =(12, 8))
 
     # Set position of bar on X axis
-    br1 = np.arange(len(df_new.loc[df_new["fitness_function"] == "infl_seed"]))
+    br1 = np.arange(1)
     br2 = [x + barWidth for x in br1]
     br3 = [x + barWidth for x in br2]
     br4 = [x + barWidth for x in br3]
-    
 
     # Make the plot
-    plt.bar(br1, df_new.loc[df_new["fitness_function"] == "infl_seed"]["hypervolume values"], color ='r', width = barWidth,
-            edgecolor ='grey', label ='infl_seed')
-    plt.bar(br2, df_new.loc[df_new["fitness_function"] == "infl_seed_com"]["hypervolume values"], color ='b', width = barWidth,
-            edgecolor ='grey', label ='infl_seed_com')
-    plt.bar(br3, df_new.loc[df_new["fitness_function"] == "infl_seed_time"]["hypervolume values"], color ='g', width = barWidth,
-            edgecolor ='grey', label ='infl_seed_time')
-    plt.bar(br4, df_new.loc[df_new["fitness_function"] == "infl_seed_com_time"]["hypervolume values"], color ='yellow', width = barWidth,
-            edgecolor ='grey', label ='infl_seed_com_time')
+    for i in range(3): 
+        print(df_new.loc[df_new["fitness_function"] == "infl_seed"]["hypervolume values"].iloc[i])
+        ax[i].bar(br1, df_new.loc[df_new["fitness_function"] == "infl_seed"]["hypervolume values"].iloc[i], color ='r', width = barWidth,
+                edgecolor ='grey', label ='infl_seed')
+        ax[i].bar(br2, df_new.loc[df_new["fitness_function"] == "infl_seed_com"]["hypervolume values"].iloc[i], color ='b', width = barWidth,
+                edgecolor ='grey', label ='infl_seed_com')
+        ax[i].bar(br3, df_new.loc[df_new["fitness_function"] == "infl_seed_time"]["hypervolume values"].iloc[i], color ='g', width = barWidth,
+                edgecolor ='grey', label ='infl_seed_time')
+        ax[i].bar(br4, df_new.loc[df_new["fitness_function"] == "infl_seed_com_time"]["hypervolume values"].iloc[i], color ='yellow', width = barWidth,
+                edgecolor ='grey', label ='infl_seed_com_time')
 
-    # Adding std
-    plt.errorbar(x = br1, y = df_new.loc[df_new["fitness_function"] == "infl_seed"]["hypervolume values"], 
-        yerr=df_new.loc[df_new["fitness_function"] == "infl_seed"]['hypervolume std'], fmt='none', c= 'black', capsize = 2)
-    plt.errorbar(x = br2, y = df_new.loc[df_new["fitness_function"] == "infl_seed_com"]["hypervolume values"], 
-        yerr=df_new.loc[df_new["fitness_function"] == "infl_seed_com"]['hypervolume std'], fmt='none', c= 'black', capsize = 2)
-    plt.errorbar(x = br3, y = df_new.loc[df_new["fitness_function"] == "infl_seed_time"]["hypervolume values"], 
-        yerr=df_new.loc[df_new["fitness_function"] == "infl_seed_time"]['hypervolume std'], fmt='none', c= 'black', capsize = 2)
-    plt.errorbar(x = br4, y = df_new.loc[df_new["fitness_function"] == "infl_seed_com_time"]["hypervolume values"], 
-        yerr=df_new.loc[df_new["fitness_function"] == "infl_seed_com_time"]['hypervolume std'], fmt='none', c= 'black', capsize = 2)
+        # Adding std
+        # ax[i].errorbar(x = br1, y = df_new.loc[df_new["fitness_function"] == "infl_seed"]["hypervolume values"].iloc[i], 
+        #     yerr=df_new.loc[df_new["fitness_function"] == "infl_seed"]['hypervolume std'].iloc[i], fmt='none', c= 'black', capsize = 2)
+        # ax[i].errorbar(x = br2, y = df_new.loc[df_new["fitness_function"] == "infl_seed_com"]["hypervolume values"].iloc[i],
+        #     yerr=df_new.loc[df_new["fitness_function"] == "infl_seed_com"]['hypervolume std'].iloc[i], fmt='none', c= 'black', capsize = 2)
+        # ax[i].errorbar(x = br3, y = df_new.loc[df_new["fitness_function"] == "infl_seed_time"]["hypervolume values"].iloc[i], 
+        #     yerr=df_new.loc[df_new["fitness_function"] == "infl_seed_time"]['hypervolume std'].iloc[i], fmt='none', c= 'black', capsize = 2)
+        # ax[i].errorbar(x = br4, y = df_new.loc[df_new["fitness_function"] == "infl_seed_com_time"]["hypervolume values"].iloc[i],
+        #     yerr=df_new.loc[df_new["fitness_function"] == "infl_seed_com_time"]['hypervolume std'].iloc[i], fmt='none', c= 'black', capsize = 2)
 
-    # Adding Xticks
-    plt.xlabel('fitness functions', fontweight ='bold', fontsize = 15, labelpad=20)
-    plt.ylabel('hypervolume values', fontweight ='bold', fontsize = 15)
-    plt.xticks([r + barWidth for r in range(len(df_new.loc[df_new["fitness_function"] == "infl_seed_com_time"]))], ['hv_influence_seed', 'hv_influence_seedSize_time', 'hv_influence_seedSize_communities' ])
+        # Adding Xticks
+#     f.xlabel('fitness functions', fontweight ='bold', fontsize = 15, labelpad=20)
+#     ax[0].ylabel('hypervolume values', fontweight ='bold', fontsize = 15)
+#     f.xticks([r + barWidth for r in range(len(df_new.loc[df_new["fitness_function"] == "infl_seed_com_time"]))], ['hv_influence_seed', 'hv_influence_seedSize_time', 'hv_influence_seedSize_communities' ])
     
     plt.legend()
     plt.title(subd)
     plt.savefig('result_comparison/'+ subd + '/avg_hbar.png',  bbox_inches='tight', dpi=300)
     plt.show()
 
-    # break
+    break

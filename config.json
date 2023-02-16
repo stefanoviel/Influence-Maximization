@@ -1,13 +1,13 @@
 {
     "script_args": {
         "k": 0.025,
-        "model": "WC",
+        "model": "IC",
         "p": 0.05,
         "no_simulations": 10,
-        "population_size": 20,
+        "population_size": 100,
         "downscaled": true,
         "graph": "facebook_combined",
-        "elements_objective_function": "influence_communities",
+        "elements_objective_function": "influence_communities_time",
         "no_runs": 30,
         "s": 4,
         "offspring_size": 20,
