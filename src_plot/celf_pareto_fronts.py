@@ -70,6 +70,8 @@ def pfs_seedSize(directory):
     plt.show()
 
 def pfs_no_seedSize(directory): 
+    label = directory.replace('exp1_out_', '')
+    print(label)
     hv_influence_seed, best_file = find_best(os.path.join(directory, "influence_seedSize"), 'hv_influence_seed')
     df = pd.read_csv(os.path.join(directory, "influence_seedSize", best_file), sep = ',')
     pf_influence_seed = get_PF(df)  
@@ -85,8 +87,11 @@ def pfs_no_seedSize(directory):
     pf_influence_time = get_PF(df)    
     print("hv_influence_time:", hv_influence_time)
     plt.scatter(pf_influence_time[:,0],pf_influence_time[:,1], color='blue', label='influence_time', marker='.',s=100)
-    plt.title('influence_time')
+    plt.title('influence_time ' + label)
+    plt.ylabel('1/time',fontsize=12)
+    plt.xlabel('% Influenced Nodes',fontsize=12)
     plt.legend()
+    plt.savefig('result_comparison/' + 'influence_time_' + label )
     plt.show()
 
     hv_influence_communities, best_file = find_best(os.path.join(directory, "influence_communities"), "hv_influence_communities")
@@ -94,15 +99,24 @@ def pfs_no_seedSize(directory):
     pf_influence_communities = get_PF(df)
     print("hv_influence_communities:", hv_influence_communities)
     plt.scatter(pf_influence_communities[:,0],pf_influence_communities[:,1], color='brown', label='influence_communities', marker='*',s=100)
-    plt.title('influence_communities')
+    plt.title('influence_communities ' + label)
+    plt.ylabel('# communities',fontsize=12)
+    plt.xlabel('% Influenced Nodes',fontsize=12)
     plt.legend()
+    plt.savefig('result_comparison/' + 'influence_communities_' + label )
     plt.show()
 
 
 #---------------------------------------------------------------#
 
 if __name__ == '__main__':
-    directory = "exp1_out_facebook_combined_4-WC"
-    pfs_no_seedSize(directory)
+    for directory in os.listdir(): 
+
+        # directory = "exp1_out_pgp_4-IC"
+        if 'exp1_out' in directory: 
+            try: 
+                pfs_no_seedSize(directory)
+            except: 
+                print('something went wrong', directory)
     
     
