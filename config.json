@@ -6,7 +6,7 @@
         "no_simulations": 10,
         "population_size": 500,
         "downscaled": true,
-        "graph": "fb_politician",
+        "graph": "deezerEU",
         "elements_objective_function": "influence_communities_time",
         "no_runs": 30,
         "s": 4,
@@ -29,4 +29,4 @@
         "g_file": null,
         "out_dir": "./exp1_out_"
     }
-}
+}   
