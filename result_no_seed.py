@@ -1,4 +1,5 @@
-# for each run extract the average influence of the PF
+# for each run extract the average number of node influence among the individuals in the PF
+# Now src_plot/boxplot.py is used instead
 import os
 import pandas as pd
 import numpy as np

@@ -46,6 +46,7 @@ class Nsga2:
                 influence_mean, _,comm, time, set_com_time = fitness_function(*fitness_function_args, **fitness_function_kargs)
                 time_com.append(set_com_time)
                 time_gen[index] = time
+                # different fitness function based on the value selected in config.json
                 if args["elements_objective_function"] == "influence_seedSize_time": 
                     fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), 1/time])
                 elif args["elements_objective_function"] == "influence_seedSize_communities": 
