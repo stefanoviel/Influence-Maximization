@@ -1,3 +1,6 @@
+# Allows to run all the fitness function together
+# no_seed needs to be passed if we want to run the set of fitness function where the seed set size is fixed
+
 import json
 import sys
 import time
@@ -18,8 +21,6 @@ if 'no_seed' in sys.argv:
         "influence_communities_time"
     ]
 
-
-
 for f_f in fit_func:
     print("executing", f_f)
 
@@ -35,7 +36,3 @@ for f_f in fit_func:
     bashCommand = "python influence_maximization.py --config config.json"
     process = subprocess.Popen(bashCommand.split(), stdin=None, stdout=None, stderr=None, close_fds=True)
     time.sleep(5)
-    # output, error = process.communicate()
-
-    # if error != None:
-    #     raise("Error: ", error)

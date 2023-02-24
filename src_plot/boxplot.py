@@ -11,10 +11,10 @@ def boxplot(directory):
 
     df_final = pd.DataFrame()
 
-    for f in ['influence_seedSize', 'influence_communities', 'influence_time']: 
+    for f in ['influence_communities_time', 'influence_communities', 'influence_time']: 
         # TODO: remove try catch once all experiment have been rerun
         try: 
-            _, best_file = find_best(os.path.join(directory, f), 'hv_' + f)
+            _, best_file = find_best(os.path.join(directory, f), 'hv_' + f.replace('communities_time', 'communities'))
         except KeyError as e : 
             print(e)
             _, best_file = find_best(os.path.join(directory, f), 'hv_influence_seed')
@@ -23,7 +23,7 @@ def boxplot(directory):
         df['fitness_function '] = [f] * len(df)
         df_final = pd.concat([df_final, df], axis = 0, ignore_index=True)
 
-
+    sns.set(rc={'figure.figsize':(9, 5)})
     sns.boxplot(data = df_final, x='fitness_function ', y='influence')
     plt.title(label)
     plt.savefig('result_comparison/' + label + '/' + 'pf_noSeed_boxplot.png')

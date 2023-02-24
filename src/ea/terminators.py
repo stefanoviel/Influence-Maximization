@@ -12,12 +12,12 @@ def generation_termination(population, num_generations, num_evaluations, args):
     Save into format .csv the Hypervolume and Time lists reached/used the whole evolution process. 
     """
 
-    #TODO normalize values of 
     if num_generations == args["generations_budget"]:
         x = [x for x in range(1,len(args["hypervolume"])+1)]
         df = pd.DataFrame()
         df["generation"] = x
 
+        # save different HV values based on the fitness function that we are using
         if args["elements_objective_function"] == "influence_seedSize": 
             df["hv_influence_seedSize"] = np.array(args["hypervolume"])[:, 0]
             df["hv_influence_seedSize_time"] = np.array(args["hypervolume"])[:, 1]
@@ -29,7 +29,6 @@ def generation_termination(population, num_generations, num_evaluations, args):
             df["hv_influence_seedSize_communities"] = np.array(args["hypervolume"])[:, 2]
             df["hv_influence_time"] = np.array(args["hypervolume"])[:, 3]
             df["hv_seedSize_time"] = np.array(args["hypervolume"])[:, 4]
-            
 
         elif args["elements_objective_function"] == "influence_seedSize_communities": 
             df["hv_influence_seedSize"] = np.array(args["hypervolume"])[:, 0]
@@ -47,7 +46,6 @@ def generation_termination(population, num_generations, num_evaluations, args):
             df["hv_influence_time"] = np.array(args["hypervolume"])[:, 5]
             df["hv_seedSize_time"] = np.array(args["hypervolume"])[:, 6]
             df["hv_influence_seedSize_communities_time"] = np.array(args["hypervolume"])[:, 7]
-
 
         elif args["elements_objective_function"] == "influence_time": 
             df["hv_influence_time"] = np.array(args["hypervolume"])[:, 0]

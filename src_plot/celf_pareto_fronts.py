@@ -1,3 +1,5 @@
+# probably not correct because we only plot the PF of the best generation
+
 import os
 import re
 import numpy as np
@@ -23,6 +25,9 @@ def get_PF(df):
 
 
 def find_best(directory, hv_name): 
+    """
+    Find the generation with the highest HV, the PF will be computed on that
+    """
     best_hv = 0
     best_file = ''
     for file in os.listdir(directory): 

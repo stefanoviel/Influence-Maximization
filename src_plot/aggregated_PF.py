@@ -7,26 +7,32 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 def get_file_hv(directory): 
+    """
+    From each file extract only all the hv corresponding to the generation that achieved the best results on hv_influence_seed
+    compute the average and std on those values among all the hv elements
+    """
     all_hv = []
     all_file = []
     for file in os.listdir(directory): 
         if 'hv' in file: 
-            df = pd.read_csv(os.path.join(directory, file), sep = ',')
-            
+            df = pd.read_csv(os.path.join(directory, file), sep = ',')        
+            # get best hv value of the run
             all_hv.append(df[df['hv_influence_seed'].max() == df['hv_influence_seed']].iloc[-1].to_list())
             all_file.append(file)
     
     all_file = [f.replace('_hv_', '') for f in all_file]
 
     df = [pd.read_csv(os.path.join(directory, f), sep = ',') for f in all_file]
-    all_hv = np.array(all_hv)
+    all_hv = np.array(all_hv)  # TODO: save all_hv, so that you can do the scatter plot on them without matplotlib
     avg_hv = np.mean(all_hv, axis= 0)[1:]
     std_hv = np.std(all_hv, axis = 0)[1:]
 
     return df, avg_hv, std_hv
 
 def save_hv(hv_influence_seedSize, hv_influence_seedSize_communities, hv_influence_seedSize_time, hv_influence_seedSize_time_communities, file): 
-
+    """
+    Given hv values get saved in a file
+    """
     res = []
     hv_influence_seedSize = hv_influence_seedSize.tolist()
     hv_influence_seedSize.insert(0, "infl_seed_com")
@@ -59,7 +65,7 @@ if __name__ == "__main__":
 
     directory = "exp1_out_facebook_combined_4-IC"
     
-    show = False 
+    show = True
     fitness_function = "influence_seedSize"
     df_influence_seedSize, avg_hv_influence_seedSize, std_hv_influence_seedSize = get_file_hv(os.path.join(directory, fitness_function))
     print(avg_hv_influence_seedSize) 
@@ -80,8 +86,6 @@ if __name__ == "__main__":
     if show: 
         plt.savefig(os.path.join(new_dir, fitness_function + ".png"))
         plt.show()
-
-    
 
     fitness_function = "influence_seedSize_communities"
     df_influence_seedSize_communities, avg_hv_influence_seedSize_communities, std_hv_influence_seedSize_communities = get_file_hv(os.path.join(directory, fitness_function))
@@ -104,6 +108,7 @@ if __name__ == "__main__":
 
     plt.suptitle(fitness_function, fontsize=14)
     if show: 
+        print('saving in', os.path.join(new_dir, fitness_function + ".png"))
         plt.savefig(os.path.join(new_dir, fitness_function + ".png"))
         plt.show()
 
@@ -133,8 +138,6 @@ if __name__ == "__main__":
         plt.show()
 
 
-
-
     fitness_function = "influence_seedSize_communities_time"
     df_influence_seedSize_time_communities, avg_hv_influence_seedSize_time_communities, std_hv_influence_seedSize_time_communities = get_file_hv(os.path.join(directory, fitness_function))
     print(avg_hv_influence_seedSize_time_communities) 
@@ -161,22 +164,6 @@ if __name__ == "__main__":
     if show: 
         plt.savefig(os.path.join(new_dir, fitness_function + ".png"))
         plt.show()
-
-
-
-
-    # plt.scatter(df_influence_seedSize_time_communities["n_nodes"], df_influence_seedSize_time_communities["influence"], color='red', label='influence_seedSize_communities_time')
-    # plt.scatter(df_influence_seedSize_communities["n_nodes"], df_influence_seedSize_communities["influence"], color='green', label='influence_seedSize_communities') 
-    # plt.scatter(df_influence_seedSize["n_nodes"], df_influence_seedSize["influence"], color='blue', label='influence_seed')
-    # plt.scatter(df_influence_seedSize_time["n_nodes"], df_influence_seedSize_time["influence"], color='black', label='influence_seedSize_time')
-    # plt.title('Comparing fitness functions', x=0.2, y=0.5,fontsize=12,weight="bold")
-    # plt.ylabel('% Influenced Nodes',fontsize=12)
-    # plt.xlabel('% Nodes as seed set',fontsize=12)
-    # plt.legend()
-    # if show: 
-    #     plt.savefig(os.path.join(new_dir, "all_influence_seed" + ".png"))
-    #     plt.show()
-
 
 
     save_hv(avg_hv_influence_seedSize, avg_hv_influence_seedSize_communities, avg_hv_influence_seedSize_time, avg_hv_influence_seedSize_time_communities, "avg_hv.csv")
