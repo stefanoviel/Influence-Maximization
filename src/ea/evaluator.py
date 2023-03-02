@@ -64,6 +64,7 @@ class Nsga2:
                 else: 
                     raise Exception("Elements of the objective function aren't specified correctly")
 
+            # save value of time and communities in nsga2 object, they will then be accessed in the observer 
             self.df = pd.concat([self.df, pd.DataFrame.from_records(time_com)])
             
         else :

@@ -1,4 +1,5 @@
 # compute avg and std tables which can be found in result_comparison.
+# plot PF of seed set size and number of nodes influenced
 
 import os
 import math
@@ -31,7 +32,7 @@ def get_file_hv(directory):
 
 def save_hv(hv_influence_seedSize, hv_influence_seedSize_communities, hv_influence_seedSize_time, hv_influence_seedSize_time_communities, file): 
     """
-    Given hv values get saved in a file
+    Saves the given HV values
     """
     res = []
     hv_influence_seedSize = hv_influence_seedSize.tolist()
@@ -63,14 +64,14 @@ def save_hv(hv_influence_seedSize, hv_influence_seedSize_communities, hv_influen
 
 if __name__ == "__main__":  
 
-    directory = "exp1_out_facebook_combined_4-IC"
+    directory = "exp1_out_pgp_4-WC"
     
-    show = True
+    show = False
     fitness_function = "influence_seedSize"
     df_influence_seedSize, avg_hv_influence_seedSize, std_hv_influence_seedSize = get_file_hv(os.path.join(directory, fitness_function))
     print(avg_hv_influence_seedSize) 
     print(std_hv_influence_seedSize)
-
+    
     for df in df_influence_seedSize: 
         plt.scatter(df["n_nodes"], df["influence"], color = "b")
     
@@ -95,6 +96,7 @@ if __name__ == "__main__":
     fig, axs = plt.subplots(2, 2)
     fig.set_size_inches(12, 8)
 
+    # plot the projections of the PF on different combination of two axis
     for df in df_influence_seedSize_communities: 
         axs[0, 0].scatter(df["n_nodes"], df["influence"], color = "b")
         axs[0, 0].set_xlabel('% Nodes as seed set',fontsize=12)
@@ -165,6 +167,5 @@ if __name__ == "__main__":
         plt.savefig(os.path.join(new_dir, fitness_function + ".png"))
         plt.show()
 
-
     save_hv(avg_hv_influence_seedSize, avg_hv_influence_seedSize_communities, avg_hv_influence_seedSize_time, avg_hv_influence_seedSize_time_communities, "avg_hv.csv")
-    save_hv(std_hv_influence_seedSize, std_hv_influence_seedSize_communities, std_hv_influence_seedSize_time, std_hv_influence_seedSize_time_communities, "std_hv.csv")
+    # save_hv(std_hv_influence_seedSize, std_hv_influence_seedSize_communities, std_hv_influence_seedSize_time, std_hv_influence_seedSize_time_communities, "std_hv.csv")
