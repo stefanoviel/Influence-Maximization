@@ -26,7 +26,7 @@ def get_PF(df):
 
 def find_best(directory, hv_name): 
     """
-    Find the generation with the highest HV, the PF will be computed on that
+    Find the run with the highest HV, we will consider the individual from its PF
     """
     best_hv = 0
     best_file = ''

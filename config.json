@@ -3,12 +3,12 @@
         "k": 0.025,
         "model": "IC",
         "p": 0.05,
-        "no_simulations": 10,
-        "population_size": 500,
+        "no_simulations": 100,
+        "population_size": 100,
         "downscaled": true,
         "graph": "deezerEU",
-        "elements_objective_function": "influence_communities_time",
-        "no_runs": 30,
+        "elements_objective_function": "influence_seedSize_communities_time",
+        "no_runs": 15,
         "s": 4,
         "offspring_size": 20,
         "crossover_rate": 1.0,
@@ -29,4 +29,4 @@
         "g_file": null,
         "out_dir": "./exp1_out_"
     }
-}   
+}

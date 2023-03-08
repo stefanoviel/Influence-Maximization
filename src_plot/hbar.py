@@ -25,18 +25,25 @@ for directory in os.listdir('result_comparison'):
         df['fitness_function'] = get_initials(file.replace('_hvs.csv', ''))
         df_combined = pd.concat([df_combined, df], axis=0)
     
-    df_combined = df_combined[['hv_influence_seed', 'hv_influence_seedSize_time', 'hv_influence_seedSize_communities', 'fitness_function']]
-    df_new = []
-    for index, row in df_combined.iterrows():
-        df_new.append([row["fitness_function"], "hv_influence_seedSize" , row["hv_influence_seed"], ])
-        df_new.append([row["fitness_function"], "hv_influence_seedSize_time", row["hv_influence_seedSize_time"], ])
-        df_new.append([row["fitness_function"], "hv_influence_seedSize_communities", row["hv_influence_seedSize_communities"], ])
+    print(df_combined.columns)
+    try: 
+        df_combined = df_combined[['hv_influence_seedSize', 'hv_influence_seedSize_time', 'hv_influence_seedSize_communities', 'fitness_function']]
+        df_new = []
+        for index, row in df_combined.iterrows():
+            df_new.append([row["fitness_function"], "hv_influence_seedSize" , row["hv_influence_seedSize"], ])
+            df_new.append([row["fitness_function"], "hv_influence_seedSize_time", row["hv_influence_seedSize_time"], ])
+            df_new.append([row["fitness_function"], "hv_influence_seedSize_communities", row["hv_influence_seedSize_communities"], ])
 
-    df_new = pd.DataFrame(df_new)
-    df_new.columns = ['fitness_function', 'HV dimensions', 'HV values']
-    g = sns.catplot(data=df_new, x='HV dimensions',y ='HV values', kind="bar",hue="fitness_function", legend = False,  height=4.5, aspect=2.2)
-    g.fig.suptitle(directory)
-    plt.legend(loc='upper right', title = 'objectives')
-    plt.show()
+        df_new = pd.DataFrame(df_new)
+        df_new.columns = ['fitness_function', 'HV dimensions', 'HV values']
+        custom_dict = {'I.S.': 0, 'I.S.C.': 1, 'I.S.T.': 2, 'I.S.C.T':  3} 
+        df_new = df_new.sort_values(by=['fitness_function', 'HV dimensions'], key=lambda x: x.map(custom_dict))
+        print(df_new)
+        g = sns.catplot(data=df_new, x='HV dimensions',y ='HV values', kind="bar",hue="fitness_function", legend = False,  height=5.5, aspect=2.2)
+        g.fig.suptitle(directory)
+        plt.legend(loc='upper right', title = 'objectives')
+        plt.savefig(os.path.join('result_comparison', directory, 'hbar.png'))
+        plt.show()
+    except KeyError as e: 
+        print(e)
 
-    

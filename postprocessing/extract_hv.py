@@ -27,6 +27,11 @@ if "__main__" == __name__:
 
     for directory in os.listdir(): 
         if 'exp1_out' in directory: 
+            try: 
+                os.mkdir(os.path.join('result_comparison', directory.replace('exp1_out_', ''))) 
+            except OSError as error: 
+                print(error) 
+
             for fitness_function in os.listdir(directory): 
                 if 'seedSize' in fitness_function: 
 

@@ -258,9 +258,9 @@ def create_folder(args, graph_name):
 
 
     if args["out_dir"] != None:    
-        path = '{0}{1}-{2}'.format(args["out_dir"],graph_name,args["model"]) 
+        path = '{0}{1}-{2}-{3}'.format(args["out_dir"],graph_name,args["model"], args["p"]) 
     else:
-        path = '{0}-{1}'.format(graph_name,args["model"])
+        path = '{0}-{1}-{3}'.format(graph_name,args["model"], args["p"])
     
     path = os.path.join(path, args["elements_objective_function"])
 
@@ -304,10 +304,8 @@ if __name__ == '__main__':
     communities = get_communities(args)
     
     for run in range(args["no_runs"]):
-        print(G.number_of_nodes(), len(nodes_filtered))
+        print('[{0}] Run: '.format(args['elements_objective_function']), run)
         initial_population = create_initial_population(G, args, prng, nodes_filtered)
-        print(initial_population)
-        print('actual seed_set_size', len(initial_population), 'desired', G.number_of_nodes()*0.025)
 
         #Print Graph's information and properties
         # logging.basicConfig(stream=sys.stdout, level=logging.INFO)
