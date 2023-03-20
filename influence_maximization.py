@@ -252,7 +252,19 @@ def get_communities(args):
     result = df.groupby('comm')['node'].apply(list).tolist()
     return result
 
+def get_max_time(args): 
+    max_time = pd.read_csv('networks_max_times.csv')
 
+    if args["downscaled"]:
+        graph_name = "{0}_{1}.csv".format(args["graph"], args["s"])
+    else:
+        graph_name = '{0}.csv'.format(args["graph"])
+    
+    g = graph_name.replace('.csv', '')
+    if g not in list(max_time.columns): 
+        raise('Max time has not been simulated for this network')
+    
+    return max_time[g].iloc[0]
 
 def create_folder(args, graph_name):
 
@@ -302,6 +314,9 @@ if __name__ == '__main__':
     nodes_filtered = get_filter_nodes(args,G)
 
     communities = get_communities(args)
+
+    max_time = get_max_time(args)
+
     
     for run in range(args["no_runs"]):
         print('[{0}] Run: '.format(args['elements_objective_function']), run)
@@ -318,7 +333,7 @@ if __name__ == '__main__':
 
         ##MOEA INFLUENCE MAXIMIZATION WITH FITNESS FUNCTION MONTECARLO_SIMULATION
 
-        seed_sets = moea_influence_maximization(G, args, com_time_file = com_time_file,  fitness_function=MonteCarlo_simulation_time, 
-        fitness_function_kargs ={"path": com_time_file, "communities":communities}, 
+        seed_sets = moea_influence_maximization(G, args, max_time = max_time, fitness_function=MonteCarlo_simulation_time, 
+         fitness_function_kargs ={"communities":communities}, 
         population_file=file_path, initial_population=initial_population)
         

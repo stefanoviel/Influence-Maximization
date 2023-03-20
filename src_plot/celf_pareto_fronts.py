@@ -1,5 +1,3 @@
-# probably not correct because we only plot the PF of the best generation
-
 import os
 import re
 import numpy as np
@@ -14,7 +12,7 @@ def get_PF(df):
     
     # Add first row to pareto_frontier
     pareto_frontier = myArray
-    print(pareto_frontier)
+    # print(pareto_frontier)
     # Test next row against the last row in pareto_frontier
     for row in myArray[1:,:]:
         if sum([row[x] >= pareto_frontier[-1][x]
@@ -42,7 +40,7 @@ def find_best(directory, hv_name):
     return best_hv, best_file
 
 def pfs_seedSize(directory): 
-    hv_influence_seed, best_file = find_best(os.path.join(directory, "influence_seedSize"), 'hv_influence_seed')
+    hv_influence_seed, best_file = find_best(os.path.join(directory, "influence_seedSize"), 'hv_influence_seedSize')
     df = pd.read_csv(os.path.join(directory, "influence_seedSize", best_file), sep = ',')
     pf_influence_seed = get_PF(df)    
     
@@ -63,13 +61,14 @@ def pfs_seedSize(directory):
     print("hv_influence_seedSize_communities_time:", hv_influence_seedSize_communities_time)
     print("hv_influence_seedSize_time:", hv_influence_seedSize_time)
 
-    plt.scatter(pf_influence_seed[:,0],pf_influence_seed[:,1], color='olive', label='influence_seed', facecolor='none', s=50)
-    plt.scatter(pf_influence_seedSize_communities[:,0],pf_influence_seedSize_communities[:,1], color='brown', label='influence_seedSize_communities', marker='*',s=100)
-    plt.scatter(pf_influence_seedSize_communities_time[:,0],pf_influence_seedSize_communities_time[:,1], color='black', label='influence_seedSize_communities_time', marker='.',s=100)
-    plt.scatter(pf_influence_seedSize_time[:,0],pf_influence_seedSize_time[:,1], color='blue', label='influence_seedSize_time', marker='.',s=100)
+    plt.scatter(pf_influence_seed[:,0], pf_influence_seed[:,1],   label='influence_seed',  s=50)
+    # plt.scatter(pf_influence_seedSize_communities[:,0],pf_influence_seedSize_communities[:,1], color='brown', label='influence_seedSize_communities', marker='*',s=100)
+    # plt.scatter(pf_influence_seedSize_communities_time[:,0],pf_influence_seedSize_communities_time[:,1], color='black', label='influence_seedSize_communities_time', marker='.',s=100)
+    # plt.scatter(pf_influence_seedSize_time[:,0],pf_influence_seedSize_time[:,1], color='blue', label='influence_seedSize_time', marker='.',s=100)
     # plt.title('Comparing fitness functions', x=0.2, y=0.5,fontsize=12,weight="bold")
-    plt.xlabel('% Influenced Nodes',fontsize=12)
+    plt.title(directory.replace('exp1_out_', ''))
     plt.ylabel('% Nodes as seed set',fontsize=12)
+    plt.xlabel('% Influenced Nodes',fontsize=12)
     plt.legend()
 
     plt.show()
@@ -119,9 +118,11 @@ if __name__ == '__main__':
 
         # directory = "exp1_out_pgp_4-IC"
         if 'exp1_out' in directory: 
-            try: 
-                pfs_no_seedSize(directory)
-            except: 
-                print('something went wrong', directory)
+            # try: 
+            print(directory)
+            pfs_seedSize(directory)
+            # except: 
+                # print('something went wrong', directory)
+        
     
     

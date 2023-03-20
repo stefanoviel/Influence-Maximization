@@ -24,7 +24,7 @@ for subd in os.listdir('result_comparison'):
 
     df_new = pd.DataFrame(df_new)
     df_new.columns = ['fitness_function', 'hv_measure', 'hypervolume values', 'hypervolume std']
-    
+
 
     # set width of bar
     barWidth = 0.2

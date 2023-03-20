@@ -10,7 +10,6 @@ def get_file_hv(directory):
     compute the average and std on those values among all the hv elements
     """
     all_hv = []
-    all_file = []
     for file in os.listdir(directory): 
         if 'hv' in file: 
             df = pd.read_csv(os.path.join(directory, file), sep = ',')        

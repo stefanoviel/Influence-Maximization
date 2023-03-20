@@ -41,7 +41,7 @@ Multi-objective evolutionary influence maximization. Parameters:
     initial_population: individuals (seed sets) to be added to the initial population (the rest will be randomly generated)
     population_file: name of the file that will be used to store the population at each generation (default: file named with date and time)
     """
-def moea_influence_maximization(G,args, com_time_file, fitness_function=None, fitness_function_kargs=dict(),random_gen=random.Random(),population_file=None, initial_population=None) :
+def moea_influence_maximization(G,args, max_time, fitness_function=None, fitness_function_kargs=dict(),random_gen=random.Random(),population_file=None, initial_population=None) :
     # initialize multi-objective evolutionary algorithm, NSGA-II
     nodes = list(G.nodes)
     
@@ -57,6 +57,8 @@ def moea_influence_maximization(G,args, com_time_file, fitness_function=None, fi
     comm = None
     if "communities" in fitness_function_kargs: 
         comm = fitness_function_kargs["communities"]
+
+    fitness_function_kargs["max_time"] = max_time
 
     ea = inspyred.ec.emo.NSGA2(random_gen)
     ea.variator = [ea_one_point_crossover,ea_global_random_mutation]
@@ -87,6 +89,7 @@ def moea_influence_maximization(G,args, com_time_file, fitness_function=None, fi
         elements_objective_function=args["elements_objective_function"], 
         num_elites=args["num_elites"],
         communities = comm,
+        max_time = max_time, 
         # all arguments below will go inside the dictionary 'args'
         G = G,
         p = args["p"],

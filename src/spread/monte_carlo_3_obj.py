@@ -1,5 +1,6 @@
 from networkx.generators import intersection
 import numpy
+import math
 import random
 import os
 import pandas as pd
@@ -17,7 +18,7 @@ Added time inside the cycle of the various models of propagation with the purpos
 '''
 
 ## to re-code better
-def LT_model(G, a, p, communities,random_generator):
+def LT_model(G, a, p, communities,random_generator,  max_time= math.inf):
     A = set(a)                      # A: the set of active nodes, initially a
     B = set(a)                      # B: the set of nodes activated in the last completed iteration
     converged = False
@@ -30,13 +31,13 @@ def LT_model(G, a, p, communities,random_generator):
             degree_list[node] = float(1/G.degree(node))
             activate[node] = len(set.intersection(set(G.neighbors(node)),set(A))) 
     time = 0
-    while not converged:
+    while not converged and time <= max_time:
         nextB = set()
         S = []
+        time += 1    			 	
         for n in B: 
             for m in set(G.neighbors(n)) - A - set(S):
                 S.append(m)
-                time += 1    			 	
                 if activate[m] * degree_list[m] > threshold[m]:
                     nextB.add(m)
                     for t in set(G.neighbors(m)) - A:
@@ -56,14 +57,14 @@ def LT_model(G, a, p, communities,random_generator):
 
 	#This returns all the nodes in the network that have been activated/converted in the diffusion process
 
-def IC_model(G, a, p, communities, random_generator):              # a: the set of initial active nodes
+def IC_model(G, a, p,communities, random_generator, max_time= math.inf):              # a: the set of initial active nodes
 	                                # p: the system-wide probability of influence on an edge, in [0,1]
 	A = set(a)                      # A: the set of active nodes, initially a
 	B = set(a)  
 	converged = False
 	time = 0
 
-	while not converged:
+	while not converged and time <= max_time:
 		nextB = set()
 		for n in B:
 			for m in set(G.neighbors(n)) - A: # G.neighbors follows A-B and A->B (successor) edges
@@ -75,7 +76,12 @@ def IC_model(G, a, p, communities, random_generator):              # a: the set 
 		if not B:
 			converged = True
 		A |= B
-		
+	
+	# if time >= max_time: 
+	# 	print('exited because of max_time')
+	# else: 
+	# 	print('exited not because of time')
+
 	comm = 0
 	for item in communities:
 		intersection = set.intersection(set(item),set(A))
@@ -83,7 +89,7 @@ def IC_model(G, a, p, communities, random_generator):              # a: the set 
 			comm += 1	
 	return len(A), comm, time
 
-def IC_model_community_seed(G, a, p, communities, random_generator):              # a: the set of initial active nodes
+def IC_model_community_seed(G, a, p, communities, random_generator, max_time= math.inf):              # a: the set of initial active nodes
 	                                # p: the system-wide probability of influence on an edge, in [0,1]
 	A = set(a)                      # A: the set of active nodes, initially a
 	B = set(a)  
@@ -112,7 +118,7 @@ def IC_model_community_seed(G, a, p, communities, random_generator):            
 		
 	return len(A), comm, time
 
-def WC_model(G, a, communities,random_generator):                 # a: the set of initial active nodes
+def WC_model(G, a, communities,random_generator, max_time= math.inf):                 # a: the set of initial active nodes
                                     # each edge from node u to v is assigned probability 1/in-degree(v) of activating v
 	A = set(a)                      # A: the set of active nodes, initially a
 	B = set(a)                      # B: the set of nodes activated in the last completed iteration
@@ -124,7 +130,7 @@ def WC_model(G, a, communities,random_generator):                 # a: the set o
 	else:
 		my_degree_function = G.degree
 	
-	while not converged:
+	while not converged and time <= max_time:
 		nextB = set()
 		for n in B:
 			for m in set(G.neighbors(n)) - A:
@@ -145,7 +151,9 @@ def WC_model(G, a, communities,random_generator):                 # a: the set o
 	return len(A), comm, time
 
 
-def MonteCarlo_simulation_time(G, A, p, no_simulations, model, communities, path, random_generator=None):
+
+def MonteCarlo_simulation_time(G, A, p, no_simulations, model, communities, max_time, random_generator=None):
+
 	if random_generator is None:
 		random_generator = random.Random()
 		random_generator.seed(next(iter(A))) # initialize random number generator with first seed in the seed set, to make experiment repeatable; TODO evaluate computational cost
@@ -156,7 +164,43 @@ def MonteCarlo_simulation_time(G, A, p, no_simulations, model, communities, path
 
 	if model == 'WC':
 		for i in range(no_simulations):
-			res, comm, time = WC_model(G, A, communities=communities,random_generator=random_generator)
+			res, comm, time = WC_model(G, A, communities=communities,random_generator=random_generator, max_time=max_time)
+			comm_list.append(comm)
+			results.append(res)
+			times.append(time)
+	elif model == 'IC':
+		for i in range(no_simulations):
+			res, comm ,time= IC_model(G, A, p, communities=communities, random_generator=random_generator, max_time=max_time)
+			comm_list.append(comm)
+			results.append(res)
+			times.append(time)
+	elif model == 'LT':
+		for i in range(no_simulations):
+			res, comm , time= LT_model(G, A, p, communities=communities,random_generator=random_generator,  max_time=max_time)
+			comm_list.append(comm)
+			results.append(res)
+			times.append(time)
+
+
+	set_com_time = {'set': A, 'communities':comm, 'time':(1/time)}
+
+	return (numpy.mean(results), numpy.std(results), int(numpy.mean(comm_list)), int(numpy.mean(times)), set_com_time)
+
+
+def MonteCarlo_simulation_max_time(G, A, p, no_simulations, model, communities, random_generator=None):
+	"""Same as function before but doesn't take max_time and only return the max time (not the average as befor )"""
+
+	if random_generator is None:
+		random_generator = random.Random()
+		random_generator.seed(next(iter(A))) # initialize random number generator with first seed in the seed set, to make experiment repeatable; TODO evaluate computational cost
+
+	results = []
+	comm_list = []
+	times = []
+
+	if model == 'WC':
+		for i in range(no_simulations):
+			res, comm, time = WC_model(G, A,  communities=communities,random_generator=random_generator)
 			comm_list.append(comm)
 			results.append(res)
 			times.append(time)
@@ -168,14 +212,9 @@ def MonteCarlo_simulation_time(G, A, p, no_simulations, model, communities, path
 			times.append(time)
 	elif model == 'LT':
 		for i in range(no_simulations):
-			res, comm , time= LT_model(G, A, p, communities=communities,random_generator=random_generator)
+			res, comm , time= LT_model(G, A, p,  communities=communities,random_generator=random_generator)
 			comm_list.append(comm)
 			results.append(res)
 			times.append(time)
 
-
-	set_com_time = {'set': A, 'communities':comm, 'time':(1/time)}
-
-	return (numpy.mean(results), numpy.std(results), int(numpy.mean(comm_list)), int(numpy.mean(times)), set_com_time)
-
-
+	return max(times)

@@ -159,6 +159,8 @@ def hypervolume_observer_all_combinations(population, num_generations, num_evalu
     df = args["nsga2"].df 
     df_com_time = pd.DataFrame(columns=['set', 'communities', 'time'])
 
+    max_time = args['max_time']
+
     for c in candidates: 
         elems = df.loc[df['set'] == c]
         df_com_time.loc[len(df_com_time), df_com_time.columns] = elems.iloc[0]   # extract the list of seed nodes from the dataframe
@@ -180,17 +182,17 @@ def hypervolume_observer_all_combinations(population, num_generations, num_evalu
                         norm_ref_point=False,
                         zero_to_one=False)
 
-    tot_influence_time = 100 * 1   # makes it explicit we are taking into account the max value for time (1) 
+    tot_influence_time = 100 * max_time   
     metric_influence_time = Hypervolume(ref_point= np.array([0,0]),
                         norm_ref_point=False,
                         zero_to_one=False)
 
-    tot_seed_time = ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100)  * 1
+    tot_seed_time = ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100)  * max_time
     metric_seed_time = Hypervolume(ref_point= np.array([0,0]),
                         norm_ref_point=False,
                         zero_to_one=False)
 
-    tot_influence_seedSize_time = 100 * ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100) * 1   	
+    tot_influence_seedSize_time = 100 * ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100) * max_time 	
     metric_influence_seedSize_time = Hypervolume(ref_point= np.array([0,0,0]),
                             norm_ref_point=False,
                             zero_to_one=False)
@@ -210,7 +212,7 @@ def hypervolume_observer_all_combinations(population, num_generations, num_evalu
                             norm_ref_point=False,
                             zero_to_one=False)
 
-    tot_influence_seedSize_communities_time = 100 * ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100) * (len(args["communities"])-1) * 1	# makes it explicit we are taking into account the max value for time (1)
+    tot_influence_seedSize_communities_time = 100 * ((args["max_seed_nodes"] / args["graph"].number_of_nodes()) * 100) * (len(args["communities"])-1) * max_time	# makes it explicit we are taking into account the max value for time (1)
     metric_influence_seedSize_communities_time = Hypervolume(ref_point= np.array([0,0, -1, 0]),
                         norm_ref_point=False,
                         zero_to_one=False)
