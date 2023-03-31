@@ -22,6 +22,7 @@ class Nsga2:
         fitness_function_kargs = args["fitness_function_kargs"]
         k = args["max_seed_nodes"]
         max_time = args['max_time']
+        tot_communities = args['tot_communities']
 
         # we start with a list where every element is None
         fitness = [None] * len(candidates)
@@ -49,17 +50,17 @@ class Nsga2:
                 time_gen[index] = time
                 # different fitness function based on the value selected in config.json
                 if args["elements_objective_function"] == "influence_seedSize_time": 
-                    fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), max_time - time ])
+                    fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), ((max_time - time) /max_time)*100 ])
                 elif args["elements_objective_function"] == "influence_seedSize_communities": 
-                    fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), comm])
+                    fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), (comm / tot_communities ) * 100])
                 elif args["elements_objective_function"] == "influence_seedSize_communities_time": 
-                    fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), comm, max_time - time])
+                    fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100), (comm / tot_communities ) * 100, ((max_time - time) /max_time)*100 ])
                 elif args["elements_objective_function"] == "influence_time": 
-                    fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, max_time - time])
+                    fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, ((max_time - time) /max_time)*100 ])
                 elif args["elements_objective_function"] == "influence_communities": 
-                    fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, comm])
+                    fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (comm / tot_communities ) * 100])
                 elif args["elements_objective_function"] == "influence_communities_time": 
-                    fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, comm, max_time - time])
+                    fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (comm / tot_communities ) * 100, ((max_time - time) /max_time)*100 ])
                 elif args["elements_objective_function"] == "influence_seedSize": 
                     fitness[index] = inspyred.ec.emo.Pareto([(influence_mean / G.number_of_nodes()) * 100, (((k-len(A_set)) / G.number_of_nodes()) * 100)])
                 else: 

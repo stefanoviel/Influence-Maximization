@@ -54,9 +54,8 @@ def moea_influence_maximization(G,args, max_time, fitness_function=None, fitness
         fitness_function = MonteCarlo_simulation
         fitness_function_kargs["random_generator"] = random_gen # pointer to pseudo-random number generator
     
-    comm = None
-    if "communities" in fitness_function_kargs: 
-        comm = fitness_function_kargs["communities"]
+    comm = fitness_function_kargs["communities"]
+    tot_comm = len(comm)
 
     fitness_function_kargs["max_time"] = max_time
 
@@ -89,6 +88,7 @@ def moea_influence_maximization(G,args, max_time, fitness_function=None, fitness
         elements_objective_function=args["elements_objective_function"], 
         num_elites=args["num_elites"],
         communities = comm,
+        tot_communities = tot_comm,
         max_time = max_time, 
         # all arguments below will go inside the dictionary 'args'
         G = G,
