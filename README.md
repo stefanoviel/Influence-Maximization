@@ -62,8 +62,10 @@ If you used this code please remember to also include the following citation:
 
 Authors:
  
+- Stefano Viel, BSc Student University of Trento (Italy)
 - Elia Cunegatti, MSc Student University of Trento (Italy)
 - Giovanni Iacca, Associate Professor University of Trento (Italy) [website](https://sites.google.com/site/giovanniiacca/)
 - Doina Bucur, Associate Professor University of Twente (The Netherlands) [website](http://doina.net)
 
-For every type of doubts/questions about the repository please do not hesitate to contact me: elia.cunegatti@studenti.unitn.it
+For every type of doubts/questions about the repository please do not hesitate to contact me: viel.stefano01@gmail.com
+
