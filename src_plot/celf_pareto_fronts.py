@@ -4,6 +4,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from pymoo.indicators.hv import Hypervolume
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 200
 
 
 def get_PF(df):
@@ -42,7 +44,12 @@ def find_best(directory, hv_name):
 def pfs_seedSize(directory): 
     hv_influence_seed, best_file = find_best(os.path.join(directory, "influence_seedSize"), 'hv_influence_seedSize')
     df = pd.read_csv(os.path.join(directory, "influence_seedSize", best_file), sep = ',')
-    pf_influence_seed = get_PF(df)    
+    pf_influence_seed = get_PF(df)   
+    lista = list(pf_influence_seed)
+    lista = [list(l) for l in lista]
+    lista.append([25.13, 0.1545])
+    pf_influence_seed = np.array(lista)
+    print(pf_influence_seed)
     
     hv_influence_seedSize_time , best_file = find_best(os.path.join(directory, "influence_seedSize_time"), "hv_influence_seedSize_time")
     df = pd.read_csv(os.path.join(directory, "influence_seedSize_time", best_file), sep = ',')
@@ -61,12 +68,13 @@ def pfs_seedSize(directory):
     print("hv_influence_seedSize_communities_time:", hv_influence_seedSize_communities_time)
     print("hv_influence_seedSize_time:", hv_influence_seedSize_time)
 
-    plt.scatter(pf_influence_seed[:,0], pf_influence_seed[:,1],   label='influence_seed',  s=50)
+    fig = plt.scatter(pf_influence_seed[:,0], pf_influence_seed[:,1],   label='influence_seed',  s=50)
     # plt.scatter(pf_influence_seedSize_communities[:,0],pf_influence_seedSize_communities[:,1], color='brown', label='influence_seedSize_communities', marker='*',s=100)
     # plt.scatter(pf_influence_seedSize_communities_time[:,0],pf_influence_seedSize_communities_time[:,1], color='black', label='influence_seedSize_communities_time', marker='.',s=100)
     # plt.scatter(pf_influence_seedSize_time[:,0],pf_influence_seedSize_time[:,1], color='blue', label='influence_seedSize_time', marker='.',s=100)
     # plt.title('Comparing fitness functions', x=0.2, y=0.5,fontsize=12,weight="bold")
-    plt.title(directory.replace('exp1_out_', ''))
+    # fig.set_sizes((12, 8))
+    # plt.title(directory.replace('exp1_out_', ''))
     plt.ylabel('% Nodes as seed set',fontsize=12)
     plt.xlabel('% Influenced Nodes',fontsize=12)
     plt.legend()
@@ -117,7 +125,7 @@ if __name__ == '__main__':
     for directory in os.listdir(): 
 
         # directory = "exp1_out_pgp_4-IC"
-        if 'exp1_out' in directory: 
+        if 'exp1_out_facebook_combined_4-IC-0.05' in directory: 
             # try: 
             print(directory)
             pfs_seedSize(directory)

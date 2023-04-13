@@ -13,6 +13,9 @@ import math
 import numpy as np
 
 
+considered_graphs = ['deezerEU_4.txt', 'facebook_combined_4.txt', 'fb_politician_4.txt', 'pgp_4.txt', 'cora.txt']
+
+
 def read_graph(filename, nodetype=int):
 
 	graph_class = nx.Graph() # all graph files are directed
@@ -23,8 +26,8 @@ def read_graph(filename, nodetype=int):
 all_max_times = {}
 
 
-def process_graph(graph):
-    G = read_graph(os.path.join('graphs_downscaled', graph))
+def process_graph(base_path, graph):
+    G = read_graph(os.path.join(base_path, graph))
     print(graph, len(G), len(G)* 0.025)
 
     args = {}
@@ -33,12 +36,12 @@ def process_graph(graph):
         s = match.group()
         args['s'] = s
         args['downscaled'] = True
+        args['graph'] = graph.replace('_' + s + '.txt', '')
     else: 
         args['downscaled'] = False
+        args['graph'] = graph.replace('.txt', '')
 
-    args['graph'] = graph.replace('_' + s + '.txt', '')
-
-    if int(s) == 4: 
+    if graph in considered_graphs: 
         times = []
         random_nodes = sample(list(G.nodes()), round(len(G)* 0.025))
         try: 
@@ -48,14 +51,13 @@ def process_graph(graph):
         except FileNotFoundError as fnf: 
             pass
     
-        print(max(times))
         all_max_times[graph.replace('.txt', '')] = [max(times)]
 
 
 def worker():
     while True:
-        graph = q.get()
-        process_graph(graph)
+        base_path, graph = q.get()
+        process_graph(base_path, graph)
         q.task_done()
 
 # Create a queue to hold the graphs
@@ -68,14 +70,18 @@ for i in range(6):
     t.start()
 
 # Add the graphs to the queue
-for graph in os.listdir('graphs_downscaled'):
-    q.put(graph)
+paths = [('graphs_downscaled', p) for p in os.listdir('graphs_downscaled') ]
+paths =  paths + [('graphs', p) for p in os.listdir('graphs') ]
+
+for base_path, graph in paths:
+    q.put((base_path, graph))
+    # process_graph(os.path.join(base_path, graph))
 
 # Wait for all tasks to be completed
 q.join()
 
 df = pd.DataFrame(all_max_times)
-print(df)
+
 df.to_csv('networks_max_times.csv')
 
     

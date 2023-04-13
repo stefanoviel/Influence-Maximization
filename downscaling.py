@@ -13,7 +13,7 @@ from scipy import sparse
 
 # graph-tool importation. 
 # For informat about installation please refere to the official website https://graph-tool.skewed.de 
-from graph_tool.all import *
+# from graph_tool.all import *
 
 # local libraries
 sys.path.insert(0, '')
@@ -45,8 +45,8 @@ def largest_component(G):
     return G
 def from_networkx_to_igraph(G):
     R = ig.Graph(directed=False)
-    R.add_vertices(G.nodes())
-    R.add_edges(G.edges())
+    R.add_vertices(list(G.nodes()))
+    R.add_edges(list(G.edges()))
     return R
 def leiden_algorithm(G):
     communities = leidenalg.find_partition(G, leidenalg.ModularityVertexPartition)
@@ -247,6 +247,6 @@ if __name__ == '__main__':
     matrix = get_simmetric_matrix_edges(G, communities)
     sizes = save_groud_truth_communities_scaled(communities, args)
     nodes, out = preserve_degree_distribution(G, communities, sizes)
-    g = graph_tool.generation.generate_sbm(nodes, matrix, out_degs=out, in_degs=None, directed=False, micro_ers=True, micro_degs=False)
+    # g = graph_tool.generation.generate_sbm(nodes, matrix, out_degs=out, in_degs=None, directed=False, micro_ers=True, micro_degs=False)
     save_downscaled_graph(g, name)
 

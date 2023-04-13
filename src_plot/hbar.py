@@ -42,7 +42,7 @@ for directory in os.listdir('result_comparison'):
         g = sns.catplot(data=df_new, x='HV dimensions',y ='HV values', kind="bar",hue="fitness_function", legend = False,  height=5.5, aspect=2.2)
         g.fig.suptitle(directory)
         plt.legend(loc='upper right', title = 'objectives')
-        plt.savefig(os.path.join('result_comparison', directory, directory + 'hbar.png'))
+        plt.savefig(os.path.join('result_comparison', directory, directory + 'hbar.pdf'), format="pdf")
         plt.show()
     except KeyError as e: 
         print(e)

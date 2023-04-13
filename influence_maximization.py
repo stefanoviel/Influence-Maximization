@@ -249,6 +249,7 @@ def get_communities(args):
         filename = 'graph_communities/{0}.csv'.format(args["graph"])
 
     df = pd.read_csv(filename, sep=",") 
+    print(df)
     result = df.groupby('comm')['node'].apply(list).tolist()
     return result
 
@@ -262,7 +263,7 @@ def get_max_time(args):
     
     g = graph_name.replace('.csv', '')
     if g not in list(max_time.columns): 
-        raise('Max time has not been simulated for this network')
+        raise Exception('Max time has not been simulated for this network')
     
     return max_time[g].iloc[0]
 
