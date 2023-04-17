@@ -68,7 +68,8 @@ def pfs_seedSize(directory):
     print("hv_influence_seedSize_communities_time:", hv_influence_seedSize_communities_time)
     print("hv_influence_seedSize_time:", hv_influence_seedSize_time)
 
-    fig = plt.scatter(pf_influence_seed[:,0], pf_influence_seed[:,1],   label='influence_seed',  s=50)
+    plt.figure( dpi=100)
+    fig = plt.scatter(pf_influence_seed[:,0], pf_influence_seed[:,1],  s=50)
     # plt.scatter(pf_influence_seedSize_communities[:,0],pf_influence_seedSize_communities[:,1], color='brown', label='influence_seedSize_communities', marker='*',s=100)
     # plt.scatter(pf_influence_seedSize_communities_time[:,0],pf_influence_seedSize_communities_time[:,1], color='black', label='influence_seedSize_communities_time', marker='.',s=100)
     # plt.scatter(pf_influence_seedSize_time[:,0],pf_influence_seedSize_time[:,1], color='blue', label='influence_seedSize_time', marker='.',s=100)
@@ -77,8 +78,9 @@ def pfs_seedSize(directory):
     # plt.title(directory.replace('exp1_out_', ''))
     plt.ylabel('% Nodes as seed set',fontsize=12)
     plt.xlabel('% Influenced Nodes',fontsize=12)
-    plt.legend()
 
+
+    
     plt.show()
 
 def pfs_no_seedSize(directory): 

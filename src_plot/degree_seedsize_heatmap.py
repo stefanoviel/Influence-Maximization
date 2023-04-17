@@ -1,7 +1,7 @@
 import sys
 import seaborn as sns
 import os
-sys.path.append("/home/stefano/Documents/tesi/Influence-Maximization")
+sys.path.append("/home/stefano/Documents/UNITN/tesi/Influence-Maximization")
 # print(sys.path)
 from src.load import read_graph
 from collections import Counter
@@ -54,7 +54,7 @@ def analysis(path):
                         number_elements_solution_com.append(len(com))
 
         print("average solution nodes' degree", np.average(solution_nodes_degree), mean_seed_size)
-        avg_node_degree.append(np.average(solution_nodes_degree))
+        avg_node_degree.append(np.sum(solution_nodes_degree))
         avg_seed_size.append(round(mean_seed_size/graph.number_of_nodes() * 100, 3))
         # print()
     #     res = Counter(number_elements_solution_com)
@@ -69,7 +69,7 @@ def analysis(path):
 
     # plt.show()
 
-    return (np.array(avg_node_degree)/max(avg_node_degree)), np.array(avg_seed_size)/max(avg_seed_size)
+    return (np.array(avg_node_degree)/ graph.number_of_edges() ), np.array(avg_seed_size)
 
 heat = []
 
@@ -80,12 +80,15 @@ node_degree4, seed_size4 = analysis('deezerEU_4')
  
 
 
-heat1 = pd.DataFrame([node_degree1, node_degree2, node_degree3, node_degree4], columns=['I.S.T', 'I.S.C.T', 'I.S.C', 'I.S.'], index=['fb_combined', 'fb_politician', 'pgp', 'deezerEU'])
+# heat1 = pd.DataFrame([node_degree1, node_degree2, node_degree3, node_degree4], columns=['I.S.T', 'I.S.C.T', 'I.S.C', 'I.S.'], index=['fb_combined', 'fb_politician', 'pgp', 'deezerEU'])
 heat2 = pd.DataFrame([seed_size1, seed_size2, seed_size3, seed_size4], columns=['I.S.T', 'I.S.C.T', 'I.S.C', 'I.S.'], index=['fb_combined', 'fb_politician', 'pgp', 'deezerEU'])
 
-f, axes = plt.subplots(1, 2)
+# f, axes = plt.subplots(1, 2)
 
-sns.heatmap(heat1, annot=True, ax=axes[0])
-sns.heatmap(heat2, annot=True, ax=axes[1])
+# sns.heatmap(heat1, annot=True, ax=axes[0])
+# sns.heatmap(heat2, annot=True, ax=axes[1])
+
+sns.heatmap(heat2, annot = True)
+
 
 plt.show()
