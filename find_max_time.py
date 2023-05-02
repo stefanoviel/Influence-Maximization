@@ -13,7 +13,8 @@ import math
 import numpy as np
 
 
-considered_graphs = ['deezerEU_4.txt', 'facebook_combined_4.txt', 'fb_politician_4.txt', 'pgp_4.txt', 'cora.txt']
+considered_graphs = ['deezerEU_4.txt', 'facebook_combined_4.txt', 'fb_politician_4.txt', 'pgp_4.txt', 'cora.txt', 'fb_org_4.txt']
+considered_graphs = ['fb_org_4.txt']
 
 
 def read_graph(filename, nodetype=int):

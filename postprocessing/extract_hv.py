@@ -15,7 +15,9 @@ def get_file_hv(directory):
             df = pd.read_csv(os.path.join(directory, file), sep = ',')        
             # get the hvs of the last PF of each run (i.e. the one in the archive)
             all_hv.append(df.iloc[-1].to_list())
+            print(file, df.iloc[-1].to_list())
             col = df.columns
+            
 
     res = pd.DataFrame(all_hv)
     res.columns = col
@@ -37,7 +39,7 @@ if "__main__" == __name__:
                     try: 
                         os.mkdir(os.path.join('result_comparison', directory.replace('exp1_out_', ''), 'hvs')) 
                     except OSError as error: 
-                        print(error) 
+                        pass
 
                     print(directory, fitness_function)
                     df = get_file_hv(os.path.join(directory, fitness_function))

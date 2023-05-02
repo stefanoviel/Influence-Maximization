@@ -89,6 +89,30 @@ def IC_model(G, a, p,communities, random_generator, max_time= math.inf):        
 			comm += 1	
 	return len(A), comm, time
 
+
+def IC_model_influenced_nodes(G, a, p, random_generator, max_time= math.inf):              # a: the set of initial active nodes
+	                                # p: the system-wide probability of influence on an edge, in [0,1]
+	A = set(a)                      # A: the set of active nodes, initially a
+	B = set(a)  
+	converged = False
+	time = 0
+
+	while not converged and time <= max_time:
+		nextB = set()
+		for n in B:
+			for m in set(G.neighbors(n)) - A: # G.neighbors follows A-B and A->B (successor) edges
+				prob = random_generator.random() # in the range [0.0, 1.0)
+				if prob <= p:
+					nextB.add(m)
+		B = set(nextB)
+		time = time+1  
+		if not B:
+			converged = True
+		A |= B
+	
+
+	return A
+
 def IC_model_community_seed(G, a, p, communities, random_generator, max_time= math.inf):              # a: the set of initial active nodes
 	                                # p: the system-wide probability of influence on an edge, in [0,1]
 	A = set(a)                      # A: the set of active nodes, initially a
@@ -182,7 +206,7 @@ def MonteCarlo_simulation_time(G, A, p, no_simulations, model, communities, max_
 			times.append(time)
 
 
-	set_com_time = {'set': A, 'communities':comm, 'time':(1/time)}
+	set_com_time = {'set': A, 'communities':comm, 'time':(time)}
 
 	return (numpy.mean(results), numpy.std(results), int(numpy.mean(comm_list)), int(numpy.mean(times)), set_com_time)
 

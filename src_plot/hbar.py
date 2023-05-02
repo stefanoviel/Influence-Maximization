@@ -19,6 +19,9 @@ def get_initials(fitness_name):
 for directory in os.listdir('result_comparison'):
     df_combined = pd.DataFrame()
 
+    if 'prob' in directory : 
+        continue
+
     for file in os.listdir(os.path.join('result_comparison', directory, 'hvs')):
         print(os.path.join('result_comparison', directory, 'hvs', file))
         df = pd.read_csv(os.path.join(
@@ -29,8 +32,8 @@ for directory in os.listdir('result_comparison'):
 
     print(df_combined.columns)
     try:
-        df_combined = df_combined[['hv_influence_seedSize', 'hv_influence_seedSize_time',
-                                   'hv_influence_seedSize_communities', 'fitness_function']]
+        # df_combined = df_combined[['hv_influence_seedSize', 'hv_influence_seedSize_time',
+        #                            'hv_influence_seedSize_communities', 'fitness_function']]
         df_new = []
         for index, row in df_combined.iterrows():
             df_new.append([row["fitness_function"], "infl. seed",
@@ -45,12 +48,11 @@ for directory in os.listdir('result_comparison'):
         custom_dict = {'I.S.': 0, 'I.S.C.': 1, 'I.S.T.': 2, 'I.S.C.T':  3}
         df_new = df_new.sort_values(
             by=['fitness_function', 'HV dimensions'], key=lambda x: x.map(custom_dict))
-        print(df_new)
+        print(df_new.reset_index())
 
         sns.catplot(data=df_new, x='HV dimensions', y='HV values', kind="bar", hue="fitness_function",
                     legend=False, height=5, aspect=6/5,  palette= sns.color_palette("deep"))
       
-
         plt.legend(loc='upper right', title='objectives')
         plt.savefig(os.path.join('result_comparison', directory,
                     directory + 'hbar.pdf'), format="pdf")

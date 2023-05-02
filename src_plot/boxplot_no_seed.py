@@ -24,6 +24,16 @@ def name_abreviation(name):
         return 'I.C.'
     elif name == 'influence_time': 
         return 'I.T.'
+    
+def map_dataset_name(name): 
+    if  'facebook_combined' in name: 
+        return 'Facebook combined'
+    elif 'fb_politician' in name: 
+        return 'Facebook politician'
+    elif 'deezerEU' in name: 
+        return 'Deezer EU'
+    elif 'pgp' in name: 
+        return 'PGP'
 
 def boxplot(directory): 
     label = directory.replace('exp1_out_', '')
@@ -67,8 +77,10 @@ if "__main__" == __name__:
 
         # print(dfs_final)
         sns.boxplot(data = data, x='fitness_function ', y="influence", ax = axs[n]).set(ylabel='% influence')
-        axs[n].set_title(label)
+        axs[n].set_yscale('log')
+        axs[n].set_ylim([8*10**-2, 10**2])
+        axs[n].set_title(map_dataset_name(label))
 
     # plt.savefig('result_comparison/' + label + '/' + 'box_plot_' + label + '.jpg')
-    plt.subplots_adjust(hspace=0.25)
+    plt.subplots_adjust(hspace=0.5)
     plt.show()
