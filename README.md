@@ -1,10 +1,6 @@
-# Large-scale multi-objective influence maximisation with network downscaling
+# Exploring the Impact of Multiple Objectives on the Influence Maximization Problem
 
-Codebase for the experiments reported in:
-*Large-scale multi-objective influence maximisation with network downscaling, Elia Cunegatti, Giovanni Iacca, Doina Bucur,
-Parallel Problem Solving from Nature, Springer, Dortmund 2022, to appear  **[[link]](https://link.springer.com/chapter/10.1007/978-3-031-14721-0_15)** **[[pre-print]](https://doi.org/10.48550/arXiv.2204.06250)***
-
-<ins>DOI</ins> : https://doi.org/10.1007/978-3-031-14721-0_15
+Full thesis: https://drive.google.com/file/d/1mKGHQ_v49x6P8-swDHzwGzdi2LBT_Ws4/view?usp=sharing
 
 Please cite our paper if you use our codes!!
 
